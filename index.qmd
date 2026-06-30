@@ -4,6 +4,8 @@ number-sections: false
 ---
 
 Velkomin í námsefni námskeiðsins **Upplýsingaverkfræði IÐN302G** við Háskóla Íslands.
+Tilgangur námskeiðsins er að undirbúa nemendur fyrir nám og störf sem krefjast öflunar,
+meðhöndlunar, greiningar og framsetningu upplýsinga.
 
 Námsefnið er skipulagt í þrjá hluta:
 
@@ -11,15 +13,29 @@ Námsefnið er skipulagt í þrjá hluta:
 - **SQL framhald** — PostgreSQL, JOIN, CTE og PostGIS
 - **Myndræn framsetning** — Gagnvirk gröf, mælaborð og gagnafrásögn
 
-## Hvernig á að nota þetta námsefni
+## Hæfniviðmið {.unnumbered}
 
-Farðu í gegnum efnið í þeirri röð sem það birtist í hliðarstikunni til vinstri.
-Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.
+Nemandi öðlast hæfni í að:
 
-## Gagnaskrár
+- afla, meðhöndla, greina og setja fram gögn og upplýsingar
+- beita **fyrirspurnarmálinu SQL** við úrvinnslu gagna (SQLite og PostgreSQL)
+- nota **reglulegar segðir** (regex) til að leita í og vinna úr textagögnum
+- setja fram gögn á **sjónrænan hátt** með gröfum, kortum og mælaborðum
+- nota **GitHub** til að geyma, deila og fylgjast með breytingum á kóða
+- beita **skjalastjórnun** og vinnuflæði forritunar (skrár, möppur, útgáfustjórnun)
+- framkvæma **kóðarýni** og skrifa skýran og læsilegan kóða
+- nýta sér **gervigreind** sem hjálpartæki við forritun og gagnagreiningu
 
-Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í [`data/`](https://github.com/HI-IDN/IDN302G/tree/main/data) möppunni í þessum gagnageymslunni (e. *repository*).
+## Námsefni {.unnumbered}
 
-## Framlag og endurgjöf
+Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar — farðu í gegnum það í þeirri röð
+sem það birtist í hliðarstikunni til vinstri.
 
-Villur og ábendingar eru vel þegnar — sjá [README](https://github.com/HI-IDN/IDN302G#readme) fyrir leiðbeiningar.
+Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í
+[`data/`](https://github.com/HI-IDN/IDN302G/tree/main/data) möppunni í gagnageymslunni
+(e. *repository*).
+
+## Framlag og endurgjöf {.unnumbered}
+
+Villur og ábendingar eru vel þegnar — sjá [README](https://github.com/HI-IDN/IDN302G#readme)
+fyrir leiðbeiningar um hvernig á að tilkynna villur eða leggja til breytingar.

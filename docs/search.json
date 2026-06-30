@@ -4,17 +4,27 @@
     "href": "index.html",
     "title": "Upplýsingaverkfræði IÐN302G",
     "section": "",
-    "text": "Hvernig á að nota þetta námsefni\nVelkomin í námsefni námskeiðsins Upplýsingaverkfræði IÐN302G við Háskóla Íslands.\nNámsefnið er skipulagt í þrjá hluta:\nFarðu í gegnum efnið í þeirri röð sem það birtist í hliðarstikunni til vinstri. Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.",
+    "text": "Hæfniviðmið\nVelkomin í námsefni námskeiðsins Upplýsingaverkfræði IÐN302G við Háskóla Íslands. Tilgangur námskeiðsins er að undirbúa nemendur fyrir nám og störf sem krefjast öflunar, meðhöndlunar, greiningar og framsetningu upplýsinga.\nNámsefnið er skipulagt í þrjá hluta:\nNemandi öðlast hæfni í að:",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Upplýsingaverkfræði</span>"
     ]
   },
   {
-    "objectID": "index.html#gagnaskrár",
-    "href": "index.html#gagnaskrár",
+    "objectID": "index.html#hæfniviðmið",
+    "href": "index.html#hæfniviðmið",
     "title": "Upplýsingaverkfræði IÐN302G",
-    "section": "Gagnaskrár",
-    "text": "Gagnaskrár\nGagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í data/ möppunni í þessum gagnageymslunni (e. repository).",
+    "section": "",
+    "text": "afla, meðhöndla, greina og setja fram gögn og upplýsingar\nbeita fyrirspurnarmálinu SQL við úrvinnslu gagna (SQLite og PostgreSQL)\nnota reglulegar segðir (regex) til að leita í og vinna úr textagögnum\nsetja fram gögn á sjónrænan hátt með gröfum, kortum og mælaborðum\nnota GitHub til að geyma, deila og fylgjast með breytingum á kóða\nbeita skjalastjórnun og vinnuflæði forritunar (skrár, möppur, útgáfustjórnun)\nframkvæma kóðarýni og skrifa skýran og læsilegan kóða\nnýta sér gervigreind sem hjálpartæki við forritun og gagnagreiningu",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Upplýsingaverkfræði</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#námsefni",
+    "href": "index.html#námsefni",
+    "title": "Upplýsingaverkfræði IÐN302G",
+    "section": "Námsefni",
+    "text": "Námsefni\nHvert kafli inniheldur útskýringar, sýnidæmi og æfingar — farðu í gegnum það í þeirri röð sem það birtist í hliðarstikunni til vinstri.\nGagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í data/ möppunni í gagnageymslunni (e. repository).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Upplýsingaverkfræði</span>"
     ]
@@ -24,7 +34,7 @@
     "href": "index.html#framlag-og-endurgjöf",
     "title": "Upplýsingaverkfræði IÐN302G",
     "section": "Framlag og endurgjöf",
-    "text": "Framlag og endurgjöf\nVillur og ábendingar eru vel þegnar — sjá README fyrir leiðbeiningar.",
+    "text": "Framlag og endurgjöf\nVillur og ábendingar eru vel þegnar — sjá README fyrir leiðbeiningar um hvernig á að tilkynna villur eða leggja til breytingar.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Upplýsingaverkfræði</span>"
     ]
