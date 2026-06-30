@@ -1,0 +1,1624 @@
+
+<!doctype html>
+<html lang="is" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PostGIS er viðbót við PostgreSQL sem bætir við stuðningi fyrir landfræðileg og rúmfræðileg gögn,  sem gerir mögulegt að vinna með gagnapunkta, línur, margflötunga og fleiri form í gagnagrunnum.">
+      
+      
+      
+        <link rel="canonical" href="https://hi-idn.github.io/IDN302G/sql-advanced/postgis/">
+      
+      
+        <link rel="prev" href="../cte/">
+      
+      
+        <link rel="next" href="../../storytelling/introduction/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>PostGIS - Upplýsingaverkfræði IÐN302G</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#postgis-fyrir-postgresql" class="md-skip">
+          Hoppa yfir í efnið
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Haus">
+    <a href="../.." title="Upplýsingaverkfræði IÐN302G" class="md-header__button md-logo" aria-label="Upplýsingaverkfræði IÐN302G" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Upplýsingaverkfræði IÐN302G
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PostGIS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Leita" placeholder="Leita" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Leita">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Hreinsa" aria-label="Hreinsa" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Ræsi leitarvél
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/HI-IDN/IDN302G" title="Fara í gagnageymslu" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HI-IDN/IDN302G
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Flipar" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Heim
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sql-basics/introduction/" class="md-tabs__link">
+          
+  
+  
+  SQL grunnatriði
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../introduction/" class="md-tabs__link">
+          
+  
+  
+  SQL framhald
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../storytelling/introduction/" class="md-tabs__link">
+          
+  
+  
+  Myndræn framsetning
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Valmynd" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Upplýsingaverkfræði IÐN302G" class="md-nav__button md-logo" aria-label="Upplýsingaverkfræði IÐN302G" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Upplýsingaverkfræði IÐN302G
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/HI-IDN/IDN302G" title="Fara í gagnageymslu" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HI-IDN/IDN302G
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL grunnatriði
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL grunnatriði
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inngangur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/basic_sql_queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grunn SQL fyrirspurnir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Töflur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/aggregation_and_grouping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Samsöfnun og hópun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/null/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tóm gildi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/subquery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Undirfyrirspurnir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/data_integrity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heilleiki gagna og skorður
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/import_export_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inn- og útflutningur gagna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/script_files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skipanaskrár
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/database_interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Samskipti við gagnagrunna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Æfingar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql-basics/additional_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ítarefni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL framhald
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SQL framhald
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inngangur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postgres/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../union/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sameining niðurstaðna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../joins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Samsettar töflur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sýndartöflur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Föll í SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flóknari SQL fyrirspurnir með CTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostGIS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostGIS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Efnisyfirlit">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Efnisyfirlit
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#game-of-thrones-gagnasetti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Game of Thrones gagnasettið
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helstu-foll-i-postgis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helstu föll í PostGIS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frekari-upplysingar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frekari upplýsingar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Myndræn framsetning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Myndræn framsetning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inngangur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/lightning_talk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hraðkynning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/visuals_major/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helstu gröf og töflur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/visuals_minor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Önnur gröf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/interactive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gagnvirk gröf og kort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mælaborð
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/donts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Slæm myndræn framsetning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/data_narrative/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gagnafrásögn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/additional_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ítarefni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="postgis-fyrir-postgresql">PostGIS fyrir PostgreSQL</h1>
+<p><em>PostGIS</em> er viðbót við <em>PostgreSQL</em> gagnagrunnskerfið sem bætir við stuðningi fyrir landfræðileg
+og rúmfræðileg gögn. Með <em>PostGIS</em> er hægt að geyma, sækja og framkvæma flóknar greiningar á
+staðbundnum gögnum innan <em>PostgreSQL</em>. Þetta gerir það að verkum að <em>PostGIS</em> er mikið notað fyrir
+verkefni tengd kortagerð, landfræðilegri greiningu, og aðra vinnslu á gögn með
+staðsetningarupplýsingar.</p>
+<p>Dálkar fyrir rúmfræðileg gögn eru oftast geymd sem <code>geometry</code> eða <code>geography</code> gagnatýpur. Algeng
+dálkaheiti eru því <code>geom</code> eða <code>geog</code> fyrir margflötunga. Eins eru <code>point</code>, <code>linestring</code>,
+<code>polygon</code> fyrir einfaldari rúmfræðileg gögn.</p>
+<h2 id="game-of-thrones-gagnasetti">Game of Thrones gagnasettið</h2>
+<p>Skemað <code>atlas</code> inniheldur tvær töflur:
+- <code>atlas.locations</code> sem inniheldur staðsetningar í dálknum <code>geog</code> sem er <code>POINT</code>.
+- <code>atlas.kingdoms</code> sem inniheldur landsvæði í dálknum <code>geom</code> sem er <code>MULTIPOLYGON</code>, sem gæti 
+  verið samsettur marghyrningur.</p>
+<h2 id="helstu-foll-i-postgis">Helstu föll í PostGIS</h2>
+<p><em>PostGIS</em> bætir við miklum fjölda af föllum sem eru gagnleg til að vinna með staðbundin gögn. Hér
+eru nokkur af helstu föllum sem PostGIS býður upp á:</p>
+<ul>
+<li>
+<p><code>ST_Point</code>: Býr til punkt með tilteknum lengdar- og breiddargráðum.
+  <code>sql
+  SELECT ST_Point(-73.935242, 40.730610);</code>
+  niðurstaðan er <code>01010000001FF64201DB7B52C0B610E4A0845D4440</code></p>
+</li>
+<li>
+<p><code>ST_Makeline</code>: Býr til línustrik með gefnum punktum.
+    <code>sql
+    SELECT ST_Makeline(
+        ARRAY[ST_MakePoint(0, 0), ST_MakePoint(1, 1), ST_MakePoint(2, 2)]
+    );</code></p>
+<ul>
+<li>Ef það eru bara tveir punktar þá þarf að nota <code>ARRAY[...]::geometry[]</code> ritháttinn, heldur
+  einfaldlega <code>SELECT ST_MakeLine(ST_MakePoint(0, 0), ST_MakePoint(1, 1))</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>ST_MakePolygon</code>: Býr til marghyrning með gefnum hornpunktum.
+    <code>sql
+    SELECT ST_MakePolygon( ST_GeomFromText('LINESTRING(75 29,77 29,77 29, 75 29)'));</code>
+  sem væri marghyrningur með hornpunkta $$(75, 29)$$, $$(77, 29)$$, $$(77, 29)$$, $$(75, 29)$$.</p>
+</li>
+<li><code>ST_Area</code>: Skilar flatarmáli marghyrnings.
+    <code>sql
+    SELECT ST_Area(ST_MakePolygon( ST_GeomFromText('LINESTRING(3 3, 3 5, 5 5, 5 3, 3 3)') ));</code>
+  gefur <code>4</code> (fermetra) sem er flatarmál fernings með hliðarlengd <code>2</code> og upphaf í $$(3, 3)$$.</li>
+<li><code>ST_Length</code>: Skilar lengd línu eða línuhluta.
+    <code>sql
+    SELECT ST_Length(
+        ST_Makeline(
+            ARRAY[ST_MakePoint(1, 1), ST_MakePoint(3, 3), ST_MakePoint(4, 5)]
+        )
+    );</code>
+  sem gefur <code>5.06449510224598</code> sem er það sama og evklíðsa fjarlægðin á milli $$(1,1)$$ og $$(3,3)
+  $$ og svo $$(3,3)$$ og $$(4,5)$$:</li>
+</ul>
+<p>$$ \text{length} = \sqrt{(3 - 1)^2 + (3 - 1)^2} + \sqrt{(4 - 3)^2 + (5 - 3)^2} = \sqrt{8} + \sqrt{5} \approx 5.07$$</p>
+<ul>
+<li>
+<p><code>ST_Distance</code>: Skilar minnstu fjarlægð milli tveggja hluta (gæti verið punktur eða marghyrningur)
+  <code>sql
+    SELECT st_distance(
+        ST_MakePoint(0, 0),
+        st_makeline(
+            ARRAY[ST_MakePoint(1, 1), ST_MakePoint(3, 3), ST_MakePoint(4, 5)]
+        )
+    );</code>
+  sem skilar <code>1.4142135623730951</code> sem er sama og evklíðska fjarlægðin milli punktanna $$(0, 0)$$
+  og $$(1, 1)$$, sem er næsti hornpunkturinn í marghyrningnum.</p>
+</li>
+<li>
+<p><code>ST_Contains</code>: Skilar <code>TRUE</code> ef fyrri marghyrningurinn inniheldur seinni marghyrninginn. </p>
+</li>
+<li>
+<p>Sönn tilfelli </p>
+<pre><code>![LINESTRING / MULTIPOINT](https://postgis.net/images/st_contains01.png)![POLYGON / POINT](https://postgis.net/images/st_contains02.png)![POLYGON / LINESTRING](https://postgis.net/images/st_contains03.png)![POLYGON / POLYGON](https://postgis.net/images/st_contains04.png)
+</code></pre>
+</li>
+<li>
+<p>Ósönn tilfelli</p>
+<pre><code>![POLYGON / MULTIPOINT](https://postgis.net/images/st_contains05.png)![POLYGON / LINESTRING](https://postgis.net/images/st_contains06.png)
+</code></pre>
+</li>
+<li>
+<p>Ósönn tilfelli (en gætu verið sönn með <code>ST_Covers</code>)</p>
+<pre><code>![LINESTRING / POINT](https://postgis.net/images/st_contains07.png)![POLYGON / LINESTRING](https://postgis.net/images/st_contains08.png)
+</code></pre>
+</li>
+<li>
+<p><code>ST_Intersection</code>: Skilar skurðpunktum tveggja marghyrna, og skilar <code>NULL</code> ef marghyrnarnir 
+  skerast ekki, sbr. $$A\cap B$$. Nátengt fall <code>ST_Intersects</code> skilar <code>TRUE</code> ef marghyrnarnir 
+  skerast, en skilar ekki skurðpunktum, <code>FALSE</code> annars.</p>
+</li>
+<li><code>ST_Union</code>: Sameinar tvo marghyrninga, sbr. $$A\cup B$$.</li>
+<li><code>ST_Buffer</code>: Býr til svæði með gefinni fjarlægð frá gefnum punkti.
+    <code>sql
+    SELECT ST_Buffer(
+        ST_MakePoint(0, 0),
+        1
+    );</code></li>
+<li><code>ST_Centroid</code>: Skilar miðpunkt marghyrnings.
+    <code>sql
+    SELECT ST_Centroid(ST_MakePolygon( ST_GeomFromText('LINESTRING(75 29,77 29,77 29, 75 29)')));</code></li>
+<li>
+<p><code>ST_Transform</code>: Breytir rúmfræðilegum hlut í annað kóðunarkerfi (e. SRID).
+    <code>sql
+    SELECT ST_Transform(
+        ST_SetSRID(ST_MakePoint(0, 0), 4326),
+        3857
+    );</code></p>
+<ul>
+<li><code>4326</code> er kóðunarkerfið fyrir WGS 84 (World Geodetic System 1984), samanber flest heimskort.</li>
+<li><code>3857</code> er kóðunarkerfið fyrir Web Mercator, sem er algengasta kóðunarkerfið fyrir  kort á 
+  vefnum, t.d. Google Maps.</li>
+</ul>
+<blockquote>
+<p>SRID tryggir að gögn séu túlkuð rétt með tilliti til staðsetningar á jörðinni, sem þýðir að
+  þau verða rétt staðsett á korti. Ef gögnin eru með mismunandi viðmiðunarkerfi, eins og eitt
+  gagnasett með WGS 84 og annað með Web Mercator, gæti staðsetning þeirra verið röng ef
+  viðmiðunarkerfin eru ekki samræmd. Ef þú vilt t.d. að miðja á korti sé rétt staðsett í Japan í
+  stað Evrópu, þá þarf að tryggja að gögnin noti rétt SRID, annars gæti punktur eða svæði verið
+  misskilið og birt á röngum stað. Með því að samræma SRID með <code>ST_Transform</code> er tryggt að
+  gögnin séu túlkuð og birt rétt, hvort sem það er fyrir punkt, línu eða margflötung.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="frekari-upplysingar">Frekari upplýsingar</h2>
+<p><em>PostGIS</em> býður upp á fjölmörg önnur föll til að vinna með og greina landfræðileg gögn, sem gerir
+<em>PostgreSQL</em> að öflugri lausn fyrir rúmfræðileg verkefni.</p>
+<p>Þú getur fengið frekari upplýsingar og skoðað opinberu handbókina á
+<a href="https://postgis.net/docs/manual-3.4/">PostGIS.net</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Afrita\u00f0 \u00e1 klemmuspjald", "clipboard.copy": "Afrita \u00e1 klemmuspjald", "search.result.more.one": "1 til vi\u00f0b\u00f3tar \u00e1 \u00feessari s\u00ed\u00f0u", "search.result.more.other": "# til vi\u00f0b\u00f3tar \u00e1 \u00feessari s\u00ed\u00f0u", "search.result.none": "Engar s\u00ed\u00f0ur fundust", "search.result.one": "1 s\u00ed\u00f0a fannst", "search.result.other": "# s\u00ed\u00f0ur fundust", "search.result.placeholder": "Byrja\u00f0u a\u00f0 skrifa til a\u00f0 hefja leit", "search.result.term.missing": "Vantar", "select.version": "Veldu \u00fatg\u00e1fu"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -2,7 +2,8 @@ site_name: Upplýsingaverkfræði IÐN302G
 site_url: https://hi-idn.github.io/IDN302G
 repo_url: https://github.com/HI-IDN/IDN302G
 repo_name: HI-IDN/IDN302G
-docs_dir: docs
+docs_dir: src
+site_dir: docs
 
 theme:
   name: material
