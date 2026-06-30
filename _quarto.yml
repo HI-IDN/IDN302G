@@ -33,15 +33,15 @@ book:
     background: light
   chapters:
     - index.qmd
+    - part: "Git og GitHub"
+      chapters:
+        - github/index.md
+    - part: "Erindrekar"
+      chapters:
+        - ai-tools/index.md
     - part: "Reglulegar segðir"
       chapters:
         - regex/index.md
-    - part: "GitHub og skjalastjórnun"
-      chapters:
-        - github/index.md
-    - part: "Gervigreind sem hjálpartæki"
-      chapters:
-        - ai-tools/index.md
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.md

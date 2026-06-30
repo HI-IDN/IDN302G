@@ -27,18 +27,18 @@ og góðar og slæmar venjur í sjónrænni framsetningu.
 :::
 
 ::: {.callout-tip appearance="minimal"}
-## Reglulegar segðir (regex) — *kemur*
-Leit og vinnslur á textagögnum með reglulegar segðir í R og öðrum tólum.
+## Git og GitHub — *kemur*
+Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði í teymi.
 :::
 
 ::: {.callout-tip appearance="minimal"}
-## GitHub og skjalastjórnun — *kemur*
-Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði.
+## Erindrekar — *kemur*
+Notkun gervigreindar (LLM) sem erindrekа við forritun, kóðarýni og gagnagreiningu á ábyrgan hátt.
 :::
 
 ::: {.callout-tip appearance="minimal"}
-## Gervigreind sem hjálpartæki — *kemur*
-Notkun gervigreindar (LLM) við forritun, kóðarýni og gagnagreiningu á ábyrgan hátt.
+## Reglulegar segðir — *kemur*
+Leit og vinnslur á textagögnum með reglulegar segðir (regex) í R og öðrum tólum.
 :::
 
 ## Hæfniviðmið {.unnumbered}

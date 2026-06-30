@@ -1,7 +1,7 @@
 ﻿---
 title: "Inngangur"
 description: >-
-  Notkun gervigreindar (LLM) við forritun, kóðarýni og gagnagreiningu á ábyrgan hátt.
+  Erindrekar (gervigreind sem hjálpartæki): notkun LLM við forritun, kóðarýni og gagnagreiningu.
 ---
 
 ::: {.callout-tip}
@@ -9,11 +9,12 @@ description: >-
 Þessi hluti er í vinnslu og verður bættur við síðar.
 :::
 
-## Gervigreind í námi og starfi
+## Erindrekar í námi og starfi
 
-Stór gervigreindarlíkön (e. *large language models*, LLM) eins og ChatGPT og Claude hafa
-umbreytt því hvernig forritarar og gagnavísindamenn vinna. Þetta þýðir ekki að við þurfum ekki
-að skilja kóðann — þvert á móti er skilningurinn mikilvægari en nokkru sinni fyrr.
+Stór gervigreindarlíkön (e. *large language models*, LLM) — eða *erindrekar* eins og við köllum
+þau í þessu námskeiði — eins og ChatGPT og Claude hafa umbreytt því hvernig forritarar og
+gagnavísindamenn vinna. Þetta þýðir ekki að við þurfum ekki að skilja kóðann — þvert á móti er
+skilningurinn mikilvægari en nokkru sinni fyrr.
 
 ## Efni sem verður farið yfir
 

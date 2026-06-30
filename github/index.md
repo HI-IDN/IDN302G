@@ -1,7 +1,7 @@
 ﻿---
 title: "Inngangur"
 description: >-
-  Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði.
+  Git og GitHub: útgáfustjórnun, geymsla, útibú, samþætting, kóðarýni og vinnuflæði.
 ---
 
 ::: {.callout-tip}

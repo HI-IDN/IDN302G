@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hi-idn.github.io/IDN302G/index.html</loc>
-    <lastmod>2026-06-30T13:44:19.319Z</lastmod>
+    <lastmod>2026-06-30T14:08:12.699Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hi-idn.github.io/IDN302G/github/index.html</loc>
+    <lastmod>2026-06-30T14:07:40.964Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hi-idn.github.io/IDN302G/ai-tools/index.html</loc>
+    <lastmod>2026-06-30T14:07:57.924Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/regex/index.html</loc>
     <lastmod>2026-06-30T13:51:24.758Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hi-idn.github.io/IDN302G/github/index.html</loc>
-    <lastmod>2026-06-30T13:51:24.824Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hi-idn.github.io/IDN302G/ai-tools/index.html</loc>
-    <lastmod>2026-06-30T13:51:24.825Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/introduction.html</loc>

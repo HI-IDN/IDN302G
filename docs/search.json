@@ -40,68 +40,68 @@
     ]
   },
   {
-    "objectID": "regex/index.html",
-    "href": "regex/index.html",
-    "title": "2  Inngangur",
-    "section": "",
-    "text": "2.1 Hvað eru reglulegar segðir?\nReglulegar segðir (e. regular expressions, skammstafað regex) eru mynstur sem notuð eru til að leita í, finna og vinna úr texta. Þær eru studdar í nær öllum forritunarmálum, þar á meðal R, Python og JavaScript.",
-    "crumbs": [
-      "Reglulegar segðir",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Inngangur</span>"
-    ]
-  },
-  {
-    "objectID": "regex/index.html#efni-sem-verður-farið-yfir",
-    "href": "regex/index.html#efni-sem-verður-farið-yfir",
-    "title": "2  Inngangur",
-    "section": "2.2 Efni sem verður farið yfir",
-    "text": "2.2 Efni sem verður farið yfir\n\nGrunntákn og mynstur (^, $, ., *, +, ?)\nFlokkar ([a-z], [0-9], \\d, \\w, \\s)\nHópar og vísunar ((...), \\1)\nReglulegar segðir í R (stringr, grepl, gsub)\nLeit í skrám með regex\nÆfingar og dæmi",
-    "crumbs": [
-      "Reglulegar segðir",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Inngangur</span>"
-    ]
-  },
-  {
     "objectID": "github/index.html",
     "href": "github/index.html",
-    "title": "3  Inngangur",
+    "title": "2  Inngangur",
     "section": "",
-    "text": "3.1 Hvað er Git og GitHub?\nGit er dreift útgáfustjórnunarkerfi (e. version control system) sem heldur utan um breytingar á skrám yfir tíma. GitHub er vefþjónusta sem hýsir Git-gagnageymslur og auðveldar samstarf og deilingu á kóða.",
+    "text": "2.1 Hvað er Git og GitHub?\nGit er dreift útgáfustjórnunarkerfi (e. version control system) sem heldur utan um breytingar á skrám yfir tíma. GitHub er vefþjónusta sem hýsir Git-gagnageymslur og auðveldar samstarf og deilingu á kóða.",
     "crumbs": [
-      "GitHub og skjalastjórnun",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Inngangur</span>"
+      "Git og GitHub",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Inngangur</span>"
     ]
   },
   {
     "objectID": "github/index.html#efni-sem-verður-farið-yfir",
     "href": "github/index.html#efni-sem-verður-farið-yfir",
-    "title": "3  Inngangur",
-    "section": "3.2 Efni sem verður farið yfir",
-    "text": "3.2 Efni sem verður farið yfir\n\nUppsetning og grunnstillingar Git\nGeymsla og útibú (init, clone, branch, checkout)\nBreytingar og samþætting (add, commit, push, pull, merge)\nGitHub: geymsla, issues, pull requests\nKóðarýni (code review) og vinnuflæði í teymi\nSkjalastjórnun: möppur, skrár og README\nDæmi úr námskeið",
+    "title": "2  Inngangur",
+    "section": "2.2 Efni sem verður farið yfir",
+    "text": "2.2 Efni sem verður farið yfir\n\nUppsetning og grunnstillingar Git\nGeymsla og útibú (init, clone, branch, checkout)\nBreytingar og samþætting (add, commit, push, pull, merge)\nGitHub: geymsla, issues, pull requests\nKóðarýni (code review) og vinnuflæði í teymi\nSkjalastjórnun: möppur, skrár og README\nDæmi úr námskeið",
     "crumbs": [
-      "GitHub og skjalastjórnun",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Inngangur</span>"
+      "Git og GitHub",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Inngangur</span>"
     ]
   },
   {
     "objectID": "ai-tools/index.html",
     "href": "ai-tools/index.html",
-    "title": "4  Inngangur",
+    "title": "3  Inngangur",
     "section": "",
-    "text": "4.1 Gervigreind í námi og starfi\nStór gervigreindarlíkön (e. large language models, LLM) eins og ChatGPT og Claude hafa umbreytt því hvernig forritarar og gagnavísindamenn vinna. Þetta þýðir ekki að við þurfum ekki að skilja kóðann — þvert á móti er skilningurinn mikilvægari en nokkru sinni fyrr.",
+    "text": "3.1 Erindrekar í námi og starfi\nStór gervigreindarlíkön (e. large language models, LLM) — eða erindrekar eins og við köllum þau í þessu námskeiði — eins og ChatGPT og Claude hafa umbreytt því hvernig forritarar og gagnavísindamenn vinna. Þetta þýðir ekki að við þurfum ekki að skilja kóðann — þvert á móti er skilningurinn mikilvægari en nokkru sinni fyrr.",
     "crumbs": [
-      "Gervigreind sem hjálpartæki",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Inngangur</span>"
+      "Erindrekar",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Inngangur</span>"
     ]
   },
   {
     "objectID": "ai-tools/index.html#efni-sem-verður-farið-yfir",
     "href": "ai-tools/index.html#efni-sem-verður-farið-yfir",
+    "title": "3  Inngangur",
+    "section": "3.2 Efni sem verður farið yfir",
+    "text": "3.2 Efni sem verður farið yfir\n\nHvað eru LLM og hvernig virka þau?\nNotkun gervigreindar við forritun: kóðagerð, leiðréttingar, útskýringar\nKóðarýni með hjálp gervigreindar\nTakmarkanir og gildur: oftraust, villur og hallærni\nSiðferðileg notkun í námi (hvað er leyfilegt?)\nBestu venjur: hvernig á að spyrja góðra spurninga (e. prompt engineering)",
+    "crumbs": [
+      "Erindrekar",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Inngangur</span>"
+    ]
+  },
+  {
+    "objectID": "regex/index.html",
+    "href": "regex/index.html",
+    "title": "4  Inngangur",
+    "section": "",
+    "text": "4.1 Hvað eru reglulegar segðir?\nReglulegar segðir (e. regular expressions, skammstafað regex) eru mynstur sem notuð eru til að leita í, finna og vinna úr texta. Þær eru studdar í nær öllum forritunarmálum, þar á meðal R, Python og JavaScript.",
+    "crumbs": [
+      "Reglulegar segðir",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Inngangur</span>"
+    ]
+  },
+  {
+    "objectID": "regex/index.html#efni-sem-verður-farið-yfir",
+    "href": "regex/index.html#efni-sem-verður-farið-yfir",
     "title": "4  Inngangur",
     "section": "4.2 Efni sem verður farið yfir",
-    "text": "4.2 Efni sem verður farið yfir\n\nHvað eru LLM og hvernig virka þau?\nNotkun gervigreindar við forritun: kóðagerð, leiðréttingar, útskýringar\nKóðarýni með hjálp gervigreindar\nTakmarkanir og gildur: oftraust, villur og hallærni\nSiðferðileg notkun í námi (hvað er leyfilegt?)\nBestu venjur: hvernig á að spyrja góðra spurninga (e. prompt engineering)",
+    "text": "4.2 Efni sem verður farið yfir\n\nGrunntákn og mynstur (^, $, ., *, +, ?)\nFlokkar ([a-z], [0-9], \\d, \\w, \\s)\nHópar og vísunar ((...), \\1)\nReglulegar segðir í R (stringr, grepl, gsub)\nLeit í skrám með regex\nÆfingar og dæmi",
     "crumbs": [
-      "Gervigreind sem hjálpartæki",
+      "Reglulegar segðir",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Inngangur</span>"
     ]
   },
