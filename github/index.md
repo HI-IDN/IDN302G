@@ -1,5 +1,5 @@
----
-title: "GitHub og skjalastjórnun"
+﻿---
+title: "Inngangur"
 description: >-
   Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði.
 ---

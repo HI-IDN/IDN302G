@@ -8,7 +8,7 @@
 
 <meta name="description" content="Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði.">
 
-<title>3&nbsp; GitHub og skjalastjórnun – Upplýsingaverkfræði IÐN302G</title>
+<title>3&nbsp; Inngangur – Upplýsingaverkfræði IÐN302G</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../github/index.html">GitHub og skjalastjórnun</a></li><li class="breadcrumb-item"><a href="../github/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../github/index.html">GitHub og skjalastjórnun</a></li><li class="breadcrumb-item"><a href="../github/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inngangur</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -140,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../regex/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reglulegar segðir</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
       </ul>
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../github/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
       </ul>
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ai-tools/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gervigreind sem hjálpartæki</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
       </ul>
@@ -404,9 +404,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../github/index.html">GitHub og skjalastjórnun</a></li><li class="breadcrumb-item"><a href="../github/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../github/index.html">GitHub og skjalastjórnun</a></li><li class="breadcrumb-item"><a href="../github/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inngangur</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inngangur</span></h1>
 </div>
 
 
@@ -458,17 +458,16 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Remove chapter-number span (and its trailing &nbsp;) from the index sidebar link
-  document.querySelectorAll(
-    'a[href$="index.html"].sidebar-item-text, a[href$="../index.html"].sidebar-item-text'
-  ).forEach(function (link) {
-    var num = link.querySelector('.chapter-number');
-    if (!num) return;
-    // Remove the &nbsp; text node that follows the span
-    var next = num.nextSibling;
-    if (next && next.nodeType === 3) next.remove();
-    num.remove();
-  });
+  // Strip chapter number from the index sidebar link (incl. &nbsp; text node)
+  document.querySelectorAll('.sidebar-item-text[href$="index.html"], .sidebar-item-text[href$="../index.html"]')
+    .forEach(function (link) {
+      var menuText = link.querySelector('.menu-text');
+      var titleSpan = link.querySelector('.chapter-title');
+      if (menuText && titleSpan) {
+        // Rewrite the whole menu-text so no stray &nbsp; survives
+        menuText.textContent = titleSpan.textContent;
+      }
+    });
 
 
   // Find active sidebar item
@@ -911,13 +910,13 @@ document.addEventListener('DOMContentLoaded', function () {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../regex/index.html" class="pagination-link" aria-label="Reglulegar segðir">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reglulegar segðir</span></span>
+      <a href="../regex/index.html" class="pagination-link" aria-label="Inngangur">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Inngangur</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../ai-tools/index.html" class="pagination-link" aria-label="Gervigreind sem hjálpartæki">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gervigreind sem hjálpartæki</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../ai-tools/index.html" class="pagination-link" aria-label="Inngangur">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inngangur</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

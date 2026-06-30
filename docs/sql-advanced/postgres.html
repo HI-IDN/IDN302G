@@ -175,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../regex/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reglulegar segðir</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
       </ul>
@@ -192,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../github/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
       </ul>
@@ -209,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ai-tools/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gervigreind sem hjálpartæki</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
       </ul>
@@ -733,17 +733,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </main> <!-- /main -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Remove chapter-number span (and its trailing &nbsp;) from the index sidebar link
-  document.querySelectorAll(
-    'a[href$="index.html"].sidebar-item-text, a[href$="../index.html"].sidebar-item-text'
-  ).forEach(function (link) {
-    var num = link.querySelector('.chapter-number');
-    if (!num) return;
-    // Remove the &nbsp; text node that follows the span
-    var next = num.nextSibling;
-    if (next && next.nodeType === 3) next.remove();
-    num.remove();
-  });
+  // Strip chapter number from the index sidebar link (incl. &nbsp; text node)
+  document.querySelectorAll('.sidebar-item-text[href$="index.html"], .sidebar-item-text[href$="../index.html"]')
+    .forEach(function (link) {
+      var menuText = link.querySelector('.menu-text');
+      var titleSpan = link.querySelector('.chapter-title');
+      if (menuText && titleSpan) {
+        // Rewrite the whole menu-text so no stray &nbsp; survives
+        menuText.textContent = titleSpan.textContent;
+      }
+    });
 
 
   // Find active sidebar item

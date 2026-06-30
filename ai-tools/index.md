@@ -1,5 +1,5 @@
----
-title: "Gervigreind sem hjálpartæki"
+﻿---
+title: "Inngangur"
 description: >-
   Notkun gervigreindar (LLM) við forritun, kóðarýni og gagnagreiningu á ábyrgan hátt.
 ---

@@ -1,5 +1,5 @@
----
-title: "Reglulegar segðir"
+﻿---
+title: "Inngangur"
 description: >-
   Reglulegar segðir (regex) eru öflugt tæki til að leita í og vinna úr textagögnum.
 ---
