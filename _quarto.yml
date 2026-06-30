@@ -15,6 +15,7 @@ book:
   search: true
   page-footer:
     left: "© Háskóli Íslands · IÐN302G"
+    center: "Helga Ingimundardóttir"
     right:
       - icon: github
         href: https://github.com/HI-IDN/IDN302G
@@ -32,6 +33,15 @@ book:
     background: light
   chapters:
     - index.qmd
+    - part: "Reglulegar segðir"
+      chapters:
+        - regex/index.md
+    - part: "GitHub og skjalastjórnun"
+      chapters:
+        - github/index.md
+    - part: "Gervigreind sem hjálpartæki"
+      chapters:
+        - ai-tools/index.md
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.md

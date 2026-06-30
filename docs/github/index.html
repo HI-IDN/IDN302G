@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="SQL er forritunarmál hannað til að „tala við“ venslagagnasöfn. Það er mikilvægt tæki í gagnastjórnun sem gerir notendum kleift að framkvæma fyrirspurnir, búa til, breyta og eyða gögnum.">
+<meta name="description" content="Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði.">
 
-<title>5&nbsp; Inngangur – Upplýsingaverkfræði IÐN302G</title>
+<title>3&nbsp; GitHub og skjalastjórnun – Upplýsingaverkfræði IÐN302G</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,41 +24,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -69,8 +34,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../sql-basics/basic_sql_queries.html" rel="next">
-<link href="../ai-tools/index.html" rel="prev">
+<link href="../ai-tools/index.html" rel="next">
+<link href="../regex/index.html" rel="prev">
 <link href="../img/hi/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -116,35 +81,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -174,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sql-basics/introduction.html">SQL grunnatriði</a></li><li class="breadcrumb-item"><a href="../sql-basics/introduction.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inngangur</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../github/index.html">GitHub og skjalastjórnun</a></li><li class="breadcrumb-item"><a href="../github/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -220,7 +156,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../github/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../github/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></span></a>
   </div>
 </li>
@@ -254,7 +190,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sql-basics/introduction.html" class="sidebar-item-text sidebar-link active">
+  <a href="../sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
@@ -460,41 +396,17 @@ window.Quarto = {
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#um-sql" id="toc-um-sql" class="nav-link active" data-scroll-target="#um-sql"><span class="header-section-number">5.1</span> Um SQL</a>
-  <ul>
-  <li><a href="#ólík-sql-fyrirspurnarmál" id="toc-ólík-sql-fyrirspurnarmál" class="nav-link" data-scroll-target="#ólík-sql-fyrirspurnarmál"><span class="header-section-number">5.1.1</span> Ólík SQL fyrirspurnarmál</a></li>
-  <li><a href="#líkindi-milli-sql-fyrirspurnarmála" id="toc-líkindi-milli-sql-fyrirspurnarmála" class="nav-link" data-scroll-target="#líkindi-milli-sql-fyrirspurnarmála"><span class="header-section-number">5.1.2</span> Líkindi milli SQL fyrirspurnarmála</a>
-  <ul class="collapse">
-  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><span class="header-section-number">5.1.2.1</span> PostgreSQL</a></li>
-  <li><a href="#mysql" id="toc-mysql" class="nav-link" data-scroll-target="#mysql"><span class="header-section-number">5.1.2.2</span> MySQL</a></li>
-  <li><a href="#sqlite" id="toc-sqlite" class="nav-link" data-scroll-target="#sqlite"><span class="header-section-number">5.1.2.3</span> SQLite</a></li>
-  <li><a href="#microsoft-sql-server" id="toc-microsoft-sql-server" class="nav-link" data-scroll-target="#microsoft-sql-server"><span class="header-section-number">5.1.2.4</span> Microsoft SQL Server</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#gagnasafnskerfi" id="toc-gagnasafnskerfi" class="nav-link" data-scroll-target="#gagnasafnskerfi"><span class="header-section-number">5.2</span> Gagnasafnskerfi</a>
-  <ul>
-  <li><a href="#helsta-vinna-gagnastjórnunar" id="toc-helsta-vinna-gagnastjórnunar" class="nav-link" data-scroll-target="#helsta-vinna-gagnastjórnunar"><span class="header-section-number">5.2.1</span> Helsta vinna gagnastjórnunar</a></li>
-  <li><a href="#tegundir-gagnasafnskerfa" id="toc-tegundir-gagnasafnskerfa" class="nav-link" data-scroll-target="#tegundir-gagnasafnskerfa"><span class="header-section-number">5.2.2</span> Tegundir gagnasafnskerfa</a>
-  <ul class="collapse">
-  <li><a href="#aðrir-möguleikar" id="toc-aðrir-möguleikar" class="nav-link" data-scroll-target="#aðrir-möguleikar"><span class="header-section-number">5.2.2.1</span> Aðrir möguleikar</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#venslagagnasöfn" id="toc-venslagagnasöfn" class="nav-link" data-scroll-target="#venslagagnasöfn"><span class="header-section-number">5.3</span> Venslagagnasöfn</a>
-  <ul>
-  <li><a href="#kostir" id="toc-kostir" class="nav-link" data-scroll-target="#kostir"><span class="header-section-number">5.3.1</span> Kostir</a></li>
-  <li><a href="#gallar" id="toc-gallar" class="nav-link" data-scroll-target="#gallar"><span class="header-section-number">5.3.2</span> Gallar</a></li>
-  <li><a href="#mengi-og-vensl" id="toc-mengi-og-vensl" class="nav-link" data-scroll-target="#mengi-og-vensl"><span class="header-section-number">5.3.3</span> Mengi og vensl</a></li>
-  <li><a href="#kostir-venslalíkansins" id="toc-kostir-venslalíkansins" class="nav-link" data-scroll-target="#kostir-venslalíkansins"><span class="header-section-number">5.3.4</span> Kostir venslalíkansins</a></li>
-  </ul></li>
+  <li><a href="#hvað-er-git-og-github" id="toc-hvað-er-git-og-github" class="nav-link active" data-scroll-target="#hvað-er-git-og-github"><span class="header-section-number">3.1</span> Hvað er Git og GitHub?</a></li>
+  <li><a href="#efni-sem-verður-farið-yfir" id="toc-efni-sem-verður-farið-yfir" class="nav-link" data-scroll-target="#efni-sem-verður-farið-yfir"><span class="header-section-number">3.2</span> Efni sem verður farið yfir</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-basics/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/github/index.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sql-basics/introduction.html">SQL grunnatriði</a></li><li class="breadcrumb-item"><a href="../sql-basics/introduction.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inngangur</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../github/index.html">GitHub og skjalastjórnun</a></li><li class="breadcrumb-item"><a href="../github/index.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inngangur</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GitHub og skjalastjórnun</span></h1>
 </div>
 
 
@@ -511,186 +423,36 @@ window.Quarto = {
 </header>
 
 
-<section id="um-sql" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="um-sql"><span class="header-section-number">5.1</span> Um SQL</h2>
-<p>Markmið námskeiðsins er að kynnast fyrirspurnarmálinu SQL:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ábending</span>Í vinnslu
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Þessi hluti er í vinnslu og verður bættur við síðar.</p>
+</div>
+</div>
+<section id="hvað-er-git-og-github" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="hvað-er-git-og-github"><span class="header-section-number">3.1</span> Hvað er Git og GitHub?</h2>
+<p><strong>Git</strong> er dreift útgáfustjórnunarkerfi (e. <em>version control system</em>) sem heldur utan um breytingar á skrám yfir tíma. <strong>GitHub</strong> er vefþjónusta sem hýsir Git-gagnageymslur og auðveldar samstarf og deilingu á kóða.</p>
+</section>
+<section id="efni-sem-verður-farið-yfir" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="efni-sem-verður-farið-yfir"><span class="header-section-number">3.2</span> Efni sem verður farið yfir</h2>
 <ul>
-<li>búa til fyrirspurnir,</li>
-<li>skilja fyrirspurnir sem þið sjáið,</li>
-<li>geta notað SQL til að framkvæma gagnagreiningu.</li>
-</ul>
-<p>SQL (Structured Query Language), borið fram eins og „sequel“ eða „ess-cue-ell“, er staðlað fyrirspurnarmál sem er notað til að hafa samskipti við venslagagnasöfn.</p>
-<section id="ólík-sql-fyrirspurnarmál" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="ólík-sql-fyrirspurnarmál"><span class="header-section-number">5.1.1</span> Ólík SQL fyrirspurnarmál</h3>
-<p>Samkvæmt <a href="https://db-engines.com/en/ranking">DB-Engines Ranking</a> eru vinsælustu gagnagrunnskerfin:</p>
-<ol type="1">
-<li>Oracle</li>
-<li>MySQL</li>
-<li>Microsoft SQL Server</li>
-<li>PostgreSQL</li>
-<li>MongoDB</li>
-<li>Redis</li>
-<li>Snowflake</li>
-<li>Elasticsearch</li>
-<li>IBM Db2</li>
-<li>SQLite</li>
-</ol>
-<p>Við munum kynnast <em>SQLite</em> og <em>PostgreSQL</em> í þessu námskeiði.</p>
-</section>
-<section id="líkindi-milli-sql-fyrirspurnarmála" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="líkindi-milli-sql-fyrirspurnarmála"><span class="header-section-number">5.1.2</span> Líkindi milli SQL fyrirspurnarmála</h3>
-<p>Flest SQL fyrirspurnarmál fylgja svipuðum grunnatriðum og setningafræði. Þau leyfa notendum að framkvæma fyrirspurnir á gagnagrunnum á einfaldan hátt. Þrátt fyrir að smávægilegur munur geti verið til staðar milli mismunandi gagnagrunnskerfa, eins og <em>PostgreSQL</em> og <em>SQLite</em>, eru grunnskipanirnar oft mjög keimlíkar og auðvelt að aðlaga sig á milli kerfa. Fyrir frekari upplýsingar um hvernig <code>SELECT</code> skipanir eru búnar til, sem verða útskýrð betur í <a href="../sql-basics/basic_sql_queries.html">grunnatriði í SQL</a>.</p>
-<p>Hér eru dæmi um grunnskipanir í SQL fyrir mismunandi gagnagrunnskerfi:</p>
-<section id="postgresql" class="level4" data-number="5.1.2.1">
-<h4 data-number="5.1.2.1" class="anchored" data-anchor-id="postgresql"><span class="header-section-number">5.1.2.1</span> PostgreSQL</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select all rows from a table</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select specific columns and sort by a column</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> col1, col2</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> col1 <span class="kw">DESC</span>;</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select the first 10 rows</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="mysql" class="level4" data-number="5.1.2.2">
-<h4 data-number="5.1.2.2" class="anchored" data-anchor-id="mysql"><span class="header-section-number">5.1.2.2</span> MySQL</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select all rows from a table</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl;</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select specific columns and sort by a column</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> col1, col2</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> col1 <span class="kw">DESC</span>;</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select the first 10 rows</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="sqlite" class="level4" data-number="5.1.2.3">
-<h4 data-number="5.1.2.3" class="anchored" data-anchor-id="sqlite"><span class="header-section-number">5.1.2.3</span> SQLite</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select all rows from a table</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl;</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select specific columns and sort by a column</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> col1, col2</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> col1 <span class="kw">DESC</span>;</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select the first 10 rows</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="microsoft-sql-server" class="level4" data-number="5.1.2.4">
-<h4 data-number="5.1.2.4" class="anchored" data-anchor-id="microsoft-sql-server"><span class="header-section-number">5.1.2.4</span> Microsoft SQL Server</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select all rows from a table</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl;</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select specific columns and sort by a column</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> col1, col2</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> col1 <span class="kw">DESC</span>;</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Select the first 10 rows</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> TOP <span class="dv">10</span> <span class="op">*</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-</section>
-<section id="gagnasafnskerfi" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="gagnasafnskerfi"><span class="header-section-number">5.2</span> Gagnasafnskerfi</h2>
-<p>Gagnastjórnun er aðferð til að safna, geyma og nota gögn á öruggan, árangursríkan og kostnaðarlega hagkvæman hátt. Markmiðið er að auðvelda notkun gagna þannig að hægt sé að nota þau til ákvarðanatöku og skapa virði fyrir fyrirtæki.</p>
-<section id="helsta-vinna-gagnastjórnunar" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="helsta-vinna-gagnastjórnunar"><span class="header-section-number">5.2.1</span> Helsta vinna gagnastjórnunar</h3>
-<ul>
-<li>Búa til, stýra aðgengi og uppfæra gögn á fjölbreyttu gagnasviði.</li>
-<li>Hýsing gagna, til dæmis í skýi (e. <em>data cloud</em>) eða á staðnum.</li>
-<li>Gott aðgengi til notanda (t.d. margir notendur, rafmagnsleysi og fleira).</li>
-<li>Tryggja persónuvernd gagna (t.d. GDPR lögin) og fylgja reglugerðum þar sem við á.</li>
-<li>Eyðing gagna: Hvenær má eyða gögnum og hverju?</li>
-<li>Notkun gagna í fjölbreyttum öppum, greiningartólum og reikniritum.</li>
-</ul>
-</section>
-<section id="tegundir-gagnasafnskerfa" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="tegundir-gagnasafnskerfa"><span class="header-section-number">5.2.2</span> Tegundir gagnasafnskerfa</h3>
-<p>Gagnasafnskerfi samanstanda af margs konar tækni og tólum sem geta verið notuð til gagnastjórnunar. Algengasta gerð gagnasafnskerfa eru venslagagnasöfn (e. <em>relational database management systems</em>), þar sem gögn eru geymd á skipulögðu formi, skipt niður í töflur með röðum og dálkum sem innihalda stök (e. <em>database records</em>). Skyld stök í öðrum töflum eru tengd saman með lyklum (primary og foreign keys) til að koma í veg fyrir tvítekningar. Þetta fyrirkomulag byggir á forritunarmálinu SQL og gagnalíkani/skemum.</p>
-<section id="aðrir-möguleikar" class="level4" data-number="5.2.2.1">
-<h4 data-number="5.2.2.1" class="anchored" data-anchor-id="aðrir-möguleikar"><span class="header-section-number">5.2.2.1</span> Aðrir möguleikar</h4>
-<ul>
-<li><strong>Gagnasafnskerfi fyrir gríðargögn (e. <em>big data</em>):</strong> t.d. NoSQL gagnagrunnar sem byggja ekki á SQL og leyfa óskipulögð eða hálf skipulögð gögn, eins og skynjaragögn (e. sensor data).</li>
-<li><strong>Vöruhúsgagna (e. <em>data warehouses</em>):</strong> byggð á vensla- og/eða dálka-gagnasöfnum, tekin saman úr mismunandi kerfum, sett saman og undirbúin fyrir greiningar.</li>
-<li><strong>Gagnalindir (e. <em>data lakes</em>):</strong> geyma gríðargögn til notkunar í spálíkanagerð, gervigreind, og fleira.</li>
-</ul>
-</section>
-</section>
-</section>
-<section id="venslagagnasöfn" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="venslagagnasöfn"><span class="header-section-number">5.3</span> Venslagagnasöfn</h2>
-<p>Venslagagnasöfn (e. <em>relational databases</em>) eru oft notuð til að skipuleggja og geyma gögn á skilvirkan hátt. Þau byggja á mengjum og venslum, eins og tvístæðum venslum.</p>
-<section id="kostir" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="kostir"><span class="header-section-number">5.3.1</span> Kostir</h3>
-<ul>
-<li>Gögn eru geymd á skipulögðu formi.</li>
-<li>Geyma gögn á öruggan hátt.</li>
-<li>Hraðvirk leit að gögnum.</li>
-</ul>
-</section>
-<section id="gallar" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="gallar"><span class="header-section-number">5.3.2</span> Gallar</h3>
-<ul>
-<li>Flókin og dýr í uppsetningu.</li>
-<li>Henta ekki fyrir lítið gagnamagn.</li>
-<li>Gögn geymd á skipulögðu formi.</li>
-</ul>
-</section>
-<section id="mengi-og-vensl" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="mengi-og-vensl"><span class="header-section-number">5.3.3</span> Mengi og vensl</h3>
-<p>Mengi eru oft notuð til þess að halda utan um hópa hluti sem hafa svipaða eiginleika, eins og allir nemendur í upplýsingaverkfræði eða allir nemendur Háskóla Íslands. Mengi eru óraðað safn af hlutum, og hlutir í mengi eru kallaðir stök. Vensl segja okkur til um samband staka milli mengja, eins og mengi starfsmanna og mengi launa eða einstaklingar og ættingjar.</p>
-<p>Tvístæð vensl frá <span class="math inline">\(A\)</span> til <span class="math inline">\(B\)</span> er mengið <span class="math inline">\(R\)</span> af röðuðum pörum þar sem fyrsta stakið af hverju röðuðu pari kemur frá <span class="math inline">\(A\)</span> og það síðara frá <span class="math inline">\(B\)</span>. Þegar <span class="math inline">\((a,b)\)</span> tilheyrir <span class="math inline">\(R\)</span> þá er <span class="math inline">\(a\)</span> sagt vera með vensl í <span class="math inline">\(b\)</span> með <span class="math inline">\(R\)</span> (skrifað <span class="math inline">\(aRb\)</span>).</p>
-<p>Dæmi um tvístæð vensl <span class="math inline">\(R\)</span> frá mengi <span class="math inline">\(A\)</span> til <span class="math inline">\(B\)</span>: <span class="math inline">\(A = \{0,1,2\}\)</span>, $B = {a, b} $. Tvístæð vensl væru þá t.d. <span class="math inline">\(R: \{(0, a), (0, b), (1, a), (2, b)\}\)</span>. Athugið, við þurfum ekki að hafa öll pör af tengingum milli mengja.</p>
-<p>Töflur eru oft notaðar til að sýna vensl. Dálkur er mengið sjálft, og hver lína í dálki er stak. Tvístæð vensl hafa tvo dálka.</p>
-<p>Þá væri til dæmis tvístæðu venslin: <span class="math inline">\(\{\)</span>(Helga, Upplýsingaverkfræði), (Rögnvaldur, Tæknileg kerfi), (Tómas, Aðgerðagreining)<span class="math inline">\(\}\)</span> hægt að setja fram sem:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Kennari</th>
-<th>Námskeið</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Helga</td>
-<td>Upplýsingaverkfræði</td>
-</tr>
-<tr class="even">
-<td>Rögnvaldur</td>
-<td>Tæknileg kerfi</td>
-</tr>
-<tr class="odd">
-<td>Tómas</td>
-<td>Aðgerðagreining</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="kostir-venslalíkansins" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="kostir-venslalíkansins"><span class="header-section-number">5.3.4</span> Kostir venslalíkansins</h3>
-<ul>
-<li>Einfalt og gagnsætt líkan.</li>
-<li>Allt er sett fram sem töflur.</li>
-<li>Traustar stærðfræðilegar undirstöður, eins og venslareikningur og mengi.</li>
-<li>Passar oftast vel við raunveruleg gögn.</li>
-<li>Hraðvirkar útfærslur.</li>
+<li>Uppsetning og grunnstillingar Git</li>
+<li>Geymsla og útibú (<code>init</code>, <code>clone</code>, <code>branch</code>, <code>checkout</code>)</li>
+<li>Breytingar og samþætting (<code>add</code>, <code>commit</code>, <code>push</code>, <code>pull</code>, <code>merge</code>)</li>
+<li>GitHub: geymsla, issues, pull requests</li>
+<li>Kóðarýni (<em>code review</em>) og vinnuflæði í teymi</li>
+<li>Skjalastjórnun: möppur, skrár og README</li>
+<li>Dæmi úr námskeið</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1149,13 +911,13 @@ document.addEventListener('DOMContentLoaded', function () {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../ai-tools/index.html" class="pagination-link" aria-label="Gervigreind sem hjálpartæki">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gervigreind sem hjálpartæki</span></span>
+      <a href="../regex/index.html" class="pagination-link" aria-label="Reglulegar segðir">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reglulegar segðir</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../sql-basics/basic_sql_queries.html" class="pagination-link" aria-label="Grunn SQL fyrirspurnir">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Grunn SQL fyrirspurnir</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../ai-tools/index.html" class="pagination-link" aria-label="Gervigreind sem hjálpartæki">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gervigreind sem hjálpartæki</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1167,7 +929,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>   
     <div class="nav-footer-center">
 <p>Helga Ingimundardóttir</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-basics/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/github/index.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

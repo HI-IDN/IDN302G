@@ -65,17 +65,30 @@ $border-radius:          0;
 
   .quarto-navbar-tools .nav-link { color: rgba($hi-white, 0.75) !important; }
 
-  // Center the title regardless of tool width on the right
+  // Logo left, title absolutely centred in the bar
   .navbar-container { position: relative; }
 
+  // Reset brand-container so logo sits naturally on the left
   .navbar-brand-container {
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    margin: 0 !important;
+  }
+
+  // Logo link — left-aligned, no centering
+  .navbar-brand-logo {
+    pointer-events: auto;
+    img { height: 30px; filter: brightness(0) invert(1); }
+  }
+
+  // Title link — absolutely centred across the full navbar
+  .navbar-brand:not(.navbar-brand-logo) {
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    margin: 0 !important;
-    pointer-events: none;
-
-    a, span { pointer-events: auto; }
+    pointer-events: auto;
+    white-space: nowrap;
   }
 
   .navbar-title {
