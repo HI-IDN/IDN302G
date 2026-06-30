@@ -1,8 +1,9 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Strip chapter number only from the main index link (exact href, not subdirectory index files)
+  // Strip chapter number only from the main index link (exact href match)
   document.querySelectorAll('.sidebar-item-text[href="./index.html"], .sidebar-item-text[href="../index.html"]')
     .forEach(function (link) {
+      link.classList.add('hi-index-link');
       var menuText = link.querySelector('.menu-text');
       var titleSpan = link.querySelector('.chapter-title');
       if (menuText && titleSpan) {

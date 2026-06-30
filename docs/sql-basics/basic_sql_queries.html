@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-c06e35fc81891747fc8700d637ad03b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-73ecbe9c9eb5e7511d0236315b8e6b9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fad2c3a8c853e5c22b3263afacaa96c3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -759,9 +759,10 @@ Patient_2     102          50                         M            50</code></pr
 </main> <!-- /main -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Strip chapter number only from the main index link (exact href, not subdirectory index files)
+  // Strip chapter number only from the main index link (exact href match)
   document.querySelectorAll('.sidebar-item-text[href="./index.html"], .sidebar-item-text[href="../index.html"]')
     .forEach(function (link) {
+      link.classList.add('hi-index-link');
       var menuText = link.querySelector('.menu-text');
       var titleSpan = link.querySelector('.chapter-title');
       if (menuText && titleSpan) {

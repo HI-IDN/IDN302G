@@ -34,6 +34,7 @@ $border-radius:          0;
 /*-- scss:rules --*/
 
 :root {
+  --quarto-sidebar-width: 340px;
   --hi-blue:    #{$hi-blue};
   --hi-teal:    #{$hi-teal};
   --hi-yellow:  #{$hi-yellow};
@@ -166,17 +167,13 @@ $border-radius:          0;
     font-weight: 400 !important;
   }
 
-  // Index page: styled like a part title, no chapter number
-  a[href$="index.html"].sidebar-item-text,
-  a[href$="../index.html"].sidebar-item-text {
+  // Index page — JS (breadcrumb.inc) handles removing the chapter number.
+  // CSS only adds the teal+bold style; exact href matching is not possible in CSS
+  // so we use a data attribute set by the JS instead.
+  a.hi-index-link {
     font-weight: 800 !important;
     color: $hi-teal !important;
     font-size: 0.85rem;
-    margin-bottom: 0.3em;
-    display: block;
-
-    .chapter-number { display: none; }
-    .chapter-title  { color: $hi-teal; }
   }
 
   .sidebar-item.active > .sidebar-item-text a,
