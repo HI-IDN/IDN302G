@@ -47,7 +47,7 @@ $border-radius:          0;
 // ── Navbar ────────────────────────────────────────────────────────────────────
 .navbar {
   background: $hi-blue !important;
-  border-bottom: 3px solid $hi-teal;
+  border-bottom: none;  // breadcrumb bar takes this role
 
   .navbar-brand {
     img { height: 30px; filter: brightness(0) invert(1); }
@@ -64,6 +64,46 @@ $border-radius:          0;
   .nav-link:hover { color: $hi-teal !important; }
 
   .quarto-navbar-tools .nav-link { color: rgba($hi-white, 0.75) !important; }
+
+  // Center the title regardless of tool width on the right
+  .navbar-container { position: relative; }
+
+  .navbar-brand-container {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+    pointer-events: none;
+
+    a, span { pointer-events: auto; }
+  }
+
+  .navbar-title {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    color: $hi-white !important;
+  }
+}
+
+// ── Breadcrumb bar ────────────────────────────────────────────────────────────
+#hi-breadcrumb {
+  background: $hi-blue;
+  border-top: 1px solid rgba($hi-white, 0.12);
+  border-bottom: 3px solid $hi-teal;
+  padding: 0.28em 1.4em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  position: sticky;
+  top: 0;
+  z-index: 1019;  // just below navbar (1020)
+
+  .hi-bc-part    { color: $hi-teal; }
+  .hi-bc-sep     { color: rgba($hi-white, 0.4); font-size: 0.9em; }
+  .hi-bc-chapter { color: rgba($hi-white, 0.9); }
 }
 
 // ── Sidebar ───────────────────────────────────────────────────────────────────

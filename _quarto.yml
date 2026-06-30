@@ -74,6 +74,7 @@ format:
       - cosmo
       - styles/hi-book.scss
     include-in-header: partials/header-includes.inc
+    include-after-body: partials/breadcrumb.inc
     toc: true
     toc-depth: 3
     toc-title: "Á þessari síðu"

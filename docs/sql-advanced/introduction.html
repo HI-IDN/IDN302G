@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-c06e35fc81891747fc8700d637ad03b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-fdd424a6a1610357ec1672f3d89e3ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ed6ccbd65e0a08292f853fdfcc7a7cb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#gögn" id="toc-gögn" class="nav-link" data-scroll-target="#gögn"><span class="header-section-number">17</span> Gögn</a></li>
   <li><a href="#almennt-form-select-skipunar" id="toc-almennt-form-select-skipunar" class="nav-link" data-scroll-target="#almennt-form-select-skipunar"><span class="header-section-number">18</span> Almennt form <code>SELECT</code> skipunar</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -462,6 +462,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 
 </main> <!-- /main -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Find active sidebar item
+  var activeLink = document.querySelector('.sidebar-item.active > .sidebar-item-container > a, .sidebar-item.active > a');
+  if (!activeLink) return;
+
+  // Walk up to find parent part section
+  var partTitle = '';
+  var section = activeLink.closest('.sidebar-item-section');
+  if (section) {
+    var partLink = section.querySelector(':scope > .sidebar-item-container > .sidebar-item-text .menu-text');
+    if (partLink) partTitle = partLink.textContent.trim();
+  }
+
+  var chapterText = activeLink.querySelector('.menu-text');
+  var chapterTitle = chapterText ? chapterText.textContent.trim() : activeLink.textContent.trim();
+
+  if (!partTitle && !chapterTitle) return;
+
+  // Build breadcrumb bar
+  var bar = document.createElement('div');
+  bar.id = 'hi-breadcrumb';
+  bar.setAttribute('aria-label', 'brauðmola');
+
+  if (partTitle && chapterTitle && partTitle !== chapterTitle) {
+    bar.innerHTML =
+      '<span class="hi-bc-part">' + partTitle + '</span>' +
+      '<span class="hi-bc-sep" aria-hidden="true">›</span>' +
+      '<span class="hi-bc-chapter">' + chapterTitle + '</span>';
+  } else {
+    bar.innerHTML = '<span class="hi-bc-chapter">' + (partTitle || chapterTitle) + '</span>';
+  }
+
+  // Insert right after navbar
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar && navbar.parentNode) {
+    navbar.parentNode.insertBefore(bar, navbar.nextSibling);
+  }
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -882,7 +922,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
