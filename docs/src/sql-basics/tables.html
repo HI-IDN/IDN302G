@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Háskóli Íslands">
+<meta name="description" content="Töflur eru grundvallareiningar í gagnagrunnum, þar sem gögnin eru geymd í röðum. Hægt er að búa til töflur, breyta þeim, og (endur)skilgreina gerðir dálka.">
 
-<title>Upplýsingaverkfræði IÐN302G</title>
+<title>4&nbsp; Búa til töflu – Upplýsingaverkfræði IÐN302G</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,28 +24,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./src/sql-basics/introduction.html" rel="next">
-<link href="./img/hi/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/sql-basics/aggregation_and_grouping.html" rel="next">
+<link href="../../src/sql-basics/basic_sql_queries.html" rel="prev">
+<link href="../../img/hi/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,11 +125,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Upplýsingaverkfræði IÐN302G</span>
     </a>
   </div>
@@ -108,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/sql-basics/introduction.html">SQL grunnatriði</a></li><li class="breadcrumb-item"><a href="../../src/sql-basics/tables.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -122,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></span></a>
   </div>
 </li>
@@ -137,73 +173,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">SQL forsaga</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/tables.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/tables.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Samsöfnun gagna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tóm gildi - <code>NULL</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Undirfyrirspurnir</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Heilleiki gagna og skorður</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Skipanaskrár fyrir <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQLite</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Grunnatriði í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"></span></span></a><a href="https://www.w3schools.com/sql/">W3Schools SQL kennsla</a>
   </div>
 </li>
@@ -220,49 +256,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Helstu munir á <em>PostgreSQL</em> og <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sameining niðurstaðna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartafla - <code>VIEW</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Föll í <em>PostgreSQL</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Table Expression (CTE)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></span></a>
   </div>
 </li>
@@ -279,55 +315,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hraðkynningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Minna þekktar myndrænar framsetningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Gangvirk gröf og kort</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Slæm notkun á gröfum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Gagnafrásögn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Ítarefni um myndræna framsetningu</span></span></a>
   </div>
 </li>
@@ -343,30 +379,30 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Efnisyfirlit</h2>
    
   <ul>
-  <li><a href="#hvernig-á-að-nota-þetta-námsefni" id="toc-hvernig-á-að-nota-þetta-námsefni" class="nav-link active" data-scroll-target="#hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</a></li>
-  <li><a href="#gagnaskrár" id="toc-gagnaskrár" class="nav-link" data-scroll-target="#gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</a></li>
-  <li><a href="#framlag-og-endurgjöf" id="toc-framlag-og-endurgjöf" class="nav-link" data-scroll-target="#framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</a></li>
+  <li><a href="#gerðir-dálka" id="toc-gerðir-dálka" class="nav-link active" data-scroll-target="#gerðir-dálka"><span class="header-section-number">5</span> Gerðir dálka</a></li>
+  <li><a href="#að-breyta-töflum" id="toc-að-breyta-töflum" class="nav-link" data-scroll-target="#að-breyta-töflum"><span class="header-section-number">6</span> Að breyta töflum</a>
+  <ul class="collapse">
+  <li><a href="#bæta-við-dálki" id="toc-bæta-við-dálki" class="nav-link" data-scroll-target="#bæta-við-dálki"><span class="header-section-number">6.1</span> Bæta við dálki</a></li>
+  <li><a href="#eyða-dálki" id="toc-eyða-dálki" class="nav-link" data-scroll-target="#eyða-dálki"><span class="header-section-number">6.2</span> Eyða dálki</a></li>
+  <li><a href="#endurnefna-dálk" id="toc-endurnefna-dálk" class="nav-link" data-scroll-target="#endurnefna-dálk"><span class="header-section-number">6.3</span> Endurnefna dálk</a></li>
+  <li><a href="#breyting-á-dálkagerð" id="toc-breyting-á-dálkagerð" class="nav-link" data-scroll-target="#breyting-á-dálkagerð"><span class="header-section-number">6.4</span> Breyting á dálkagerð</a></li>
+  </ul></li>
+  <li><a href="#eyða-töflu" id="toc-eyða-töflu" class="nav-link" data-scroll-target="#eyða-töflu"><span class="header-section-number">7</span> Eyða töflu</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/sql-basics/tables.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/sql-basics/introduction.html">SQL grunnatriði</a></li><li class="breadcrumb-item"><a href="../../src/sql-basics/tables.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Upplýsingaverkfræði IÐN302G</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Höfundur</div>
-    <div class="quarto-title-meta-contents">
-             <p>Háskóli Íslands </p>
-          </div>
-  </div>
     
   
     
@@ -377,24 +413,75 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Velkomin í námsefni námskeiðsins <strong>Upplýsingaverkfræði IÐN302G</strong> við Háskóla Íslands.</p>
-<p>Námsefnið er skipulagt í þrjá hluta:</p>
+<p>Töflur eru grundvallareiningar í gagnagrunnum, þar sem gögnin eru geymd í röðum og dálkum. Hver tafla inniheldur ákveðna gerð gagna og er skipulögð þannig að hver röð (e. <em>row</em>) samsvarar einu staki, og hver dálkur (e. <em>column</em>) samsvarar tilteknum eiginleikum gagna. Dálkar skilgreina hvaða tegund gagna er geymd, til dæmis heiltölur, texti eða tvíundargögn.</p>
+<p>Til að búa til töflu notum við <code>CREATE TABLE</code> skipunina. Hér er dæmi um hvernig á að búa til töflu sem heitir <code>operators</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> operators</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    opID       <span class="dt">INTEGER</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    opName     <span class="dt">CHAR</span>(<span class="dv">30</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    opSSN      <span class="dt">CHAR</span>(<span class="dv">10</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    opAge      <span class="dt">INTEGER</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    opYearInit <span class="dt">INTEGER</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>); </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Í þessu dæmi er taflan <code>operators</code> búin til með fimm dálkum:</p>
 <ul>
-<li><strong>SQL grunnatriði</strong> — Grundvöllur gagnagrunnsvinnslu með SQLite</li>
-<li><strong>SQL framhald</strong> — PostgreSQL, JOIN, CTE og PostGIS</li>
-<li><strong>Myndræn framsetning</strong> — Gagnvirk gröf, mælaborð og gagnafrásögn</li>
+<li><code>opID</code>: Heiltala (<code>INTEGER</code>) sem gæti verið notuð sem auðkenni.</li>
+<li><code>opName</code>: Stafastrengur (<code>CHAR(30)</code>) sem geymir nafn.</li>
+<li><code>opSSN</code>: Stafastrengur (<code>CHAR(10)</code>) sem geymir kennitölu.</li>
+<li><code>opAge</code>: Heiltala (<code>INTEGER</code>) fyrir aldur.</li>
+<li><code>opYearInit</code>: Heiltala (<code>INTEGER</code>) fyrir ártal upphafs.</li>
 </ul>
-<section id="hvernig-á-að-nota-þetta-námsefni" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</h2>
-<p>Farðu í gegnum efnið í þeirri röð sem það birtist í hliðarstikunni til vinstri. Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.</p>
+<section id="gerðir-dálka" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Gerðir dálka</h1>
+<p>Í <em>SQLite</em> eru til ýmsar tegundir dálka sem skilgreina hvernig gögn eru geymd í gagnagrunninum. Hér eru nokkrar algengar gerðir:</p>
+<ul>
+<li><code>INTEGER</code>: Heiltölur.</li>
+<li><code>REAL</code>: Fleytitölur.</li>
+<li><code>TEXT</code>: Stafir og strengir.</li>
+<li><code>BLOB</code>: Tvíundargögn (Binary Large Object).</li>
+</ul>
+<p>Frekari upplýsingar um dálkagerðir í <em>SQLite</em> má finna á: <a href="https://www.sqlite.org/datatype3.html">https://www.sqlite.org/datatype3.html</a>.</p>
 </section>
-<section id="gagnaskrár" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</h2>
-<p>Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í <a href="https://github.com/HI-IDN/IDN302G/tree/main/data"><code>data/</code></a> möppunni í þessum repo.</p>
+<section id="að-breyta-töflum" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Að breyta töflum</h1>
+<p><em>SQLite</em> styður nokkrar breytingar á töflum með <code>ALTER TABLE</code> skipuninni.</p>
+<section id="bæta-við-dálki" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="bæta-við-dálki"><span class="header-section-number">6.1</span> Bæta við dálki</h2>
+<p>Þú getur bætt við nýjum dálki með <code>ALTER TABLE ... ADD COLUMN</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> operators</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ADD</span> <span class="kw">COLUMN</span> opAddress TEXT; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="framlag-og-endurgjöf" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</h2>
-<p>Villur og ábendingar eru vel þegnar — sjá <a href="https://github.com/HI-IDN/IDN302G#readme">README</a> fyrir leiðbeiningar.</p>
+<section id="eyða-dálki" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="eyða-dálki"><span class="header-section-number">6.2</span> Eyða dálki</h2>
+<p>Þú getur eytt dálki með <code>ALTER TABLE ... DROP COLUMN</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> operators <span class="kw">DROP</span> <span class="kw">COLUMN</span> opAddress; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="endurnefna-dálk" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="endurnefna-dálk"><span class="header-section-number">6.3</span> Endurnefna dálk</h2>
+<p>Þú getur endurnefnt dálk með því að nota <code>ALTER TABLE ... RENAME COLUMN</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> operators <span class="kw">RENAME</span> <span class="kw">COLUMN</span> opName <span class="kw">TO</span> operatorName; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="breyting-á-dálkagerð" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="breyting-á-dálkagerð"><span class="header-section-number">6.4</span> Breyting á dálkagerð</h2>
+<p>Það er ekki hægt að breyta gerð dálks beint með <code>ALTER TABLE</code> í <em>SQLite</em>. Til að breyta gerð dálks þarf að fylgja eftirfarandi ferli:</p>
+<ul>
+<li>Búa nýjan dálk með réttu dálkagerðinni.</li>
+<li>Afrita gögnin úr gamla dálkinn yfir í nýja dálkinn með <code>UPDATE</code>.</li>
+<li>Eyða gamla dálkinn.</li>
+<li>Endurnefna nýju dálkinn með gamla nafninu.</li>
+</ul>
+<p>Aftur á móti, í <em>PostgreSQL</em> er hægt að breyta gerð dálks í einni skipun með:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span><span class="op">..</span>.<span class="kw">ALTER</span> <span class="kw">COLUMN</span><span class="op">..</span>.<span class="kw">TYPE</span><span class="op">..</span>.;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="eyða-töflu" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Eyða töflu</h1>
+<p>Til að eyða töflu notum við <code>DROP TABLE</code> skipunina:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> operators; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Þessi skipun eyðir töflunni <code>operators</code> úr gagnagrunninum. Athugaðu að þessi aðgerð er <strong>óafturkræf</strong>. Ef það eru einhverjir lyklar í töflunni sem tengjast öðrum töflum, þá getur komið villa ef reynt er að eyða töflunni. Þá þarf að fjarlægja tengingar við aðrar töflur fyrst, eða eyða tengdum töflum í leiðinni með viðbótinni <code>CASCADE</code>. Ekki er mælt með þeirri aðferð nema þú vitið nákvæmlega hvað þú ert að gera.</p>
+<blockquote class="blockquote">
+<p><strong>Athugið:</strong> - Þessi skipun eyðir töflunni <code>operators</code> úr gagnagrunninum. - Aðgerðin er <strong>óafturkræf</strong>. - Ef það eru einhverjir lyklar í töflunni sem tengjast öðrum töflum, getur komið villa ef reynt er að eyða töflunni. - Það þarf að fjarlægja tengingar við aðrar töflur fyrst, eða eyða tengdum töflum í leiðinni með viðbótinni <code>CASCADE</code>. - Ekki er mælt með þeirri aðferð nema þú vitir nákvæmlega hvað þú ert að gera.</p>
+</blockquote>
 
 
 </section>
@@ -802,10 +889,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/sql-basics/basic_sql_queries.html" class="pagination-link" aria-label="SQL forsaga">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">SQL forsaga</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./src/sql-basics/introduction.html" class="pagination-link" aria-label="Um SQL">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/sql-basics/aggregation_and_grouping.html" class="pagination-link" aria-label="Samsöfnun gagna">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Samsöfnun gagna</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -814,4 +904,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/sql-basics/tables.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>

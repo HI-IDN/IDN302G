@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Háskóli Íslands">
+<meta name="description" content="PostGIS er viðbót við PostgreSQL sem bætir við stuðningi fyrir landfræðileg og rúmfræðileg gögn, sem gerir mögulegt að vinna með gagnapunkta, línur, margflötunga og fleiri form í gagnagrunnum.">
 
-<title>Upplýsingaverkfræði IÐN302G</title>
+<title>21&nbsp; PostGIS fyrir PostgreSQL – Upplýsingaverkfræði IÐN302G</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,28 +24,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./src/sql-basics/introduction.html" rel="next">
-<link href="./img/hi/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/storytelling/introduction.html" rel="next">
+<link href="../../src/sql-advanced/cte.html" rel="prev">
+<link href="../../img/hi/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,6 +115,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -89,11 +154,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Upplýsingaverkfræði IÐN302G</span>
     </a>
   </div>
@@ -108,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/sql-advanced/introduction.html">SQL framhald</a></li><li class="breadcrumb-item"><a href="../../src/sql-advanced/postgis.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -122,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></span></a>
   </div>
 </li>
@@ -137,73 +202,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">SQL forsaga</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/tables.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/tables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Samsöfnun gagna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tóm gildi - <code>NULL</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Undirfyrirspurnir</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Heilleiki gagna og skorður</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Skipanaskrár fyrir <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQLite</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Grunnatriði í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"></span></span></a><a href="https://www.w3schools.com/sql/">W3Schools SQL kennsla</a>
   </div>
 </li>
@@ -220,49 +285,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Helstu munir á <em>PostgreSQL</em> og <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sameining niðurstaðna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartafla - <code>VIEW</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Föll í <em>PostgreSQL</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Table Expression (CTE)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></span></a>
   </div>
 </li>
@@ -279,55 +344,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hraðkynningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Minna þekktar myndrænar framsetningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Gangvirk gröf og kort</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Slæm notkun á gröfum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Gagnafrásögn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Ítarefni um myndræna framsetningu</span></span></a>
   </div>
 </li>
@@ -343,30 +408,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Efnisyfirlit</h2>
    
   <ul>
-  <li><a href="#hvernig-á-að-nota-þetta-námsefni" id="toc-hvernig-á-að-nota-þetta-námsefni" class="nav-link active" data-scroll-target="#hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</a></li>
-  <li><a href="#gagnaskrár" id="toc-gagnaskrár" class="nav-link" data-scroll-target="#gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</a></li>
-  <li><a href="#framlag-og-endurgjöf" id="toc-framlag-og-endurgjöf" class="nav-link" data-scroll-target="#framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</a></li>
+  <li><a href="#game-of-thrones-gagnasettið" id="toc-game-of-thrones-gagnasettið" class="nav-link active" data-scroll-target="#game-of-thrones-gagnasettið"><span class="header-section-number">21.1</span> Game of Thrones gagnasettið</a></li>
+  <li><a href="#helstu-föll-í-postgis" id="toc-helstu-föll-í-postgis" class="nav-link" data-scroll-target="#helstu-föll-í-postgis"><span class="header-section-number">21.2</span> Helstu föll í PostGIS</a></li>
+  <li><a href="#frekari-upplýsingar" id="toc-frekari-upplýsingar" class="nav-link" data-scroll-target="#frekari-upplýsingar"><span class="header-section-number">21.3</span> Frekari upplýsingar</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/sql-advanced/postgis.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/sql-advanced/introduction.html">SQL framhald</a></li><li class="breadcrumb-item"><a href="../../src/sql-advanced/postgis.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Upplýsingaverkfræði IÐN302G</h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Höfundur</div>
-    <div class="quarto-title-meta-contents">
-             <p>Háskóli Íslands </p>
-          </div>
-  </div>
     
   
     
@@ -377,24 +436,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Velkomin í námsefni námskeiðsins <strong>Upplýsingaverkfræði IÐN302G</strong> við Háskóla Íslands.</p>
-<p>Námsefnið er skipulagt í þrjá hluta:</p>
+<p><em>PostGIS</em> er viðbót við <em>PostgreSQL</em> gagnagrunnskerfið sem bætir við stuðningi fyrir landfræðileg og rúmfræðileg gögn. Með <em>PostGIS</em> er hægt að geyma, sækja og framkvæma flóknar greiningar á staðbundnum gögnum innan <em>PostgreSQL</em>. Þetta gerir það að verkum að <em>PostGIS</em> er mikið notað fyrir verkefni tengd kortagerð, landfræðilegri greiningu, og aðra vinnslu á gögn með staðsetningarupplýsingar.</p>
+<p>Dálkar fyrir rúmfræðileg gögn eru oftast geymd sem <code>geometry</code> eða <code>geography</code> gagnatýpur. Algeng dálkaheiti eru því <code>geom</code> eða <code>geog</code> fyrir margflötunga. Eins eru <code>point</code>, <code>linestring</code>, <code>polygon</code> fyrir einfaldari rúmfræðileg gögn.</p>
+<section id="game-of-thrones-gagnasettið" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="game-of-thrones-gagnasettið"><span class="header-section-number">21.1</span> Game of Thrones gagnasettið</h2>
+<p>Skemað <code>atlas</code> inniheldur tvær töflur: - <code>atlas.locations</code> sem inniheldur staðsetningar í dálknum <code>geog</code> sem er <code>POINT</code>. - <code>atlas.kingdoms</code> sem inniheldur landsvæði í dálknum <code>geom</code> sem er <code>MULTIPOLYGON</code>, sem gæti verið samsettur marghyrningur.</p>
+</section>
+<section id="helstu-föll-í-postgis" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="helstu-föll-í-postgis"><span class="header-section-number">21.2</span> Helstu föll í PostGIS</h2>
+<p><em>PostGIS</em> bætir við miklum fjölda af föllum sem eru gagnleg til að vinna með staðbundin gögn. Hér eru nokkur af helstu föllum sem PostGIS býður upp á:</p>
 <ul>
-<li><strong>SQL grunnatriði</strong> — Grundvöllur gagnagrunnsvinnslu með SQLite</li>
-<li><strong>SQL framhald</strong> — PostgreSQL, JOIN, CTE og PostGIS</li>
-<li><strong>Myndræn framsetning</strong> — Gagnvirk gröf, mælaborð og gagnafrásögn</li>
+<li><p><code>ST_Point</code>: Býr til punkt með tilteknum lengdar- og breiddargráðum.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> ST_Point(<span class="op">-</span><span class="fl">73.935242</span>, <span class="fl">40.730610</span>);</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+<p>niðurstaðan er <code>01010000001FF64201DB7B52C0B610E4A0845D4440</code></p></li>
+<li><p><code>ST_Makeline</code>: Býr til línustrik með gefnum punktum. <code>sql   SELECT ST_Makeline(       ARRAY[ST_MakePoint(0, 0), ST_MakePoint(1, 1), ST_MakePoint(2, 2)]   );</code></p>
+<ul>
+<li>Ef það eru bara tveir punktar þá þarf að nota <code>ARRAY[...]::geometry[]</code> ritháttinn, heldur einfaldlega <code>SELECT ST_MakeLine(ST_MakePoint(0, 0), ST_MakePoint(1, 1))</code>.</li>
+</ul></li>
+<li><p><code>ST_MakePolygon</code>: Býr til marghyrning með gefnum hornpunktum. <code>sql   SELECT ST_MakePolygon( ST_GeomFromText('LINESTRING(75 29,77 29,77 29, 75 29)'));</code> sem væri marghyrningur með hornpunkta <span class="math display">\[(75, 29)\]</span>, <span class="math display">\[(77, 29)\]</span>, <span class="math display">\[(77, 29)\]</span>, <span class="math display">\[(75, 29)\]</span>.</p></li>
+<li><p><code>ST_Area</code>: Skilar flatarmáli marghyrnings. <code>sql   SELECT ST_Area(ST_MakePolygon( ST_GeomFromText('LINESTRING(3 3, 3 5, 5 5, 5 3, 3 3)') ));</code> gefur <code>4</code> (fermetra) sem er flatarmál fernings með hliðarlengd <code>2</code> og upphaf í <span class="math display">\[(3, 3)\]</span>.</p></li>
+<li><p><code>ST_Length</code>: Skilar lengd línu eða línuhluta. <code>sql   SELECT ST_Length(       ST_Makeline(           ARRAY[ST_MakePoint(1, 1), ST_MakePoint(3, 3), ST_MakePoint(4, 5)]       )   );</code> sem gefur <code>5.06449510224598</code> sem er það sama og evklíðsa fjarlægðin á milli <span class="math display">\[(1,1)\]</span> og <span class="math display">\[(3,3)
+\]</span> og svo <span class="math display">\[(3,3)\]</span> og <span class="math display">\[(4,5)\]</span>:</p>
+<p><span class="math display">\[ \text{length} = \sqrt{(3 - 1)^2 + (3 - 1)^2} + \sqrt{(4 - 3)^2 + (5 - 3)^2} = \sqrt{8} + \sqrt{5} \approx 5.07\]</span></p></li>
+<li><p><code>ST_Distance</code>: Skilar minnstu fjarlægð milli tveggja hluta (gæti verið punktur eða marghyrningur)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> st_distance(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      ST_MakePoint(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      st_makeline(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>          <span class="dt">ARRAY</span>[ST_MakePoint(<span class="dv">1</span>, <span class="dv">1</span>), ST_MakePoint(<span class="dv">3</span>, <span class="dv">3</span>), ST_MakePoint(<span class="dv">4</span>, <span class="dv">5</span>)]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  );</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+<p>sem skilar <code>1.4142135623730951</code> sem er sama og evklíðska fjarlægðin milli punktanna <span class="math display">\[(0, 0)\]</span> og <span class="math display">\[(1, 1)\]</span>, sem er næsti hornpunkturinn í marghyrningnum.</p></li>
+<li><p><code>ST_Contains</code>: Skilar <code>TRUE</code> ef fyrri marghyrningurinn inniheldur seinni marghyrninginn.</p>
+<ul>
+<li><p>Sönn tilfelli</p>
+<p><img src="https://postgis.net/images/st_contains01.png" class="img-fluid" alt="LINESTRING / MULTIPOINT"><img src="https://postgis.net/images/st_contains02.png" class="img-fluid" alt="POLYGON / POINT"><img src="https://postgis.net/images/st_contains03.png" class="img-fluid" alt="POLYGON / LINESTRING"><img src="https://postgis.net/images/st_contains04.png" class="img-fluid" alt="POLYGON / POLYGON"></p></li>
+<li><p>Ósönn tilfelli</p>
+<p><img src="https://postgis.net/images/st_contains05.png" class="img-fluid" alt="POLYGON / MULTIPOINT"><img src="https://postgis.net/images/st_contains06.png" class="img-fluid" alt="POLYGON / LINESTRING"></p></li>
+<li><p>Ósönn tilfelli (en gætu verið sönn með <code>ST_Covers</code>)</p>
+<p><img src="https://postgis.net/images/st_contains07.png" class="img-fluid" alt="LINESTRING / POINT"><img src="https://postgis.net/images/st_contains08.png" class="img-fluid" alt="POLYGON / LINESTRING"></p></li>
+</ul></li>
+<li><p><code>ST_Intersection</code>: Skilar skurðpunktum tveggja marghyrna, og skilar <code>NULL</code> ef marghyrnarnir skerast ekki, sbr. <span class="math display">\[A\cap B\]</span>. Nátengt fall <code>ST_Intersects</code> skilar <code>TRUE</code> ef marghyrnarnir skerast, en skilar ekki skurðpunktum, <code>FALSE</code> annars.</p></li>
+<li><p><code>ST_Union</code>: Sameinar tvo marghyrninga, sbr. <span class="math display">\[A\cup B\]</span>.</p></li>
+<li><p><code>ST_Buffer</code>: Býr til svæði með gefinni fjarlægð frá gefnum punkti. <code>sql   SELECT ST_Buffer(       ST_MakePoint(0, 0),       1   );</code></p></li>
+<li><p><code>ST_Centroid</code>: Skilar miðpunkt marghyrnings. <code>sql   SELECT ST_Centroid(ST_MakePolygon( ST_GeomFromText('LINESTRING(75 29,77 29,77 29, 75 29)')));</code></p></li>
+<li><p><code>ST_Transform</code>: Breytir rúmfræðilegum hlut í annað kóðunarkerfi (e. SRID). <code>sql   SELECT ST_Transform(       ST_SetSRID(ST_MakePoint(0, 0), 4326),       3857   );</code></p>
+<ul>
+<li><code>4326</code> er kóðunarkerfið fyrir WGS 84 (World Geodetic System 1984), samanber flest heimskort.</li>
+<li><code>3857</code> er kóðunarkerfið fyrir Web Mercator, sem er algengasta kóðunarkerfið fyrir kort á vefnum, t.d. Google Maps.</li>
 </ul>
-<section id="hvernig-á-að-nota-þetta-námsefni" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</h2>
-<p>Farðu í gegnum efnið í þeirri röð sem það birtist í hliðarstikunni til vinstri. Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.</p>
+<blockquote class="blockquote">
+<p>SRID tryggir að gögn séu túlkuð rétt með tilliti til staðsetningar á jörðinni, sem þýðir að þau verða rétt staðsett á korti. Ef gögnin eru með mismunandi viðmiðunarkerfi, eins og eitt gagnasett með WGS 84 og annað með Web Mercator, gæti staðsetning þeirra verið röng ef viðmiðunarkerfin eru ekki samræmd. Ef þú vilt t.d. að miðja á korti sé rétt staðsett í Japan í stað Evrópu, þá þarf að tryggja að gögnin noti rétt SRID, annars gæti punktur eða svæði verið misskilið og birt á röngum stað. Með því að samræma SRID með <code>ST_Transform</code> er tryggt að gögnin séu túlkuð og birt rétt, hvort sem það er fyrir punkt, línu eða margflötung.</p>
+</blockquote></li>
+</ul>
 </section>
-<section id="gagnaskrár" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</h2>
-<p>Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í <a href="https://github.com/HI-IDN/IDN302G/tree/main/data"><code>data/</code></a> möppunni í þessum repo.</p>
-</section>
-<section id="framlag-og-endurgjöf" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</h2>
-<p>Villur og ábendingar eru vel þegnar — sjá <a href="https://github.com/HI-IDN/IDN302G#readme">README</a> fyrir leiðbeiningar.</p>
+<section id="frekari-upplýsingar" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="frekari-upplýsingar"><span class="header-section-number">21.3</span> Frekari upplýsingar</h2>
+<p><em>PostGIS</em> býður upp á fjölmörg önnur föll til að vinna með og greina landfræðileg gögn, sem gerir <em>PostgreSQL</em> að öflugri lausn fyrir rúmfræðileg verkefni.</p>
+<p>Þú getur fengið frekari upplýsingar og skoðað opinberu handbókina á <a href="https://postgis.net/docs/manual-3.4/">PostGIS.net</a>.</p>
 
 
 </section>
@@ -802,10 +900,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/sql-advanced/cte.html" class="pagination-link" aria-label="Common Table Expression (CTE)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Table Expression (CTE)</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./src/sql-basics/introduction.html" class="pagination-link" aria-label="Um SQL">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/storytelling/introduction.html" class="pagination-link" aria-label="Myndræn framsetning">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -814,4 +915,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/sql-advanced/postgis.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>

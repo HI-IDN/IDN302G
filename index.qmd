@@ -1,0 +1,24 @@
+---
+title: "Upplýsingaverkfræði IÐN302G"
+---
+
+Velkomin í námsefni námskeiðsins **Upplýsingaverkfræði IÐN302G** við Háskóla Íslands.
+
+Námsefnið er skipulagt í þrjá hluta:
+
+- **SQL grunnatriði** — Grundvöllur gagnagrunnsvinnslu með SQLite
+- **SQL framhald** — PostgreSQL, JOIN, CTE og PostGIS
+- **Myndræn framsetning** — Gagnvirk gröf, mælaborð og gagnafrásögn
+
+## Hvernig á að nota þetta námsefni
+
+Farðu í gegnum efnið í þeirri röð sem það birtist í hliðarstikunni til vinstri.
+Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.
+
+## Gagnaskrár
+
+Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í [`data/`](https://github.com/HI-IDN/IDN302G/tree/main/data) möppunni í þessum repo.
+
+## Framlag og endurgjöf
+
+Villur og ábendingar eru vel þegnar — sjá [README](https://github.com/HI-IDN/IDN302G#readme) fyrir leiðbeiningar.

@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Háskóli Íslands">
+<meta name="description" content="Myndræn framsetning miðlar flóknum upplýsingum á skýran og einfaldan hátt með því að nota gögn í samhengi og miða á réttan markhóp til að skapa áhrifaríka frásögn.">
 
-<title>Upplýsingaverkfræði IÐN302G</title>
+<title>22&nbsp; Myndræn framsetning – Upplýsingaverkfræði IÐN302G</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,25 +27,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./src/sql-basics/introduction.html" rel="next">
-<link href="./img/hi/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/storytelling/lightning_talk.html" rel="next">
+<link href="../../src/sql-advanced/postgis.html" rel="prev">
+<link href="../../img/hi/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,11 +90,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Upplýsingaverkfræði IÐN302G</span>
     </a>
   </div>
@@ -108,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/storytelling/introduction.html">Myndræn framsetning</a></li><li class="breadcrumb-item"><a href="../../src/storytelling/introduction.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -122,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></span></a>
   </div>
 </li>
@@ -137,73 +138,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">SQL forsaga</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/tables.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/tables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Samsöfnun gagna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tóm gildi - <code>NULL</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Undirfyrirspurnir</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Heilleiki gagna og skorður</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Skipanaskrár fyrir <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQLite</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Grunnatriði í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"></span></span></a><a href="https://www.w3schools.com/sql/">W3Schools SQL kennsla</a>
   </div>
 </li>
@@ -220,49 +221,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Helstu munir á <em>PostgreSQL</em> og <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sameining niðurstaðna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartafla - <code>VIEW</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Föll í <em>PostgreSQL</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Table Expression (CTE)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></span></a>
   </div>
 </li>
@@ -279,55 +280,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hraðkynningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Minna þekktar myndrænar framsetningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Gangvirk gröf og kort</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Slæm notkun á gröfum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Gagnafrásögn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Ítarefni um myndræna framsetningu</span></span></a>
   </div>
 </li>
@@ -343,30 +344,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Efnisyfirlit</h2>
    
   <ul>
-  <li><a href="#hvernig-á-að-nota-þetta-námsefni" id="toc-hvernig-á-að-nota-þetta-námsefni" class="nav-link active" data-scroll-target="#hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</a></li>
-  <li><a href="#gagnaskrár" id="toc-gagnaskrár" class="nav-link" data-scroll-target="#gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</a></li>
-  <li><a href="#framlag-og-endurgjöf" id="toc-framlag-og-endurgjöf" class="nav-link" data-scroll-target="#framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</a></li>
+  <li><a href="#grunnur-að-myndrænni-framsetningu" id="toc-grunnur-að-myndrænni-framsetningu" class="nav-link active" data-scroll-target="#grunnur-að-myndrænni-framsetningu"><span class="header-section-number">22.1</span> Grunnur að myndrænni framsetningu</a></li>
+  <li><a href="#mikilvægi-samhengis" id="toc-mikilvægi-samhengis" class="nav-link" data-scroll-target="#mikilvægi-samhengis"><span class="header-section-number">22.2</span> Mikilvægi samhengis</a>
+  <ul class="collapse">
+  <li><a href="#skref-í-greiningu" id="toc-skref-í-greiningu" class="nav-link" data-scroll-target="#skref-í-greiningu"><span class="header-section-number">22.2.1</span> Skref í greiningu</a></li>
+  </ul></li>
+  <li><a href="#forðast-of-miklar-upplýsingar" id="toc-forðast-of-miklar-upplýsingar" class="nav-link" data-scroll-target="#forðast-of-miklar-upplýsingar"><span class="header-section-number">22.3</span> Forðast of miklar upplýsingar</a></li>
+  <li><a href="#skilgreina-markhópinn" id="toc-skilgreina-markhópinn" class="nav-link" data-scroll-target="#skilgreina-markhópinn"><span class="header-section-number">22.4</span> Skilgreina markhópinn</a></li>
+  <li><a href="#hvað-viljum-við-að-markhópurinn-viti" id="toc-hvað-viljum-við-að-markhópurinn-viti" class="nav-link" data-scroll-target="#hvað-viljum-við-að-markhópurinn-viti"><span class="header-section-number">22.5</span> Hvað viljum við að markhópurinn viti?</a></li>
+  <li><a href="#hvernig-miðlum-við-efninu" id="toc-hvernig-miðlum-við-efninu" class="nav-link" data-scroll-target="#hvernig-miðlum-við-efninu"><span class="header-section-number">22.6</span> Hvernig miðlum við efninu?</a></li>
+  <li><a href="#dæmi-um-gagnafrásögn" id="toc-dæmi-um-gagnafrásögn" class="nav-link" data-scroll-target="#dæmi-um-gagnafrásögn"><span class="header-section-number">22.7</span> Dæmi um gagnafrásögn</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/storytelling/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/storytelling/introduction.html">Myndræn framsetning</a></li><li class="breadcrumb-item"><a href="../../src/storytelling/introduction.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Upplýsingaverkfræði IÐN302G</h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Höfundur</div>
-    <div class="quarto-title-meta-contents">
-             <p>Háskóli Íslands </p>
-          </div>
-  </div>
     
   
     
@@ -377,24 +379,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Velkomin í námsefni námskeiðsins <strong>Upplýsingaverkfræði IÐN302G</strong> við Háskóla Íslands.</p>
-<p>Námsefnið er skipulagt í þrjá hluta:</p>
+<section id="grunnur-að-myndrænni-framsetningu" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="grunnur-að-myndrænni-framsetningu"><span class="header-section-number">22.1</span> Grunnur að myndrænni framsetningu</h2>
+<p>Sjónræn framsetning gagna er mikilvæg til að miðla upplýsingum á áhrifaríkan hátt. Hún hjálpar við að koma flóknum upplýsingum til skila með einföldum hætti og getur haft sterk áhrif á hvernig gögn eru túlkuð. Þemað fyrir þessa kennslu í myndrænni framsetningu byggir að mestu á bókinni <em>Storytelling with data: a data visualization guide for business professionals</em> eftir Cole Nussbaumer Knaflic. Bókin veitir frábærar leiðbeiningar um hvernig best sé að nota gögn til að segja sögur í viðskiptaumhverfi. Margt af efninu má finna á vefsíðunni: <a href="https://www.storytellingwithdata.com/">storytellingwithdata.com</a>.</p>
+</section>
+<section id="mikilvægi-samhengis" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="mikilvægi-samhengis"><span class="header-section-number">22.2</span> Mikilvægi samhengis</h2>
+<p>Það er lykilatriði að skilja að árangur í myndrænni framsetningu byrjar ekki með myndrænni framsetningu sjálfri. Fyrir framsetninguna þarf að leggjast í vinnu við að skilgreina samhengi gagna og hvernig þau eiga að nýtast. Þetta felur í sér að skilja vel hver markhópurinn er, hvað við viljum miðla til þeirra, og hvernig gögnin styðja frásögnina.</p>
+<section id="skref-í-greiningu" class="level3" data-number="22.2.1">
+<h3 data-number="22.2.1" class="anchored" data-anchor-id="skref-í-greiningu"><span class="header-section-number">22.2.1</span> Skref í greiningu</h3>
+<p>Til að ná góðum árangri í myndrænni framsetningu er gott að fara í gegnum tvö megin skref:</p>
 <ul>
-<li><strong>SQL grunnatriði</strong> — Grundvöllur gagnagrunnsvinnslu með SQLite</li>
-<li><strong>SQL framhald</strong> — PostgreSQL, JOIN, CTE og PostGIS</li>
-<li><strong>Myndræn framsetning</strong> — Gagnvirk gröf, mælaborð og gagnafrásögn</li>
+<li><p><strong>Skref 1: Rannsóknargreining (Exploratory analysis)</strong>: Þetta er upphafsrannsóknin þar sem þið rannsakið gögnin og finnið út hvað er áhugavert við þau. Þetta felst í að leita að þeim „perlum“ sem eru falin í gögnunum – gögn sem eru sérstaklega mikilvæg fyrir frásögnina.</p></li>
+<li><p><strong>Skref 2: Skýrandi greining (Explanatory analysis)</strong>: Þegar þið hafið fundið hvað er áhugavert um gögnin, er kominn tími til að miðla því áfram. Það felur í sér að svara þremur grundvallarspurningum:</p>
+<ul>
+<li>Hver er markhópurinn?</li>
+<li>Hvað viljum við að markhópurinn viti eða geri?</li>
+<li>Hvernig ætlum við að miðla þessu á áhrifaríkan hátt?</li>
+</ul></li>
 </ul>
-<section id="hvernig-á-að-nota-þetta-námsefni" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</h2>
-<p>Farðu í gegnum efnið í þeirri röð sem það birtist í hliðarstikunni til vinstri. Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.</p>
 </section>
-<section id="gagnaskrár" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</h2>
-<p>Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í <a href="https://github.com/HI-IDN/IDN302G/tree/main/data"><code>data/</code></a> möppunni í þessum repo.</p>
 </section>
-<section id="framlag-og-endurgjöf" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</h2>
-<p>Villur og ábendingar eru vel þegnar — sjá <a href="https://github.com/HI-IDN/IDN302G#readme">README</a> fyrir leiðbeiningar.</p>
+<section id="forðast-of-miklar-upplýsingar" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="forðast-of-miklar-upplýsingar"><span class="header-section-number">22.3</span> Forðast of miklar upplýsingar</h2>
+<p>Það er algengt að rannsakendur vilji miðla öllum upplýsingum sem þeir hafa unnið með til að sýna hvað mikið var gert. En það getur leitt til þess að áhorfendur týni sér í upplýsingaflóðinu og reyni sjálfir að finna það sem skiptir máli. Til að ná betri árangri, ætti að miðla einungis því sem er nauðsynlegt fyrir markhópinn. Með því að sleppa óþarfa upplýsingum og einblína á það sem skiptir máli, tryggjum við að áhorfendur einblíni á það sem við viljum að þeir viti.</p>
+</section>
+<section id="skilgreina-markhópinn" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="skilgreina-markhópinn"><span class="header-section-number">22.4</span> Skilgreina markhópinn</h2>
+<p>Því nákvæmari sem skilgreining á markhópnum er, því auðveldara verður að miðla efninu á réttan hátt. Það er mikilvægt að forðast of almennar skilgreiningar á markhópnum, þar sem þær geta leitt til þess að skýrslan verði of ómarkviss. Til dæmis eru eftirfarandi hópar of almennir:</p>
+<ul>
+<li>Allir sem hafa áhuga á gögnunum</li>
+<li>Innri og ytri kröfuhafar</li>
+</ul>
+<p>Þess í stað er betra að einblína á aðgreinda hópa, svo sem þá sem taka ákvarðanir eða hafa beina hagsmuni af niðurstöðunum. Ef markhópurinn er skilgreindur vel, verður auðveldara að miðla efninu markvisst og á viðeigandi hátt.</p>
+</section>
+<section id="hvað-viljum-við-að-markhópurinn-viti" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="hvað-viljum-við-að-markhópurinn-viti"><span class="header-section-number">22.5</span> Hvað viljum við að markhópurinn viti?</h2>
+<p>Áður en þið byrjið að miðla gögnunum, ættuð þið að hafa skýrt fyrir ykkur hvað þið viljið að markhópurinn viti eða bregðist við. Það er ekki nóg að kynna gögnin án tilvísunar til þeirra breytinga eða umræðna sem þið vonist eftir að skapa. Til dæmis gætu gögnin ein og sér fengið viðbrögð á borð við „spennandi“ eða „áhugavert,“ en án frekari útskýringa leiða þau sjaldan til breytinga eða ákvarðanatöku. Markmiðið er að nota gögnin til að skapa raunveruleg viðbrögð og jafnvel hvetja til breytinga.</p>
+</section>
+<section id="hvernig-miðlum-við-efninu" class="level2" data-number="22.6">
+<h2 data-number="22.6" class="anchored" data-anchor-id="hvernig-miðlum-við-efninu"><span class="header-section-number">22.6</span> Hvernig miðlum við efninu?</h2>
+<p>Sögur sem við segjum með gögnunum verða að vera studdar af raunverulegum gögnum sem geta sannreynt frásögnina. Hér er mikilvægt að nota viðeigandi gögn sem styðja við frásögnina, en einnig að vera meðvitaður um að sleppa því sem ekki bætir við frásögnina. Ákvarðið hvaða gögn eru nauðsynleg fyrir markhópinn til að taka ákvarðanir eða skilja frásögnina og leyfið því að leiða miðlunina.</p>
+<p>Til dæmis er gott að forðast „<em>cherry picking</em>,“ þar sem aðeins þau gögn eru notuð sem styðja frásögnina en önnur, sem gætu gefið óheillavænlegar niðurstöður, eru látin liggja á milli hluta. Slík nálgun getur haft neikvæð áhrif á trúverðugleika frásagnarinnar og kallað fram krítískar spurningar sem erfitt er að svara.</p>
+</section>
+<section id="dæmi-um-gagnafrásögn" class="level2" data-number="22.7">
+<h2 data-number="22.7" class="anchored" data-anchor-id="dæmi-um-gagnafrásögn"><span class="header-section-number">22.7</span> Dæmi um gagnafrásögn</h2>
+<p>Hugsum okkur dæmi þar sem iðnaðarverkfræðideild Háskóla Íslands hefur nýlega innleitt nýtt námskeið um gagnavinnslu með Python/R og SQL. Eftir námskeiðið var lögð fyrir könnun meðal nemenda til að meta árangur námskeiðsins og áhuga á framhaldsnámskeiði á sama sviði. Niðurstöðurnar sýndu fram á mjög jákvæð viðbrögð og mikinn áhuga nemenda á að taka fleiri námskeið um gagnavinnslu. Þið viljið nú kynna þessar niðurstöður fyrir mismunandi markhópum innan skólans til að fá samþykki og stuðning fyrir því að námskeiðið verði áfram í boði og jafnvel innleitt í fleiri námsleiðir.</p>
+<p>Mögulegir markhópar fyrir þessar upplýsingar gætu verið:</p>
+<ul>
+<li><strong>Nemendur sem sóttu námskeiðið</strong>: Þeir gætu haft áhuga á að taka framhaldsnámskeið eða mæla með námskeiðinu við aðra nemendur sem hafa áhuga á gagnavinnslu og forritun.</li>
+<li><strong>Nemendur sem hafa áhuga á gagnavinnslu og forritun</strong>: Þessi hópur gæti viljað fá innsýn í það hvað námskeiðið fjallar um, hvað er lært á því, og hvernig það nýtist í starfi og frekara námi.</li>
+<li><strong>Kennarar og aðrar námsbrautir innan HÍ</strong>: Kennarar á öðrum námsbrautum gætu haft áhuga á að bjóða upp á þetta námskeið í sínum námsleiðum, sérstaklega deildir sem leggja áherslu á tölfræði, verkfræði, eða hagnýtingu gagna. Þessi hópur myndi þurfa upplýsingar um innihald námskeiðsins, námsárangur nemenda, og hvernig námskeiðið gæti bætt við þeirra námsleiðir.</li>
+<li><strong>Sviðsforseti VON og deildarforseti IVT</strong>: Þessir aðilar myndu vilja sjá gögn sem sýna fram á mælanlegan árangur námskeiðsins, auknar skráningar, og jákvæð viðbrögð nemenda til að réttlæta áframhaldandi kennslu og jafnvel aukið fjármagn eða úrræði til að þróa námskeiðið enn frekar.</li>
+</ul>
+<p>Hver og einn hópur kallar á mismunandi nálgun í miðlun gagna og því er mikilvægt að skilgreina vel hvaða hóp þið miðið á hverju sinni til að hámarka árangur frásagnarinnar.</p>
+<blockquote class="blockquote">
+<p>Eðlilegt framhald af <em>Upplýsingaverkfræði</em> er <em>Viðskiptagreind</em>, sem er valáfangi í Iðnaðarverkfræði og er kenndur á vorönn og nýtist vel til að dýpka skilning á hagnýtingu gagna í víðskiptalegum tilgangi.</p>
+</blockquote>
 
 
 </section>
@@ -802,10 +843,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/sql-advanced/postgis.html" class="pagination-link" aria-label="PostGIS fyrir PostgreSQL">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./src/sql-basics/introduction.html" class="pagination-link" aria-label="Um SQL">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/storytelling/lightning_talk.html" class="pagination-link" aria-label="Hraðkynningar">
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hraðkynningar</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -814,4 +858,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/storytelling/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,95 @@
+/*-- scss:defaults --*/
+
+// HÍ Palette (honnun.hi.is)
+$hi-blue:    #10099F;
+$hi-teal:    #2DD2C0;
+$hi-green:   #00FFBA;
+$hi-yellow:  #FAC55B;
+$hi-orange:  #FFA05F;
+$hi-red:     #FC8484;
+$hi-pink:    #d61f69;
+$hi-paper:   #F5F5F5;
+$hi-panel:   #EEEEEE;
+$hi-ink:     #262626;
+$hi-white:   #ffffff;
+
+$hi-blue-dark: darken($hi-blue, 8%);
+
+// Quarto/Bootstrap overrides
+$font-family-sans-serif: "Jost", system-ui, sans-serif;
+$font-family-monospace:  "JetBrains Mono", "Fira Code", monospace;
+$headings-font-weight:   800;
+$body-color:             $hi-ink;
+$body-bg:                $hi-white;
+$link-color:             $hi-blue;
+$link-hover-color:       $hi-blue-dark;
+$primary:                $hi-blue;
+$secondary:              $hi-teal;
+$code-color:             $hi-pink;
+
+/*-- scss:rules --*/
+
+:root {
+  --hi-blue:    #{$hi-blue};
+  --hi-teal:    #{$hi-teal};
+  --hi-yellow:  #{$hi-yellow};
+  --hi-orange:  #{$hi-orange};
+  --hi-red:     #{$hi-red};
+  --hi-paper:   #{$hi-paper};
+  --hi-panel:   #{$hi-panel};
+  --hi-ink:     #{$hi-ink};
+}
+
+// Navbar
+.navbar {
+  background: $hi-blue !important;
+  border-bottom: 3px solid $hi-teal;
+  .navbar-brand img { height: 32px; }
+  .navbar-brand, .nav-link { color: $hi-white !important; }
+  .nav-link:hover { color: $hi-teal !important; }
+}
+
+// Sidebar
+.sidebar {
+  border-right: 2px solid $hi-panel;
+  .sidebar-title { color: $hi-blue; font-weight: 800; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.06em; }
+  .chapter-number { color: $hi-teal; font-weight: 800; }
+  .active > .chapter-title { color: $hi-blue; font-weight: 700; }
+}
+
+// Headings
+h1, h2, h3, h4 { color: $hi-blue; font-weight: 800; }
+h1 { border-bottom: 3px solid $hi-teal; padding-bottom: 0.3em; margin-bottom: 0.8em; }
+h2 { border-bottom: 1px solid $hi-panel; padding-bottom: 0.2em; }
+
+// Callouts — remap to HÍ colours
+.callout-note    { border-left-color: $hi-blue !important; }
+.callout-tip     { border-left-color: $hi-teal !important; }
+.callout-warning { border-left-color: $hi-yellow !important; }
+.callout-important { border-left-color: $hi-red !important; }
+
+.callout-note    .callout-icon::before { color: $hi-blue; }
+.callout-tip     .callout-icon::before { color: $hi-teal; }
+.callout-warning .callout-icon::before { color: $hi-yellow; }
+.callout-important .callout-icon::before { color: $hi-red; }
+
+// Code blocks
+pre.sourceCode {
+  background: $hi-paper;
+  border-left: 4px solid $hi-teal;
+  border-radius: 0;
+}
+
+code { color: $hi-pink; background: rgba($hi-pink, 0.08); padding: 0.1em 0.3em; border-radius: 3px; }
+
+// Table
+table { font-size: 0.92em; }
+thead { background: $hi-blue; color: $hi-white; th { color: $hi-white; } }
+tbody tr:nth-child(even) { background: $hi-paper; }
+
+// Footer / page nav
+.nav-footer { background: $hi-blue; color: $hi-white; padding: 1em 0;
+  a { color: $hi-teal; &:hover { color: $hi-white; } }
+}
+
+.page-navigation .nav-page a { color: $hi-blue; font-weight: 700; }

@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Háskóli Íslands">
+<meta name="description" content="Gangvirk mælaborð veita notendum innsýn í flókin gögn með gagnvirkni, sem gerir kleift að skoða gögn á rauntíma og draga fram lykilupplýsingar á auðveldan hátt.">
 
-<title>Upplýsingaverkfræði IÐN302G</title>
+<title>27&nbsp; Gangvirk mælaborð – Upplýsingaverkfræði IÐN302G</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,28 +24,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./src/sql-basics/introduction.html" rel="next">
-<link href="./img/hi/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/storytelling/donts.html" rel="next">
+<link href="../../src/storytelling/interactive.html" rel="prev">
+<link href="../../img/hi/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-07314a9cf6582ab18f4f031a2d4fd43d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a2e04da330744ca730d38481150d303d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,11 +125,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
-    <img src="./img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo light-content">
+    <img src="../../img/hi/hi_named_logo-is.svg" alt="Háskóli Íslands" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Upplýsingaverkfræði IÐN302G</span>
     </a>
   </div>
@@ -108,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/storytelling/introduction.html">Myndræn framsetning</a></li><li class="breadcrumb-item"><a href="../../src/storytelling/dashboard.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -122,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Upplýsingaverkfræði IÐN302G</span></span></a>
   </div>
 </li>
@@ -137,73 +173,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">SQL forsaga</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/tables.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/tables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Samsöfnun gagna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/null.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tóm gildi - <code>NULL</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/subquery.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Undirfyrirspurnir</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/data_integrity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Heilleiki gagna og skorður</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Skipanaskrár fyrir <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQLite</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Grunnatriði í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"></span></span></a><a href="https://www.w3schools.com/sql/">W3Schools SQL kennsla</a>
   </div>
 </li>
@@ -220,49 +256,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Helstu munir á <em>PostgreSQL</em> og <em>SQLite</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/union.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sameining niðurstaðna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/joins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/views.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartafla - <code>VIEW</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Föll í <em>PostgreSQL</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Table Expression (CTE)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></span></a>
   </div>
 </li>
@@ -279,55 +315,55 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hraðkynningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Minna þekktar myndrænar framsetningar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/interactive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Gangvirk gröf og kort</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/dashboard.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/donts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Slæm notkun á gröfum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/data_narrative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Gagnafrásögn</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Ítarefni um myndræna framsetningu</span></span></a>
   </div>
 </li>
@@ -343,30 +379,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Efnisyfirlit</h2>
    
   <ul>
-  <li><a href="#hvernig-á-að-nota-þetta-námsefni" id="toc-hvernig-á-að-nota-þetta-námsefni" class="nav-link active" data-scroll-target="#hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</a></li>
-  <li><a href="#gagnaskrár" id="toc-gagnaskrár" class="nav-link" data-scroll-target="#gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</a></li>
-  <li><a href="#framlag-og-endurgjöf" id="toc-framlag-og-endurgjöf" class="nav-link" data-scroll-target="#framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</a></li>
+  <li><a href="#shiny-r-pakki" id="toc-shiny-r-pakki" class="nav-link active" data-scroll-target="#shiny-r-pakki"><span class="header-section-number">27.1</span> Shiny (R-pakki)</a></li>
+  <li><a href="#power-bi" id="toc-power-bi" class="nav-link" data-scroll-target="#power-bi"><span class="header-section-number">27.2</span> Power BI</a></li>
+  <li><a href="#tableau" id="toc-tableau" class="nav-link" data-scroll-target="#tableau"><span class="header-section-number">27.3</span> Tableau</a></li>
+  <li><a href="#grafana" id="toc-grafana" class="nav-link" data-scroll-target="#grafana"><span class="header-section-number">27.4</span> Grafana</a></li>
+  <li><a href="#einfalt-dæmi-um-shiny-app-tengt-við-gagnagrunn" id="toc-einfalt-dæmi-um-shiny-app-tengt-við-gagnagrunn" class="nav-link" data-scroll-target="#einfalt-dæmi-um-shiny-app-tengt-við-gagnagrunn"><span class="header-section-number">27.5</span> Einfalt dæmi um Shiny App tengt við gagnagrunn</a></li>
+  <li><a href="#búa-til-sitt-eigið-shiny-mælaborð" id="toc-búa-til-sitt-eigið-shiny-mælaborð" class="nav-link" data-scroll-target="#búa-til-sitt-eigið-shiny-mælaborð"><span class="header-section-number">27.6</span> Búa til sitt eigið Shiny mælaborð</a>
+  <ul class="collapse">
+  <li><a href="#shiny-gallery" id="toc-shiny-gallery" class="nav-link" data-scroll-target="#shiny-gallery"><span class="header-section-number">27.6.1</span> Shiny Gallery</a></li>
+  <li><a href="#shiny-layouts" id="toc-shiny-layouts" class="nav-link" data-scroll-target="#shiny-layouts"><span class="header-section-number">27.6.2</span> Shiny Layouts</a></li>
+  <li><a href="#ítarefni" id="toc-ítarefni" class="nav-link" data-scroll-target="#ítarefni"><span class="header-section-number">27.6.3</span> Ítarefni</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/storytelling/dashboard.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/storytelling/introduction.html">Myndræn framsetning</a></li><li class="breadcrumb-item"><a href="../../src/storytelling/dashboard.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Upplýsingaverkfræði IÐN302G</h1>
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Höfundur</div>
-    <div class="quarto-title-meta-contents">
-             <p>Háskóli Íslands </p>
-          </div>
-  </div>
     
   
     
@@ -377,26 +415,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Velkomin í námsefni námskeiðsins <strong>Upplýsingaverkfræði IÐN302G</strong> við Háskóla Íslands.</p>
-<p>Námsefnið er skipulagt í þrjá hluta:</p>
-<ul>
-<li><strong>SQL grunnatriði</strong> — Grundvöllur gagnagrunnsvinnslu með SQLite</li>
-<li><strong>SQL framhald</strong> — PostgreSQL, JOIN, CTE og PostGIS</li>
-<li><strong>Myndræn framsetning</strong> — Gagnvirk gröf, mælaborð og gagnafrásögn</li>
-</ul>
-<section id="hvernig-á-að-nota-þetta-námsefni" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="hvernig-á-að-nota-þetta-námsefni"><span class="header-section-number">0.1</span> Hvernig á að nota þetta námsefni</h2>
-<p>Farðu í gegnum efnið í þeirri röð sem það birtist í hliðarstikunni til vinstri. Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.</p>
+<p>Gangvirk mælaborð eru áhrifarík leið til að sýna gögn og veita notendum innsýn í flókin gagnasöfn á auðveldan og gagnvirkan hátt. Með þeim er hægt að skoða gögn í rauntíma, greina mynstur og sýna lykilupplýsingar eftir þörfum notandans. Hér eru nokkur algeng verkfæri til að búa til gagnvirk mælaborð og helstu kostir og gallar hvers og eins.</p>
+<section id="shiny-r-pakki" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="shiny-r-pakki"><span class="header-section-number">27.1</span> Shiny (R-pakki)</h2>
+<p><em>Shiny</em> er sveigjanlegt tól fyrir notendur R sem býður upp á mikla möguleika til að búa til sérsniðin mælaborð. Kosturinn við Shiny er einföld tenging við <em>R</em>-kóða og gagnavinnslu, sem gerir það auðvelt að vinna með stór gögn og búa til gagnvirk mælaborð án þess að þurfa að yfirgefa <em>R</em>-umhverfið. Gallinn er að notendur þurfa að hafa þekkingu á <em>R</em>-forritun, og það getur verið flóknara að setja upp en tilbúin verkfæri.</p>
+<p>Nánar um <a href="https://shiny.rstudio.com/">Shiny</a> og hvernig hægt er að byrja að nota það.</p>
 </section>
-<section id="gagnaskrár" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="gagnaskrár"><span class="header-section-number">0.2</span> Gagnaskrár</h2>
-<p>Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í <a href="https://github.com/HI-IDN/IDN302G/tree/main/data"><code>data/</code></a> möppunni í þessum repo.</p>
+<section id="power-bi" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="power-bi"><span class="header-section-number">27.2</span> Power BI</h2>
+<p><em>Power BI</em> er notendavænt tól frá Microsoft sem er mikið notað í fyrirtækjum til að búa til mælaborð og greina gögn. Það er einfalt í uppsetningu og samþættist vel við Microsoft-vörur. Kosturinn er að það býður upp á öfluga greiningarmöguleika, en gallinn er að <em>Power BI</em> er ekki í boði fyrir Mac eða Linux og ókeypis útgáfan er með takmarkaða möguleika.</p>
+<p>Nánar um <a href="https://powerbi.microsoft.com/">Power BI</a>.</p>
 </section>
-<section id="framlag-og-endurgjöf" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="framlag-og-endurgjöf"><span class="header-section-number">0.3</span> Framlag og endurgjöf</h2>
-<p>Villur og ábendingar eru vel þegnar — sjá <a href="https://github.com/HI-IDN/IDN302G#readme">README</a> fyrir leiðbeiningar.</p>
+<section id="tableau" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="tableau"><span class="header-section-number">27.3</span> Tableau</h2>
+<p><em>Tableau</em> er öflugt tól fyrir sjónræna framsetningu gagna og veitir mikla möguleika til að búa til gangvirk mælaborð. Það er frábært fyrir notendur með litla forritunarreynslu, en gallinn er að leyfisgjöldin geta verið há og möguleikarnir á að aðlaga mælaborðið eru takmarkaðir miðað við opnari kerfi.</p>
+<p>Nánar um <a href="https://www.tableau.com/">Tableau</a>.</p>
+</section>
+<section id="grafana" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="grafana"><span class="header-section-number">27.4</span> Grafana</h2>
+<p>Grafana er opinn hugbúnaður sem er mest notaður fyrir eftirlit með kerfum og gagnagreiningu með tímaraðargögnum. Það er frítt og býður upp á mikla möguleika til að tengjast við ýmsa gagnagrunna, en það krefst meiri tæknilegrar þekkingar en önnur tól.</p>
+<p>Nánar um <a href="https://grafana.com/">Grafana</a>.</p>
+<hr>
+</section>
+<section id="einfalt-dæmi-um-shiny-app-tengt-við-gagnagrunn" class="level2" data-number="27.5">
+<h2 data-number="27.5" class="anchored" data-anchor-id="einfalt-dæmi-um-shiny-app-tengt-við-gagnagrunn"><span class="header-section-number">27.5</span> Einfalt dæmi um Shiny App tengt við gagnagrunn</h2>
+<p>Til að sýna hvernig Shiny getur verið notað til að tengjast gagnagrunni, höfum við hér einfalt dæmi þar sem við tengjumst <em>SQLite</em> gagnagrunni og sýnum gögn á mælaborði.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hlaða inn nauðsynlegum pökkum</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Búa til tengingu við SQLite gagnagrunn</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"../data/isfolkid.db"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sækja nöfn töflna úr gagnagrunninum</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tables <span class="ot">&lt;-</span> <span class="fu">dbListTables</span>(con)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Shiny UI (notendaviðmót)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Shiny App tengt við gagnagrunn - Velja töflu og skoða gögn"</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dropdown til að velja töflu</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(<span class="st">"table_choice"</span>, <span class="st">"Veldu töflu:"</span>, <span class="at">choices =</span> tables),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Searchable table output með DT</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">DTOutput</span>(<span class="st">"table"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Shiny Server (bakviðmót)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Útdráttur gagna úr valinni töflu</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  data_selected <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(input<span class="sc">$</span>table_choice) <span class="co"># Gakktu úr skugga um að tafla hafi verið valin</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dbGetQuery</span>(con, <span class="fu">paste</span>(<span class="st">"SELECT * FROM"</span>, input<span class="sc">$</span>table_choice))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Birta gagnatöflu sem er searchable og sortable</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>table <span class="ot">&lt;-</span> <span class="fu">renderDT</span>({</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">datatable</span>(<span class="fu">data_selected</span>(), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>, <span class="at">searchHighlight =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Keyra appið</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>Fyrst þarf að ganga úr skugga að viðeigandi R-pakkar séu settir upp áður en kóðinn er keyrður. Það er hægt að setja upp pakka með</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"shiny"</span>, <span class="st">"DBI"</span>, <span class="st">"RSQLite"</span>, <span class="st">"tidyverse"</span>, <span class="st">"DT"</span>))</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+<p>innan úr R.</p>
+</blockquote>
+<p>Skráin myndi heita <a href="../code/app.R">app.R</a> og vera í möppu sem heitir til dæmis <code>shiny_app</code> og á sama stað væri gagnamappan vera <code>data</code> sem inniheldur gagnagrunninn <a href="../data/isfolkid.db"><code>isfolkid.db</code></a>. Við keyrum upp appið úr kóða möppunni með skeljarskipuninni:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"shiny::runApp('.')"</span></span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Úttakið væri þá t.d.:</p>
+<pre><code>Loading required package: shiny
+
+Listening on http://127.0.0.1:5073</code></pre>
+<p>Ef þið skoðið slóðina sem kemur upp, en hún sem vísar í <a href="http://127.0.0.1"><code>localhost</code></a> og svo port númer sem getur verið mismunandi milli keyrsla. Opnið hana í vafra, og þá myndið þá sjá einfalt mælaborð með gögn úr gagnagrunninum og lítur svona út:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_output.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny App fyrir SQLite gagnagrunninn um Sögu Ísfólksins</figcaption>
+</figure>
+</div>
+<p>Þetta er einfalt dæmi um hvernig hægt er að draga fram gögn úr <em>SQLite</em> gagnagrunni og sýna þau í mælaborði með <em>Shiny</em>. Nánar um hvernig hægt er að nota <a href="https://www.r-bloggers.com/2022/01/using-databases-with-shiny/">Shiny með gagnagrunnum</a> en munið að setja hvergi lykilorð eða aðra trúnaðarupplýsingar í forritskóðann.</p>
+</section>
+<section id="búa-til-sitt-eigið-shiny-mælaborð" class="level2" data-number="27.6">
+<h2 data-number="27.6" class="anchored" data-anchor-id="búa-til-sitt-eigið-shiny-mælaborð"><span class="header-section-number">27.6</span> Búa til sitt eigið Shiny mælaborð</h2>
+<p>Að búa til sitt eigið <em>Shiny</em> mælaborð er einfalt og hægt er að byrja á að skoða <a href="https://shiny.posit.co/">opinberu heimasíðu <em>Shiny</em></a>. En til að taka ykkar allra fyrstu skref, þá er best að fylgja <a href="https://shiny.posit.co/getstarted.html">þessum upphafs leiðbeiningum</a> sem er bæði til fyrir <code>R</code> og <code>Python</code> notendur.</p>
+<blockquote class="blockquote">
+<p><em>Shiny</em> var upphaflega hannað fyrir <code>R</code> notendur en er núna aðeins að opna fyrir <code>Python</code> notendur með <code>ShinyPy</code> pakkann. Þar sem <em>Shiny</em> öpp eru sérstaklega falleg með <code>ggplot2</code> myndum (og hefur verið notað í undangengnum sýnidæmum) þá verður hér stuðst við <code>R</code> sýnidæmi. Ykkur er þó frjálst að prófa með <code>Python</code> ef þið hafið meiri reynslu með það forritunarmál.</p>
+</blockquote>
+<section id="shiny-gallery" class="level3" data-number="27.6.1">
+<h3 data-number="27.6.1" class="anchored" data-anchor-id="shiny-gallery"><span class="header-section-number">27.6.1</span> Shiny Gallery</h3>
+<p>Hægt er að skoða alls kyns <em>Shiny</em> mælaborð á <a href="https://shiny.posit.co/r/gallery/">Shiny Gallery</a> sem eru búin til af fólki úr samfélaginu. Hægt er að keyra upp mælaborðin í vafra og skoða undirliggjandi kóða.</p>
+</section>
+<section id="shiny-layouts" class="level3" data-number="27.6.2">
+<h3 data-number="27.6.2" class="anchored" data-anchor-id="shiny-layouts"><span class="header-section-number">27.6.2</span> Shiny Layouts</h3>
+<p>Hægt er að setja upp mismunandi útlit á <em>Shiny</em> síðum með <a href="https://shiny.posit.co/r/layouts/">Shiny Layouts</a>.</p>
+<p>Mögulega viljið þið taka skrefið lengra og nota mælaborð og þá fjallar <a href="https://shiny.posit.co/r/articles/build/dashboards/index.html">Shiny Dashboards</a> hvernig hægt er að nota pakkana <code>flexdashboard</code> eða <code>shinydashboard</code> til að búa til sérhæfðari mælaborð.</p>
+</section>
+<section id="ítarefni" class="level3" data-number="27.6.3">
+<h3 data-number="27.6.3" class="anchored" data-anchor-id="ítarefni"><span class="header-section-number">27.6.3</span> Ítarefni</h3>
+<p>Bókin <a href="https://mastering-shiny.org/">Mastering Shiny</a> er opin og frí kennslubók eftir Hadley Wickham og gefur ítarlegar leiðbeiningar um hvernig hægt er að nota <em>Shiny</em> til að búa til gegnvirk mælaborð.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -802,10 +926,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/storytelling/interactive.html" class="pagination-link" aria-label="Gangvirk gröf og kort">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Gangvirk gröf og kort</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./src/sql-basics/introduction.html" class="pagination-link" aria-label="Um SQL">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/storytelling/donts.html" class="pagination-link" aria-label="Slæm notkun á gröfum">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Slæm notkun á gröfum</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -814,4 +941,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/src/storytelling/dashboard.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></div></div></footer></body></html>
