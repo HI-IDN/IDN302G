@@ -1,2 +1,10 @@
 .idea/
 .env
+
+# Quarto build cache (not output)
+/.quarto/
+**/*.quarto_ipynb
+**/quarto-session-temp*/
+
+# Keep docs/ (GitHub Pages output) — do NOT ignore it
+

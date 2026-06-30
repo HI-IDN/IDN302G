@@ -14,6 +14,7 @@ book:
   navbar:
     logo: img/hi/hi_named_logo-is.svg
     logo-alt: "Háskóli Íslands"
+    background: primary
   sidebar:
     style: docked
     background: light
@@ -21,39 +22,39 @@ book:
     - index.qmd
     - part: "SQL grunnatriði"
       chapters:
-        - src/sql-basics/introduction.md
-        - src/sql-basics/basic_sql_queries.md
-        - src/sql-basics/tables.md
-        - src/sql-basics/aggregation_and_grouping.md
-        - src/sql-basics/null.md
-        - src/sql-basics/subquery.md
-        - src/sql-basics/data_integrity.md
-        - src/sql-basics/import_export_data.md
-        - src/sql-basics/script_files.md
-        - src/sql-basics/database_interaction.md
-        - src/sql-basics/exercises.md
-        - src/sql-basics/additional_resources.md
+        - sql-basics/introduction.md
+        - sql-basics/basic_sql_queries.md
+        - sql-basics/tables.md
+        - sql-basics/aggregation_and_grouping.md
+        - sql-basics/null.md
+        - sql-basics/subquery.md
+        - sql-basics/data_integrity.md
+        - sql-basics/import_export_data.md
+        - sql-basics/script_files.md
+        - sql-basics/database_interaction.md
+        - sql-basics/exercises.md
+        - sql-basics/additional_resources.md
     - part: "SQL framhald"
       chapters:
-        - src/sql-advanced/introduction.md
-        - src/sql-advanced/postgres.md
-        - src/sql-advanced/union.md
-        - src/sql-advanced/joins.md
-        - src/sql-advanced/views.md
-        - src/sql-advanced/functions.md
-        - src/sql-advanced/cte.md
-        - src/sql-advanced/postgis.md
+        - sql-advanced/introduction.md
+        - sql-advanced/postgres.md
+        - sql-advanced/union.md
+        - sql-advanced/joins.md
+        - sql-advanced/views.md
+        - sql-advanced/functions.md
+        - sql-advanced/cte.md
+        - sql-advanced/postgis.md
     - part: "Myndræn framsetning"
       chapters:
-        - src/storytelling/introduction.md
-        - src/storytelling/lightning_talk.md
-        - src/storytelling/visuals_major.md
-        - src/storytelling/visuals_minor.md
-        - src/storytelling/interactive.md
-        - src/storytelling/dashboard.md
-        - src/storytelling/donts.md
-        - src/storytelling/data_narrative.md
-        - src/storytelling/additional_resources.md
+        - storytelling/introduction.md
+        - storytelling/lightning_talk.md
+        - storytelling/visuals_major.md
+        - storytelling/visuals_minor.md
+        - storytelling/interactive.md
+        - storytelling/dashboard.md
+        - storytelling/donts.md
+        - storytelling/data_narrative.md
+        - storytelling/additional_resources.md
 
 format:
   html:
