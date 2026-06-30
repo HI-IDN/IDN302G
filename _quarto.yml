@@ -6,10 +6,10 @@ project:
 
 book:
   title: "Upplýsingaverkfræði IÐN302G"
-  author: "Háskóli Íslands"
+  author: "Helga Ingimundardóttir"
   language: is
   repo-url: https://github.com/HI-IDN/IDN302G
-  repo-actions: [edit, issue]
+  repo-actions: [edit]
   site-url: https://hi-idn.github.io/IDN302G
   favicon: img/hi/favicon.svg
   search: true
@@ -81,3 +81,4 @@ format:
     smooth-scroll: true
     code-copy: true
     code-overflow: wrap
+    number-sections: true

@@ -17,7 +17,7 @@ Hvert kafli inniheldur útskýringar, sýnidæmi og æfingar.
 
 ## Gagnaskrár
 
-Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í [`data/`](https://github.com/HI-IDN/IDN302G/tree/main/data) möppunni í þessum repo.
+Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í [`data/`](https://github.com/HI-IDN/IDN302G/tree/main/data) möppunni í þessum gagnageymslunni (e. *repository*).
 
 ## Framlag og endurgjöf
 
