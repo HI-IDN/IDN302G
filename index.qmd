@@ -9,6 +9,21 @@ meðhöndlunar, greiningar og framsetningu upplýsinga.
 
 Námsefnið skiptist í eftirfarandi hluta:
 
+::: {.callout-tip appearance="minimal"}
+## Git og GitHub — *kemur*
+Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði í teymi.
+:::
+
+::: {.callout-tip appearance="minimal"}
+## Erindrekar — *kemur*
+Notkun gervigreindar (LLM) sem erindrekа við forritun, kóðarýni og gagnagreiningu á ábyrgan hátt.
+:::
+
+::: {.callout-tip appearance="minimal"}
+## Reglulegar segðir — *kemur*
+Leit og vinnslur á textagögnum með reglulegar segðir (regex) í R og öðrum tólum.
+:::
+
 ::: {.callout-note appearance="minimal"}
 ## SQL grunnatriði
 Grundvöllur gagnagrunnsvinnslu: uppsetning SQLite, grunnfyrirspurnir, töflur,
@@ -24,21 +39,6 @@ PostgreSQL, UNION, JOIN, VIEW, föll, CTE (Common Table Expressions) og PostGIS 
 ## Myndræn framsetning
 Gagnafrásögn, gagnvirk gröf (Plotly), gagnvirk kort (Leaflet), mælaborð (Shiny/Flexdashboard)
 og góðar og slæmar venjur í sjónrænni framsetningu.
-:::
-
-::: {.callout-tip appearance="minimal"}
-## Git og GitHub — *kemur*
-Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði í teymi.
-:::
-
-::: {.callout-tip appearance="minimal"}
-## Erindrekar — *kemur*
-Notkun gervigreindar (LLM) sem erindrekа við forritun, kóðarýni og gagnagreiningu á ábyrgan hátt.
-:::
-
-::: {.callout-tip appearance="minimal"}
-## Reglulegar segðir — *kemur*
-Leit og vinnslur á textagögnum með reglulegar segðir (regex) í R og öðrum tólum.
 :::
 
 ## Hæfniviðmið {.unnumbered}
