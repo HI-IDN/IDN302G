@@ -147,6 +147,19 @@ $border-radius:          0;
     min-width: 1.6em;
   }
 
+  // Index page: styled like a part title, no chapter number
+  a[href$="index.html"].sidebar-item-text,
+  a[href$="../index.html"].sidebar-item-text {
+    font-weight: 800 !important;
+    color: $hi-teal !important;
+    font-size: 0.85rem;
+    margin-bottom: 0.3em;
+    display: block;
+
+    .chapter-number { display: none; }
+    .chapter-title  { color: $hi-teal; }
+  }
+
   .sidebar-item.active > .sidebar-item-text a,
   .sidebar-item.active > a {
     color: $hi-blue !important;

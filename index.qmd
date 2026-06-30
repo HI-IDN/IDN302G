@@ -1,5 +1,6 @@
 ---
-title: "Upplýsingaverkfræði IÐN302G"
+title: "Upplýsingaverkfræði"
+number-sections: false
 ---
 
 Velkomin í námsefni námskeiðsins **Upplýsingaverkfræði IÐN302G** við Háskóla Íslands.
