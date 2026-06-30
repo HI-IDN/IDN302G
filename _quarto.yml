@@ -13,10 +13,20 @@ book:
   site-url: https://hi-idn.github.io/IDN302G
   favicon: img/hi/favicon.svg
   search: true
+  page-footer:
+    left: "© Háskóli Íslands · IÐN302G"
+    right:
+      - icon: github
+        href: https://github.com/HI-IDN/IDN302G
+        aria-label: GitHub
   navbar:
     logo: img/hi/hi_named_logo-is.svg
     logo-alt: "Háskóli Íslands"
     background: primary
+    tools:
+      - icon: github
+        href: https://github.com/HI-IDN/IDN302G
+        aria-label: GitHub
   sidebar:
     style: docked
     background: light
@@ -66,4 +76,8 @@ format:
     include-in-header: partials/header-includes.inc
     toc: true
     toc-depth: 3
+    toc-title: "Á þessari síðu"
     lang: is
+    smooth-scroll: true
+    code-copy: true
+    code-overflow: wrap

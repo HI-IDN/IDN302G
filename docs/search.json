@@ -639,7 +639,51 @@
     "href": "sql-basics/additional_resources.html",
     "title": "13  Ítarefni",
     "section": "",
-    "text": "Til að dýpka skilning á SQL og tengdum gagnagrunnstækni eru hér nokkur frábær öpp og kennslubækur sem mælt er með að nemendur skoði. Þetta efni er bæði gagnlegt til að læra grunnatriði og bæta við þekkingu í sérhæfðari þáttum.\n\n14 W3Schools SQL kennsla\nKostir:\n\nEinföld og aðgengileg útskýring á SQL, frá grunnatriðum til flóknari fyrirspurna.\nSkýrar skref-fyrir-skref leiðbeiningar með dæmum sem nemendur geta fylgt og prófað.\nHentar mjög vel fyrir byrjendur.\n\n\n\n15 SQLite skjölun\nKostir:\n\nOpinber skjölun fyrir SQLite, sem er mjög gagnlegt fyrir þá sem vinna með SQLite gagnagrunna.\nÍtarlegar upplýsingar um uppsetningu, notkun og þróun SQLite gagnagrunna.\nFrábært efni fyrir þá sem vilja kafa dýpra í notkun SQLite.\n\n\n\n16 PostgreSQL skjölun\nKostir:\n\nOpinber skjölun fyrir PostgreSQL, sem er mikið notuð í fyrirtækjum og vefþjónustu.\nMjög ítarlegar og tæknilegar upplýsingar um uppsetningu, stillingar, og notkun PostgreSQL.\nHentar vel þeim sem vilja sérhæfa sig í PostgreSQL sem gagnagrunnskerfi.\n\n\n\n17 SQL in a Nutshell\n\nHöfundar: Kevin Kline, Regina O. Obe, Leo S. Hsu\nÚtgefandi: O’Reilly Media, Inc.\nISBN: 9781492088868, 1492088862\nÚtgáfuár: 2022\nÚtgáfa: 4. útgáfa\n\nKostir:\n\nFrábær handbók fyrir SQL þar sem farið er yfir SQL setningar og notkun á mismunandi gagnagrunnskerfum (PostgreSQL, Oracle, MySQL, o.fl.).\nHentar bæði byrjendum og lengra komnum með ítarlegum dæmum.\nGóð uppflettibók fyrir nemendur sem vilja skilja SQL í mismunandi gagnagrunnskerfum.",
+    "text": "13.1 W3Schools SQL kennsla\nTil að dýpka skilning á SQL og tengdum gagnagrunnstækni eru hér nokkur frábær öpp og kennslubækur sem mælt er með að nemendur skoði. Þetta efni er bæði gagnlegt til að læra grunnatriði og bæta við þekkingu í sérhæfðari þáttum.\nKostir:",
+    "crumbs": [
+      "SQL grunnatriði",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "sql-basics/additional_resources.html#w3schools-sql-kennsla",
+    "href": "sql-basics/additional_resources.html#w3schools-sql-kennsla",
+    "title": "13  Ítarefni",
+    "section": "",
+    "text": "Einföld og aðgengileg útskýring á SQL, frá grunnatriðum til flóknari fyrirspurna.\nSkýrar skref-fyrir-skref leiðbeiningar með dæmum sem nemendur geta fylgt og prófað.\nHentar mjög vel fyrir byrjendur.",
+    "crumbs": [
+      "SQL grunnatriði",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "sql-basics/additional_resources.html#sqlite-skjölun",
+    "href": "sql-basics/additional_resources.html#sqlite-skjölun",
+    "title": "13  Ítarefni",
+    "section": "13.2 SQLite skjölun",
+    "text": "13.2 SQLite skjölun\nKostir:\n\nOpinber skjölun fyrir SQLite, sem er mjög gagnlegt fyrir þá sem vinna með SQLite gagnagrunna.\nÍtarlegar upplýsingar um uppsetningu, notkun og þróun SQLite gagnagrunna.\nFrábært efni fyrir þá sem vilja kafa dýpra í notkun SQLite.",
+    "crumbs": [
+      "SQL grunnatriði",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "sql-basics/additional_resources.html#postgresql-skjölun",
+    "href": "sql-basics/additional_resources.html#postgresql-skjölun",
+    "title": "13  Ítarefni",
+    "section": "13.3 PostgreSQL skjölun",
+    "text": "13.3 PostgreSQL skjölun\nKostir:\n\nOpinber skjölun fyrir PostgreSQL, sem er mikið notuð í fyrirtækjum og vefþjónustu.\nMjög ítarlegar og tæknilegar upplýsingar um uppsetningu, stillingar, og notkun PostgreSQL.\nHentar vel þeim sem vilja sérhæfa sig í PostgreSQL sem gagnagrunnskerfi.",
+    "crumbs": [
+      "SQL grunnatriði",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "sql-basics/additional_resources.html#sql-in-a-nutshell",
+    "href": "sql-basics/additional_resources.html#sql-in-a-nutshell",
+    "title": "13  Ítarefni",
+    "section": "13.4 SQL in a Nutshell",
+    "text": "13.4 SQL in a Nutshell\n\nHöfundar: Kevin Kline, Regina O. Obe, Leo S. Hsu\nÚtgefandi: O’Reilly Media, Inc.\nISBN: 9781492088868, 1492088862\nÚtgáfuár: 2022\nÚtgáfa: 4. útgáfa\n\nKostir:\n\nFrábær handbók fyrir SQL þar sem farið er yfir SQL setningar og notkun á mismunandi gagnagrunnskerfum (PostgreSQL, Oracle, MySQL, o.fl.).\nHentar bæði byrjendum og lengra komnum með ítarlegum dæmum.\nGóð uppflettibók fyrir nemendur sem vilja skilja SQL í mismunandi gagnagrunnskerfum.",
     "crumbs": [
       "SQL grunnatriði",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ítarefni</span>"
@@ -1695,7 +1739,73 @@
     "href": "storytelling/additional_resources.html",
     "title": "30  Ítarefni",
     "section": "",
-    "text": "31 Ítarefni um myndræna framsetningu\nTil að bæta hæfni í myndrænni framsetningu gagna og dýpka skilning á áhrifaríkum aðferðum, eru hér nokkur gagnleg lesefni. Þessi bókmenntalisti hjálpar til við að læra að segja sögur með gögnum, velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi tólum.\n\n\n32 R for Data Science\n\nHöfundar: Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund\nÚtgefandi: O’Reilly Media\nISBN: 9781492097402\n\nKostir:\n\nFullkomin bók fyrir þá sem vilja læra gagnavinnslu, hreinsun, sjónræna framsetningu, og módelbyggingu í R.\nKennir hvernig á að nýta kraft R til að vinna með gögn frá grunni upp í flóknari gagnavísanir.\nHentar bæði byrjendum og lengra komnum sem vilja styrkja færni sína í gagnavísindum með R.\nBókin er gefin út sem opinn bók og er aðgengileg frítt á netinu á r4ds.hadley.nz.\n\n\n\n33 Storytelling with Data\n\nHöfundur: Cole Nussbaumer Knaflic\nÚtgáfa: 2. útgáfa\nÚtgefandi: Wiley\nISBN: 978-1-119-00225-3\n\nKostir:\n\nMjög notendavæn bók um hvernig hægt er að segja skýrar og áhrifaríkar sögur með gögnum.\nKennir mikilvægi þess að hafa gögn skýr, einföld og áhrifamikil til að hámarka miðlun upplýsinga.\nGagnleg handbók fyrir alla sem þurfa að miðla flóknum gögnum á skiljanlegan hátt.\n\n\n\n34 Storytelling with Data: Let’s Practice!\n\nHöfundur: Cole Nussbaumer Knaflic\nÚtgefandi: Wiley\nISBN: 978-1-119-62149-2\n\nKostir:\n\nÆfingabók sem fylgir upphaflegu Storytelling with Data bókinni.\nInniheldur praktískar æfingar til að hjálpa nemendum að þjálfa hæfni sína í myndrænni framsögn.\nHentar vel fyrir þá sem vilja læra með því að gera og þróa eigin færni.\n\n\n\n35 ColorWise\n\nHöfundur: Kate Strachnyi\nÚtgefandi: O’Reilly Media\nISBN: 9781492097846\n\nKostir:\n\nKennir hvernig á að nota liti markvisst í gagnafrásögn.\nFyrir byrjendur og lengra komna sem vilja auka skilning sinn á áhrifaríkri notkun lita.\nHentar vel þeim sem vinna með myndræna framsetningu gagna í hvaða samhengi sem er.\n\n\n\n36 Dear Data\n\nHöfundar: Giorgia Lupi og Stefanie Posavec\nÚtgefandi: Princeton Architectural Press\nISBN: 9781616895327\n\nKostir:\n\nSkemmtileg og persónuleg nálgun á gögn og sjónræna framsetningu þeirra í formi skissna og póstkorta.\nHentar bæði fyrir þá sem vilja skapa gagnafrásögn með handteiknaðri nálgun og þá sem leita eftir nýjum hugmyndum um gagnamyndsköpun.\n\n\n\n37 Data Sketches\n\nHöfundar: Nadieh Bremer og Shirley Wu\nÚtgefandi: A K Peters/CRC Press\nISBN: 9780367000080\n\nKostir:\n\nRannsakar persónulegar og skapandi leiðir til að birta gagnamyndir.\nHentar vel þeim sem leita að nýjum og skapandi hugmyndum til að birta gögn.\nFrábært fyrir þá sem vilja blanda saman list og gagnavísindum.",
+    "text": "30.1 Ítarefni um myndræna framsetningu\nTil að bæta hæfni í myndrænni framsetningu gagna og dýpka skilning á áhrifaríkum aðferðum, eru hér nokkur gagnleg lesefni. Þessi bókmenntalisti hjálpar til við að læra að segja sögur með gögnum, velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi tólum.",
+    "crumbs": [
+      "Myndræn framsetning",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "storytelling/additional_resources.html#r-for-data-science",
+    "href": "storytelling/additional_resources.html#r-for-data-science",
+    "title": "30  Ítarefni",
+    "section": "30.2 R for Data Science",
+    "text": "30.2 R for Data Science\n\nHöfundar: Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund\nÚtgefandi: O’Reilly Media\nISBN: 9781492097402\n\nKostir:\n\nFullkomin bók fyrir þá sem vilja læra gagnavinnslu, hreinsun, sjónræna framsetningu, og módelbyggingu í R.\nKennir hvernig á að nýta kraft R til að vinna með gögn frá grunni upp í flóknari gagnavísanir.\nHentar bæði byrjendum og lengra komnum sem vilja styrkja færni sína í gagnavísindum með R.\nBókin er gefin út sem opinn bók og er aðgengileg frítt á netinu á r4ds.hadley.nz.",
+    "crumbs": [
+      "Myndræn framsetning",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "storytelling/additional_resources.html#storytelling-with-data",
+    "href": "storytelling/additional_resources.html#storytelling-with-data",
+    "title": "30  Ítarefni",
+    "section": "30.3 Storytelling with Data",
+    "text": "30.3 Storytelling with Data\n\nHöfundur: Cole Nussbaumer Knaflic\nÚtgáfa: 2. útgáfa\nÚtgefandi: Wiley\nISBN: 978-1-119-00225-3\n\nKostir:\n\nMjög notendavæn bók um hvernig hægt er að segja skýrar og áhrifaríkar sögur með gögnum.\nKennir mikilvægi þess að hafa gögn skýr, einföld og áhrifamikil til að hámarka miðlun upplýsinga.\nGagnleg handbók fyrir alla sem þurfa að miðla flóknum gögnum á skiljanlegan hátt.",
+    "crumbs": [
+      "Myndræn framsetning",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "storytelling/additional_resources.html#storytelling-with-data-lets-practice",
+    "href": "storytelling/additional_resources.html#storytelling-with-data-lets-practice",
+    "title": "30  Ítarefni",
+    "section": "30.4 Storytelling with Data: Let’s Practice!",
+    "text": "30.4 Storytelling with Data: Let’s Practice!\n\nHöfundur: Cole Nussbaumer Knaflic\nÚtgefandi: Wiley\nISBN: 978-1-119-62149-2\n\nKostir:\n\nÆfingabók sem fylgir upphaflegu Storytelling with Data bókinni.\nInniheldur praktískar æfingar til að hjálpa nemendum að þjálfa hæfni sína í myndrænni framsögn.\nHentar vel fyrir þá sem vilja læra með því að gera og þróa eigin færni.",
+    "crumbs": [
+      "Myndræn framsetning",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "storytelling/additional_resources.html#colorwise",
+    "href": "storytelling/additional_resources.html#colorwise",
+    "title": "30  Ítarefni",
+    "section": "30.5 ColorWise",
+    "text": "30.5 ColorWise\n\nHöfundur: Kate Strachnyi\nÚtgefandi: O’Reilly Media\nISBN: 9781492097846\n\nKostir:\n\nKennir hvernig á að nota liti markvisst í gagnafrásögn.\nFyrir byrjendur og lengra komna sem vilja auka skilning sinn á áhrifaríkri notkun lita.\nHentar vel þeim sem vinna með myndræna framsetningu gagna í hvaða samhengi sem er.",
+    "crumbs": [
+      "Myndræn framsetning",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "storytelling/additional_resources.html#dear-data",
+    "href": "storytelling/additional_resources.html#dear-data",
+    "title": "30  Ítarefni",
+    "section": "30.6 Dear Data",
+    "text": "30.6 Dear Data\n\nHöfundar: Giorgia Lupi og Stefanie Posavec\nÚtgefandi: Princeton Architectural Press\nISBN: 9781616895327\n\nKostir:\n\nSkemmtileg og persónuleg nálgun á gögn og sjónræna framsetningu þeirra í formi skissna og póstkorta.\nHentar bæði fyrir þá sem vilja skapa gagnafrásögn með handteiknaðri nálgun og þá sem leita eftir nýjum hugmyndum um gagnamyndsköpun.",
+    "crumbs": [
+      "Myndræn framsetning",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Ítarefni</span>"
+    ]
+  },
+  {
+    "objectID": "storytelling/additional_resources.html#data-sketches",
+    "href": "storytelling/additional_resources.html#data-sketches",
+    "title": "30  Ítarefni",
+    "section": "30.7 Data Sketches",
+    "text": "30.7 Data Sketches\n\nHöfundar: Nadieh Bremer og Shirley Wu\nÚtgefandi: A K Peters/CRC Press\nISBN: 9780367000080\n\nKostir:\n\nRannsakar persónulegar og skapandi leiðir til að birta gagnamyndir.\nHentar vel þeim sem leita að nýjum og skapandi hugmyndum til að birta gögn.\nFrábært fyrir þá sem vilja blanda saman list og gagnavísindum.",
     "crumbs": [
       "Myndræn framsetning",
       "<span class='chapter-number'>30</span>  <span class='chapter-title'>Ítarefni</span>"
