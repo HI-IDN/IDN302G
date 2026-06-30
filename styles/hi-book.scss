@@ -158,6 +158,12 @@ $border-radius:          0;
     color: $hi-teal;
     font-weight: 800;
     min-width: 1.6em;
+    display: inline-block;
+  }
+
+  .chapter-title {
+    color: $hi-ink !important;
+    font-weight: 400 !important;
   }
 
   // Index page: styled like a part title, no chapter number
