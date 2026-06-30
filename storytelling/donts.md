@@ -1,4 +1,5 @@
 ---
+title: "Slæm myndræn framsetning"
 description: >-
   Slæm notkun á gröfum, eins og 3D grafík og graf sem byrjar ekki á núlli, getur auðveldlega 
   valdið misskilningi og ruglingi. Mikilvægt er að velja skýra og einfaldlega túlkanlega 

@@ -1,4 +1,5 @@
 ---
+title: "PostgreSQL"
 description: >-
   Helstu munir við að fara úr SQLite yfir í PostgreSQL með áherslu á noktun ólíkra skema,
   flóknari gagnatýpur, regex, og fleiri möguleika.

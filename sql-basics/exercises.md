@@ -1,4 +1,5 @@
 ---
+title: "Æfingar"
 description: >-
   Hér koma nokkrar æfingar úr SQL sem fara yfir helstu atriði sem fjallað er um í námskeiðinu.
 ---

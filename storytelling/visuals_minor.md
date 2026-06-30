@@ -1,4 +1,5 @@
 ---
+title: "Önnur gröf"
 description: >-
   Sérhæfð gröf geta verið gagnleg í réttum aðstæðum, en þau ætti aðeins að nota sparlega þar sem þau 
   geta flækt skilaboðin og verið erfiðari í skilningi ef þau eru notuð rangt.

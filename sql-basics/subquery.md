@@ -1,4 +1,5 @@
 ---
+title: "Undirfyrirspurnir"
 description: >-
   Undirfyrirspurnir eru SQL fyrirspurnir sem keyrðar eru innan annars SQL fyrirspurnar.
 ---

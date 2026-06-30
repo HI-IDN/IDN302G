@@ -1,4 +1,5 @@
 ---
+title: "PostGIS"
 description: >-
   PostGIS er viðbót við PostgreSQL sem bætir við stuðningi fyrir landfræðileg og rúmfræðileg gögn, 
   sem gerir mögulegt að vinna með gagnapunkta, línur, margflötunga og fleiri form í gagnagrunnum.

@@ -8,7 +8,7 @@
 
 <meta name="description" content="Í SQL eru tengingar (joins) notuð til að sameina gögn úr fleiri en einni töflu. Hér eru útskýringar á innri, vinstri, hægri, náttúrulegri, krosstengingu og hliðstæðri tengingu.">
 
-<title>17&nbsp; Tenging töflna í SQL – Upplýsingaverkfræði IÐN302G</title>
+<title>17&nbsp; Samsettar töflur (JOIN) – Upplýsingaverkfræði IÐN302G</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -173,7 +173,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sql-advanced/introduction.html">SQL framhald</a></li><li class="breadcrumb-item"><a href="../sql-advanced/joins.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sql-advanced/introduction.html">SQL framhald</a></li><li class="breadcrumb-item"><a href="../sql-advanced/joins.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Samsettar töflur (JOIN)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Víxla hliðarslá" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -203,31 +203,31 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Um SQL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/basic_sql_queries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">SQL forsaga</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Grunn SQL fyrirspurnir</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Búa til töflu</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Töflur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/aggregation_and_grouping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Samsöfnun gagna</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Samsöfnun og hópun</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/null.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tóm gildi - <code>NULL</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tóm gildi (NULL)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -245,31 +245,31 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/import_export_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>SQLite</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Inn- og útflutningur gagna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/script_files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Skipanaskrár fyrir <em>SQLite</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Skipanaskrár</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/database_interaction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">SQLite</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Samskipti við gagnagrunna</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Grunnatriði í SQL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Æfingar</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-basics/additional_resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"></span></span></a><a href="https://www.w3schools.com/sql/">W3Schools SQL kennsla</a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ítarefni</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,7 +292,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-advanced/postgres.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Helstu munir á <em>PostgreSQL</em> og <em>SQLite</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">PostgreSQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -304,31 +304,31 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-advanced/joins.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Samsettar töflur (JOIN)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-advanced/views.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartafla - <code>VIEW</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartöflur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-advanced/functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Föll í <em>PostgreSQL</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Föll í SQL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-advanced/cte.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Table Expression (CTE)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Flóknari fyrirspurnir (CTE)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sql-advanced/postgis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS fyrir PostgreSQL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">PostGIS</span></span></a>
   </div>
 </li>
       </ul>
@@ -345,43 +345,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Inngangur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/lightning_talk.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hraðkynningar</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Hraðkynning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/visuals_major.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Myndræn framsetning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Helstu gröf og töflur</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/visuals_minor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Minna þekktar myndrænar framsetningar</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Önnur gröf</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/interactive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Gangvirk gröf og kort</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Gagnvirk gröf og kort</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/dashboard.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Gangvirk mælaborð</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Mælaborð</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/donts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Slæm notkun á gröfum</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Slæm myndræn framsetning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,7 +393,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../storytelling/additional_resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Ítarefni um myndræna framsetningu</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Ítarefni</span></span></a>
   </div>
 </li>
       </ul>
@@ -408,22 +408,25 @@ window.Quarto = {
     <h2 id="toc-title">Efnisyfirlit</h2>
    
   <ul>
-  <li><a href="#innri-tenging---inner-join" id="toc-innri-tenging---inner-join" class="nav-link active" data-scroll-target="#innri-tenging---inner-join"><span class="header-section-number">17.1</span> Innri tenging - <code>INNER JOIN</code></a></li>
-  <li><a href="#vinstri-tenging---left-join" id="toc-vinstri-tenging---left-join" class="nav-link" data-scroll-target="#vinstri-tenging---left-join"><span class="header-section-number">17.2</span> Vinstri tenging - <code>LEFT JOIN</code></a></li>
-  <li><a href="#hægri-tenging---right-join" id="toc-hægri-tenging---right-join" class="nav-link" data-scroll-target="#hægri-tenging---right-join"><span class="header-section-number">17.3</span> Hægri tenging - <code>RIGHT JOIN</code></a></li>
-  <li><a href="#náttúruleg-tenging---natural-join" id="toc-náttúruleg-tenging---natural-join" class="nav-link" data-scroll-target="#náttúruleg-tenging---natural-join"><span class="header-section-number">17.4</span> Náttúruleg tenging - <code>NATURAL JOIN</code></a></li>
-  <li><a href="#krosstenging---cross-join" id="toc-krosstenging---cross-join" class="nav-link" data-scroll-target="#krosstenging---cross-join"><span class="header-section-number">17.5</span> Krosstenging - <code>CROSS JOIN</code></a></li>
-  <li><a href="#hliðstæð-tenging---lateral-join" id="toc-hliðstæð-tenging---lateral-join" class="nav-link" data-scroll-target="#hliðstæð-tenging---lateral-join"><span class="header-section-number">17.6</span> Hliðstæð tenging - <code>LATERAL JOIN</code></a></li>
-  <li><a href="#tenging-við-stakræna-stærðfræði" id="toc-tenging-við-stakræna-stærðfræði" class="nav-link" data-scroll-target="#tenging-við-stakræna-stærðfræði"><span class="header-section-number">17.7</span> Tenging við stakræna stærðfræði</a></li>
+  <li><a href="#tenging-töflna-í-sql" id="toc-tenging-töflna-í-sql" class="nav-link active" data-scroll-target="#tenging-töflna-í-sql"><span class="header-section-number">18</span> Tenging töflna í SQL</a>
+  <ul class="collapse">
+  <li><a href="#innri-tenging---inner-join" id="toc-innri-tenging---inner-join" class="nav-link" data-scroll-target="#innri-tenging---inner-join"><span class="header-section-number">18.1</span> Innri tenging - <code>INNER JOIN</code></a></li>
+  <li><a href="#vinstri-tenging---left-join" id="toc-vinstri-tenging---left-join" class="nav-link" data-scroll-target="#vinstri-tenging---left-join"><span class="header-section-number">18.2</span> Vinstri tenging - <code>LEFT JOIN</code></a></li>
+  <li><a href="#hægri-tenging---right-join" id="toc-hægri-tenging---right-join" class="nav-link" data-scroll-target="#hægri-tenging---right-join"><span class="header-section-number">18.3</span> Hægri tenging - <code>RIGHT JOIN</code></a></li>
+  <li><a href="#náttúruleg-tenging---natural-join" id="toc-náttúruleg-tenging---natural-join" class="nav-link" data-scroll-target="#náttúruleg-tenging---natural-join"><span class="header-section-number">18.4</span> Náttúruleg tenging - <code>NATURAL JOIN</code></a></li>
+  <li><a href="#krosstenging---cross-join" id="toc-krosstenging---cross-join" class="nav-link" data-scroll-target="#krosstenging---cross-join"><span class="header-section-number">18.5</span> Krosstenging - <code>CROSS JOIN</code></a></li>
+  <li><a href="#hliðstæð-tenging---lateral-join" id="toc-hliðstæð-tenging---lateral-join" class="nav-link" data-scroll-target="#hliðstæð-tenging---lateral-join"><span class="header-section-number">18.6</span> Hliðstæð tenging - <code>LATERAL JOIN</code></a></li>
+  <li><a href="#tenging-við-stakræna-stærðfræði" id="toc-tenging-við-stakræna-stærðfræði" class="nav-link" data-scroll-target="#tenging-við-stakræna-stærðfræði"><span class="header-section-number">18.7</span> Tenging við stakræna stærðfræði</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/joins.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna mál</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sql-advanced/introduction.html">SQL framhald</a></li><li class="breadcrumb-item"><a href="../sql-advanced/joins.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sql-advanced/introduction.html">SQL framhald</a></li><li class="breadcrumb-item"><a href="../sql-advanced/joins.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Samsettar töflur (JOIN)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tenging töflna í SQL</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Samsettar töflur (JOIN)</span></h1>
 </div>
 
 
@@ -440,9 +443,11 @@ window.Quarto = {
 </header>
 
 
+<section id="tenging-töflna-í-sql" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Tenging töflna í SQL</h1>
 <p>Í SQL er algengt að vinna með gögn úr fleiri en einni töflu í einu. Til að sameina upplýsingar úr mörgum töflum notum við <strong>tengingar</strong> (e. joins). Hér eru nokkrar af algengustu tegundum tenginga og hvernig þær virka:</p>
-<section id="innri-tenging---inner-join" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="innri-tenging---inner-join"><span class="header-section-number">17.1</span> Innri tenging - <code>INNER JOIN</code></h2>
+<section id="innri-tenging---inner-join" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="innri-tenging---inner-join"><span class="header-section-number">18.1</span> Innri tenging - <code>INNER JOIN</code></h2>
 <p><code>INNER JOIN</code> skilar aðeins þeim línum þar sem samsvörun er á milli tveggja eða fleiri taflna. Ef gögn eru til í báðum töflunum eru þau sýnd, annars ekki.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> books.name <span class="kw">AS</span> book_name, c.name <span class="kw">AS</span> character_name</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> got.characters c</span>
@@ -503,8 +508,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="vinstri-tenging---left-join" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="vinstri-tenging---left-join"><span class="header-section-number">17.2</span> Vinstri tenging - <code>LEFT JOIN</code></h2>
+<section id="vinstri-tenging---left-join" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="vinstri-tenging---left-join"><span class="header-section-number">18.2</span> Vinstri tenging - <code>LEFT JOIN</code></h2>
 <p><code>LEFT JOIN</code> einnig kallað <code>LEFT OUTER JOIN</code>, skilar öllum línum úr vinstri töflunni (töflunni sem er tilgreind fyrst), jafnvel þótt engin samsvörun sé í hægri töflunni. Ef engin samsvörun finnst verður úttakið úr hægri töflunni <code>NULL</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> c.name, s.name <span class="kw">as</span> spouse, s.culture <span class="kw">AS</span> spouse_culture</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> got.characters c</span>
@@ -579,8 +584,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="hægri-tenging---right-join" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="hægri-tenging---right-join"><span class="header-section-number">17.3</span> Hægri tenging - <code>RIGHT JOIN</code></h2>
+<section id="hægri-tenging---right-join" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="hægri-tenging---right-join"><span class="header-section-number">18.3</span> Hægri tenging - <code>RIGHT JOIN</code></h2>
 <p><code>RIGHT JOIN</code> einnig kallað <code>RIGHT OUTER JOIN</code>, virkar eins og <code>LEFT JOIN</code>, nema nú eru allar línur úr hægri töflunni sýndar, jafnvel þótt engin samsvörun sé í vinstri töflunni. Ef engin samsvörun finnst í vinstri töflunni verður úttakið úr henni <code>NULL</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> books.name <span class="kw">AS</span> book_name, c.name <span class="kw">AS</span> character_name, pov</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> got.characters c</span>
@@ -667,8 +672,8 @@ window.Quarto = {
 <p>Athugið að <code>RIGHT JOIN</code> er mjög sjaldan notað, víðtæk venja er að vinna SQL fyrirspurnir frá vinstri til hægri, og því er eðlilegra að nota <code>LEFT JOIN</code> í stað <code>RIGHT JOIN</code> og víxla frekar töflunum. Það eru þó til tilvik þegar <code>RIGHT JOIN</code> er skynsamlegt.</p>
 </blockquote>
 </section>
-<section id="náttúruleg-tenging---natural-join" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="náttúruleg-tenging---natural-join"><span class="header-section-number">17.4</span> Náttúruleg tenging - <code>NATURAL JOIN</code></h2>
+<section id="náttúruleg-tenging---natural-join" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="náttúruleg-tenging---natural-join"><span class="header-section-number">18.4</span> Náttúruleg tenging - <code>NATURAL JOIN</code></h2>
 <p><code>NATURAL JOIN</code> sameinar tvær töflur á sjálfgefnum dálkum með sama nafni, og þarf því ekki að tilgreina á hvaða dálkum tengingin er byggð. Þetta getur sparað tíma, en getur líka verið óskýrt ef dálkar með sama nafni tákna ekki sama hlutinn.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> books.name</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> got.books</span>
@@ -680,8 +685,8 @@ window.Quarto = {
 <p>Í praxís er þetta mjög hættulegt og er mikið ráðlagt að nota ekki <code>NATURAL JOIN</code> vegna þess að það er óskýrt hvaða dálkar eru notuð í tengingunni. Ef svo óheppilega vill til að ólíkar töflur deili saman nafni þá getur það valdið óvæntum niðurstöðum.</p>
 </blockquote>
 </section>
-<section id="krosstenging---cross-join" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="krosstenging---cross-join"><span class="header-section-number">17.5</span> Krosstenging - <code>CROSS JOIN</code></h2>
+<section id="krosstenging---cross-join" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="krosstenging---cross-join"><span class="header-section-number">18.5</span> Krosstenging - <code>CROSS JOIN</code></h2>
 <p><code>CROSS JOIN</code> skilar kartesísku margfeldi af línunum í töflunum, sem þýðir að hver lína úr einni töflu er tengd við allar línur í hinni töflunni. &gt; <strong>Athugið</strong>: <code>CROSS JOIN</code> getur myndað mjög stórar úttakstaflur ef töflurnar eru stórar. Sem &gt; getur komið niður á vinnslutíma og minni.</p>
 <p><code>CROSS JOIN</code> er gagnlegt þegar þú vilt fá allar mögulegar samsetningar tveggja gagnasetta. Í flóknari fyrirspurnum er hægt að nota það til að para gögn við alla mögulega valkosti til að kalla á föll eða framkvæma útreikninga fyrir hverja samsetningu. Oftast notum við <code>INNER JOIN</code> eða <code>LEFT JOIN</code> þegar við viljum tengja gögn með skilyrðum, en stundum viljum við fá öll möguleg tengsl á milli gagnasetta, sem er nákvæmlega það sem <code>CROSS JOIN</code> gerir.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> books.name, location_type</span>
@@ -694,8 +699,8 @@ window.Quarto = {
 <p>Það er líka hægt að nota <code>INNER JOIN</code> með <code>ON 1=1</code> til að fá sama útkomu og <code>CROSS JOIN</code>. <code>SELECT * FROM A INNER JOIN B ON 1=1;</code> sem gerir þetta að misvísandi fyrirspurn.</p>
 </blockquote>
 </section>
-<section id="hliðstæð-tenging---lateral-join" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="hliðstæð-tenging---lateral-join"><span class="header-section-number">17.6</span> Hliðstæð tenging - <code>LATERAL JOIN</code></h2>
+<section id="hliðstæð-tenging---lateral-join" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="hliðstæð-tenging---lateral-join"><span class="header-section-number">18.6</span> Hliðstæð tenging - <code>LATERAL JOIN</code></h2>
 <p><code>LATERAL JOIN</code> gerir kleift að tengja töflur með fyrirspurn sem fer yfir hverja línu úr vinstri töflu. Þetta er gagnlegt þegar útreikningar í hægri töflu þurfa að nota gögn úr hverri línu í vinstri töflu.</p>
 <ul>
 <li><code>LATERAL</code> var kynnt í <em>PostgreSQL</em> 9.3 og gerir kleift að nota dálka úr fyrri töflum í undirfyrirspurnum í <code>FROM</code> hlutanum.</li>
@@ -836,8 +841,8 @@ window.Quarto = {
 <p>Einnig, til að geta leitað af <code>King's Landing</code> þá notum við tvöfalt <code>''</code> til að tákna eitt úrfellingarmerki. Þetta er kallað <em>escaping</em>, svipað og þegar við notum <code>\</code> í reglulegum segðum.</p>
 </blockquote>
 </section>
-<section id="tenging-við-stakræna-stærðfræði" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="tenging-við-stakræna-stærðfræði"><span class="header-section-number">17.7</span> Tenging við stakræna stærðfræði</h2>
+<section id="tenging-við-stakræna-stærðfræði" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="tenging-við-stakræna-stærðfræði"><span class="header-section-number">18.7</span> Tenging við stakræna stærðfræði</h2>
 <p>Segum við viljum tengja töflur <code>A</code> og <code>B</code> út frá dálkunum <code>A.id = B.id</code>. Þá er hægt að nota hugsa tenginguna sem stakræna stærðfræði á eftirfarandi hátt:</p>
 <ul>
 <li><code>A INNER JOIN B</code>: <span class="math inline">\(A \cap B\)</span></li>
@@ -847,6 +852,7 @@ window.Quarto = {
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1257,8 +1263,8 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../sql-advanced/views.html" class="pagination-link" aria-label="Sýndartafla - `VIEW`">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartafla - <code>VIEW</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../sql-advanced/views.html" class="pagination-link" aria-label="Sýndartöflur">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sýndartöflur</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

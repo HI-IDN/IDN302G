@@ -1,4 +1,5 @@
 ---
+title: "Föll í SQL"
 description: >-
   Föll í PostgreSQL eru bæði innbyggð, eins og SUM(), COUNT(), og NOW(), og sérsniðin sem búnar eru til með CREATE FUNCTION. Sérsniðin föll geta skilað einu eða fleiri gildum og gera það auðvelt að endurnýta kóða og vinna með sértæka útreikninga.
 ---

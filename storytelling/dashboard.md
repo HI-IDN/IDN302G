@@ -1,4 +1,5 @@
 ---
+title: "Mælaborð"
 description: >-
   Gangvirk mælaborð veita notendum innsýn í flókin gögn með gagnvirkni, sem gerir kleift að skoða 
   gögn á rauntíma og draga fram lykilupplýsingar á auðveldan hátt.

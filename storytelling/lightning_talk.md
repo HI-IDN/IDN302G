@@ -1,4 +1,5 @@
 ---
+title: "Hraðkynning"
 description: >-
   Hraðkynning er stutt, markviss frásögn sem kynnir meginatriði verkefnis á áhrifaríkan hátt með 
   skýrri setningu sem útskýrir hvað þú ert að gera, hvað er í húfi, og af hverju það skiptir máli.

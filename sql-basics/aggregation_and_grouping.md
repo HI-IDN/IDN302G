@@ -1,4 +1,5 @@
 ---
+title: "Samsöfnun og hópun"
 description: >-
   Samsöfnun og hópun gagna með SQL, þar sem farið er yfir notkun á föllum eins og 
   AVG, COUNT og GROUP BY til að framkvæma útreikninga á gögnum jafnvel eftir hópun gagna með eða 

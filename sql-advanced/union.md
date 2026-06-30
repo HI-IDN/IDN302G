@@ -1,4 +1,5 @@
 ---
+title: "Sameining niðurstaðna"
 description: >-
   UNION í SQL sameina niðurstöður úr tveimur eða fleiri fyrirspurnum og hvernig þær vinna með 
   endurtekningar.

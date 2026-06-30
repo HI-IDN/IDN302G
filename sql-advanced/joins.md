@@ -1,4 +1,5 @@
 ---
+title: "Samsettar töflur (JOIN)"
 description: >-
   Í SQL eru tengingar (joins) notuð til að sameina gögn úr fleiri en einni töflu. Hér eru 
   útskýringar á innri, vinstri, hægri, náttúrulegri, krosstengingu og hliðstæðri tengingu.

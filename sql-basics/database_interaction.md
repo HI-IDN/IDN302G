@@ -1,4 +1,5 @@
 ---
+title: "Samskipti við gagnagrunna"
 description: >-
   Hægt er að eiga samskipti við gagnagrunnana með mismunandi tólum og tungumálum, allt frá 
   skipanatólum, þróunarumhverfum eða önnur forritunarmál.
@@ -121,7 +122,7 @@ sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með:
   viss um að hún virki.
   - Í fyrsta skipti þarf að bæta við PostgreSQL driver, IDE mun spyrja um það og gefa leiðbeiningar.
 
-{% embed url="https://www.youtube.com/watch?v=X_RznmyuNyA" %}
+{{< video https://www.youtube.com/watch?v=X_RznmyuNyA >}}
 
 ### 2. [DBeaver](https://dbeaver.io/)
 
@@ -139,7 +140,7 @@ sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með:
   viss um að hún virki. 
   - Í fyrsta skipti þarf að bæta við PostgreSQL driver, IDE mun spyrja um það og gefa leiðbeiningar.
   
-{% embed url="https://www.youtube.com/watch?v=W5AumdArlO8" %}
+{{< video https://www.youtube.com/watch?v=W5AumdArlO8 >}}
 
 ### 3. [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
 

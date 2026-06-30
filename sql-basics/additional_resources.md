@@ -1,4 +1,5 @@
 ---
+title: "Ítarefni"
 description: >-
   Gagnlegir hlekkir og lesefni sem geta auðgað skilning á SQL sem henta vel bæði byrjendum og þeim 
   sem vilja bæta við þekkingu sinni í sérhæfðari þáttum.

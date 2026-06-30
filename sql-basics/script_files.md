@@ -1,4 +1,5 @@
 ---
+title: "Skipanaskrár"
 description: >-
   Skipanaskrár halda utan um SQL skipanir svo hægt sé að endurkeyra þær án þess að skrifa þær 
   aftur. Tilvalið fyrir útgáfustýringu og endurkeyrslu.

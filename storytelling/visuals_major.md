@@ -1,4 +1,5 @@
 ---
+title: "Helstu gröf og töflur"
 description: >-
   Áhrifarík myndræn framsetning gagna felur í sér notkun á gröfum eins og súluritum, dreifiritum, 
   hitakortum og fossaritum til að draga fram lykilupplýsingar, eða einfaldlega texta og töflur 

@@ -1,4 +1,5 @@
 ---
+title: "Inngangur"
 description: >-
   Myndræn framsetning miðlar flóknum upplýsingum á skýran og einfaldan hátt með því að nota gögn 
   í samhengi og miða á réttan markhóp til að skapa áhrifaríka frásögn.

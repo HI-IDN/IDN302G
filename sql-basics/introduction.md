@@ -1,4 +1,5 @@
 ---
+title: "Inngangur"
 description: >-
   SQL er forritunarmál hannað til að „tala við“ venslagagnasöfn. Það 
   er mikilvægt tæki í gagnastjórnun sem gerir notendum kleift að framkvæma fyrirspurnir, búa til,

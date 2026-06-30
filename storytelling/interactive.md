@@ -1,4 +1,5 @@
 ---
+title: "Gagnvirk gröf og kort"
 description: >-
   Gagnvirk gröf og kort eru öflugt tæki til að miðla flóknum upplýsingum á auðveldan og 
   gagnvirkan hátt, þar sem notendur geta skoðað gögn, leitað mynstra og fengið ítarlegar 

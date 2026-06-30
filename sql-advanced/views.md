@@ -1,4 +1,5 @@
 ---
+title: "Sýndartöflur"
 description: >-
   Sýndartöflur eru sniðugar fyrir endurteknar fyrirspurnir og fyrirspurnir sem byggja á mörgum 
   tengdum töflum.

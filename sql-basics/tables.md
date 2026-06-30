@@ -1,4 +1,5 @@
 ---
+title: "Töflur"
 description: >-
   Töflur eru grundvallareiningar í gagnagrunnum, þar sem gögnin eru geymd í röðum. 
   Hægt er að búa til töflur, breyta þeim, og (endur)skilgreina gerðir dálka. 

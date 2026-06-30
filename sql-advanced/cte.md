@@ -1,4 +1,5 @@
 ---
+title: "Flóknari fyrirspurnir (CTE)"
 description: >-
   CTE (Common Table Expression) er flóknari SQL aðferð til að vinna með gögn en undirfyrirspurnir.
 ---
