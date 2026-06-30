@@ -910,13 +910,12 @@ window.Quarto = {
 </main> <!-- /main -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Strip chapter number from the index sidebar link (incl. &nbsp; text node)
-  document.querySelectorAll('.sidebar-item-text[href$="index.html"], .sidebar-item-text[href$="../index.html"]')
+  // Strip chapter number only from the main index link (exact href, not subdirectory index files)
+  document.querySelectorAll('.sidebar-item-text[href="./index.html"], .sidebar-item-text[href="../index.html"]')
     .forEach(function (link) {
       var menuText = link.querySelector('.menu-text');
       var titleSpan = link.querySelector('.chapter-title');
       if (menuText && titleSpan) {
-        // Rewrite the whole menu-text so no stray &nbsp; survives
         menuText.textContent = titleSpan.textContent;
       }
     });
