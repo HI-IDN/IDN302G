@@ -9,7 +9,7 @@ book:
   author: "Helga Ingimundardóttir"
   language: is
   repo-url: https://github.com/HI-IDN/IDN302G
-  repo-actions: [edit]
+  repo-actions: [edit, issue]
   site-url: https://hi-idn.github.io/IDN302G
   favicon: img/hi/favicon.svg
   search: true

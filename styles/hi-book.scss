@@ -79,6 +79,17 @@ $border-radius:          0;
     letter-spacing: 0.05em;
   }
 
+  .sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
+    font-weight: 800;
+    color: $hi-teal !important;
+    font-size: 0.85rem;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    margin-top: 0.6em;
+
+    .menu-text { color: $hi-teal; font-weight: 800; }
+  }
+
   .sidebar-item-section .sidebar-section-item {
     font-weight: 700;
     color: $hi-blue;
