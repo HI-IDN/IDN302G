@@ -380,10 +380,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#inngangur" id="toc-inngangur" class="nav-link active" data-scroll-target="#inngangur"><span class="header-section-number">15</span> Inngangur</a></li>
-  <li><a href="#postgresql-tenging" id="toc-postgresql-tenging" class="nav-link" data-scroll-target="#postgresql-tenging"><span class="header-section-number">16</span> PostgreSQL tenging</a></li>
-  <li><a href="#gögn" id="toc-gögn" class="nav-link" data-scroll-target="#gögn"><span class="header-section-number">17</span> Gögn</a></li>
-  <li><a href="#almennt-form-select-skipunar" id="toc-almennt-form-select-skipunar" class="nav-link" data-scroll-target="#almennt-form-select-skipunar"><span class="header-section-number">18</span> Almennt form <code>SELECT</code> skipunar</a></li>
+  <li><a href="#inngangur" id="toc-inngangur" class="nav-link active" data-scroll-target="#inngangur"><span class="header-section-number">14.1</span> Inngangur</a></li>
+  <li><a href="#postgresql-tenging" id="toc-postgresql-tenging" class="nav-link" data-scroll-target="#postgresql-tenging"><span class="header-section-number">14.2</span> PostgreSQL tenging</a></li>
+  <li><a href="#gögn" id="toc-gögn" class="nav-link" data-scroll-target="#gögn"><span class="header-section-number">14.3</span> Gögn</a></li>
+  <li><a href="#almennt-form-select-skipunar" id="toc-almennt-form-select-skipunar" class="nav-link" data-scroll-target="#almennt-form-select-skipunar"><span class="header-section-number">14.4</span> Almennt form <code>SELECT</code> skipunar</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/introduction.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
     </div>
@@ -409,12 +409,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="inngangur" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Inngangur</h1>
+<section id="inngangur" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="inngangur"><span class="header-section-number">14.1</span> Inngangur</h2>
 <p>Hingað til höfum við aðeins skoðað SQL fyrirspurnir sem vinna á einni töflu í einu, mögulega með einföldum undirfyrirspurnum. En hugmyndin með gagnagrunnum er að þeir eru að reyna að vera eins „nettir“ og hægt er, og forðast endurtekningar. Þannig er einfaldara að uppfæra gögn ef það eru fáir staðir sem hægt er að nálgast sömu upplýsingar. Þetta tryggir heilleika gagna. Oft er talað um að reyna að koma gagnagrunni á þriðja Boyce-Codd normal form (en það er utan efniviðar þessa námskeiðs).</p>
 </section>
-<section id="postgresql-tenging" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> PostgreSQL tenging</h1>
+<section id="postgresql-tenging" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="postgresql-tenging"><span class="header-section-number">14.2</span> PostgreSQL tenging</h2>
 <p>Við notum dæmi um Postgres gagnagrunni úr Game of Thrones heiminum í sýnidæmum. Gagnagrunnurinn er hýstur á Railway og er aðgengilegur með eftirfarandi tengingarupplýsingum:</p>
 <ul>
 <li><strong>Host:</strong> <code>junction.proxy.rlwy.net</code></li>
@@ -433,16 +433,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> schemaname <span class="kw">IN</span> (<span class="st">'atlas'</span>, <span class="st">'got'</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> schemaname, tablename;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="gögn" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Gögn</h1>
+<section id="gögn" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="gögn"><span class="header-section-number">14.3</span> Gögn</h2>
 <p>Gögnin fyrir þennan kafla koma héðan:</p>
 <ol type="1">
 <li><a href="https://anapioficeandfire.com/"><strong>Ice and Fire API</strong></a> - Gögn frá skáldsöguheiminum <em>Game of Thrones</em> (schema: <code>got</code>) sem hægt er að nálgast með API köllum á vefþjónustu eftir Joakim Skoog.</li>
 <li><strong>Game of Maps</strong> - Gögn um kortlagningu og staðsetningar í heimi GoT (schema: <code>atlas</code>) eftir Patrick Triest.</li>
 </ol>
 </section>
-<section id="almennt-form-select-skipunar" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> Almennt form <code>SELECT</code> skipunar</h1>
+<section id="almennt-form-select-skipunar" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="almennt-form-select-skipunar"><span class="header-section-number">14.4</span> Almennt form <code>SELECT</code> skipunar</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">&lt;</span>dálkar eða útreikningur<span class="op">&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="op">&lt;</span>tafla<span class="op">&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="op">&lt;</span>skilyrði<span class="op">&gt;</span></span>

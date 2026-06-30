@@ -380,16 +380,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#búa-til-töflu" id="toc-búa-til-töflu" class="nav-link active" data-scroll-target="#búa-til-töflu"><span class="header-section-number">5</span> Búa til töflu</a></li>
-  <li><a href="#gerðir-dálka" id="toc-gerðir-dálka" class="nav-link" data-scroll-target="#gerðir-dálka"><span class="header-section-number">6</span> Gerðir dálka</a></li>
-  <li><a href="#að-breyta-töflum" id="toc-að-breyta-töflum" class="nav-link" data-scroll-target="#að-breyta-töflum"><span class="header-section-number">7</span> Að breyta töflum</a>
-  <ul class="collapse">
-  <li><a href="#bæta-við-dálki" id="toc-bæta-við-dálki" class="nav-link" data-scroll-target="#bæta-við-dálki"><span class="header-section-number">7.1</span> Bæta við dálki</a></li>
-  <li><a href="#eyða-dálki" id="toc-eyða-dálki" class="nav-link" data-scroll-target="#eyða-dálki"><span class="header-section-number">7.2</span> Eyða dálki</a></li>
-  <li><a href="#endurnefna-dálk" id="toc-endurnefna-dálk" class="nav-link" data-scroll-target="#endurnefna-dálk"><span class="header-section-number">7.3</span> Endurnefna dálk</a></li>
-  <li><a href="#breyting-á-dálkagerð" id="toc-breyting-á-dálkagerð" class="nav-link" data-scroll-target="#breyting-á-dálkagerð"><span class="header-section-number">7.4</span> Breyting á dálkagerð</a></li>
+  <li><a href="#búa-til-töflu" id="toc-búa-til-töflu" class="nav-link active" data-scroll-target="#búa-til-töflu"><span class="header-section-number">4.1</span> Búa til töflu</a></li>
+  <li><a href="#gerðir-dálka" id="toc-gerðir-dálka" class="nav-link" data-scroll-target="#gerðir-dálka"><span class="header-section-number">4.2</span> Gerðir dálka</a></li>
+  <li><a href="#að-breyta-töflum" id="toc-að-breyta-töflum" class="nav-link" data-scroll-target="#að-breyta-töflum"><span class="header-section-number">4.3</span> Að breyta töflum</a>
+  <ul>
+  <li><a href="#bæta-við-dálki" id="toc-bæta-við-dálki" class="nav-link" data-scroll-target="#bæta-við-dálki"><span class="header-section-number">4.3.1</span> Bæta við dálki</a></li>
+  <li><a href="#eyða-dálki" id="toc-eyða-dálki" class="nav-link" data-scroll-target="#eyða-dálki"><span class="header-section-number">4.3.2</span> Eyða dálki</a></li>
+  <li><a href="#endurnefna-dálk" id="toc-endurnefna-dálk" class="nav-link" data-scroll-target="#endurnefna-dálk"><span class="header-section-number">4.3.3</span> Endurnefna dálk</a></li>
+  <li><a href="#breyting-á-dálkagerð" id="toc-breyting-á-dálkagerð" class="nav-link" data-scroll-target="#breyting-á-dálkagerð"><span class="header-section-number">4.3.4</span> Breyting á dálkagerð</a></li>
   </ul></li>
-  <li><a href="#eyða-töflu" id="toc-eyða-töflu" class="nav-link" data-scroll-target="#eyða-töflu"><span class="header-section-number">8</span> Eyða töflu</a></li>
+  <li><a href="#eyða-töflu" id="toc-eyða-töflu" class="nav-link" data-scroll-target="#eyða-töflu"><span class="header-section-number">4.4</span> Eyða töflu</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-basics/tables.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
     </div>
@@ -416,8 +416,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Töflur eru grundvallareiningar í gagnagrunnum, þar sem gögnin eru geymd í röðum og dálkum. Hver tafla inniheldur ákveðna gerð gagna og er skipulögð þannig að hver röð (e. <em>row</em>) samsvarar einu staki, og hver dálkur (e. <em>column</em>) samsvarar tilteknum eiginleikum gagna. Dálkar skilgreina hvaða tegund gagna er geymd, til dæmis heiltölur, texti eða tvíundargögn.</p>
-<section id="búa-til-töflu" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Búa til töflu</h1>
+<section id="búa-til-töflu" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="búa-til-töflu"><span class="header-section-number">4.1</span> Búa til töflu</h2>
 <p>Til að búa til töflu notum við <code>CREATE TABLE</code> skipunina. Hér er dæmi um hvernig á að búa til töflu sem heitir <code>operators</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> operators</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -436,8 +436,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>opYearInit</code>: Heiltala (<code>INTEGER</code>) fyrir ártal upphafs.</li>
 </ul>
 </section>
-<section id="gerðir-dálka" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Gerðir dálka</h1>
+<section id="gerðir-dálka" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="gerðir-dálka"><span class="header-section-number">4.2</span> Gerðir dálka</h2>
 <p>Í <em>SQLite</em> eru til ýmsar tegundir dálka sem skilgreina hvernig gögn eru geymd í gagnagrunninum. Hér eru nokkrar algengar gerðir:</p>
 <ul>
 <li><code>INTEGER</code>: Heiltölur.</li>
@@ -447,27 +447,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Frekari upplýsingar um dálkagerðir í <em>SQLite</em> má finna á: <a href="https://www.sqlite.org/datatype3.html">https://www.sqlite.org/datatype3.html</a>.</p>
 </section>
-<section id="að-breyta-töflum" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Að breyta töflum</h1>
+<section id="að-breyta-töflum" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="að-breyta-töflum"><span class="header-section-number">4.3</span> Að breyta töflum</h2>
 <p><em>SQLite</em> styður nokkrar breytingar á töflum með <code>ALTER TABLE</code> skipuninni.</p>
-<section id="bæta-við-dálki" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="bæta-við-dálki"><span class="header-section-number">7.1</span> Bæta við dálki</h2>
+<section id="bæta-við-dálki" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="bæta-við-dálki"><span class="header-section-number">4.3.1</span> Bæta við dálki</h3>
 <p>Þú getur bætt við nýjum dálki með <code>ALTER TABLE ... ADD COLUMN</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> operators</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ADD</span> <span class="kw">COLUMN</span> opAddress TEXT; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="eyða-dálki" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="eyða-dálki"><span class="header-section-number">7.2</span> Eyða dálki</h2>
+<section id="eyða-dálki" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="eyða-dálki"><span class="header-section-number">4.3.2</span> Eyða dálki</h3>
 <p>Þú getur eytt dálki með <code>ALTER TABLE ... DROP COLUMN</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> operators <span class="kw">DROP</span> <span class="kw">COLUMN</span> opAddress; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="endurnefna-dálk" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="endurnefna-dálk"><span class="header-section-number">7.3</span> Endurnefna dálk</h2>
+<section id="endurnefna-dálk" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="endurnefna-dálk"><span class="header-section-number">4.3.3</span> Endurnefna dálk</h3>
 <p>Þú getur endurnefnt dálk með því að nota <code>ALTER TABLE ... RENAME COLUMN</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> operators <span class="kw">RENAME</span> <span class="kw">COLUMN</span> opName <span class="kw">TO</span> operatorName; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="breyting-á-dálkagerð" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="breyting-á-dálkagerð"><span class="header-section-number">7.4</span> Breyting á dálkagerð</h2>
+<section id="breyting-á-dálkagerð" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="breyting-á-dálkagerð"><span class="header-section-number">4.3.4</span> Breyting á dálkagerð</h3>
 <p>Það er ekki hægt að breyta gerð dálks beint með <code>ALTER TABLE</code> í <em>SQLite</em>. Til að breyta gerð dálks þarf að fylgja eftirfarandi ferli:</p>
 <ul>
 <li>Búa nýjan dálk með réttu dálkagerðinni.</li>
@@ -479,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span><span class="op">..</span>.<span class="kw">ALTER</span> <span class="kw">COLUMN</span><span class="op">..</span>.<span class="kw">TYPE</span><span class="op">..</span>.;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="eyða-töflu" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Eyða töflu</h1>
+<section id="eyða-töflu" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="eyða-töflu"><span class="header-section-number">4.4</span> Eyða töflu</h2>
 <p>Til að eyða töflu notum við <code>DROP TABLE</code> skipunina:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> operators; </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Þessi skipun eyðir töflunni <code>operators</code> úr gagnagrunninum. Athugaðu að þessi aðgerð er <strong>óafturkræf</strong>. Ef það eru einhverjir lyklar í töflunni sem tengjast öðrum töflum, þá getur komið villa ef reynt er að eyða töflunni. Þá þarf að fjarlægja tengingar við aðrar töflur fyrst, eða eyða tengdum töflum í leiðinni með viðbótinni <code>CASCADE</code>. Ekki er mælt með þeirri aðferð nema þú vitið nákvæmlega hvað þú ert að gera.</p>

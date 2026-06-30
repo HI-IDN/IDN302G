@@ -409,11 +409,11 @@ window.Quarto = {
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#postgis-fyrir-postgresql" id="toc-postgis-fyrir-postgresql" class="nav-link active" data-scroll-target="#postgis-fyrir-postgresql"><span class="header-section-number">22</span> PostGIS fyrir PostgreSQL</a>
-  <ul class="collapse">
-  <li><a href="#game-of-thrones-gagnasettið" id="toc-game-of-thrones-gagnasettið" class="nav-link" data-scroll-target="#game-of-thrones-gagnasettið"><span class="header-section-number">22.1</span> Game of Thrones gagnasettið</a></li>
-  <li><a href="#helstu-föll-í-postgis" id="toc-helstu-föll-í-postgis" class="nav-link" data-scroll-target="#helstu-föll-í-postgis"><span class="header-section-number">22.2</span> Helstu föll í PostGIS</a></li>
-  <li><a href="#frekari-upplýsingar" id="toc-frekari-upplýsingar" class="nav-link" data-scroll-target="#frekari-upplýsingar"><span class="header-section-number">22.3</span> Frekari upplýsingar</a></li>
+  <li><a href="#postgis-fyrir-postgresql" id="toc-postgis-fyrir-postgresql" class="nav-link active" data-scroll-target="#postgis-fyrir-postgresql"><span class="header-section-number">21.1</span> PostGIS fyrir PostgreSQL</a>
+  <ul>
+  <li><a href="#game-of-thrones-gagnasettið" id="toc-game-of-thrones-gagnasettið" class="nav-link" data-scroll-target="#game-of-thrones-gagnasettið"><span class="header-section-number">21.1.1</span> Game of Thrones gagnasettið</a></li>
+  <li><a href="#helstu-föll-í-postgis" id="toc-helstu-föll-í-postgis" class="nav-link" data-scroll-target="#helstu-föll-í-postgis"><span class="header-section-number">21.1.2</span> Helstu föll í PostGIS</a></li>
+  <li><a href="#frekari-upplýsingar" id="toc-frekari-upplýsingar" class="nav-link" data-scroll-target="#frekari-upplýsingar"><span class="header-section-number">21.1.3</span> Frekari upplýsingar</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/postgis.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
@@ -440,16 +440,16 @@ window.Quarto = {
 </header>
 
 
-<section id="postgis-fyrir-postgresql" class="level1" data-number="22">
-<h1 data-number="22"><span class="header-section-number">22</span> PostGIS fyrir PostgreSQL</h1>
+<section id="postgis-fyrir-postgresql" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="postgis-fyrir-postgresql"><span class="header-section-number">21.1</span> PostGIS fyrir PostgreSQL</h2>
 <p><em>PostGIS</em> er viðbót við <em>PostgreSQL</em> gagnagrunnskerfið sem bætir við stuðningi fyrir landfræðileg og rúmfræðileg gögn. Með <em>PostGIS</em> er hægt að geyma, sækja og framkvæma flóknar greiningar á staðbundnum gögnum innan <em>PostgreSQL</em>. Þetta gerir það að verkum að <em>PostGIS</em> er mikið notað fyrir verkefni tengd kortagerð, landfræðilegri greiningu, og aðra vinnslu á gögn með staðsetningarupplýsingar.</p>
 <p>Dálkar fyrir rúmfræðileg gögn eru oftast geymd sem <code>geometry</code> eða <code>geography</code> gagnatýpur. Algeng dálkaheiti eru því <code>geom</code> eða <code>geog</code> fyrir margflötunga. Eins eru <code>point</code>, <code>linestring</code>, <code>polygon</code> fyrir einfaldari rúmfræðileg gögn.</p>
-<section id="game-of-thrones-gagnasettið" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="game-of-thrones-gagnasettið"><span class="header-section-number">22.1</span> Game of Thrones gagnasettið</h2>
+<section id="game-of-thrones-gagnasettið" class="level3" data-number="21.1.1">
+<h3 data-number="21.1.1" class="anchored" data-anchor-id="game-of-thrones-gagnasettið"><span class="header-section-number">21.1.1</span> Game of Thrones gagnasettið</h3>
 <p>Skemað <code>atlas</code> inniheldur tvær töflur: - <code>atlas.locations</code> sem inniheldur staðsetningar í dálknum <code>geog</code> sem er <code>POINT</code>. - <code>atlas.kingdoms</code> sem inniheldur landsvæði í dálknum <code>geom</code> sem er <code>MULTIPOLYGON</code>, sem gæti verið samsettur marghyrningur.</p>
 </section>
-<section id="helstu-föll-í-postgis" class="level2" data-number="22.2">
-<h2 data-number="22.2" class="anchored" data-anchor-id="helstu-föll-í-postgis"><span class="header-section-number">22.2</span> Helstu föll í PostGIS</h2>
+<section id="helstu-föll-í-postgis" class="level3" data-number="21.1.2">
+<h3 data-number="21.1.2" class="anchored" data-anchor-id="helstu-föll-í-postgis"><span class="header-section-number">21.1.2</span> Helstu föll í PostGIS</h3>
 <p><em>PostGIS</em> bætir við miklum fjölda af föllum sem eru gagnleg til að vinna með staðbundin gögn. Hér eru nokkur af helstu föllum sem PostGIS býður upp á:</p>
 <ul>
 <li><p><code>ST_Point</code>: Býr til punkt með tilteknum lengdar- og breiddargráðum.</p>
@@ -495,8 +495,8 @@ window.Quarto = {
 </blockquote></li>
 </ul>
 </section>
-<section id="frekari-upplýsingar" class="level2" data-number="22.3">
-<h2 data-number="22.3" class="anchored" data-anchor-id="frekari-upplýsingar"><span class="header-section-number">22.3</span> Frekari upplýsingar</h2>
+<section id="frekari-upplýsingar" class="level3" data-number="21.1.3">
+<h3 data-number="21.1.3" class="anchored" data-anchor-id="frekari-upplýsingar"><span class="header-section-number">21.1.3</span> Frekari upplýsingar</h3>
 <p><em>PostGIS</em> býður upp á fjölmörg önnur föll til að vinna með og greina landfræðileg gögn, sem gerir <em>PostgreSQL</em> að öflugri lausn fyrir rúmfræðileg verkefni.</p>
 <p>Þú getur fengið frekari upplýsingar og skoðað opinberu handbókina á <a href="https://postgis.net/docs/manual-3.4/">PostGIS.net</a>.</p>
 

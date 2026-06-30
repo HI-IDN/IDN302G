@@ -380,9 +380,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#common-table-expression-cte" id="toc-common-table-expression-cte" class="nav-link active" data-scroll-target="#common-table-expression-cte"><span class="header-section-number">21</span> Common Table Expression (CTE)</a>
-  <ul class="collapse">
-  <li><a href="#hvers-vegna-notum-við-cte" id="toc-hvers-vegna-notum-við-cte" class="nav-link" data-scroll-target="#hvers-vegna-notum-við-cte"><span class="header-section-number">21.1</span> Hvers vegna notum við CTE?</a></li>
+  <li><a href="#common-table-expression-cte" id="toc-common-table-expression-cte" class="nav-link active" data-scroll-target="#common-table-expression-cte"><span class="header-section-number">20.1</span> Common Table Expression (CTE)</a>
+  <ul>
+  <li><a href="#hvers-vegna-notum-við-cte" id="toc-hvers-vegna-notum-við-cte" class="nav-link" data-scroll-target="#hvers-vegna-notum-við-cte"><span class="header-section-number">20.1.1</span> Hvers vegna notum við CTE?</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/cte.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
@@ -409,8 +409,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="common-table-expression-cte" class="level1" data-number="21">
-<h1 data-number="21"><span class="header-section-number">21</span> Common Table Expression (CTE)</h1>
+<section id="common-table-expression-cte" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="common-table-expression-cte"><span class="header-section-number">20.1</span> Common Table Expression (CTE)</h2>
 <p>CTE er sérstök gerð af undirfyrirspurn sem er skilgreind fyrir ofan aðal fyrirspurnina og er hægt að vísa í hana í aðal fyrirspurninni. CTE er oftast notuð til að einfalda flóknar fyrirspurnir og gera kóðann læsilegri.</p>
 <p>Ekkert gott íslenskt orð fyrir CTE, og er þessi skammstöfun oftast notuð í daglegu tali.</p>
 <p>Allar CTE byrja á <code>WITH</code> lykilorðinu, og er hægt að skilgreina mörg CTE í einu, en það er aðeins eitt <code>WITH</code> lykilorð í fyrirspurninni allra fremst. Fleiri CTE eru aðskild með kommu. Að lokum kemur aðal fyrirspurnin sem notar eitt eða fleiri undanfarinna CTE.</p>
@@ -483,8 +483,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<section id="hvers-vegna-notum-við-cte" class="level2" data-number="21.1">
-<h2 data-number="21.1" class="anchored" data-anchor-id="hvers-vegna-notum-við-cte"><span class="header-section-number">21.1</span> Hvers vegna notum við CTE?</h2>
+<section id="hvers-vegna-notum-við-cte" class="level3" data-number="20.1.1">
+<h3 data-number="20.1.1" class="anchored" data-anchor-id="hvers-vegna-notum-við-cte"><span class="header-section-number">20.1.1</span> Hvers vegna notum við CTE?</h3>
 <p>CTE eru notuð til að einfalda flóknar fyrirspurnir og gera kóðann læsilegri. Þegar fyrirspurnin er mjög flókin og þarf að vinna með gögn úr mörgum töflum, getur CTE hjálpað til við að skilja hvernig gögnin eru tengd saman.</p>
 <p>CTE er ekki einskorðuð við <code>SELECT</code> fyrirspurnir. Það væri hægt að blanda saman <code>INSERT</code>, <code>UPDATE</code> og jafnvel <code>DELETE</code> fyrirspurnum í CTE.</p>
 <p>Hægt er að nota CTE til að búa til <a href="../sql-advanced/views.html">sýndartöflur</a> sem geyma flóknar fyrirspurnir.</p>

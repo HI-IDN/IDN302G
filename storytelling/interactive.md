@@ -1,4 +1,4 @@
----
+﻿---
 title: "Gagnvirk gröf og kort"
 description: >-
   Gagnvirk gröf og kort eru öflugt tæki til að miðla flóknum upplýsingum á auðveldan og 
@@ -6,7 +6,7 @@ description: >-
   upplýsingar með smelli. 
 ---
 
-# Gangvirk gröf og kort
+## Gangvirk gröf og kort
 
 Gagnvirk gögn eru öflug leið til að miðla flóknum upplýsingum á auðskiljanlegan og aðgengilegan
 hátt. Með gagnvirkum gröfum og kortum geta notendur skoðað gögnin á eigin forsendum, leitað að
@@ -15,7 +15,7 @@ _Plotly_ og _Leaflet_ gera það auðvelt að búa til gagnvirkar gagnavísanir 
 forritunarmálum. Slík tól auka áhrifamátt gagnamiðlunar með því að gera gögnin sjálfskipandi,
 þannig að áhorfendur geta kannað upplýsingar í rauntíma.
 
-## Gagnvirk gröf með Plotly
+### Gagnvirk gröf með Plotly
 
 _Plotly_ er eitt af vinsælustu tólin til að búa til gagnvirk gröf í _R_. Það býður upp á
 margskonar gagnvirka eiginleika eins og að færast yfir gögnin og fá nánari upplýsingar (tooltips),
@@ -33,11 +33,11 @@ hvaða stríð þær létust í.
 kóðinn sem var notaður er:
 
 ```R 
-# Hlaða inn pökkum
+## Hlaða inn pökkum
 library(ggplot2)
 library(plotly)
 
-# Gagnasett og ggplot dreifirit (bætum nafn við fyrir tooltip)
+## Gagnasett og ggplot dreifirit (bætum nafn við fyrir tooltip)
 p <- ggplot(scatter_dat,
             aes(x = year_born, y = age, color = war,
                 text = paste("name:", name))) +
@@ -63,7 +63,7 @@ Einsog sést, þá er viðbótin til að gera dreifiritið gagnvirkt mjög einf�
 Þetta gefur notandanum meiri innsýn í gögnin án þess að flækja framsetninguna, þar sem aðeins
 eru sýndar ítarupplýsingar þegar músin er færð yfir punktana.
 
-## Fleiri dæmi um Plotly gröf
+### Fleiri dæmi um Plotly gröf
 
 _Plotly_ býður upp á mörg önnur gagnvirk verkfæri, þar á meðal:
 
@@ -76,7 +76,7 @@ _Plotly_ býður upp á mörg önnur gagnvirk verkfæri, þar á meðal:
 
 Fleiri sýnidæmi um _Plotly_ gröf er hægt að finna í á [Plotly heimasíðunni](https://plotly.com/r/).
 
-## Gagnvirk kort með Leaflet
+### Gagnvirk kort með Leaflet
 
 Gangvirk kort eru áhrifarík leið til að skoða og vinna með landfræðileg gögn á gagnvirkan hátt. Þau
 veita notendum möguleika á að kanna gögn, stækka, minnka og fá nánari upplýsingar með smelli, án
@@ -91,7 +91,7 @@ mælaborðum og öðrum gagnvirkum vettvangi. Sérstaklega er _Leaflet_ notað �
 veflausnir, en einnig er til stuðningur í _R_, þar sem hægt er að búa til falleg kort með minni
 fyrirhöfn.
 
-### Kostir Leaflet
+#### Kostir Leaflet
 
 - **Auðvelt í notkun**: _Leaflet_ hefur einfalt viðmót sem auðveldar byrjendum að byrja með gagnvirk
   kort.
@@ -100,7 +100,7 @@ fyrirhöfn.
 - **Margar samþættingar**: Það er hægt að samþætta _Leaflet_ við ýmsa gagnagrunna og kerfi, eins og
   _PostgreSQL_, _GIS_, og aðra gagnageymslur.
 
-### Leaflet í R
+#### Leaflet í R
 
 _Leaflet_ er meðal annars aðgengilegt í _R_ og hægt að nota það í mælaborðum og gagnvirkum
 framsetningum.
@@ -113,25 +113,25 @@ landamæri í Westeros úr *Game of Thrones*.
 _PostgreSQL_ gagnagrunn til að sækja gögn.
 
 ```r
-# Hlaða inn nauðsynlegum pökkum
+## Hlaða inn nauðsynlegum pökkum
 library(tidyverse)   # Fyrir gagnavinnslu
 library(sf)          # Fyrir landfræðileg gögn (Simple Features)
 library(leaflet)     # Fyrir gagnvirk kort
 
-# Gerum ráð fyrir að hafa tengingu við PostgreSQL gagnagrunn, með breytunni `con`
+## Gerum ráð fyrir að hafa tengingu við PostgreSQL gagnagrunn, með breytunni `con`
 
-# Sækja gögn um staðsetningar í Westeros
+## Sækja gögn um staðsetningar í Westeros
 query <- "SELECT gid, name, ST_AsText(geog) as geom_wkt FROM atlas.locations"
 location_data <- RPostgres::dbGetQuery(con, query) %>%
   st_as_sf(wkt = "geom_wkt", crs = 4326)
 
-# Sækja gögn um landamæri ríkja í Westeros
+## Sækja gögn um landamæri ríkja í Westeros
 query <- "SELECT gid, name, ST_AsText(geog) as geom_wkt FROM atlas.kingdoms"
 kingdom_data <- RPostgres::dbGetQuery(con, query) %>%
   st_as_sf(wkt = "geom_wkt", crs = 4326) %>%
   mutate(color = colorRampPalette(colors = rainbow(n()))(n()))
 
-# Búa til Leaflet kort með gagnvirkum eiginleikum
+## Búa til Leaflet kort með gagnvirkum eiginleikum
 leaflet() %>%
   # við byrjum á því að hlaða inn bakgrunnsmynd af heiminum
   addTiles(urlTemplate = 'https://cartocdn-gusc.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png') %>%

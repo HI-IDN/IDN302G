@@ -1,4 +1,4 @@
----
+﻿---
 title: "Skipanaskrár"
 description: >-
   Skipanaskrár halda utan um SQL skipanir svo hægt sé að endurkeyra þær án þess að skrifa þær 
@@ -7,7 +7,7 @@ description: >-
 
 Algengt er að búa til skrár sem innihalda SQL skipanir til að skilgreina og setja upp töflur.
 
-# Skipanaskrár fyrir _SQLite_
+## Skipanaskrár fyrir _SQLite_
 
 Innlestur SQL skipana er gert með `.read` skipuninni, sem les inn SQL skipanir úr skrá og framkvæmir
 þær:
@@ -34,7 +34,7 @@ skipunina:
 `.dump` skipunin skrifar SQL skipanir sem endurskapa núverandi töflur og gögn, sem er gagnlegt fyrir
 afritun og flutning gagnagrunns.
 
-# Skipanaskrár fyrir _PostgreSQL_
+## Skipanaskrár fyrir _PostgreSQL_
 
 Til að lesa inn SQL skipanir úr skrá, notum við `psql` skipunina:
 

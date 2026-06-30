@@ -380,8 +380,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#skipanaskrár-fyrir-sqlite" id="toc-skipanaskrár-fyrir-sqlite" class="nav-link active" data-scroll-target="#skipanaskrár-fyrir-sqlite"><span class="header-section-number">11</span> Skipanaskrár fyrir <em>SQLite</em></a></li>
-  <li><a href="#skipanaskrár-fyrir-postgresql" id="toc-skipanaskrár-fyrir-postgresql" class="nav-link" data-scroll-target="#skipanaskrár-fyrir-postgresql"><span class="header-section-number">12</span> Skipanaskrár fyrir <em>PostgreSQL</em></a></li>
+  <li><a href="#skipanaskrár-fyrir-sqlite" id="toc-skipanaskrár-fyrir-sqlite" class="nav-link active" data-scroll-target="#skipanaskrár-fyrir-sqlite"><span class="header-section-number">10.1</span> Skipanaskrár fyrir <em>SQLite</em></a></li>
+  <li><a href="#skipanaskrár-fyrir-postgresql" id="toc-skipanaskrár-fyrir-postgresql" class="nav-link" data-scroll-target="#skipanaskrár-fyrir-postgresql"><span class="header-section-number">10.2</span> Skipanaskrár fyrir <em>PostgreSQL</em></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-basics/script_files.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
     </div>
@@ -408,8 +408,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Algengt er að búa til skrár sem innihalda SQL skipanir til að skilgreina og setja upp töflur.</p>
-<section id="skipanaskrár-fyrir-sqlite" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Skipanaskrár fyrir <em>SQLite</em></h1>
+<section id="skipanaskrár-fyrir-sqlite" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="skipanaskrár-fyrir-sqlite"><span class="header-section-number">10.1</span> Skipanaskrár fyrir <em>SQLite</em></h2>
 <p>Innlestur SQL skipana er gert með <code>.read</code> skipuninni, sem les inn SQL skipanir úr skrá og framkvæmir þær:</p>
 <pre><code>-- Read and execute commands from a file 
 sqlite3 grunnur.db &lt; skipanir.sql </code></pre>
@@ -423,8 +423,8 @@ sqlite3 grunnur.db &lt; skipanir.sql </code></pre>
 .dump operators </code></pre>
 <p><code>.dump</code> skipunin skrifar SQL skipanir sem endurskapa núverandi töflur og gögn, sem er gagnlegt fyrir afritun og flutning gagnagrunns.</p>
 </section>
-<section id="skipanaskrár-fyrir-postgresql" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Skipanaskrár fyrir <em>PostgreSQL</em></h1>
+<section id="skipanaskrár-fyrir-postgresql" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="skipanaskrár-fyrir-postgresql"><span class="header-section-number">10.2</span> Skipanaskrár fyrir <em>PostgreSQL</em></h2>
 <p>Til að lesa inn SQL skipanir úr skrá, notum við <code>psql</code> skipunina:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Read and execute commands from a file</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> notandi <span class="at">-d</span> gagnagrunnur <span class="at">-f</span> skipanir.sql</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>

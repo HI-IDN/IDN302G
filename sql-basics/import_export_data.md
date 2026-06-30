@@ -1,12 +1,12 @@
----
+﻿---
 title: "Inn- og útflutningur gagna"
 description: >-
   Innflutningur og útflutningur gagna í gagnagrunnum, t.d. með CSV skrám. 
 ---
 
-# _SQLite_
+## _SQLite_
 
-## Innflutningur gagna í _SQLite_
+### Innflutningur gagna í _SQLite_
 
 Til að setja inn stór gagnasöfn í töflur í _SQLite_ er hægt að nota `.import` skipunina. Þessi
 aðferð gerir það auðveldara að flytja inn gögn úr CSV skjölum í stað þess að nota `INSERT` skipanir
@@ -30,7 +30,7 @@ er hægt að breyta því með `.separator` skipuninni:
 .import skra.csv Nafn 
 ```
 
-## Útflutningur gagna
+### Útflutningur gagna
 
 _SQLite_ gerir einnig auðvelt að flytja út gögn með notkun á `.output` og öðrum skipunum til að
 skrifa gögn út í skrár, til dæmis á CSV formi.
@@ -54,9 +54,9 @@ file .output
 `.output` skipunin stýrir hvert úttak fyrirspurnar fer, og í þessu tilviki skrifar gögnin út í
 skrána `test.csv`.
 
-# PostgreSQL
+## PostgreSQL
 
-## Innflutningur gagna
+### Innflutningur gagna
 
 Til að setja inn stór gagnasöfn í töflur í _PostgreSQL_ er hægt að nota `\copy` skipunina í
 `psql`. Þessi aðferð gerir það auðveldara að flytja inn gögn úr CSV skrám.
@@ -69,7 +69,7 @@ Dæmi um hvernig á að nota `\copy`:
 copy nafnið FROM 'skra.csv' DELIMITER ',' CSV HEADER;
 ```
 
-## Útflutningur gagna
+### Útflutningur gagna
 
 Einnig er hægt að flytja út gögn með `\copy` skipuninni í _PostgreSQL_. Til að flytja út gögn á
 CSV formi, notum við eftirfarandi skipanir:

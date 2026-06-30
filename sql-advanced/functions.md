@@ -1,10 +1,10 @@
----
+﻿---
 title: "Föll í SQL"
 description: >-
   Föll í PostgreSQL eru bæði innbyggð, eins og SUM(), COUNT(), og NOW(), og sérsniðin sem búnar eru til með CREATE FUNCTION. Sérsniðin föll geta skilað einu eða fleiri gildum og gera það auðvelt að endurnýta kóða og vinna með sértæka útreikninga.
 ---
 
-# Föll í _PostgreSQL_
+## Föll í _PostgreSQL_
 
 Föll í _PostgreSQL_ geta verið bæði innbyggð og sérsniðin, sem gerir gagnagrunnskerfið mjög
 sveigjanlegt og öflugt. Innbyggð föll eins og `SUM()`, `AVG()`, `COUNT()` og `NOW()` eru
@@ -13,7 +13,7 @@ sérsniðin föll með `CREATE FUNCTION`, sem geta skilað einu gildi, eins og s
 gildum í formi töflu. Þetta gerir notendum kleift að einangra flókna lógík, endurnýta kóða og 
 vinna betur með sérhæfðar aðgerðir sem ekki er hægt að ná fram með innbyggðum föllum.
 
-## Sérsniðin föll - `CREATE FUNCTION`
+### Sérsniðin föll - `CREATE FUNCTION`
 
 Í _PostgreSQL_ er hægt að búa til sérsniðin föll með **`CREATE FUNCTION`** skipuninni. Slík föll geta
 skilað einu gildi, mörgum gildum, eða jafnvel heilum töflum. Þetta er öflugt tæki til að endurnýta
@@ -22,7 +22,7 @@ kóða og bæta við sérsniðna útreikninga eða flóknar aðgerðir í gagnag
 Nánari útskýringar um hvernig sérsniðin föll virka má finna í [PostgreSQL skjölunum](https://www.postgresql.org/docs/current/sql-createfunction.html).
 
 
-### Fall sem skilar einu gildi
+#### Fall sem skilar einu gildi
 
 Einfaldasta útgáfan af `CREATE FUNCTION` er fall sem tekur við einhverjum inntaksgildum og skilar
 **einu** útkomugildi.
@@ -53,7 +53,7 @@ SELECT add_numbers(5, 10);
 --          15
 ```
 
-###  Fall sem skilar mörgum gildum
+####  Fall sem skilar mörgum gildum
 
 Föll í _PostgreSQL_ geta líka skilað mörgum gildum, sem getur verið gagnlegt þegar við viljum fá 
 fleiri upplýsingar úr einni fyrirspurn. Til að skilgreina fall sem skilar mörgum gildum þurfum við

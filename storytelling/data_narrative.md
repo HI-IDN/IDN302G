@@ -1,11 +1,11 @@
----
+﻿---
 title: "Gagnafrásögn"
 description: >-
   Gagnafrásögn samanstendur af texta og myndrænum framsetningum sem eiga að hrífa lesendur og 
   útskýra niðurstöður á skilmerkilegan hátt. 
 ---
 
-# Gagnafrásögn
+## Gagnafrásögn
 
 Gagnafrásögnin snýst um að kynna greiningu gagna á þann hátt að lesendur geti auðveldlega áttað sig
 á niðurstöðunum. Hún sameinar texta og myndræna framsetningu til að tryggja að upplýsingarnar séu
@@ -17,7 +17,7 @@ Við uppsetningu gagnafrásagnar er mikilvægt að fylgja ákveðnum viðmiðum,
 framsetninguna skýrt, velja rétt verkfæri til sjónrænnar framsetningar, og gæta að því að texti og
 myndir séu samofin til að hámarka skýrleika og skilning lesenda.
 
-## Skilgreinið markhópinn
+### Skilgreinið markhópinn
 
 Áður en þið hefjið skrif er afar mikilvægt að skilgreina markhópinn skýrt. Hugsið um hverjir
 lesendur skýrslunnar eru og hvaða bakgrunn þeir hafa í tengslum við efnið sem þið eruð að kynna.
@@ -34,12 +34,12 @@ ofgera eða gera skýrsluna of flókna. Flæði upplýsinganna, frá inngangi ti
 rökstutt og skipulagt þannig að lesandinn fylgi umræðunni auðveldlega eftir og dragi merkingarfullar
 ályktanir af þeim gögnum sem kynnt eru.
 
-## Uppbygging skýrslunnar
+### Uppbygging skýrslunnar
 
 Þið getið byggt skýrsluna upp á eftirfarandi hátt til að tryggja að hún sé vel skipulögð og lesendur
 geti auðveldlega fylgst með framsetningu og niðurstöðum.
 
-### Inngangur
+#### Inngangur
 
 Inngangurinn er fyrsta tækifærið til að setja verkefnið í samhengi og vekja áhuga lesenda. Hér ættuð
 þið að útskýra hvaða verkefni þið eruð að vinna með, hvers vegna það er mikilvægt, og hver er
@@ -49,7 +49,7 @@ tóninn fyrir skýrsluna og gefur lesendum tilfinningu fyrir af hverju viðfangs
 af hverju niðurstöður ykkar skipta máli. Það er einnig mikilvægt að útskýra stuttlega aðferðafræðina
 eða leiðina sem þið ætlið að fara til að leysa verkefnið.
 
-### Greining
+#### Greining
 
 Í greiningarhlutanum skal leggja fram aðalefnið í skýrslunni, þ.e. gögnin og greiningarnar sem þið
 hafið unnið. Hér þurfa allar mikilvægar niðurstöður að koma fram á skýran hátt. Það er lykilatriði
@@ -63,7 +63,7 @@ og af hverju þær eru mikilvægar fyrir verkefnið. Passið einnig að tengja a
 að lesendur skilji heildarmyndina og hvernig greiningar ykkar styðja við þá niðurstöðu sem þið ætlið
 að draga.
 
-### Lokaorð
+#### Lokaorð
 
 Lokaorðin draga saman það sem þið hafið skoðað og greint í verkefninu. Hér er tækifærið til að fara
 yfir helstu niðurstöður og ályktanir, og setja þær í samhengi við innganginn og
@@ -76,13 +76,13 @@ framtíðar, t.d. í frekari rannsóknum, ákvarðanatöku, eða stefnumótun. �
 skýrslunnar lokaheildarmynd af því sem þið hafið skoðað og af hvaða ályktunum megi draga af
 verkefninu.
 
-## Verkefni
+### Verkefni
 
 Verkefnið skiptist í tvo hluta, þar sem hver hluti hefur sitt sérstaka hlutverk í ferlinu.
 Þessi tvískipting tryggir að vinnsla gagna og úrvinnsla sé lokið áður en greiningar og framsetning
 niðurstaðna hefst, sem hjálpar til við að viðhalda skýrri uppbyggingu í verkefninu.
 
-### Hluti I – Undirbúningur og vinnsla gagna
+#### Hluti I – Undirbúningur og vinnsla gagna
 
 Í fyrsta hluta verkefnisins er megináherslan á undirbúning gagna. Hér skuluð þið:
 
@@ -93,7 +93,7 @@ niðurstaðna hefst, sem hjálpar til við að viðhalda skýrri uppbyggingu í 
 - Setja gögnin inn í gagnagrunn, þar sem þau verða geymd í viðeigandi töflum eða kerfum sem
   auðvelda aðgang að þeim fyrir næsta hluta verkefnisins.
 
-### Hluti II – Greining og sjónræn framsetning gagna
+#### Hluti II – Greining og sjónræn framsetning gagna
 
 Í öðrum hluta verkefnisins skuluð þið framkvæma greiningu gagna með því að kalla á þau úr
 gagnagrunninum og búa til skýrar sjónrænar framsetningar. Í þessum hluta felst:
@@ -106,7 +106,7 @@ gagnagrunninum og búa til skýrar sjónrænar framsetningar. Í þessum hluta f
   gagnagrunninum, og megináherslan er á að kynna niðurstöður með skýrum og vel útfærðum myndrænum
   hætti.
 
-## Málfar
+### Málfar
 
 Mikilvægt er að hafa málfar skýrslunnar formlegt og vandað til að tryggja trúverðugleika hennar.
 Formlegt málfar eykur á fagmennsku og gerir skýrsluna áreiðanlega í augum lesenda. Til að viðhalda
@@ -129,7 +129,7 @@ réttum tón og stíl í skýrslunni skuluð þið leggja áherslu á:
   notið í staðinn hlutlæga setningu eins og „Eins og sýnt var fram á hér að ofan“. Þetta tryggir að
   skýrslan sé ópersónuleg og fræðileg í eðli sínu.
 
-## Flæði textans
+### Flæði textans
 
 Flæði textans er einnig lykilatriði til að tryggja að lesendur geti fylgt skýrslunni auðveldlega.
 Gott flæði stuðlar að því að lesandinn nái góðri yfirsýn yfir efnið og áttar sig á röksemdafærslunni

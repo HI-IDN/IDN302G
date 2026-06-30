@@ -1,11 +1,11 @@
----
+﻿---
 title: "Inngangur"
 description: >-
   Við kynnum flóknari SQL aðgerðir, þar á meðal tengingar (joins) og flóknari fyrirspurnir 
   svokallaðar CTE (Common Table Expression).
 ---
 
-# Inngangur
+## Inngangur
 
 Hingað til höfum við aðeins skoðað SQL fyrirspurnir sem vinna á einni töflu í einu, mögulega með
 einföldum undirfyrirspurnum. En hugmyndin með gagnagrunnum er að þeir eru að reyna að vera eins
@@ -14,7 +14,7 @@ staðir sem hægt er að nálgast sömu upplýsingar. Þetta tryggir heilleika g
 reyna að koma gagnagrunni á þriðja Boyce-Codd normal form (en það er utan efniviðar þessa
 námskeiðs).
 
-# PostgreSQL tenging
+## PostgreSQL tenging
 
 Við notum dæmi um Postgres gagnagrunni úr Game of Thrones heiminum í sýnidæmum. Gagnagrunnurinn er
 hýstur á Railway og er aðgengilegur með eftirfarandi tengingarupplýsingum:
@@ -41,7 +41,7 @@ WHERE schemaname IN ('atlas', 'got')
 ORDER BY schemaname, tablename;
 ```
 
-# Gögn
+## Gögn
 
 Gögnin fyrir þennan kafla koma héðan:
 
@@ -50,7 +50,7 @@ Gögnin fyrir þennan kafla koma héðan:
 2. **Game of Maps** - Gögn um kortlagningu og staðsetningar í heimi GoT (schema: `atlas`) eftir
    Patrick Triest.
 
-# Almennt form `SELECT` skipunar
+## Almennt form `SELECT` skipunar
 
 ```sql
 SELECT <dálkar eða útreikningur>

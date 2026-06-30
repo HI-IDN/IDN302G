@@ -1,4 +1,4 @@
----
+﻿---
 title: "Samskipti við gagnagrunna"
 description: >-
   Hægt er að eiga samskipti við gagnagrunnana með mismunandi tólum og tungumálum, allt frá 
@@ -12,7 +12,7 @@ fyrirspurnir. Vinsamlegast athugið að þið hafið aðeins lesréttindi (e. _r
 grunninum, en í _SQLite_ eruð þið með staðbundinn gagnagrunnur þar sem þið getið skrifað og
 lesið að vild.
 
-# SQLite
+## SQLite
 
 _SQLite_ er létt gagnagrunnskerfi sem hentar vel fyrir minni verkefni þar sem einfaldleiki og hraði
 eru mikilvægir þættir. _SQLite_ er frjálst, auðvelt í uppsetningu og þarf ekki sérstaka
@@ -24,9 +24,9 @@ samstarfi við Bandaríkjaher. Hönnunarmarkmið var að þróa kerfi sem getur 
 þurfa gagnasafnskerfi
 ([sjá hér](https://thenewstack.io/the-origin-story-of-sqlite-the-worlds-most-widely-used-database-software/)).
 
-## Uppsetning
+### Uppsetning
 
-### Windows
+#### Windows
 
 Til að setja upp _SQLite_ á Windows:
 
@@ -35,11 +35,11 @@ Til að setja upp _SQLite_ á Windows:
 3. Settu möppuna á rót disks (t.d. `C:\SQLite`).
 4. Bættu við slóðinni í _Environment Variables_ undir _system path_ (`PATH` breytan).
 
-### Linux og macOS
+#### Linux og macOS
 
 _SQLite_ er oftast sjálfgefið uppsett á macOS og flestum Linux dreifingum, undir `sqlite3`.
 
-### Aðrar uppsetningaleiðir
+#### Aðrar uppsetningaleiðir
 
 - **DB-Browser:** Ágætis tól til að halda utan um lítil venslagagnasöfn og byggir á
   _SQLite_: [https://sqlitebrowser.org/](https://sqlitebrowser.org/)
@@ -49,7 +49,7 @@ _SQLite_ er oftast sjálfgefið uppsett á macOS og flestum Linux dreifingum, un
 - **SQLite í R:** Hægt að nota R til að halda utan um gagnagrunninn og framkvæma fyrirspurnir. Hér
   náið þið að slá tvær flugur í einu höggi með að gera skýrslugerð og gagnavinnslu í sama skjali.
 
-## Notkun á skipanaskel
+### Notkun á skipanaskel
 
 _SQLite_ er notað í gegnum skipanaskel sem gerir notendum kleift að framkvæma SQL fyrirspurnir
 beint á gagnagrunnum.
@@ -80,7 +80,7 @@ nokkrar skipanir sem finnast með `.help`.
 _SQLite_ er hannað til að vera einfalt og hratt, sem gerir það að góðu vali fyrir notendur sem þurfa
 ekki flóknari eiginleika stærri gagnagrunnskerfa eins og _PostgreSQL_ eða _MySQL_.
 
-# PostgreSQL
+## PostgreSQL
 
 _PostgreSQL_ er mjög öflugt og opið gagnagrunnskerfi sem hentar vel fyrir bæði smá og stór verkefni
 þar sem gagnasöfnun, samhliða vinnsla, og flókin fyrirspurnarefni eru mikilvæg. Það er byggt á
@@ -97,17 +97,17 @@ stjórna gagnagrunnum í skel. Þetta tól býður upp á öfluga aðgerðir og 
 Þar sem _PostgreSQL_ er hannað fyrir stærri verkefni og flóknari gagnasöfn, er það oftast notað
 í þróunarumhverfum (IDE) til að tengjast gagnagrunnum og framkvæma fyrirspurnir.
 
-### Uppsetning
+#### Uppsetning
 
 - [PostgreSQL niðurhal](https://www.postgresql.org/download/): Veldu réttan stýrikerfi og fylgdu
   leiðbeiningunum fyrir að setja upp _PostgreSQL_ og _psql_.
 
-# IDE fyrir gagnagrunnskerfi
+## IDE fyrir gagnagrunnskerfi
 
 Til að auðvelda vinnu með gagnagrunan er gott að nota þróunarumhverfi (IDE) sem býður upp á
 sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með:
 
-### 1. [DataGrip](https://www.jetbrains.com/datagrip/)
+#### 1. [DataGrip](https://www.jetbrains.com/datagrip/)
 
 **Kostir:**
 
@@ -124,7 +124,7 @@ sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með:
 
 {{< video https://www.youtube.com/watch?v=X_RznmyuNyA >}}
 
-### 2. [DBeaver](https://dbeaver.io/)
+#### 2. [DBeaver](https://dbeaver.io/)
 
 **Kostir:**
 
@@ -142,7 +142,7 @@ sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með:
   
 {{< video https://www.youtube.com/watch?v=W5AumdArlO8 >}}
 
-### 3. [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
+#### 3. [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
 
 **Kostir:**
 
@@ -154,15 +154,15 @@ sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með:
   sem virkar m.a. fyrir gagnagrunnskerfi.
 
 
-# Gagnagrunnar með R
+## Gagnagrunnar með R
 
 [Gagnagrunnar og SQL í RStudio - R-bloggers](https://www.r-bloggers.com/2022/02/working-with-databases-and-sql-in-rstudio/)
 útskýrir hvernig hægt er að vinna með gagnagrunna og SQL beint í _RStudio_. Hún fer yfir
 helstu tól og aðferðir til að tengjast gagnagrunnum eins og _SQLite_ og _PostgreSQL_ með R.
 
-## SQLite með R
+### SQLite með R
 
-### [RSQLite pakki](https://cran.r-project.org/web/packages/RSQLite/index.html)
+#### [RSQLite pakki](https://cran.r-project.org/web/packages/RSQLite/index.html)
 
 **Kostir:**
 
@@ -175,23 +175,23 @@ helstu tól og aðferðir til að tengjast gagnagrunnum eins og _SQLite_ og _Pos
 **Dæmi um notkun:**
 
 ```r
-# Hlaða inn pakkanum
+## Hlaða inn pakkanum
 library(RSQLite)
 
-# Tengja við SQLite gagnagrunn
+## Tengja við SQLite gagnagrunn
 con <- dbConnect(RSQLite::SQLite(), "nafn_grunns.db")
 
-# Keyra SQL fyrirspurn
+## Keyra SQL fyrirspurn
 res <- dbSendQuery(con, "SELECT * FROM tafla")
 data <- fetch(res, n = -1)
 
-# Loka tengingu
+## Loka tengingu
 dbDisconnect(con)
 ```
 
-## PostgreSQL með R
+### PostgreSQL með R
 
-### [RPostgreSQL pakki](https://cran.r-project.org/web/packages/RPostgreSQL/index.html)
+#### [RPostgreSQL pakki](https://cran.r-project.org/web/packages/RPostgreSQL/index.html)
 
 **Kostir:**
 
@@ -205,27 +205,27 @@ dbDisconnect(con)
 **Dæmi um notkun:**
 
 ```r
-# Hlaða inn pakkanum
+## Hlaða inn pakkanum
 library(RPostgreSQL)
 
-# Tengja við PostgreSQL gagnagrunn
+## Tengja við PostgreSQL gagnagrunn
 drv <- dbDriver("PostgreSQL")
 con <- dbConnect(drv, dbname = "nafn_grunns", host = "localhost",
                  port = 5432, user = "notandi", password = "lykilorð")
 
-# Keyra SQL fyrirspurn
+## Keyra SQL fyrirspurn
 res <- dbSendQuery(con, "SELECT * FROM tafla")
 data <- fetch(res, n = -1)
 
-# Loka tengingu
+## Loka tengingu
 dbDisconnect(con)
 ```
 
-# Gagnagrunnar í Python
+## Gagnagrunnar í Python
 
-## SQLite með Python
+### SQLite með Python
 
-### [sqlite3 pakki](https://docs.python.org/3/library/sqlite3.html)
+#### [sqlite3 pakki](https://docs.python.org/3/library/sqlite3.html)
 
 **Kostir:**
 
@@ -240,22 +240,22 @@ dbDisconnect(con)
 ```python
 import sqlite3
 
-# Tengja við SQLite gagnagrunn
+## Tengja við SQLite gagnagrunn
 conn = sqlite3.connect('nafn_grunns.db')
 
-# Búa til cursor og keyra SQL fyrirspurn
+## Búa til cursor og keyra SQL fyrirspurn
 cur = conn.cursor()
 cur.execute("SELECT * FROM tafla;")
 results = cur.fetchall()
 
-# Loka tengingu
+## Loka tengingu
 cur.close()
 conn.close()
 ```
 
-## PostgreSQL með Python
+### PostgreSQL með Python
 
-### [psycopg2 pakki](https://www.psycopg.org/)
+#### [psycopg2 pakki](https://www.psycopg.org/)
 
 **Kostir:**
 
@@ -270,7 +270,7 @@ conn.close()
 ```python
 import psycopg2
 
-# Tengja við PostgreSQL gagnagrunn
+## Tengja við PostgreSQL gagnagrunn
 conn = psycopg2.connect(
     host="localhost",
     database="nafn_grunns",
@@ -278,12 +278,12 @@ conn = psycopg2.connect(
     password="lykilorð"
 )
 
-# Búa til cursor og keyra SQL fyrirspurn
+## Búa til cursor og keyra SQL fyrirspurn
 cur = conn.cursor()
 cur.execute("SELECT * FROM tafla;")
 results = cur.fetchall()
 
-# Loka tengingu
+## Loka tengingu
 cur.close()
 conn.close()
 ```

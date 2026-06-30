@@ -9,7 +9,7 @@ Til að dýpka skilning á SQL og tengdum gagnagrunnstækni eru hér nokkur frá
 sem mælt er með að nemendur skoði. Þetta efni er bæði gagnlegt til að læra grunnatriði og bæta við
 þekkingu í sérhæfðari þáttum.
 
-## [W3Schools SQL kennsla](https://www.w3schools.com/sql/)
+### [W3Schools SQL kennsla](https://www.w3schools.com/sql/)
 
 **Kostir:**
 
@@ -17,7 +17,7 @@ sem mælt er með að nemendur skoði. Þetta efni er bæði gagnlegt til að l�
 - Skýrar skref-fyrir-skref leiðbeiningar með dæmum sem nemendur geta fylgt og prófað.
 - Hentar mjög vel fyrir byrjendur.
 
-## [SQLite skjölun](https://www.sqlite.org/docs.html)
+### [SQLite skjölun](https://www.sqlite.org/docs.html)
 
 **Kostir:**
 
@@ -25,7 +25,7 @@ sem mælt er með að nemendur skoði. Þetta efni er bæði gagnlegt til að l�
 - Ítarlegar upplýsingar um uppsetningu, notkun og þróun _SQLite_ gagnagrunna.
 - Frábært efni fyrir þá sem vilja kafa dýpra í notkun _SQLite_.
 
-## [PostgreSQL skjölun](https://www.postgresql.org/docs/current/)
+### [PostgreSQL skjölun](https://www.postgresql.org/docs/current/)
 
 **Kostir:**
 
@@ -33,7 +33,7 @@ sem mælt er með að nemendur skoði. Þetta efni er bæði gagnlegt til að l�
 - Mjög ítarlegar og tæknilegar upplýsingar um uppsetningu, stillingar, og notkun _PostgreSQL_.
 - Hentar vel þeim sem vilja sérhæfa sig í _PostgreSQL_ sem gagnagrunnskerfi.
 
-## [*SQL in a Nutshell*](https://www.oreilly.com/library/view/sql-in-a/9781492088851/)
+### [*SQL in a Nutshell*](https://www.oreilly.com/library/view/sql-in-a/9781492088851/)
 
 - **Höfundar:** Kevin Kline, Regina O. Obe, Leo S. Hsu
 - **Útgefandi:** O'Reilly Media, Inc.

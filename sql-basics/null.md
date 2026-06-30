@@ -1,4 +1,4 @@
----
+﻿---
 title: "Tóm gildi (NULL)"
 description: >-
     Oft eru gildi í gagnagrunnum óskilgreind með NULL. Þessi gildi eru ekki tóm gildi, heldur 
@@ -6,7 +6,7 @@ description: >-
     
 ---
 
-# Tóm gildi - `NULL`
+## Tóm gildi - `NULL`
 
 SQL leyfir dálkum að vera óskilgreindir með `NULL` gildum, það segir til um að gildi vantar. Þau
 eru ekki jafngild `0` eða tómum streng.
@@ -20,7 +20,7 @@ VALUES (4, 'Jósef', '1010101010');
 
 hér verður `NULL` gildi fyrir `opAge` og `opYearInit`.
 
-## Breytingar á sýnilegum `NULL` gildum í _SQLite_
+### Breytingar á sýnilegum `NULL` gildum í _SQLite_
 
 _SQLite_ sýnir tóman streng fyrir `NULL` gildi en við getum breytt þessari hegðun með:
 
@@ -30,7 +30,7 @@ _SQLite_ sýnir tóman streng fyrir `NULL` gildi en við getum breytt þessari h
 
 Við getum valið hvaða gildi sem er, t.d. 'NA' eða '-'.
 
-# Samanburður með `NULL`
+## Samanburður með `NULL`
 
 Samanburður á `NULL` við annað gildi getur valdið vandræðum þar sem niðurstaðan er óþekkt. Til
 dæmis:
@@ -41,7 +41,7 @@ SELECT NULL + 3;
 
 skilar `NULL` en ekki `0`.
 
-# Rökaðgerðir með `NULL`
+## Rökaðgerðir með `NULL`
 
 Rökaðgerðir eins og `AND`, `OR` og `NOT` skila `NULL` ef einhver þeirra er `NULL`. Til dæmis:
 
@@ -53,7 +53,7 @@ Rökaðgerðir eins og `AND`, `OR` og `NOT` skila `NULL` ef einhver þeirra er `
 | Ósatt      | OR       | Óþekkt     | Óþekkt     |
 |            | NOT      | Óþekkt     | Óþekkt     |
 
-## `NULL` í `SELECT` skipunum
+### `NULL` í `SELECT` skipunum
 
 Þegar við notum `SELECT` ásamt `WHERE` skilyrði, þá er þeim línum skilað í úttak þar sem
 skilyrðið er satt.
@@ -82,7 +82,7 @@ FROM Patient_list
 WHERE Patient_Age IS NOT NULL;
 ```
 
-## Töfluskilgreiningar og `NULL`
+### Töfluskilgreiningar og `NULL`
 
 Hægt er að banna dálkum að vera `NULL` við töfluskilgreiningu:
 

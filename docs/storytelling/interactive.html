@@ -380,14 +380,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#gangvirk-gröf-og-kort" id="toc-gangvirk-gröf-og-kort" class="nav-link active" data-scroll-target="#gangvirk-gröf-og-kort"><span class="header-section-number">27</span> Gangvirk gröf og kort</a>
+  <li><a href="#gangvirk-gröf-og-kort" id="toc-gangvirk-gröf-og-kort" class="nav-link active" data-scroll-target="#gangvirk-gröf-og-kort"><span class="header-section-number">26.1</span> Gangvirk gröf og kort</a>
+  <ul>
+  <li><a href="#gagnvirk-gröf-með-plotly" id="toc-gagnvirk-gröf-með-plotly" class="nav-link" data-scroll-target="#gagnvirk-gröf-með-plotly"><span class="header-section-number">26.1.1</span> Gagnvirk gröf með Plotly</a></li>
+  <li><a href="#fleiri-dæmi-um-plotly-gröf" id="toc-fleiri-dæmi-um-plotly-gröf" class="nav-link" data-scroll-target="#fleiri-dæmi-um-plotly-gröf"><span class="header-section-number">26.1.2</span> Fleiri dæmi um Plotly gröf</a></li>
+  <li><a href="#gagnvirk-kort-með-leaflet" id="toc-gagnvirk-kort-með-leaflet" class="nav-link" data-scroll-target="#gagnvirk-kort-með-leaflet"><span class="header-section-number">26.1.3</span> Gagnvirk kort með Leaflet</a>
   <ul class="collapse">
-  <li><a href="#gagnvirk-gröf-með-plotly" id="toc-gagnvirk-gröf-með-plotly" class="nav-link" data-scroll-target="#gagnvirk-gröf-með-plotly"><span class="header-section-number">27.1</span> Gagnvirk gröf með Plotly</a></li>
-  <li><a href="#fleiri-dæmi-um-plotly-gröf" id="toc-fleiri-dæmi-um-plotly-gröf" class="nav-link" data-scroll-target="#fleiri-dæmi-um-plotly-gröf"><span class="header-section-number">27.2</span> Fleiri dæmi um Plotly gröf</a></li>
-  <li><a href="#gagnvirk-kort-með-leaflet" id="toc-gagnvirk-kort-með-leaflet" class="nav-link" data-scroll-target="#gagnvirk-kort-með-leaflet"><span class="header-section-number">27.3</span> Gagnvirk kort með Leaflet</a>
-  <ul class="collapse">
-  <li><a href="#kostir-leaflet" id="toc-kostir-leaflet" class="nav-link" data-scroll-target="#kostir-leaflet"><span class="header-section-number">27.3.1</span> Kostir Leaflet</a></li>
-  <li><a href="#leaflet-í-r" id="toc-leaflet-í-r" class="nav-link" data-scroll-target="#leaflet-í-r"><span class="header-section-number">27.3.2</span> Leaflet í R</a></li>
+  <li><a href="#kostir-leaflet" id="toc-kostir-leaflet" class="nav-link" data-scroll-target="#kostir-leaflet"><span class="header-section-number">26.1.3.1</span> Kostir Leaflet</a></li>
+  <li><a href="#leaflet-í-r" id="toc-leaflet-í-r" class="nav-link" data-scroll-target="#leaflet-í-r"><span class="header-section-number">26.1.3.2</span> Leaflet í R</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -415,11 +415,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="gangvirk-gröf-og-kort" class="level1" data-number="27">
-<h1 data-number="27"><span class="header-section-number">27</span> Gangvirk gröf og kort</h1>
+<section id="gangvirk-gröf-og-kort" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="gangvirk-gröf-og-kort"><span class="header-section-number">26.1</span> Gangvirk gröf og kort</h2>
 <p>Gagnvirk gögn eru öflug leið til að miðla flóknum upplýsingum á auðskiljanlegan og aðgengilegan hátt. Með gagnvirkum gröfum og kortum geta notendur skoðað gögnin á eigin forsendum, leitað að mynstrum, stækkað og minnkað sýnina, og jafnvel fengið ítarlegri upplýsingar með smelli. Tól eins og <em>Plotly</em> og <em>Leaflet</em> gera það auðvelt að búa til gagnvirkar gagnavísanir í <em>R</em> og öðrum forritunarmálum. Slík tól auka áhrifamátt gagnamiðlunar með því að gera gögnin sjálfskipandi, þannig að áhorfendur geta kannað upplýsingar í rauntíma.</p>
-<section id="gagnvirk-gröf-með-plotly" class="level2" data-number="27.1">
-<h2 data-number="27.1" class="anchored" data-anchor-id="gagnvirk-gröf-með-plotly"><span class="header-section-number">27.1</span> Gagnvirk gröf með Plotly</h2>
+<section id="gagnvirk-gröf-með-plotly" class="level3" data-number="26.1.1">
+<h3 data-number="26.1.1" class="anchored" data-anchor-id="gagnvirk-gröf-með-plotly"><span class="header-section-number">26.1.1</span> Gagnvirk gröf með Plotly</h3>
 <p><em>Plotly</em> er eitt af vinsælustu tólin til að búa til gagnvirk gröf í <em>R</em>. Það býður upp á margskonar gagnvirka eiginleika eins og að færast yfir gögnin og fá nánari upplýsingar (tooltips), stækka og minnka ásana (zoom), og velja ákveðnar gagnapunkta til frekari greiningar. Með <em>Plotly</em> er hægt að umbreyta hefðbundnum gröfum eins og línuritum, dreifiritum og súluritum í gagnvirk verkfæri.</p>
 <p>Dæmi um gagnvirkt dreifirit sem sýnir aldur við dauða sögupersóna í <em>Game of Thrones</em> heiminum og fæðingarár þeirra er hægt að sjá hér. Þetta gagnvirka graf gerir notendum kleift að færa músina yfir einstaka punkta til að sjá nafn sögupersónunnar, fæðingarár, aldur við andlát, og hvaða stríð þær létust í.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -429,11 +429,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>kóðinn sem var notaður er:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hlaða inn pökkum</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Hlaða inn pökkum</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Gagnasett og ggplot dreifirit (bætum nafn við fyrir tooltip)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Gagnasett og ggplot dreifirit (bætum nafn við fyrir tooltip)</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(scatter_dat,</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> year_born, <span class="at">y =</span> age, <span class="at">color =</span> war,</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">"name:"</span>, name))) <span class="sc">+</span></span>
@@ -454,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Einsog sést, þá er viðbótin til að gera dreifiritið gagnvirkt mjög einföld. Það er nóg að nota <code>ggplotly()</code> fallið til að breyta <em>ggplot2</em> dreifiritinu í gagnvirkt <em>Plotly</em> dreifirit.</p>
 <p>Þetta gefur notandanum meiri innsýn í gögnin án þess að flækja framsetninguna, þar sem aðeins eru sýndar ítarupplýsingar þegar músin er færð yfir punktana.</p>
 </section>
-<section id="fleiri-dæmi-um-plotly-gröf" class="level2" data-number="27.2">
-<h2 data-number="27.2" class="anchored" data-anchor-id="fleiri-dæmi-um-plotly-gröf"><span class="header-section-number">27.2</span> Fleiri dæmi um Plotly gröf</h2>
+<section id="fleiri-dæmi-um-plotly-gröf" class="level3" data-number="26.1.2">
+<h3 data-number="26.1.2" class="anchored" data-anchor-id="fleiri-dæmi-um-plotly-gröf"><span class="header-section-number">26.1.2</span> Fleiri dæmi um Plotly gröf</h3>
 <p><em>Plotly</em> býður upp á mörg önnur gagnvirk verkfæri, þar á meðal:</p>
 <ul>
 <li><strong>Línurit (Line Graphs)</strong>: Gagnlegt til að sýna breytingar yfir tíma með möguleikum til að skoða ákveðin tímabil nánar.</li>
@@ -464,20 +464,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Fleiri sýnidæmi um <em>Plotly</em> gröf er hægt að finna í á <a href="https://plotly.com/r/">Plotly heimasíðunni</a>.</p>
 </section>
-<section id="gagnvirk-kort-með-leaflet" class="level2" data-number="27.3">
-<h2 data-number="27.3" class="anchored" data-anchor-id="gagnvirk-kort-með-leaflet"><span class="header-section-number">27.3</span> Gagnvirk kort með Leaflet</h2>
+<section id="gagnvirk-kort-með-leaflet" class="level3" data-number="26.1.3">
+<h3 data-number="26.1.3" class="anchored" data-anchor-id="gagnvirk-kort-með-leaflet"><span class="header-section-number">26.1.3</span> Gagnvirk kort með Leaflet</h3>
 <p>Gangvirk kort eru áhrifarík leið til að skoða og vinna með landfræðileg gögn á gagnvirkan hátt. Þau veita notendum möguleika á að kanna gögn, stækka, minnka og fá nánari upplýsingar með smelli, án þess að þurfa sérfræðiþekkingu. Kortin eru sérstaklega gagnleg í aðstæðum þar sem gögn eru tengd ákveðnum staðsetningum, eins og við greiningu á ferðamannagögnum, landupplýsingum eða sýningum á landfræðilegum mörkum.</p>
 <p>Eitt af vinsælustu verkfærunum til að búa til gagnvirk kort er <em>Leaflet</em>. <em>Leaflet</em> er opinn hugbúnaður sem er aðgengilegur í mörgum forritunarmálum, þar á meðal <em>JavaScript</em> og <em>R</em>. Með <em>Leaflet</em> er hægt að búa til gagnvirk kort á auðveldan hátt, sem hægt er að skoða á vefsíðum, mælaborðum og öðrum gagnvirkum vettvangi. Sérstaklega er <em>Leaflet</em> notað í <em>JavaScript</em> fyrir veflausnir, en einnig er til stuðningur í <em>R</em>, þar sem hægt er að búa til falleg kort með minni fyrirhöfn.</p>
-<section id="kostir-leaflet" class="level3" data-number="27.3.1">
-<h3 data-number="27.3.1" class="anchored" data-anchor-id="kostir-leaflet"><span class="header-section-number">27.3.1</span> Kostir Leaflet</h3>
+<section id="kostir-leaflet" class="level4" data-number="26.1.3.1">
+<h4 data-number="26.1.3.1" class="anchored" data-anchor-id="kostir-leaflet"><span class="header-section-number">26.1.3.1</span> Kostir Leaflet</h4>
 <ul>
 <li><strong>Auðvelt í notkun</strong>: <em>Leaflet</em> hefur einfalt viðmót sem auðveldar byrjendum að byrja með gagnvirk kort.</li>
 <li><strong>Hagkvæmni</strong>: Þrátt fyrir einfaldleika er <em>Leaflet</em> öflugt og er mikið notað í greiningarverkefnum, vefsíðum og mælaborðum.</li>
 <li><strong>Margar samþættingar</strong>: Það er hægt að samþætta <em>Leaflet</em> við ýmsa gagnagrunna og kerfi, eins og <em>PostgreSQL</em>, <em>GIS</em>, og aðra gagnageymslur.</li>
 </ul>
 </section>
-<section id="leaflet-í-r" class="level3" data-number="27.3.2">
-<h3 data-number="27.3.2" class="anchored" data-anchor-id="leaflet-í-r"><span class="header-section-number">27.3.2</span> Leaflet í R</h3>
+<section id="leaflet-í-r" class="level4" data-number="26.1.3.2">
+<h4 data-number="26.1.3.2" class="anchored" data-anchor-id="leaflet-í-r"><span class="header-section-number">26.1.3.2</span> Leaflet í R</h4>
 <p><em>Leaflet</em> er meðal annars aðgengilegt í <em>R</em> og hægt að nota það í mælaborðum og gagnvirkum framsetningum. Hér er dæmi um hvernig nota má <em>Leaflet</em> til að búa til gagnvirkt kort sem sýnir staðsetningar og landamæri í Westeros úr <em>Game of Thrones</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -486,25 +486,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Þetta kort er búið til með kóðanum í skránni <a href="https://github.com/HI-IDN/IDN302G/blob/main/code/leaflet.R"><code>leaflet.R</code></a>, og notar <em>PostgreSQL</em> gagnagrunn til að sækja gögn.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hlaða inn nauðsynlegum pökkum</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Hlaða inn nauðsynlegum pökkum</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># Fyrir gagnavinnslu</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)          <span class="co"># Fyrir landfræðileg gögn (Simple Features)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)     <span class="co"># Fyrir gagnvirk kort</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerum ráð fyrir að hafa tengingu við PostgreSQL gagnagrunn, með breytunni `con`</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Gerum ráð fyrir að hafa tengingu við PostgreSQL gagnagrunn, með breytunni `con`</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Sækja gögn um staðsetningar í Westeros</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Sækja gögn um staðsetningar í Westeros</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="st">"SELECT gid, name, ST_AsText(geog) as geom_wkt FROM atlas.locations"</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>location_data <span class="ot">&lt;-</span> RPostgres<span class="sc">::</span><span class="fu">dbGetQuery</span>(con, query) <span class="sc">%&gt;%</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">wkt =</span> <span class="st">"geom_wkt"</span>, <span class="at">crs =</span> <span class="dv">4326</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Sækja gögn um landamæri ríkja í Westeros</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Sækja gögn um landamæri ríkja í Westeros</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="st">"SELECT gid, name, ST_AsText(geog) as geom_wkt FROM atlas.kingdoms"</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>kingdom_data <span class="ot">&lt;-</span> RPostgres<span class="sc">::</span><span class="fu">dbGetQuery</span>(con, query) <span class="sc">%&gt;%</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">wkt =</span> <span class="st">"geom_wkt"</span>, <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">color =</span> <span class="fu">colorRampPalette</span>(<span class="at">colors =</span> <span class="fu">rainbow</span>(<span class="fu">n</span>()))(<span class="fu">n</span>()))</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Búa til Leaflet kort með gagnvirkum eiginleikum</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Búa til Leaflet kort með gagnvirkum eiginleikum</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># við byrjum á því að hlaða inn bakgrunnsmynd af heiminum</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>(<span class="at">urlTemplate =</span> <span class="st">'https://cartocdn-gusc.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png'</span>) <span class="sc">%&gt;%</span></span>

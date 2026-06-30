@@ -1,4 +1,4 @@
----
+﻿---
 title: "Töflur"
 description: >-
   Töflur eru grundvallareiningar í gagnagrunnum, þar sem gögnin eru geymd í röðum. 
@@ -11,7 +11,7 @@ tafla inniheldur ákveðna gerð gagna og er skipulögð þannig að hver röð 
 staki, og hver dálkur (e. _column_) samsvarar tilteknum eiginleikum gagna. Dálkar skilgreina hvaða
 tegund gagna er geymd, til dæmis heiltölur, texti eða tvíundargögn.
 
-# Búa til töflu
+## Búa til töflu
 
 Til að búa til töflu notum við `CREATE TABLE` skipunina. Hér er dæmi um hvernig á að búa til töflu
 sem heitir `operators`:
@@ -35,7 +35,7 @@ CREATE TABLE operators
 * `opAge`: Heiltala (`INTEGER`) fyrir aldur.
 * `opYearInit`: Heiltala (`INTEGER`) fyrir ártal upphafs.
 
-# Gerðir dálka
+## Gerðir dálka
 
 Í _SQLite_ eru til ýmsar tegundir dálka sem skilgreina hvernig gögn eru geymd í gagnagrunninum. Hér
 eru nokkrar algengar gerðir:
@@ -48,11 +48,11 @@ eru nokkrar algengar gerðir:
 Frekari upplýsingar um dálkagerðir í _SQLite_ má finna
 á: [https://www.sqlite.org/datatype3.html](https://www.sqlite.org/datatype3.html).
 
-# Að breyta töflum
+## Að breyta töflum
 
 _SQLite_ styður nokkrar breytingar á töflum með `ALTER TABLE` skipuninni.
 
-## Bæta við dálki
+### Bæta við dálki
 
 Þú getur bætt við nýjum dálki með `ALTER TABLE ... ADD COLUMN`:
 
@@ -61,7 +61,7 @@ ALTER TABLE operators
     ADD COLUMN opAddress TEXT; 
 ```
 
-## Eyða dálki
+### Eyða dálki
 
 Þú getur eytt dálki með `ALTER TABLE ... DROP COLUMN`:
 
@@ -69,7 +69,7 @@ ALTER TABLE operators
 ALTER TABLE operators DROP COLUMN opAddress; 
 ```
 
-## Endurnefna dálk
+### Endurnefna dálk
 
 Þú getur endurnefnt dálk með því að nota `ALTER TABLE ... RENAME COLUMN`:
 
@@ -77,7 +77,7 @@ ALTER TABLE operators DROP COLUMN opAddress;
 ALTER TABLE operators RENAME COLUMN opName TO operatorName; 
 ```
 
-## Breyting á dálkagerð
+### Breyting á dálkagerð
 
 Það er ekki hægt að breyta gerð dálks beint með `ALTER TABLE` í _SQLite_. Til að breyta gerð dálks
 þarf að fylgja eftirfarandi ferli:
@@ -93,7 +93,7 @@ Aftur á móti, í _PostgreSQL_ er hægt að breyta gerð dálks í einni skipun
 ALTER TABLE...ALTER COLUMN...TYPE...;
 ```
 
-# Eyða töflu
+## Eyða töflu
 
 Til að eyða töflu notum við `DROP TABLE` skipunina:
 

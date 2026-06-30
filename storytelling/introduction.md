@@ -1,13 +1,13 @@
----
+﻿---
 title: "Inngangur"
 description: >-
   Myndræn framsetning miðlar flóknum upplýsingum á skýran og einfaldan hátt með því að nota gögn 
   í samhengi og miða á réttan markhóp til að skapa áhrifaríka frásögn.
 ---
 
-# Myndræn framsetning
+## Myndræn framsetning
 
-## Grunnur að myndrænni framsetningu
+### Grunnur að myndrænni framsetningu
 
 Sjónræn framsetning gagna er mikilvæg til að miðla upplýsingum á áhrifaríkan hátt. Hún hjálpar við
 að koma flóknum upplýsingum til skila með einföldum hætti og getur haft sterk áhrif á hvernig gögn
@@ -17,14 +17,14 @@ Nussbaumer Knaflic. Bókin veitir frábærar leiðbeiningar um hvernig best sé 
 sögur í viðskiptaumhverfi. Margt af efninu má finna á
 vefsíðunni: [storytellingwithdata.com](https://www.storytellingwithdata.com/).
 
-## Mikilvægi samhengis
+### Mikilvægi samhengis
 
 Það er lykilatriði að skilja að árangur í myndrænni framsetningu byrjar ekki með myndrænni
 framsetningu sjálfri. Fyrir framsetninguna þarf að leggjast í vinnu við að skilgreina samhengi gagna
 og hvernig þau eiga að nýtast. Þetta felur í sér að skilja vel hver markhópurinn er, hvað við viljum
 miðla til þeirra, og hvernig gögnin styðja frásögnina.
 
-### Skref í greiningu
+#### Skref í greiningu
 
 Til að ná góðum árangri í myndrænni framsetningu er gott að fara í gegnum tvö megin skref:
 
@@ -39,7 +39,7 @@ Til að ná góðum árangri í myndrænni framsetningu er gott að fara í gegn
     - Hvað viljum við að markhópurinn viti eða geri?
     - Hvernig ætlum við að miðla þessu á áhrifaríkan hátt?
 
-## Forðast of miklar upplýsingar
+### Forðast of miklar upplýsingar
 
 Það er algengt að rannsakendur vilji miðla öllum upplýsingum sem þeir hafa unnið með til að sýna
 hvað mikið var gert. En það getur leitt til þess að áhorfendur týni sér í upplýsingaflóðinu og reyni
@@ -47,7 +47,7 @@ sjálfir að finna það sem skiptir máli. Til að ná betri árangri, ætti a�
 nauðsynlegt fyrir markhópinn. Með því að sleppa óþarfa upplýsingum og einblína á það sem skiptir
 máli, tryggjum við að áhorfendur einblíni á það sem við viljum að þeir viti.
 
-## Skilgreina markhópinn
+### Skilgreina markhópinn
 
 Því nákvæmari sem skilgreining á markhópnum er, því auðveldara verður að miðla efninu á réttan hátt.
 Það er mikilvægt að forðast of almennar skilgreiningar á markhópnum, þar sem þær geta leitt til þess
@@ -60,7 +60,7 @@ að skýrslan verði of ómarkviss. Til dæmis eru eftirfarandi hópar of almenn
 hagsmuni af niðurstöðunum. Ef markhópurinn er skilgreindur vel, verður auðveldara að miðla efninu
 markvisst og á viðeigandi hátt.
 
-## Hvað viljum við að markhópurinn viti?
+### Hvað viljum við að markhópurinn viti?
 
 Áður en þið byrjið að miðla gögnunum, ættuð þið að hafa skýrt fyrir ykkur hvað þið viljið að
 markhópurinn viti eða bregðist við. Það er ekki nóg að kynna gögnin án tilvísunar til þeirra
@@ -69,7 +69,7 @@ viðbrögð á borð við „spennandi“ eða „áhugavert,“ en án frekari 
 breytinga eða ákvarðanatöku. Markmiðið er að nota gögnin til að skapa raunveruleg viðbrögð og
 jafnvel hvetja til breytinga.
 
-## Hvernig miðlum við efninu?
+### Hvernig miðlum við efninu?
 
 Sögur sem við segjum með gögnunum verða að vera studdar af raunverulegum gögnum sem geta sannreynt
 frásögnina. Hér er mikilvægt að nota viðeigandi gögn sem styðja við frásögnina, en einnig að vera
@@ -81,7 +81,7 @@ frásögnina en önnur, sem gætu gefið óheillavænlegar niðurstöður, eru l
 Slík nálgun getur haft neikvæð áhrif á trúverðugleika frásagnarinnar og kallað fram krítískar
 spurningar sem erfitt er að svara.
 
-## Dæmi um gagnafrásögn
+### Dæmi um gagnafrásögn
 
 Hugsum okkur dæmi þar sem iðnaðarverkfræðideild Háskóla Íslands hefur nýlega innleitt nýtt námskeið
 um gagnavinnslu með Python/R og SQL. Eftir námskeiðið var lögð fyrir könnun meðal nemenda til að

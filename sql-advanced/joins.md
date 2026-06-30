@@ -1,17 +1,17 @@
----
+﻿---
 title: "Samsettar töflur (JOIN)"
 description: >-
   Í SQL eru tengingar (joins) notuð til að sameina gögn úr fleiri en einni töflu. Hér eru 
   útskýringar á innri, vinstri, hægri, náttúrulegri, krosstengingu og hliðstæðri tengingu.
 ---
 
-# Tenging töflna í SQL
+## Tenging töflna í SQL
 
 Í SQL er algengt að vinna með gögn úr fleiri en einni töflu í einu. Til að sameina upplýsingar úr
 mörgum töflum notum við **tengingar** (e. joins). Hér eru nokkrar af algengustu tegundum tenginga og
 hvernig þær virka:
 
-## Innri tenging - `INNER JOIN`
+### Innri tenging - `INNER JOIN`
 
 `INNER JOIN` skilar aðeins þeim línum þar sem samsvörun er á milli tveggja eða fleiri taflna. Ef
 gögn eru til í báðum töflunum eru þau sýnd, annars ekki.
@@ -59,7 +59,7 @@ karakter (persóna sem segir söguna). Fyrirspurnin sameinar gögn úr þremur t
 | A Storm of Swords    | Jon Snow       
 | A Dance with Dragons | Jon Snow       
 
-## Vinstri tenging - `LEFT JOIN`
+### Vinstri tenging - `LEFT JOIN`
 
 `LEFT JOIN` einnig kallað `LEFT OUTER JOIN`, skilar öllum línum úr vinstri töflunni (töflunni sem
 er tilgreind fyrst), jafnvel þótt engin samsvörun sé í hægri töflunni. Ef engin samsvörun finnst
@@ -104,7 +104,7 @@ Niðurstaðan verður:
 | Lomas Estermont |                 |                |
 | Criston Cole    |                 |                |
 
-## Hægri tenging - `RIGHT JOIN`
+### Hægri tenging - `RIGHT JOIN`
 
 `RIGHT JOIN` einnig kallað `RIGHT OUTER JOIN`, virkar eins og `LEFT JOIN`, nema nú eru allar
 línur úr hægri töflunni sýndar, jafnvel þótt engin samsvörun sé í vinstri töflunni. Ef engin
@@ -149,7 +149,7 @@ Niðurstaðan verður:
 > vinstri til hægri, og því er eðlilegra að nota `LEFT JOIN` í stað `RIGHT JOIN` og víxla
 > frekar töflunum. Það eru þó til tilvik þegar `RIGHT JOIN` er skynsamlegt.
 
-## Náttúruleg tenging - `NATURAL JOIN`
+### Náttúruleg tenging - `NATURAL JOIN`
 
 `NATURAL JOIN` sameinar tvær töflur á sjálfgefnum dálkum með sama nafni, og þarf því ekki að
 tilgreina á hvaða dálkum tengingin er byggð. Þetta getur sparað tíma, en getur líka verið óskýrt ef
@@ -173,7 +173,7 @@ Ef við hefðum skilgreint töfluna `books` með `book_id` og `book_name` í sta
 > það er óskýrt hvaða dálkar eru notuð í tengingunni. Ef svo óheppilega vill til að ólíkar
 > töflur deili saman nafni þá getur það valdið óvæntum niðurstöðum.
 
-## Krosstenging - `CROSS JOIN`
+### Krosstenging - `CROSS JOIN`
 
 `CROSS JOIN` skilar kartesísku margfeldi af línunum í töflunum, sem þýðir að hver lína úr einni
 töflu er tengd við allar línur í hinni töflunni.
@@ -203,7 +203,7 @@ milli bóka og staðsetningartegunda.
 > Það er líka hægt að nota `INNER JOIN` með `ON 1=1` til að fá sama útkomu og `CROSS JOIN`.
 > `SELECT * FROM A INNER JOIN B ON 1=1;` sem gerir þetta að misvísandi fyrirspurn.
 
-## Hliðstæð tenging - `LATERAL JOIN`
+### Hliðstæð tenging - `LATERAL JOIN`
 
 `LATERAL JOIN` gerir kleift að tengja töflur með fyrirspurn sem fer yfir hverja línu úr vinstri
 töflu. Þetta er gagnlegt þegar útreikningar í hægri töflu þurfa að nota gögn úr hverri línu í
@@ -307,7 +307,7 @@ reikningum.
 > Einnig, til að geta leitað af `King's Landing` þá notum við tvöfalt `''` til að tákna eitt 
 > úrfellingarmerki. Þetta er kallað _escaping_, svipað og þegar við notum `\` í reglulegum segðum.
 
-## Tenging við stakræna stærðfræði
+### Tenging við stakræna stærðfræði
 
 Segum við viljum tengja töflur `A` og `B` út frá dálkunum `A.id = B.id`. Þá er hægt að nota
 hugsa tenginguna sem stakræna stærðfræði á eftirfarandi hátt:

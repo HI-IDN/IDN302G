@@ -1,29 +1,29 @@
----
+﻿---
 title: "Sameining niðurstaðna"
 description: >-
   UNION í SQL sameina niðurstöður úr tveimur eða fleiri fyrirspurnum og hvernig þær vinna með 
   endurtekningar.
 ---
 
-# Sameining niðurstaðna
+## Sameining niðurstaðna
 
 Í SQL eru `UNION` og `UNION ALL` notaðar til að sameina niðurstöður úr tveimur eða fleiri
 fyrirspurnum í eina útkomu. Þær hjálpa til við að vinna með gögn úr mörgum fyrirspurnum á einfaldan
 hátt.
 
-## `UNION`
+### `UNION`
 
 `UNION` sameinar niðurstöður tveggja eða fleiri fyrirspurna og skilar **aðeins einstökum línum**.
 Það fjarlægir sjálfkrafa afrit, þannig að hver lína birtist aðeins einu sinni, jafnvel þó hún komi
 fyrir í báðum fyrirspurnunum.
 
-## `UNION ALL`
+### `UNION ALL`
 
 `UNION ALL` virkar á sama hátt og `UNION`, nema að það **fjarlægir ekki afrit**. Þetta þýðir að
 allar línur, þar með talið afrit, verða með í niðurstöðunum. Þetta getur verið gagnlegt þegar þú
 vilt sjá allar línur án þess að sameina eða samræma þær.
 
-## Munur á `UNION` og `UNION ALL`:
+### Munur á `UNION` og `UNION ALL`:
 
 - **`UNION`**: Skilar einstökum línum þar sem afrit eru fjarlægð.
 - **`UNION ALL`**: Skilar öllum línum, þar með talið afritum.

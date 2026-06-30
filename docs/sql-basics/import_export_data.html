@@ -380,15 +380,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#sqlite" id="toc-sqlite" class="nav-link active" data-scroll-target="#sqlite"><span class="header-section-number">10</span> <em>SQLite</em></a>
-  <ul class="collapse">
-  <li><a href="#innflutningur-gagna-í-sqlite" id="toc-innflutningur-gagna-í-sqlite" class="nav-link" data-scroll-target="#innflutningur-gagna-í-sqlite"><span class="header-section-number">10.1</span> Innflutningur gagna í <em>SQLite</em></a></li>
-  <li><a href="#útflutningur-gagna" id="toc-útflutningur-gagna" class="nav-link" data-scroll-target="#útflutningur-gagna"><span class="header-section-number">10.2</span> Útflutningur gagna</a></li>
+  <li><a href="#sqlite" id="toc-sqlite" class="nav-link active" data-scroll-target="#sqlite"><span class="header-section-number">9.1</span> <em>SQLite</em></a>
+  <ul>
+  <li><a href="#innflutningur-gagna-í-sqlite" id="toc-innflutningur-gagna-í-sqlite" class="nav-link" data-scroll-target="#innflutningur-gagna-í-sqlite"><span class="header-section-number">9.1.1</span> Innflutningur gagna í <em>SQLite</em></a></li>
+  <li><a href="#útflutningur-gagna" id="toc-útflutningur-gagna" class="nav-link" data-scroll-target="#útflutningur-gagna"><span class="header-section-number">9.1.2</span> Útflutningur gagna</a></li>
   </ul></li>
-  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><span class="header-section-number">11</span> PostgreSQL</a>
-  <ul class="collapse">
-  <li><a href="#innflutningur-gagna" id="toc-innflutningur-gagna" class="nav-link" data-scroll-target="#innflutningur-gagna"><span class="header-section-number">11.1</span> Innflutningur gagna</a></li>
-  <li><a href="#útflutningur-gagna-1" id="toc-útflutningur-gagna-1" class="nav-link" data-scroll-target="#útflutningur-gagna-1"><span class="header-section-number">11.2</span> Útflutningur gagna</a></li>
+  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><span class="header-section-number">9.2</span> PostgreSQL</a>
+  <ul>
+  <li><a href="#innflutningur-gagna" id="toc-innflutningur-gagna" class="nav-link" data-scroll-target="#innflutningur-gagna"><span class="header-section-number">9.2.1</span> Innflutningur gagna</a></li>
+  <li><a href="#útflutningur-gagna-1" id="toc-útflutningur-gagna-1" class="nav-link" data-scroll-target="#útflutningur-gagna-1"><span class="header-section-number">9.2.2</span> Útflutningur gagna</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-basics/import_export_data.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
@@ -415,10 +415,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sqlite" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> <em>SQLite</em></h1>
-<section id="innflutningur-gagna-í-sqlite" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="innflutningur-gagna-í-sqlite"><span class="header-section-number">10.1</span> Innflutningur gagna í <em>SQLite</em></h2>
+<section id="sqlite" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sqlite"><span class="header-section-number">9.1</span> <em>SQLite</em></h2>
+<section id="innflutningur-gagna-í-sqlite" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="innflutningur-gagna-í-sqlite"><span class="header-section-number">9.1.1</span> Innflutningur gagna í <em>SQLite</em></h3>
 <p>Til að setja inn stór gagnasöfn í töflur í <em>SQLite</em> er hægt að nota <code>.import</code> skipunina. Þessi aðferð gerir það auðveldara að flytja inn gögn úr CSV skjölum í stað þess að nota <code>INSERT</code> skipanir trekk í trekk.</p>
 <p><code>.import</code> skipunin í <em>SQLite</em> les inn gögn úr tiltekinni skrá og býr til töflu með þeim gögnum. Dæmi:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Import data from skra.csv into a table called Nafn </span>
@@ -429,8 +429,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Import data with the new separator </span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">.import</span> skra.csv Nafn </span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="útflutningur-gagna" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="útflutningur-gagna"><span class="header-section-number">10.2</span> Útflutningur gagna</h2>
+<section id="útflutningur-gagna" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="útflutningur-gagna"><span class="header-section-number">9.1.2</span> Útflutningur gagna</h3>
 <p><em>SQLite</em> gerir einnig auðvelt að flytja út gögn með notkun á <code>.output</code> og öðrum skipunum til að skrifa gögn út í skrár, til dæmis á CSV formi. Til að flytja út gögn á CSV formi, notum við eftirfarandi skipanir:</p>
 <pre><code>-- Include headers in the output 
 .headers on
@@ -447,18 +447,18 @@ file .output </code></pre>
 <p><code>.output</code> skipunin stýrir hvert úttak fyrirspurnar fer, og í þessu tilviki skrifar gögnin út í skrána <code>test.csv</code>.</p>
 </section>
 </section>
-<section id="postgresql" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> PostgreSQL</h1>
-<section id="innflutningur-gagna" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="innflutningur-gagna"><span class="header-section-number">11.1</span> Innflutningur gagna</h2>
+<section id="postgresql" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="postgresql"><span class="header-section-number">9.2</span> PostgreSQL</h2>
+<section id="innflutningur-gagna" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="innflutningur-gagna"><span class="header-section-number">9.2.1</span> Innflutningur gagna</h3>
 <p>Til að setja inn stór gagnasöfn í töflur í <em>PostgreSQL</em> er hægt að nota <code>\copy</code> skipunina í <code>psql</code>. Þessi aðferð gerir það auðveldara að flytja inn gögn úr CSV skrám.</p>
 <p>Dæmi um hvernig á að nota <code>\copy</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Import data from skra.csv into a table called nafnið</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ch">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">copy</span> nafnið <span class="kw">FROM</span> <span class="st">'skra.csv'</span> DELIMITER <span class="st">','</span> CSV <span class="kw">HEADER</span>;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="útflutningur-gagna-1" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="útflutningur-gagna-1"><span class="header-section-number">11.2</span> Útflutningur gagna</h2>
+<section id="útflutningur-gagna-1" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="útflutningur-gagna-1"><span class="header-section-number">9.2.2</span> Útflutningur gagna</h3>
 <p>Einnig er hægt að flytja út gögn með <code>\copy</code> skipuninni í <em>PostgreSQL</em>. Til að flytja út gögn á CSV formi, notum við eftirfarandi skipanir:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Export data from the operators table to a CSV file</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>\<span class="kw">copy</span></span>

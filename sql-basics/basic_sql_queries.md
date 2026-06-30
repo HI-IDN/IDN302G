@@ -1,4 +1,4 @@
----
+﻿---
 title: "Grunn SQL fyrirspurnir"
 description: >-
   Grunnskipanir í SQL eru í brennidepli, þar á meðal SELECT, WHERE, AND, OR, og NOT. 
@@ -10,7 +10,7 @@ description: >-
 > sjúklinga. Lesið [notkun á _SQLite_ skipanaskel](database_interaction.md#notkun-á-skipanaskel)
 > til að sjá hvernig á að snögglega til að sjá hvernig á að tengjast gagnagrunni.
 
-# SQL forsaga
+## SQL forsaga
 
 SQL var hannað af IBM í kringum 1970 og byggir á fræðilegu líkani um vensl með smá útvíkkun. SQL var
 fyrst tekið í notkun í tölvum um 1980 og er sérstaklega hannað til að vinna með gagnagrunna sem eru
@@ -25,7 +25,7 @@ en ekki hvernig þau eru fundin, sem gerir SQL mjög öflugt og sveigjanlegt.
 > en nöfn á töflum og dálkum (t.d. `employee`, `name`) með lágstöfum. Fyrir lengri skipanir er
 > algengt að setja hvert frátekið orð á nýja línu til að auka læsileika.
 
-# SELECT skipun
+## SELECT skipun
 
 `SELECT` skipunin er notuð til að ná í innihald tafla. Hér eru tvö einföld dæmi:
 
@@ -75,7 +75,7 @@ Patient_2     102          50                         M            50
 Þessar stillingar munu skipuleggja úttakið í dálka og sýna nöfn dálkanna, sem gerir gögnin
 aðgengilegri og auðveldari í lestri. Prófaðu núna aftur að keyra fyrirspurnina að ofan.
 
-# Röð úttaks - `ORDER BY`
+## Röð úttaks - `ORDER BY`
 
 Úttakið úr fyrirspurnum kemur oft í „einhverri röð“, líklega eftir því hvenær gögnin voru sett inn.
 Línurnar í úttakinu eru stök í mengi, og stök í mengi hafa enga sérstaka röð. Til að stjórna röð
@@ -98,7 +98,7 @@ FROM Patient_list
 ORDER BY Patient_Age DESC, Patient_DaysOnWaitingList; 
 ```
 
-# Takmarka/sleppa línum með `LIMIT` og `OFFSET`
+## Takmarka/sleppa línum með `LIMIT` og `OFFSET`
 
 Stundum viljum við ekki fá allar línur úr fyrirspurninni heldur aðeins hluta af þeim. Við getum
 takmarkað fjölda lína í úttakinu með `LIMIT` skipuninni. Hér er dæmi um hvernig á að velja aðeins
@@ -122,7 +122,7 @@ ORDER BY Patient_Age DESC LIMIT 3
 OFFSET 2; 
 ```
 
-# `WHERE` skilyrði
+## `WHERE` skilyrði
 
 Við notum `WHERE` þegar við viljum að ákveðnir dálkar í töflu uppfylli einhver skilyrði. Grunnformið
 fyrir `WHERE` skipanir er:
@@ -156,7 +156,7 @@ FROM Patient_list
 WHERE Patient_Sex <> 'M'; 
 ```
 
-## `AND`, `OR` og `NOT` skilyrði
+### `AND`, `OR` og `NOT` skilyrði
 
 Með `WHERE` skilyrðum er hægt að nota einn eða fleiri mengjavirka eins og `AND`, `OR`, og `NOT` til
 að sía gögn út frá fleiri en einu skilyrði:
@@ -182,7 +182,7 @@ FROM Patient_list
 WHERE Patient_Age BETWEEN 40 AND 60;
 ```
 
-## Útreikningar í skilyrðum
+### Útreikningar í skilyrðum
 
 Við getum notað útreikninga í skilyrðum. Til dæmis, ef við viljum finna konur sem hafa beðið lengur
 en 4 vikur á biðlista, getum við notað eftirfarandi fyrirspurn:
@@ -199,7 +199,7 @@ sjálfgefinna reglna um ummyndun í SQL. Til að gera samanburðinn með fleytit
 t.d. `FLOAT`, `DECIMAL` eða `REAL`) eða þarf önnur talan að vera fleytitala, til dæmis með því að
 deila með `7.0` í stað `7`.
 
-## Forgangur virkja
+### Forgangur virkja
 
 Virkjar eins og `AND`, `OR` og `NOT` hafa mismunandi forgang. Til dæmis, í
 útreikningnum `4 + 5 * 3`, hefur margföldun (`*`) hærri forgang en samlagning (`+`), sem leiðir til
@@ -212,7 +212,7 @@ SELECT 4 + 5 * 3   AS column1, -- Result is 19
 
 > **Athugið**, hér gáfum við útreiknaða dálkinum okkar ,,nafn'' með `AS`.
 
-# Reglulegar segðir með `LIKE`
+## Reglulegar segðir með `LIKE`
 
 `LIKE` skipunin er notuð til að leita að mynstri í strengjum með hjálp algildisstafa (e. wildcards).
 Algildisstafir eins og `%` og `_` leyfa okkur að framkvæma leitir með mynstrum í strengjum.
@@ -246,12 +246,12 @@ FROM tbl
 WHERE col LIKE '_X%Y'; 
 ```
 
-## `REPLACE` fallið
+### `REPLACE` fallið
 
 `REPLACE` fallið getur verið notað til að skipta út ákveðnum strengjum í gögnunum. Fallið tekur þrjú
 inntök: `REPLACE(strengur, samsvörun, skipta_út)`.
 
-## Hástafir og lágstafir
+### Hástafir og lágstafir
 
 `LIKE` gerir ekki greinarmun á hástöfum og lágstöfum í _SQLite_. Þú getur breytt þessari hegðun með
 því að nota skipunina:
@@ -264,7 +264,7 @@ case_sensitive_like = ON;
 
 `PRAGMA` er óstöðluð skipun sem hægt er að nota til að breyta hegðun _SQLite_ á ýmsa vegu.
 
-# Tengsl við strjála stærðfræði
+## Tengsl við strjála stærðfræði
 
 Hvað þýðir þetta allt saman og hvernig tengist þetta undanfarið námsefni? SQL og strjál stærðfræði
 hafa ýmis tengsl sem við getum skoðað í samhengi við fyrirspurnir og mengjafræði.
@@ -280,13 +280,13 @@ Hér eru nokkur lykilhugtök og tengingar við strjála stærðfræði:
 * **Yrðingar**: Veljum úttakið með yrðingu (`WHERE`skilyrði).
 * **Reglulegar segðir**: Yrðingar geta notað reglulegar segðir (`LIKE`) til að sía gögn.
 
-# Setja inn gögn í töflur með `INSERT`
+## Setja inn gögn í töflur með `INSERT`
 
 Til að setja inn gögn í töflur í SQL notum við `INSERT` skipunina. Það eru tvær aðalleiðir til að
 nota `INSERT`: með því að tilgreina dálka sem við viljum setja gögn inn í, eða með því að setja inn
 gögn í alla dálka töflunnar ef öll gildi eru tilgreind.
 
-## Notkun `INSERT` með dálkalista
+### Notkun `INSERT` með dálkalista
 
 Þegar við viljum setja inn gögn í ákveðna dálka í töflunni, tilgreinum við dálkalistann
 í `INSERT INTO` skipuninni. Hér er dæmi:
@@ -297,7 +297,7 @@ INSERT INTO operators (opID, opName, opSSN, opAge, opYearInit)
 VALUES (1, 'Anna', '0101013010', 45, 2010); 
 ```
 
-## Notkun `INSERT` án dálkalista
+### Notkun `INSERT` án dálkalista
 
 Ef öll gildi eru skilgreind fyrir alla dálka í töflunni, getum við sleppt því að tilgreina
 dálkalistann og setja inn gögn beint. Þessi aðferð er aðeins nothæf ef gildi eru til staðar fyrir
@@ -315,7 +315,7 @@ sett inn) nema dálkurinn hafi sjálfgefna gildið (`DEFAULT`) eða leyfir `NULL
 Til að forðast villur er gott að tilgreina dálkalistann sérstaklega ef ekki eru öll gildi til
 staðar.
 
-# Uppfæra gagnagrunn með `UPDATE`
+## Uppfæra gagnagrunn með `UPDATE`
 
 `UPDATE` skipunin er notuð til að breyta gögnum í töflum. Hún gerir kleift að uppfæra gildi í einum
 eða fleiri dálkum fyrir línur sem uppfylla tiltekin skilyrði.
@@ -344,13 +344,13 @@ WHERE opID = 1;
 er _ekki_ tilgreint, verður uppfært í öllum línum í töflunni, sem getur leitt til óæskilegra
 breytinga.
 
-# Að eyða gögnum úr töflum
+## Að eyða gögnum úr töflum
 
 Til að eyða gögnum úr töflum í SQL notum við `DELETE` skipunina. `DELETE` gerir kleift að fjarlægja
 eina eða fleiri línur úr töflu byggt á skilyrðum sem við tilgreinum með `WHERE` skilyrði. Ef við
 viljum eyða töflunni algjörlega, þá getum við notað `DROP` skipunina.
 
-## Eyða ákveðnum línum með `DELETE`
+### Eyða ákveðnum línum með `DELETE`
 
 Grunnformið fyrir `DELETE` skipunina er:
 
@@ -374,7 +374,7 @@ WHERE opID = 1;
 
 > **Athugið**: Notkun `WHERE` er mikilvægt til að forðast óæskilegar eyðingar á gögnum.
 
-## Eyða öllum línum með `DELETE` eða `TRUNCATE`
+### Eyða öllum línum með `DELETE` eða `TRUNCATE`
 
 Ef þú vilt eyða öllum línum í töflunni án þess að eyða töflunni sjálfri, getur þú keyrt `DELETE`
 **án** `WHERE` skilyrðisins:
@@ -397,7 +397,7 @@ TRUNCATE TABLE operators;
 `TRUNCATE` hefur einnig þann kost að endurstilla sjálfvirka númerara (`AUTO_INCREMENT`) í sumum
 gagnagrunnum.
 
-## Eyða töflu með `DROP`
+### Eyða töflu með `DROP`
 
 Ef þú vilt eyða töflunni sjálfri og öllum gögnum sem hún inniheldur, notum við `DROP TABLE`
 skipunina:

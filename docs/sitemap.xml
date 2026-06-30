@@ -6,118 +6,118 @@
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/introduction.html</loc>
-    <lastmod>2026-06-30T13:03:48.278Z</lastmod>
+    <lastmod>2026-06-30T13:32:44.161Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/basic_sql_queries.html</loc>
-    <lastmod>2026-06-30T13:03:48.252Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.960Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/tables.html</loc>
-    <lastmod>2026-06-30T13:03:48.273Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.970Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/aggregation_and_grouping.html</loc>
-    <lastmod>2026-06-30T13:03:48.262Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.958Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/null.html</loc>
-    <lastmod>2026-06-30T13:03:48.287Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.968Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/subquery.html</loc>
-    <lastmod>2026-06-30T13:03:48.280Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.970Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/data_integrity.html</loc>
-    <lastmod>2026-06-30T13:03:48.261Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.962Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/import_export_data.html</loc>
-    <lastmod>2026-06-30T13:03:48.286Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.965Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/script_files.html</loc>
-    <lastmod>2026-06-30T13:03:48.298Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.969Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/database_interaction.html</loc>
-    <lastmod>2026-06-30T13:04:21.100Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.963Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/exercises.html</loc>
-    <lastmod>2026-06-30T13:03:48.265Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.964Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-basics/additional_resources.html</loc>
-    <lastmod>2026-06-30T13:06:28.943Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.955Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/introduction.html</loc>
-    <lastmod>2026-06-30T13:03:48.283Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.980Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/postgres.html</loc>
-    <lastmod>2026-06-30T13:03:48.285Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.988Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/union.html</loc>
-    <lastmod>2026-06-30T13:03:48.292Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.989Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/joins.html</loc>
-    <lastmod>2026-06-30T13:03:48.274Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.983Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/views.html</loc>
-    <lastmod>2026-06-30T13:03:48.258Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.990Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/functions.html</loc>
-    <lastmod>2026-06-30T13:03:48.296Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.979Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/cte.html</loc>
-    <lastmod>2026-06-30T13:03:48.297Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.978Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/sql-advanced/postgis.html</loc>
-    <lastmod>2026-06-30T13:03:48.270Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.986Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/introduction.html</loc>
-    <lastmod>2026-06-30T13:03:48.267Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.013Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/lightning_talk.html</loc>
-    <lastmod>2026-06-30T13:03:48.294Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.015Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/visuals_major.html</loc>
-    <lastmod>2026-06-30T13:03:48.276Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.019Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/visuals_minor.html</loc>
-    <lastmod>2026-06-30T13:03:48.289Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.022Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/interactive.html</loc>
-    <lastmod>2026-06-30T13:03:48.271Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.011Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/dashboard.html</loc>
-    <lastmod>2026-06-30T13:03:48.264Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.002Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/donts.html</loc>
-    <lastmod>2026-06-30T13:03:48.257Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.008Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/data_narrative.html</loc>
-    <lastmod>2026-06-30T13:03:48.291Z</lastmod>
+    <lastmod>2026-06-30T13:32:28.005Z</lastmod>
   </url>
   <url>
     <loc>https://hi-idn.github.io/IDN302G/storytelling/additional_resources.html</loc>
-    <lastmod>2026-06-30T13:06:28.946Z</lastmod>
+    <lastmod>2026-06-30T13:32:27.999Z</lastmod>
   </url>
 </urlset>

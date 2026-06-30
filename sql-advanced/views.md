@@ -1,17 +1,17 @@
----
+﻿---
 title: "Sýndartöflur"
 description: >-
   Sýndartöflur eru sniðugar fyrir endurteknar fyrirspurnir og fyrirspurnir sem byggja á mörgum 
   tengdum töflum.
 ---
 
-# Sýndartafla - `VIEW`
+## Sýndartafla - `VIEW`
 
 Sýndartafla (e. view) er vistuð SQL fyrirspurn sem virkar eins og tafla. Í stað þess að búa til nýja
 töflu með föstum gögnum, er fyrirspurnin keyrð í hvert skipti sem sýndartaflan er notuð, og hún
 endurspeglar því alltaf nýjustu gögnin í viðkomandi töflum.
 
-## Af hverju að nota sýndartöflur?
+### Af hverju að nota sýndartöflur?
 
 Sýndartöflur eru mjög sniðugar í eftirfarandi tilvikum:
 
@@ -45,7 +45,7 @@ Sýndartöflur eru mjög sniðugar í eftirfarandi tilvikum:
 > fyrir næsta dag. Notendum er því bent á að nota þá töflu frekar, en sýndartöfluna ef þau þurfa 
 > _nauðsynlega_ að vinna með nýjustu gögnunum. 
 
-## Búa til sýndartöflu
+### Búa til sýndartöflu
 
 ```sql
 CREATE VIEW got.v_character_books_pov(book_id, book_name, character_id, character_name) AS
@@ -62,7 +62,7 @@ auðkennisdálka og nafn bóka allra persónu sem eru sagðar í fyrstu persónu
 Í raun dugar að tiltaka `CREATE VIEW got.v_character_books_pov AS` og sýndartaflan mun 
 sjálfkrafa setja dálkaheitin og gagnatýpur út frá `SELECT` fyrirspurninni.
 
-## Finna sýndartöflur og skilgreiningar
+### Finna sýndartöflur og skilgreiningar
 
 Til að finna allar sýndartöflur í grunninum er hægt að gera fyrirspurn á `pg_views` töfluna.
 

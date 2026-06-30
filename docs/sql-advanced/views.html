@@ -380,11 +380,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#sýndartafla---view" id="toc-sýndartafla---view" class="nav-link active" data-scroll-target="#sýndartafla---view"><span class="header-section-number">19</span> Sýndartafla - <code>VIEW</code></a>
-  <ul class="collapse">
-  <li><a href="#af-hverju-að-nota-sýndartöflur" id="toc-af-hverju-að-nota-sýndartöflur" class="nav-link" data-scroll-target="#af-hverju-að-nota-sýndartöflur"><span class="header-section-number">19.1</span> Af hverju að nota sýndartöflur?</a></li>
-  <li><a href="#búa-til-sýndartöflu" id="toc-búa-til-sýndartöflu" class="nav-link" data-scroll-target="#búa-til-sýndartöflu"><span class="header-section-number">19.2</span> Búa til sýndartöflu</a></li>
-  <li><a href="#finna-sýndartöflur-og-skilgreiningar" id="toc-finna-sýndartöflur-og-skilgreiningar" class="nav-link" data-scroll-target="#finna-sýndartöflur-og-skilgreiningar"><span class="header-section-number">19.3</span> Finna sýndartöflur og skilgreiningar</a></li>
+  <li><a href="#sýndartafla---view" id="toc-sýndartafla---view" class="nav-link active" data-scroll-target="#sýndartafla---view"><span class="header-section-number">18.1</span> Sýndartafla - <code>VIEW</code></a>
+  <ul>
+  <li><a href="#af-hverju-að-nota-sýndartöflur" id="toc-af-hverju-að-nota-sýndartöflur" class="nav-link" data-scroll-target="#af-hverju-að-nota-sýndartöflur"><span class="header-section-number">18.1.1</span> Af hverju að nota sýndartöflur?</a></li>
+  <li><a href="#búa-til-sýndartöflu" id="toc-búa-til-sýndartöflu" class="nav-link" data-scroll-target="#búa-til-sýndartöflu"><span class="header-section-number">18.1.2</span> Búa til sýndartöflu</a></li>
+  <li><a href="#finna-sýndartöflur-og-skilgreiningar" id="toc-finna-sýndartöflur-og-skilgreiningar" class="nav-link" data-scroll-target="#finna-sýndartöflur-og-skilgreiningar"><span class="header-section-number">18.1.3</span> Finna sýndartöflur og skilgreiningar</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/views.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
@@ -411,11 +411,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sýndartafla---view" class="level1" data-number="19">
-<h1 data-number="19"><span class="header-section-number">19</span> Sýndartafla - <code>VIEW</code></h1>
+<section id="sýndartafla---view" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="sýndartafla---view"><span class="header-section-number">18.1</span> Sýndartafla - <code>VIEW</code></h2>
 <p>Sýndartafla (e. view) er vistuð SQL fyrirspurn sem virkar eins og tafla. Í stað þess að búa til nýja töflu með föstum gögnum, er fyrirspurnin keyrð í hvert skipti sem sýndartaflan er notuð, og hún endurspeglar því alltaf nýjustu gögnin í viðkomandi töflum.</p>
-<section id="af-hverju-að-nota-sýndartöflur" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="af-hverju-að-nota-sýndartöflur"><span class="header-section-number">19.1</span> Af hverju að nota sýndartöflur?</h2>
+<section id="af-hverju-að-nota-sýndartöflur" class="level3" data-number="18.1.1">
+<h3 data-number="18.1.1" class="anchored" data-anchor-id="af-hverju-að-nota-sýndartöflur"><span class="header-section-number">18.1.1</span> Af hverju að nota sýndartöflur?</h3>
 <p>Sýndartöflur eru mjög sniðugar í eftirfarandi tilvikum:</p>
 <ul>
 <li><p><strong>Einangrun flókinna fyrirspurna</strong>: Ef þú ert með flóknar tengdar töflur eða fyrirspurnir sem þú notar reglulega, getur þú vistað þær sem sýndartöflu. Þannig þarftu ekki að skrifa sömu fyrirspurnina aftur og aftur.</p></li>
@@ -429,8 +429,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ef sýndartaflan er sérstaklega þung og flókin en mikið notuð, þá er oft búinn til <code>stored  procedure</code> sem tekur gögnin sem kæmu í sýndartöflunni og setur það í raunverulega töflu. Yfirleitt eru slíkir ferlar keyrðir á föstum tímum (oft á miðnætti) til að uppfæra gögnin fyrir næsta dag. Notendum er því bent á að nota þá töflu frekar, en sýndartöfluna ef þau þurfa <em>nauðsynlega</em> að vinna með nýjustu gögnunum.</p>
 </blockquote>
 </section>
-<section id="búa-til-sýndartöflu" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="búa-til-sýndartöflu"><span class="header-section-number">19.2</span> Búa til sýndartöflu</h2>
+<section id="búa-til-sýndartöflu" class="level3" data-number="18.1.2">
+<h3 data-number="18.1.2" class="anchored" data-anchor-id="búa-til-sýndartöflu"><span class="header-section-number">18.1.2</span> Búa til sýndartöflu</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> got.v_character_books_pov(book_id, book_name, character_id, character_name) <span class="kw">AS</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> b.<span class="kw">id</span> <span class="kw">as</span> book_id, b.name <span class="kw">as</span> book_name,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    c.<span class="kw">id</span> <span class="kw">as</span> character_id, c.name <span class="kw">as</span> character_name</span>
@@ -441,8 +441,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hér er búin til sýndartafla á <code>got</code> skemanu sem heitir <code>v_character_books_pov</code>. Hún inniheldur auðkennisdálka og nafn bóka allra persónu sem eru sagðar í fyrstu persónu í bókum.</p>
 <p>Í raun dugar að tiltaka <code>CREATE VIEW got.v_character_books_pov AS</code> og sýndartaflan mun sjálfkrafa setja dálkaheitin og gagnatýpur út frá <code>SELECT</code> fyrirspurninni.</p>
 </section>
-<section id="finna-sýndartöflur-og-skilgreiningar" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="finna-sýndartöflur-og-skilgreiningar"><span class="header-section-number">19.3</span> Finna sýndartöflur og skilgreiningar</h2>
+<section id="finna-sýndartöflur-og-skilgreiningar" class="level3" data-number="18.1.3">
+<h3 data-number="18.1.3" class="anchored" data-anchor-id="finna-sýndartöflur-og-skilgreiningar"><span class="header-section-number">18.1.3</span> Finna sýndartöflur og skilgreiningar</h3>
 <p>Til að finna allar sýndartöflur í grunninum er hægt að gera fyrirspurn á <code>pg_views</code> töfluna.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> pg_views <span class="kw">WHERE</span> schemaname <span class="kw">IN</span> (<span class="st">'got'</span>,<span class="st">'atlas'</span>)</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Hér getiði þið skoða dálkinn <code>definition</code> til að sjá hvernig sýndartöflan er skilgreind.</p>

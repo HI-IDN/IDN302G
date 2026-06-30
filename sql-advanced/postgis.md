@@ -1,11 +1,11 @@
----
+﻿---
 title: "PostGIS"
 description: >-
   PostGIS er viðbót við PostgreSQL sem bætir við stuðningi fyrir landfræðileg og rúmfræðileg gögn, 
   sem gerir mögulegt að vinna með gagnapunkta, línur, margflötunga og fleiri form í gagnagrunnum.
 ---
 
-# PostGIS fyrir PostgreSQL
+## PostGIS fyrir PostgreSQL
 
 _PostGIS_ er viðbót við _PostgreSQL_ gagnagrunnskerfið sem bætir við stuðningi fyrir landfræðileg
 og rúmfræðileg gögn. Með _PostGIS_ er hægt að geyma, sækja og framkvæma flóknar greiningar á
@@ -17,14 +17,14 @@ Dálkar fyrir rúmfræðileg gögn eru oftast geymd sem `geometry` eða `geograp
 dálkaheiti eru því `geom` eða `geog` fyrir margflötunga. Eins eru `point`, `linestring`,
 `polygon` fyrir einfaldari rúmfræðileg gögn.
 
-## Game of Thrones gagnasettið
+### Game of Thrones gagnasettið
 
 Skemað `atlas` inniheldur tvær töflur:
 - `atlas.locations` sem inniheldur staðsetningar í dálknum `geog` sem er `POINT`.
 - `atlas.kingdoms` sem inniheldur landsvæði í dálknum `geom` sem er `MULTIPOLYGON`, sem gæti 
   verið samsettur marghyrningur.
 
-## Helstu föll í PostGIS
+### Helstu föll í PostGIS
 
 _PostGIS_ bætir við miklum fjölda af föllum sem eru gagnleg til að vinna með staðbundin gögn. Hér
 eru nokkur af helstu föllum sem PostGIS býður upp á:
@@ -127,7 +127,7 @@ eru nokkur af helstu föllum sem PostGIS býður upp á:
       misskilið og birt á röngum stað. Með því að samræma SRID með `ST_Transform` er tryggt að
       gögnin séu túlkuð og birt rétt, hvort sem það er fyrir punkt, línu eða margflötung.
 
-## Frekari upplýsingar
+### Frekari upplýsingar
 
 _PostGIS_ býður upp á fjölmörg önnur föll til að vinna með og greina landfræðileg gögn, sem gerir
 _PostgreSQL_ að öflugri lausn fyrir rúmfræðileg verkefni.

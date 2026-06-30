@@ -345,11 +345,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#sameining-niðurstaðna" id="toc-sameining-niðurstaðna" class="nav-link active" data-scroll-target="#sameining-niðurstaðna"><span class="header-section-number">17</span> Sameining niðurstaðna</a>
-  <ul class="collapse">
-  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="header-section-number">17.1</span> <code>UNION</code></a></li>
-  <li><a href="#union-all" id="toc-union-all" class="nav-link" data-scroll-target="#union-all"><span class="header-section-number">17.2</span> <code>UNION ALL</code></a></li>
-  <li><a href="#munur-á-union-og-union-all" id="toc-munur-á-union-og-union-all" class="nav-link" data-scroll-target="#munur-á-union-og-union-all"><span class="header-section-number">17.3</span> Munur á <code>UNION</code> og <code>UNION ALL</code>:</a></li>
+  <li><a href="#sameining-niðurstaðna" id="toc-sameining-niðurstaðna" class="nav-link active" data-scroll-target="#sameining-niðurstaðna"><span class="header-section-number">16.1</span> Sameining niðurstaðna</a>
+  <ul>
+  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="header-section-number">16.1.1</span> <code>UNION</code></a></li>
+  <li><a href="#union-all" id="toc-union-all" class="nav-link" data-scroll-target="#union-all"><span class="header-section-number">16.1.2</span> <code>UNION ALL</code></a></li>
+  <li><a href="#munur-á-union-og-union-all" id="toc-munur-á-union-og-union-all" class="nav-link" data-scroll-target="#munur-á-union-og-union-all"><span class="header-section-number">16.1.3</span> Munur á <code>UNION</code> og <code>UNION ALL</code>:</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-advanced/union.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
@@ -376,19 +376,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="sameining-niðurstaðna" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Sameining niðurstaðna</h1>
+<section id="sameining-niðurstaðna" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="sameining-niðurstaðna"><span class="header-section-number">16.1</span> Sameining niðurstaðna</h2>
 <p>Í SQL eru <code>UNION</code> og <code>UNION ALL</code> notaðar til að sameina niðurstöður úr tveimur eða fleiri fyrirspurnum í eina útkomu. Þær hjálpa til við að vinna með gögn úr mörgum fyrirspurnum á einfaldan hátt.</p>
-<section id="union" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="union"><span class="header-section-number">17.1</span> <code>UNION</code></h2>
+<section id="union" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="union"><span class="header-section-number">16.1.1</span> <code>UNION</code></h3>
 <p><code>UNION</code> sameinar niðurstöður tveggja eða fleiri fyrirspurna og skilar <strong>aðeins einstökum línum</strong>. Það fjarlægir sjálfkrafa afrit, þannig að hver lína birtist aðeins einu sinni, jafnvel þó hún komi fyrir í báðum fyrirspurnunum.</p>
 </section>
-<section id="union-all" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="union-all"><span class="header-section-number">17.2</span> <code>UNION ALL</code></h2>
+<section id="union-all" class="level3" data-number="16.1.2">
+<h3 data-number="16.1.2" class="anchored" data-anchor-id="union-all"><span class="header-section-number">16.1.2</span> <code>UNION ALL</code></h3>
 <p><code>UNION ALL</code> virkar á sama hátt og <code>UNION</code>, nema að það <strong>fjarlægir ekki afrit</strong>. Þetta þýðir að allar línur, þar með talið afrit, verða með í niðurstöðunum. Þetta getur verið gagnlegt þegar þú vilt sjá allar línur án þess að sameina eða samræma þær.</p>
 </section>
-<section id="munur-á-union-og-union-all" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="munur-á-union-og-union-all"><span class="header-section-number">17.3</span> Munur á <code>UNION</code> og <code>UNION ALL</code>:</h2>
+<section id="munur-á-union-og-union-all" class="level3" data-number="16.1.3">
+<h3 data-number="16.1.3" class="anchored" data-anchor-id="munur-á-union-og-union-all"><span class="header-section-number">16.1.3</span> Munur á <code>UNION</code> og <code>UNION ALL</code>:</h3>
 <ul>
 <li><strong><code>UNION</code></strong>: Skilar einstökum línum þar sem afrit eru fjarlægð.</li>
 <li><strong><code>UNION ALL</code></strong>: Skilar öllum línum, þar með talið afritum.</li>

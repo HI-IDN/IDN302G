@@ -380,12 +380,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#föll-í-postgresql" id="toc-föll-í-postgresql" class="nav-link active" data-scroll-target="#föll-í-postgresql"><span class="header-section-number">20</span> Föll í <em>PostgreSQL</em></a>
+  <li><a href="#föll-í-postgresql" id="toc-föll-í-postgresql" class="nav-link active" data-scroll-target="#föll-í-postgresql"><span class="header-section-number">19.1</span> Föll í <em>PostgreSQL</em></a>
+  <ul>
+  <li><a href="#sérsniðin-föll---create-function" id="toc-sérsniðin-föll---create-function" class="nav-link" data-scroll-target="#sérsniðin-föll---create-function"><span class="header-section-number">19.1.1</span> Sérsniðin föll - <code>CREATE FUNCTION</code></a>
   <ul class="collapse">
-  <li><a href="#sérsniðin-föll---create-function" id="toc-sérsniðin-föll---create-function" class="nav-link" data-scroll-target="#sérsniðin-föll---create-function"><span class="header-section-number">20.1</span> Sérsniðin föll - <code>CREATE FUNCTION</code></a>
-  <ul class="collapse">
-  <li><a href="#fall-sem-skilar-einu-gildi" id="toc-fall-sem-skilar-einu-gildi" class="nav-link" data-scroll-target="#fall-sem-skilar-einu-gildi"><span class="header-section-number">20.1.1</span> Fall sem skilar einu gildi</a></li>
-  <li><a href="#fall-sem-skilar-mörgum-gildum" id="toc-fall-sem-skilar-mörgum-gildum" class="nav-link" data-scroll-target="#fall-sem-skilar-mörgum-gildum"><span class="header-section-number">20.1.2</span> Fall sem skilar mörgum gildum</a></li>
+  <li><a href="#fall-sem-skilar-einu-gildi" id="toc-fall-sem-skilar-einu-gildi" class="nav-link" data-scroll-target="#fall-sem-skilar-einu-gildi"><span class="header-section-number">19.1.1.1</span> Fall sem skilar einu gildi</a></li>
+  <li><a href="#fall-sem-skilar-mörgum-gildum" id="toc-fall-sem-skilar-mörgum-gildum" class="nav-link" data-scroll-target="#fall-sem-skilar-mörgum-gildum"><span class="header-section-number">19.1.1.2</span> Fall sem skilar mörgum gildum</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -413,15 +413,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="föll-í-postgresql" class="level1" data-number="20">
-<h1 data-number="20"><span class="header-section-number">20</span> Föll í <em>PostgreSQL</em></h1>
+<section id="föll-í-postgresql" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="föll-í-postgresql"><span class="header-section-number">19.1</span> Föll í <em>PostgreSQL</em></h2>
 <p>Föll í <em>PostgreSQL</em> geta verið bæði innbyggð og sérsniðin, sem gerir gagnagrunnskerfið mjög sveigjanlegt og öflugt. Innbyggð föll eins og <code>SUM()</code>, <code>AVG()</code>, <code>COUNT()</code> og <code>NOW()</code> eru mikið notuð til útreikninga, samantekta og vinnslu gagna. Auk þess er hægt að búa til sérsniðin föll með <code>CREATE FUNCTION</code>, sem geta skilað einu gildi, eins og summu eða texta, eða mörgum gildum í formi töflu. Þetta gerir notendum kleift að einangra flókna lógík, endurnýta kóða og vinna betur með sérhæfðar aðgerðir sem ekki er hægt að ná fram með innbyggðum föllum.</p>
-<section id="sérsniðin-föll---create-function" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="sérsniðin-föll---create-function"><span class="header-section-number">20.1</span> Sérsniðin föll - <code>CREATE FUNCTION</code></h2>
+<section id="sérsniðin-föll---create-function" class="level3" data-number="19.1.1">
+<h3 data-number="19.1.1" class="anchored" data-anchor-id="sérsniðin-föll---create-function"><span class="header-section-number">19.1.1</span> Sérsniðin föll - <code>CREATE FUNCTION</code></h3>
 <p>Í <em>PostgreSQL</em> er hægt að búa til sérsniðin föll með <strong><code>CREATE FUNCTION</code></strong> skipuninni. Slík föll geta skilað einu gildi, mörgum gildum, eða jafnvel heilum töflum. Þetta er öflugt tæki til að endurnýta kóða og bæta við sérsniðna útreikninga eða flóknar aðgerðir í gagnagrunninum.</p>
 <p>Nánari útskýringar um hvernig sérsniðin föll virka má finna í <a href="https://www.postgresql.org/docs/current/sql-createfunction.html">PostgreSQL skjölunum</a>.</p>
-<section id="fall-sem-skilar-einu-gildi" class="level3" data-number="20.1.1">
-<h3 data-number="20.1.1" class="anchored" data-anchor-id="fall-sem-skilar-einu-gildi"><span class="header-section-number">20.1.1</span> Fall sem skilar einu gildi</h3>
+<section id="fall-sem-skilar-einu-gildi" class="level4" data-number="19.1.1.1">
+<h4 data-number="19.1.1.1" class="anchored" data-anchor-id="fall-sem-skilar-einu-gildi"><span class="header-section-number">19.1.1.1</span> Fall sem skilar einu gildi</h4>
 <p>Einfaldasta útgáfan af <code>CREATE FUNCTION</code> er fall sem tekur við einhverjum inntaksgildum og skilar <strong>einu</strong> útkomugildi.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">FUNCTION</span> add_numbers(a <span class="dt">integer</span>, b <span class="dt">integer</span>) RETURNS <span class="dt">integer</span> <span class="kw">AS</span> $$</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
@@ -436,8 +436,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- ------------</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">--          15</span></span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="fall-sem-skilar-mörgum-gildum" class="level3" data-number="20.1.2">
-<h3 data-number="20.1.2" class="anchored" data-anchor-id="fall-sem-skilar-mörgum-gildum"><span class="header-section-number">20.1.2</span> Fall sem skilar mörgum gildum</h3>
+<section id="fall-sem-skilar-mörgum-gildum" class="level4" data-number="19.1.1.2">
+<h4 data-number="19.1.1.2" class="anchored" data-anchor-id="fall-sem-skilar-mörgum-gildum"><span class="header-section-number">19.1.1.2</span> Fall sem skilar mörgum gildum</h4>
 <p>Föll í <em>PostgreSQL</em> geta líka skilað mörgum gildum, sem getur verið gagnlegt þegar við viljum fá fleiri upplýsingar úr einni fyrirspurn. Til að skilgreina fall sem skilar mörgum gildum þurfum við að nota <code>RETURNS TABLE</code> í stað <code>RETURNS</code> og skilgreina dálka og gerðir þeirra.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">FUNCTION</span> calculate_values(a <span class="dt">double</span> <span class="dt">precision</span>, b <span class="dt">double</span> <span class="dt">precision</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="kw">TABLE</span> (</span>

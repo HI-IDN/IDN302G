@@ -1,10 +1,10 @@
----
+﻿---
 title: "Flóknari fyrirspurnir (CTE)"
 description: >-
   CTE (Common Table Expression) er flóknari SQL aðferð til að vinna með gögn en undirfyrirspurnir.
 ---
 
-# Common Table Expression (CTE)
+## Common Table Expression (CTE)
 
 CTE er sérstök gerð af undirfyrirspurn sem er skilgreind fyrir ofan aðal fyrirspurnina og er
 hægt að vísa í hana í aðal fyrirspurninni. CTE er oftast notuð til að einfalda flóknar fyrirspurnir
@@ -58,7 +58,7 @@ House Flint of Widow's Watch  | {House Flint of the mountains,House Flint of Fli
 House Stark of Winterfell     | {House Greystark of Wolf's Den,House Karstark of Karhold}
 
 
-## Hvers vegna notum við CTE?
+### Hvers vegna notum við CTE?
 CTE eru notuð til að einfalda flóknar fyrirspurnir og gera kóðann læsilegri. Þegar fyrirspurnin
 er mjög flókin og þarf að vinna með gögn úr mörgum töflum, getur CTE hjálpað til við að skilja
 hvernig gögnin eru tengd saman.

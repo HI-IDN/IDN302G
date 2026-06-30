@@ -1,4 +1,4 @@
----
+﻿---
 title: "Slæm myndræn framsetning"
 description: >-
   Slæm notkun á gröfum, eins og 3D grafík og graf sem byrjar ekki á núlli, getur auðveldlega 
@@ -6,9 +6,9 @@ description: >-
   framsetningu gagna til að tryggja réttan skilning lesenda.
 ---
 
-# Slæm notkun á gröfum
+## Slæm notkun á gröfum
 
-## Kleinuhringjarit
+### Kleinuhringjarit
 
 Kleinuhringjarit ætti að forðast eins og heitan eldinn. Þau eru enn erfiðari fyrir augað að greina
 en skífurit, þar sem lesandinn þarf að bera saman arc-lengdir, sem er flóknara en að bera saman horn
@@ -21,7 +21,7 @@ verið ruglingsleg og lítið gefandi þegar flóknari samanburðir eru nauðsyn
 
 ---
 
-## 3D gröf
+### 3D gröf
 
 3D gröf ætti að forðast þegar kemur að gagnamiðlun. Þau bæta oft ekki við upplýsingarnar sem verið
 er að sýna og geta í raun ruglað lesendur með óþarfa sjónrænum áhrifum og flækjum. Sjónræn dýpt í
@@ -51,7 +51,7 @@ Sama graf, án óþarfa þrívíddar:
 
 ---
 
-## Tvöfaldur Y-ás
+### Tvöfaldur Y-ás
 
 Tvöfaldur Y-ás veldur oft ruglingi þar sem það getur tekið lesandann tíma að átta sig á hvaða Y-ás
 tilheyrir hvaða gögnum. Ef tvö gögn eru sýnd saman á sama grafi er mikilvægt að gera það skýrt og
@@ -92,9 +92,9 @@ samhengi við hvort annað.
 
 ---
 
-## Dæmi um villandi gröf
+### Dæmi um villandi gröf
 
-### Graf sem byrjar ekki á 0
+#### Graf sem byrjar ekki á 0
 
 Graf sem byrjar ekki á 0 getur verið mjög villandi. Hér er dæmi af Fox News þar sem línurit byrjar á
 34 í staðinn fyrir 0. Það veldur því að munur sem er aðeins 4% lítur út fyrir að vera mun stærri en
@@ -108,7 +108,7 @@ tölunum en er í raun.
 
 ![Skráning í Obamacare túlkað af Fox News](figures/fox_obamacara.png)
 
-### Villandi láréttur ás
+#### Villandi láréttur ás
 
 Hér er annað dæmi frá Fox News þar sem jafnlöng bil eru notuð fyrir mismunandi tímabil á lárétta
 ásnum. Þetta veldur því að síðasta ár og síðasta vika fá jafnmikið pláss á ásnum, sem gefur lesendum
@@ -130,7 +130,7 @@ gagna.
 
 ---
 
-## Samantekt
+### Samantekt
 
 Það er mikilvægt að vanda til verka þegar kemur að notkun á gröfum. Slæm notkun, eins og 3D-grafík
 eða graf sem hefur misvísandi ása (hvort sem það er lóðrétti eða lárétti ásinn), getur leitt til

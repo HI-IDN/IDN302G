@@ -1,11 +1,11 @@
----
+﻿---
 title: "PostgreSQL"
 description: >-
   Helstu munir við að fara úr SQLite yfir í PostgreSQL með áherslu á noktun ólíkra skema,
   flóknari gagnatýpur, regex, og fleiri möguleika.
 ---
 
-# Helstu munir á _PostgreSQL_ og _SQLite_
+## Helstu munir á _PostgreSQL_ og _SQLite_
 
 Þó _SQLite_ sé einfaldur og hagnýtur gagnagrunnur fyrir minni verkefni, býður _PostgreSQL_ upp á
 marga möguleika sem henta flóknari verkefnum með þörf á sérhæfðari gagnatýpum, fyrirspurnum, og
@@ -14,7 +14,7 @@ gagnavinnslu.
 Hér verða tekin nokkur gagnleg dæmi til að sýna helstu munina á _PostgreSQL_ og _SQLite_, en
 listinn er ekki tæmandi.
 
-## Skema - `SCHEMA`
+### Skema - `SCHEMA`
 
 Í _PostgreSQL_ er hægt að skilgreina skemu (_schema_) sem henta til að hópa saman tengdar töflur og 
 önnur gagnagrunnseiningar. Þetta gerir gagnagrunnskerfið meira skipulagt og hægt er að skilja
@@ -28,13 +28,13 @@ raun `SELECT * FROM got.books;` á bak við tjöldin. En áður en ég setti `se
 skemanu sem heitir `books`.
 
 
-### Búa til skema:
+#### Búa til skema:
 
 ```sql
 CREATE SCHEMA got;
 ```
 
-### Búa til töflu í skema:
+#### Búa til töflu í skema:
 
 ```sql
 CREATE TABLE got.books
@@ -56,7 +56,7 @@ með `set search_path` áður.
 
 
 
-## Fylki og fylkjaðgerðir - `ARRAY`
+### Fylki og fylkjaðgerðir - `ARRAY`
 
 Í _PostgreSQL_ er hægt að vinna með fylki og nota samantektaraðgerðir eins og `ARRAY_AGG` til að
 safna saman gögnum í eitt fylki. Þetta býður upp á mun meiri sveigjanleika í að vinna með tengdar
@@ -108,7 +108,7 @@ stafrófsröð.
 | The Vale        | {House Arryn of Gulltown, House Arryn of the Eyrie, House Baelish of the Fingers, House Belmore of Strongsong, House Borrell of Sweetsister}      |
 | The Westerlands | {House Algood, House Banefort of Banefort, House Bettley, House Brax of Hornvale, House Broom}                                                    |
 
-## Vinna með bil - `RANGE`
+### Vinna með bil - `RANGE`
 
 _PostgreSQL_ býður upp á `RANGE` gagnatýpur sem gera okkur kleift að vinna með bil (t.d. aldur,
 tímabil). Þetta gefur möguleika á að finna skörun milli bita af gögnum, eins og t.d. hvaða
@@ -154,7 +154,7 @@ ORDER BY released DESC;
 | The Rogue Prince               | 2014-06-17 |
 | The Princess and the Queen     | 2013-12-03 |
 
-## Flóknari regex fyrirspurnir
+### Flóknari regex fyrirspurnir
 
 Í _SQLite_ höfum við takmarkaða regex virkni með `LIKE`, en _PostgreSQL_ býður upp á fullkomna
 regex-aðgerðir með `regexp_match` og `regexp_matches`, sem gerir okkur kleift að nota flóknari
@@ -197,7 +197,7 @@ síðast, síðan raðað eftir nafni.
 Sjá [skjölun á PostgreSQL](https://www.postgresql.org/docs/current/functions-matching.html)
 fyrir frekari notkun á regex-aðgerðum.
 
-## Sérsniðnar gagnatýpur - `ENUM`
+### Sérsniðnar gagnatýpur - `ENUM`
 
 _PostgreSQL_ býður upp á möguleikann að skilgreina sérsniðnar gagnatýpur með `ENUM`, sem hentar
 vel til að takmarka gildin í dálkum. Til dæmis er hægt að búa til sérsniðna tegund fyrir
@@ -206,13 +206,13 @@ staðsetningarflokka (_location types_) í _Game of Thrones_ gagnagrunni.
 Sjá [skjölun á PostgreSQL](https://www.postgresql.org/docs/current/datatype-enum.html) fyrir
 frekari notkun á sérsniðnum gagnatýpum.
 
-### Búa til sérsniðna gagnatýpu:
+#### Búa til sérsniðna gagnatýpu:
 
 ```sql
 CREATE TYPE location_type AS ENUM ('Castle','City','Landmark','Region','Ruin','Town');
 ```
 
-### Nota sérsniðna gagnatýpu í töflu:
+#### Nota sérsniðna gagnatýpu í töflu:
 
 ```sql
 CREATE TABLE atlas.locations
@@ -227,7 +227,7 @@ Kosturinn hér er að gagnagrunnskerfið getur núna passað upp á að eingöng
 lögleg gildi í dálkinn `type`. Til dæmis mætti ekki setja inn gildið _Village_ eða _castle_ í
 dálkinn `type`.
 
-### Finna öll skilgreind gildi í sérsniðinni gagnatýpu:
+#### Finna öll skilgreind gildi í sérsniðinni gagnatýpu:
 
 ```sql
 SELECT enum_range(NULL::location_type)
@@ -243,7 +243,7 @@ fyrirspurn gefur okkur lista yfir öll gildi í sérsniðinni gagnatýpu.
 Þetta stemmir við  skilgreininguna hér að ofan. Ef við viljum fá hvert gildi í
 sérniðinnni gagnatýpu fyrir sig, þá getum við notað `unnest` fallið á undan.
 
-## Aðrar breytingar
+### Aðrar breytingar
 
 - **Meira gagnsæi í gagnatýpum**: _PostgreSQL_ býður upp á mun skýrari gagnatýpur, eins og `jsonb`,
   `tsvector`, og `inet`, sem gerir gagnagrunnsgerðina mun fjölbreyttari og öflugri en _SQLite_. Sjá

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Æfingar"
 description: >-
   Hér koma nokkrar æfingar úr SQL sem fara yfir helstu atriði sem fjallað er um í námskeiðinu.
@@ -7,7 +7,7 @@ description: >-
 Nema annað sé tekið fram, þá má gera ráð fyrir að allar æfingar séu unnar með _SQLite_
 gagnagrunninum [surgeries.db](https://github.com/HI-IDN/IDN302G/raw/main/data/surgeries.db).
 
-# Grunnatriði í SQL
+## Grunnatriði í SQL
 
 Prófið að finna SQL fyrirspurnina sem:
 
@@ -16,7 +16,7 @@ Prófið að finna SQL fyrirspurnina sem:
 * Sýna nöfn og biðtíma þeirra sem hafa beðið lengst
 * Sýna biðtíma sjúkling með fjórða lengsta biðtímann
 
-# Tenging við strjála stærðfræði
+## Tenging við strjála stærðfræði
 
 Æfið ykkur í að tengja saman SQL fyrirspurnir við fyrra námsefni í strjálli stærðfræði.
 
@@ -28,7 +28,7 @@ Prófið að finna SQL fyrirspurnina sem:
     * Eru yfir 50 ára.
 * Finnið aðgerð sem er með `m` sem þriðja staf og `r` sem sjötta staf:
 
-# Samsöfnum og hópun í SQL
+## Samsöfnum og hópun í SQL
 
 Æfið ykkur í að nota samsöfnum og hópun í SQL.
 
@@ -37,7 +37,7 @@ Prófið að finna SQL fyrirspurnina sem:
 - Fjölda einstaklinga eftir kyni.
 - Fjölda einstaklinga eftir aldri ef fleiri en einn á þeim aldri.
 
-# Innflutningur og útflutningur í _SQLite_
+## Innflutningur og útflutningur í _SQLite_
 
 Þessi æfing hjálpar ykkur að skilja hvernig á að flytja inn og út gögn í _SQLite_, og hvernig á að
 vinna með gögnin til að sía þau og skoða í öðrum forritum.

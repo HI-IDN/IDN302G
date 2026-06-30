@@ -380,14 +380,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#heilleiki-gagna-og-skorður" id="toc-heilleiki-gagna-og-skorður" class="nav-link active" data-scroll-target="#heilleiki-gagna-og-skorður"><span class="header-section-number">9</span> Heilleiki gagna og skorður</a></li>
-  <li><a href="#aðallykill---primary-key" id="toc-aðallykill---primary-key" class="nav-link" data-scroll-target="#aðallykill---primary-key"><span class="header-section-number">10</span> Aðallykill - <code>PRIMARY KEY</code></a></li>
-  <li><a href="#einstakar-skorður---unique" id="toc-einstakar-skorður---unique" class="nav-link" data-scroll-target="#einstakar-skorður---unique"><span class="header-section-number">11</span> Einstakar skorður - <code>UNIQUE</code></a></li>
-  <li><a href="#skilyrðisskorður---check" id="toc-skilyrðisskorður---check" class="nav-link" data-scroll-target="#skilyrðisskorður---check"><span class="header-section-number">12</span> Skilyrðisskorður - <code>CHECK</code></a></li>
-  <li><a href="#not-null-skorður" id="toc-not-null-skorður" class="nav-link" data-scroll-target="#not-null-skorður"><span class="header-section-number">13</span> <code>NOT NULL</code> skorður</a></li>
-  <li><a href="#að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til" id="toc-að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til" class="nav-link" data-scroll-target="#að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til"><span class="header-section-number">14</span> Að bæta við skorðum eftir að töflur hafa verið búnar til</a></li>
-  <li><a href="#eyða-skorðum-úr-töflu" id="toc-eyða-skorðum-úr-töflu" class="nav-link" data-scroll-target="#eyða-skorðum-úr-töflu"><span class="header-section-number">15</span> Eyða skorðum úr töflu</a></li>
-  <li><a href="#skoða-skorður-í-töflu" id="toc-skoða-skorður-í-töflu" class="nav-link" data-scroll-target="#skoða-skorður-í-töflu"><span class="header-section-number">16</span> Skoða skorður í töflu</a></li>
+  <li><a href="#heilleiki-gagna-og-skorður" id="toc-heilleiki-gagna-og-skorður" class="nav-link active" data-scroll-target="#heilleiki-gagna-og-skorður"><span class="header-section-number">8.1</span> Heilleiki gagna og skorður</a></li>
+  <li><a href="#aðallykill---primary-key" id="toc-aðallykill---primary-key" class="nav-link" data-scroll-target="#aðallykill---primary-key"><span class="header-section-number">8.2</span> Aðallykill - <code>PRIMARY KEY</code></a></li>
+  <li><a href="#einstakar-skorður---unique" id="toc-einstakar-skorður---unique" class="nav-link" data-scroll-target="#einstakar-skorður---unique"><span class="header-section-number">8.3</span> Einstakar skorður - <code>UNIQUE</code></a></li>
+  <li><a href="#skilyrðisskorður---check" id="toc-skilyrðisskorður---check" class="nav-link" data-scroll-target="#skilyrðisskorður---check"><span class="header-section-number">8.4</span> Skilyrðisskorður - <code>CHECK</code></a></li>
+  <li><a href="#not-null-skorður" id="toc-not-null-skorður" class="nav-link" data-scroll-target="#not-null-skorður"><span class="header-section-number">8.5</span> <code>NOT NULL</code> skorður</a></li>
+  <li><a href="#að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til" id="toc-að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til" class="nav-link" data-scroll-target="#að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til"><span class="header-section-number">8.6</span> Að bæta við skorðum eftir að töflur hafa verið búnar til</a></li>
+  <li><a href="#eyða-skorðum-úr-töflu" id="toc-eyða-skorðum-úr-töflu" class="nav-link" data-scroll-target="#eyða-skorðum-úr-töflu"><span class="header-section-number">8.7</span> Eyða skorðum úr töflu</a></li>
+  <li><a href="#skoða-skorður-í-töflu" id="toc-skoða-skorður-í-töflu" class="nav-link" data-scroll-target="#skoða-skorður-í-töflu"><span class="header-section-number">8.8</span> Skoða skorður í töflu</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-basics/data_integrity.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
     </div>
@@ -413,8 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="heilleiki-gagna-og-skorður" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Heilleiki gagna og skorður</h1>
+<section id="heilleiki-gagna-og-skorður" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="heilleiki-gagna-og-skorður"><span class="header-section-number">8.1</span> Heilleiki gagna og skorður</h2>
 <p>Mikilvægt er að gögn í gagnasafninu séu rétt til að koma í veg fyrir villur og gölluð gögn. Við notum skorður til að tryggja rétt inntak í töflur, eins og:</p>
 <ul>
 <li><strong>Aðallykill (<code>PRIMARY KEY</code>)</strong>: Einkvæmur lykill fyrir hverja línu.</li>
@@ -424,8 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>NOT NULL</strong>: Tryggir að dálkur hafi gildi.</li>
 </ul>
 </section>
-<section id="aðallykill---primary-key" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Aðallykill - <code>PRIMARY KEY</code></h1>
+<section id="aðallykill---primary-key" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="aðallykill---primary-key"><span class="header-section-number">8.2</span> Aðallykill - <code>PRIMARY KEY</code></h2>
 <p>Aðallykill er dálkur (eða safn dálka) sem ákvarðar línu einkvæmt. Dæmi um notkun aðallykils:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> starfsmannalisti</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -452,8 +452,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hér eru tveir ytri lyklar, <code>kennitala</code> og <code>namskeid_id</code>, sem tengjast við aðallykla í öðrum töflum. Hægt er að skilgreina ytri lykil í sömu línu og dálkagerðinn er skilgreind, eða neðst með <code>FOREIGN KEY</code> skipuninni. Hér þarf að passa að dálkagerðin á ytri lyklinum sé sú sama í báðum dálkum. Ekki er krafa að ytri lykillinn sé aðallykill, en skv. góðri venju er hann það yfirleitt.</p>
 <p>Hér má líka sjá dæmi um hvernig hægt er að búa til samsettan aðallykil með <code>PRIMARY KEY</code>.</p>
 </section>
-<section id="einstakar-skorður---unique" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Einstakar skorður - <code>UNIQUE</code></h1>
+<section id="einstakar-skorður---unique" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="einstakar-skorður---unique"><span class="header-section-number">8.3</span> Einstakar skorður - <code>UNIQUE</code></h2>
 <p>Einstakar skorður tryggja að öll gildi í ákveðnum dálki séu ólík. Dæmi:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> kennarar</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -466,8 +466,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Athugið</strong>: - <strong>Ytri lyklar</strong>: Oftast er æskilegt að gera ytri lykla á primary lykla, þar sem það auðveldar tengsl milli tafla. - <strong>Plássnýting</strong>: Til að halda gagnagrunninum eins „nettum“ og mögulegt er, er gott að reyna að hafa minnstu mögulegu dálkagerð. Til dæmis, að nota <code>SMALLINT</code> í stað <code>INTEGER</code> eða <code>CHAR(10)</code> í stað <code>CHAR(20)</code>, þar sem við vitum að kennitölur verða aldrei lengri en 10 stafir. - <strong>Einkvæm gildi</strong>: Það er ekki æskilegt að hafa <code>nafn</code> sem einstaka skorðu, því innan VON eru t.d. alnafnarnir Gunnar Stefánsson.</p>
 </blockquote>
 </section>
-<section id="skilyrðisskorður---check" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Skilyrðisskorður - <code>CHECK</code></h1>
+<section id="skilyrðisskorður---check" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="skilyrðisskorður---check"><span class="header-section-number">8.4</span> Skilyrðisskorður - <code>CHECK</code></h2>
 <p>Skilyrðisskorður leyfa aðeins gildi sem uppfylla tiltekin skilyrði. Dæmi:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> vörur</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -477,8 +477,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hér er verið að tryggja að verð vörunnar sé alltaf stærra en 0. Skilyrðisskorður geta verið margar og flóknar, og þau geta verið á einum eða mörgum dálkum.</p>
 <p>Þegar skilyrðisskorður eru settar á töflu, þá er ekki hægt að setja inn nýjar línur (eða uppfæra dálkinn) sem brjóta skilyrðið.</p>
 </section>
-<section id="not-null-skorður" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> <code>NOT NULL</code> skorður</h1>
+<section id="not-null-skorður" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="not-null-skorður"><span class="header-section-number">8.5</span> <code>NOT NULL</code> skorður</h2>
 <p>Þegar dálkur er skilgreindur með <code>NOT NULL</code>, þá tryggir það að dálkurinn hafi alltaf gildi. Dæmi:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> kennarar</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -488,8 +488,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Hér verður að bæta við kennitölu og nafni fyrir hvern kennara, annars er ekki hægt að setja línuna inn.</p>
 </section>
-<section id="að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Að bæta við skorðum eftir að töflur hafa verið búnar til</h1>
+<section id="að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="að-bæta-við-skorðum-eftir-að-töflur-hafa-verið-búnar-til"><span class="header-section-number">8.6</span> Að bæta við skorðum eftir að töflur hafa verið búnar til</h2>
 <p>Ef skorður eru ekki skilgreindar strax þegar töflur eru búnar til, þá er hægt að bæta þeim við eftir á í <em>PostgreSQL</em> með því að nota <code>ALTER TABLE</code> skipunina. Dæmi:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> kennarar</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> unique_kennitala <span class="kw">UNIQUE</span> (kennitala);</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
@@ -498,8 +498,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Athugið</strong>: Í <em>SQLite</em> er ekki hægt að bæta við skorðum eins og UNIQUE eftir að taflan hefur verið búin til. Heldur þarf að framkvæma eftirfarandi aðgerðir: 1. Búa til nýja töflu með <code>UNIQUE</code> skorðu. 2. Flytja gögnin úr gömlu töflunni yfir í þá nýju. 3. Eyða gömlu töflunni. 4. Endurnefna nýju töfluna í gamla nafnið.</p>
 </blockquote>
 </section>
-<section id="eyða-skorðum-úr-töflu" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Eyða skorðum úr töflu</h1>
+<section id="eyða-skorðum-úr-töflu" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="eyða-skorðum-úr-töflu"><span class="header-section-number">8.7</span> Eyða skorðum úr töflu</h2>
 <p>Til að eyða skorðum úr töflu er hægt að nota <code>ALTER TABLE</code> skipunina með <code>DROP CONSTRAINT</code>. Dæmi:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> kennarar</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">CONSTRAINT</span> kennarar_kennitala_unique;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
@@ -507,8 +507,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Athugið</strong>: Í <em>SQLite</em> er ekki hægt að eyða skorðum úr töflu með <code>ALTER TABLE</code>. Þá þarf að búa til nýja töflu án skorða, flytja gögnin yfir og eyða gömlu töflunni og endurnefna nýju töfluna í gamla nafnið.</p>
 </blockquote>
 </section>
-<section id="skoða-skorður-í-töflu" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Skoða skorður í töflu</h1>
+<section id="skoða-skorður-í-töflu" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="skoða-skorður-í-töflu"><span class="header-section-number">8.8</span> Skoða skorður í töflu</h2>
 <p>Til að skoða skorður í <em>SQLite</em> töflu er hægt að nota <code>PRAGMA</code> skipunina með <code>table_info</code>. Dæmi:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>PRAGMA table_info(kennarar);</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Í <em>PostgreSQL</em> er hægt að skoða skorður með <code>pg_constraint</code> töflunni. Dæmi:</p>

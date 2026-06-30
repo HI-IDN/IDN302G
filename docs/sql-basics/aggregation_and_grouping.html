@@ -380,17 +380,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Á þessari síðu</h2>
    
   <ul>
-  <li><a href="#samsöfnun-gagna" id="toc-samsöfnun-gagna" class="nav-link active" data-scroll-target="#samsöfnun-gagna"><span class="header-section-number">6</span> Samsöfnun gagna</a>
-  <ul class="collapse">
-  <li><a href="#samsöfnun-með-skilyrðum" id="toc-samsöfnun-með-skilyrðum" class="nav-link" data-scroll-target="#samsöfnun-með-skilyrðum"><span class="header-section-number">6.1</span> Samsöfnun með skilyrðum</a></li>
-  <li><a href="#stjórnun-marktækra-stafa" id="toc-stjórnun-marktækra-stafa" class="nav-link" data-scroll-target="#stjórnun-marktækra-stafa"><span class="header-section-number">6.2</span> Stjórnun marktækra stafa</a></li>
-  <li><a href="#teljari---count" id="toc-teljari---count" class="nav-link" data-scroll-target="#teljari---count"><span class="header-section-number">6.3</span> Teljari - <code>COUNT()</code></a></li>
+  <li><a href="#samsöfnun-gagna" id="toc-samsöfnun-gagna" class="nav-link active" data-scroll-target="#samsöfnun-gagna"><span class="header-section-number">5.1</span> Samsöfnun gagna</a>
+  <ul>
+  <li><a href="#samsöfnun-með-skilyrðum" id="toc-samsöfnun-með-skilyrðum" class="nav-link" data-scroll-target="#samsöfnun-með-skilyrðum"><span class="header-section-number">5.1.1</span> Samsöfnun með skilyrðum</a></li>
+  <li><a href="#stjórnun-marktækra-stafa" id="toc-stjórnun-marktækra-stafa" class="nav-link" data-scroll-target="#stjórnun-marktækra-stafa"><span class="header-section-number">5.1.2</span> Stjórnun marktækra stafa</a></li>
+  <li><a href="#teljari---count" id="toc-teljari---count" class="nav-link" data-scroll-target="#teljari---count"><span class="header-section-number">5.1.3</span> Teljari - <code>COUNT()</code></a></li>
   </ul></li>
-  <li><a href="#hópun-gagna---group-by" id="toc-hópun-gagna---group-by" class="nav-link" data-scroll-target="#hópun-gagna---group-by"><span class="header-section-number">7</span> Hópun gagna - <code>GROUP BY</code></a>
-  <ul class="collapse">
-  <li><a href="#reglur-um-hópun" id="toc-reglur-um-hópun" class="nav-link" data-scroll-target="#reglur-um-hópun"><span class="header-section-number">7.1</span> Reglur um hópun</a></li>
-  <li><a href="#röðun" id="toc-röðun" class="nav-link" data-scroll-target="#röðun"><span class="header-section-number">7.2</span> Röðun</a></li>
-  <li><a href="#velja-úr-hópum" id="toc-velja-úr-hópum" class="nav-link" data-scroll-target="#velja-úr-hópum"><span class="header-section-number">7.3</span> Velja úr hópum</a></li>
+  <li><a href="#hópun-gagna---group-by" id="toc-hópun-gagna---group-by" class="nav-link" data-scroll-target="#hópun-gagna---group-by"><span class="header-section-number">5.2</span> Hópun gagna - <code>GROUP BY</code></a>
+  <ul>
+  <li><a href="#reglur-um-hópun" id="toc-reglur-um-hópun" class="nav-link" data-scroll-target="#reglur-um-hópun"><span class="header-section-number">5.2.1</span> Reglur um hópun</a></li>
+  <li><a href="#röðun" id="toc-röðun" class="nav-link" data-scroll-target="#röðun"><span class="header-section-number">5.2.2</span> Röðun</a></li>
+  <li><a href="#velja-úr-hópum" id="toc-velja-úr-hópum" class="nav-link" data-scroll-target="#velja-úr-hópum"><span class="header-section-number">5.2.3</span> Velja úr hópum</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/HI-IDN/IDN302G/edit/main/sql-basics/aggregation_and_grouping.md" class="toc-action"><i class="bi bi-github"></i>Breyta þessari síðu</a></li><li><a href="https://github.com/HI-IDN/IDN302G/issues/new" class="toc-action"><i class="bi empty"></i>Tilkynna villu eða athugasemd</a></li></ul></div></nav>
@@ -417,8 +417,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="samsöfnun-gagna" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Samsöfnun gagna</h1>
+<section id="samsöfnun-gagna" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="samsöfnun-gagna"><span class="header-section-number">5.1</span> Samsöfnun gagna</h2>
 <ul>
 <li>Oft viljum við finna heildarupplýsingar um gögn til að mynda fyrir hópa.</li>
 <li>SQLite býður meðal annars upp á þessar aðgerðir:
@@ -436,24 +436,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Til að finna hágildi (<code>MAX</code>) og lággildi (<code>MIN</code>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(Patient_DaysOnWaitingList)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Patient_list;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="samsöfnun-með-skilyrðum" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="samsöfnun-með-skilyrðum"><span class="header-section-number">6.1</span> Samsöfnun með skilyrðum</h2>
+<section id="samsöfnun-með-skilyrðum" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="samsöfnun-með-skilyrðum"><span class="header-section-number">5.1.1</span> Samsöfnun með skilyrðum</h3>
 <p>Einnig er hægt að nota þetta með skilyrðum. Til dæmis, ef við viljum reikna út meðalbiðtíma þeirra sem hafa beðið eftir aðgerð og eru undir 50 ára:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">AVG</span>(Patient_DaysOnWaitingList) <span class="kw">AS</span> Avg_Waiting_Time</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Patient_list</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Patient_Age <span class="op">&lt;</span> <span class="dv">50</span>;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 <p>þar sem <code>AS</code> er notað til að búa til nafn fyrir niðurstöðuna.</p>
 </section>
-<section id="stjórnun-marktækra-stafa" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="stjórnun-marktækra-stafa"><span class="header-section-number">6.2</span> Stjórnun marktækra stafa</h2>
+<section id="stjórnun-marktækra-stafa" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="stjórnun-marktækra-stafa"><span class="header-section-number">5.1.2</span> Stjórnun marktækra stafa</h3>
 <p>Til að stýra marktækum stöfum er hægt að nota fallið <code>ROUND()</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">ROUND</span>(<span class="fu">AVG</span>(Patient_DaysOnWaitingList), <span class="dv">2</span>) <span class="kw">AS</span> Meðaltal</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Patient_list</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Patient_Age <span class="op">&lt;</span> <span class="dv">50</span>;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Gefur: 36.55 í stað 36.5454545454545.</p>
 </section>
-<section id="teljari---count" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="teljari---count"><span class="header-section-number">6.3</span> Teljari - <code>COUNT()</code></h2>
+<section id="teljari---count" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="teljari---count"><span class="header-section-number">5.1.3</span> Teljari - <code>COUNT()</code></h3>
 <p>Oft viljum við telja línur í töflum. Notum til þess fallið <code>COUNT()</code>:</p>
 <ul>
 <li><p>Til að telja allar línur í töflu:</p>
@@ -465,8 +465,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="hópun-gagna---group-by" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Hópun gagna - <code>GROUP BY</code></h1>
+<section id="hópun-gagna---group-by" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="hópun-gagna---group-by"><span class="header-section-number">5.2</span> Hópun gagna - <code>GROUP BY</code></h2>
 <p>Til að finna meðaltal eftir hópi (t.d. aldur) eru tvær leiðir færar:</p>
 <ol type="1">
 <li><p>Gera nokkrar fyrirspurnir: <code>sql  SELECT AVG(Patient_DaysOnWaitingList) AS Avg_Waiting_Time  FROM Patient_list  WHERE Patient_Sex = 'M';  SELECT AVG(Patient_DaysOnWaitingList) AS Avg_Waiting_Time  FROM Patient_list  WHERE Patient_Sex = 'F';</code></p></li>
@@ -475,8 +475,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Athugið:</strong> Ef við veljum dálk sem er ekki í <code>GROUP BY</code> klausu, þá leyfa sum gagnagrunnsmál ekki að keyra skipunina nema það sé með samsöfnunarfalli. Þetta er ekki tilfellið í <em>SQLite</em>. Hér væri t.d. hægt að velja <code>Patient_Age</code> beint, en þá fáum við bara <em>eitthvert</em> gildi fyrir þann hóp skilgreindan með <code>GROUP BY</code>.</p>
 </blockquote></li>
 </ol>
-<section id="reglur-um-hópun" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="reglur-um-hópun"><span class="header-section-number">7.1</span> Reglur um hópun</h2>
+<section id="reglur-um-hópun" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="reglur-um-hópun"><span class="header-section-number">5.2.1</span> Reglur um hópun</h3>
 <p>Almennt má nota fleiri en einn dálk í <code>GROUP BY</code>. Í þeim tilfellum er hópað á alla dálkana sem eru útlistaðir:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> col1, col2, <span class="fu">AVG</span>(col3)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> tbl</span>
@@ -486,8 +486,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Patient_list</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> Patient_Sex, Patient_Age;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="röðun" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="röðun"><span class="header-section-number">7.2</span> Röðun</h2>
+<section id="röðun" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="röðun"><span class="header-section-number">5.2.2</span> Röðun</h3>
 <p>Yfirleitt er úttakinu raðað eftir hópum. Til að vera viss um ákveðna röðun úttaks, notum við <code>ORDER BY</code>. Hægt er að raða eftir nafni dálks eða númeri dálks:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Patient_Sex, Patient_Age, <span class="fu">MIN</span>(Patient_DaysOnWaitinglist) <span class="kw">AS</span> Min_Waiting_Time</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Patient_list</span>
@@ -495,8 +495,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dv">3</span> <span class="kw">DESC</span>, Patient_Sex;</span></code></pre></div><button title="Afrita á klemmuspjald" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Að velja eftir númeri dálks er sérstaklega hentugt þegar við viljum raða eftir útreikningum.</p>
 </section>
-<section id="velja-úr-hópum" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="velja-úr-hópum"><span class="header-section-number">7.3</span> Velja úr hópum</h2>
+<section id="velja-úr-hópum" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="velja-úr-hópum"><span class="header-section-number">5.2.3</span> Velja úr hópum</h3>
 <p>Til að velja úr hópum, notum við <code>HAVING</code> eftir <code>GROUP BY</code> klausu. Þetta er svipað og <code>WHERE</code> en er framkvæmt eftir hópun:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Patient_Age, <span class="fu">AVG</span>(Patient_DaysOnWaitingList) <span class="kw">AS</span> Avg_Waiting_Time</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Patient_list</span>

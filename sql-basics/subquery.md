@@ -1,10 +1,10 @@
----
+﻿---
 title: "Undirfyrirspurnir"
 description: >-
   Undirfyrirspurnir eru SQL fyrirspurnir sem keyrðar eru innan annars SQL fyrirspurnar.
 ---
 
-# Undirfyrirspurnir
+## Undirfyrirspurnir
 
 Undirfyrirspurnir (e. subqueries) eru SQL fyrirspurnir sem keyrðar eru innan annarrar fyrirspurnar.
 Þær eru oft notaðar til að einangra gögn eða framkvæma flóknar aðgerðir sem ekki er hægt að
@@ -12,7 +12,7 @@ framkvæma í einni einfaldri fyrirspurn. Undirfyrirspurnir geta verið keyrðar
 jafnvel `SELECT` hlutum stærri fyrirspurna, og bjóða þannig upp á aukna sveigjanleika við
 gagnavinnslu.
 
-## Undirfyrirspurn í `WHERE` skilyrði
+### Undirfyrirspurn í `WHERE` skilyrði
 
 ```sql 
 SELECT name, population
@@ -32,7 +32,7 @@ FROM cities
 WHERE population IN (SELECT population FROM cities WHERE country = 'Iceland');
 ```
 
-## Undirfyrirspurn í `SELECT` hluta fyrirspurnar
+### Undirfyrirspurn í `SELECT` hluta fyrirspurnar
 
 Undirfyrirspurn í `SELECT` hluta fyrirspurnar þarf að skila einu gildi sem er birt í hverri línu í
 niðurstöðutöflunni.
@@ -42,7 +42,7 @@ SELECT name, population, (SELECT AVG(population) FROM cities) AS avg_population
 FROM cities;
 ```
 
-## Undirfyrirspurn í `FROM` hluta fyrirspurnar
+### Undirfyrirspurn í `FROM` hluta fyrirspurnar
 
 Við getum líka verið með undirfyrirspurnir í `FROM` klausum:
 

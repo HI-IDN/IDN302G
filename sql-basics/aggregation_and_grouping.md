@@ -1,4 +1,4 @@
----
+﻿---
 title: "Samsöfnun og hópun"
 description: >-
   Samsöfnun og hópun gagna með SQL, þar sem farið er yfir notkun á föllum eins og 
@@ -6,7 +6,7 @@ description: >-
   án skilyrða.
 ---
 
-# Samsöfnun gagna
+## Samsöfnun gagna
 
 - Oft viljum við finna heildarupplýsingar um gögn til að mynda fyrir hópa.
 - SQLite býður meðal annars upp á þessar aðgerðir:
@@ -30,7 +30,7 @@ SELECT MAX(Patient_DaysOnWaitingList)
 FROM Patient_list;
 ```
 
-## Samsöfnun með skilyrðum
+### Samsöfnun með skilyrðum
 
 Einnig er hægt að nota þetta með skilyrðum. Til dæmis, ef við viljum reikna út meðalbiðtíma þeirra
 sem hafa beðið eftir aðgerð og eru undir 50 ára:
@@ -43,7 +43,7 @@ WHERE Patient_Age < 50;
 
 þar sem `AS` er notað til að búa til nafn fyrir niðurstöðuna.
 
-## Stjórnun marktækra stafa
+### Stjórnun marktækra stafa
 
 Til að stýra marktækum stöfum er hægt að nota fallið `ROUND()`:
 
@@ -55,7 +55,7 @@ WHERE Patient_Age < 50;
 
 Gefur: 36.55 í stað 36.5454545454545.
 
-## Teljari - `COUNT()`
+### Teljari - `COUNT()`
 
 Oft viljum við telja línur í töflum. Notum til þess fallið `COUNT()`:
 
@@ -72,7 +72,7 @@ Oft viljum við telja línur í töflum. Notum til þess fallið `COUNT()`:
   SELECT COUNT(DISTINCT Patient_Age) FROM Patient_list;
   ```
 
-# Hópun gagna - `GROUP BY`
+## Hópun gagna - `GROUP BY`
 
 Til að finna meðaltal eftir hópi (t.d. aldur) eru tvær leiðir færar:
 
@@ -98,7 +98,7 @@ Til að finna meðaltal eftir hópi (t.d. aldur) eru tvær leiðir færar:
    > tilfellið í _SQLite_. Hér væri t.d. hægt að velja `Patient_Age` beint, en þá fáum við bara 
    > *eitthvert* gildi fyrir þann hóp skilgreindan með `GROUP BY`.
 
-## Reglur um hópun
+### Reglur um hópun
 
 Almennt má nota fleiri en einn dálk í `GROUP BY`. Í þeim tilfellum er hópað á alla dálkana sem eru
 útlistaðir:
@@ -118,7 +118,7 @@ FROM Patient_list
 GROUP BY Patient_Sex, Patient_Age;
 ```
 
-## Röðun
+### Röðun
 
 Yfirleitt er úttakinu raðað eftir hópum. Til að vera viss um ákveðna röðun úttaks, notum
 við `ORDER BY`. Hægt er að raða eftir nafni dálks eða númeri dálks:
@@ -132,7 +132,7 @@ ORDER BY 3 DESC, Patient_Sex;
 
 Að velja eftir númeri dálks er sérstaklega hentugt þegar við viljum raða eftir útreikningum.
 
-## Velja úr hópum
+### Velja úr hópum
 
 Til að velja úr hópum, notum við `HAVING` eftir `GROUP BY` klausu. Þetta er svipað og `WHERE` en
 er framkvæmt eftir hópun:

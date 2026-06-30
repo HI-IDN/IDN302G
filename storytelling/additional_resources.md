@@ -5,13 +5,13 @@ description: >-
   og þeim sem vilja dýpka þekkingu sína á sérhæfðari þáttum.
 ---
 
-## Ítarefni um myndræna framsetningu
+### Ítarefni um myndræna framsetningu
 
 Til að bæta hæfni í myndrænni framsetningu gagna og dýpka skilning á áhrifaríkum aðferðum, eru hér
 nokkur gagnleg lesefni. Þessi bókmenntalisti hjálpar til við að læra að segja sögur með gögnum,
 velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi tólum.
 
-## [R for Data Science](https://r4ds.hadley.nz/)
+### [R for Data Science](https://r4ds.hadley.nz/)
 
 - **Höfundar:** Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund
 - **Útgefandi:** O'Reilly Media
@@ -26,7 +26,7 @@ velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi t�
 - Bókin er gefin út sem opinn bók og er **aðgengileg frítt** á netinu á
   [r4ds.hadley.nz](https://r4ds.hadley.nz/).
 
-## [Storytelling with Data](https://www.wiley.com/en-us/Storytelling+with+Data:+A+Data+Visualization+Guide+for+Business+Professionals-p-9781119002253)
+### [Storytelling with Data](https://www.wiley.com/en-us/Storytelling+with+Data:+A+Data+Visualization+Guide+for+Business+Professionals-p-9781119002253)
 
 - **Höfundur:** Cole Nussbaumer Knaflic
 - **Útgáfa:** 2. útgáfa
@@ -39,7 +39,7 @@ velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi t�
 - Kennir mikilvægi þess að hafa gögn skýr, einföld og áhrifamikil til að hámarka miðlun upplýsinga.
 - Gagnleg handbók fyrir alla sem þurfa að miðla flóknum gögnum á skiljanlegan hátt.
 
-## [Storytelling with Data: Let’s Practice!](https://www.wiley.com/en-us/Storytelling+with+Data%3A+Let%27s+Practice!-p-9781119621492)
+### [Storytelling with Data: Let’s Practice!](https://www.wiley.com/en-us/Storytelling+with+Data%3A+Let%27s+Practice!-p-9781119621492)
 
 - **Höfundur:** Cole Nussbaumer Knaflic
 - **Útgefandi:** Wiley
@@ -51,7 +51,7 @@ velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi t�
 - Inniheldur praktískar æfingar til að hjálpa nemendum að þjálfa hæfni sína í myndrænni framsögn.
 - Hentar vel fyrir þá sem vilja læra með því að gera og þróa eigin færni.
 
-## [ColorWise](https://www.oreilly.com/library/view/colorwise/9781492097839/)
+### [ColorWise](https://www.oreilly.com/library/view/colorwise/9781492097839/)
 
 - **Höfundur:** Kate Strachnyi
 - **Útgefandi:** O'Reilly Media
@@ -63,7 +63,7 @@ velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi t�
 - Fyrir byrjendur og lengra komna sem vilja auka skilning sinn á áhrifaríkri notkun lita.
 - Hentar vel þeim sem vinna með myndræna framsetningu gagna í hvaða samhengi sem er.
 
-## [Dear Data](https://www.dear-data.com/theproject)
+### [Dear Data](https://www.dear-data.com/theproject)
 
 - **Höfundar:** Giorgia Lupi og Stefanie Posavec
 - **Útgefandi:** Princeton Architectural Press
@@ -76,7 +76,7 @@ velja liti markvisst, og búa til áhrifaríkar gagnavísanir með mismunandi t�
 - Hentar bæði fyrir þá sem vilja skapa gagnafrásögn með handteiknaðri nálgun og þá sem leita eftir
   nýjum hugmyndum um gagnamyndsköpun.
 
-## [Data Sketches](https://www.datasketch.es/)
+### [Data Sketches](https://www.datasketch.es/)
 
 - **Höfundar:** Nadieh Bremer og Shirley Wu
 - **Útgefandi:** A K Peters/CRC Press

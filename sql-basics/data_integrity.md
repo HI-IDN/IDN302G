@@ -1,4 +1,4 @@
----
+﻿---
 title: "Heilleiki gagna og skorður"
 description: >-
   Heilleiki gagna er undirstöðuatriði í SQL og fyrir vikið eru settar skorður til að 
@@ -6,7 +6,7 @@ description: >-
   skilyrðisskorður eru notuð.
 ---
 
-# Heilleiki gagna og skorður
+## Heilleiki gagna og skorður
 
 Mikilvægt er að gögn í gagnasafninu séu rétt til að koma í veg fyrir villur og gölluð gögn. 
 Við notum skorður til að tryggja rétt inntak í töflur, eins og:
@@ -17,7 +17,7 @@ Við notum skorður til að tryggja rétt inntak í töflur, eins og:
 - **Skilyrðisskorður (`CHECK`)**: Tryggir að skilyrði sé uppfyllt.
 - **NOT NULL**: Tryggir að dálkur hafi gildi.
 
-# Aðallykill - `PRIMARY KEY`
+## Aðallykill - `PRIMARY KEY`
 
 Aðallykill er dálkur (eða safn dálka) sem ákvarðar línu einkvæmt. Dæmi um notkun aðallykils:
 
@@ -62,7 +62,7 @@ yfirleitt.
 Hér má líka sjá dæmi um hvernig hægt er að búa til samsettan aðallykil með `PRIMARY KEY`.
 
 
-# Einstakar skorður - `UNIQUE`
+## Einstakar skorður - `UNIQUE`
 
 Einstakar skorður tryggja að öll gildi í ákveðnum dálki séu ólík. Dæmi:
 
@@ -87,7 +87,7 @@ sjálfvirkt upphækkaður.
 > - **Einkvæm gildi**: Það er ekki æskilegt að hafa `nafn` sem einstaka skorðu, því innan VON 
 >    eru t.d. alnafnarnir Gunnar Stefánsson.
 
-# Skilyrðisskorður - `CHECK`
+## Skilyrðisskorður - `CHECK`
 Skilyrðisskorður leyfa aðeins gildi sem uppfylla tiltekin skilyrði. Dæmi:
 
 ```sql
@@ -103,7 +103,7 @@ margar og flóknar, og þau geta verið á einum eða mörgum dálkum.
 Þegar skilyrðisskorður eru settar á töflu, þá er ekki hægt að setja inn nýjar línur (eða uppfæra 
 dálkinn) sem brjóta skilyrðið. 
 
-# `NOT NULL` skorður
+## `NOT NULL` skorður
 Þegar dálkur er skilgreindur með `NOT NULL`, þá tryggir það að dálkurinn hafi alltaf gildi. Dæmi:
 
 ```sql
@@ -117,7 +117,7 @@ CREATE TABLE kennarar
 Hér verður að bæta við kennitölu og nafni fyrir hvern kennara, annars er ekki hægt að setja 
 línuna inn.
 
-# Að bæta við skorðum eftir að töflur hafa verið búnar til
+## Að bæta við skorðum eftir að töflur hafa verið búnar til
 
 Ef skorður eru ekki skilgreindar strax þegar töflur eru búnar til, þá er hægt að bæta þeim við 
 eftir á í _PostgreSQL_ með því að nota `ALTER TABLE` skipunina. Dæmi:
@@ -137,7 +137,7 @@ búin til með `CREATE TABLE` þá er nafnið á skorðunni sjálfgefið.
 > 3. Eyða gömlu töflunni.
 > 4. Endurnefna nýju töfluna í gamla nafnið.
 
-# Eyða skorðum úr töflu
+## Eyða skorðum úr töflu
 Til að eyða skorðum úr töflu er hægt að nota `ALTER TABLE` skipunina með `DROP CONSTRAINT`. Dæmi:
 
 ```sql
@@ -149,7 +149,7 @@ DROP CONSTRAINT kennarar_kennitala_unique;
 > búa til nýja töflu án skorða, flytja gögnin yfir og eyða gömlu töflunni og endurnefna nýju 
 > töfluna í gamla nafnið.
 
-# Skoða skorður í töflu
+## Skoða skorður í töflu
 Til að skoða skorður í _SQLite_  töflu er hægt að nota `PRAGMA` skipunina með `table_info`. Dæmi:
 
 ```sql

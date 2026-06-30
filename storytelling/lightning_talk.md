@@ -1,31 +1,31 @@
----
+﻿---
 title: "Hraðkynning"
 description: >-
   Hraðkynning er stutt, markviss frásögn sem kynnir meginatriði verkefnis á áhrifaríkan hátt með 
   skýrri setningu sem útskýrir hvað þú ert að gera, hvað er í húfi, og af hverju það skiptir máli.
 ---
 
-# Hraðkynningar
+## Hraðkynningar
 
 Hraðkynningar eða „lightning talks“ eru stuttar, markvissar kynningar sem eru hannaðar til að miðla
 meginatriðum verkefnis á áhrifaríkan hátt. Tímalengdin er oft mjög takmörkuð, sem þýðir að
 nauðsynlegt er að einbeita sér að kjarna málsins og segja það sem skiptir mestu máli á skýran hátt.
 Hér eru algengar tegundir af hraðkynningum:
 
-## Hefðbundin hraðkynning
+### Hefðbundin hraðkynning
 
 - **Tímalengd**: 5-10 mínútur
 - **Glærur**: Valfrjálst, og kynningarmaður stjórnar þeim sjálfur
 - **Markmið**: Koma flóknu efni á framfæri á sem stystum tíma, án þess að missa kjarna málsins.
 
-## PechaKucha
+### PechaKucha
 
 - **Tímalengd**: Nákvæmlega 6 mínútur og 40 sekúndur
 - **Glærur**: 20 glærur sem fara sjálfkrafa áfram á 20 sekúndna fresti
 - **Markmið**: Tala minna, sýna meira. Þetta format leggur áherslu á myndræna framsetningu og
   skýrleika.
 
-### Reykjavík DataBeers
+#### Reykjavík DataBeers
 
 [Reykjavík DataBeers](https://databeers.is/), haldið fjórum sinnum á ári, notar PechaKucha-stíl.
 Kynningarnar snúast um gagnamál á Íslandi, og hver kynning notar ca 20 glærur.
@@ -37,19 +37,19 @@ kvöldi. Opið öllum og frítt inn. Best að fylgjast með næstu viðburðum �
 > hlýða á erindin. Þetta er gott tækifæri til að kynnast fólki í atvinnulífinu og hvernig 
 > fyrirtæki eru að vinna í gagnadrifnum ákvörðunartökum.
 
-## Ignite
+### Ignite
 
 - **Tímalengd**: Nákvæmlega 5 mínútur
 - **Glærur**: 20 glærur sem fara sjálfkrafa áfram á 15 sekúndna fresti
 - **Markmið**: Stutt og hnitmiðuð kynning þar sem hver glæra fær mjög stuttan tíma.
 
-## 3-mínútna saga
+### 3-mínútna saga
 
 „3-mínútna saga“ er algeng aðferð í hraðkynningum þar sem markmiðið er að útskýra meginatriði
 málsins á aðeins þremur mínútum. Þetta þýðir að þú þarft að vera sérstaklega skýr með því hvað
 þú vilt koma á framfæri.
 
-### Hvernig nýtist 3-mínútna saga?
+#### Hvernig nýtist 3-mínútna saga?
 
 - **Einbeiting á kjarna málsins**: Hún hjálpar þér að komast beint að kjarna málsins án þess að
   flækja umræðuna með óþarfa upplýsingum.
@@ -58,7 +58,7 @@ málsins á aðeins þremur mínútum. Þetta þýðir að þú þarft að vera 
 - **Einblína á hvað er mikilvægt**: Hraðkynning er sérstaklega gagnleg þegar þú þarft að útskýra
   hvað þú ert að vinna að á stuttum tíma og með áhrifaríkum hætti.
 
-## Lyfturæða
+### Lyfturæða
 
 Lyfturæða eða „elevator pitch“ er stutt, áhrifarík kynning sem tekur oft innan við 30 sekúndur.
 Hún er hönnuð til að ná athygli hlustandans og koma skilaboðum hratt og örugglega á framfæri.
@@ -78,7 +78,7 @@ Dæmi um lyfturæðu væri til dæmis:
 > herferðir gegn Lannisterunum og gert hraðari ákvarðanir um hvaða bandamenn að semja við. Með
 > þessu tryggjum við sigur hennar á _the Iron throne_.“
 
-## Stóra myndin
+### Stóra myndin
 
 Það er mikilvægt að hugsa strax um „stóru myndina“ í hverri hraðkynningu. Þetta er ein lykilsetning
 sem sameinar allar mikilvægustu upplýsingar:
