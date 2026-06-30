@@ -257,8 +257,9 @@ pre.sourceCode, div.sourceCode {
 
   &.callout-tip {
     border-left-color: $hi-teal !important;
-    background: rgba($hi-teal, 0.07);
-    .callout-title { color: $hi-teal-dark; }
+    background: rgba($hi-teal, 0.05);
+    opacity: 0.7;
+    .callout-title { color: $hi-teal-dark; font-style: italic; }
   }
 
   &.callout-warning {

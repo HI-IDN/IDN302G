@@ -1,5 +1,18 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  // Remove chapter-number span (and its trailing &nbsp;) from the index sidebar link
+  document.querySelectorAll(
+    'a[href$="index.html"].sidebar-item-text, a[href$="../index.html"].sidebar-item-text'
+  ).forEach(function (link) {
+    var num = link.querySelector('.chapter-number');
+    if (!num) return;
+    // Remove the &nbsp; text node that follows the span
+    var next = num.nextSibling;
+    if (next && next.nodeType === 3) next.remove();
+    num.remove();
+  });
+
+
   // Find active sidebar item
   var activeLink = document.querySelector('.sidebar-item.active > .sidebar-item-container > a, .sidebar-item.active > a');
   if (!activeLink) return;

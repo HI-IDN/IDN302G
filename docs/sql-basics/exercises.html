@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-c06e35fc81891747fc8700d637ad03b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-734bc43e1d76e5c28147394f6b375b0d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7c00b80e92f14b924ae0ac56f81c9755.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -427,6 +427,19 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  // Remove chapter-number span (and its trailing &nbsp;) from the index sidebar link
+  document.querySelectorAll(
+    'a[href$="index.html"].sidebar-item-text, a[href$="../index.html"].sidebar-item-text'
+  ).forEach(function (link) {
+    var num = link.querySelector('.chapter-number');
+    if (!num) return;
+    // Remove the &nbsp; text node that follows the span
+    var next = num.nextSibling;
+    if (next && next.nodeType === 3) next.remove();
+    num.remove();
+  });
+
+
   // Find active sidebar item
   var activeLink = document.querySelector('.sidebar-item.active > .sidebar-item-container > a, .sidebar-item.active > a');
   if (!activeLink) return;

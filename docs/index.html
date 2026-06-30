@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-c06e35fc81891747fc8700d637ad03b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-734bc43e1d76e5c28147394f6b375b0d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7c00b80e92f14b924ae0ac56f81c9755.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -379,12 +379,85 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Velkomin í námsefni námskeiðsins <strong>Upplýsingaverkfræði IÐN302G</strong> við Háskóla Íslands. Tilgangur námskeiðsins er að undirbúa nemendur fyrir nám og störf sem krefjast öflunar, meðhöndlunar, greiningar og framsetningu upplýsinga.</p>
-<p>Námsefnið er skipulagt í þrjá hluta:</p>
-<ul>
-<li><strong>SQL grunnatriði</strong> — Grundvöllur gagnagrunnsvinnslu með SQLite</li>
-<li><strong>SQL framhald</strong> — PostgreSQL, JOIN, CTE og PostGIS</li>
-<li><strong>Myndræn framsetning</strong> — Gagnvirk gröf, mælaborð og gagnafrásögn</li>
-</ul>
+<p>Námsefnið skiptist í eftirfarandi hluta:</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Athugasemd</span>SQL grunnatriði
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Grundvöllur gagnagrunnsvinnslu: uppsetning SQLite, grunnfyrirspurnir, töflur, samlagningu og flokkun, NULL-gildi, undirfyrirspurnir, gagnaheildleiki, innflutningur og útflutningur.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Athugasemd</span>SQL framhald
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PostgreSQL, UNION, JOIN, VIEW, föll, CTE (Common Table Expressions) og PostGIS fyrir landfræðileg gögn.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Athugasemd</span>Myndræn framsetning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Gagnafrásögn, gagnvirk gröf (Plotly), gagnvirk kort (Leaflet), mælaborð (Shiny/Flexdashboard) og góðar og slæmar venjur í sjónrænni framsetningu.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ábending</span>Reglulegar segðir (regex) — <em>kemur</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Leit og vinnslur á textagögnum með reglulegar segðir í R og öðrum tólum.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ábending</span>GitHub og skjalastjórnun — <em>kemur</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Útgáfustjórnun með Git og GitHub: geymsla, útibú, samþætting, kóðarýni og vinnuflæði.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ábending</span>Gervigreind sem hjálpartæki — <em>kemur</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notkun gervigreindar (LLM) við forritun, kóðarýni og gagnagreiningu á ábyrgan hátt.</p>
+</div>
+</div>
 <section id="hæfniviðmið" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="hæfniviðmið">Hæfniviðmið</h2>
 <p>Nemandi öðlast hæfni í að:</p>
@@ -414,6 +487,19 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  // Remove chapter-number span (and its trailing &nbsp;) from the index sidebar link
+  document.querySelectorAll(
+    'a[href$="index.html"].sidebar-item-text, a[href$="../index.html"].sidebar-item-text'
+  ).forEach(function (link) {
+    var num = link.querySelector('.chapter-number');
+    if (!num) return;
+    // Remove the &nbsp; text node that follows the span
+    var next = num.nextSibling;
+    if (next && next.nodeType === 3) next.remove();
+    num.remove();
+  });
+
+
   // Find active sidebar item
   var activeLink = document.querySelector('.sidebar-item.active > .sidebar-item-container > a, .sidebar-item.active > a');
   if (!activeLink) return;
