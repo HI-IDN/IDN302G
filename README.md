@@ -1,43 +1,61 @@
-# IDN302G - Upplýsingaverfræði
+# IDN302G – Upplýsingaverkfræði
 
-Þetta repo inniheldur uppsprettu kóða fyrir námsefnið í námskeiðinu **Upplýsingaverfræði IÐN302G** við Háskóla Íslands. Námsefnið er skrifað í Markdown og birt á GitBook síðu námskeiðsins.
+Námsefni fyrir námskeiðið **Upplýsingaverkfræði IÐN302G** við Háskóla Íslands.  
+Efnið er skrifað í Markdown og birt á GitHub Pages.
 
 ## Vefslóð að námsefninu
 
-Námsefnið er aðgengilegt á GitBook síðu námskeiðsins: [GitBook - Upplýsingaverfræði IÐN302G](https://tungufoss.gitbook.io/hi-idn302g)
+👉 [hi-idn.github.io/IDN302G](https://hi-idn.github.io/IDN302G)
 
-## Mappa
+---
 
-- `GitBook/`  
-  Inniheldur allt námsefnið, skrifað í Markdown. Þetta efni er birt á GitBook síðunni sem tengist ofan.
+## Uppbygging geymslu
 
-- `data/`  
-  Inniheldur gagnaskrár sem eru notaðar í sýnidæmum í námskeiðinu. Nemendur geta notað þessar skrár til að æfa sig með SQL fyrirspurnir, og kóðun í Python eða R.
+```
+docs/          # Námsefnið (Markdown skrár)
+data/          # Gagnaskrár fyrir sýnidæmi og æfingar
+code/          # Kóðasýnidæmi
+```
+
+---
 
 ## Hvernig á að leggja til breytingar
 
-Ef þú vilt leggja til breytingar eða bæta við efni getur þú:
-1. Gert _fork_ af þessu repo.
-2. Gert breytingarnar þínar.
-3. Sent _pull request_ með útskýringum á breytingunum.
+Við hvetjum nemendur til að koma með endurbætur á námsefninu. Hér er hvernig það virkar:
 
-Allar ábendingar og tillögur eru vel þegnar til að bæta námsefnið fyrir alla!
+### 1. Villur og ábendingar → Issue
 
-## Issues og Discussions
+Ef þú:
+- rekst á villu (stafsetning, kóði, útskýring)
+- finnst eitthvað óskýrt eða vanta
+- ert með tillögu að breytingu
 
-### Hvað er munurinn?
+➡️ [Opnaðu Issue](../../issues/new)
 
-- **Issues:** Ef þú rekst á villu í námsefninu, átt í vandræðum með sýnidæmi, eða finnst eitthvað vanta, getur þú búið til *Issue*. Þetta er formlegri leið til að tilkynna um vandamál eða óska eftir ákveðnum breytingum.
+### 2. Umræður og hugmyndir → Discussion
 
-- **Discussions:** Ef þú vilt hafa óformlegar umræður um hvað mætti bæta, hugmyndir um frekari útskýringar, eða hvaða viðbætur gætu hjálpað, þá er **Discussions** rétti staðurinn. Þetta er meira vettvangur fyrir frjálsar umræður og hugmyndavinnu.
+Ef þú vilt ræða hugmynd, spyrja spurninga eða koma með tillögur án þess að þær séu formlegar:
 
-### TL;DR - Hvernig virkar þetta?
+➡️ [Byrjaðu Discussion](../../discussions)
 
-- **Issues**: Til að tilkynna villu eða formlega ábendingu um breytingar.  
-  ➡️ [Opnaðu Issue](../../issues)
+### 3. Leggja beint til breytingar → Pull Request
 
-- **Discussions**: Fyrir óformlegar umræður, hugmyndir, og vangaveltur.  
-  ➡️ [Byrjaðu Discussion](../../discussions)
+1. Gerðu **fork** af þessum repo
+2. Búðu til nýjan branch: `git checkout -b fix/lýsing-á-breytingu`
+3. Gerðu breytingarnar þínar í `docs/` möppunni
+4. Committaðu: `git commit -m "Lýsing á breytingu"`
+5. Sendu **Pull Request** og útskýrðu hvað þú breyttir og hvers vegna
+
+---
+
+## Viðmið fyrir framlög
+
+- Skrifaðu á **íslensku** nema efnið krefjist annars (t.d. tæknileg hugtök)
+- Haltu þig við Markdown – ekki nota HTML nema nauðsynlegt sé
+- Eitt PR = ein breyting; ekki blanda saman mörgum ótengdum breytingum
+- Lýstu breytingunni skýrt í PR lýsingunni
+
+---
 
 ## Leyfi
 
