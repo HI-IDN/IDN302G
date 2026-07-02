@@ -3,37 +3,42 @@ title: "Hópverkefnið"
 number-sections: false
 ---
 
-Á fyrsta degi kynnir kennarinn **4–6 verkefnasvið**, hvert með eigin gagnasafni og umfangi.
+Á fyrsta degi kynnir kennarinn nokkur verkefnasvið, hvert með eigin gagnasafni og umfangi.
 Þú velur þér hóp í kringum það vandamál sem þig langar til að leysa. Hópurinn vinnur saman
 í **14 vikur** og hver lota námskeiðsins bætir við verkefnið — gagnahreinsun, SQL-greining,
 myndræn framsetning — þar til lokaafurðin, þ.e. capstone-verkefnið, er tilbúin.
 
-### Dæmi um verkefnasvið
+### Verkefnasvið fyrir 2026
 
 Öll dæmin hér tengjast Reykjavík / höfuðborgarsvæðinu og deila sameiginlegum lykli
 (hverfi + tími) — hópar geta valfrjálst sótt gögn frá hvor öðrum til að auðga eigin greiningu.
 
-| Þema | Krókurinn |
-|------|-----------|
-| **Borgarslúðrið** 🗣️ | Hvað er borgarstjórn *í alvöru* að tala um bak við luktar dyr (sem eru samt opnar öllum)? Grafið í þúsundum fundargerða og finnið dramatíkina. |
-| **Skipulags-CSI** 🔍 | Rannsakið borgina eins og glæpasenu — byggingar, lóðir, veitur. Hver byggði hvað, hvar, og hvenær fór allt úrskeiðis? |
-| **Hvar er vagninn minn?!** 🚌 | Allir hafa staðið úti í rigningu og beðið. Nú fáið þið gögnin til að sanna að strætó er (eða er ekki) að seinka viljandi. |
-| **Skjálftavaktin** 🌋 | Land elds og íss, í rauntíma. Byggið mælaborð sem fylgist með Íslandi skjálfa, kólna og hitna — beint í æð. |
-| **Húsnæðisbrjálæðið** 🏠💸 | Af hverju er ómögulegt að finna íbúð? Kafið í tölurnar á bak við leigu- og fasteignaverð og sannið það sem allir vita nú þegar. |
-| **Túristasprengjan** 📸 | Milljónir ferðamanna, ein lítil borg. Hvenær koma þau, hvert fara þau, og hvað gerir það við borgina ykkar? |
+| Þema                          | Krókurinn                                                                                                                                      |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Borgarslúðrið** 🗣️         | Hvað er borgarstjórn *í alvöru* að tala um bak við luktar dyr (sem eru samt opnar öllum)? Grafið í þúsundum fundargerða og finnið dramatíkina. |
+| **Skipulags-CSI** 🔍          | Rannsakið borgina eins og glæpasenu — byggingar, lóðir, veitur. Hver byggði hvað, hvar, og hvenær fór allt úrskeiðis?                          |
+| **Hvar er vagninn minn?!** 🚌 | Allir hafa staðið úti í rigningu og beðið. Nú fáið þið gögnin til að sanna að strætó er (eða er ekki) að seinka viljandi.                      |
+| **Skjálftavaktin** 🌋         | Land elds og íss, í rauntíma. Byggið mælaborð sem fylgist með Íslandi skjálfa, kólna og hitna — beint í æð.                                    |
+| **Húsnæðisbrjálæðið** 🏠💸    | Af hverju er ómögulegt að finna íbúð? Kafið í tölurnar á bak við leigu- og fasteignaverð og sannið það sem allir vita nú þegar.                |
+| **Túristasprengjan** 📸       | Milljónir ferðamanna, ein lítil borg. Hvenær koma þau, hvert fara þau, og hvað gerir það við borgina ykkar?                                    |
 
-**Gagnaveitur** (opnar öllum, engin skráning þarf fyrir flest):
+#### Gagnaveitur
 
-- [reykjavik.is/fundargerdir](https://reykjavik.is/fundargerdir) — fundargerðir borgarstjórnar og nefnda
-- [lukr.is](https://lukr.is/) / [ArcGIS gátt](https://data-reykjavik.opendata.arcgis.com/) — landupplýsingakerfi Reykjavíkur
+Dæmi um gangaveitur, listinn er ekki tæmandi en ætti að koma ykkur áleiðis:
+
+- [reykjavik.is/fundargerdir](https://reykjavik.is/fundargerdir) — fundargerðir borgarstjórnar og
+  nefnda
+- [lukr.is](https://lukr.is/) / [ArcGIS gátt](https://data-reykjavik.opendata.arcgis.com/) —
+  landupplýsingakerfi Reykjavíkur
 - [opendata.reykjavik.is](https://opendata.reykjavik.is/) — opið gagnasafn borgarinnar
 - [vedur.is](https://www.vedur.is/) — veður- og jarðskjálftagögn
 - [px.hagstofa.is](https://px.hagstofa.is/) — hagtölur Íslands
-- [ferdamalastofa.is](https://www.ferdamalastofa.is/is/tolur-og-utgafur/ferdatolur) — ferðamannatölfræði
+- [ferdamalastofa.is](https://www.ferdamalastofa.is/is/tolur-og-utgafur/ferdatolur) —
+  ferðamannatölfræði
 
 ### Hlutverk í hóp
 
-**Hlutverk skiptast í hverri lotu:**
+Hlutverk skiptast í hverri lotu:
 
 - Einn eða fleiri meðlimir **kóða** (PR-höfundar á GitHub)
 - Einn eða fleiri meðlimir **rýna kóðann** (PR-rýnar á GitHub)
