@@ -13,14 +13,14 @@ myndræn framsetning — þar til lokaafurðin, þ.e. capstone-verkefnið, er ti
 Öll dæmin hér tengjast Reykjavík / höfuðborgarsvæðinu og deila sameiginlegum lykli
 (hverfi + tími) — hópar geta valfrjálst sótt gögn frá hvor öðrum til að auðga eigin greiningu.
 
-| Þema                          | Krókurinn                                                                                                                                      |
-|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Borgarslúðrið** 🗣️         | Hvað er borgarstjórn *í alvöru* að tala um bak við luktar dyr (sem eru samt opnar öllum)? Grafið í þúsundum fundargerða og finnið dramatíkina. |
-| **Skipulags-CSI** 🔍          | Rannsakið borgina eins og glæpasenu — byggingar, lóðir, veitur. Hver byggði hvað, hvar, og hvenær fór allt úrskeiðis?                          |
-| **Hvar er vagninn minn?!** 🚌 | Allir hafa staðið úti í rigningu og beðið. Nú fáið þið gögnin til að sanna að strætó er (eða er ekki) að seinka viljandi.                      |
-| **Skjálftavaktin** 🌋         | Land elds og íss, í rauntíma. Byggið mælaborð sem fylgist með Íslandi skjálfa, kólna og hitna — beint í æð.                                    |
-| **Húsnæðisbrjálæðið** 🏠💸    | Af hverju er ómögulegt að finna íbúð? Kafið í tölurnar á bak við leigu- og fasteignaverð og sannið það sem allir vita nú þegar.                |
-| **Túristasprengjan** 📸       | Milljónir ferðamanna, ein lítil borg. Hvenær koma þau, hvert fara þau, og hvað gerir það við borgina ykkar?                                    |
+| Hópur | Þema | Krókurinn |
+|-------|------|-----------|
+| **Rachel** 💅 | Borgarslúðrið 🗣️ | Hvað er borgarstjórn *í alvöru* að tala um bak við luktar dyr (sem eru samt opnar öllum)? Grafið í þúsundum fundargerða og finnið dramatíkina. |
+| **Ross** 🦕 | Skipulags-CSI 🔍 | Rannsakið borgina eins og glæpasenu — byggingar, lóðir, veitur. Hver byggði hvað, hvar, og hvenær fór allt úrskeiðis? |
+| **Chandler** 😏 | Hvar er vagninn minn?! 🚌 | Allir hafa staðið úti í rigningu og beðið. Nú fáið þið gögnin til að sanna að strætó er (eða er ekki) að seinka viljandi. |
+| **Phoebe** 🌙 | Skjálftavaktin 🌋 | Land elds og íss, í rauntíma. Byggið mælaborð sem fylgist með Íslandi skjálfa, kólna og hitna — beint í æð. |
+| **Monica** 🧹 | Húsnæðisbrjálæðið 🏠💸 | Af hverju er ómögulegt að finna íbúð? Kafið í tölurnar á bak við leigu- og fasteignaverð og sannið það sem allir vita nú þegar. |
+| **Joey** 🍕 | Túristasprengjan 📸 | Milljónir ferðamanna, ein lítil borg. Hvenær koma þau, hvert fara þau, og hvað gerir það við borgina ykkar? |
 
 #### Gagnaveitur
 
