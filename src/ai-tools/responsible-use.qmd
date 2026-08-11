@@ -1,0 +1,146 @@
+---
+title: "Ábyrg notkun"
+description: >-
+  Reglur, viðmið og góð vinnubrögð við notkun gervigreindar í námi og verkefnum.
+---
+
+Háskóli Íslands fjallar um gervigreind sem hluta af námi, kennslu og rannsóknum og leggur
+áherslu á að hún sé notuð á ábyrgan hátt í háskólasamfélaginu. Sjá yfirlit Setbergs um
+[gervigreind við Háskóla Íslands](https://setberg.hi.is/is/gervigreind).
+
+Á síðu Setbergs um [gervigreind fyrir nemendur](https://setberg.hi.is/is/gervigreind/nemendur)
+er sérstaklega tekið fram að gervigreind geti stutt við nám, til dæmis við að skipuleggja vinnu,
+móta hugmyndir, æfa skilning og undirbúa verkefni. Þar er jafnframt lögð áhersla á að notkunin
+eigi að styðja við námið, ekki koma í staðinn fyrir það. Nemandi ber áfram ábyrgð á eigin
+verkefnum, heimildavinnu, röksemdafærslu og skilningi.
+
+Setberg fjallar líka um [ábyrga og örugga notkun gervigreindar](https://setberg.hi.is/is/abyrg-notkun).
+Þar eru lykilatriði eins og akademísk vinnubrögð, höfundarréttur, persónuvernd, gagnaöryggi,
+hlutdrægni, siðferðileg álitamál og reglur háskólans.
+
+## Notkun gervigreindar við fræðileg skrif
+
+Sjá einnig stutta IEEE Author Center myndbandið
+[AI Policy](https://newauthors.ieeeauthorcenter.ieee.org/video-tutorials/?the-video=12), sem fjallar um
+notkun gervigreindar við fræðileg skrif.
+
+Ef höfundur notar gervigreind til að búa til efni fyrir grein, til dæmis texta, myndir, gröf
+eða kóða, þarf að gera grein fyrir þeirri notkun. Í þakkarkafla (*Acknowledgments*) skal þá
+tilgreina hvaða gervigreindarkerfi var notað, í hvaða hluta greinarinnar það var notað og með
+hvaða hætti eða að hvaða marki það var notað.
+
+IEEE gerir jafnframt greinarmun á efnissköpun og málfarslegri yfirferð. Ef gervigreind er
+eingöngu notuð til að bæta málfar, stafsetningu eða framsetningu texta er upplýsingagjöf um
+notkunina almennt ekki skylda, þó IEEE mæli með því að hún sé tilgreind.
+
+Meginreglan er einföld: höfundar bera alltaf ábyrgð á efninu. Gervigreind getur verið hjálpartæki,
+en hún getur ekki talist höfundur og getur ekki tekið ábyrgð á niðurstöðum, heimildum, kóða eða
+fullyrðingum.
+
+Þannig má hugsa þetta:
+
+- **Gervigreind sem býr til efni** → upplýsa um notkun.
+- **Gervigreind sem eingöngu lagfærir málfar** → upplýsingagjöf er æskileg, en almennt ekki krafa.
+
+### Dæmi um yfirlýsingu í þakkarorðum
+
+Ef gervigreind var notuð sem almenn aðstoð við hugmyndavinnu, málfar, forritun eða yfirferð
+má tilgreina það í þakkarorðum, neðanmálsgrein eða öðrum stað sem kennari/útgefandi biður um.
+
+```markdown
+Ákveðnir hlutar þessa verkefnis voru unnir með aðstoð gervigreindartólsins [nafn tóls].
+Tólið var notað til að [lagfæra málfar / aðstoða við forritun / yfirfara hugmyndavinnu /
+taka saman drög]. Höfundur yfirfór og ber ábyrgð á öllum texta, kóða, niðurstöðum og
+fullyrðingum verkefnisins.
+```
+
+Þetta er ekki töfraformúla sem passar alltaf. Aðalatriðið er að lesandi geti séð **hvaða tól**
+var notað, **í hvað** það var notað og **hver ber ábyrgð** á lokaafurðinni.
+
+### Hvar á að skrá notkunina?
+
+| Staður | Hvenær hentar það? |
+|---|---|
+| **Þakkir eða stutt yfirlýsing** | Þegar gervigreind var notuð sem almenn aðstoð, til dæmis við málfar, hugmyndavinnu eða minni háttar forritun. |
+| **Aðferðafræði** | Þegar gervigreind er hluti af rannsóknaraðferðinni, til dæmis við gagnaúrvinnslu, flokkun, útdrátt eða greiningu. |
+| **Viðauki eða `AGENT_LOG.md`** | Þegar þarf að sýna nánar hvaða fyrirmæli voru notuð, hvaða svör komu og hvernig niðurstaðan var yfirfarin. |
+| **PR-lýsing eða commit message** | Þegar gervigreind var notuð í GitHub-vinnuflæði til að búa til eða breyta kóða, skjölun eða greiningu. |
+
+### Þrjár meginreglur um mörkin
+
+| Notkun | Mat | Hvað þarf að gera? |
+|---|---|---|
+| Málfarsleiðréttingar, hugmyndavinna, samantekt á eigin texta eða einföldun á kóða sem þú skilur | Yfirleitt í lagi | Tilgreina notkun þegar hún skiptir máli eða ef reglur námskeiðs/útgefanda krefjast þess. |
+| Að láta gervigreind skrifa heila kafla, greina gögn eða taka efnislegar ákvarðanir | Varhugavert og háð reglum | Þarf að koma skýrt fram, oft í aðferðafræði eða sérstakri yfirlýsingu. Þú þarft að geta útskýrt og varið niðurstöðuna. |
+| Að skila texta, kóða eða heimildum frá gervigreind eins og það sé alfarið þín eigin vinna | Ekki í lagi | Þetta getur varðað ritstuld, fölsun eða brot á akademískum reglum. Sérstaklega alvarlegt er að nota tilbúnar eða skáldaðar heimildir. |
+
+## Í þessu námskeiði
+
+Í þessu námskeiði þýðir ábyrg notkun:
+
+- ekki setja viðkvæm, persónugreinanleg eða lokuð gögn inn í gervigreindartól nema skýrt sé að það megi
+- ekki skila niðurstöðu sem þú skilur ekki
+- ekki fela notkun erindreka þegar hún skiptir máli fyrir verkefnið
+- ekki treysta úttaki án yfirferðar
+- skráðu hvað erindrekinn gerði og hvað þú sjálf/ur sannreyndir
+
+::: {.callout-note}
+## Meginregla
+
+Erindreki má hjálpa þér að hugsa, skrifa, prófa og endurbæta. Hann má ekki taka frá þér
+ábyrgðina á skilningi, vali á lausn eða lokaafurð.
+:::
+
+## Að skrá notkun erindreka í GitHub
+
+Í GitHub-verkefnum gildir sama hugsun og í fræðilegum skrifum: ef erindreki býr til efnislega
+lausn, kóða, skjölun eða greiningu þarf að vera skýrt hvernig hann var notaður.
+
+Það má gera á nokkra einfalda vegu:
+
+- nefna tólið í PR-lýsingu
+- hafa stutta `AGENT_LOG.md` skrá með fyrirmælum, verkfærum og yfirferð
+- nota commit message sem skráir aðstoðina
+- uppfæra `AGENTS.md` ef repo-ið á að innihalda skýrar reglur um hvernig erindrekar mega vinna í því
+
+### Dæmi um PR-lýsingu
+
+```markdown
+## Erindreki
+
+Notaði Codex til að búa til fyrstu útgáfu af gagnahreinsun.
+
+Fyrirmæli:
+- lesa `data/raw/neighborhoods.csv`
+- samræma hverfaheiti
+- bæta við stuttri prófun með dæmigögnum
+
+Ég yfirfór:
+- að úttakið passi við dæmin
+- að engin persónugreinanleg gögn fari í prompt
+- að kóðinn sé læsilegur og keyranlegur
+```
+
+### Dæmi um commit message
+
+Ef erindreki tók efnislegan þátt í breytingunni má skrá það í commit message:
+
+```text
+Add neighborhood cleaning helper
+
+Generated initial implementation with Codex and revised manually.
+Checked edge cases for empty values and inconsistent capitalization.
+```
+
+Ef hópurinn vill vera mjög skýr má líka nota `Co-authored-by` línu. Þá þarf að nota nafn og netfang
+sem tilheyrir þeim reikningi eða botta sem á að sjást sem meðhöfundur í GitHub:
+
+```text
+Add neighborhood cleaning helper
+
+Co-authored-by: Codex <codex@example.com>
+```
+
+Í námskeiðinu er þó mikilvægara að **lýsa notkuninni skýrt** en að hitta á fullkomið tæknilegt
+co-author snið. PR-lýsing eða `AGENT_LOG.md` er oft besti staðurinn, því þar má útskýra hvað
+erindrekinn gerði, hvað nemandinn breytti og hvernig lausnin var sannreynd.
