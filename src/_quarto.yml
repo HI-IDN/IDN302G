@@ -1,8 +1,9 @@
 project:
   type: book
-  output-dir: docs
+  output-dir: ../docs
   resources:
     - .nojekyll
+    - templates/
 
 book:
   title: "Upplýsingaverkfræði IÐN302G"
@@ -31,17 +32,44 @@ book:
   sidebar:
     style: docked
     background: light
+    collapse-level: 1
   chapters:
-    - index.qmd
+    - part: index.qmd
+      chapters:
+        - about-course/about.qmd
+        - about-course/curriculum.qmd
+        - about-course/teaching-methods.qmd
+        - about-course/group-project.qmd
+        - about-course/schedule.qmd
+        - about-course/learning-outcomes.qmd
+        - about-course/how-to-use.qmd
     - part: "Git og GitHub"
       chapters:
-        - github/index.md
+        - github/index.qmd
+        - github/grunnatridi/git_commands.qmd
+        - github/grunnatridi/security_best_practices.qmd
+        - github/grunnatridi/gitignore.qmd
+        - github/grunnatridi/file_formats.qmd
+        - github/god_vinnubrogd/git_branches.qmd
+        - github/god_vinnubrogd/writing_good_commits.qmd
+        - github/god_vinnubrogd/pull_requests.qmd
+        - github/god_vinnubrogd/code_review.qmd
+        - github/god_vinnubrogd/writing_a_readme.qmd
+        - github/tengingar/overleaf_git_sync.qmd
     - part: "Erindrekar"
       chapters:
-        - ai-tools/index.md
+        - ai-tools/index.qmd
+        - ai-tools/responsible-use.qmd
+        - ai-tools/reviewing-agents.qmd
+    - part: "Endurtækar skýrslur"
+      chapters:
+        - reproducible-reports/index.qmd
     - part: "Reglulegar segðir"
       chapters:
         - regex/index.md
+    - part: "Rökfræði og mengi"
+      chapters:
+        - logic-sets/index.qmd
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.md
@@ -77,6 +105,11 @@ book:
         - storytelling/donts.md
         - storytelling/data_narrative.md
         - storytelling/additional_resources.md
+    - part: "Um efnið"
+      chapters:
+        - about-material/license.qmd
+        - about-material/contributing.qmd
+        - about-material/contact.qmd
 
 format:
   html:
@@ -92,4 +125,4 @@ format:
     smooth-scroll: true
     code-copy: true
     code-overflow: wrap
-    number-sections: true
+    number-sections: false

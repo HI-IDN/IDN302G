@@ -17,6 +17,8 @@ $hi-blue-dark:  darken($hi-blue, 8%);
 $hi-teal-dark:  darken($hi-teal, 15%);
 
 // Bootstrap/Quarto overrides
+$grid-sidebar-width:        375px;
+$grid-docked-sidebar-width: 375px;
 $font-family-sans-serif: "Jost", system-ui, sans-serif;
 $font-family-monospace:  "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 $headings-font-weight:   800;
@@ -34,7 +36,7 @@ $border-radius:          0;
 /*-- scss:rules --*/
 
 :root {
-  --quarto-sidebar-width: 480px;
+  --quarto-sidebar-width: 375px;
   --hi-blue:    #{$hi-blue};
   --hi-teal:    #{$hi-teal};
   --hi-yellow:  #{$hi-yellow};
@@ -286,6 +288,52 @@ pre.sourceCode, div.sourceCode {
   }
 }
 
+// ── Course module cards ───────────────────────────────────────────────────────
+.lotu-list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.lotu-card {
+  border-left: 4px solid $hi-blue;
+  background: rgba($hi-blue, 0.045);
+  padding: 0.85rem 1rem;
+
+  > h3 {
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+    color: $hi-blue;
+    font-size: 1.05rem;
+  }
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.lotu-card-muted {
+  border-left-color: $hi-teal;
+  background: rgba($hi-teal, 0.055);
+
+  > h3 {
+    color: $hi-teal-dark;
+  }
+}
+
+.lotu-status {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.08rem 0.4rem;
+  border-radius: 999px;
+  background: rgba($hi-teal, 0.15);
+  color: $hi-teal-dark;
+  font-size: 0.72em;
+  font-style: italic;
+  font-weight: 600;
+  vertical-align: 0.08em;
+}
+
 // ── Blockquote ────────────────────────────────────────────────────────────────
 blockquote {
   border-left: 4px solid $hi-blue;
@@ -356,6 +404,104 @@ table {
   color: $hi-white !important;
 }
 
+// ── Repo-actions: hide everywhere except margin sidebar ───────────────────────
+#quarto-document-content .quarto-other-links,
+.nav-footer .quarto-other-links,
+.page-navigation .quarto-other-links { display: none !important; }
+
+// ── Margin sidebar — repo-actions pinned to bottom ────────────────────────────
+#quarto-margin-sidebar {
+  display: flex !important;
+  flex-direction: column;
+
+  nav#TOC { flex: 1; }
+
+  .quarto-other-links {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    border-top: 1px solid $hi-panel;
+    font-size: 0.82rem;
+
+    a { color: #{rgba($hi-ink, 0.6)}; font-weight: 500; }
+    a:hover { color: $hi-blue; }
+  }
+}
+
+// ── Schedule calendar (kennsluáætlun) ──────────────────────────────────────────
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin: 1.5em 0;
+
+  thead th {
+    background: $hi-blue;
+    color: $hi-white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.5em 0.7em;
+    text-align: left;
+  }
+  thead th:first-child { width: 3.5em; text-align: center; }
+  thead th:nth-child(2) { width: 9.5em; }
+
+  tbody tr:nth-child(even) td { background: #{rgba($hi-panel, 0.5)}; }
+
+  td {
+    padding: 0.45em 0.7em;
+    border-bottom: 1px solid $hi-panel;
+    vertical-align: middle;
+  }
+  td.sch-week {
+    font-weight: 800;
+    color: $hi-blue;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+  td.sch-module {
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: $hi-ink;
+  }
+
+  tr.sch-sep td {
+    background: $hi-teal !important;
+    height: 2px;
+    padding: 0;
+  }
+
+  .sch-chips { display: flex; flex-direction: column; gap: 0.3em; }
+
+  .sch-badge {
+    display: inline-flex;
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 0.76rem;
+    font-weight: 600;
+    width: fit-content;
+
+    .l, .r { padding: 0.15em 0.5em; white-space: nowrap; }
+    .l { color: $hi-white; }
+  }
+  .sch-badge.solo .l { border-radius: 4px; }
+
+  .sch-intro .l { background: #6b7280; } .sch-intro .r { background: #{rgba(#6b7280, 0.15)}; color: #374151; }
+  .sch-exam  .l { background: $hi-red; }  .sch-exam  .r { background: #{rgba($hi-red, 0.18)};  color: #7f1d1d; }
+  .sch-work  .l { background: #15803d; } .sch-work  .r { background: #{rgba(#15803d, 0.15)}; color: #14532d; }
+  .sch-ita   .l { background: $hi-blue; } .sch-ita   .r { background: #{rgba($hi-blue, 0.12)}; color: $hi-blue-dark; }
+  .sch-skil  .l { background: $hi-orange; } .sch-skil .r { background: #{rgba($hi-orange, 0.2)}; color: #78350f; }
+  .sch-final .l { background: $hi-blue-dark; } .sch-final .r { background: $hi-teal; color: #0f2860; }
+  .sch-qa    .l { background: $hi-pink; } .sch-qa    .r { background: #{rgba($hi-pink, 0.15)}; color: #4c1d95; }
+}
+
+.schedule-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-bottom: 1em;
+  align-items: center;
+}
+
 // ── Misc ──────────────────────────────────────────────────────────────────────
 .quarto-title-block .quarto-title { padding-top: 0.5em; }
 
@@ -366,3 +512,187 @@ hr {
 }
 
 img { max-width: 100%; height: auto; }
+
+// ── Lotu-taktur TL;DR ────────────────────────────────────────────────────────
+.lotu-taktur {
+  --lotu-arrow: 1.25rem;
+  display: flex;
+  gap: 0;
+  margin: 1.4rem 0 2rem;
+  filter: drop-shadow(0 8px 18px rgba($hi-ink, 0.12));
+  overflow: visible;
+}
+
+.lotu-skref {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 13rem;
+  margin-left: calc(-0.55 * var(--lotu-arrow));
+  padding: 1.15rem calc(var(--lotu-arrow) + 0.85rem) 1.15rem 1.55rem;
+  color: $hi-white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  clip-path: polygon(
+    calc(100% - var(--lotu-arrow)) 0,
+    100% 50%,
+    calc(100% - var(--lotu-arrow)) 100%,
+    0 100%,
+    var(--lotu-arrow) 50%,
+    0 0
+  );
+
+  &:nth-child(1) {
+    z-index: 5;
+    margin-left: 0;
+    padding-left: 1rem;
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--lotu-arrow)) 0,
+      100% 50%,
+      calc(100% - var(--lotu-arrow)) 100%,
+      0 100%
+    );
+  }
+
+  &:nth-child(2) { z-index: 4; }
+  &:nth-child(3) { z-index: 3; }
+  &:nth-child(4) { z-index: 2; }
+
+  &:nth-child(5) {
+    z-index: 1;
+    padding-right: 1rem;
+    padding-left: 1.55rem;
+    clip-path: polygon(
+      100% 0,
+      100% 100%,
+      0 100%,
+      var(--lotu-arrow) 50%,
+      0 0
+    );
+  }
+
+  > p:first-child {
+    align-self: flex-start;
+    background: rgba($hi-white, 0.92);
+    color: $hi-blue;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    margin: 0 0 0.25rem;
+    font-weight: 900;
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    color: inherit;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 900;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+
+  .lotu-places {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .lotu-place {
+    align-self: flex-start;
+    padding: 0.12rem 0.55rem;
+    border-radius: 999px;
+    background: rgba($hi-white, 0.22);
+    color: inherit;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+  }
+
+  &.prep {
+    background: $hi-blue;
+    .lotu-place { background: lighten($hi-blue, 12%); color: $hi-white; }
+  }
+
+  &.rat  {
+    background: $hi-teal;
+    color: $hi-blue;
+    .lotu-place { background: rgba($hi-blue, 0.12); color: $hi-blue; }
+  }
+
+  &.app  {
+    background: $hi-yellow;
+    color: $hi-ink;
+    .lotu-place { background: darken($hi-yellow, 12%); color: $hi-ink; }
+  }
+
+  &.ref  {
+    background: $hi-orange;
+    .lotu-place { background: darken($hi-orange, 10%); color: $hi-white; }
+  }
+
+  &.ta   {
+    background: $hi-red;
+    .lotu-place { background: darken($hi-red, 10%); color: $hi-white; }
+  }
+}
+
+@media (max-width: 900px) {
+  .lotu-taktur {
+    display: grid;
+    grid-template-columns: 1fr;
+    filter: none;
+  }
+
+  .lotu-skref,
+  .lotu-skref:nth-child(1),
+  .lotu-skref:nth-child(5) {
+    min-height: auto;
+    margin-left: 0;
+    padding: 1.15rem 1rem;
+    clip-path: none;
+  }
+}
+
+// ── Wider docked sidebar in preview-sized windows ─────────────────────────────
+// Quarto collapses the docked sidebar below the Bootstrap lg breakpoint (992px).
+// The in-app preview panel is often just under that width, so keep the left
+// course navigation visible from md screens upward and make it 50% wider than
+// Quarto's default 250px.
+@media (min-width: 768px) and (max-width: 991.98px) {
+  body.nav-sidebar.docked #quarto-sidebar {
+    display: block !important;
+    visibility: visible !important;
+    width: 375px !important;
+    max-width: 375px !important;
+    grid-column: screen-start / page-start;
+  }
+
+  body.nav-sidebar.docked #quarto-content {
+    grid-template-columns:
+      [screen-start] 1.5em
+      [screen-start-inset page-start] 375px
+      [page-start-inset body-start-outset] 1.5em
+      [body-start body-content-start] minmax(0, 860px)
+      [body-content-end] 1.5em
+      [body-end body-end-outset page-end-inset page-end] minmax(0, 1fr)
+      [screen-end-inset] 1.5em
+      [screen-end] !important;
+  }
+
+  body.nav-sidebar.docked .quarto-secondary-nav .quarto-btn-toggle {
+    display: none;
+  }
+}
