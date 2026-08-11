@@ -1,0 +1,182 @@
+---
+title: "Kennsluaðferðir"
+number-sections: false
+---
+
+Námskeiðið er kennt með **vendikennslu** (*flipped classroom*) og **teymisnámi** (*team-based learning*) —
+tvær vel rannsakaðar kennsluaðferðir sem eru nemendamiðaðar. Verkefnið er byggt upp sem
+**ör-capstone** þar sem námsefni hverrar lotu er beitt á eigið raunverkefni hópsins.
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Vendikennsla (*Flipped Classroom*)
+
+Í vendikennslu kynnast nemendur efninu **fyrir tíma** — með lesefni, myndbönd eða dæmi —
+og **tíminn sjálfur** er notaður í vandamálaúrlausn, umræður og æfingar í hóp.
+Þetta gefur kennara og nemendum meira svigrúm til að fást við það sem er erfitt, en ekki
+til að hlusta á fyrirlestur.
+
+Frekara lesefni:
+
+- Låg, T. & Sæle, R. G. (2019). Does the Flipped Classroom Improve Student Learning and Satisfaction? *AERA Open*. [doi:10.1177/2332858419870489](https://doi.org/10.1177/2332858419870489)
+:::
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Teymisnám (*Team-Based Learning*)
+
+Teymisnám er skipulögð kennsluaðferð þar sem nemendur vinna í fastsettuð teymi yfir önnina.
+Hvert námskeið hefst á **þekkingarprófi** (*iRAT* og *tRAT*) sem tryggir að allir séu tilbúnir,
+og síðan beita teymi niðurstöðunum á **teymisvinnu** (*tAPP*). Að lokinni hverri lotu
+skrifar einstaklingurinn **ígrundun** (*iREF*) þar sem hann endurspeglar eigið framlag,
+hvað gekk vel og hvað mætti bæta — birt á GitHub Pages.
+
+Frekara lesefni:
+
+- Michaelsen, L. K., Knight, A. B. & Fink, L. D. (2004). *Team-Based Learning: A Transformative Use of Small Groups*. Stylus.
+- Parmelee, D. et al. (2012). Team-based learning: a practical guide. *Medical Teacher*, 34(5). [doi:10.3109/0142159X.2012.643278](https://doi.org/10.3109/0142159X.2012.643278)
+:::
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Capstone
+
+**Capstone verkefni** er samþætt lokaverkefni þar sem nemendur draga saman þekkingu,
+færni og reynslu úr námi sínu og beita henni við lausn raunverulegs eða heildstæðs
+viðfangsefnis. Markmiðið er að sýna fram á getu til að samþætta ólík viðfangsefni og
+vinna sjálfstætt að flóknu verkefni.
+
+Í þessu námskeiði er um að ræða **ör-capstone** — byggt á sömu hugmyndafræði, en innan
+eins námskeiðs. Nemendur samþætta helstu hugtök, aðferðir og verkfæri námskeiðsins í einu
+heildstæðu verkefni sem endurspeglar raunhæft viðfangsefni og krefst þess að þeir beiti
+þekkingu sinni í samhengi.
+
+Frekara lesefni:
+
+- Hauhart, R. C. & Grahe, J. E. (2015). *Designing and Teaching Undergraduate Capstone Courses*. Jossey-Bass.
+:::
+
+::: {.callout-tip appearance="minimal" collapse="true"}
+## Lykilhugtök
+
+::: {tbl-colwidths="[10,25,65]"}
+| Skammstöfun | Fræðiheiti | Lýsing |
+|---|---|---|
+| **iRAT** | *Individual Readiness Assurance Test* | Einstaklingspróf í Inspera í upphafi lotu — hvert og eitt ykkar leysir prófið upp á eigin spýtur, óstutt, til að tryggja að þið séuð undirbúin fyrir efni lotunnar. Þarf ≥5 til að halda áfram. |
+| **tRAT** | *Team Readiness Assurance Test* | Sama próf og iRAT, en núna leysir hópurinn það saman strax á eftir — rætt er þar til samstaða næst um hvert svar. Kennir ykkur að rökstyðja og hlusta á rök annarra. |
+| **tAPP** | *Team Application Activity* | Byrjar á sameiginlegum æfingadæmum sem allir hópar leysa eins — til að æfa tæknina. Síðan beitir hópurinn sömu aðferðafræði á **eigið lokaverkefni og gögn**. Skilað sem GitHub PR og fer í gegnum kóðarýni innan hópsins. |
+| **iREF** | *Individual Reflection* | Í lok hverrar lotu skrifar hver og einn stutta persónulega ígrundun um eigið framlag — hvað gekk vel, hvað mætti bæta, og hvað lærðist. Birt á GitHub Pages. |
+| **iTA** | *Individual Team Assessment* | Í upphafi næstu lotu spyr kennarinn verkefnastjóra lokinnar lotu spurninga um kóðann og vinnulagið — óundirbúið, til að staðfesta að verkefnastjórinn þekki verkefnið vel og skilji hvað hópurinn skilaði. |
+:::
+:::
+
+### Uppbygging námskeiðs
+
+Námskeiðið byggist upp á **lotum** yfir 14 vikur — sjá [kennsluáætlun](schedule.qmd).
+Hver lota byggir ofan á þá sem á undan er komin: nemendur nota **Git og GitHub** og
+**endurtækar skýrslur** strax frá fyrstu viku og halda áfram að nota þær í gegnum allt misserið.
+Þannig er verkefnið alltaf lifandi — ekki æfingadæmi sem er skilað og gleymt.
+
+Hver lota fylgir sama skema:
+
+::: {tbl-colwidths="[10,20,15,55]"}
+| Skref | Tími | Hverjir | Hvað |
+|-------|------|---------|------|
+| **iRAT** | Mánudagur næstu lotu, byrjun | Einstaklingur | Þekkingarpróf í Inspera — þarf ≥5 til að halda áfram |
+| **tRAT** | Sami mánudagur, beint á eftir | Hópur | Sama próf, hópurinn ræðir og kemst að sameiginlegri niðurstöðu |
+| **tAPP** | Allir tímar | Hópur | Beita sömu tækni á verkefnagögnin ykkar — GitHub PR og kóðarýni (skilað í lok lotu) |
+| **iREF** | Lok lotu | Einstaklingur | Persónuleg ígrundun — birt á GitHub Pages (skilað í lok lotu) |
+| **iTA** | Mánudagur næstu lotu, beint á eftir iRAT+tRAT | Einstaklingur | Kennarinn spyr verkefnastjóra um nýafstaðna lotu — spurningar um kóða og vinnulag |
+:::
+
+#### TL;DR: taktur hverrar lotu
+
+Í stuttu máli fylgir hver lota sama takti: einstaklingar undirbúa sig, taka fyrst einstaklingspróf
+og síðan teymispróf, hópurinn beitir aðferð lotunnar á eigið verkefni, hver nemandi skilar
+ígrundun og kennari fylgir eftir með spurningum um ákvarðanir hópsins.
+
+::: {.lotu-taktur}
+::: {.lotu-skref .prep}
+**1**
+
+### iPREP
+
+Einstaklingar undirbúa sig heima, kynna sér lesefni og setja verkefnið í samhengi við lotuna.
+
+::: {.lotu-places}
+<span class="lotu-place">heima</span>
+:::
+:::
+
+::: {.lotu-skref .rat}
+**2**
+
+### iRAT/tRAT
+
+Fyrst einstaklingspróf, síðan teymispróf þar sem hópurinn ræðir sömu spurningar.
+
+::: {.lotu-places}
+<span class="lotu-place">VRII-148</span>
+:::
+:::
+
+::: {.lotu-skref .app}
+**3**
+
+### tAPP
+
+Hópurinn beitir aðferð lotunnar á eigið verkefni og gögn.
+
+::: {.lotu-places}
+<span class="lotu-place">VRII-148</span>
+<span class="lotu-place">heima</span>
+:::
+:::
+
+::: {.lotu-skref .ref}
+**4**
+
+### iREF
+
+Hver nemandi skilar stuttri ígrundun um eigin lærdóm og framlag.
+
+::: {.lotu-places}
+<span class="lotu-place">heima</span>
+:::
+:::
+
+::: {.lotu-skref .ta}
+**5**
+
+### iTA/Q&A
+
+Eftirfylgni þar sem kennari spyr út í verkefnið og verkefnastjóri skýrir ákvarðanir hópsins.
+
+::: {.lotu-places}
+<span class="lotu-place">VRII-148</span>
+:::
+:::
+:::
+
+#### Mæting
+
+**iTA og iRAT+tRAT** fara fram á sama mánudegi í upphafi hverrar lotu. Mæting er ekki skylda,
+en er **eindregið æskileg** — ef þið komist ekki, hafið samband við kennara fyrir fram til að
+finna aðra leið til að leysa undirbúningsprófið (sjá [uppbótarverkefni fyrir iRAT](how-to-use.qmd#uppbót-fyrir-irat)).
+
+Að öðru leyti er mætingarskylda frjáls, svo fremi að **teymið sé sammála** — en hópurinn er
+***hvattur*** til að nýta sér stoðtímana þar sem kennarinn er til staðar til að hjálpa við
+úrlausn verkefni lotunnar.
+
+Hópurinn velur verkefnastjóra í upphafi hverrar lotu. Hlutverkum (kóðari, rýnir,
+verkefnastjóri) skal skipt sem jafnast á milli allra hópmeðlima yfir misserið —
+enginn á alltaf að vera kóðari, alltaf rýnir eða alltaf verkefnastjóri.
+
+Engin lokapróf — iRAT og tRAT gegna því hlutverki með því að meta þekkingu jafnt og þétt
+yfir misserið og virkni er mæld í samhengi við raunveruleg verkefni.
+
+### Capstone-þráðurinn
+
+Í hverri lotu er **tAPP-verkefnið** tengt við eigin gagnasafn hópsins. Með hverri lotu
+bætist nýtt lag: Git-vinnulag, endurtækar skýrslur, regex-hreinsuð gögn, SQL-greiningar,
+myndræn framsetning — hvert skref byggir ofan á það sem á undan er komið.
+
+Þegar þið eruð að leysa tAPP í hverri lotu eruð þið í raun að leysa hluta af
+capstone-verkefninu.

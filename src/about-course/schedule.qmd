@@ -1,0 +1,229 @@
+---
+title: "Kennsluáætlun"
+number-sections: false
+---
+
+GitHub-notkun og myndræn framsetning eru **alltaf í þróun** yfir önnina — þær eru
+ekki prófaðar í einstöku prófi heldur metnar í gegnum tAPP og iREF í hverri lotu, auk
+þess sem GitHub-saga hópsins er hluti af einkunnargjöfunni.
+
+Heildarmynd af önn og nákvæmar dagsetningar má sjá á
+[verkefnaáætluninni í GitHub Projects](https://github.com/orgs/HI-IDN/projects/2/views/3).
+
+```{=html}
+<table class="schedule-table">
+<thead>
+  <tr><th>Vika</th><th>Lota</th><th>Mánudagur 10:00–12:20</th><th>Fimmtudagur 8:20–9:50</th></tr>
+</thead>
+<tbody>
+
+<tr>
+  <td class="sch-week">1</td>
+  <td class="sch-module" rowspan="1">Git og AI</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-intro"><span class="l">Kynning</span><span class="r">verkefnaval og hópaskipting</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Git og AI</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Git og AI</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">2</td>
+  <td class="sch-module" rowspan="1">Endurtækar skýrslur</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Endurtækar skýrslur</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Endurtækar skýrslur</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Git og AI</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Endurtækar skýrslur</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">Git og AI + Endurtækar skýrslur</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">3</td>
+  <td class="sch-module" rowspan="2">Regex</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">Git og AI / Endurtækar skýrslur</span></span>
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
+  </div></td>
+</tr>
+<tr>
+  <td class="sch-week">4</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">Regex</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">5</td>
+  <td class="sch-module" rowspan="2">Rökfræði og mengi</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Rökfræði og mengi</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Rökfræði og mengi</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Rökfræði og mengi</span></span>
+  </div></td>
+</tr>
+<tr>
+  <td class="sch-week">6</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Rökfræði og mengi</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Rökfræði og mengi</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">Rökfræði og mengi</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">7</td>
+  <td class="sch-module" rowspan="2">SQL grunnatriði</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">Rökfræði og mengi</span></span>
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">SQL grunnatriði</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL grunnatriði</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL grunnatriði</span></span>
+  </div></td>
+</tr>
+<tr>
+  <td class="sch-week">8</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL grunnatriði</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL grunnatriði</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">SQL grunnatriði</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">9</td>
+  <td class="sch-module" rowspan="2">SQL framhald</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">SQL grunnatriði</span></span>
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">SQL framhald</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL framhald</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL framhald</span></span>
+  </div></td>
+</tr>
+<tr>
+  <td class="sch-week">10</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL framhald</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">SQL framhald</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">SQL framhald</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">11</td>
+  <td class="sch-module" rowspan="2">Myndræn framsetning</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">SQL framhald</span></span>
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Myndræn framsetning</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Myndræn framsetning</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Myndræn framsetning</span></span>
+  </div></td>
+</tr>
+<tr>
+  <td class="sch-week">12</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Myndræn framsetning</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Myndræn framsetning</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">Myndræn framsetning</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">13</td>
+  <td class="sch-module" rowspan="1">Capstone samþætting</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">Myndræn framsetning</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Capstone samþætting</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Capstone samþætting</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">Capstone samþætting</span></span>
+  </div></td>
+</tr>
+
+<tr class="sch-sep"><td colspan="4"></td></tr>
+
+<tr>
+  <td class="sch-week">14</td>
+  <td class="sch-module" rowspan="1">Lokakynning</td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-final"><span class="l">Lokakynning</span><span class="r">allir hlusta og gefa einkunn</span></span>
+  </div></td>
+  <td><div class="sch-chips">
+    <span class="sch-badge sch-qa"><span class="l">Fyrirspurnatími</span><span class="r">kennari spyr hvern hóp — einrúmi</span></span>
+  </div></td>
+</tr>
+
+</tbody>
+</table>
+```
+
+### Uppbygging hvers tíma
+
+Tímar eru á **mánudögum kl. 10:00–12:20** og **fimmtudögum kl. 8:20–9:50**.
+
+Venjulega byrjar lota á mánudegi og fylgir eftirfarandi sniði:
+
+1. **iTA** — kennarinn spyr verkefnastjóra um síðustu lotu
+2. **iRAT + tRAT** — einstaklingspróf og síðan hópumræður í Inspera
+3. **tAPP** — hópurinn byrjar á verkefni lotunnar
+
+Aðrir tímar eru nýttir í **teymisvinnu**, og eru skil venjulega í lok dags á fimmtudögum,
+með mánudagstímann á eftir sem **fyrirspurnartími fyrir verkefnastjóra** — og ný lota hefst.
+
+### Mætingarskylda og lágmarkskröfur
+
+Engin almenn mætingarskylda — en eftirfarandi gildir:
+
+- **Lágmarkseinkunn 5** í öllum einstaklingsprófum (iRAT). Þau eru leyst í Inspera
+  á sama tímabili og viðkomandi lota er kennd.
+- **iTA og iRAT+tRAT** fara fram á sama mánudegi í upphafi hverrar lotu. Mæting er ekki
+  skylda, en er **eindregið æskileg** — ef þið komist ekki, hafið samband við kennara
+  fyrir fram til að finna aðra leið til að leysa undirbúningsprófið.
+- **Verkefnastjóri** þarf sérstaklega að mæta þar sem kennarinn spyr hann um lokna lotu.
+- Hlutverkum (kóðari, rýnir, verkefnastjóri) skal skipt sem jafnast á milli allra hópmeðlima
+  yfir misserið — enginn á alltaf að vera kóðari, alltaf rýnir eða alltaf verkefnastjóri.

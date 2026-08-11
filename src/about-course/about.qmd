@@ -1,0 +1,42 @@
+---
+title: "Um námskeiðið"
+number-sections: false
+---
+
+### Markmið
+
+Þetta námskeið undirbýr þig fyrir raunveruleg störf í gagnavísindum og upplýsingatækni —
+með kerfislægu hugsanaviðmóti verkfræðinnar — ekki með því að læra tæknina í tómarúmi,
+heldur með því að **nota sömu verkfæri og iðnaðurinn notar** á hverjum degi: Git, GitHub,
+SQL, reglulegar segðir og gervigreindarverkfæri.
+
+Námskeiðið er uppbyggt þannig að allt sem þú lærir á fyrstu vikum á beinlínis við um verkefnið
+sem þú ert að vinna að — ekki æfingadæmi sem hverfa ofan í skúffu. Við lok námskeiðsins áttu
+**lifandi gagnasafn á GitHub Pages** sem sýnir vinnulag þitt, skilning þinn og getu þína.
+
+### Vinnulag og þemu
+
+Þótt námskeiðið sé skipt í lotur um tiltekin verkfæri og aðferðir ganga nokkur
+stærri þemu í gegnum allt misserið.
+
+Í fyrsta lagi lærum við að nota gervigreind sem erindreka: sem hjálpartæki við
+kóða, texta, rýni og hugmyndavinnu, en ekki sem staðgengil fyrir eigin skilning
+eða ábyrgð. Ein af lykilspurningum námskeiðsins er því: *hvenær sparar AI tíma
+og eykur gæði vinnunnar, og hvenær er einfaldara, hraðara eða áreiðanlegra að
+leysa verkefnið án hennar?*
+
+Í öðru lagi æfum við vinnuflæði sem eru notuð í atvinnulífinu: GitHub, issues,
+Pull Requests, kóðarýni, skjölun og verkefnastjórnun. Markmiðið er að læra ekki
+aðeins tæknina, heldur líka hvernig teymi vinna skipulega saman.
+
+Í þriðja lagi leggjum við áherslu á að vinna markvisst með bæði kóða og texta.
+Góð greining þarf að vera keyranleg, læsileg, rökstudd og þannig fram sett að
+aðrir geti skilið hana, endurtekið hana og byggt ofan á hana.
+
+Í fjórða lagi lærum við að brjóta stór verkefni niður í minni einingar.
+Capstone-verkefnið þróast yfir misserið og tengir saman gögn, gagnavinnslu,
+greiningu, myndræna framsetningu, skýrslugerð og kynningu.
+
+Undir öllu þessu liggur krafa um endurtakanleika og rekjanleika: að hægt sé að
+sjá hvaðan gögn koma, hvaða breytingar voru gerðar, hvaða ákvarðanir voru teknar
+og hvernig niðurstöður urðu til.
