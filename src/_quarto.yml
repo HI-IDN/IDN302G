@@ -46,16 +46,16 @@ book:
     - part: "Git og GitHub"
       chapters:
         - github/index.qmd
-        - github/grunnatridi/git_commands.qmd
-        - github/grunnatridi/security_best_practices.qmd
-        - github/grunnatridi/gitignore.qmd
-        - github/grunnatridi/file_formats.qmd
-        - github/god_vinnubrogd/git_branches.qmd
-        - github/god_vinnubrogd/writing_good_commits.qmd
-        - github/god_vinnubrogd/pull_requests.qmd
-        - github/god_vinnubrogd/code_review.qmd
-        - github/god_vinnubrogd/writing_a_readme.qmd
-        - github/tengingar/overleaf_git_sync.qmd
+        - github/basics/git_commands.qmd
+        - github/basics/security_best_practices.qmd
+        - github/basics/gitignore.qmd
+        - github/basics/file_formats.qmd
+        - github/good_practices/git_branches.qmd
+        - github/good_practices/writing_good_commits.qmd
+        - github/good_practices/pull_requests.qmd
+        - github/good_practices/code_review.qmd
+        - github/good_practices/writing_a_readme.qmd
+        - github/connections/overleaf_git_sync.qmd
     - part: "Erindrekar"
       chapters:
         - ai-tools/index.qmd

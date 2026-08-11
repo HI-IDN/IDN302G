@@ -1,0 +1,65 @@
+---
+title: "Inngangur"
+description: >-
+  Git og GitHub: útgáfustjórnun, geymslur, útibú, pull requests, kóðarýni,
+  commit skilaboð og góð vinnubrögð.
+format:
+  html:
+    number-sections: false
+---
+
+Git og GitHub eru lykilverkfæri í námskeiðinu. Þau eru notuð til að halda utan um
+verkefni, skrá breytingar, vinna saman í hópum og byggja upp skýra sögu um hvernig
+verkefni þróast yfir tíma.
+
+Git og GitHub eru líka leiðandi verkfæri í atvinnulífinu, bæði í hugbúnaðarþróun,
+gagnavinnu, rannsóknum og tæknilegri skjölun. Þess vegna er mikilvægt að kunna ekki
+bara skipanirnar, heldur líka vinnubrögðin sem fylgja góðri útgáfustjórnun.
+
+Í þessum hluta er farið yfir grunnatriði í Git og GitHub, algengar skipanir og góð
+vinnubrögð sem nýtast í hópverkefnum og capstone-verkefninu.
+
+## Hvað er Git?
+
+Git er dreift útgáfustjórnunarkerfi (*version control system*) sem heldur utan um breytingar
+í kóða, gögnum og textaskrám yfir tíma. Með Git getið þið:
+
+- séð hvað breyttist, hvenær og af hverjum,
+- farið til baka í fyrri útgáfur ef eitthvað fer úrskeiðis,
+- unnið í greinum (*branches*) án þess að skemma aðalútgáfuna,
+- sameinað vinnu margra í sama verkefni á rekjanlegan hátt.
+
+## Hvað er GitHub?
+
+GitHub er vefþjónusta fyrir Git-gagnageymslur (*repositories*) og samstarf. Í þessu námskeiði
+notum við GitHub til að halda utan um verkefni, pull requests, kóðarýni, issues og sameiginlega
+vinnusögu hópsins.
+
+GitHub býður meðal annars upp á:
+
+- **repositories** til að geyma og deila verkefnum,
+- **pull requests** fyrir tillögur að breytingum og kóðarýni,
+- **issues** og **Projects** til að skipuleggja verk,
+- **GitHub Pages** til að birta skýrslur og verkefni á vef,
+- **Actions** fyrir sjálfvirkar keyrslur og prófanir.
+
+## GitHub reikningur og háskólanetfang
+
+Þið þurfið GitHub reikning sem er tengdur háskólanetfangi ykkar. Ef þið eigið nú þegar GitHub
+reikning er nóg að bæta `@hi.is` netfanginu við sem aukatölvupósti (*alternate/secondary email*)
+í stillingum GitHub.
+
+Nemendur geta einnig sótt um GitHub Education aðgang, sem getur veitt aðgang að GitHub Pro og
+ýmsum náms- og þróunartólum án endurgjalds.
+
+## Markmið
+
+Eftir þennan hluta ættuð þið að geta:
+
+- útskýrt muninn á Git og GitHub,
+- tekið við verkefni í GitHub Classroom,
+- klónað geymslu og unnið með hana á eigin tölvu,
+- notað helstu Git-skipanir eins og `status`, `add`, `commit`, `pull` og `push`,
+- skrifað skýr og gagnleg commit skilaboð,
+- unnið með branches og pull requests,
+- tekið þátt í kóðarýni og samvinnu í GitHub.
