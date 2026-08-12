@@ -46,5 +46,5 @@ Rýnandi getur hins vegar bent á ef PR-lýsing, commit eða skrár sýna að er
 - `.AGENT_LOG.md` — falið sniðmát fyrir nýjar færslur,
 - `AGENT_LOG.md` — raunverulega loggskráin sem teymið fyllir út.
 
-Sniðmát er í <a href="https://hi-idn.github.io/IDN302G/templates/.AGENT_LOG.md">templates/.AGENT_LOG.md</a>.
+Sniðmát er í <a href="https://github.com/HI-IDN/IDN302G/blob/main/templates/.AGENT_LOG.md">templates/.AGENT_LOG.md</a>.
 

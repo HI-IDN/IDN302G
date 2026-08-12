@@ -56,7 +56,7 @@ Allt þetta er sýnilegt í Git-sögunni — hver gerði hvað, hvenær, og hvor
 
 #### Teymissáttmáli
 
-Hópurinn semur [**TEAM.md**](../templates/TEAM.md)
+Hópurinn semur [**TEAM.md**](https://github.com/HI-IDN/IDN302G/blob/main/templates/TEAM.md)
 á fyrstu viku sem inniheldur:
 
 - Tungumálaval (íslensku eða ensku) — þetta á við um allt: kóða, skjöl og skýrslur

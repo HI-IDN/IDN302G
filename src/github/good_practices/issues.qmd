@@ -99,7 +99,7 @@ blank_issues_enabled: false
 
 `task.yml` skilgreinir sjálft formið. Það er ekki sýnt hér í heild, en efnislega safnar það sömu
 atriðum og einfalt issue myndi innihalda — í grófum dráttum svona (allt YAML-sniðmátið er í
-[templates/github/ISSUE_TEMPLATE/task.yml](../../templates/github/ISSUE_TEMPLATE/task.yml)):
+[templates/github/ISSUE_TEMPLATE/task.yml](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/ISSUE_TEMPLATE/task.yml)):
 
 ```markdown
 # Titill

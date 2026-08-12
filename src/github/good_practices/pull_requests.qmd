@@ -28,7 +28,7 @@ allar breytingar inn með pull request sem uppfyllir ákveðnar reglur.
 
 Í GitHub eru þessar reglur stilltar sem *ruleset* undir stillingum geymslunnar. Til að hópar
 þurfi ekki að setja hverja reglu handvirkt er til tilbúið
-[ruleset-sniðmát](../../templates/github-ruleset-require-pr-review-main.json) sem má afrita
+[ruleset-sniðmát](https://github.com/HI-IDN/IDN302G/blob/main/templates/github-ruleset-require-pr-review-main.json) sem má afrita
 inn í eigin gagnageymslu:
 
 1. Farið í **Settings → Rules → Rulesets** í geymslunni

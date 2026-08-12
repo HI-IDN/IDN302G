@@ -74,7 +74,7 @@ að taka ákvörðun um.
 ## Sniðmát fyrir `.gitignore`
 
 Í námskeiðinu er til einfalt `.gitignore` sniðmát sem þið getið afritað inn í eigin verkefni:
-[`templates/.gitignore`](../../templates/.gitignore)
+[`templates/.gitignore`](https://github.com/HI-IDN/IDN302G/blob/main/templates/.gitignore)
 
 Setjið skrána í rót verkefnisins og aðlagið hana eftir þörfum. Hér fyrir neðan eru helstu hlutar
 sniðmátsins útskýrðir.

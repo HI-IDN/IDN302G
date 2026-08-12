@@ -112,7 +112,7 @@ for item in list_of_items:
 - PR-ið þarf að vera *up to date* áður en það er sameinað,
 - allar umræður í review threads þurfa að vera leystar áður en hægt er að merge-a.
 
-Tilbúið <a href="https://hi-idn.github.io/IDN302G/templates/github-ruleset-require-pr-review-main.json">ruleset-sniðmát</a>
+Tilbúið <a href="https://github.com/HI-IDN/IDN302G/blob/main/templates/github-ruleset-require-pr-review-main.json">ruleset-sniðmát</a>
 er hægt að afrita inn í eigin kóðageymslu: farið á GitHub síðu kóðageymslurnar undir **Settings →
 Rules → Rulesets** (`https://github.com/<owner>/<repo>/settings/rules`) og veljið *Import a
 ruleset*.
