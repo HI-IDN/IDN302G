@@ -51,11 +51,12 @@ ykkar — góð æfing.
 villunni eða ábendinguna. Notaðu þetta ef þú ert ekki viss um hvernig á að laga hlutinn sjálfur.
 
 ::: {.callout-tip}
-Að leggja til breytingu á námsefninu með Pull Request telst sem GitHub-æfing. Við sjáum
-kóðarýnina!
+Að leggja til breytingu á námsefninu með Pull Request er líka æfing í GitHub-vinnuflæði:
+þar sjást breytingin, umræðan og rýnin á sama hátt og í verkefnavinnu hópsins.
 :::
 
-### Uppbót fyrir iRAT
+::: {.callout-note}
+## Uppbót fyrir iRAT
 
 Ef þú kemst ekki í iRAT getur þú, í samráði við kennara, bætt það upp með því að leggja fram
 Pull Request sem gagnast námskeiðinu.
@@ -68,26 +69,14 @@ til dæmis:
 - bæta við litlu sýnidæmi, æfingu eða skýringarmynd,
 - bæta README, leiðbeiningar eða sniðmát sem aðrir nemendur geta nýtt.
 
-#### Skil
-
-Skilaðu hlekk á Pull Request í Canvas.
-
-Í Pull Request-lýsingunni þarf að koma fram:
-
-- hvaða lotu breytingin tengist,
-- hvað var bætt eða lagað,
-- hvers vegna breytingin gagnast námskeiðinu.
-
-Pull Request þarf að fylgja venjulegu GitHub-vinnuflæði: branch, commit, Pull Request og stutt
-lýsing á breytingunni.
-
-**Athugið:** Uppbótarverkefni er aðeins gilt eftir samráð við kennara. Kennari staðfestir hvort
-framlagið telst fullnægjandi uppbót.
+Uppbót er gerð með því að opna Pull Request á þessa gagnageymslu, í samráði við kennara.
+:::
 
 ### Sniðmát / Templates
 
-Öll sniðmát eru í [`templates/`](https://github.com/HI-IDN/IDN302G/tree/main/templates) möppunni í rót gagnageymslunnar.
-Afritið þau yfir í eigin gagnageymslu og fyllið út.
+Helstu grunnsniðmátin eru í [`templates/`](https://github.com/HI-IDN/IDN302G/tree/main/templates)
+möppunni í rót gagnageymslunnar. Afritið þau yfir í eigin gagnageymslu og fyllið út eftir því
+sem við á.
 
 | Skrá                                                                | Hvenær                     | Lýsing                                                           |
 |---------------------------------------------------------------------|----------------------------|------------------------------------------------------------------|
@@ -97,3 +86,6 @@ Afritið þau yfir í eigin gagnageymslu og fyllið út.
 | [`CONTRIBUTING.md`](https://github.com/HI-IDN/IDN302G/blob/main/templates/CONTRIBUTING.md)                   | Vika 2                     | Vinnuferli — útibúaheiti, commit-skilaboð, PR-ferli, kóðarýni    |
 | [`PULL_REQUEST_TEMPLATE.md`](https://github.com/HI-IDN/IDN302G/blob/main/templates/PULL_REQUEST_TEMPLATE.md) | Vika 2                     | Sniðmát fyrir PR-lýsingar — gátlisti og leiðbeiningar            |
 | [`iREF.md`](https://github.com/HI-IDN/IDN302G/blob/main/templates/iREF.md)                                   | Eftir hverja einingu       | Einstaklingsbundin endurspeglunargreining                        |
+
+Listinn er ekki tæmandi. Fleiri sniðmát og dæmi verða kynnt í samhengi við einstakar lotur
+og verkefni.

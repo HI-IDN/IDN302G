@@ -53,7 +53,7 @@ Frekara lesefni:
 - Hauhart, R. C. & Grahe, J. E. (2015). *Designing and Teaching Undergraduate Capstone Courses*. Jossey-Bass.
 :::
 
-::: {.callout-tip appearance="minimal" collapse="true"}
+::: {.callout-tip appearance="minimal" collapse="false"}
 ## Lykilhugtök
 
 ::: {tbl-colwidths="[10,25,65]"}
@@ -73,18 +73,6 @@ Námskeiðið byggist upp á **lotum** yfir 14 vikur — sjá [kennsluáætlun](
 Hver lota byggir ofan á þá sem á undan er komin: nemendur nota **Git og GitHub** og
 **endurtækar skýrslur** strax frá fyrstu viku og halda áfram að nota þær í gegnum allt misserið.
 Þannig er verkefnið alltaf lifandi — ekki æfingadæmi sem er skilað og gleymt.
-
-Hver lota fylgir sama skema:
-
-::: {tbl-colwidths="[10,20,15,55]"}
-| Skref | Tími | Hverjir | Hvað |
-|-------|------|---------|------|
-| **iRAT** | Mánudagur næstu lotu, byrjun | Einstaklingur | Þekkingarpróf í Inspera — þarf ≥5 til að halda áfram |
-| **tRAT** | Sami mánudagur, beint á eftir | Hópur | Sama próf, hópurinn ræðir og kemst að sameiginlegri niðurstöðu |
-| **tAPP** | Allir tímar | Hópur | Beita sömu tækni á verkefnagögnin ykkar — GitHub PR og kóðarýni (skilað í lok lotu) |
-| **iREF** | Lok lotu | Einstaklingur | Persónuleg ígrundun — birt á GitHub Pages (skilað í lok lotu) |
-| **iTA** | Mánudagur næstu lotu, beint á eftir iRAT+tRAT | Einstaklingur | Kennarinn spyr verkefnastjóra um nýafstaðna lotu — spurningar um kóða og vinnulag |
-:::
 
 #### TL;DR: taktur hverrar lotu
 
@@ -152,6 +140,60 @@ Eftirfylgni þar sem kennari spyr út í verkefnið og verkefnastjóri skýrir �
 ::: {.lotu-places}
 <span class="lotu-place">VRII-148</span>
 :::
+:::
+:::
+
+Hver lota fylgir sama skema:
+
+::: {tbl-colwidths="[10,20,15,55]"}
+| Skref | Tími | Hverjir | Hvað |
+|-------|------|---------|------|
+| **iRAT** | Mánudagur, ný lota byrjar | Einstaklingur | Þekkingarpróf í Inspera — þarf ≥5 til að halda áfram |
+| **tRAT** | Sami mánudagur, beint á eftir | Hópur | Sama próf, hópurinn ræðir og kemst að sameiginlegri niðurstöðu |
+| **tAPP** | Allir tímar | Hópur | Beita sömu tækni á verkefnagögnin ykkar — GitHub PR og kóðarýni (skilað í lok lotu) |
+| **iREF** | Lok lotu | Einstaklingur | Persónuleg ígrundun — birt á GitHub Pages (skilað í lok lotu) |
+| **iTA** | Mánudagur næstu lotu, beint á eftir iRAT+tRAT | Einstaklingur | Kennarinn spyr verkefnastjóra um nýafstaðna lotu — spurningar um kóða og vinnulag |
+:::
+
+#### Frá lotu til capstone
+
+Sama mynstrið endurtekur sig í gegnum misserið. Munurinn er að viðfangsefnið breytist:
+í hverri lotu bætist ný aðferð eða nýtt lag ofan á verkefnið. tAPP, iREF og iTA gera vinnuna
+rekjanlega og fæða hana smám saman inn í tCAP, teymishluta capstone-verkefnisins.
+Þannig verður capstone-verkefnið ekki sérstakt lokaverkefni sem byrjar í lokin, heldur
+afrakstur vinnunnar sem hefur verið í gangi allan tímann.
+
+```{=html}
+<p>
+  <img src="../img/course-structure/course-flow.svg"
+       class="img-fluid"
+       alt="Skipulagsmynd sem sýnir lotur námskeiðsins frá vikum 1 til 14. Hver lota fer í gegnum iRAT/tRAT, tAPP og iREF/iTA. Teymisvinna og eftirfylgni safnast í tCAP, teymishluta capstone-verkefnisins, sem leiðir síðan áfram í iCAP." />
+</p>
+```
+
+::: {.capstone-flow}
+::: {.capstone-flow-step}
+### 1. Lota
+
+iPREP → iRAT/tRAT → tAPP → iREF → iTA
+:::
+
+::: {.capstone-flow-step}
+### 2. Nýtt lag
+
+Hópurinn bætir nýrri aðferð við eigið gagnaverkefni.
+:::
+
+::: {.capstone-flow-step}
+### 3. Rýni
+
+PR, kóðarýni, skjölun og ígrundun gera vinnuna rekjanlega.
+:::
+
+::: {.capstone-flow-step .capstone}
+### 4. Capstone
+
+Lögin safnast saman í lokaverkefni, kynningu og einstaklingsígrundun.
 :::
 :::
 

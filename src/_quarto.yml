@@ -15,16 +15,17 @@ book:
   favicon: img/hi/favicon.svg
   search: true
   page-footer:
-    left: "© Háskóli Íslands · IÐN302G"
-    center: "Helga Ingimundardóttir"
+    left: "© 2026 Háskóli Íslands · Helga Ingimundardóttir"
     right:
-      - icon: github
-        href: https://github.com/HI-IDN/IDN302G
-        aria-label: GitHub
+      - text: "Quarto"
+        href: https://quarto.org/
   navbar:
     logo: img/hi/hi_named_logo-is.svg
     logo-alt: "Háskóli Íslands"
     background: primary
+    left:
+      - href: https://haskoliislands.instructure.com/courses/42669
+        text: "Námskeiðssíða"
     tools:
       - icon: github
         href: https://github.com/HI-IDN/IDN302G
@@ -46,24 +47,33 @@ book:
     - part: "Git og GitHub"
       chapters:
         - github/index.qmd
-        - github/basics/git_commands.qmd
-        - github/basics/security_best_practices.qmd
-        - github/basics/gitignore.qmd
+        - github/basics/what_is_github.qmd
         - github/basics/file_formats.qmd
-        - github/good_practices/git_branches.qmd
+        - github/basics/gitignore.qmd
+        - github/basics/git_commands.qmd
         - github/good_practices/writing_good_commits.qmd
+        - github/good_practices/git_branches.qmd
         - github/good_practices/pull_requests.qmd
         - github/good_practices/code_review.qmd
         - github/good_practices/writing_a_readme.qmd
+        - github/basics/security_best_practices.qmd
+        - github/good_practices/issues.qmd
+        - github/good_practices/projects.qmd
         - github/connections/overleaf_git_sync.qmd
     - part: "Erindrekar"
       chapters:
         - ai-tools/index.qmd
         - ai-tools/responsible-use.qmd
+        - ai-tools/prompts.qmd
+        - ai-tools/agents-md.qmd
+        - ai-tools/agent-log.qmd
         - ai-tools/reviewing-agents.qmd
     - part: "Endurtækar skýrslur"
       chapters:
         - reproducible-reports/index.qmd
+    - part: "API / vefþjónustur"
+      chapters:
+        - api/index.qmd
     - part: "Reglulegar segðir"
       chapters:
         - regex/index.qmd
@@ -105,6 +115,9 @@ book:
         - storytelling/donts.qmd
         - storytelling/data_narrative.qmd
         - storytelling/additional_resources.qmd
+    - part: "Glærur"
+      chapters:
+        - slides/index.qmd
     - part: "Um efnið"
       chapters:
         - about-material/license.qmd

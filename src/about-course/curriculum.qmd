@@ -23,6 +23,11 @@ Quarto, R Markdown eða Jupyter: skýrslur sem eru keyrðar beint af gögnum og 
 :::
 
 ::: {.lotu-card .lotu-card-muted}
+### API / vefþjónustur <span class="lotu-status">kemur</span>
+Samskipti við vefþjónustur og gagnaveitur með API (*Application Programming Interfaces*).
+:::
+
+::: {.lotu-card .lotu-card-muted}
 ### Reglulegar segðir <span class="lotu-status">kemur</span>
 Leit og vinnslur á textagögnum með reglulegar segðir (regex) í R og öðrum tólum.
 :::
@@ -51,10 +56,15 @@ og góðar og slæmar venjur í sjónrænni framsetningu.
 
 :::
 
-Hver kafli inniheldur útskýringar, sýnidæmi og æfingar — farðu í gegnum það í þeirri röð
-sem það birtist í hliðarstikunni til vinstri.
+Hver kafli inniheldur útskýringar, sýnidæmi og æfingar og má finna í
+hliðarstikunni hér til vinstri. Einnig er hægt að nota leitina
+(stækkunarglerið) hægra megin í hausstikunni.
 
 Gagnaskrárnar sem notaðar eru í sýnidæmum og æfingum eru í
 [`data/`](https://github.com/HI-IDN/IDN302G/tree/main/data) möppunni í gagnageymslunni.
-Villur og ábendingar eru vel þegnar — sjá [README](https://github.com/HI-IDN/IDN302G#readme)
-eða notið hnappana **Breyta þessari síðu** og **Tilkynna villu** neðst á hægra hliðarpanelnum.
+
+::: {.callout-tip title="Glærur"}
+Námskeiðið er kennt með vendikennslu og því verður minna um hefðbundna fyrirlestra
+og glærukynningar kennara en í mörgum námskeiðum. Þegar glærur eru notaðar verða þær
+safnaðar á síðunni [Glærur](../slides/index.html).
+:::

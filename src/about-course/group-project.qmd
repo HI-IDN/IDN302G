@@ -1,5 +1,5 @@
 ---
-title: "Hópverkefnið"
+title: "Capstone verkefni"
 number-sections: false
 ---
 
@@ -42,10 +42,17 @@ Hlutverk skiptast í hverri lotu:
 
 - Einn eða fleiri meðlimir **kóða** (PR-höfundar á GitHub)
 - Einn eða fleiri meðlimir **rýna kóðann** (PR-rýnar á GitHub)
-- **Verkefnastjóri** (skipt á milli lota) samræmir tímafresti og hefur samband við kennarann
+- **Verkefnastjóri** (skipt á milli lota) samræmir tímafresti, hefur samband við kennarann
+  og ber ábyrgð á að hafa yfirsýn yfir framvindu verkefnisins: hvað er að gerast í hópnum,
+  hver gerir hvað og hvers vegna. Í upphafi næstu lotu er verkefnastjóri spurður út í vinnu
+  hópsins í nýafstaðinni lotu í óundirbúnum iTA-fyrirspurnartíma á mánudegi.
 
 Allt þetta er sýnilegt í Git-sögunni — hver gerði hvað, hvenær, og hvort kóðarýni var
-ítarleg. **Git-sagan er hluti af einkunnargjöfinni.**
+ítarleg.
+
+::: {.callout-warning}
+**Git-sagan er hluti af einkunnargjöfinni.**
+:::
 
 #### Teymissáttmáli
 
@@ -62,3 +69,13 @@ Hópurinn semur [**TEAM.md**](../templates/TEAM.md)
 Eftir hverja lotu bætið þið við gögnum og myndum við GitHub Pages-teymissíðuna ykkar —
 í lokaverkefninu er síðan ykkar **lifandi skýrsla** sem sýnir alla ferðina frá fyrstu viku
 til þeirrar síðustu.
+
+### Verkefnastjóri og yfirsýn
+
+Í capstone-verkefninu eru teymin þriggja manna. Það þýðir að verkefnastjóri hverrar lotu,
+sem þarf að geta staðið skil á vinnu hópsins í iTA, hefur yfirleitt annaðhvort verið
+**PR-höfundur** eða **PR-rýnir** á öllum greinum sem voru sameinaðar inn í `main`.
+
+Ef verkefnastjóri hefur sinnt PR-rýninni nægilega vel ætti hann því að vera vel kunnugur
+verkefninu: hvað var gert, hver gerði hvað, hvers vegna breytingarnar voru samþykktar og
+hvernig þær tengjast capstone-verkefninu.

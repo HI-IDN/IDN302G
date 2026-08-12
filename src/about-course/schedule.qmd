@@ -8,7 +8,7 @@ ekki prófaðar í einstöku prófi heldur metnar í gegnum tAPP og iREF í hver
 þess sem GitHub-saga hópsins er hluti af einkunnargjöfunni.
 
 Heildarmynd af önn og nákvæmar dagsetningar má sjá á
-[verkefnaáætluninni í GitHub Projects](https://github.com/orgs/HI-IDN/projects/2/views/3).
+[verkefnaáætluninni í GitHub Projects](https://github.com/orgs/upplysingaverkfraedi/projects/2/views/3).
 
 ```{=html}
 <table class="schedule-table">
@@ -19,7 +19,7 @@ Heildarmynd af önn og nákvæmar dagsetningar má sjá á
 
 <tr>
   <td class="sch-week">1</td>
-  <td class="sch-module" rowspan="1">Git og AI</td>
+  <td class="sch-module" rowspan="2">Git, AI, endurtækar skýrslur</td>
   <td><div class="sch-chips">
     <span class="sch-badge sch-intro"><span class="l">Kynning</span><span class="r">verkefnaval og hópaskipting</span></span>
   </div></td>
@@ -29,11 +29,8 @@ Heildarmynd af önn og nákvæmar dagsetningar má sjá á
   </div></td>
 </tr>
 
-<tr class="sch-sep"><td colspan="4"></td></tr>
-
 <tr>
   <td class="sch-week">2</td>
-  <td class="sch-module" rowspan="1">Endurtækar skýrslur</td>
   <td><div class="sch-chips">
     <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Endurtækar skýrslur</span></span>
     <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Endurtækar skýrslur</span></span>
@@ -49,24 +46,24 @@ Heildarmynd af önn og nákvæmar dagsetningar má sjá á
 
 <tr>
   <td class="sch-week">3</td>
-  <td class="sch-module" rowspan="2">Regex</td>
+  <td class="sch-module" rowspan="2">API og Regex</td>
   <td><div class="sch-chips">
-    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">Git og AI / Endurtækar skýrslur</span></span>
-    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Regex</span></span>
-    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">Git, AI, endurtækar skýrslur</span></span>
+    <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">API og Regex</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">API og Regex</span></span>
   </div></td>
   <td><div class="sch-chips">
-    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">API og Regex</span></span>
   </div></td>
 </tr>
 <tr>
   <td class="sch-week">4</td>
   <td><div class="sch-chips">
-    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">API og Regex</span></span>
   </div></td>
   <td><div class="sch-chips">
-    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Regex</span></span>
-    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">API og Regex</span></span>
+    <span class="sch-badge sch-skil"><span class="l">Skil 23:59</span><span class="r">API og Regex</span></span>
   </div></td>
 </tr>
 
@@ -76,7 +73,7 @@ Heildarmynd af önn og nákvæmar dagsetningar má sjá á
   <td class="sch-week">5</td>
   <td class="sch-module" rowspan="2">Rökfræði og mengi</td>
   <td><div class="sch-chips">
-    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">Regex</span></span>
+    <span class="sch-badge sch-ita"><span class="l">iTA</span><span class="r">API og Regex</span></span>
     <span class="sch-badge sch-exam"><span class="l">iRAT+tRAT</span><span class="r">Rökfræði og mengi</span></span>
     <span class="sch-badge sch-work"><span class="l">tAPP</span><span class="r">Rökfræði og mengi</span></span>
   </div></td>
@@ -204,7 +201,8 @@ Heildarmynd af önn og nákvæmar dagsetningar má sjá á
 
 ### Uppbygging hvers tíma
 
-Tímar eru á **mánudögum kl. 10:00–12:20** og **fimmtudögum kl. 8:20–9:50**.
+Tímar eru á **mánudögum kl. 10:00–12:20** og **fimmtudögum kl. 8:20–9:50** í
+hópastofunni **VRII-148**.
 
 Venjulega byrjar lota á mánudegi og fylgir eftirfarandi sniði:
 
@@ -223,7 +221,9 @@ Engin almenn mætingarskylda — en eftirfarandi gildir:
   á sama tímabili og viðkomandi lota er kennd.
 - **iTA og iRAT+tRAT** fara fram á sama mánudegi í upphafi hverrar lotu. Mæting er ekki
   skylda, en er **eindregið æskileg** — ef þið komist ekki, hafið samband við kennara
-  fyrir fram til að finna aðra leið til að leysa undirbúningsprófið.
+  fyrir fram til að finna aðra leið til að leysa undirbúningsprófið
+  (sjá [uppbótarverkefni fyrir iRAT](how-to-use.qmd#uppbót-fyrir-irat)).
 - **Verkefnastjóri** þarf sérstaklega að mæta þar sem kennarinn spyr hann um lokna lotu.
 - Hlutverkum (kóðari, rýnir, verkefnastjóri) skal skipt sem jafnast á milli allra hópmeðlima
   yfir misserið — enginn á alltaf að vera kóðari, alltaf rýnir eða alltaf verkefnastjóri.
+
