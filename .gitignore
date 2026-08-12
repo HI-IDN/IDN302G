@@ -6,5 +6,12 @@
 **/*.quarto_ipynb
 **/quarto-session-temp*/
 
+# Standalone slide output can appear next to qmd files when rendered directly.
+/src/slides/*.html
+/src/slides/*_files/
+
 # Keep docs/ (GitHub Pages output) — do NOT ignore it
 
+
+# Standalone render can leave site_libs next to source
+/src/site_libs/

@@ -70,6 +70,26 @@ source-skránum undir `src/`. `docs/` er uppfært með Quarto render.
 
 ---
 
+## Byggja bókina staðbundið
+
+Til að einfalda byggingu og forskoðun fylgir **`Makefile`** í rót geymslunnar. Það kallar á
+Quarto fyrir þig og virkar bæði í Git Bash og PowerShell (þarf [Quarto](https://quarto.org)
+uppsett, og `make`).
+
+| Skipun | Aðgerð |
+|--------|--------|
+| `make` | Renderar aðeins þær síður sem hafa breyst (hratt, fyrir efnisbreytingar). |
+| `make full` | Heildar-render. Nota eftir breytingar á `_quarto.yml`, stílum eða kaflaskipan. |
+| `make preview` | Quarto preview með sjálfvirkri endurhleðslu meðan þú vinnur. |
+| `make serve` | Static server á tilbúnu `docs/` (skoða lokaútgáfu; `make serve PORT=8080`). |
+| `make clean` | Eyðir `docs/` og afleiddum Quarto-cache. |
+| `make help` | Sýnir þennan lista. |
+
+Dæmigert vinnuflæði: keyrðu `make preview` meðan þú breytir, og `make full` áður en þú commitar
+svo `docs/` sé í takt við `src/`.
+
+---
+
 ## Viðmið fyrir framlög
 
 - Skrifaðu á **íslensku** nema efnið krefjist annars (t.d. tæknileg hugtök)
