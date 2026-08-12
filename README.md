@@ -13,7 +13,7 @@ Efnið er skrifað í Markdown og birt á GitHub Pages.
 
 ```
 IDN302G/
-├── src/             # Frumefni námskeiðsbókarinnar: Markdown, Quarto, myndir og stílar
+├── docs/            # Frumefni námskeiðsbókarinnar: Markdown, Quarto, myndir og stílar
 │   ├── about-course/ # Upplýsingar um námskeiðið, skipulag og námsmat
 │   ├── ai-tools/    # Efni um erindreka og ábyrga notkun gervigreindar
 │   ├── github/      # Efni um Git og GitHub
@@ -23,18 +23,19 @@ IDN302G/
 │   ├── sql-basics/  # SQL grunnatriði
 │   ├── sql-advanced/ # SQL framhald
 │   ├── storytelling/ # Myndræn framsetning og gagnafrásögn
-│   └── styles/      # Sérsniðnir stílar fyrir námskeiðsbókina
-├── docs/            # Afleidd vefsíða sem Quarto býr til úr src/
+│   ├── styles/      # Sérsniðnir stílar fyrir námskeiðsbókina
+│   └── _freeze/     # Frystar niðurstöður keyranlegs kóða (svo Actions þarf ekki R)
 ├── templates/       # Sniðmát, m.a. TEAM.md fyrir hópa
 ├── data/            # Gagnaskrár sem notaðar eru í æfingum
 ├── code/            # Kóði og hjálparskrár sem styðja við sýnidæmi/æfingar
 └── README.md        # Yfirlit yfir gagnageymsluna
 ```
 
-`src/` er frumútgáfa námsefnisins. `docs/` er spegill/renderuð útgáfa sem verður til þegar Quarto
-bókin er byggð fyrir GitHub Pages. Ef þú sérð villu í námsefninu eða vilt leggja til breytingu á
-innihaldi skaltu breyta viðeigandi source-möppu undir `src/`, til dæmis `src/github/`,
-`src/reproducible-reports/`, `src/sql-basics/` eða `src/storytelling/`, ekki `docs/` beint.
+`docs/` er frumútgáfa námsefnisins. Þegar Quarto byggir bókina fer renderaða vefsíðan í `_site/`,
+sem er **ekki** í geymslunni — GitHub Actions byggir hana í skýinu og birtir á GitHub Pages. Ef þú
+sérð villu í námsefninu eða vilt leggja til breytingu á innihaldi skaltu breyta viðeigandi
+source-möppu undir `docs/`, til dæmis `docs/github/`, `docs/reproducible-reports/`,
+`docs/sql-basics/` eða `docs/storytelling/`.
 
 ---
 
@@ -61,12 +62,12 @@ Ef þú vilt ræða hugmynd, spyrja spurninga eða koma með tillögur án þess
 
 1. Gerðu **fork** af þessum repo
 2. Búðu til nýjan branch: `git checkout -b fix/lýsing-á-breytingu`
-3. Gerðu breytingarnar þínar í viðeigandi source-möppu undir `src/`, t.d. `src/github/`, `src/regex/` eða `src/sql-basics/`
+3. Gerðu breytingarnar þínar í viðeigandi source-möppu undir `docs/`, t.d. `docs/github/`, `docs/regex/` eða `docs/sql-basics/`
 4. Committaðu: `git commit -m "Lýsing á breytingu"`
 5. Sendu **Pull Request** og útskýrðu hvað þú breyttir og hvers vegna
 
-Ekki breyta skrám í `docs/` beint. Almennar efnisbreytingar eiga heima í Markdown/Quarto
-source-skránum undir `src/`. `docs/` er uppfært með Quarto render.
+Almennar efnisbreytingar eiga heima í Markdown/Quarto source-skránum undir `docs/`. Renderaða
+vefsíðan (`_site/`) er byggð sjálfkrafa af GitHub Actions — þú þarft ekki að byggja hana handvirkt.
 
 ---
 
@@ -81,12 +82,11 @@ uppsett, og `make`).
 | `make` | Renderar aðeins þær síður sem hafa breyst (hratt, fyrir efnisbreytingar). |
 | `make full` | Heildar-render. Nota eftir breytingar á `_quarto.yml`, stílum eða kaflaskipan. |
 | `make preview` | Quarto preview með sjálfvirkri endurhleðslu meðan þú vinnur. |
-| `make serve` | Static server á tilbúnu `docs/` (skoða lokaútgáfu; `make serve PORT=8080`). |
-| `make clean` | Eyðir `docs/` og afleiddum Quarto-cache. |
+| `make serve` | Static server á tilbúnu `_site/` (skoða lokaútgáfu; `make serve PORT=8080`). |
 | `make help` | Sýnir þennan lista. |
 
-Dæmigert vinnuflæði: keyrðu `make preview` meðan þú breytir, og `make full` áður en þú commitar
-svo `docs/` sé í takt við `src/`.
+Dæmigert vinnuflæði: keyrðu `make preview` meðan þú breytir. Ef þú breytir keyranlegum kóða
+skaltu keyra `make full` áður en þú commitar svo frystu niðurstöðurnar í `docs/_freeze/` uppfærist.
 
 ---
 
