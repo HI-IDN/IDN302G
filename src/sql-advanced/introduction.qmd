@@ -68,7 +68,7 @@ OFFSET <tala>;
 - `SELECT`: Skilgreinir hvaða dálkar eða útreikningar verða valdir úr töflum.
 - `FROM`: Hér getur verið ein eða fleiri töflur. Ef fleiri en ein tafla er notuð, er það oftast
   gert með tengingu (`JOIN`). Nánar verður farið í hvernig við tengjum saman töflur í
-  [hér](joins.md).
+  [hér](joins.qmd).
 - `WHERE`: Skilyrði sem takmarkar niðurstöður. Það er einnig hægt að nota undirfyrirspurnir
-  í `WHERE` hlutnum (sjá [hér](../sql-basics/subquery.md)). 
+  í `WHERE` hlutnum (sjá [hér](../sql-basics/subquery.qmd)). 
 

@@ -41,7 +41,7 @@ framkvæma fyrirspurnir á gagnagrunnum á einfaldan hátt. Þrátt fyrir að sm
 til staðar milli mismunandi gagnagrunnskerfa, eins og _PostgreSQL_ og _SQLite_, eru grunnskipanirnar
 oft mjög keimlíkar og auðvelt að aðlaga sig á milli kerfa. Fyrir frekari upplýsingar um
 hvernig `SELECT` skipanir eru búnar til, sem verða útskýrð betur í
-[grunnatriði í SQL](basic_sql_queries.md).
+[grunnatriði í SQL](basic_sql_queries.qmd).
 
 Hér eru dæmi um grunnskipanir í SQL fyrir mismunandi gagnagrunnskerfi:
 

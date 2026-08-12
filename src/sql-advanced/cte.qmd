@@ -66,7 +66,7 @@ hvernig gögnin eru tengd saman.
 CTE er ekki einskorðuð við `SELECT` fyrirspurnir. Það væri hægt að blanda saman `INSERT`, 
 `UPDATE` og jafnvel `DELETE` fyrirspurnum í CTE. 
 
-Hægt er að nota CTE til að búa til [sýndartöflur](views.md) sem geyma flóknar fyrirspurnir. 
+Hægt er að nota CTE til að búa til [sýndartöflur](views.qmd) sem geyma flóknar fyrirspurnir. 
 
 > Það er jafnvel hægt að nota ítranir í CTE (recursive CTE), en það er utan efniviðar þessa 
 > námskeiðs.
