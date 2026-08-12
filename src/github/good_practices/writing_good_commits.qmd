@@ -1,9 +1,10 @@
 ---
+title: "Commit skilaboð"
 description: >-
   Leiðbeiningar um hvernig á að skrifa skýr og gagnleg Git commit skilaboð.
 ---
 
-# Commit-skilaboð: skýr saga verkefnisins
+## Skýr saga verkefnisins
 
 Góð commit skilaboð eru mikilvæg til að auðvelda samstarf og viðhalda skýrri sögu breytinga í Git. Skýr og vel útfærð commit skilaboð hjálpa öðrum (og þér sjálfum í framtíðinni) að skilja breytingarnar sem voru gerðar.
 

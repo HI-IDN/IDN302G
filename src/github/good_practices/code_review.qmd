@@ -1,9 +1,10 @@
 ---
+title: "Kóðarýni"
 description: >-
   Leiðbeiningar um hvernig á að framkvæma gagnlega og uppbyggilega kóðarýni.
 ---
 
-# Kóðarýni: hvernig við lesum vinnu hvers annars
+## Hvernig við lesum vinnu hvers annars
 
 Kóðarýni (code review) er mikilvægur hluti af þróunarferli sem tryggir að kóðinn sé skiljanlegur, öruggur og vel skrifaður. Rýnir ber ábyrgð á því að hjálpa til við að bæta gæði kóðans áður en hann er sameinaður aðalgreininni.
 
@@ -13,14 +14,14 @@ Kóðarýni (code review) er mikilvægur hluti af þróunarferli sem tryggir að
 - **Tryggir samræmi** – Gæti að verkefnið fylgi stöðluðum forritunarvenjum.
 
 ## Hlutverk rýnanda
-- **Fara yfir breytingarnar í smáatriðum**
-- **Ekki samþykkja PR í blindni** – Vertu viss um að skilja kóðann
-- **Óska eftir útskýringum ef nauðsynlegt er**
-- **Keyra kóðann sjálfur og prófa virkni**
-- **Vera uppbyggilegur í athugasemdum**
-- **Nota inline comments fyrir skýra tilvísun í kóða**
-- **Nota `suggestion` virknina til að leggja fram breytingar án þess að skrifa yfir kóða beint**
-- **Ef kóðinn virkar ekki eins og til er ætlast, sýna skjáskot af villunni eða óvæntri hegðun**
+- Fara yfir breytingarnar í smáatriðum.
+- Ekki samþykkja PR í blindni – Vertu viss um að skilja kóðann.
+- Óska eftir útskýringum ef nauðsynlegt er.
+- Keyra kóðann sjálfur og prófa virkni.
+- Vera uppbyggilegur í athugasemdum.
+- Nota *inline comments* fyrir skýra tilvísun í kóða.
+- Nota `suggestion` virknina til að leggja fram breytingar án þess að skrifa yfir kóða beint.
+- Ef kóðinn virkar ekki eins og til er ætlast, sýna skjáskot af villunni eða óvæntri hegðun.
 
 ## Hvað á að skoða í kóðarýni?
 
@@ -98,13 +99,41 @@ for item in list_of_items:
 - **Óska eftir breytingum** – Þegar þarf að laga hluti áður en hægt er að samþykkja.
 - **Setja athugasemdir án þess að hindra PR** – Til að gefa uppbyggilega endurgjöf án þess að krefjast breytinga.
 
-## Reglur fyrir PR samþykktir
+### Regluverkið í mannamáli
 
-Í **opinberum GitHub geymslum** er hægt að stilla reglur:
+Á kóðageymslum námskeiðsins gilda reglur um greinavernd (*branch protection*). Í mannamáli þýða
+þær:
 
-- **Að lágmarki tveir rýnendur þurfa að samþykkja PR**.
-- **PR má ekki sameina ef óleyst samtöl eru til staðar**.
-- **Aðeins notendur með tiltekin réttindi geta samþykkt breytingar í aðalgrein**.
+- ekki má eyða `main` eða skrifa yfir Git-söguna með force push,
+- breytingar fara inn í `main` með pull request,
+- að minnsta kosti **tveir rýnar** þurfa að samþykkja PR-ið, og þeir mega ekki vera sá sem sendi
+  breytinguna inn,
+- ef ný commit bætast við eftir rýni þarf að rýna aftur,
+- PR-ið þarf að vera *up to date* áður en það er sameinað,
+- allar umræður í review threads þurfa að vera leystar áður en hægt er að merge-a.
 
-Góð kóðarýni snýst ekki aðeins um að leita að villum, heldur líka um að gera vinnuna skýrari,
-rekjanlegri og auðveldari fyrir teymið að viðhalda.
+Tilbúið <a href="https://hi-idn.github.io/IDN302G/templates/github-ruleset-require-pr-review-main.json">ruleset-sniðmát</a>
+er hægt að afrita inn í eigin kóðageymslu: farið á GitHub síðu kóðageymslurnar undir **Settings →
+Rules → Rulesets** (`https://github.com/<owner>/<repo>/settings/rules`) og veljið *Import a
+ruleset*.
+
+::: {.callout-important title="Undantekningar frá reglunum"}
+Reglurnar hér að ofan gilda um alla í teyminu. Aðeins notendur með tiltekin réttindi geta
+samþykkt **undantekningar** frá þeim — til dæmis að sameina PR án þess að farið hafi fram full
+rýni.
+
+Í þessu námskeiði er **kennari námskeiðsins einn undanþeginn þessum kvöðum** og hefur þessi
+réttindi. Nemendur og verkefnastjórar geta því ekki veitt sjálfum sér eða öðrum undanþágu frá
+reglunum; slíkt þarf alltaf að fara í gegnum kennarann (þ.e.a.s. *organization administrator*
+kóðageymslurnar).
+:::
+
+::: {.callout-note title="Af hverju þetta skiptir máli fyrir verkefnastjóra"}
+Í capstone-verkefninu eru teymin þriggja manna. Verkefnastjóri hverrar lotu,
+sem þarf að geta staðið skil á vinnu hópsins í iTA, hefur því yfirleitt annaðhvort
+verið **PR-höfundur** eða **PR-rýnir** á öllum greinum sem voru sameinaðar inn í `main`.
+
+Ef verkefnastjóri hefur sinnt PR-rýninni nægilega vel ætti hann að vera vel kunnugur
+verkefninu: hvað var gert, hver gerði hvað, hvers vegna breytingarnar voru samþykktar
+og hvernig þær tengjast capstone-verkefninu.
+:::

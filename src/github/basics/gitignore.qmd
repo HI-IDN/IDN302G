@@ -1,8 +1,10 @@
 ---
-title: "Hvaða skrár á Git að hunsa?"
+title: ".gitignore"
 description: >-
   Hvernig `.gitignore` hjálpar okkur að halda Git-geymslum hreinum, léttum og öruggum.
 ---
+
+## Hvaða skrár á Git að hunsa?
 
 `.gitignore` er skrá sem segir Git hvaða skrár og möppur eiga **ekki** að fara í
 útgáfustjórnun. Hún er ekki aukaatriði: góð `.gitignore` skrá heldur verkefninu hreinu,
@@ -72,7 +74,6 @@ að taka ákvörðun um.
 ## Sniðmát fyrir `.gitignore`
 
 Í námskeiðinu er til einfalt `.gitignore` sniðmát sem þið getið afritað inn í eigin verkefni:
-
 [`templates/.gitignore`](../../templates/.gitignore)
 
 Setjið skrána í rót verkefnisins og aðlagið hana eftir þörfum. Hér fyrir neðan eru helstu hlutar

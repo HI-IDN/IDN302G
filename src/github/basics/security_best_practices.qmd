@@ -1,10 +1,11 @@
 ---
+title: "Öryggi"
 description: >-
   Mikilvægi þess að tryggja öryggi við geymslu lykilorða og annarra viðkvæmra upplýsinga í GitHub
   repo, og hvernig á að forðast öryggisbrot.
 ---
 
-# Öryggi: lyklar, lykilorð og viðkvæm gögn
+## Lyklar, lykilorð og viðkvæm gögn
 
 Að vista lykilorð, notendanöfn eða aðrar viðkvæmar upplýsingar í GitHub repo sem er opinber (public)
 er mjög alvarlegt öryggisbrot. Hér eru nokkrar ástæður fyrir því að það má aldrei gera þetta:

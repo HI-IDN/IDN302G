@@ -1,8 +1,10 @@
 ---
-title: "Hvaða skrár eiga heima í Git?"
+title: "Skrár í Git"
 description: >-
   Hvernig á að velja skráarsnið fyrir Git: textaskrár, gögn, skjöl, notebooks og afleiddar skrár.
 ---
+
+## Hvaða skrár eiga heima í Git?
 
 Git er best í að fylgjast með breytingum í **textaskrám**. Það þýðir ekki að allar skrár þurfi að
 vera kóði, en það þýðir að við viljum velja skráarsnið sem eru læsileg, samanburðarhæf og hægt er
@@ -105,21 +107,32 @@ Almenn viðmið:
 
 ## Þumalputtareglur
 
-Settu í Git:
-
-- frumkóða,
-- Markdown/Quarto/LaTeX frumskjöl,
-- lítil gögn sem mega fylgja verkefninu,
-- README og leiðbeiningar,
-- stillingarskrár sem þarf til að keyra verkefnið.
-
-Settu ekki í Git, nema sérstök ástæða sé til:
-
-- lykilorð, token eða `.env`,
-- cache og tímabundnar skrár,
-- stór gögn,
-- afleiddar skrár sem auðvelt er að búa til aftur,
-- stórar binary-skrár eins og PDF, Word, Excel eða myndbönd sem frumefni verkefnisins.
+```{=html}
+<div class="visible-evidence-grid">
+  <div class="visible-evidence-card git-include">
+    <h3>Skrár sem eiga heima í Git</h3>
+    <ul>
+      <li>frumkóði,</li>
+      <li>Markdown/Quarto/LaTeX frumskjöl,</li>
+      <li>lítil gögn sem mega fylgja verkefninu,</li>
+      <li>README og leiðbeiningar,</li>
+      <li>stillingarskrár sem þarf til að keyra verkefnið.</li>
+    </ul>
+  </div>
+  <div class="visible-evidence-card git-exclude">
+    <h3>Skrár sem eiga ekki heima í Git*</h3>
+    <ul>
+      <li>lykilorð, token eða <code>.env</code>,</li>
+      <li>cache og tímabundnar skrár,</li>
+      <li>stór gögn,</li>
+      <li>afleiddar skrár sem auðvelt er að búa til aftur,</li>
+      <li>stórar binary-skrár eins og PDF, Word, Excel eða myndbönd sem frumefni verkefnisins.</li>
+    </ul>
+    <p class="card-note">* Nema það sé rík ástæða til að hafa þær með.</p>
+  </div>
+</div>
+```
 
 Markmiðið er að Git geymi sögu verkefnisins á þann hátt að annar aðili geti skilið, keyrt og rýnt
-vinnuna.
+vinnuna. Í Git eru flatar textaskrár (*plain text*) best til þess fallnar, því þær gera breytingar
+læsilegar, samanburðarhæfar og auðveldar í kóðarýni.

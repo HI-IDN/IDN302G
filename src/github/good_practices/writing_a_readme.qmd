@@ -1,9 +1,10 @@
 ---
+title: "README"
 description: >-
   Leiðbeiningar um hvað ætti að vera í README.md skrá í GitHub repo.
 ---
 
-# README: inngangur að verkefninu
+## Inngangur að verkefninu
 
 `README.md` er fyrsta skráin sem flestir sjá þegar þeir heimsækja GitHub repo. Hún ætti að veita skýra og gagnlega yfirsýn yfir verkefnið og leiðbeina notendum um hvernig á að nota það.
 
@@ -39,19 +40,46 @@ Dæmi:
 `````markdown
 ## Uppsetning
 
-1. Klónaðu geymsluna:
-   ```sh
-   git clone https://github.com/your-username/your-repo.git
-   ```
-2. Farðu inn í verkefnamöppuna:
-   ```sh
-   cd your-repo
-   ```
-3. Settu upp nauðsynlegar pakkar:
-   ```sh
-   pip install -r requirements.txt
-   ```
+### 1. Athugaðu Python-útgáfuna
+
+Athugaðu fyrst hvaða útgáfa af Python er uppsett:
+
+```sh
+python --version
+```
+
+Verkefnið krefst **Python X.Y eða nýrra**.
+
+> **Windows:** Ef `python` virkar ekki skaltu prófa:
+> ```sh
+> py --version
+> ```
+
+### 2. Klónaðu verkefnið
+
+```sh
+git clone https://github.com/owner/repo.git
+cd your-repo
+```
+
+### 3. Settu upp nauðsynlega pakka
+
+```sh
+python -m pip install -r requirements.txt
+```
+
+Á Windows, ef þú notar `py`:
+
+```sh
+py -m pip install -r requirements.txt
+```
 `````
+Hér er gert ráð fyrir að python pakkarnir sem eru notaður séu útlistaðir í skjali sem kallast
+`requirements.txt`, sem lítur t.d. svona út:
+```plaintext
+requests==2.25.1
+pandas==1.3.0
+```
 
 ### 3. Dæmi um notkun
 

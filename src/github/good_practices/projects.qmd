@@ -1,0 +1,72 @@
+---
+title: "Projects"
+description: >-
+  Hvernig GitHub Projects heldur utan um issues og gerir vinnu teymisins sýnilega.
+---
+
+GitHub Projects er verkefnatafla sem heldur utan um vinnuna á einum stað. Í stað þess að
+skoða issues sem langan lista sýnir Projects þau sem spjöld á töflu, oftast í dálkum eins og
+**Til vinnslu**, **Í vinnslu** og **Búið**.
+
+Þetta er í grunninn **kanban-tafla**, sem margir nemendur kannast við úr hugbúnaðarþróun. Kanban
+er einföld aðferð til að stýra vinnu þar sem hvert verk er spjald sem færist á milli dálka eftir
+stöðu — frá vinstri (ógert) til hægri (búið). Markmiðið er að gera vinnuflæðið **sýnilegt**: allir
+sjá í einni sjónhendingu hvað er ógert, hvað er í vinnslu og hvað er klárað, og hvar verk gætu
+verið að stöðvast. Kanban á rætur í framleiðslu (Toyota) en er í dag útbreitt í agile-hugbúnaðarþróun.
+
+::: {.callout-tip}
+Í stuttu máli: issues segja *hvað* þarf að gera; Projects sýnir *hvar* hvert verk er statt og
+*hver* er með það. Taflan er sameiginlegt yfirlit teymisins yfir stöðu verkefnisins.
+:::
+
+## Af hverju að nota Projects?
+
+Þegar issues verða fleiri en örfá er erfitt að sjá heildarmyndina í venjulegum issue-lista.
+Projects hjálpar teyminu að:
+
+- sjá alla vinnuna í einu og hvar hún er stödd,
+- vita hver ber ábyrgð á hverju verki,
+- forgangsraða: hvað á að gera næst?,
+- fanga stöðnuð verk sem hafa setið of lengi án hreyfingar,
+- halda daglegum eða vikulegum stand-up án þess að telja upp allt sem er ógert.
+
+Projects býr ekki til nýja vinnu — það raðar bara vinnu sem er þegar til sem issues (og
+stundum Pull Requests) þannig að hún verði sýnileg.
+
+## Tengsl við issues
+
+Projects og issues eru tvær hliðar á sömu vinnu:
+
+- **Issue** er ein afmörkuð vinnueining — hvað á að gera, hvers vegna og hvenær það telst
+  klárt (sjá [Issues](issues.qmd)).
+- **Projects** er taflan sem raðar þessum issues eftir stöðu og forgangi.
+
+Þegar issue er sett á töfluna verður það að spjaldi. Spjaldið vísar áfram í issue-ið sjálft,
+svo öll umræða, checklist og tenglar haldast á einum stað — taflan er bara annað sjónarhorn á
+sama issue.
+
+Dæmigert flæði í námskeiðinu:
+
+1. Teymið býr til **issue** fyrir vinnu sem þarf að gera.
+2. Issue-ið er sett á **Projects**-töfluna í dálkinn **Til vinnslu**.
+3. Þegar einhver byrjar er spjaldið fært í **Í vinnslu** og `Assignee` settur á það.
+4. Branch og Pull Request eru tengd við issue-ið með `Closes #12` (sjá [Issues](issues.qmd)).
+5. Þegar PR er merge-að lokast issue-ið og spjaldið færist sjálfkrafa í **Búið**.
+
+::: {.callout-note}
+`Closes #12` í Pull Request lokar issue-inu **og** færir spjaldið yfir í **Búið** ef dálkurinn
+er stilltur á stöðuna *Done*. Þannig helst taflan í takt við raunverulega stöðu án þess að
+uppfæra hana handvirkt.
+:::
+
+## Reitir sem hjálpa
+
+Projects leyfir að bæta við aukareitum á spjöldin. Gagnlegir reitir fyrir hópverkefni:
+
+- **Status** — dálkurinn sjálfur: Til vinnslu / Í vinnslu / Búið.
+- **Assignee** — hver ber ábyrgð á verkinu.
+- **Priority** — hvað skiptir mestu núna.
+- **Size / Estimate** — hversu stórt verkið er, svo ekki lendi allt á einni manneskju.
+
+Byrjið einfalt: **Status** og **Assignee** duga langt. Bætið við reitum þegar teymið finnur
+raunverulega þörf, ekki fyrr.

@@ -1,9 +1,10 @@
 ---
+title: "Greinar"
 description: >-
   Leiðbeiningar um hvernig á að nota branches í Git, mikilvægi þeirra í vinnuflæði og góðar venjur varðandi nafngiftir.
 ---
 
-# Greinar: vinna án þess að skemma aðalútgáfuna
+## Vinna án þess að skemma aðalútgáfuna
 
 Branches (greinar) í Git eru leið til að vinna sjálfstætt á breytingum án þess að hafa áhrif á
 aðalútgáfu (t.d. `main`). Þetta gerir kleift að vinna í nýjum eiginleikum, lagfæringum og tilraunum
@@ -20,68 +21,63 @@ aðalútgáfu (t.d. `main`). Þetta gerir kleift að vinna í nýjum eiginleikum
 
 ## Algengar Git skipanir fyrir branches
 
-- **Skoða allar greinar í verkefninu:**
-  ```sh
-  git branch
-  ```
-- **Búa til nýja grein:**
-  ```sh
-  git branch branch-nafn
-  ```
-- **Skipta yfir í grein:**
-  ```sh
-  git checkout branch-nafn
-  ```
-- **Búa til og skipta yfir í nýja grein í einni skipun:**
-  ```sh
-  git checkout -b branch-nafn
-  ```
-- **Sameina grein við aðra grein (t.d. aðalgreinina `main`):**
-  ```sh
-  git checkout main
-  git merge branch-nafn
-  ```
-- **Eyða branch eftir sameiningu:**
-  ```sh
-  git branch -d branch-nafn
-  ```
-  Ef grein hefur ekki verið sameinuð en þú vilt samt eyða henni, þarf að nota `-D` í stað `-d`.
+| Aðgerð | Skipun |
+|---|---|
+| Skoða allar greinar í verkefninu | `git branch` |
+| Búa til nýja grein | `git branch branch-nafn` |
+| Skipta yfir í grein | `git checkout branch-nafn` |
+| Búa til og skipta yfir í nýja grein | `git checkout -b branch-nafn` |
+| Sameina grein við aðalgreinina | `git checkout main` og síðan `git merge branch-nafn` |
+| Eyða grein eftir sameiningu | `git branch -d branch-nafn` |
+
+Ef grein hefur ekki verið sameinuð en þú vilt samt eyða henni, þarf að nota `-D` í stað `-d`.
 
 ## Góðar venjur um nafngiftir á branches
 
 Það er mikilvægt að velja lýsandi nöfn á branches frekar en að nota eigið nafn eða almenna
 skammstöfun.
 
-**Góð dæmi um branch nöfn:**
-
-- `feature-user-authentication` (nýr eiginleiki: notendaskráning)
-- `bugfix-login-error` (lagfæring: innskráningarvilla)
-- `hotfix-payment-gateway` (bráðabirgðalagfæring fyrir greiðslukerfi)
-- `sandbox-experiment` (tilrauna branch fyrir prófanir)
-
-**Dæmi um branch nöfn sem ætti að forðast:**
-
-- `helga` (Lýsir ekki hvað greinin gerir)
-- `test` (Of almennt, ekki gagnlegt fyrir aðra notendur)
-- `new` (Hvaða nýjung er þetta?)
+```{=html}
+<div class="visible-evidence-grid">
+  <div class="visible-evidence-card git-include">
+    <h3>Góð branch nöfn</h3>
+    <ul>
+      <li><code>feature-user-authentication</code> — nýr eiginleiki</li>
+      <li><code>bugfix-login-error</code> — lagfæring</li>
+      <li><code>hotfix-payment-gateway</code> — bráðalagfæring</li>
+      <li><code>sandbox-experiment</code> — tilraun eða prófun</li>
+    </ul>
+  </div>
+  <div class="visible-evidence-card git-exclude">
+    <h3>Branch nöfn sem ætti að forðast</h3>
+    <ul>
+      <li><code>helga</code> — segir ekki hvað greinin gerir</li>
+      <li><code>test</code> — of almennt</li>
+      <li><code>new</code> — óljóst hvaða nýjung er átt við</li>
+    </ul>
+  </div>
+</div>
+```
 
 Ef branch er bara fyrir **tilraunir eða persónulega notkun**, er í lagi að nota **sandbox-** sem
 forskeyti, t.d. `sandbox-helga`.
 
 ## Sameining greina (merging) og merge conflicts
 
-Þegar grein er sameinu[] getur komið upp **merge conflict** ef breytingar stangast á við
+Þegar grein er sameinuð getur komið upp **merge conflict** ef breytingar stangast á við
 breytingar sem þegar eru í aðalútgáfunni.
 
-- **Hvernig á að leysa merge conflict?**
-    - Opnaðu skrána sem hefur árekstur (`<<<<<<< HEAD` og `>>>>>>>` merki).
-    - Veldu hvaða breytingar eiga að haldast.
-    - Fjarlægðu árekstramerkin.
-    - Vistaðu og bættu við breytingunni:
-      ```sh
-      git add uppfærð-skrá
-      git commit -m "Leysti merge conflict"
-      ```
+Til að leysa merge conflict:
+
+1. Opnið skrána sem hefur árekstur (`<<<<<<< HEAD` og `>>>>>>>` merki).
+2. Veljið hvaða breytingar eiga að haldast.
+3. Fjarlægið árekstramerkin.
+4. Vistið skrána og bætið breytingunni við Git:
+
+```sh
+git add uppfærð-skrá
+git commit -m "Leysti merge conflict"
+```
 
 ## Samantekt
 
