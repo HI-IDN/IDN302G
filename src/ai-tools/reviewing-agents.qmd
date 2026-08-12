@@ -113,9 +113,7 @@ Síðan notar nemandinn erindreka til að vinna lausnina. Það má nota hvaða 
 
 `AGENTS.md` er eins konar leiðbeiningablað fyrir kóðunaraðstoðarmanninn. Þar má setja
 vinnureglur verkefnisins: hvaða möppur á að nota, hvernig á að keyra kóða, hvernig á að skrifa
-commit-skilaboð og hvað má ekki breyta. Codex les `AGENTS.md` áður en það byrjar að vinna og
-notar skrár nær núverandi möppu sem sértækari leiðbeiningar. Claude Code notar fyrst og fremst
-`CLAUDE.md`, en getur importað `AGENTS.md` ef repo-ið notar slíka skrá.[^agents-codex][^agents-claude]
+commit-skilaboð og hvað má ekki breyta. Sjá nánar í kaflanum um [`AGENTS.md`](agents-md.qmd).
 
 `AGENT_LOG.md` er hins vegar ekki fyrirmæli til tólsins. Hún er skráning á vinnuferlinu eftir
 á: hvaða spurningar voru lagðar fyrir, hvaða erindrekar komu við sögu, hvaða breytingar urðu
@@ -128,9 +126,6 @@ til og hvað þið yfirfóruð sjálf. Þetta er skráin sem gerir PR-ið rýnan
 
 `AGENT_LOG.md` segir: „Svona notuðum við agentinn í þessu PR.“
 :::
-
-[^agents-codex]: OpenAI, [Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
-[^agents-claude]: Anthropic, [How Claude remembers your project](https://code.claude.com/docs/en/memory).
 
 ### Það sem þarf að sjást í PR
 

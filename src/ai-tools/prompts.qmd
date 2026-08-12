@@ -1,0 +1,30 @@
+---
+title: "Að skrifa góð fyrirmæli (prompts)"
+description: >-
+  Hvernig skýr og samhengisrík fyrirmæli (prompts) bæta gæði þess sem erindreki skilar.
+---
+
+Erindreki er ekki hugsanalesari. Gæði svarsins ráðast að miklu leyti af því hversu skýr og
+samhengisrík fyrirmælin (*prompts*) eru. Almennt hjálpar að hafa eftirfarandi í huga:
+
+- **Gefðu samhengi.** Segðu hvað verkefnið snýst um, hvaða tungumál eða tól eru notuð og hvað
+  hefur þegar verið gert. Því meira sem erindrekinn veit um umhverfið, því betri verður tillagan.
+- **Vertu skýr um markmiðið.** Lýstu því hvað þú vilt fá út — ekki bara „laga þetta“ heldur
+  *hvað* á að vera öðruvísi og *hvernig þú veist að það sé búið* (sbr. skilyrði fyrir að klára í
+  [issues](../github/good_practices/issues.qmd)).
+- **Biddu um lítil, afmörkuð skref.** Ein breyting í einu er auðveldari að lesa yfir, prófa og
+  bakka út en stór „endurskrifaðu allt“-beiðni.
+- **Sýndu dæmi.** Ef þú vilt ákveðið snið, stíl eða framsetningu, límdu inn dæmi um hvernig
+  niðurstaðan á að líta út. Dæmi segja meira en löng lýsing.
+- **Settu skorður.** Nefndu það sem má *ekki* gera: ekki breyta öðrum skrám, ekki bæta við
+  aukapökkum, halda sig við núverandi stíl kóðans.
+- **Ítraðu.** Fyrsta svarið er sjaldan fullkomið. Bentu á það sem er rangt eða vantar og biddu
+  um leiðréttingu, frekar en að byrja upp á nýtt.
+- **Biddu um útskýringu.** Láttu erindrekann rökstyðja af hverju hann valdi þessa leið. Það
+  hjálpar þér að meta hvort lausnin sé rétt — og þú berð ábyrgð á að skilja hana.
+
+::: {.callout-tip}
+Í stuttu máli: gott prompt er eins og gott issue — skýrt markmið, nægt samhengi og afmarkað
+umfang. Ef þú gætir sjálf/ur ekki leyst verkið út frá lýsingunni, þá getur erindrekinn það
+líklega ekki heldur.
+:::

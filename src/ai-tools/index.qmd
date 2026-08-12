@@ -5,9 +5,18 @@ description: >-
   gagnaverkefnum.
 ---
 
-Erindrekar eru gervigreindarhjálpartæki sem geta tekið við markmiði, skoðað samhengi, lagt til lausn
-og hjálpað til við að framkvæma hluta af vinnu. Í forritun geta þeir til dæmis skrifað kóða, útskýrt
-villur, stungið upp á prófunum, bætt skjölun og aðstoðað við kóðarýni.
+Erindrekar (e. agents) eru gervigreindarhjálpartæki sem geta tekið við markmiði, skoðað samhengi,
+lagt til lausn og hjálpað til við að framkvæma hluta af vinnu. Í forritun geta þeir til dæmis
+skrifað kóða, útskýrt villur, stungið upp á prófunum, bætt skjölun og aðstoðað við kóðarýni.
+
+::: {.callout-note}
+## Gervigreind og spunagreind
+
+Í þessum kafla erum við fyrst og fremst að ræða **spunagreind** (*generative AI*), sem er sérstakur
+undirflokkur gervigreindar. Spunagreind býr til nýjan texta, kóða, myndir eða aðrar tillögur út frá
+fyrirmælum og samhengi. Það er því ekki öll gervigreind — heldur sú gerð gervigreindar sem við getum
+notað sem rit-, kóða- og vinnuferlishjálp.
+:::
 
 Í þessu námskeiði má nota slík tól, en notkunin þarf að vera **rekjanleg, gagnrýnin og á ábyrgð
 nemandans**. Markmiðið er ekki að „láta gervigreind gera verkefnið“ heldur að læra að stýra
@@ -44,6 +53,26 @@ breyttist síðar var að tólin fóru að verða meiri **erindrekar**:
 Í almennri notkun urðu slík agent-vinnuflæði sérstaklega sýnileg í kringum upphaf árs 2026. Þá varð
 mun eðlilegra að hugsa um gervigreind ekki bara sem spjall eða textatillögur, heldur sem
 samstarfsaðila í afmörkuðu vinnuferli.
+
+Til að nýta þessi tól vel hjálpar að skilja hvernig stór mállíkön virka í grunninn — að þau spá
+fyrir um líklegasta framhaldið út frá samhenginu sem þeim er gefið, frekar en að „vita“ svör.
+Myndbandið hér að neðan útskýrir þetta á aðgengilegan hátt. Það er nokkurra ára gamalt, en
+grunnhugmyndirnar eiga enn vel við.
+
+```{=html}
+<details class="video-details">
+  <summary>Myndband: <em>Spotify Explained — The conspiracy to make AI seem harder than it is!</em></summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/2eWuYf-aZE4"
+      title="Spotify Explained: The conspiracy to make AI seem harder than it is!"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption">Gustav Söderström (Spotify) útskýrir hvernig LLM virka í grunninn.</p>
+</details>
+```
 
 ## Algeng tól
 
@@ -85,3 +114,6 @@ vinna með erindreka á ábyrgan hátt:
 - prófa niðurstöðuna
 - skrá hvað var gert með gervigreind
 - nota pull request til að fá gagnrýna yfirferð
+
+Sjá nánar í [Að skrifa góð fyrirmæli](prompts.qmd) um hvernig skýr fyrirmæli (prompts) bæta
+það sem erindrekinn skilar.
