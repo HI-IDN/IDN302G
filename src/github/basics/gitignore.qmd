@@ -1,0 +1,190 @@
+---
+title: ".gitignore"
+description: >-
+  Hvernig `.gitignore` hjálpar okkur að halda Git-geymslum hreinum, léttum og öruggum.
+---
+
+## Hvaða skrár á Git að hunsa?
+
+`.gitignore` er skrá sem segir Git hvaða skrár og möppur eiga **ekki** að fara í
+útgáfustjórnun. Hún er ekki aukaatriði: góð `.gitignore` skrá heldur verkefninu hreinu,
+flýtir fyrir vinnu og minnkar líkurnar á að viðkvæmar eða óþarfar skrár rati inn í repo.
+
+::: {.callout-tip}
+Í stuttu máli: Git á að geyma það sem þarf til að endurskapa verkefnið — ekki allt sem tölvan
+býr til á leiðinni.
+:::
+
+## Af hverju viljum við hunsa skrár?
+
+Við notum `.gitignore` fyrst og fremst af fjórum ástæðum.
+
+### 1. Við viljum ekki setja leyndarmál í Git
+
+Skrár með lykilorðum, API-lyklum eða auðkennum mega ekki fara í Git. Ef þær fara einu sinni inn
+í Git-söguna getur verið erfitt að fjarlægja þær alveg.
+
+Dæmi:
+
+```text
+.env
+.env.local
+credentials.json
+secrets.yml
+id_rsa
+```
+
+Ef lykill eða lykilorð fer óvart í Git þarf að líta á það sem lekið leyndarmál: skipta um lykil,
+fjarlægja skrána og ræða við kennara eða teymið um næstu skref.
+
+### 2. Við viljum ekki vista afleiddar skrár
+
+Afleidd skrá er skrá sem verður til úr annarri skrá. Til dæmis:
+
+- HTML sem Quarto býr til úr `.qmd`
+- PDF sem verður til úr LaTeX eða Quarto
+- cache-skrár úr Python eða R
+- tímabundnar log-skrár
+
+Ef hægt er að búa skrána til aftur með skipun á hún yfirleitt ekki að vera í Git, nema sérstök
+ástæða sé til.
+
+Afleiddar skrár gera annars Git-söguna óskýra: commit-ið sýnir þá bæði raunverulegu breytinguna og
+margar skrár sem tölvan bjó sjálfkrafa til. Þá verður erfiðara að sjá hvað var í raun gert.
+
+### 3. Við viljum halda repo-inu léttu
+
+Git virkar best með textaskrár og hóflega stórar skrár. Ef repo fyllist af stórum skrám verður það:
+
+- hægara að klóna,
+- hægara að sækja breytingar,
+- erfiðara að vinna með í GitHub,
+- líklegra til að lenda í stærðartakmörkunum.
+
+GitHub hefur einnig skráarstærðartakmörk. Almennt er mælt með að halda einstökum skrám undir
+**50 MB**, og GitHub lokar á venjulegt push ef einstök skrá fer yfir **100 MB**. Stór gögn eiga
+frekar heima í sér gagnageymslu, release, gagnagátt eða Git LFS ef það hefur verið ákveðið.
+
+### 4. Við viljum forðast hávaða í `git status`
+
+Ef tímabundnar skrár birtast alltaf í `git status` verður erfiðara að sjá raunverulegar breytingar.
+Góð `.gitignore` gerir `git status` læsilegt: það sem birtist þar ætti að vera eitthvað sem þú þarft
+að taka ákvörðun um.
+
+## Sniðmát fyrir `.gitignore`
+
+Í námskeiðinu er til einfalt `.gitignore` sniðmát sem þið getið afritað inn í eigin verkefni:
+[`templates/.gitignore`](../../templates/.gitignore)
+
+Setjið skrána í rót verkefnisins og aðlagið hana eftir þörfum. Hér fyrir neðan eru helstu hlutar
+sniðmátsins útskýrðir.
+
+### Umhverfi, lyklar og local stillingar
+
+```text
+.env
+.env.*
+*.key
+*.pem
+credentials.*
+```
+
+Þetta eru skrár sem geta innihaldið lykla, token, slóðir eða stillingar sem eiga aðeins við á þinni
+tölvu.
+
+### Python
+
+```text
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+```
+
+Þetta eru cache-skrár, sýndarumhverfi og tímabundnar notebook-skrár sem Python/Jupyter býr til.
+
+### R og RStudio
+
+```text
+.Rhistory
+.RData
+.Rproj.user/
+```
+
+Þetta eru local vinnuskrár úr R og RStudio sem eiga sjaldnast erindi í sameiginlegt repo.
+
+### Node.js
+
+```text
+node_modules/
+npm-debug.log
+```
+
+`node_modules/` getur orðið mjög stór mappa og á yfirleitt að endurskapa með `npm install`, ekki
+vista í Git.
+
+### Quarto, LaTeX og afleiddar byggingarskrár
+
+```text
+/.quarto/
+*_cache/
+*.aux
+*.log
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+```
+
+Þetta eru skrár sem verða til þegar skjöl eru renderuð eða sett saman. Þær eru gagnlegar á meðan
+unnið er, en þær eiga sjaldnast að vera hluti af breytingasögu verkefnisins.
+
+::: {.callout-note}
+Í þessu námskeiði getur verið að `docs/` sé viljandi hluti af repo-inu vegna GitHub Pages. Það er
+þá undantekning frá almennu reglunni um afleiddar skrár. Þið eigið samt að breyta frumefninu í
+`src/`, ekki HTML-skránum í `docs/` beint.
+:::
+
+## Hvernig veit ég hvort skrá á að vera í Git?
+
+Góð þumalputtaregla:
+
+- Ef skráin er **frumefni** verkefnisins á hún líklega að vera í Git.
+- Ef skráin er **búin til sjálfkrafa** á hún líklega að vera í `.gitignore`.
+- Ef skráin inniheldur **leyndarmál** á hún alls ekki að vera í Git.
+- Ef skráin er **mjög stór** þarf að ræða hvar hún á heima.
+
+Sjá líka kaflann um [hvaða skrár eiga heima í Git](file_formats.qmd).
+
+## Ef skrá er þegar komin í Git
+
+`.gitignore` hefur aðeins áhrif á nýjar óskráðar skrár. Ef skrá er þegar komin í Git hættir Git
+ekki sjálfkrafa að fylgjast með henni.
+
+Til að láta Git hætta að fylgjast með skrá, án þess að eyða henni af tölvunni:
+
+```sh
+git rm --cached nafn-a-skra
+```
+
+Svo skráir þú breytinguna:
+
+```sh
+git commit -m "Hunsa afleidda skrá"
+```
+
+Ef skráin innihélt lykilorð eða API-lykil er þetta ekki nóg: þá þarf líka að ógilda lykilinn og
+hugsanlega hreinsa Git-söguna. Láttu kennara vita ef það gerist.
+
+## Samantekt
+
+`.gitignore` hjálpar okkur að halda repo-inu:
+
+- öruggu,
+- léttu,
+- læsilegu,
+- endurtakanlegu.
+
+Markmiðið er ekki að fela vinnu, heldur að skrá réttu hlutina: frumkóða, gögn sem mega fylgja,
+leiðbeiningar, skýrslur og ákvarðanir sem skipta máli fyrir verkefnið.

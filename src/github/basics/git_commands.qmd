@@ -1,0 +1,194 @@
+---
+description: >-
+  Hér eru helstu Git skipanir sem þarf að þekkja til að geta unnið með Git
+  geymslur, ásamt samantekt á lengra komnum skipunum.
+---
+
+# Skipanir í Git
+
+Git er öflugt útgáfustjórnunarkerfi sem gerir þér kleift að vinna með kóða og skjöl á skilvirkan
+hátt.
+Horfið fyrst á myndskeið 7.2 og 7.3 og lesið síðan yfir helstu skipanirnar sem eru
+notaðar í Git. Myndskeið 7.4 um fjarlægar kóðageymslur má hugsanlega sleppa eða fara
+hraðar yfir: það fer ítarlega í atriði sem við leggjum minni áherslu á í þessu námskeiði,
+en þar er samt margt gagnlegt fyrir þau sem vilja kafa dýpra.
+
+```{=html}
+<details class="video-details">
+  <summary>Myndband: <em>Fyrirlestur 7.2 — Skipanalínuviðmót Git</em></summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/4zpBikZ9_2o"
+      title="Fyrirlestur 7.2: Skipanalínuviðmót Git"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption">Úr stoðefninu <em>Tölvur, stýrikerfi og tölvufærni</em>.</p>
+</details>
+```
+```{=html}
+<details class="video-details">
+  <summary>Myndband: <em>Fyrirlestur 7.3 — Gerð og sameining greina</em></summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/73MAMXVyqss"
+      title="Fyrirlestur 7.3: Gerð og sameining greina"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption">Úr stoðefninu <em>Tölvur, stýrikerfi og tölvufærni</em>.</p>
+</details>
+```
+
+## Búa til eða klóna geymslu
+
+### Búa til nýja Git geymslu í möppu
+
+```sh
+git init
+```
+
+Þetta býr til tóma Git geymslu í núverandi möppu. Í þessu námskeiði er almennt betra að
+búa fyrst til repo á GitHub og klóna það svo niður á tölvuna. Þá er hægt að stilla strax
+hvort repo-ið sé opið eða lokað, hvort það innihaldi `.gitignore`, `LICENSE` og fleira.
+
+### Klóna núverandi geymslu af GitHub
+
+```sh
+git clone https://github.com/your-username/your-repo.git
+```
+
+Skipunin sækir repo af GitHub og afritar það á tölvuna þína.
+Ef þú vilt gefa möppunni annað nafn á tölvunni geturðu bætt því aftan við skipunina:
+
+```bash
+git clone https://github.com/your-username/your-repo.git new-repo-name
+```
+
+```{=html}
+<details class="video-details">
+  <summary>Myndband: <em>Fyrirlestur 7.4 — Fjarlægar kóðageymslur</em></summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/AgRQMu5gFnI"
+      title="Fyrirlestur 7.4: Fjarlægar kóðageymslur"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption">Úr stoðefninu <em>Tölvur, stýrikerfi og tölvufærni</em>.</p>
+</details>
+```
+
+## Unnið með breytingar
+
+### Sýna stöðu verkefnis
+
+```sh
+git status
+```
+
+`git status` sýnir hvaða skrár hafa breyst, hvaða breytingar eru óskráðar og hvaða skrár eru
+komnar í undirbúning fyrir commit.
+
+### Bæta skrám við Git
+
+```sh
+git add filename
+```
+
+Þetta setur tiltekna skrá í undirbúning fyrir commit. Ef þú vilt bæta við öllum breytingum í
+möppunni geturðu notað:
+
+```sh
+git add .
+```
+
+### Skrá breytingar í Git
+
+```sh
+git commit -m "Lýsing á breytingu"
+```
+
+Commit vistar breytingarnar í *staðbundinni* Git geymslu, þ.e. á tölvunni þinni. Það sendir
+þær ekki sjálfkrafa á GitHub.
+
+## Sameina breytingar og leysa árekstra
+
+Þegar breytingar eru sameinaðar getur verið að árekstrar (merge conflicts) komi upp ef aðrir hafa
+breytt sömu skránum eða ef breytingar rekast á.
+
+### Hvað gerist við merge conflict?
+
+Git getur ekki ákveðið sjálfkrafa hvaða breytingar á að halda og biður þig að leysa
+áreksturinn. Skrár sem hafa árekstra verða merktar í Git sem óleystar (`unmerged`).
+
+### Hvernig á að leysa merge conflict?
+
+Opnaðu skrárnar sem Git hefur merkt sem í árekstri og leitaðu að merkjum eins og
+`<<<<<<< HEAD` og `>>>>>>>`. Þau sýna hvaða línur rekast á.
+
+Veldu hvaða breytingar eiga að fara í lokaútgáfuna og fjarlægðu árekstramerkin. Þegar
+breytingarnar hafa verið leystar þarf að bæta skránum aftur við og skrá lausnina:
+
+```sh
+git add uppfærðar-skrár
+git commit -m "Leysti merge conflict"
+```
+
+## Vinna með submodules
+
+Submodules eru notuð þegar þú vilt vísa í annað Git repo inni í verkefninu þínu.
+Þetta er gagnlegt þegar annað repo á að vera hluti af verkefninu án þess að afrita innihaldið
+beint inn í aðalgeymsluna.
+
+### Bæta við Git submodule
+
+```sh
+git submodule add https://github.com/example/example-submodule.git path/to/submodule
+```
+
+Þetta bætir `example-submodule` við í `path/to/submodule` og tengir það sem sér Git geymslu.
+
+### Sækja submodules eftir klónun
+
+```sh
+git submodule update --init --recursive
+```
+
+Þetta tryggir að öll submodules séu sótt og sett upp rétt eftir að verkefni hefur verið klónað.
+
+### Uppfæra submodules í nýjustu útgáfu
+
+```sh
+git submodule update --remote --merge
+```
+
+Þetta sækir nýjustu breytingar í hverri submodule og sameinar þær inn í aðalrepo-ið þitt.
+
+## Samantektartafla
+
+| Skipun                          | Lýsing                                        |
+|---------------------------------|-----------------------------------------------|
+| `git init`                      | Býr til nýja Git geymslu                      |
+| `git clone <url>`               | Klónar Git geymslu                            |
+| `git status`                    | Sýnir stöðu verkefnis                         |
+| `git add <file>`                | Bætir skrá við undirbúning                    |
+| `git commit -m "msg"`           | Skráir breytingar                             |
+| `git pull origin main`          | Sækir nýjustu breytingar                      |
+| `git push origin main`          | Ýtir breytingum á GitHub                      |
+| `git merge <branch>`            | Sameinar breytingar úr öðrum branch           |
+| `git submodule add <url>`       | Bætir við submodule                           |
+| `git submodule update --init`   | Sækir submodules eftir klónun                 |
+| `git submodule update --remote` | Uppfærir submodules í nýjustu útgáfu          |
+| `git checkout <branch>`         | Skipta yfir í annan branch                    |
+| `git checkout -b <branch>`      | Búa til og skipta yfir í nýjan branch         |
+| `git branch -d <branch>`        | Eyða branch                                   |
+| `git commit --amend -m "msg"`   | Breytir síðasta commit færslu                 |
+| `git push --force`              | Ýtir breytingum og skrifar yfir fyrri gögn; notið með varúð |
+
+Þetta eru helstu skipanirnar sem þið þurfið til að vinna með Git á skipulagðan hátt: sjá stöðu,
+skrá breytingar, sækja nýjustu útgáfu, senda eigin breytingar og vinna með greinar án þess að missa
+yfirsýn.

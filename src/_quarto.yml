@@ -1,0 +1,147 @@
+project:
+  type: book
+  output-dir: ../docs
+  resources:
+    - .nojekyll
+    - templates/
+
+execute:
+  freeze: auto
+
+book:
+  title: "Upplýsingaverkfræði IÐN302G"
+  author: "Helga Ingimundardóttir"
+  language: is
+  repo-url: https://github.com/HI-IDN/IDN302G
+  repo-actions: [edit, issue]
+  site-url: https://hi-idn.github.io/IDN302G
+  favicon: img/hi/favicon.svg
+  search: true
+  page-footer:
+    left: "© 2026 Háskóli Íslands · Helga Ingimundardóttir"
+    right:
+      - text: "Quarto"
+        href: https://quarto.org/
+  navbar:
+    logo: img/hi/hi_named_logo-is.svg
+    logo-alt: "Háskóli Íslands"
+    background: primary
+    left:
+      - href: https://haskoliislands.instructure.com/courses/42669
+        text: "Námskeiðssíða"
+    tools:
+      - icon: github
+        href: https://github.com/HI-IDN/IDN302G
+        aria-label: GitHub
+  sidebar:
+    style: docked
+    background: light
+    collapse-level: 1
+  chapters:
+    - part: index.qmd
+      chapters:
+        - about-course/about.qmd
+        - about-course/curriculum.qmd
+        - about-course/teaching-methods.qmd
+        - about-course/group-project.qmd
+        - about-course/schedule.qmd
+        - about-course/learning-outcomes.qmd
+        - about-course/how-to-use.qmd
+    - part: "Git og GitHub"
+      chapters:
+        - github/index.qmd
+        - github/basics/what_is_github.qmd
+        - github/basics/file_formats.qmd
+        - github/basics/gitignore.qmd
+        - github/basics/git_commands.qmd
+        - github/good_practices/writing_good_commits.qmd
+        - github/good_practices/git_branches.qmd
+        - github/good_practices/pull_requests.qmd
+        - github/good_practices/code_review.qmd
+        - github/good_practices/writing_a_readme.qmd
+        - github/basics/security_best_practices.qmd
+        - github/good_practices/issues.qmd
+        - github/good_practices/projects.qmd
+        - github/connections/overleaf_git_sync.qmd
+    - part: "Erindrekar"
+      chapters:
+        - ai-tools/index.qmd
+        - ai-tools/responsible-use.qmd
+        - ai-tools/prompts.qmd
+        - ai-tools/agents-md.qmd
+        - ai-tools/agent-log.qmd
+        - ai-tools/reviewing-agents.qmd
+    - part: "Endurtækar skýrslur"
+      chapters:
+        - reproducible-reports/index.qmd
+        - reproducible-reports/tools.qmd
+        - reproducible-reports/quarto.qmd
+        - reproducible-reports/publishing.qmd
+    - part: "API / vefþjónustur"
+      chapters:
+        - api/index.qmd
+    - part: "Reglulegar segðir"
+      chapters:
+        - regex/index.qmd
+    - part: "Rökfræði og mengi"
+      chapters:
+        - logic-sets/index.qmd
+    - part: "SQL grunnatriði"
+      chapters:
+        - sql-basics/introduction.qmd
+        - sql-basics/basic_sql_queries.qmd
+        - sql-basics/tables.qmd
+        - sql-basics/aggregation_and_grouping.qmd
+        - sql-basics/null.qmd
+        - sql-basics/subquery.qmd
+        - sql-basics/data_integrity.qmd
+        - sql-basics/import_export_data.qmd
+        - sql-basics/script_files.qmd
+        - sql-basics/database_interaction.qmd
+        - sql-basics/exercises.qmd
+        - sql-basics/additional_resources.qmd
+    - part: "SQL framhald"
+      chapters:
+        - sql-advanced/introduction.qmd
+        - sql-advanced/postgres.qmd
+        - sql-advanced/union.qmd
+        - sql-advanced/joins.qmd
+        - sql-advanced/views.qmd
+        - sql-advanced/functions.qmd
+        - sql-advanced/cte.qmd
+        - sql-advanced/postgis.qmd
+    - part: "Myndræn framsetning"
+      chapters:
+        - storytelling/introduction.qmd
+        - storytelling/lightning_talk.qmd
+        - storytelling/visuals_major.qmd
+        - storytelling/visuals_minor.qmd
+        - storytelling/interactive.qmd
+        - storytelling/dashboard.qmd
+        - storytelling/donts.qmd
+        - storytelling/data_narrative.qmd
+        - storytelling/additional_resources.qmd
+    - part: "Glærur"
+      chapters:
+        - slides/index.qmd
+    - part: "Um efnið"
+      chapters:
+        - about-material/license.qmd
+        - about-material/contributing.qmd
+        - about-material/contact.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles/hi-book.scss
+    include-in-header: partials/header-includes.inc
+    include-after-body: partials/breadcrumb.inc
+    toc: true
+    toc-depth: 4
+    toc-title: "Á þessari síðu"
+    lang: is
+    smooth-scroll: true
+    code-copy: true
+    code-overflow: wrap
+    number-sections: false

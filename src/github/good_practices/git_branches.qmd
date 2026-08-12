@@ -1,0 +1,94 @@
+---
+title: "Greinar"
+description: >-
+  Leiðbeiningar um hvernig á að nota branches í Git, mikilvægi þeirra í vinnuflæði og góðar venjur varðandi nafngiftir.
+---
+
+## Vinna án þess að skemma aðalútgáfuna
+
+Branches (greinar) í Git eru leið til að vinna sjálfstætt á breytingum án þess að hafa áhrif á
+aðalútgáfu (t.d. `main`). Þetta gerir kleift að vinna í nýjum eiginleikum, lagfæringum og tilraunum
+á skipulagðan hátt.
+
+## Af hverju að nota branches?
+
+- **Aðskilja vinnu** – Hægt er að vinna í nýjum eiginleikum án þess að hafa áhrif á aðalútgáfu
+  verkefnisins.
+- **Samvinna** – Teymi geta unnið á mismunandi branches og sameinað breytingar þegar þær eru
+  tilbúnar.
+- **Öryggi** – Ef eitthvað fer úrskeiðis í breytingum er auðvelt að skipta aftur yfir í
+  aðalútgáfuna.
+
+## Algengar Git skipanir fyrir branches
+
+| Aðgerð | Skipun |
+|---|---|
+| Skoða allar greinar í verkefninu | `git branch` |
+| Búa til nýja grein | `git branch branch-nafn` |
+| Skipta yfir í grein | `git checkout branch-nafn` |
+| Búa til og skipta yfir í nýja grein | `git checkout -b branch-nafn` |
+| Sameina grein við aðalgreinina | `git checkout main` og síðan `git merge branch-nafn` |
+| Eyða grein eftir sameiningu | `git branch -d branch-nafn` |
+
+Ef grein hefur ekki verið sameinuð en þú vilt samt eyða henni, þarf að nota `-D` í stað `-d`.
+
+## Góðar venjur um nafngiftir á branches
+
+Það er mikilvægt að velja lýsandi nöfn á branches frekar en að nota eigið nafn eða almenna
+skammstöfun.
+
+```{=html}
+<div class="visible-evidence-grid">
+  <div class="visible-evidence-card git-include">
+    <h3>Góð branch nöfn</h3>
+    <ul>
+      <li><code>feature-user-authentication</code> — nýr eiginleiki</li>
+      <li><code>bugfix-login-error</code> — lagfæring</li>
+      <li><code>hotfix-payment-gateway</code> — bráðalagfæring</li>
+      <li><code>sandbox-experiment</code> — tilraun eða prófun</li>
+    </ul>
+  </div>
+  <div class="visible-evidence-card git-exclude">
+    <h3>Branch nöfn sem ætti að forðast</h3>
+    <ul>
+      <li><code>helga</code> — segir ekki hvað greinin gerir</li>
+      <li><code>test</code> — of almennt</li>
+      <li><code>new</code> — óljóst hvaða nýjung er átt við</li>
+    </ul>
+  </div>
+</div>
+```
+
+Ef branch er bara fyrir **tilraunir eða persónulega notkun**, er í lagi að nota **sandbox-** sem
+forskeyti, t.d. `sandbox-helga`.
+
+## Sameining greina (merging) og merge conflicts
+
+Þegar grein er sameinuð getur komið upp **merge conflict** ef breytingar stangast á við
+breytingar sem þegar eru í aðalútgáfunni.
+
+Til að leysa merge conflict:
+
+1. Opnið skrána sem hefur árekstur (`<<<<<<< HEAD` og `>>>>>>>` merki).
+2. Veljið hvaða breytingar eiga að haldast.
+3. Fjarlægið árekstramerkin.
+4. Vistið skrána og bætið breytingunni við Git:
+
+```sh
+git add uppfærð-skrá
+git commit -m "Leysti merge conflict"
+```
+
+## Samantekt
+
+| Skipun                     | Lýsing                                              |
+|----------------------------|-----------------------------------------------------|
+| `git branch`               | Sýnir öll branches í verkefninu                     |
+| `git branch <nafn>`        | Býr til nýtt branch                                 |
+| `git checkout <branch>`    | Skipta yfir í annað branch                          |
+| `git checkout -b <branch>` | Býr til og skipta yfir í nýtt branch                |
+| `git merge <branch>`       | Sameinar annað branch við það sem er nú þegar valið |
+| `git branch -d <branch>`   | Eyðir branch eftir sameiningu                       |
+
+Þessi skipanir duga fyrir algengt branch-vinnuflæði: búa til grein, vinna breytingar, sameina þær
+og fjarlægja greinina þegar hún hefur lokið hlutverki sínu.

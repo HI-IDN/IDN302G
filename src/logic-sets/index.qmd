@@ -1,0 +1,13 @@
+---
+title: "Inngangur"
+---
+
+::: {.callout-note title="Kemur"}
+Þessi lota verður bætt við síðar.
+:::
+
+Í þessari lotu verður fjallað um rökfræði, mengi og vensl sem undirstöðu fyrir
+gagnavinnslu og gagnagrunnsfyrirspurnir.
+
+Við tengjum hugtökin sérstaklega við SQL, þar sem skilyrði, síur, `JOIN`,
+`NULL`-gildi og samsettar fyrirspurnir byggja á sömu grunnatriðum.

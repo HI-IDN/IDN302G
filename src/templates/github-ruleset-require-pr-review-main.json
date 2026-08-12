@@ -1,0 +1,50 @@
+{
+  "id": 20717058,
+  "name": "hi-require-pr-review-main",
+  "target": "branch",
+  "source_type": "Repository",
+  "source": "Upplysingaverkfraedi/team-repo-template",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "exclude": [],
+      "include": [
+        "~DEFAULT_BRANCH",
+        "refs/heads/main"
+      ]
+    }
+  },
+  "rules": [
+    {
+      "type": "deletion"
+    },
+    {
+      "type": "non_fast_forward"
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 2,
+        "dismiss_stale_reviews_on_push": true,
+        "required_reviewers": [],
+        "require_code_owner_review": false,
+        "dismissal_restriction": {
+          "enabled": true,
+          "allowed_actors": [
+            {
+              "id": 3079749,
+              "type": "User"
+            }
+          ]
+        },
+        "require_last_push_approval": true,
+        "required_review_thread_resolution": true,
+        "allowed_merge_methods": [
+          "merge",
+          "squash"
+        ]
+      }
+    }
+  ],
+  "bypass_actors": []
+}

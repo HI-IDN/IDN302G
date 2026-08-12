@@ -1,0 +1,40 @@
+---
+title: "Hvað er Git og GitHub?"
+description: >-
+  Grunnskýring á Git sem útgáfustjórnunarkerfi og GitHub sem samstarfsvettvangi.
+---
+
+**Git** er dreift útgáfustjórnunarkerfi sem heldur utan um breytingar á skrám yfir tíma.
+Það gerir okkur kleift að sjá hvað breyttist, hvenær það breyttist og hver gerði breytinguna.
+
+**GitHub** er vefþjónusta sem hýsir Git-gagnageymslur og auðveldar samstarf. Þar getum við
+unnið með issues, branches, pull requests, kóðarýni og skjölun á einum stað.
+
+Í þessu námskeiði notum við Git og GitHub til að:
+
+- halda utan um verkefni og skil
+- vinna saman í hópum
+- skrá þróun verkefnisins yfir tíma
+- rýna breytingar áður en þær fara inn í aðalútgáfu verkefnis
+- byggja upp opið og endurtakanlegt vinnuflæði
+
+## Git geymir sögu verkefnisins
+
+Í stað þess að vista margar útgáfur af sömu skrá, til dæmis `skyrsla-loka-loka-nytt.docx`,
+heldur Git utan um breytingasöguna. Hver breyting er skráð sem **commit** með stuttri lýsingu.
+
+Þetta gerir auðveldara að:
+
+- fara til baka ef eitthvað bilar
+- bera saman útgáfur
+- skilja hvernig verkefni þróaðist
+- vinna samtímis án þess að skrifa yfir vinnu annarra
+
+## GitHub gerir samvinnuna sýnilega
+
+Á GitHub er verkefnið ekki bara mappa með skrám. Það er líka vettvangur fyrir samskipti og
+ákvarðanir. Þegar þið vinnið í hópum notið þið GitHub til að búa til branch, opna pull request,
+fá kóðarýni og samþætta breytingar inn í aðalútgáfu verkefnisins.
+
+Þessi vinnubrögð eru algeng í atvinnulífi, rannsóknum og tæknilegri skjölun. Þess vegna er
+mikilvægt að læra ekki bara skipanirnar, heldur líka hvernig góð samvinna í GitHub lítur út.

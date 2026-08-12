@@ -1,0 +1,160 @@
+---
+title: "Issues"
+---
+
+GitHub Issues eru einföld leið til að halda utan um vinnu áður en byrjað er að breyta skrám. Issue getur verið verkbeiðni, hugmynd, spurning, galli, ákvörðun eða lítil rannsókn sem þarf að klára.
+
+Í námskeiðinu eru issues sérstaklega gagnleg til að afmarka vinnu áður en búið er til branch og Pull Request. Gott issue svarar spurningunni: *hvað ætlum við að gera, hvers vegna og hvernig vitum við að það sé búið?*
+
+## Af hverju að nota issues?
+
+Issues hjálpa teyminu að:
+
+- gera vinnuna sýnilega áður en hún er komin í kóða,
+- skipta stóru verkefni í minni, rýnanleg skref,
+- ræða nálgun áður en margar skrár breytast,
+- tengja saman umræðu, branch, Pull Request og skil,
+- muna hvað var ákveðið og hvers vegna.
+
+Issue þarf ekki að vera langt. Það þarf bara að vera nógu skýrt til að annar hópmeðlimur geti skilið hvað á að gera.
+
+## Hvernig lítur gott issue út?
+
+Gott issue hefur yfirleitt:
+
+- stuttan og lýsandi titil,
+- samhengi: af hverju skiptir þetta máli?,
+- verkefni: hvað á að gera?,
+- skilyrði fyrir að klára: hvernig vitum við að þetta sé búið?,
+- tengla á gögn, skrár eða fyrri umræðu ef við á.
+
+```markdown
+## Samhengi
+
+Af hverju þarf að gera þetta?
+
+## Verkefni
+
+- [ ] TODO
+- [ ] TODO
+
+## Klárt þegar
+
+- [ ] Breytingin er komin á branch
+- [ ] Pull Request er opnað sem draft
+- [ ] Local prófun eða yfirferð er skráð í PR
+- [ ] Teymismeðlimur hefur rýnt
+
+## Tenglar / gögn
+
+- TODO
+```
+
+## Tengsl við branch og Pull Request
+
+Þegar issue er orðið nógu skýrt er hægt að búa til branch fyrir vinnuna. Branch á helst að vera afmarkað við eitt issue eða eina skýra vinnueiningu.
+
+Pull Request á svo að vísa í issue-ið, til dæmis:
+
+```markdown
+Closes #12
+```
+
+eða:
+
+```markdown
+Tengist #12
+```
+
+`Closes #12` lokar issue-inu sjálfkrafa þegar PR er merge-að. Notið það þegar PR klárar issue-ið. Notið frekar `Tengist #12` ef PR er bara hluti af stærri vinnu.
+
+## Sniðmát
+
+Sniðmát tryggir að öll issue í hópnum líti eins út og gleymi ekki mikilvægum atriðum
+(samhengi, verkefni, skilyrði fyrir að klára). GitHub notar sniðmát sjálfkrafa **ef skrárnar
+eru á réttum stað og heita réttu nafni** — annars finnur GitHub þau ekki.
+
+Það eru tvær leiðir: einfalt markdown-sniðmát eða **issue form** í YAML sem býr til alvöru
+innsláttarform með reitum og gátlistum. Í námskeiðinu notum við YAML-formið.
+
+### Issue form (YAML) — það sem við notum
+
+Issue forms eru YAML-skrár í möppunni **`.github/ISSUE_TEMPLATE/`**. Hver skrá lýsir einu formi
+með reitum (`input`, `textarea`, `checkboxes`), og GitHub birtir þá skipulagt form í stað auðs
+textareits þegar nýtt issue er búið til.
+
+```text
+.github/
+└── ISSUE_TEMPLATE/
+    ├── config.yml     # stillingar (t.d. slökkva á auðum issue)
+    └── task.yml       # sjálft verkefna-formið
+```
+
+`config.yml` með `blank_issues_enabled: false` neyðir notendur til að velja sniðmát í stað þess
+að opna autt issue:
+
+```yaml
+blank_issues_enabled: false
+```
+
+`task.yml` skilgreinir sjálft formið. Það er ekki sýnt hér í heild, en efnislega safnar það sömu
+atriðum og einfalt issue myndi innihalda — í grófum dráttum svona (allt YAML-sniðmátið er í
+[templates/github/ISSUE_TEMPLATE/task.yml](../../templates/github/ISSUE_TEMPLATE/task.yml)):
+
+```markdown
+# Titill
+
+Stutt og lýsandi fyrirsögn á því sem á að gera.
+
+## Samhengi
+
+Af hverju þarf að gera þetta? Hvaða hluta verkefnisins tengist þetta?
+
+## Verkefni
+
+- [ ] TODO
+- [ ] TODO
+- [ ] TODO
+
+## Klárt þegar
+
+- [ ] Breytingin er afmörkuð og unnin á branch
+- [ ] Pull Request er opnað sem draft
+- [ ] Það kemur fram í PR hvernig var prófað eða yfirfarið
+- [ ] Requester hefur staðfest draftið
+- [ ] Teymismeðlimur hefur rýnt áður en merge-að er
+
+## Tenglar / gögn
+
+- TODO
+
+## Athugasemdir
+
+TODO
+```
+
+### Hvað formið spyr um
+
+YAML-formið hér að ofan er í raun gátlisti á mannamáli. Það biður um:
+
+- **Samantekt** — stutt, lýsandi setning um það sem á að gera (verður titill issue-sins).
+- **Samhengi** — af hverju þarf að gera þetta og hvaða hluta verkefnisins það tengist.
+- **Verkefni** — gátlisti (`- [ ]`) yfir verkþætti sem þarf að klára.
+- **Klárt þegar** — skilyrði fyrir að issue-ið teljist búið (afmörkuð breyting á branch,
+  draft-PR opnað, prófun/yfirferð skráð, requester staðfestir, teymismeðlimur rýnir).
+- **Tenglar / gögn** og **Athugasemdir** — valfrjálst, fyrir tengla eða annað sem hjálpar.
+
+Gott issue svarar þannig sömu spurningu og fyrr: *hvað ætlum við að gera, hvers vegna og
+hvernig vitum við að það sé búið?*
+
+### Fleira í teymis-sniðmátinu
+
+Sama `.github/`-mappa í [team-repo-template](https://github.com/Upplysingaverkfraedi/team-repo-template)
+inniheldur einnig:
+
+- **`.github/pull_request_template.md`** — sniðmát sem fyllir sjálfkrafa út lýsingu nýrra pull
+  requests (sjá [Pull requests](pull_requests.qmd)).
+- **`.github/skills/code-review/SKILL.md`** — létt kóðarýni-skill sem stýrir gervigreind við
+  yfirferð á pull requests í geymslunni (sjá [Kóðarýni](code_review.qmd)).
+- **`.github/workflows/pages.yml`** — GitHub Actions vinnuflæði sem renderar Quarto-síðu og
+  birtir á GitHub Pages við hverja push á `main`.

@@ -1,0 +1,32 @@
+# Umhverfi, lyklar og local stillingar
+.env
+.env.*
+*.key
+*.pem
+credentials.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# R og RStudio
+.Rhistory
+.RData
+.Rproj.user/
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Quarto, LaTeX og afleiddar byggingarskrár
+/.quarto/
+*_cache/
+*.aux
+*.log
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls

@@ -1,0 +1,119 @@
+---
+title: "Inngangur"
+description: >-
+  Hvað eru erindrekar, hvaða tól eru algeng og hvernig þau tengjast vinnuflæði í
+  gagnaverkefnum.
+---
+
+Erindrekar (e. agents) eru gervigreindarhjálpartæki sem geta tekið við markmiði, skoðað samhengi,
+lagt til lausn og hjálpað til við að framkvæma hluta af vinnu. Í forritun geta þeir til dæmis
+skrifað kóða, útskýrt villur, stungið upp á prófunum, bætt skjölun og aðstoðað við kóðarýni.
+
+::: {.callout-note}
+## Gervigreind og spunagreind
+
+Í þessum kafla erum við fyrst og fremst að ræða **spunagreind** (*generative AI*), sem er sérstakur
+undirflokkur gervigreindar. Spunagreind býr til nýjan texta, kóða, myndir eða aðrar tillögur út frá
+fyrirmælum og samhengi. Það er því ekki öll gervigreind — heldur sú gerð gervigreindar sem við getum
+notað sem rit-, kóða- og vinnuferlishjálp.
+:::
+
+Í þessu námskeiði má nota slík tól, en notkunin þarf að vera **rekjanleg, gagnrýnin og á ábyrgð
+nemandans**. Markmiðið er ekki að „láta gervigreind gera verkefnið“ heldur að læra að stýra
+vinnuferli þar sem manneskjan skilur vandamálið, metur lausnina og ber ábyrgð á því sem er samþykkt
+inn í verkefnið.
+
+::: {.callout-warning}
+## Ytri tól koma ekki í stað eigin skilnings
+
+Í **iRAT** og **tRAT** eru engin ytri tól leyfð. Þar reynir alfarið á ykkar eigin þekkingu og
+sameiginlegan skilning hópsins.
+
+Í lok hverrar lotu fer líka fram **iTA**, þar sem teymisstjóri lotunnar er spurður munnlega út í
+verkefnið. Þá þarf teymisstjórinn að hafa kynnt sér verkefnið og úrlausnina vel og geta útskýrt hvað
+var gert, hvers vegna og hvar það sést í verkefninu.
+
+Það dugar ekki að benda á þann sem „leysti þetta“ — og sérstaklega ekki ef mögulegt er að erindreki
+hafi búið til stóran hluta lausnarinnar. Hópurinn þarf að vita hvað gerðist, hvaða ákvarðanir voru
+teknar og hvað var sannreynt.
+:::
+
+## Stutt saga
+
+Stór mállíkön (*large language models*, LLM) komu hratt inn í almenna umræðu eftir að ChatGPT varð
+aðgengilegt almenningi í lok árs 2022. Í kjölfarið fóru sambærileg tól að birtast í leitarvélum,
+ritvinnslu, gagnavinnslu og forritunarumhverfum.
+
+GitHub Copilot hafði þá þegar verið notaður um nokkurra ára skeið sem öflugt *auto-complete* fyrir
+kóða: hann gat stungið upp á næstu línu, falli eða einfaldri útfærslu beint í ritli. Það sem
+breyttist síðar var að tólin fóru að verða meiri **erindrekar**:
+þau gátu lesið stærri hluta verkefnis, lagt til breytingar í mörgum skrám, keyrt skipanir, útskýrt
+ákvarðanir og búið til pull request.
+
+Í almennri notkun urðu slík agent-vinnuflæði sérstaklega sýnileg í kringum upphaf árs 2026. Þá varð
+mun eðlilegra að hugsa um gervigreind ekki bara sem spjall eða textatillögur, heldur sem
+samstarfsaðila í afmörkuðu vinnuferli.
+
+Til að nýta þessi tól vel hjálpar að skilja hvernig stór mállíkön virka í grunninn — að þau spá
+fyrir um líklegasta framhaldið út frá samhenginu sem þeim er gefið, frekar en að „vita“ svör.
+Myndbandið hér að neðan útskýrir þetta á aðgengilegan hátt. Það er nokkurra ára gamalt, en
+grunnhugmyndirnar eiga enn vel við.
+
+```{=html}
+<details class="video-details">
+  <summary>Myndband: <em>Spotify Explained — The conspiracy to make AI seem harder than it is!</em></summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/2eWuYf-aZE4"
+      title="Spotify Explained: The conspiracy to make AI seem harder than it is!"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption">Gustav Söderström (Spotify) útskýrir hvernig LLM virka í grunninn.</p>
+</details>
+```
+
+## Algeng tól
+
+Tólin breytast hratt, en eftirfarandi yfirlit sýnir helstu flokka sem nemendur gætu rekist á.
+
+| Fyrirtæki              | Tól                                      | Dæmigerð notkun                                                                                    |
+|------------------------|------------------------------------------|----------------------------------------------------------------------------------------------------|
+| **OpenAI**             | ChatGPT, Codex                           | Hugmyndavinna, kóðaskýringar, agent-vinna í kóðagrunni, villuleit og skjölun.                      |
+| **Microsoft**          | Microsoft Copilot, Microsoft 365 Copilot | Aðstoð í Word, Excel, PowerPoint, Outlook og Teams; samantektir, textavinna, töflur og vinnuskjöl. |
+| **Google**             | Gemini                                   | Almenn gervigreindaraðstoð, texti, leit, skýringar, kóði og samþætting við Google-umhverfi.        |
+| **Anthropic**          | Claude, Claude Code                      | Lengri texti, kóðahönnun, útskýringar, skjölun, rýni og agent-vinna í kóðaverkefnum.               |
+| **GitHub / Microsoft** | GitHub Copilot                           | Kóðatillögur í ritli, spjall um kóða, CLI-aðstoð, kóðarýni og agent-vinnuflæði tengd GitHub.       |
+
+::: {.callout-tip}
+## GitHub Copilot Student
+
+Staðfestir nemendur í [GitHub Education](https://github.com/education/students) fá aðgang
+að [GitHub Copilot Student](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-students)
+án endurgjalds. GitHub skjölin lýsa Copilot Student sem nemendaaðgangi með ótakmörkuðum kóðatillögum
+og ákveðnum GitHub AI Credits fyrir spjall/agent-notkun.
+
+Í [GitHub Community uppfærslu](https://github.com/orgs/community/discussions/189268) frá 1. júní
+2026 kemur fram að Copilot Student hafi 200 mánaðarleg AI Credits og ótakmarkaðar kóðatillögur.
+
+Þessi kjör og notkunarmörk geta breyst. Nemendur ættu því alltaf að skoða eigin stöðu undir GitHub
+Education benefits í GitHub stillingum.
+
+:::
+
+## Hvað þarf að kunna?
+
+Það mikilvægasta er ekki að kunna eitt tiltekið tól fullkomlega. Það mikilvægasta er að kunna að
+vinna með erindreka á ábyrgan hátt:
+
+- lýsa verkefninu skýrt
+- gefa nægilegt samhengi
+- biðja um litlar, yfirfaranlegar breytingar
+- lesa breytingarnar sjálf/ur
+- prófa niðurstöðuna
+- skrá hvað var gert með gervigreind
+- nota pull request til að fá gagnrýna yfirferð
+
+Sjá nánar í [Að skrifa góð fyrirmæli](prompts.qmd) um hvernig skýr fyrirmæli (prompts) bæta
+það sem erindrekinn skilar.

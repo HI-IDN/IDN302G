@@ -1,0 +1,138 @@
+---
+title: "Skrár í Git"
+description: >-
+  Hvernig á að velja skráarsnið fyrir Git: textaskrár, gögn, skjöl, notebooks og afleiddar skrár.
+---
+
+## Hvaða skrár eiga heima í Git?
+
+Git er best í að fylgjast með breytingum í **textaskrám**. Það þýðir ekki að allar skrár þurfi að
+vera kóði, en það þýðir að við viljum velja skráarsnið sem eru læsileg, samanburðarhæf og hægt er
+að rýna í Pull Request.
+
+Góð skrá í Git er skrá þar sem hægt er að sjá:
+
+- hvað breyttist,
+- hvers vegna breytingin skiptir máli,
+- hvort breytingin er rétt,
+- og hvernig hægt er að endurskapa niðurstöðuna.
+
+## Bestu skráarsniðin fyrir Git
+
+Þessi skráarsnið henta vel í Git:
+
+| Tegund | Dæmi | Af hverju hentar það? |
+|---|---|---|
+| Kóði | `.py`, `.R`, `.sql`, `.js` | Texti; auðvelt að sjá breytingar línu fyrir línu |
+| Skjöl | `.qmd`, `.md`, `.tex` | Texti; gott fyrir skýrslur, README og leiðbeiningar |
+| Létt gögn | `.csv`, `.tsv`, `.json`, `.yaml` | Texti; hægt að skoða og rekja breytingar |
+| Stillingar | `.gitignore`, `.yml`, `.toml` | Texti; skýrir hvernig verkefnið er keyrt |
+
+Þegar mögulegt er viljum við frekar geyma frumskrána sem hægt er að keyra/rendera heldur en
+lokaniðurstöðuna eina og sér.
+
+## Af hverju ekki bara PDF?
+
+PDF getur verið gott lokasnið fyrir lestur, en það er yfirleitt ekki gott frumefni í Git.
+
+Vandinn er að Git sér PDF oft sem tvíundarskrá (*binary file*). Þá er erfitt að sjá hvað breyttist:
+var ein setning löguð, mynd uppfærð eða allt skjalið endurgert?
+
+Betra vinnulag:
+
+- skrifa skýrsluna í `.qmd`, `.md` eða `.tex`,
+- vista myndir og gögn sér,
+- rendera PDF/HTML þegar þarf.
+
+PDF má fylgja með ef það er lokaafurð sem á að birta, en hún á sjaldnast að vera eina útgáfan af
+vinnunni.
+
+## Af hverju ekki stórar Word- eða Excel-skrár?
+
+Word, Excel og sambærilegar skrár geta verið nytsamlegar, en þær eru erfiðar í Git:
+
+- erfitt er að sjá breytingar línu fyrir línu,
+- merge conflicts eru oft ólesanleg,
+- skrárnar verða fljótt stórar,
+- erfitt er að rýna breytingar í Pull Request.
+
+Ef gögn eru í Excel er oft betra að flytja þau út sem `.csv` eða `.tsv`. Ef texti er í Word er oft
+betra að færa hann í Markdown eða Quarto.
+
+## Hvað með Jupyter notebooks?
+
+Jupyter notebooks (`.ipynb`) eru gagnleg til könnunarvinnu, en þau eru ekki alltaf góð sem
+aðalform á verkefni í Git. Ástæðan er að notebook-skrár geyma bæði kóða, úttak, myndir og metadata
+í einni JSON-skrá. Lítil breyting í viðmóti getur þá búið til stórt og erfitt diff.
+
+Í þessu námskeiði er oft betra að:
+
+- færa endanlegan kóða í `.py` eða `.R`,
+- skrifa skýrslu í `.qmd`,
+- geyma notebook aðeins ef það þjónar skýrum tilgangi,
+- hreinsa úttak úr notebook áður en það fer í Git, ef notebook er notað.
+
+Þetta gerir kóðarýni auðveldari og verkefnið endurtakanlegra.
+
+## Afleiddar skrár og niðurstöður
+
+Afleidd skrá er skrá sem verður til úr annarri skrá eða skipun. Dæmi:
+
+- HTML sem verður til úr Quarto,
+- PDF sem verður til úr LaTeX,
+- mynd sem verður til úr Python/R scripti,
+- cache-skrá sem verður til við keyrslu.
+
+Almenna reglan er:
+
+> Ef hægt er að búa skrána til aftur með kóða eða skipun, geymdu þá frekar kóðann og settu
+> leiðbeiningar í README um hvernig megi búa til afleiddu skrána.
+
+Það eru samt undantekningar. Til dæmis getur `docs/` verið í Git þegar GitHub Pages notar hana til
+að birta vef. Þá er `docs/` afleidd útgáfa, en samt hluti af útgáfuferlinu.
+
+## Stór gögn
+
+Git er ekki gagnageymsla fyrir stór gagnasöfn. Stórar skrár gera repo hægara og geta rekist á
+takmörk GitHub.
+
+Almenn viðmið:
+
+- forðist skrár yfir **50 MB** nema góð ástæða sé til,
+- GitHub leyfir ekki venjulegt push með einstaka skrá yfir **100 MB**,
+- mjög stór gögn eiga frekar heima í gagnagátt, release, cloud storage eða Git LFS.
+
+Í hópverkefnum á alltaf að vera skýrt hvaðan gögnin koma og hvernig hægt er að sækja eða endurskapa
+þau, jafnvel þótt gögnin sjálf séu ekki öll vistuð í Git.
+
+## Þumalputtareglur
+
+```{=html}
+<div class="visible-evidence-grid">
+  <div class="visible-evidence-card git-include">
+    <h3>Skrár sem eiga heima í Git</h3>
+    <ul>
+      <li>frumkóði,</li>
+      <li>Markdown/Quarto/LaTeX frumskjöl,</li>
+      <li>lítil gögn sem mega fylgja verkefninu,</li>
+      <li>README og leiðbeiningar,</li>
+      <li>stillingarskrár sem þarf til að keyra verkefnið.</li>
+    </ul>
+  </div>
+  <div class="visible-evidence-card git-exclude">
+    <h3>Skrár sem eiga ekki heima í Git*</h3>
+    <ul>
+      <li>lykilorð, token eða <code>.env</code>,</li>
+      <li>cache og tímabundnar skrár,</li>
+      <li>stór gögn,</li>
+      <li>afleiddar skrár sem auðvelt er að búa til aftur,</li>
+      <li>stórar binary-skrár eins og PDF, Word, Excel eða myndbönd sem frumefni verkefnisins.</li>
+    </ul>
+    <p class="card-note">* Nema það sé rík ástæða til að hafa þær með.</p>
+  </div>
+</div>
+```
+
+Markmiðið er að Git geymi sögu verkefnisins á þann hátt að annar aðili geti skilið, keyrt og rýnt
+vinnuna. Í Git eru flatar textaskrár (*plain text*) best til þess fallnar, því þær gera breytingar
+læsilegar, samanburðarhæfar og auðveldar í kóðarýni.

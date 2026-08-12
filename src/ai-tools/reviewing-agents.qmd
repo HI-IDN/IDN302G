@@ -1,0 +1,292 @@
+---
+title: "Rýni og PR-æfing"
+description: >-
+  Æfing þar sem nemendur láta erindreka leysa lítið verkefni og rýna lausnina í GitHub PR.
+---
+
+Ein mikilvægasta færnin í teymisvinnu er að kunna að rýna lausnir annarra á skýran,
+kurteisan og gagnlegan hátt. Það á bæði við um kóða frá samnemendum og kóða sem erindreki
+leggur til. Í námskeiðum getur verið erfitt að fá nemendur til að fara almennilega yfir
+verkefni samnemenda, ekki vegna þess að þau sjái ekkert sem mætti bæta, heldur vegna þess að
+þau vilja ekki „setja út á“ vinnu einhvers annars.
+
+Þessi feimni er skiljanleg, en rýni er mikilvæg færni á vinnumarkaði. Í góðri rýni er markmiðið
+ekki að vera leiðinleg(ur), heldur að gera verkefnið betra: finna óskýra hluta, spyrja góðra
+spurninga, benda á mögulegar villur og leggja til næstu skref. Það er betra að æfa þetta hér
+í námskeiðinu en að lenda fyrst í því á vinnustað.
+
+Erindrekar geta verið góður æfingavöllur fyrir þetta ferli. Þá eruð þið ekki að byrja á því
+að Jón setji út á Gunnu eða öfugt, heldur að hópurinn skoði saman tillögu sem tól bjó til.
+Það getur lækkað þröskuldinn, en æfir samt sömu grunnfærni: að lesa lausn, skilja hana,
+prófa hana og útskýra hvað þarf að laga.
+
+Kóði frá gervigreind getur litið sannfærandi út en samt verið rangur, óþarflega flókinn,
+illa skjalaður eða byggður á forsendum sem passa ekki við gögnin.
+
+Þegar þið rýnið tillögu frá erindreka skuluð þið spyrja:
+
+- Leysti tillagan raunverulega verkefnið?
+- Eru forsendurnar réttar?
+- Eru einhver edge cases sem vantar?
+- Er kóðinn læsilegur fyrir hópinn?
+- Er skjölunin nógu skýr?
+- Er eitthvað í lausninni sem við skiljum ekki?
+- Er þetta einfaldasta lausnin sem gæti virkað?
+
+Ef svarið er „ég veit það ekki“ er það ekki endilega vandamál. Það er merki um að það þurfi að
+spyrja betur, prófa betur eða biðja um skýrari útfærslu.
+
+## Æfing: látið erindreka leysa lítið verkefni
+
+Hópurinn vinnur saman í þriggja manna teymi. Hver nemandi fær sitt eigið dummy-verkefni í anda
+námskeiðsins og notar erindreka til að búa til lausn. Lausnin á að fara í gegnum venjulegt
+GitHub-vinnuflæði: branch, commit, pull request og kóðarýni.
+
+::: {.callout-important}
+## Ekki bara spjall
+
+Það er ekki nóg að spyrja erindreka í spjalli og líma svo lokaútkomuna inn í verkefnið.
+Við viljum sjá framganginn: hvaða verkefni var lagt fyrir, hvernig branch var búið til,
+hvaða breytingar urðu til, hvernig PR var skrifað og hvernig hópurinn fór yfir lausnina.
+:::
+
+### Dummy-verkefni
+
+Hver nemandi velur eða fær eitt lítið verkefni sem tengist capstone-þema hópsins. Þið þurfið
+ekki að nota aðferðir sem við erum ekki búin að fara yfir, eins og SQL eða fullar
+endurtækar skýrslur. Markmiðið er einfaldara: að æfa hvernig þið stýrið erindreka,
+setjið breytingu á branch, opnið PR og rýnið lausnina.
+
+Ræðið fyrst saman í hópnum hvað hver og einn ætti að prófa. Verkefnin mega tengjast sama
+gagnasafni eða sömu spurningu, en hvert PR þarf að vera nógu lítið og afmarkað til að hægt
+sé að rýna það almennilega.
+
+Dæmi um hentug verkefni:
+
+1. **Sækja gögn**
+
+   Látið erindreka skrifa einfalda Python-scriptu sem sækir lítið gagnasafn sem tengist
+   þema hópsins, til dæmis úr CSV-skrá á vefnum eða einföldu API. Scriptan þarf að vista
+   gögnin eða prenta stutta samantekt.
+
+2. **Hreinsa eða samræma gögn**
+
+   Látið erindreka skrifa fall eða scriptu sem tekur hráan texta eða CSV-skrá og lagar
+   algeng frávik, til dæmis auka bil, ólík dagsetningasnið, hástafi/lágstafi eða mismunandi
+   rithátt á nöfnum staða.
+
+3. **Taka saman litla niðurstöðu**
+
+   Látið erindreka búa til einfalda Markdown-skýrslu sem sýnir hvað var gert, hvaða gögn
+   voru skoðuð og eina litla niðurstöðu. Þetta má vera tafla, talning, einföld mynd eða
+   nokkrar setningar um hvað gögnin virðast sýna.
+
+4. **Bæta README eða leiðbeiningar**
+
+   Látið erindreka bæta README, notkunarleiðbeiningar eða skýringar á möppuskipulagi.
+   Rýnið sérstaklega hvort skjölunin sé skýr, rétt og gagnleg fyrir næsta hópmeðlim.
+
+5. **Lítil villuleit**
+
+   Gefið erindreka bilaðan kóða eða óskýra útfærslu. Markmiðið er að finna villuna, laga
+   hana og útskýra breytinguna í PR.
+
+## Vinnuflæði
+
+Hver nemandi vinnur sitt verkefni á eigin branch:
+
+```bash
+git checkout -b agent/nafn-verkefnis
+```
+
+Síðan notar nemandinn erindreka til að vinna lausnina. Það má nota hvaða tól sem er, en lausnin
+þarf að enda sem breyting í GitHub pull request.
+
+### Tvær ólíkar skrár: `AGENTS.md` og `AGENT_LOG.md`
+
+Í þessari æfingu geta tvær skrár komið við sögu. Þær heita næstum eins, en þær gera ólíka hluti:
+
+| Skrá | Fyrir hvern? | Tilgangur |
+|---|---|---|
+| `AGENTS.md` | Erindrekann | Segir erindrekanum hvernig hann á að vinna í þessu repo-i. |
+| `AGENT_LOG.md` | Kennara, hópinn og rýnendur | Sýnir hvað var beðið um, hvaða tól var notað og hvað manneskjan sannreyndi. |
+
+`AGENTS.md` er eins konar leiðbeiningablað fyrir kóðunaraðstoðarmanninn. Þar má setja
+vinnureglur verkefnisins: hvaða möppur á að nota, hvernig á að keyra kóða, hvernig á að skrifa
+commit-skilaboð og hvað má ekki breyta. Sjá nánar í kaflanum um [`AGENTS.md`](agents-md.qmd).
+
+`AGENT_LOG.md` er hins vegar ekki fyrirmæli til tólsins. Hún er skráning á vinnuferlinu eftir
+á: hvaða spurningar voru lagðar fyrir, hvaða erindrekar komu við sögu, hvaða breytingar urðu
+til og hvað þið yfirfóruð sjálf. Þetta er skráin sem gerir PR-ið rýnanlegt.
+
+::: {.callout-tip}
+## Einföld regla
+
+`AGENTS.md` segir: „Svona á agentinn að vinna hér.“
+
+`AGENT_LOG.md` segir: „Svona notuðum við agentinn í þessu PR.“
+:::
+
+### Það sem þarf að sjást í PR
+
+Í pull request þarf að koma fram:
+
+- hvaða verkefni átti að leysa
+- hvaða erindreki var notaður, til dæmis Copilot, Codex, Claude eða ChatGPT
+- hvaða fyrirmæli voru gefin erindrekanum, annaðhvort í PR-lýsingu eða í stuttri `AGENT_LOG.md` skrá
+- hvaða skrám var breytt
+- hvernig lausnin var prófuð eða yfirfarin
+- hvað höfundur PR er enn óviss um
+
+PR þarf líka að vera nógu lítill til að hópurinn geti rýnt hann almennilega. Betra er að hafa
+litla, skýra breytingu en stóra lausn sem enginn skilur.
+
+### Dæmi um commit message
+
+Ef erindreki tók efnislegan þátt í breytingunni má skrá það í commit message. Þetta kemur
+ekki í staðinn fyrir PR-lýsingu eða `AGENT_LOG.md`, en það hjálpar til við að gera
+vinnusöguna skýra.
+
+```text
+Add neighborhood cleaning helper
+
+Co-authored-by: Codex <codex@example.com>
+```
+
+Ef þið notið annað tól má skipta út nafninu. Aðalatriðið er að PR-lýsingin og
+`AGENT_LOG.md` útskýri hvað erindrekinn gerði og hvað þið yfirfóruð sjálf.
+
+### Dæmi um `AGENTS.md`
+
+`AGENTS.md` þarf ekki að vera löng. Í litlu nemendaverkefni gæti hún verið svona:
+
+```markdown
+# AGENTS.md
+
+## Um verkefnið
+Þetta repo er æfingaverkefni í IÐN302G. Markmiðið er að vinna með lítið gagnasafn
+sem tengist capstone-þema hópsins.
+
+## Vinnureglur fyrir erindreka
+- Ekki breyta skrám sem tengjast ekki verkefninu í þessu PR.
+- Hafðu lausnina einfalda og læsilega fyrir byrjendur.
+- Skrifaðu skýrar athugasemdir þar sem kóðinn gæti verið óljós.
+- Ef gögn eru sótt af vefnum, skráðu hvaðan þau koma.
+- Ekki fullyrða meira en gögnin styðja.
+
+## Keyrsla
+- Python-scriptur eiga að vera í `scripts/`.
+- Stuttar skýrslur eða samantektir eiga að vera í `reports/`.
+- Ef ný dependency er notuð, útskýrðu af hverju hún þarf að vera þar.
+```
+
+### Dæmi um `AGENT_LOG.md`
+
+`AGENT_LOG.md` er stutt vinnudagbók yfir samskiptin við erindreka. Hún þarf ekki að vera
+fullt afrit af öllu spjallinu. Hún á að sýna hvað þið báðuð um, hvaða tól var notað,
+hvaða breytingar urðu til og hvað þið þurftuð sjálf að sannreyna.
+
+Það er ekkert mál að nota fleiri en einn erindreka, en þá þarf að skrá það skýrt. Þá sést
+hvaða tól lagði til hvaða hluta og hvað manneskjan samþykkti að lokum. Það er líka í lagi
+að einn erindreki geri fyrstu útgáfu og annar hjálpi að rýna hana, svo lengi sem hópurinn
+tekur ábyrgð á niðurstöðunni.
+
+```markdown
+# AGENT_LOG
+
+## Verkefni
+Sækja opið gagnasafn sem tengist þema hópsins og búa til stutta Markdown-samantekt.
+
+## Erindrekar
+- GitHub Copilot: notaður til að skrifa fyrstu útgáfu af Python-scriptu.
+- ChatGPT: notað til að fá hugmynd að skýrari README-texta.
+
+## Fyrirmæli
+1. "Write a small Python script that downloads this CSV file, reads it with pandas,
+   and prints the number of rows and the column names."
+2. "Make the script easier for beginners to read and add comments in Icelandic."
+3. "Draft a short Markdown summary explaining what the data source is and what the
+   script does."
+
+## Breytingar sem urðu til
+- Bætti við `scripts/fetch_data.py`.
+- Bætti við `reports/first-summary.md`.
+- Uppfærði README með leiðbeiningum um hvernig á að keyra scriptuna.
+
+## Yfirferð manneskju
+- Keyrði scriptuna sjálf/sjálfur og staðfesti að hún sæki rétt gögn.
+- Breytti dálkaheitum í textanum því erindrekinn misskildi eitt heiti.
+- Fjarlægði eina fullyrðingu sem var ekki studd af gögnunum.
+
+## Óvissa eða næstu skref
+- Þarf að athuga síðar hvort gagnaveitan uppfærist reglulega.
+- Þarf að ákveða með hópnum hvort þessi gögn nýtist í capstone-verkefninu.
+```
+
+## Hlutverk í þriggja manna hóp
+
+Fyrir hvert PR eru þrjú hlutverk:
+
+| Hlutverk | Ábyrgð |
+|---|---|
+| **Höfundur** | Stýrir erindrekanum, býr til branch og opnar PR. |
+| **Rýnir 1** | Les breytinguna með áherslu á réttmæti, villur og edge cases. |
+| **Rýnir 2** | Les breytinguna með áherslu á skýrleika, skjölun og hvort lausnin passi við verkefnið. |
+
+Hver nemandi á að vera höfundur að minnsta kosti einu sinni og rýnir að minnsta kosti tvisvar.
+
+## Hvernig á að rýna uppbyggilega
+
+Góð PR-athugasemd er skýr, kurteis og gagnleg. Hún bendir ekki bara á vandamál heldur hjálpar
+höfundi að sjá næsta skref.
+
+Óhjálplegt:
+
+> Þetta er ruglingslegt.
+
+Betra:
+
+> Ég á erfitt með að sjá af hverju þessi breyta heitir `x`. Gæti hún heitið
+> `cleaned_neighborhood` eða eitthvað sem segir betur hvað hún inniheldur?
+
+Óhjálplegt:
+
+> Þetta virkar ekki.
+
+Betra:
+
+> Þetta virkar fyrir dæmið í PR-lýsingunni, en hvað gerist ef dagsetning vantar?
+> Getum við bætt við litlu prófunardæmi fyrir tómt gildi?
+
+Óhjálplegt:
+
+> Agentinn gerði þetta illa.
+
+Betra:
+
+> Lausnin er góð byrjun, en erindrekinn virðist hafa gert ráð fyrir ensku dagsetningasniði.
+> Þar sem gögnin okkar geta verið á íslensku sniði þurfum við annaðhvort að laga parserinn
+> eða skrá þessa takmörkun skýrt.
+
+## Checklist fyrir samþykki
+
+Áður en PR er samþykkt þarf hópurinn að geta svarað:
+
+- Skiljum við hvað breytingin gerir?
+- Leysti hún verkefnið sem lagt var fyrir?
+- Eru forsendur og takmarkanir skýrar?
+- Er kóðinn/skýrslan nógu læsileg til að næsti hópmeðlimur geti unnið áfram?
+- Hefur einhver annar en erindrekinn sannreynt lausnina?
+- Eru athugasemdir rýnenda annaðhvort leystar eða svarað með skýrum rökum?
+
+## Skil
+
+Skila skal:
+
+1. hlekk á PR frá hverjum nemanda
+2. stuttri lýsingu á því hvaða erindreki var notaður
+3. stuttri samantekt á mikilvægustu athugasemdunum sem komu fram í rýni
+4. einni setningu frá hverjum nemanda um hvað hann/hún lærði um að stýra erindreka
+   eða rýna kóða frá erindreka
+
+Meginatriðið er að þið sýnið vinnuferlið, ekki bara lokaniðurstöðuna.

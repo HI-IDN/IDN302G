@@ -6,5 +6,19 @@
 **/*.quarto_ipynb
 **/quarto-session-temp*/
 
-# Keep docs/ (GitHub Pages output) — do NOT ignore it
+# Standalone slide output can appear next to qmd files when rendered directly.
+/src/slides/*.html
+/src/slides/*_files/
 
+# GitHub Pages output — built by GitHub Actions, not committed
+/docs/
+
+# Quarto render leftovers
+**/*.rmarkdown
+
+# NOTE: /src/_freeze/ IS committed on purpose — it stores executed code
+# results so Actions can build without installing R.
+
+
+# Standalone render can leave site_libs next to source
+/src/site_libs/

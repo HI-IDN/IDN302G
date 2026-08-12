@@ -1,0 +1,80 @@
+---
+title: "GitHub og Overleaf"
+description: >-
+  Stutt yfirlit yfir það hvernig GitHub og Overleaf geta unnið saman þegar verkefni eru skrifuð í LaTeX.
+---
+
+Overleaf er vefumhverfi fyrir LaTeX-skjöl. Í þessu námskeiði er megináherslan á GitHub,
+Quarto og endurtakanlegt vinnuflæði, en stundum getur Overleaf samt komið við sögu — til
+dæmis ef hópur vinnur með LaTeX-skjal eða greinardrög sem eiga líka að vera útgáfustýrð.
+
+Þá getur verið gagnlegt að tengja Overleaf-verkefni við GitHub. GitHub heldur utan um
+útgáfusögu, breytingar og samstarf; Overleaf sér um ritun og þýðingu LaTeX-skjalsins.
+
+::: {.callout-note}
+## Ekki sjálfgefið vinnuflæði í IÐN302G
+
+Þið þurfið ekki að nota Overleaf í námskeiðinu nema það henti sérstaklega ykkar verkefni.
+Fyrir flest skil í námskeiðinu er einfaldara að vinna beint í GitHub og nota Markdown,
+Quarto eða Python-skrár eftir því sem við á.
+:::
+
+## Hvenær gæti þetta verið gagnlegt?
+
+Overleaf + GitHub getur hentað þegar:
+
+- hópurinn skrifar formlegt LaTeX-skjal
+- skjalið þarf að vera samvinnuskjal en líka útgáfustýrt
+- þið viljið geta skoðað breytingasögu í GitHub
+- þið viljið geta unnið bæði í Overleaf og staðbundnum ritli
+
+Ef verkefnið er einfalt Markdown- eða Quarto-verkefni er yfirleitt betra að sleppa Overleaf.
+
+## Grunnhugmyndin
+
+Það eru tvær áttir í samstillingunni:
+
+| Aðgerð | Hvað gerist? |
+|---|---|
+| `Pull` úr GitHub í Overleaf | Overleaf sækir nýjustu útgáfu úr GitHub. |
+| `Push` úr Overleaf í GitHub | Breytingar úr Overleaf fara aftur inn í GitHub-repo. |
+
+Mikilvæga reglan er einföld: sækið nýjustu breytingar áður en þið sendið eigin breytingar til
+baka. Annars aukast líkur á árekstrum milli útgáfa.
+
+## Dæmigert vinnuflæði
+
+1. Búið til GitHub-repo eða veljið repo sem þegar er til.
+2. Tengið repo-ið við Overleaf með GitHub-tengingu í Overleaf.
+3. Vinnið í skjalinu í Overleaf.
+4. Ýtið á `Push` þegar breytingar eiga að fara yfir í GitHub.
+5. Notið GitHub til að skoða breytingar, opna PR eða bera saman útgáfur.
+6. Ýtið á `Pull` í Overleaf áður en þið haldið áfram ef breytingar hafa verið gerðar í GitHub.
+
+## Varúðaratriði
+
+LaTeX býr oft til margar afleiddar skrár. Þær eiga almennt ekki heima í GitHub-repo-inu.
+Setjið þær frekar í `.gitignore`, til dæmis:
+
+```gitignore
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.pdf
+```
+
+Það er líka gagnlegt að hafa stutta `README.md` skrá sem segir:
+
+- hvaða `.tex` skrá er aðalskjalið
+- hvaða LaTeX-þýðandi er notaður, til dæmis `pdflatex`, `xelatex` eða `lualatex`
+- hvort skjalið sé fyrst og fremst unnið í Overleaf eða staðbundið
+
+## Ef árekstur verður
+
+Ef tvær útgáfur breytast á sama tíma getur komið upp merge conflict. Þá þarf að ákveða hvaða
+breytingar á að halda, sameina textann og prófa að skjalið þýðist enn rétt.
+
+Ef þið eruð óviss, ekki reyna að „laga“ stóran árekstur í blindni. Búið frekar til lítið PR,
+skýrið hvað gerðist og biðjið hópinn að rýna breytinguna.

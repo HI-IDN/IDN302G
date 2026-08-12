@@ -1,0 +1,92 @@
+---
+title: "Inngangur"
+description: >-
+  Git og GitHub: útgáfustýring, geymslur, útibú, pull requests, kóðarýni,
+  commit skilaboð og góð vinnubrögð.
+format:
+  html:
+    number-sections: false
+---
+
+Git og GitHub eru lykilverkfæri í námskeiðinu. Þau eru notuð til að halda utan um
+verkefni, skrá breytingar, vinna saman í hópum og byggja upp skýra sögu um hvernig
+verkefni þróast yfir tíma.
+
+Git og GitHub eru líka leiðandi verkfæri í atvinnulífinu, bæði í hugbúnaðarþróun,
+gagnavinnu, rannsóknum og tæknilegri skjölun. Þess vegna er mikilvægt að kunna ekki
+bara skipanirnar, heldur líka vinnubrögðin sem fylgja góðri útgáfustýringu.
+
+Í þessum hluta er farið yfir grunnatriði í Git og GitHub, algengar skipanir og góð
+vinnubrögð sem nýtast í hópverkefnum og capstone-verkefninu.
+
+## Stoðefni
+
+::: {.callout-tip title="Stoðefni"}
+Í tölvunarfræði er í boði námskeiðið **Tölvur, stýrikerfi og tölvufærni** sem
+gagnast vel þeim sem vilja styrkja grunninn í tölvuvinnu. Námskeiðið er hægt að
+fara yfir á eigin hraða í sjálfsnámi.
+
+Í þessum hluta styðjumst við sérstaklega við **kafla 7 um Git**. Sjá
+[YouTube playlista](https://www.youtube.com/playlist?list=PLrKTdL6acdmTPGK-aEtV6oo4-GAUTXuGn).
+:::
+
+## Hvað er Git?
+
+Git er dreift útgáfustjórnunarkerfi (*version control system*) sem heldur utan um breytingar
+í kóða, gögnum og textaskrám yfir tíma. Með Git getið þið:
+
+- séð hvað breyttist, hvenær og af hverjum,
+- farið til baka í fyrri útgáfur ef eitthvað fer úrskeiðis,
+- unnið í greinum (*branches*) án þess að skemma aðalútgáfuna,
+- sameinað vinnu margra í sama verkefni á rekjanlegan hátt.
+
+```{=html}
+<details class="video-details">
+  <summary>Myndband: <em>Fyrirlestur 7.1 — Útgáfustýringarkerfi og gagnalíkan Git</em></summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://youtube.com/embed/2bkHfZ8U47s?si=DQcqbTbZRJmjkkJs"
+      title="Fyrirlestur 7.1: Útgáfustýringarkerfi og gagnalíkan Git"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption">Úr stoðefninu <em>Tölvur, stýrikerfi og tölvufærni</em>.</p>
+</details>
+```
+
+## Hvað er GitHub?
+
+[GitHub](https://github.com/) er vefþjónusta fyrir Git-kóðageymslur (*repositories*) og samstarf. Slík
+kóðageymsla er iðulega kölluð *repo* í daglegu tali. Í þessu námskeiði notum við
+GitHub til að halda utan um verkefni, pull requests, kóðarýni, issues og sameiginlega
+vinnusögu hópsins.
+
+GitHub býður meðal annars upp á:
+
+- **repositories** til að geyma og deila verkefnum,
+- **pull requests** fyrir tillögur að breytingum og kóðarýni,
+- **issues** og **Projects** til að skipuleggja verk,
+- **GitHub Pages** til að birta skýrslur og verkefni á vef,
+- **Actions** fyrir sjálfvirkar keyrslur og prófanir.
+
+## GitHub reikningur og háskólanetfang
+
+Þið þurfið GitHub reikning sem er tengdur háskólanetfangi ykkar. Ef þið eigið nú þegar GitHub
+reikning er nóg að bæta `@hi.is` netfanginu við sem aukatölvupósti (*alternate/secondary email*)
+í stillingum GitHub.
+
+Nemendur geta einnig sótt um GitHub Education aðgang, sem getur veitt aðgang að GitHub Pro og
+ýmsum náms- og þróunartólum án endurgjalds.
+
+## Markmið
+
+Eftir þennan hluta ættuð þið að geta:
+
+- útskýrt muninn á Git og GitHub,
+- klónað geymslu og unnið með hana á eigin tölvu,
+- notað helstu Git-skipanir eins og `status`, `add`, `commit`, `pull` og `push`,
+- skrifað skýr og gagnleg commit skilaboð,
+- unnið með branches og pull requests,
+- notað issues til að halda utan um þróun verkefnis og Projects til að skipuleggja verklag,
+- tekið þátt í kóðarýni og samvinnu í GitHub.
