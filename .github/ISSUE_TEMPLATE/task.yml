@@ -1,0 +1,65 @@
+name: Verkefni
+description: Búa til verkefna-issue fyrir teymið
+title: "[VERKEFNI] "
+labels: []
+assignees: []
+body:
+  - type: input
+    id: samantekt
+    attributes:
+      label: Samantekt
+      description: Stutt samantekt á verkefninu (issue-titillinn ætti að vera lýsandi).
+      placeholder: "Dæmi: Uppfæra README með uppsetningarleiðbeiningum"
+    validations:
+      required: true
+
+  - type: textarea
+    id: samhengi
+    attributes:
+      label: Samhengi
+      description: Af hverju þarf að gera þetta? Hvaða hluta verkefnisins tengist þetta?
+      placeholder: "Lýstu samhengi og ástæðu..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: verkefni
+    attributes:
+      label: Verkefni
+      description: Listi af verkþáttum sem þarf að klára.
+      value: |
+        - [ ] TODO
+        - [ ] TODO
+        - [ ] TODO
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: klart_thegar
+    attributes:
+      label: Klárt þegar
+      description: Merktu við öll atriði sem eiga við (GitHub getur aðeins krafist að minnst eitt atriði sé hakað).
+      options:
+        - label: Breytingin er afmörkuð og unnin á branch
+        - label: Pull Request er opnað sem draft
+        - label: Það kemur fram í PR hvernig var prófað eða yfirfarið
+        - label: Requester hefur staðfest draftið
+        - label: Teymismeðlimur hefur rýnt áður en merge-að er
+    validations:
+      required: true
+
+  - type: textarea
+    id: tenglar
+    attributes:
+      label: Tenglar / gögn
+      placeholder: "- TODO"
+    validations:
+      required: false
+
+  - type: textarea
+    id: athugasemdir
+    attributes:
+      label: Athugasemdir
+      placeholder: "TODO"
+    validations:
+      required: false
