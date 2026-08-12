@@ -71,6 +71,9 @@ book:
     - part: "Endurtækar skýrslur"
       chapters:
         - reproducible-reports/index.qmd
+        - reproducible-reports/tools.qmd
+        - reproducible-reports/quarto.qmd
+        - reproducible-reports/publishing.qmd
     - part: "API / vefþjónustur"
       chapters:
         - api/index.qmd

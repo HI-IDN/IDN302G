@@ -1,0 +1,119 @@
+---
+title: "Quarto"
+description: >-
+  Hvað Quarto er, hvernig það byggir á markdown og LaTeX, og keyranleg R-dæmi
+  með mtcars og plotly.
+---
+
+## Hvað er Quarto?
+
+[Quarto](https://quarto.org/) er opinn hugbúnaður til að búa til skjöl, vefsíður, glærur og
+bækur út frá einföldum textaskrám. Skrárnar hafa endinguna `.qmd` og eru í grunninn
+**markdown** — sama einfalda orðalag og notað er í `README.md` skrám á GitHub — en með þeirri
+viðbót að hægt er að skjóta inn **keyranlegum kóðabútum** (R, Python, Julia).
+
+Þegar Quarto _þýðir_ (e. renders) skrána:
+
+1. keyrir það kóðabútana,
+2. skýtur niðurstöðum (tölum, töflum, myndum) inn í skjalið, og
+3. skilar statísku úttaki — oftast HTML.
+
+Þessi vefsíða sem þú ert að lesa er einmitt gerð í Quarto.
+
+## Þetta er bara markdown
+
+Grunnurinn er hefðbundið markdown. Til vinstri er það sem þú skrifar, til hægri hvernig það
+birtist:
+
+| Þú skrifar | Útkoma |
+|------------|--------|
+| `# Fyrirsögn` | stór fyrirsögn |
+| `**feitletrað**` | **feitletrað** |
+| `*skáletrað*` | *skáletrað* |
+| `` `kóði` `` | `kóði` |
+| `[hlekkur](https://hi.is)` | [hlekkur](https://hi.is) |
+| `- listi` | punktalisti |
+
+## Jöfnur með LaTeX
+
+Auk markdown er hægt að skrifa stærðfræði með **LaTeX** rithætti. Jöfnur inni í texta eru
+umluktar einu dollaramerki, t.d. `$E = mc^2$` sem birtist sem $E = mc^2$.
+
+Sjálfstæð jafna er umlukt tvöföldu dollaramerki. Þetta:
+
+``` markdown
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+```
+
+birtist svona:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+
+## Kóðabútur og útkoma
+
+Kóðabútur er skrifaður milli þriggja hornklofa (` ``` `) með tungumálinu í slaufusvigum. Þetta
+skrifar þú í `.qmd` skrána:
+
+```` markdown
+```{{r}}
+1 + 1
+```
+````
+
+Þegar Quarto þýðir skrána keyrir það bútinn og sýnir bæði kóðann og niðurstöðuna fyrir neðan:
+
+```{r}
+1 + 1
+```
+
+## Einfalt R-dæmi: `mtcars`
+
+`mtcars` er innbyggt gagnasafn í R með upplýsingum um 32 bíla. Við skoðum fyrstu línurnar:
+
+```{r}
+head(mtcars)
+```
+
+Og reiknum meðaleyðslu (`mpg`, mílur á gallon) eftir fjölda strokka (`cyl`):
+
+```{r}
+aggregate(mpg ~ cyl, data = mtcars, FUN = mean)
+```
+
+Athugið: þessar tölur eru **ekki slegnar inn handvirkt** — þær eru reiknaðar af Quarto í
+hvert sinn sem síðan er þýdd. Ef gögnin breytast uppfærist taflan sjálfkrafa.
+
+## Gagnvirk mynd með `plotly`
+
+Sama gagnasafn, en núna sem gagnvirk mynd. Prófaðu að sveima yfir punktana og draga til að
+þysja:
+
+```{r}
+#| message: false
+#| warning: false
+library(plotly)
+
+plot_ly(
+  data = mtcars,
+  x = ~wt,
+  y = ~mpg,
+  color = ~factor(cyl),
+  type = "scatter",
+  mode = "markers",
+  text = ~rownames(mtcars),
+  marker = list(size = 10)
+) |>
+  layout(
+    title = "Eyðsla eftir þyngd bíls",
+    xaxis = list(title = "Þyngd (1000 lbs)"),
+    yaxis = list(title = "Mílur á gallon"),
+    legend = list(title = list(text = "Strokkar"))
+  )
+```
+
+Sama skjalið gefur því bæði **statískt** úttak (töflur, tölur) og **gagnvirkt** úttak (plotly)
+— allt búið til beint úr kóðanum.

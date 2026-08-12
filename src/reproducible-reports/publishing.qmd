@@ -1,0 +1,62 @@
+---
+title: "Birting með GitHub Pages"
+description: >-
+  Tvær leiðir til að birta statíska heimasíðu: GitHub Actions þýðir kóðann fyrir þig,
+  eða þú birtir tilbúið úttak úr docs-möppu.
+---
+
+Þegar skýrslan eða vefsíðan er tilbúin viljum við birta hana á vefnum. **GitHub Pages** birtir
+statíska heimasíðu ókeypis beint úr kóðageymslunni. Það eru tvær meginleiðir að því — og
+munurinn snýst um **hver þýðir kóðann**.
+
+## Leið 1 — GitHub Actions þýðir fyrir þig
+
+**GitHub Actions** er sjálfvirknikerfi GitHub: í hvert sinn sem þú ýtir breytingum getur GitHub
+keyrt kóðann þinn á sínum eigin þjónum. Fyrir Quarto-síðu þýðir það að GitHub:
+
+1. sækir kóðageymsluna,
+2. setur upp R/Python og Quarto,
+3. keyrir alla kóðabútana og þýðir `.qmd` skrárnar, og
+4. birtir tilbúna HTML-úttakið á GitHub Pages.
+
+Kostur: þú ýtir bara `.qmd` skránum og GitHub sér um restina — úttakið er alltaf í takt við
+kóðann.
+
+::: {.callout-important}
+## Þarf að kveikja á Actions í stillingum
+GitHub Actions er ekki sjálfvirkt á. Það þarf að bæta við _workflow_-skrá (undir
+`.github/workflows/`) **og** velja réttu stillinguna undir **Settings → Pages → Build and
+deployment → Source: GitHub Actions** í kóðageymslunni.
+:::
+
+## Leið 2 — Birta tilbúið úttak úr `docs/`
+
+Ef þýðingin er of þung — t.d. dæmin taka langan tíma að keyra eða þarfnast pakka sem erfitt er
+að setja upp á þjóni GitHub — er hægt að **slökkva á GitHub Actions** og láta GitHub Pages
+frekar birta úttak úr fastri möppu.
+
+Þá:
+
+1. þýðir **notandinn sjálfur** skýrsluna á eigin tölvu (`quarto render`),
+2. ýtir tilbúna HTML-úttakinu (sem lendir í möppu, oftast `docs/`) inn í kóðageymsluna, og
+3. stillir **Settings → Pages → Source: Deploy from a branch** og velur `docs/` möppuna.
+
+GitHub keyrir þá engan kóða — það birtir bara skrárnar eins og þær koma fyrir.
+
+::: {.callout-note}
+## Þessi vefsíða notar `docs/`
+Í `_quarto.yml` þessarar bókar er stillt `output-dir: ../docs`, svo `quarto render` skrifar
+tilbúna HTML-úttakið beint í `docs/`. Það er sú mappa sem GitHub Pages birtir.
+:::
+
+## Hvor leiðin hentar?
+
+| | Actions þýðir | `docs/` mappa |
+|---|---|---|
+| **Hver keyrir kóðann?** | GitHub | Þú, á eigin tölvu |
+| **Þyngd á GitHub** | Meiri (keyrir allt í hvert sinn) | Engin (bara birting) |
+| **Handavinna** | Ýta `.qmd` og gleyma því | Muna að `render` + ýta `docs/` |
+| **Best þegar** | Þýðing er létt og hröð | Þýðing er þung eða flókin |
+
+Í stuttu máli: byrjaðu á **GitHub Actions** því það heldur úttakinu sjálfkrafa í takt við
+kóðann. Ef byggingin verður of þung skaltu skipta yfir í `docs/`-leiðina.

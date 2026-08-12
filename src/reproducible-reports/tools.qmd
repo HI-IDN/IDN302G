@@ -1,0 +1,67 @@
+---
+title: "Tól fyrir endurtækar skýrslur"
+description: >-
+  Yfirlit yfir helstu tól til að tengja saman kóða, gögn og framsetningu —
+  frá R Markdown og Quarto yfir í Shiny, Power BI og Tableau.
+---
+
+Það er til fjöldi tóla sem gera skýrslur endurtakanlegar. Þau eiga það sameiginlegt að
+**úttakið er búið til beint úr gögnunum og kóðanum** — í stað þess að afrita tölur og myndir
+handvirkt inn í skjal. Munurinn liggur einkum í tvennu:
+
+- **Statískt vs. gagnvirkt** — hvort úttakið er föst skýrsla (t.d. HTML/PDF) eða lifandi
+  mælaborð sem notandinn getur smellt á og síað.
+- **Kóði vs. smellir** — hvort þú skrifar kóða (R, Python) eða dregur til reiti í myndrænu
+  viðmóti.
+
+## Skjalatól (kóði + texti í einu skjali)
+
+Þessi tól blanda saman texta (markdown) og kóðabútum sem eru keyrðir við þýðingu. Úttakið er
+oftast statísk HTML-, PDF- eða Word-skrá.
+
+| Tól | Tungumál | Athugasemd |
+|-----|----------|------------|
+| **Quarto** | R, Python, Julia, Observable | Nýrri „arftaki" R Markdown; tungumálaóháð. Þessi vefsíða er gerð í Quarto. |
+| **R Markdown (`.Rmd`)** | Aðallega R | Rótgróið í R-heiminum; `knitr` keyrir kóðann. |
+| **Jupyter Notebook (`.ipynb`)** | Python, R, Julia | Gagnvirk „notebook"; vinsælt í Python-heiminum. |
+
+## Gagnvirk mælaborð og forrit
+
+Þegar notandinn á að geta valið, síað eða skoðað gögn í rauntíma dugar statísk skýrsla ekki —
+þá þarf forrit sem keyrir á bakenda.
+
+| Tól | Grunnur | Athugasemd |
+|-----|---------|------------|
+| **Shiny** | R (líka Python) | Vefforrit skrifað í R; notandinn stýrir og kóðinn keyrir aftur. |
+| **Streamlit / Dash** | Python | Sambærilegt Shiny fyrir Python. |
+| **Observable** | JavaScript | Gagnvirk „notebook" í vafra; Quarto styður Observable-reiti. |
+
+## Myndræn viðskiptagreind (BI)
+
+Þessi tól eru „drag-and-drop": þú tengir gagnagrunn og byggir mælaborð með smellum frekar en
+kóða. Hentar vel fyrir viðskiptaskýrslur og fólk sem forritar ekki.
+
+| Tól | Athugasemd |
+|-----|------------|
+| **Power BI** | Frá Microsoft; tengist vel Excel og öðrum Microsoft-tólum. |
+| **Tableau** | Öflugt í myndrænni könnun gagna; útbreitt í iðnaði. |
+| **Looker Studio** | Ókeypis tól frá Google (áður Data Studio). |
+
+::: {.callout-note}
+## Kóði er endurtakanlegri en smellir
+Drag-and-drop tól eins og Power BI og Tableau eru fljót af stað, en það er erfiðara að
+_rekja_ nákvæmlega hvernig mælaborð varð til og að _endurgera_ það sjálfvirkt. Skjalatól
+(Quarto, R Markdown) og forrit (Shiny) geyma allt sem texta/kóða í Git — sem passar við
+áhersluna á rekjanleika og útgáfustýringu í þessu námskeiði.
+:::
+
+## Hvaða tól veljum við í námskeiðinu?
+
+Við notum **Quarto** því það:
+
+- er tungumálaóháð (R, Python, Julia),
+- byggir í grunninn á venjulegu markdown sem þið kunnið nú þegar,
+- gefur statískt HTML sem hægt er að birta ókeypis með **GitHub Pages**, og
+- geymir allt sem texta í Git — svo hver breyting er rekjanleg.
+
+Næstu kaflar fara yfir Quarto sjálft og hvernig úttakið er birt á vefnum.
