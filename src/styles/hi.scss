@@ -762,6 +762,107 @@ em.emph {
 .step-chip:nth-child(5) { background: var(--red);    color: var(--white); }
 .step-chip:nth-child(6) { background: var(--green);  color: var(--ink); }
 
+.value-chain {
+  margin-top: 72px;
+
+  .step-chip {
+    min-height: 170px;
+    padding: 18px calc(var(--notch) + 8px);
+  }
+
+  .step-chip strong {
+    font-size: 21px;
+  }
+
+  .step-chip span {
+    font-size: 14px;
+    line-height: 1.25;
+    opacity: 0.9;
+  }
+}
+
+.value-chain[class*="focus-"] {
+  margin-top: 58px;
+
+  .step-chip {
+    min-height: 118px;
+    background: var(--panel);
+    color: var(--muted);
+  }
+
+  .step-chip strong {
+    font-size: 19px;
+  }
+}
+
+.value-chain.focus-1 .step-chip:nth-child(1),
+.value-chain.focus-2 .step-chip:nth-child(2),
+.value-chain.focus-3 .step-chip:nth-child(3),
+.value-chain.focus-4 .step-chip:nth-child(4),
+.value-chain.focus-5 .step-chip:nth-child(5),
+.value-chain.focus-6 .step-chip:nth-child(6) {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px var(--shadow-soft);
+}
+
+.value-chain.course-focus {
+  margin-top: 58px;
+
+  .step-chip {
+    min-height: 118px;
+    background: var(--panel);
+    color: var(--muted);
+  }
+
+  .step-chip strong {
+    font-size: 19px;
+  }
+
+  .step-chip:nth-child(1) { background: var(--blue);   color: var(--white); }
+  .step-chip:nth-child(2) { background: var(--teal);   color: var(--blue); }
+  .step-chip:nth-child(3) { background: var(--yellow); color: var(--ink); }
+}
+
+.lota-flow {
+  margin-top: 78px;
+
+  .step-chip {
+    min-height: 185px;
+    padding: 18px calc(var(--notch) + 12px);
+  }
+
+  .step-chip strong {
+    font-size: 27px;
+  }
+
+  .step-chip span {
+    font-size: 16px;
+    line-height: 1.25;
+    opacity: 0.9;
+  }
+}
+
+.value-detail {
+  margin-top: 36px;
+  max-width: 930px;
+  background: var(--white);
+  border-left: 8px solid var(--blue);
+  box-shadow: 0 12px 26px var(--shadow-soft);
+  padding: 24px 30px;
+}
+
+.value-detail p,
+.value-detail li {
+  font-size: 23px !important;
+  line-height: 1.38 !important;
+}
+
+.value-detail ul {
+  margin: 0;
+}
+
 // ── Flow diagram ──────────────────────────────────────────────────────────────
 .flow {
   display: grid;
@@ -994,6 +1095,19 @@ em.emph {
   line-height: 1.35;
 }
 
+.contact-card-name {
+  color: var(--blue);
+  font-size: 1.35em;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.contact-card-title {
+  color: var(--ink);
+  font-size: 0.86em;
+  margin-top: -0.25em;
+}
+
 .contact-card-row {
   display: flex;
   align-items: center;
@@ -1009,6 +1123,29 @@ em.emph {
 }
 
 .contact-photo { width: 100%; max-height: 420px; object-fit: cover; object-position: top; }
+
+.contact-guidance {
+  margin-top: 1.15rem;
+  background: var(--white);
+  border-left: 8px solid var(--blue);
+  box-shadow: 8px 8px 0 var(--yellow);
+  padding: 0.9rem 1.1rem;
+
+  strong {
+    color: var(--blue);
+  }
+
+  ul {
+    margin: 0.45rem 0 0;
+    padding-left: 1.1rem;
+  }
+
+  li {
+    font-size: 0.72em;
+    line-height: 1.35;
+    margin: 0.25rem 0;
+  }
+}
 
 // lean-in on focus/teal slides needs a white bg to stay readable
 .focus-slide .lean-in,
