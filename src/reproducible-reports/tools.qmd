@@ -25,6 +25,13 @@ oftast statísk HTML-, PDF- eða Word-skrá.
 | **R Markdown (`.Rmd`)** | Aðallega R | Rótgróið í R-heiminum; `knitr` keyrir kóðann. |
 | **Jupyter Notebook (`.ipynb`)** | Python, R, Julia | Gagnvirk „notebook"; vinsælt í Python-heiminum. |
 
+::: {.callout-tip}
+## Flatar textaskrár henta Git betur
+`.ipynb` skrár eru í raun JSON með innbyggðu úttaki og lýsigögnum, sem gerir þær erfiðar í
+útgáfustýringu — `diff` og kóðarýni verða óskýr. **Quarto (`.qmd`)** og **R Markdown (`.Rmd`)**
+eru aftur á móti einfaldar, flatar textaskrár, svo hver breyting er skýr og rekjanleg í Git.
+:::
+
 ## Gagnvirk mælaborð og forrit
 
 Þegar notandinn á að geta valið, síað eða skoðað gögn í rauntíma dugar statísk skýrsla ekki —
@@ -36,6 +43,14 @@ oftast statísk HTML-, PDF- eða Word-skrá.
 | **Streamlit / Dash** | Python | Sambærilegt Shiny fyrir Python. |
 | **Observable** | JavaScript | Gagnvirk „notebook" í vafra; Quarto styður Observable-reiti. |
 
+::: {.callout-note}
+## Bakendi krefst uppsetningar hjá notanda
+Statíska síðan sem þið birtið með GitHub Pages er án bakenda, svo hún getur ekki keyrt Shiny
+eða sambærileg forrit beint. Slíkar lausnir skoðið þið í lotunni **Myndræn framsetning** undir
+lok námskeiðsins. Þá birtið þið ekki lifandi mælaborð á síðunni, heldur skrifið **README
+leiðbeiningar** um hvernig notandi getur keyrt mælaborðið upp út frá kóðageymslunni ykkar.
+:::
+
 ## Myndræn viðskiptagreind (BI)
 
 Þessi tól eru „drag-and-drop": þú tengir gagnagrunn og byggir mælaborð með smellum frekar en
@@ -46,6 +61,14 @@ kóða. Hentar vel fyrir viðskiptaskýrslur og fólk sem forritar ekki.
 | **Power BI** | Frá Microsoft; tengist vel Excel og öðrum Microsoft-tólum. |
 | **Tableau** | Öflugt í myndrænni könnun gagna; útbreitt í iðnaði. |
 | **Looker Studio** | Ókeypis tól frá Google (áður Data Studio). |
+
+::: {.callout-warning}
+## Leyfisveitingar og aðgangsréttindi
+Tól eins og **Power BI** og **Tableau** eru háð leyfum. Þótt til séu stúdentaútgáfur eru þau
+mis útbreidd úti á markaðnum. Innan fyrirtækja hafa flestir starfsmenn oft aðeins **lesréttindi**
+að mælaborðum, og færri hafa **skrifréttindi** til að búa til sín eigin — það er alla jafna á
+könnu gagnasérfræðinga eða gagnateymis fyrirtækisins (*data analytics*).
+:::
 
 ::: {.callout-note}
 ## Kóði er endurtakanlegri en smellir

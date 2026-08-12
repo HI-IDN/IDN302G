@@ -5,6 +5,9 @@ project:
     - .nojekyll
     - templates/
 
+execute:
+  freeze: auto
+
 book:
   title: "Upplýsingaverkfræði IÐN302G"
   author: "Helga Ingimundardóttir"

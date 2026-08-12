@@ -117,3 +117,30 @@ plot_ly(
 
 Sama skjalið gefur því bæði **statískt** úttak (töflur, tölur) og **gagnvirkt** úttak (plotly)
 — allt búið til beint úr kóðanum.
+
+::: {.callout-important}
+## „Gagnvirkt" er ekki það sama og „reactive"
+Plotly-grafið er gagnvirkt í þeim skilningi að þú getur sveimað, þysjað og dregið — en það er
+**föst mynd** sem var reiknuð einu sinni þegar síðan var þýdd. Kóðinn keyrir **ekki** aftur
+þegar þú smellir. Til að úttakið bregðist við aðgerðum notandans (síur, hnappar, valreitir sem
+endurreikna gögnin) þarf **bakenda** sem keyrir kóðann á ný — t.d. Shiny. Það er utan þess sem
+statísk Quarto-síða á GitHub Pages getur gert.
+
+Sem sagt: maður kemst **mjög langt** með statískum síðum sem eru að einhverju leyti gagnvirkar
+(plotly-gröf, Leaflet-kort, síanlegar töflur o.þ.h.) — og fyrir flestar skýrslur er það alveg
+nóg. Það er fyrst þegar úttakið þarf að **endurreiknast** út frá vali notandans sem bakendi
+verður nauðsynlegur.
+:::
+
+## Meira en skýrslur
+
+Quarto er ekki bundið við skýrslur. Sama grunnhugmynd — markdown + kóði — nýtist í fleira:
+
+- **Stílsnið** — hægt er að stýra útliti með þemum og eigin CSS/SCSS. Stílsniðið á þessari
+  vefsíðu byggir á [hönnunarstaðli Háskóla Íslands](https://honnun.hi.is/) og er geymt í
+  skránni [`styles/hi-book.scss`](https://github.com/HI-IDN/IDN302G/blob/main/styles/hi-book.scss),
+  tengt inn í `_quarto.yml` undir `format: html: theme:`.
+- **Glærur** — Quarto býr til gagnvirkar glærukynningar (reveal.js) úr sömu `.qmd` skrám. Sjá
+  [glærurnar hér í námsefninu](../slides/index.html) — þær eru líka gerðar í Quarto og hýstar á
+  GitHub.
+- **Bækur, vefsíður og fleira** — þetta námsefni sjálft er Quarto-**bók**.

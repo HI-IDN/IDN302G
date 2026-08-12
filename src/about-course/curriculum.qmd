@@ -1,9 +1,12 @@
 ---
 title: "Námsefnið"
 number-sections: false
+toc-depth: 2
 ---
 
 Námsefnið skiptist í eftirfarandi lotur:
+
+## Lotur
 
 ::: {.lotu-list}
 
@@ -17,9 +20,9 @@ Námsefnið skiptist í eftirfarandi lotur:
 Notkun gervigreindar (LLM) sem erindreka við forritun, kóðarýni, gagnagreiningu og tæknilega skjölun á ábyrgan hátt.
 :::
 
-::: {.lotu-card .lotu-card-muted}
-### Endurtækar skýrslur <span class="lotu-status">kemur</span>
-Quarto, R Markdown eða Jupyter: skýrslur sem eru keyrðar beint af gögnum og endurtækar (reproducible).
+::: {.lotu-card}
+### Endurtækar skýrslur
+Skýrslur sem eru keyrðar beint af gögnum og endurtækar (reproducible).
 :::
 
 ::: {.lotu-card .lotu-card-muted}
@@ -55,6 +58,8 @@ og góðar og slæmar venjur í sjónrænni framsetningu.
 :::
 
 :::
+
+## Nánar um efnið
 
 Hver kafli inniheldur útskýringar, sýnidæmi og æfingar og má finna í
 hliðarstikunni hér til vinstri. Einnig er hægt að nota leitina

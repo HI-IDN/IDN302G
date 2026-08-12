@@ -5,17 +5,12 @@ description: >-
   kóða, gögn og niðurstöður.
 ---
 
-Endurtækar skýrslur eru ein af lykillótum námskeiðsins. Markmiðið er að þið getið skrifað
+Endurtækar skýrslur eru ein af lykilatriðum námskeiðsins. Markmiðið er að þið getið skrifað
 skýrslu þar sem texti, kóði, gögn, myndir og niðurstöður mynda eitt samhangandi vinnuflæði.
 
 Í stað þess að afrita niðurstöður handvirkt úr einu tóli yfir í annað er skýrslan keyrð beint af
 gögnunum. Þegar gögnin eða kóðinn breytast er hægt að endurkeyra skýrsluna og fá uppfærðar
 niðurstöður.
-
-::: {.callout-tip}
-## Í vinnslu
-Þessi kafli verður byggður út með dæmum og æfingum í Quarto, R Markdown eða Jupyter.
-:::
 
 ## Efni sem verður farið yfir
 
