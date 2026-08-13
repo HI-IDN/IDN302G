@@ -23,7 +23,7 @@ SRC  := $(filter-out docs/_freeze/% docs/site_libs/% docs/.quarto/% docs/AGENTS.
 # Samsvarandi HTML í _site/ (t.d. docs/github/index.qmd -> _site/github/index.html).
 HTML := $(patsubst docs/%,_site/%,$(patsubst %.qmd,%.html,$(patsubst %.md,%.html,$(SRC))))
 
-.PHONY: help all full preview server
+.PHONY: help all full preview server lint lint-fix
 
 # Höfn fyrir `make server` (static server á _site/).
 PORT ?= 8000
@@ -41,6 +41,8 @@ help:
 	@echo "                kaflabreytingar (uppfaerir hlidarstiku a OLLUM sidum)."
 	@echo "  make preview  Quarto preview: fylgist med breytingum + endurhledur (vinna)."
 	@echo "  make server   Static server a tilbunu _site/ (skoda lokautgafu, sja PORT)."
+	@echo "  make lint     Athugar .qmd: title/description i frontmatter + newline i enda."
+	@echo "  make lint-fix Sama og 'make lint' en lagar oruggu newline-atridin sjalfvirkt."
 	@echo "  make help     Synir thennan lista."
 	@echo ""
 	@echo "Efnisbreyting -> 'make'.  Uppbygging/hlidarstika -> 'make full'."
@@ -68,3 +70,10 @@ preview:
 # 8000 — breyta má með `make server PORT=8080`. Byggðu fyrst með `make full`.
 server:
 	cd _site && python -m http.server $(PORT)
+
+# Linter fyrir .qmd: title/description í frontmatter og newline í enda skrár.
+lint:
+	python scripts/lint_qmd.py
+
+lint-fix:
+	python scripts/lint_qmd.py --fix
