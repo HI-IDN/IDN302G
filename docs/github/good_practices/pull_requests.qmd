@@ -57,7 +57,7 @@ verið **PR-höfundur** eða **PR-rýnir** á öllum greinum sem voru sameinaða
 
 Ef verkefnastjóri hefur sinnt PR-rýninni nægilega vel ætti hann að vera vel kunnugur
 verkefninu: hvað var gert, hver gerði hvað, hvers vegna breytingarnar voru samþykktar
-make og hvernig þær tengjast hópverkefninu.
+og hvernig þær tengjast hópverkefninu.
 :::
 
 Nokkur GitHub-hugtök sem birtast í þessu ferli:
@@ -70,6 +70,27 @@ Nokkur GitHub-hugtök sem birtast í þessu ferli:
   var samþykktur er ekki lengur nákvæmlega sami kóði og á að sameina.
 - **Up to date** þýðir að branch-ið í PR inniheldur nýjustu breytingar úr `main`. Ef `main`
   hefur breyst síðan PR-ið var opnað þarf að uppfæra branch-ið áður en sameinað er.
+
+## Merge-valkostir: hvernig commit-in lenda í `main`
+
+Þegar PR er samþykkt býður GitHub upp á þrjár leiðir til að sameina. Valið hefur áhrif á það
+hvernig sagan lítur út á `main`:
+
+- **Squash and merge** — öll commit greinarinnar eru **þjöppuð í eitt** commit á `main`. Sagan
+  verður hrein og línuleg: eitt PR = eitt commit. Skilaboð einstakra commit hverfa úr `main`, en
+  PR-ið sjálft (með umræðu og rýni) geymir samhengið. **Mælt með** í hópverkefninu — auðvelt að
+  lesa `main` og afturkalla heilt PR í einu.
+- **Create a merge commit** (sjálfgefið) — **öll commit** greinarinnar fara óbreytt inn í `main`,
+  auk sérstaks *merge commit* sem tengir saman. Full saga varðveitist, en `main` verður
+  fyrirferðarmeiri og getur innihaldið hálfkláruð milli-commit.
+- **Rebase and merge** — commit greinarinnar eru **endurspiluð** ofan á `main` án merge commit.
+  Sagan verður línuleg en commit-in fá ný auðkenni (*hash*) — sögunni er endurskrifað. **Ekki
+  mælt með** í hópvinnu, því það getur ruglað sögu sem aðrir byggja á.
+
+::: {.callout-tip}
+Hægt er að takmarka leyfðar leiðir undir **Settings → General → Pull Requests** í geymslunni —
+t.d. leyfa aðeins *squash* svo öll teymin fylgi sömu venju og `main` haldist hrein.
+:::
 
 ## Hvað á PR að innihalda?
 
