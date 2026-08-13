@@ -1,6 +1,11 @@
 project:
   type: book
   output-dir: ../_site
+  resources:
+    # Vísað í úr glæru-CSS (css:/mask-image) sem Quarto skannar ekki, svo við
+    # afritum þær handvirkt inn í úttakið.
+    - styles/watermark.css
+    - img/hi/hi_logo.svg
 
 execute:
   freeze: auto
