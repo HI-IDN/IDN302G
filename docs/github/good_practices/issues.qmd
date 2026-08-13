@@ -87,7 +87,9 @@ textareits þegar nýtt issue er búið til.
 .github/
 └── ISSUE_TEMPLATE/
     ├── config.yml     # stillingar (t.d. slökkva á auðum issue)
-    └── task.yml       # sjálft verkefna-formið
+    ├── task.yml       # verkefna-form (almenn vinna)
+    ├── bug.yml        # villu-form
+    └── decision.yml   # ákvörðunar-form (ADR)
 ```
 
 `config.yml` með `blank_issues_enabled: false` neyðir notendur til að velja sniðmát í stað þess
@@ -146,6 +148,43 @@ YAML-formið hér að ofan er í raun gátlisti á mannamáli. Það biður um:
 
 Gott issue svarar þannig sömu spurningu og fyrr: *hvað ætlum við að gera, hvers vegna og
 hvernig vitum við að það sé búið?*
+
+### Fleiri form: villur og ákvarðanir
+
+Verkefna-formið hentar fyrir almenna vinnu, en tvö tilvik eiga betur heima í sérformum:
+
+- **Villa** (`bug.yml`) — þegar eitthvað í ykkar eigin kóða, greiningu eða skýrslu virkar ekki
+  eins og til stóð. Það spyr um annað en verkefni: hvað gerðist, hvað átti að gerast, hvernig
+  má endurgera villuna og hvar hún er.
+- **Ákvörðun** (`decision.yml`) — til að **skrá** ákvörðun sem teymið tók, ekki til að biðja um
+  vinnu.
+
+Munurinn í einni línu: **verkefni = hvað á að gera**, **villa = eitthvað virkar ekki**,
+**ákvörðun = hvað var ákveðið og af hverju**.
+
+#### Ákvörðunarskrár (ADR)
+
+Ákvörðunar-formið byggir á hugmyndinni um **ADR — _Architecture Decision Record_**. Það er stutt
+skjal sem heldur utan um **eina ákvörðun**: samhengið (hvaða vandamál kallaði á hana), valkostina
+sem voru skoðaðir, hvað varð fyrir valinu og hvaða afleiðingar fylgja. Hugtakið kemur úr
+hugbúnaðararkitektúr en nýtist hvaða teymi sem er.
+
+Tilgangurinn er **rekjanleiki** — sama áhersla og gengur í gegnum allt námskeiðið. Hálfu ári
+síðar (eða þegar nýr meðlimur kemur í teymið) er hægt að fletta upp *af hverju* þið fóruð þessa
+leið, í stað þess að reyna að muna það. Þetta er beint framhald af því sem issues eiga hvort eð
+er að hjálpa við: að *muna hvað var ákveðið og hvers vegna*.
+
+::: {.callout-tip}
+## Dæmi um ákvörðun
+> **Samhengi:** Við þurfum gagnagrunn fyrir verkefnið.
+> **Valkostir:** SQLite (einfalt, ein skrá) vs. PostgreSQL (öflugra, samhliða aðgangur).
+> **Ákvörðun:** PostgreSQL.
+> **Afleiðingar:** Fleiri geta unnið samtímis, en það þarf uppsetningu og tengingu (sjá
+> [Gagnagrunnstól](../../tech-setup/databases.qmd)).
+
+„Létt" ADR eins og þetta er bara eitt GitHub-issue með fáum reitum — nóg til að skrá ákvörðunina
+án skriffinnsku.
+:::
 
 ### Fleira í teymis-sniðmátinu
 
