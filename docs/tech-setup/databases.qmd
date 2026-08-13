@@ -1,0 +1,59 @@
+---
+title: "Gagnagrunnstól"
+description: >-
+  Uppsetning á PostgreSQL og þróunarumhverfi (DataGrip, DBeaver, VS Code) til að
+  tengjast gagnagrunni og keyra fyrirspurnir.
+---
+
+Þessi síða safnar saman uppsetningu tólanna sem þarf fyrir gagnagrunnshluta námskeiðsins. Sjálf
+hugtökin — hvað PostgreSQL og `psql` eru — eru útskýrð í kaflanum
+[Samskipti við gagnagrunna](../sql-basics/database_interaction.qmd); hér snýst allt um að koma
+tólunum í gang.
+
+::: {.callout-note}
+Tengingarupplýsingarnar (host, port, database, user, password) færðu afhentar í námskeiðinu —
+fylltu þær inn þar sem beðið er um þær hér að neðan.
+:::
+
+## Setja upp PostgreSQL
+
+[PostgreSQL niðurhal](https://www.postgresql.org/download/): veldu rétt stýrikerfi og fylgdu
+leiðbeiningunum til að setja upp _PostgreSQL_ og _psql_.
+
+## IDE fyrir gagnagrunna
+
+Til að auðvelda vinnu með gagnagrunn er gott að nota þróunarumhverfi (IDE) sem býður upp á
+sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með.
+
+### 1. [DataGrip](https://www.jetbrains.com/datagrip/)
+
+- DataGrip er öflugt IDE frá _JetBrains_ sem styður marga gagnagrunnsþjónustu, þar á meðal
+  _PostgreSQL_.
+- Hægt er að tengja _GitHub Copilot_ við DataGrip til að fá tillögur að SQL fyrirspurnum.
+- Nemendur geta sótt um frítt leyfi sem gildir í eitt ár í senn á meðan þeir eru í námi.
+- Sækið [DataGrip](https://www.jetbrains.com/datagrip/download/) og fylgið leiðbeiningum fyrir
+  uppsetningu.
+- Opnið nýja tengingu og veljið *PostgreSQL* sem gagnagrunnskerfi. Fyllið inn tengingarupplýsingarnar:
+  host, port, database, user, password. Prófið tenginguna til að vera viss um að hún virki.
+  - Í fyrsta skipti þarf að bæta við PostgreSQL driver — IDE-ið spyr um það og gefur leiðbeiningar.
+
+{{< video https://www.youtube.com/watch?v=X_RznmyuNyA >}}
+
+### 2. [DBeaver](https://dbeaver.io/)
+
+- DBeaver er opinn hugbúnaður (e. _open source_) sem styður mörg gagnagrunnskerfi, þar á meðal
+  _PostgreSQL_.
+- Það býður upp á einfalt og aðgengilegt viðmót og er frítt.
+- Sækið [DBeaver Community Edition](https://dbeaver.io/download/) og fylgið leiðbeiningum fyrir
+  uppsetningu.
+- Opnið nýja tengingu og veljið *PostgreSQL* sem gagnagrunnskerfi. Fyllið inn tengingarupplýsingarnar:
+  host, port, database, user, password. Prófið tenginguna.
+  - Í fyrsta skipti þarf að bæta við PostgreSQL driver — IDE-ið spyr um það og gefur leiðbeiningar.
+
+{{< video https://www.youtube.com/watch?v=W5AumdArlO8 >}}
+
+### 3. [Visual Studio Code](https://code.visualstudio.com/)
+
+- VS Code styður marga viðbótarpakka fyrir vinnu með SQL og _PostgreSQL_.
+- Kostur: þú getur unnið með kóða og SQL í sama umhverfi. Sjá almenna umfjöllun um VS Code í
+  [Þróunarumhverfi (IDE)](ide.qmd).

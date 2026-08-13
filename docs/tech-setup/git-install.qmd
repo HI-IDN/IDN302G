@@ -9,14 +9,14 @@ description: >-
 forrit sem keyrir á þinni tölvu — óháð GitHub, sem er vefþjónustan sem hýsir geymslurnar. Þú
 þarft því að setja Git upp locally áður en þú getur klónað eða unnið með geymslur.
 
-::: {.callout-tip}
 ## Fljótleg byrjun með myndbandi
-Ef þú vilt sjá Git og GitHub í VS Code í verki áður en þú lest lengra eru þessar (ensku)
-byrjendaleiðbeiningar góðar:
 
-- [Using Git with Visual Studio Code (Official Beginner Tutorial)](https://learn.microsoft.com/en-us/shows/visual-studio-code/using-git-with-visual-studio-code-official-beginner-tutorial) — stutt yfirlitsmyndband (~7 mín) frá Microsoft.
-- [GitHub for Beginners: Getting started with Git and GitHub in VS Code](https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/) — greinaröð frá GitHub með myndböndum.
-:::
+Ef þú vilt sjá Git og GitHub í VS Code í verki áður en þú lest lengra:
+
+{{< video https://youtu.be/NFjz1AGKA4c >}}
+
+Sama efni er líka til sem **textaleiðbeiningar** hjá GitHub:
+[GitHub for Beginners: Getting started with Git and GitHub in VS Code](https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/).
 
 ## Uppsetning eftir stýrikerfi
 

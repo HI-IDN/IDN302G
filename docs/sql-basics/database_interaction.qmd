@@ -97,62 +97,8 @@ stjórna gagnagrunnum í skel. Þetta tól býður upp á öfluga aðgerðir og 
 Þar sem _PostgreSQL_ er hannað fyrir stærri verkefni og flóknari gagnasöfn, er það oftast notað
 í þróunarumhverfum (IDE) til að tengjast gagnagrunnum og framkvæma fyrirspurnir.
 
-#### Uppsetning
-
-- [PostgreSQL niðurhal](https://www.postgresql.org/download/): Veldu réttan stýrikerfi og fylgdu
-  leiðbeiningunum fyrir að setja upp _PostgreSQL_ og _psql_.
-
-## IDE fyrir gagnagrunnskerfi
-
-Til að auðvelda vinnu með gagnagrunan er gott að nota þróunarumhverfi (IDE) sem býður upp á
-sérstakar aðgerðir fyrir gagnagrunna. Hér eru þrjú tól sem mælt er með:
-
-#### 1. [DataGrip](https://www.jetbrains.com/datagrip/)
-
-**Kostir:**
-
-- DataGrip er öflugt IDE frá _JetBrains_ sem styður marga gagnagrunnsþjónustu, þar á meðal
-  _PostgreSQL_.
-- Hægt er að tengja _GitHub CoPilot_ við DataGrip til að fá tillögur að SQL fyrirspurnum.
-- Nemandar geta sótt um frítt leyfi sem gildir í eitt ár í senn, á meðan þeir eru í námi.
-- Sækið [DataGrip](https://www.jetbrains.com/datagrip/download/) og fylgið leiðbeiningum fyrir
-  uppsetningu.
-- Opnið nýja tengingu og veljið *PostgreSQL* sem gagnagrunnskerfi. Fyllið inn tengingarupplýsingar
-  sem þið fenguð: host, port, database, user, password. Gott er að prófa tenginguna til að vera
-  viss um að hún virki.
-  - Í fyrsta skipti þarf að bæta við PostgreSQL driver, IDE mun spyrja um það og gefa leiðbeiningar.
-
-{{< video https://www.youtube.com/watch?v=X_RznmyuNyA >}}
-
-#### 2. [DBeaver](https://dbeaver.io/)
-
-**Kostir:**
-
-- DBeaver er opinn hugbúnaður (e. _open source_) sem styður mörg gagnagrunnskerfi, þar á meðal
-  _PostgreSQL_.
-- Það býður upp á einfalt og aðgengilegt viðmót.
-- DBeaver er frítt og auðvelt í notkun, sem gerir það að frábærum valkost fyrir nemendur og
-  minni fyrirtæki.
-- Sækið [DBeaver Community Edition](https://dbeaver.io/download/) til að byrja. Fylgið leiðbeiningum
-  fyrir uppsetningu.
-- Opnið nýja tengingu og veljið *PostgreSQL* sem gagnagrunnskerfi. Fyllið inn tengingarupplýsingar
-  sem þið fenguð: host, port, database, user, password. Gott er að prófa tenginguna til að vera 
-  viss um að hún virki. 
-  - Í fyrsta skipti þarf að bæta við PostgreSQL driver, IDE mun spyrja um það og gefa leiðbeiningar.
-  
-{{< video https://www.youtube.com/watch?v=W5AumdArlO8 >}}
-
-#### 3. [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
-
-**Kostir:**
-
-- VSCode er mjög aðgengilegt þróunarumhverfi sem styður marga viðbótarpakka fyrir vinnu með SQL,
-  eins og _PostgreSQL_.
-- Með því að nota VSCode geturðu unnið með kóða og SQL í sama umhverfi, sem sparar tíma og eykur
-  framleiðni.
-- VSCode er opinn hugbúnaður frá Microsoft og hentar vel fyrir þá sem vilja einfalt og öflugt IDE
-  sem virkar m.a. fyrir gagnagrunnskerfi.
-
+Uppsetning á _PostgreSQL_ og á þróunarumhverfi (DataGrip, DBeaver eða VS Code) — ásamt því
+hvernig tengjast á gagnagrunni — er í [Tæknimál → Gagnagrunnstól](../tech-setup/databases.qmd).
 
 ## Gagnagrunnar með R
 

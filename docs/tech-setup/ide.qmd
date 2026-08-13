@@ -48,5 +48,5 @@ eftir því hvað hentar hverju verkefni.
 - **Bættu við sérhæfðu IDE** þegar þú vinnur mikið í einu máli eða sviði og vilt dýpri stuðning
   — t.d. DataGrip fyrir gagnagrunnsvinnu.
 
-Fyrir gagnagrunnshluta námskeiðsins er farið nánar í uppsetningu á DataGrip og tengingu við
-gagnagrunn í kaflanum [Samskipti við gagnagrunna](../sql-basics/database_interaction.qmd).
+Fyrir gagnagrunnshluta námskeiðsins er farið nánar í uppsetningu á DataGrip, DBeaver og VS Code
+og tengingu við gagnagrunn í [Gagnagrunnstól](databases.qmd).
