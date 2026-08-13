@@ -123,8 +123,8 @@ book:
     - part: "Tæknimál"
       chapters:
         - tech-setup/index.qmd
-        - tech-setup/git-install.qmd
         - tech-setup/ide.qmd
+        - tech-setup/git-install.qmd
         - tech-setup/databases.qmd
     - part: "Glærur"
       chapters:

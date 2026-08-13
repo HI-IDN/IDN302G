@@ -18,6 +18,14 @@ Ef þú vilt sjá Git og GitHub í VS Code í verki áður en þú lest lengra:
 Sama efni er líka til sem **textaleiðbeiningar** hjá GitHub:
 [GitHub for Beginners: Getting started with Git and GitHub in VS Code](https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/).
 
+::: {.callout-tip}
+## Notar þú VS Code? Þá er þetta oft einfaldara
+Ef þú ert með [VS Code](ide.qmd) þarftu kannski ekki að setja Git upp handvirkt. VS Code er með
+innbyggðan Git-stuðning: farðu í **Extensions** (eða **Source Control**-flipann) og ef Git vantar
+á vélina bendir VS Code þér á að sækja það og leiðir þig í gegnum uppsetninguna. Þú getur þá
+sleppt handvirku skrefunum hér að neðan — en gott er samt að þekkja þau.
+:::
+
 ## Uppsetning eftir stýrikerfi
 
 ::: {.panel-tabset}
@@ -85,3 +93,14 @@ prófílinn þinn á GitHub.
 
 Þegar þetta er komið ertu tilbúin að klóna geymslu og byrja að vinna — sjá
 [Skipanir í Git](../github/basics/git_commands.qmd).
+
+## GitHub Copilot — sjálfvirkar tillögur
+
+Ef þú hefur sótt um [GitHub Education](https://education.github.com/) pakkann færðu **GitHub
+Copilot** frítt sem nemandi. Með Copilot-viðbótinni í ritlinum (t.d. VS Code) færðu sjálfvirkar
+kóðatillögur (*autocomplete*) beint inn í ritilinn á meðan þú skrifar — mjög öflugt og þægilegt.
+
+::: {.callout-note}
+Copilot er hjálpartól, ekki staðgengill skilnings. Um ábyrga notkun gervigreindar við forritun,
+sjá lotuna [Erindrekar](../ai-tools/responsible-use.qmd).
+:::
