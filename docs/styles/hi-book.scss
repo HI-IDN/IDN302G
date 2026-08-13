@@ -973,11 +973,14 @@ img { max-width: 100%; height: auto; }
 
 // ── Sidebar grouping ─────────────────────────────────────────────────────────
 // Set the intro section apart from the main course material (before "Git og
-// GitHub"), and separate the occasional course slides at the end (before
-// "Glærur"). Keyed off the sections' content links rather than positional
-// section numbers, so reordering or adding parts in _quarto.yml does not move
-// the dividers to the wrong section.
+// GitHub"), set the technical-setup reference section apart (before
+// "Tæknimál"), and separate the occasional course slides at the end (before
+// "Glærur"). Because "Tæknimál" sits right before "Glærur", the slides divider
+// also acts as the closing divider after "Tæknimál". Keyed off the sections'
+// content links rather than positional section numbers, so reordering or adding
+// parts in _quarto.yml does not move the dividers to the wrong section.
 #quarto-sidebar .sidebar-item-section:has(a[href*="github/"]),
+#quarto-sidebar .sidebar-item-section:has(a[href*="tech-setup/"]),
 #quarto-sidebar .sidebar-item-section:has(a[href*="slides/"]) {
   margin-top: 0.85rem;
   padding-top: 0.85rem;
