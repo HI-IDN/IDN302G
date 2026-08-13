@@ -1,5 +1,5 @@
 ---
-title: "Tæknimál"
+title: "Inngangur"
 description: >-
   Hagnýt uppsetning á tólunum sem námskeiðið byggir á — Git og þróunarumhverfi (IDE) —
   svo þú komir vinnuumhverfinu þínu í gang.
