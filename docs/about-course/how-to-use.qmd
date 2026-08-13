@@ -10,9 +10,9 @@ til breytingar — allt í gegnum venjulegt GitHub-vinnuflæði.
 
 ### Uppbygging gagnageymslunnar
 
-```
+~~~
 IDN302G/
-├── src/             ← Frumefni námskeiðsbókarinnar: Markdown, Quarto, myndir og stílar
+├── docs/            ← Frumefni námskeiðsbókarinnar: Markdown, Quarto, myndir og stílar
 │   ├── about-course/← Upplýsingar um námskeiðið, skipulag og námsmat
 │   ├── ai-tools/    ← Efni um erindreka og ábyrga notkun gervigreindar
 │   ├── github/      ← Efni um Git og GitHub
@@ -22,18 +22,18 @@ IDN302G/
 │   ├── sql-basics/  ← SQL grunnatriði
 │   ├── sql-advanced/← SQL framhald
 │   ├── storytelling/← Myndræn framsetning og gagnafrásögn
-│   └── styles/      ← Sérsniðnir stílar fyrir námskeiðsbókina
-├── docs/            ← Afleidd vefsíða sem Quarto býr til úr src/
+│   ├── styles/      ← Sérsniðnir stílar fyrir námskeiðsbókina
+│   └── _freeze/     ← Frystar niðurstöður keyranlegs kóða (commit-að)
+├── _site/           ← Afleidd vefsíða sem Quarto býr til (ekki commit-uð)
 ├── templates/       ← Sniðmát, m.a. TEAM.md fyrir hópa
 ├── data/            ← Gagnaskrár sem notaðar eru í æfingum
 ├── code/            ← Kóði og hjálparskrár sem styðja við sýnidæmi/æfingar
 └── README.md        ← Yfirlit yfir gagnageymsluna
-```
+~~~
 
-`src/` er staðurinn þar sem efnið er skrifað og lagað. `docs/` er renderuð útgáfa sem GitHub Pages
-birtir á vefnum og það sem við skoðum á local server þegar bókin er keyrð. Ef þú sérð villu í
-námsefninu skaltu því leggja til breytingu í viðeigandi möppu undir `src/`, ekki breyta `docs/`
-beint.
+`docs/` er staðurinn þar sem efnið er skrifað og lagað. `_site/` er renderuð útgáfa sem GitHub Pages
+birtir á vefnum (byggð af GitHub Actions). Ef þú sérð villu í námsefninu skaltu því leggja til
+breytingu í viðeigandi möppu undir `docs/`, ekki breyta `_site/` beint.
 
 ### Hvernig README virkar
 
