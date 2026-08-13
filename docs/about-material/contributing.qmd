@@ -10,8 +10,8 @@ tvær góðar leiðir:
 - opna [GitHub issue](https://github.com/HI-IDN/IDN302G/issues/new) með stuttri lýsingu,
 - senda Pull Request með lagfæringu eða viðbót.
 
-Ef breytingin snýr að innihaldi námskeiðsbókarinnar á hún að fara í `src/`, ekki
-í `docs/`. `docs/` er afleidd HTML útgáfa sem Quarto býr til.
+Ef breytingin snýr að innihaldi námskeiðsbókarinnar á hún að fara í `docs/`, ekki
+í `_site/`. `_site/` er afleidd HTML útgáfa sem Quarto býr til.
 
 Pull Request þarf ekki að vera stórt framlag. Góð framlög geta til dæmis verið:
 
