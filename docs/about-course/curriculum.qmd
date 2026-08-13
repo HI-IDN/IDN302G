@@ -1,5 +1,7 @@
 ---
 title: "Námsefnið"
+description: >-
+  Yfirlit yfir loturnar sem námsefnið skiptist í.
 number-sections: false
 toc-depth: 2
 ---

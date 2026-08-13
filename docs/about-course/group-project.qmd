@@ -1,5 +1,7 @@
 ---
 title: "Capstone verkefni"
+description: >-
+  Capstone-hópverkefnið: verkefnasvið, gagnasöfn og hvernig teymin vinna það yfir önnina.
 number-sections: false
 ---
 

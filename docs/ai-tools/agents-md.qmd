@@ -1,5 +1,7 @@
 ---
 title: "Leiðbeiningar fyrir erindreka (`AGENTS.md`)"
+description: >-
+  Hvað AGENTS.md er og hvernig erindrekar nota slíka leiðbeiningaskrá í gagnageymslu.
 ---
 
 `AGENTS.md` er leiðbeiningaskrá fyrir erindreka sem vinna í gagnageymslu. Hún segir agentinum hvernig hann á að haga sér í þessu tiltekna verkefni: hvaða skrár eru source, hvað má ekki snerta, hvernig á að vinna með branches og hvenær á að vara notandann við.

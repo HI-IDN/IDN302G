@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Inngangur"
 description: >-
   Myndræn framsetning miðlar flóknum upplýsingum á skýran og einfaldan hátt með því að nota gögn 

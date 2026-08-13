@@ -1,5 +1,7 @@
 ---
 title: "Erindreka-dagbók (`AGENT_LOG.md`)"
+description: >-
+  Hvað AGENT_LOG.md er, hvenær á að skrá í hana og hvernig hún gerir notkun erindreka sýnilega og rekjanlega.
 ---
 
 `AGENT_LOG.md` heldur utan um marktæka notkun erindreka í verkefninu. Markmiðið er ekki að skrá hvert einasta prompt, heldur að gera sýnilegt hvar AI hafði áhrif á vinnuna og hvað teymið yfirfór.

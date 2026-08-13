@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Töflur"
 description: >-
   Töflur eru grundvallareiningar í gagnagrunnum, þar sem gögnin eru geymd í röðum. 

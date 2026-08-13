@@ -1,5 +1,7 @@
 ---
 title: "Leyfi"
+description: >-
+  Leyfið á námsefninu og hvernig nota má það og deila því.
 ---
 
 Þessi námskeiðsbók er opin og aðgengileg á GitHub. Hún er bæði hugsuð sem

@@ -1,10 +1,9 @@
 ---
+title: "Skipanir í Git"
 description: >-
   Hér eru helstu Git skipanir sem þarf að þekkja til að geta unnið með Git
   geymslur, ásamt samantekt á lengra komnum skipunum.
 ---
-
-# Skipanir í Git
 
 Git er öflugt útgáfustjórnunarkerfi sem gerir þér kleift að vinna með kóða og skjöl á skilvirkan
 hátt.

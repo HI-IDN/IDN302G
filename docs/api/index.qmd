@@ -1,5 +1,7 @@
 ---
 title: "API / vefþjónustur"
+description: >-
+  Samskipti við vefþjónustur og gagnaveitur með API (Application Programming Interfaces). Í vinnslu.
 number-sections: false
 ---
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Inn- og útflutningur gagna"
 description: >-
   Innflutningur og útflutningur gagna í gagnagrunnum, t.d. með CSV skrám. 

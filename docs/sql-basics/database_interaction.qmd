@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Samskipti við gagnagrunna"
 description: >-
   Hægt er að eiga samskipti við gagnagrunnana með mismunandi tólum og tungumálum, allt frá 

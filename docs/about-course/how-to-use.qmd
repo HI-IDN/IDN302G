@@ -1,5 +1,7 @@
 ---
 title: "Gagnageymslan"
+description: >-
+  Hvernig námsefnið er skipulagt á GitHub og hvernig þú lest það, leggur til breytingar og nýtir sniðmátin.
 number-sections: false
 ---
 

@@ -35,8 +35,12 @@ def frontmatter(text: str) -> str | None:
     return m.group(1) if m else None
 
 
-def fix_newlines(text: str) -> str:
-    """Öruggar lagfæringar: nákvæmlega ein línuending í enda skrár."""
+BOM = "﻿"
+
+
+def fix_text(text: str) -> str:
+    """Öruggar lagfæringar: fjarlægir BOM og skilar einni línuendingu í enda."""
+    text = text.lstrip(BOM)
     return text.rstrip("\n") + "\n" if text else text
 
 
@@ -46,11 +50,15 @@ def lint_file(path: str, fix: bool = False) -> list[str]:
         text = fh.read()
 
     if fix:
-        fixed = fix_newlines(text)
+        fixed = fix_text(text)
         if fixed != text:
             with io.open(path, "w", encoding="utf-8", newline="\n") as fh:
                 fh.write(fixed)
             text = fixed
+
+    if text.startswith(BOM):
+        problems.append("skrá byrjar á BOM (óæskilegt)")
+        text = text.lstrip(BOM)
 
     fm = frontmatter(text)
     if fm is None:

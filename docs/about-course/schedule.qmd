@@ -1,5 +1,7 @@
 ---
 title: "Kennsluáætlun"
+description: >-
+  Kennsluáætlun annarinnar og hvernig loturnar raðast yfir misserið.
 number-sections: false
 ---
 

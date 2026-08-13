@@ -1,5 +1,8 @@
 ---
 pagetitle: "Upplýsingaverkfræði"
+title: "Upplýsingaverkfræði — inngangur"
+description: >-
+  Kynningarglærur úr fyrsta tíma: hvað upplýsingaverkfræði er og yfirlit yfir námskeiðið.
 lang: is
 format:
   revealjs:

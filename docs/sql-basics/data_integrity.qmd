@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Heilleiki gagna og skorður"
 description: >-
   Heilleiki gagna er undirstöðuatriði í SQL og fyrir vikið eru settar skorður til að 

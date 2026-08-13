@@ -1,5 +1,7 @@
 ---
 title: "Issues"
+description: >-
+  GitHub Issues til að afmarka vinnu — af hverju þau eru gagnleg, hvernig gott issue lítur út, sniðmát og tenging við branch og pull request.
 ---
 
 GitHub Issues eru einföld leið til að halda utan um vinnu áður en byrjað er að breyta skrám. Issue getur verið verkbeiðni, hugmynd, spurning, galli, ákvörðun eða lítil rannsókn sem þarf að klára.

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Inngangur"
 description: >-
   SQL er forritunarmál hannað til að „tala við“ venslagagnasöfn. Það 

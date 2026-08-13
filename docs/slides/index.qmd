@@ -1,5 +1,7 @@
 ---
 title: "2026-08-17 Kynningarefni"
+description: >-
+  Quarto-glærur námskeiðsins sem opnast sem sérstakar HTML-kynningar.
 ---
 
 Hér eru Quarto-glærur sem eru notaðar í fyrsta tíma. Glærurnar opnast sem sérstök HTML-kynning.

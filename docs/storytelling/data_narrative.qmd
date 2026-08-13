@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Gagnafrásögn"
 description: >-
   Gagnafrásögn samanstendur af texta og myndrænum framsetningum sem eiga að hrífa lesendur og 

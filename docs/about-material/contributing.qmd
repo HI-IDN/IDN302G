@@ -1,5 +1,7 @@
 ---
 title: "Villur og framlög"
+description: >-
+  Hvernig þú tilkynnir villur og leggur til breytingar á námsefninu.
 ---
 
 Ef þú sérð villu, óskýrt orðalag eða eitthvað sem mætti útskýra betur, þá eru

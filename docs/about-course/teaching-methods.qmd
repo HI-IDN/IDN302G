@@ -1,5 +1,7 @@
 ---
 title: "Kennsluaðferðir"
+description: >-
+  Kennsluaðferðir námskeiðsins — vendikennsla og teymisnám — og hvað þær þýða fyrir þig.
 number-sections: false
 ---
 

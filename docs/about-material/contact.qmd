@@ -1,5 +1,7 @@
 ---
 title: "Samband"
+description: >-
+  Hvar spurningar um námsefnið eiga heima og hvernig hafa má samband án þess að deila persónuupplýsingum.
 ---
 
 Fyrir almennar spurningar um námsefnið má nota GitHub issues ef spurningin eða

@@ -1,5 +1,7 @@
 ---
 title: "Inngangur"
+description: >-
+  Boole-rökfræði, mengjafræði og vensl — undirstaða SQL JOIN og flókinna fyrirspurna. Bætt við síðar.
 ---
 
 ::: {.callout-note title="Kemur"}

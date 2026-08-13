@@ -1,5 +1,7 @@
 ---
 title: "Hæfniviðmið"
+description: >-
+  Hæfniviðmið námskeiðsins — þekkingin og færnin sem nemendur eiga að öðlast í öflun, úrvinnslu og greiningu gagna.
 number-sections: false
 ---
 

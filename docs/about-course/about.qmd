@@ -1,5 +1,7 @@
 ---
 title: "Um námskeiðið"
+description: >-
+  Markmið námskeiðsins, samhengi þess og hvernig það undirbýr þig fyrir störf í gagnavísindum og upplýsingatækni.
 number-sections: false
 ---
 

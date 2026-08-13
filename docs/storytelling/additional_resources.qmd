@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Ítarefni"
 description: >-
   Gagnlegir hlekkir og lesefni sem auðga skilning á myndrænni framsetningu, henta bæði byrjendum 
