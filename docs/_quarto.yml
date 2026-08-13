@@ -151,3 +151,6 @@ format:
     code-copy: true
     code-overflow: wrap
     number-sections: false
+
+filters:
+  - filters/description-lead.lua

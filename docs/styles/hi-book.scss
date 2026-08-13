@@ -971,6 +971,23 @@ img { max-width: 100%; height: auto; }
   }
 }
 
+// ── Description lead ─────────────────────────────────────────────────────────
+// Birtir `description` úr frontmatter sem stílaðan inngang efst á síðunni
+// (sett inn af filters/description-lead.lua).
+.page-lead {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba($hi-ink, 0.72);
+  margin: 0 0 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba($hi-ink, 0.12);
+
+  p {
+    margin: 0;
+  }
+}
+
 // ── Sidebar grouping ─────────────────────────────────────────────────────────
 // Set the intro section apart from the main course material (before "Git og
 // GitHub"), set the technical-setup reference section apart (before
