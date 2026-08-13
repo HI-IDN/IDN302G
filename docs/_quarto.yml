@@ -54,6 +54,7 @@ book:
         - github/basics/git_commands.qmd
         - github/good_practices/writing_good_commits.qmd
         - github/good_practices/git_branches.qmd
+        - github/good_practices/troubleshooting.qmd
         - github/good_practices/pull_requests.qmd
         - github/good_practices/code_review.qmd
         - github/good_practices/writing_a_readme.qmd
