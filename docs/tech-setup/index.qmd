@@ -11,6 +11,7 @@ safnar saman hagnýtri uppsetningu sem er annars dreifð um námsefnið:
 - [Þróunarumhverfi (IDE)](ide.qmd) — hvaða ritil/IDE er gott að nota, og hvenær sérhæft IDE
   borgar sig fram yfir alhliða.
 - [Setja upp Git](git-install.qmd) — útgáfustjórnunarkerfið sem allt vinnuflæðið byggir á.
+- [SSH-lyklar](ssh.qmd) — auðkenning fyrir sækja/pusha úr skipanalínu.
 - [Gagnagrunnstól](databases.qmd) — uppsetning á PostgreSQL og tengingu við gagnagrunn.
 
 ::: {.callout-tip}

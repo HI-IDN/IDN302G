@@ -1,0 +1,66 @@
+---
+title: "SSH-lyklar"
+description: >-
+  Setja upp SSH-lykil til að sækja og pusha á GitHub úr skipanalínu án þess að
+  slá inn lykilorð í hvert sinn — og af hverju það skiptir máli fyrir erindreka.
+---
+
+**SSH-lykill** er leið til að auðkenna þig gagnvart GitHub þegar þú vinnur úr **skipanalínu**
+(`git clone`, `git fetch`, `git push`) — án þess að slá inn notandanafn og lykilorð í hvert sinn.
+Þú býrð til lyklapar: leynilykil sem er á þinni vél og opinberan lykil sem þú setur á GitHub.
+
+::: {.callout-note}
+## Þarft þú SSH?
+Ef þú vinnur eingöngu gegnum **Git-viðmótið í IDE-inu** (t.d. VS Code) þarftu oft ekki að setja
+SSH upp handvirkt — umhverfið sér um auðkenninguna fyrir þig (t.d. með innskráningu á GitHub).
+En það er samt gott að kunna skipanalínu-leiðina, og hún er **nauðsynleg** í sumum tilvikum —
+sjá athugasemd um erindreka neðst.
+:::
+
+## 1. Búðu til SSH-lykil
+
+Í skel (Git Bash, Terminal eða PowerShell):
+
+```sh
+ssh-keygen -t ed25519 -C "netfang@hi.is"
+```
+
+Ýttu á Enter til að samþykkja sjálfgefna staðsetningu (`~/.ssh/id_ed25519`). Þú mátt setja
+aðgangsorð (*passphrase*) á lykilinn til að auka öryggi.
+
+## 2. Bættu opinbera lyklinum á GitHub
+
+Afritaðu innihald **opinbera** lykilsins (`.pub`-skráin — aldrei leynilykilinn):
+
+```sh
+cat ~/.ssh/id_ed25519.pub
+```
+
+Farðu svo á GitHub: **Settings → SSH and GPG keys → New SSH key**, límdu inn lykilinn og vistaðu.
+
+## 3. Prófaðu tenginguna
+
+```sh
+ssh -T git@github.com
+```
+
+Ef allt er rétt uppsett færðu kveðju sem staðfestir auðkenninguna.
+
+## 4. Notaðu SSH-slóðina
+
+Þegar þú klónar skaltu velja **SSH**-slóðina (byrjar á `git@github.com:`) frekar en HTTPS:
+
+```sh
+git clone git@github.com:notandi/verkefni.git
+```
+
+Ef þú ert þegar með HTTPS-klón geturðu skipt yfir í SSH með `git remote set-url`.
+
+::: {.callout-important}
+## Erindrekar nota eingöngu skipanalínu
+Ef þú lætur [erindreka](../ai-tools/index.qmd) (AI-tól) sjá um Git-aðgerðir beint þarf hann
+aðgang að geymslunni — og erindrekar vinna **eingöngu gegnum skipanalínu**, ekki í gegnum
+myndrænt IDE-viðmót. Þá þarf virk skipanalínu-auðkenning (SSH-lykill eða aðgangs-token) að vera
+til staðar. Þetta er ein af ástæðunum fyrir því að borga sig að setja SSH upp þótt þú notir
+annars IDE-viðmótið dagsdaglega.
+:::
