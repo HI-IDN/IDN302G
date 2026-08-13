@@ -120,6 +120,11 @@ book:
         - storytelling/donts.qmd
         - storytelling/data_narrative.qmd
         - storytelling/additional_resources.qmd
+    - part: "Tæknimál"
+      chapters:
+        - tech-setup/index.qmd
+        - tech-setup/git-install.qmd
+        - tech-setup/ide.qmd
     - part: "Glærur"
       chapters:
         - slides/index.qmd
