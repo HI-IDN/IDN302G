@@ -30,9 +30,17 @@ jobs:
       # No R setup needed: executed code results are committed in docs/_freeze/
       # (execute: freeze: auto in _quarto.yml). Quarto reuses them instead of
       # re-running R in the cloud.
-      - name: Render book
+      - name: Render book and standalone slides
         working-directory: docs
-        run: quarto render
+        run: |
+          quarto render
+          quarto render slides/intro.qmd
+          mkdir -p ../_site/slides
+          mkdir -p ../_site/styles
+          rm -f ../_site/slides/intro.html
+          rm -rf ../_site/slides/intro_files
+          cp -r slides/intro.html slides/intro_files ../_site/slides/
+          cp styles/watermark.css ../_site/styles/watermark.css
 
       - name: Upload Pages artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

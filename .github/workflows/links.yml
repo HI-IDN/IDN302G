@@ -25,9 +25,17 @@ jobs:
 
       # Byggir bókina (freeze -> engan R) svo hægt sé að athuga raunverulegu
       # HTML-úttakssíðurnar, þar sem .qmd-hlekkir eru orðnir að .html.
-      - name: Render book
+      - name: Render book and standalone slides
         working-directory: docs
-        run: quarto render
+        run: |
+          quarto render
+          quarto render slides/intro.qmd
+          mkdir -p ../_site/slides
+          mkdir -p ../_site/styles
+          rm -f ../_site/slides/intro.html
+          rm -rf ../_site/slides/intro_files
+          cp -r slides/intro.html slides/intro_files ../_site/slides/
+          cp styles/watermark.css ../_site/styles/watermark.css
 
       # Á PR/dispatch athugum við aðeins innri hlekki (--offline): áreiðanlegt og
       # án falskra falla vegna hægra/tímabundinna ytri vefsvæða. Vikulega

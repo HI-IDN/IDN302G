@@ -61,7 +61,7 @@ _site/%.html: docs/%.md
 # Heildar-render. NAUÐSYNLEGT eftir breytingar á _quarto.yml, styles/*.scss eða
 # partials/* því þær hafa áhrif á hliðarstiku/þema ALLRA síðna, ekki bara einnar.
 full:
-	cd docs && quarto render
+	cd docs && quarto render && quarto render slides/intro.qmd && mkdir -p ../_site/slides ../_site/styles && rm -f ../_site/slides/intro.html && rm -rf ../_site/slides/intro_files && cp -r slides/intro.html slides/intro_files ../_site/slides/ && cp styles/watermark.css ../_site/styles/watermark.css
 
 preview:
 	cd docs && quarto preview
