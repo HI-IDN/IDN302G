@@ -1,0 +1,44 @@
+name: 📚 Ósk um ítarefni
+description: Vantar dæmi, dýpri umfjöllun, fleiri æfingar eða heimildir — eða nýjan efnisþátt.
+title: "[Ítarefni] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Langar þig að sjá meira efni? Lýstu því hér. Ert þú með almenna spurningu um námsefnið
+        frekar en tillögu? Notaðu þá [Discussions](https://github.com/HI-IDN/IDN302G/discussions).
+
+  - type: input
+    id: lota
+    attributes:
+      label: Lota eða síða
+      description: Hvaða lotu eða síðu tengist óskin? (Eða "ný lota" ef efnið er ekki til enn.)
+      placeholder: "SQL grunnatriði — undirfyrirspurnir"
+    validations:
+      required: true
+
+  - type: textarea
+    id: hvad
+    attributes:
+      label: Hvað vantar?
+      description: Hvaða efni, dæmi eða æfingar myndir þú vilja sjá?
+      placeholder: "Fleiri dæmi um JOIN með raunverulegum gögnum..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: afhverju
+    attributes:
+      label: Af hverju væri þetta gagnlegt?
+      description: Hverjum myndi þetta hjálpa og hvernig?
+    validations:
+      required: false
+
+  - type: textarea
+    id: heimildir
+    attributes:
+      label: Tenglar eða heimildir
+      description: (Valkvætt) Tenglar á efni sem gæti nýst — greinar, myndbönd, gagnaveitur.
+    validations:
+      required: false

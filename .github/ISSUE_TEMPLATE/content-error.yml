@@ -1,0 +1,50 @@
+name: 🐛 Villa í efni
+description: Brotinn hlekkur, stafsetning, rangt eða brotið kóðadæmi, eða óskýr útskýring á tiltekinni síðu.
+title: "[Villa] "
+labels: ["content-bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Takk fyrir að láta vita! Notaðu þetta form fyrir villur í **námsefninu sjálfu**.
+        Er síðan biluð (t.d. myndbrot eða dark mode)? Notaðu þá frekar *🛠️ Tæknileg villa á vefnum*.
+
+  - type: input
+    id: sida
+    attributes:
+      label: Síða
+      description: Hvaða síðu á þetta við? Límdu inn slóðina eða titil kaflans.
+      placeholder: "https://hi-idn.github.io/IDN302G/sql-basics/tables.html"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tegund
+    attributes:
+      label: Tegund villu
+      options:
+        - Stafsetning eða málfar
+        - Brotinn hlekkur
+        - Rangt eða brotið kóðadæmi
+        - Röng eða úrelt upplýsing
+        - Óskýr útskýring
+        - Annað
+    validations:
+      required: true
+
+  - type: textarea
+    id: lysing
+    attributes:
+      label: Lýsing
+      description: Hvað er að? Afritaðu gjarnan textann eða vísaðu í hvar á síðunni villan er.
+      placeholder: "Í öðru dæmi er SELECT-setningin með auka kommu sem veldur villu..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: tillaga
+    attributes:
+      label: Tillaga að lagfæringu
+      description: (Valkvætt) Hvernig ætti þetta að vera í staðinn?
+    validations:
+      required: false
