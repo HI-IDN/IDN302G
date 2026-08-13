@@ -174,8 +174,8 @@ síðar (eða þegar nýr meðlimur kemur í teymið) er hægt að fletta upp *a
 leið, í stað þess að reyna að muna það. Þetta er beint framhald af því sem issues eiga hvort eð
 er að hjálpa við: að *muna hvað var ákveðið og hvers vegna*.
 
-::: {.callout-tip}
-## Dæmi um ákvörðun
+##### Dæmi um ákvörðun
+
 > **Samhengi:** Við þurfum gagnagrunn fyrir verkefnið.
 > **Valkostir:** SQLite (einfalt, ein skrá) vs. PostgreSQL (öflugra, samhliða aðgangur).
 > **Ákvörðun:** PostgreSQL.
@@ -184,16 +184,17 @@ er að hjálpa við: að *muna hvað var ákveðið og hvers vegna*.
 
 „Létt" ADR eins og þetta er bara eitt GitHub-issue með fáum reitum — nóg til að skrá ákvörðunina
 án skriffinnsku.
-:::
 
-### Fleira í teymis-sniðmátinu
+### Fleiri sniðmát
 
-Sama `.github/`-mappa í [team-repo-template](https://github.com/Upplysingaverkfraedi/team-repo-template)
-inniheldur einnig:
+Sniðmatssafnið í [`templates/github/`](https://github.com/HI-IDN/IDN302G/tree/main/templates/github)
+inniheldur einnig skrár sem eiga heima í `.github/`-möppu teymisins:
 
-- **`.github/pull_request_template.md`** — sniðmát sem fyllir sjálfkrafa út lýsingu nýrra pull
-  requests (sjá [Pull requests](pull_requests.qmd)).
-- **`.github/skills/code-review/SKILL.md`** — létt kóðarýni-skill sem stýrir gervigreind við
-  yfirferð á pull requests í geymslunni (sjá [Kóðarýni](code_review.qmd)).
-- **`.github/workflows/pages.yml`** — GitHub Actions vinnuflæði sem renderar Quarto-síðu og
-  birtir á GitHub Pages við hverja push á `main`.
+- [**`pull_request_template.md`**](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/pull_request_template.md)
+  — sniðmát sem fyllir sjálfkrafa út lýsingu nýrra pull requests (sjá [Pull requests](pull_requests.qmd)).
+- [**`skills/code-review/SKILL.md`**](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/skills/code-review/SKILL.md)
+  — létt kóðarýni-skill sem stýrir gervigreind við yfirferð á pull requests í geymslunni (sjá
+  [Kóðarýni](code_review.qmd)).
+- [**`workflows/pages.yml`**](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/workflows/pages.yml)
+  — GitHub Actions vinnuflæði sem renderar Quarto-síðu og birtir á GitHub Pages við hverja push
+  á `main`.

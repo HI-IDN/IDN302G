@@ -1,5 +1,5 @@
-name: Verkefni
-description: Búa til verkefna-issue fyrir teymið
+name: 📋 Verkefni
+description: Almennt verkþáttar-issue — vinna sem á að vinna (ekki villa eða ákvörðun).
 title: "[VERKEFNI] "
 labels: []
 assignees: []
