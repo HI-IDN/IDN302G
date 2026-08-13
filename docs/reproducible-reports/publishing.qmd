@@ -33,6 +33,15 @@ Galli: þýðingin fer fram **í skýinu** og tekur tíma (það þarf að setja
 alla kóðabútana í hvert sinn). Slík keyrsla notar **GitHub Actions-mínútur/credits**, sem eru
 takmarkaðar (ókeypis kvóti á opnum geymslum, en telja á einkageymslum).
 
+::: {.callout-tip}
+## Léttu bygginguna með `freeze`
+Quarto getur _fryst_ niðurstöður kóðabútanna í möppu (`_freeze/`) sem þú commit-ar með í
+kóðageymsluna. Á meðan `.qmd`-skráin er óbreytt keyrir Quarto **ekki** kóðann aftur — það notar
+frystu niðurstöðurnar. Þá þarf CI aðeins að setja upp Quarto (ekki R/Python) og byggja HTML úr
+frystu niðurstöðunum, sem gerir cloud-bygginguna mun léttari og ódýrari. Þú keyrir kóðann
+locally til að frysta hann; GitHub sér um afganginn.
+:::
+
 ::: {.callout-important}
 ## Þarf að kveikja á Actions í stillingum
 GitHub Actions er ekki sjálfvirkt á. Það þarf að bæta við _workflow_-skrá (undir
@@ -55,9 +64,12 @@ frekar birta úttak úr fastri möppu.
 GitHub keyrir þá engan kóða — það birtir bara skrárnar eins og þær koma fyrir.
 
 ::: {.callout-note}
-## Þessi vefsíða notar `docs/`
-Í `_quarto.yml` þessarar bókar er stillt `output-dir: ../docs`, svo `quarto render` skrifar
-tilbúna HTML-úttakið beint í `docs/`. Það er sú mappa sem GitHub Pages birtir.
+## Hvernig þessi vefsíða er birt
+Þessi bók notar **Leið 1 með `freeze`**: GitHub Actions þýðir hana og birtir sjálfkrafa við
+merge á `main`. Keyranlegu R-dæmin eru fryst í `_freeze/` og commit-uð, svo CI byggir með Quarto
+einu saman — án þess að setja upp R í skýinu. Höfundur getur enn þýtt locally (`quarto render`)
+til að forskoða, en það er valkvætt: það þarf aðeins þegar keyranlegur kóði breytist, til að
+uppfæra frystu niðurstöðurnar.
 :::
 
 ## Hvor leiðin hentar?
