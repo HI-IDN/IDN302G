@@ -1,1 +1,5 @@
 blank_issues_enabled: false
+contact_links:
+  - name: 💬 Spurning eða umræða um námsefnið
+    url: https://github.com/HI-IDN/IDN302G/discussions
+    about: Spurningar, hugmyndir og almennt spjall eiga heima í Discussions — ekki sem issue.

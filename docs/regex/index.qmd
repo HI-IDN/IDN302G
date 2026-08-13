@@ -1,0 +1,25 @@
+---
+title: "Inngangur"
+description: >-
+  Reglulegar segðir (regex) eru öflugt tæki til að leita í og vinna úr textagögnum.
+---
+
+::: {.callout-tip}
+## Í vinnslu
+Þessi hluti er í vinnslu og verður bættur við síðar.
+:::
+
+## Hvað eru reglulegar segðir?
+
+Reglulegar segðir (e. *regular expressions*, skammstafað *regex*) eru mynstur sem notuð eru til
+að leita í, finna og vinna úr texta. Þær eru studdar í nær öllum forritunarmálum, þar á meðal R,
+Python og JavaScript.
+
+## Efni sem verður farið yfir
+
+- Grunntákn og mynstur (`^`, `$`, `.`, `*`, `+`, `?`)
+- Flokkar (`[a-z]`, `[0-9]`, `\d`, `\w`, `\s`)
+- Hópar og vísunar (`(...)`, `\1`)
+- Reglulegar segðir í R (`stringr`, `grepl`, `gsub`)
+- Leit í skrám með regex
+- Æfingar og dæmi

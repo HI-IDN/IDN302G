@@ -1,0 +1,83 @@
+---
+title: "Capstone verkefni"
+description: >-
+  Capstone-hópverkefnið: verkefnasvið, gagnasöfn og hvernig teymin vinna það yfir önnina.
+number-sections: false
+---
+
+Á fyrsta degi kynnir kennarinn nokkur verkefnasvið, hvert með eigin gagnasafni og umfangi.
+Þú velur þér hóp í kringum það vandamál sem þig langar til að leysa. Hópurinn vinnur saman
+í **14 vikur** og hver lota námskeiðsins bætir við verkefnið — gagnahreinsun, SQL-greining,
+myndræn framsetning — þar til lokaafurðin, þ.e. capstone-verkefnið, er tilbúin.
+
+### Verkefnasvið fyrir 2026
+
+Öll dæmin hér tengjast Reykjavík / höfuðborgarsvæðinu og deila sameiginlegum lykli
+(hverfi + tími) — hópar geta valfrjálst sótt gögn frá hvor öðrum til að auðga eigin greiningu.
+
+| Hópur | Þema | Krókurinn |
+|-------|------|-----------|
+| **Rachel** | Borgarslúðrið | Hvað er borgarstjórn *í alvöru* að tala um bak við luktar dyr (sem eru samt opnar öllum)? Grafið í þúsundum fundargerða og finnið dramatíkina. |
+| **Ross** | Skipulags-CSI | Rannsakið borgina eins og glæpasenu — byggingar, lóðir, veitur. Hver byggði hvað, hvar, og hvenær fór allt úrskeiðis? |
+| **Chandler** | Hvar er vagninn minn?! | Allir hafa staðið úti í rigningu og beðið. Nú fáið þið gögnin til að sanna að strætó er (eða er ekki) að seinka viljandi. |
+| **Phoebe** | Skjálftavaktin | Land elds og íss, í rauntíma. Byggið mælaborð sem fylgist með Íslandi skjálfa, kólna og hitna — beint í æð. |
+| **Monica** | Húsnæðisbrjálæðið | Af hverju er ómögulegt að finna íbúð? Kafið í tölurnar á bak við leigu- og fasteignaverð og sannið það sem allir vita nú þegar. |
+| **Joey** | Túristasprengjan | Milljónir ferðamanna, ein lítil borg. Hvenær koma þau, hvert fara þau, og hvað gerir það við borgina ykkar? |
+
+#### Gagnaveitur
+
+Dæmi um gangaveitur, listinn er ekki tæmandi en ætti að koma ykkur áleiðis:
+
+- [reykjavik.is/fundargerdir](https://reykjavik.is/fundargerdir) — fundargerðir borgarstjórnar og
+  nefnda
+- [lukr.is](https://lukr.is/) / [ArcGIS gátt](https://data-reykjavik.opendata.arcgis.com/) —
+  landupplýsingakerfi Reykjavíkur
+- [opendata.reykjavik.is](https://opendata.reykjavik.is/) — opið gagnasafn borgarinnar
+- [vedur.is](https://www.vedur.is/) — veður- og jarðskjálftagögn
+- [px.hagstofa.is](https://px.hagstofa.is/) — hagtölur Íslands
+- [ferdamalastofa.is](https://www.ferdamalastofa.is/is/tolur-og-utgafur/ferdatolur) —
+  ferðamannatölfræði
+
+### Hlutverk í hóp
+
+Hlutverk skiptast í hverri lotu:
+
+- Einn eða fleiri meðlimir **kóða** (PR-höfundar á GitHub)
+- Einn eða fleiri meðlimir **rýna kóðann** (PR-rýnar á GitHub)
+- **Verkefnastjóri** (skipt á milli lota) samræmir tímafresti, hefur samband við kennarann
+  og ber ábyrgð á að hafa yfirsýn yfir framvindu verkefnisins: hvað er að gerast í hópnum,
+  hver gerir hvað og hvers vegna. Í upphafi næstu lotu er verkefnastjóri spurður út í vinnu
+  hópsins í nýafstaðinni lotu í óundirbúnum iTA-fyrirspurnartíma á mánudegi.
+
+Allt þetta er sýnilegt í Git-sögunni — hver gerði hvað, hvenær, og hvort kóðarýni var
+ítarleg.
+
+::: {.callout-warning}
+**Git-sagan er hluti af einkunnargjöfinni.**
+:::
+
+#### Teymissáttmáli
+
+Hópurinn semur [**TEAM.md**](https://github.com/HI-IDN/IDN302G/blob/main/templates/TEAM.md)
+á fyrstu viku sem inniheldur:
+
+- Tungumálaval (íslensku eða ensku) — þetta á við um allt: kóða, skjöl og skýrslur
+- Vinnureglur og mætingarskyldur
+- Hvernig úrlausn deilumála fer fram
+- Tímasetning og samskiptarásir
+
+### GitHub Pages og skýrslur
+
+Eftir hverja lotu bætið þið við gögnum og myndum við GitHub Pages-teymissíðuna ykkar —
+í lokaverkefninu er síðan ykkar **lifandi skýrsla** sem sýnir alla ferðina frá fyrstu viku
+til þeirrar síðustu.
+
+### Verkefnastjóri og yfirsýn
+
+Í capstone-verkefninu eru teymin þriggja manna. Það þýðir að verkefnastjóri hverrar lotu,
+sem þarf að geta staðið skil á vinnu hópsins í iTA, hefur yfirleitt annaðhvort verið
+**PR-höfundur** eða **PR-rýnir** á öllum greinum sem voru sameinaðar inn í `main`.
+
+Ef verkefnastjóri hefur sinnt PR-rýninni nægilega vel ætti hann því að vera vel kunnugur
+verkefninu: hvað var gert, hver gerði hvað, hvers vegna breytingarnar voru samþykktar og
+hvernig þær tengjast capstone-verkefninu.

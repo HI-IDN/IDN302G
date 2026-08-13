@@ -1,0 +1,22 @@
+---
+title: "Inngangur"
+description: >-
+  Hagnýt uppsetning á tólunum sem námskeiðið byggir á — Git og þróunarumhverfi (IDE) —
+  svo þú komir vinnuumhverfinu þínu í gang.
+---
+
+Áður en þú getur unnið verkefnin þarftu að koma nokkrum tólum fyrir á eigin tölvu. Þessi hluti
+safnar saman hagnýtum atriðum varðandi uppsetningu sem er annars dreift um námsefnið:
+
+- [Þróunarumhverfi (IDE)](ide.qmd) — hvaða ritil/IDE er gott að nota, og hvenær sérhæft IDE
+  borgar sig fram yfir alhliða.
+- [Setja upp Git](git-install.qmd) — útgáfustjórnunarkerfið sem allt vinnuflæðið byggir á.
+- [SSH-lyklar](ssh.qmd) — auðkenning fyrir sækja/pusha úr skipanalínu.
+- [Gagnagrunnstól](databases.qmd) — uppsetning á PostgreSQL og tengingu við gagnagrunn.
+
+::: {.callout-tip}
+Lentirðu í veseni við uppsetningu? Það er eðlilegt — margir gera það í byrjun. Skoðaðu líka
+kaflann [Þegar eitthvað fer úrskeiðis](../github/good_practices/troubleshooting.qmd) fyrir
+Git-vandræði, og opnaðu [issue](https://github.com/HI-IDN/IDN302G/issues/new/choose) ef
+leiðbeiningarnar eru óskýrar.
+:::

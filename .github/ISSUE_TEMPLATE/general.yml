@@ -1,0 +1,26 @@
+name: 💬 Almennt
+description: Allt annað sem á ekki heima í hinum formunum.
+title: ""
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ert þú með almenna spurningu um námsefnið? Þá er oft betra að nota
+        [Discussions](https://github.com/HI-IDN/IDN302G/discussions). Annars — lýstu málinu hér.
+
+  - type: input
+    id: samantekt
+    attributes:
+      label: Samantekt
+      description: Stutt, lýsandi samantekt (issue-titillinn ætti að endurspegla hana).
+    validations:
+      required: true
+
+  - type: textarea
+    id: lysing
+    attributes:
+      label: Lýsing
+      description: Lýstu málinu nánar.
+    validations:
+      required: true

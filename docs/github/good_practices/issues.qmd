@@ -1,0 +1,202 @@
+---
+title: "Issues"
+description: >-
+  GitHub Issues til að afmarka vinnu — af hverju þau eru gagnleg, hvernig gott issue lítur út, sniðmát og tenging við branch og pull request.
+---
+
+GitHub Issues eru einföld leið til að halda utan um vinnu áður en byrjað er að breyta skrám. Issue getur verið verkbeiðni, hugmynd, spurning, galli, ákvörðun eða lítil rannsókn sem þarf að klára.
+
+Í námskeiðinu eru issues sérstaklega gagnleg til að afmarka vinnu áður en búið er til branch og Pull Request. Gott issue svarar spurningunni: *hvað ætlum við að gera, hvers vegna og hvernig vitum við að það sé búið?*
+
+## Af hverju að nota issues?
+
+Issues hjálpa teyminu að:
+
+- gera vinnuna sýnilega áður en hún er komin í kóða,
+- skipta stóru verkefni í minni, rýnanleg skref,
+- ræða nálgun áður en margar skrár breytast,
+- tengja saman umræðu, branch, Pull Request og skil,
+- muna hvað var ákveðið og hvers vegna.
+
+Issue þarf ekki að vera langt. Það þarf bara að vera nógu skýrt til að annar hópmeðlimur geti skilið hvað á að gera.
+
+## Hvernig lítur gott issue út?
+
+Gott issue hefur yfirleitt:
+
+- stuttan og lýsandi titil,
+- samhengi: af hverju skiptir þetta máli?,
+- verkefni: hvað á að gera?,
+- skilyrði fyrir að klára: hvernig vitum við að þetta sé búið?,
+- tengla á gögn, skrár eða fyrri umræðu ef við á.
+
+```markdown
+## Samhengi
+
+Af hverju þarf að gera þetta?
+
+## Verkefni
+
+- [ ] TODO
+- [ ] TODO
+
+## Klárt þegar
+
+- [ ] Breytingin er komin á branch
+- [ ] Pull Request er opnað sem draft
+- [ ] Local prófun eða yfirferð er skráð í PR
+- [ ] Teymismeðlimur hefur rýnt
+
+## Tenglar / gögn
+
+- TODO
+```
+
+## Tengsl við branch og Pull Request
+
+Þegar issue er orðið nógu skýrt er hægt að búa til branch fyrir vinnuna. Branch á helst að vera afmarkað við eitt issue eða eina skýra vinnueiningu.
+
+Pull Request á svo að vísa í issue-ið, til dæmis:
+
+```markdown
+Closes #12
+```
+
+eða:
+
+```markdown
+Tengist #12
+```
+
+`Closes #12` lokar issue-inu sjálfkrafa þegar PR er merge-að. Notið það þegar PR klárar issue-ið. Notið frekar `Tengist #12` ef PR er bara hluti af stærri vinnu.
+
+## Sniðmát
+
+Sniðmát tryggir að öll issue í hópnum líti eins út og gleymi ekki mikilvægum atriðum
+(samhengi, verkefni, skilyrði fyrir að klára). GitHub notar sniðmát sjálfkrafa **ef skrárnar
+eru á réttum stað og heita réttu nafni** — annars finnur GitHub þau ekki.
+
+Það eru tvær leiðir: einfalt markdown-sniðmát eða **issue form** í YAML sem býr til alvöru
+innsláttarform með reitum og gátlistum. Í námskeiðinu notum við YAML-formið.
+
+### Issue form (YAML) — það sem við notum
+
+Issue forms eru YAML-skrár í möppunni **`.github/ISSUE_TEMPLATE/`**. Hver skrá lýsir einu formi
+með reitum (`input`, `textarea`, `checkboxes`), og GitHub birtir þá skipulagt form í stað auðs
+textareits þegar nýtt issue er búið til.
+
+```text
+.github/
+└── ISSUE_TEMPLATE/
+    ├── config.yml     # stillingar (t.d. slökkva á auðum issue)
+    ├── task.yml       # verkefna-form (almenn vinna)
+    ├── bug.yml        # villu-form
+    └── decision.yml   # ákvörðunar-form (ADR)
+```
+
+`config.yml` með `blank_issues_enabled: false` neyðir notendur til að velja sniðmát í stað þess
+að opna autt issue:
+
+```yaml
+blank_issues_enabled: false
+```
+
+`task.yml` skilgreinir sjálft formið. Það er ekki sýnt hér í heild, en efnislega safnar það sömu
+atriðum og einfalt issue myndi innihalda — í grófum dráttum svona (allt YAML-sniðmátið er í
+[templates/github/ISSUE_TEMPLATE/task.yml](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/ISSUE_TEMPLATE/task.yml)):
+
+```markdown
+# Titill
+
+Stutt og lýsandi fyrirsögn á því sem á að gera.
+
+## Samhengi
+
+Af hverju þarf að gera þetta? Hvaða hluta verkefnisins tengist þetta?
+
+## Verkefni
+
+- [ ] TODO
+- [ ] TODO
+- [ ] TODO
+
+## Klárt þegar
+
+- [ ] Breytingin er afmörkuð og unnin á branch
+- [ ] Pull Request er opnað sem draft
+- [ ] Það kemur fram í PR hvernig var prófað eða yfirfarið
+- [ ] Requester hefur staðfest draftið
+- [ ] Teymismeðlimur hefur rýnt áður en merge-að er
+
+## Tenglar / gögn
+
+- TODO
+
+## Athugasemdir
+
+TODO
+```
+
+### Hvað formið spyr um
+
+YAML-formið hér að ofan er í raun gátlisti á mannamáli. Það biður um:
+
+- **Samantekt** — stutt, lýsandi setning um það sem á að gera (verður titill issue-sins).
+- **Samhengi** — af hverju þarf að gera þetta og hvaða hluta verkefnisins það tengist.
+- **Verkefni** — gátlisti (`- [ ]`) yfir verkþætti sem þarf að klára.
+- **Klárt þegar** — skilyrði fyrir að issue-ið teljist búið (afmörkuð breyting á branch,
+  draft-PR opnað, prófun/yfirferð skráð, requester staðfestir, teymismeðlimur rýnir).
+- **Tenglar / gögn** og **Athugasemdir** — valfrjálst, fyrir tengla eða annað sem hjálpar.
+
+Gott issue svarar þannig sömu spurningu og fyrr: *hvað ætlum við að gera, hvers vegna og
+hvernig vitum við að það sé búið?*
+
+### Fleiri form: villur og ákvarðanir
+
+Verkefna-formið hentar fyrir almenna vinnu, en tvö tilvik eiga betur heima í sérformum:
+
+- **Villa** (`bug.yml`) — þegar eitthvað í ykkar eigin kóða, greiningu eða skýrslu virkar ekki
+  eins og til stóð. Það spyr um annað en verkefni: hvað gerðist, hvað átti að gerast, hvernig
+  má endurgera villuna og hvar hún er.
+- **Ákvörðun** (`decision.yml`) — til að **skrá** ákvörðun sem teymið tók, ekki til að biðja um
+  vinnu.
+
+Munurinn í einni línu: **verkefni = hvað á að gera**, **villa = eitthvað virkar ekki**,
+**ákvörðun = hvað var ákveðið og af hverju**.
+
+#### Ákvörðunarskrár (ADR)
+
+Ákvörðunar-formið byggir á hugmyndinni um **ADR — _Architecture Decision Record_**. Það er stutt
+skjal sem heldur utan um **eina ákvörðun**: samhengið (hvaða vandamál kallaði á hana), valkostina
+sem voru skoðaðir, hvað varð fyrir valinu og hvaða afleiðingar fylgja. Hugtakið kemur úr
+hugbúnaðararkitektúr en nýtist hvaða teymi sem er.
+
+Tilgangurinn er **rekjanleiki** — sama áhersla og gengur í gegnum allt námskeiðið. Hálfu ári
+síðar (eða þegar nýr meðlimur kemur í teymið) er hægt að fletta upp *af hverju* þið fóruð þessa
+leið, í stað þess að reyna að muna það. Þetta er beint framhald af því sem issues eiga hvort eð
+er að hjálpa við: að *muna hvað var ákveðið og hvers vegna*.
+
+##### Dæmi um ákvörðun
+
+> **Samhengi:** Við þurfum gagnagrunn fyrir verkefnið.
+> **Valkostir:** SQLite (einfalt, ein skrá) vs. PostgreSQL (öflugra, samhliða aðgangur).
+> **Ákvörðun:** PostgreSQL.
+> **Afleiðingar:** Fleiri geta unnið samtímis, en það þarf uppsetningu og tengingu (sjá
+> [Gagnagrunnstól](../../tech-setup/databases.qmd)).
+
+„Létt" ADR eins og þetta er bara eitt GitHub-issue með fáum reitum — nóg til að skrá ákvörðunina
+án skriffinnsku.
+
+### Fleiri sniðmát
+
+Sniðmatssafnið í [`templates/github/`](https://github.com/HI-IDN/IDN302G/tree/main/templates/github)
+inniheldur einnig skrár sem eiga heima í `.github/`-möppu teymisins:
+
+- [**`pull_request_template.md`**](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/pull_request_template.md)
+  — sniðmát sem fyllir sjálfkrafa út lýsingu nýrra pull requests (sjá [Pull requests](pull_requests.qmd)).
+- [**`skills/code-review/SKILL.md`**](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/skills/code-review/SKILL.md)
+  — létt kóðarýni-skill sem stýrir gervigreind við yfirferð á pull requests í geymslunni (sjá
+  [Kóðarýni](code_review.qmd)).
+- [**`workflows/pages.yml`**](https://github.com/HI-IDN/IDN302G/blob/main/templates/github/workflows/pages.yml)
+  — GitHub Actions vinnuflæði sem renderar Quarto-síðu og birtir á GitHub Pages við hverja push
+  á `main`.

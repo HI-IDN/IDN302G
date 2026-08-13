@@ -1,0 +1,23 @@
+---
+title: "Samband"
+description: >-
+  Hvar spurningar um námsefnið eiga heima og hvernig hafa má samband án þess að deila persónuupplýsingum.
+---
+
+Fyrir almennar spurningar um námsefnið má nota GitHub issues ef spurningin eða
+ábendingin getur gagnast öðrum nemendum líka.
+
+Fyrir persónuleg mál, einkunnir, mætingu, skil eða annað sem á ekki heima á
+opnum vef skal hafa samband við kennara í gegnum Canvas eða með tölvupósti:
+[helgaingim [hjá] hi.is](mailto:helgaingim@hi.is)
+
+## Ekki setja persónulegar upplýsingar á GitHub
+
+GitHub issues og Pull Requests eru opin í þessu verkefni. Setjið því ekki þar:
+
+- einkunnir eða einkunnaspurningar,
+- veikindi, forföll eða persónulegar aðstæður,
+- gögn sem innihalda persónuupplýsingar,
+- lykilorð, API-lykla eða aðrar trúnaðarupplýsingar.
+
+Slík mál eiga frekar heima í Canvas eða beinum samskiptum við kennara.

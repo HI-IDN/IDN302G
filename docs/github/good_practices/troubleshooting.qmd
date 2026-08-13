@@ -1,0 +1,191 @@
+---
+title: "Þegar eitthvað fer úrskeiðis"
+description: >-
+  Gagnlegar Git-skipanir til að laga algeng mistök — óviljandi commit, rangt branch,
+  gleymdar breytingar — og hvernig á að umgangast --force af varúð.
+---
+
+## Ekki örvænta
+
+Það er eðlilegt að gera mistök í Git — pusha á vitlaust branch, gleyma skrá í commit eða
+óvart skrifa yfir eitthvað. Nær allt er hægt að laga. Lykillinn er að **átta sig á stöðunni
+áður en þú lagar**, og velja öruggustu leiðina.
+
+Byrjaðu alltaf á að fá yfirsýn:
+
+```sh
+git status      # hvaða skrár eru breyttar / í undirbúningi?
+git log --oneline --graph -10   # síðustu commit og hvar branch-in standa
+```
+
+## Sæktu reglulega — `pull` áður en þú pushar
+
+Langalgengasta vandamálið er einfalt: **það gleymdist að `pull`-a áður en pushað var.** Staðbundna
+afritið þitt er þá á eftir GitHub — einhver annar (eða þú sjálf/ur á annarri vél) hefur pushað á
+meðan — og push-ið þitt er hafnað eða árekstur myndast. Þetta má að mestu forðast með einni
+vinnureglu:
+
+- **`git pull` áður en þú pushar** — alltaf. Þá færðu nýjustu breytingar inn fyrst og push-ið
+  gengur snurðulaust í stað þess að vera hafnað.
+- **Sæktu reglulega meðan þú vinnur** (`git fetch` eða `git pull`), ekki bara í lokin —
+  **sérstaklega þegar fleiri vinna á sömu grein** (eins og t.d. `main`).
+- **Vinnugrein sem á að sameina við `main`:** ef þið vinnið á eigin greinum en ætlið svo að
+  sameina við `main`, munið að `main` gæti hafa breyst á meðan. Þá þarf að **uppfæra
+  vinnugreinina ykkar með breytingum af `main`** (eða þeirri grein sem þið ætlið að senda inn í)
+  áður en hægt er að sameina hreint — sjá
+  [Branch-ið mitt hefur klofnað frá `main`](#branch-ið-mitt-hefur-klofnað-frá-main-diverging) hér að neðan.
+
+```sh
+git pull                 # sækir og sameinar nýjustu breytingar á ÞÍNU branch
+git pull origin main     # sækir main inn í branch-ið þitt (ef main hefur breyst)
+```
+
+::: {.callout-warning}
+## Um `--force` — farðu varlega
+`git push --force` **skrifar yfir** sögu á GitHub og getur eytt vinnu annarra á sameiginlegum
+branchum. Forðastu það á `main` og á branchum sem fleiri vinna á.
+
+Ef þú *verður* að endurskrifa sögu á þínu eigin branch, notaðu frekar
+`git push --force-with-lease` — það neitar að skrifa yfir ef einhver annar hefur pushað á
+meðan, svo þú eyðir ekki óvart vinnu sem þú vissir ekki af.
+:::
+
+## Algeng mistök og lausnir
+
+### Ég gleymdi að bæta skrá við síðasta commit
+
+Ef þú varst að commit-a en gleymdir skrá (og hefur **ekki** pushað enn):
+
+```sh
+git add gleymda-skra
+git commit --amend --no-edit
+```
+
+`--amend` breytir síðasta commit í stað þess að búa til nýtt; `--no-edit` heldur sömu
+skilaboðum. Ef þú varst þegar búin að pusha þarf `git push --force-with-lease` á eftir — og þá
+aðeins á þínu eigin branch.
+
+### Ég commit-aði en er ekki búin að pusha — vil taka það til baka
+
+Til að afturkalla síðasta commit en **halda breytingunum** (þær fara aftur í vinnutréð):
+
+```sh
+git reset --soft HEAD~1
+```
+
+Til að henda bæði commit-inu og breytingunum (varúð — þetta eyðir vinnu):
+
+```sh
+git reset --hard HEAD~1
+```
+
+### Ég pushaði óvart á `main`
+
+Færðu commit-in yfir á nýtt branch og skilaðu `main` í fyrra horf:
+
+```sh
+git checkout -b rett-branch      # býr til nýtt branch með breytingunum þínum
+git push origin rett-branch      # pushar því (opnaðu svo PR)
+
+git checkout main
+git reset --hard origin/main     # skilar þínu main í sömu stöðu og á GitHub
+```
+
+::: {.callout-note}
+Ef `main` er varið með reglu (branch protection) sem krefst pull request kemstu hvort eð er
+ekki hjá því að fara PR-leiðina — reglan hafnar beinu push-i á `main`. Það er einmitt tilgangur
+verndarinnar.
+:::
+
+### Ég pushaði á rangt branch
+
+Náðu í commit-ið með `git log`, færðu það á rétt branch með `cherry-pick`:
+
+```sh
+git checkout rett-branch
+git cherry-pick <commit-hash>    # afritar commit-ið yfir
+git push origin rett-branch
+```
+
+Fjarlægðu það svo af ranga branch-inu ef þarf (endurskrifar sögu — aðeins á þínu eigin branch):
+
+```sh
+git checkout vitlaust-branch
+git reset --hard HEAD~1
+git push --force-with-lease origin vitlaust-branch
+```
+
+### Ég vil afturkalla breytingu sem er þegar á GitHub
+
+Öruggasta leiðin er `git revert` — hún **býr til nýtt commit** sem afturkallar það gamla, án
+þess að endurskrifa sögu (og virkar því líka á sameiginlegum branchum):
+
+```sh
+git revert <commit-hash>
+git push origin <branch>
+```
+
+Þetta er betra en `reset --hard` + `--force` þegar aðrir gætu verið að vinna á sama branch.
+
+### Ég bjó til branch með röngu nafni
+
+```sh
+git branch -m gamalt-nafn nytt-nafn        # endurnefnir locally
+git push origin nytt-nafn                  # pushar nýja nafninu
+git push origin --delete gamalt-nafn       # eyðir gamla af GitHub
+```
+
+### Branch-ið mitt hefur klofnað frá `main` (diverging)
+
+Ef `main` hefur breyst — til dæmis annað PR var samþykkt — á meðan þú vannst, þá hafa branch-in
+**klofnað**: hvort um sig á sín eigin nýju commit. Git segir þá gjarnan *„your branch and
+'main' have diverged"*. Til að ná breytingunum af `main` inn í branch-ið þitt:
+
+```sh
+git checkout mitt-branch
+git pull origin main        # sækir main og sameinar inn í branch-ið þitt
+```
+
+Þetta býr til merge commit sem tengir saman. Komi upp árekstrar leysirðu þá eins og venjulegan
+merge conflict (sjá hér að neðan). Að því loknu er branch-ið aftur í takt við `main` og PR-ið
+þitt uppfærist sjálfkrafa.
+
+::: {.callout-tip}
+Gerðu þetta **reglulega meðan PR er opið** — því lengur sem branch-ið er á eftir `main`, því
+stærri og erfiðari verða árekstrarnir þegar loks er sameinað.
+:::
+
+### Merge conflict
+
+Þegar Git getur ekki sameinað sjálfkrafa færðu merkin `<<<<<<<`, `=======` og `>>>>>>>` í
+skrárnar. Sjá [Sameina breytingar og leysa árekstra](../basics/git_commands.qmd) fyrir skref.
+Ef þú vilt hætta við sameininguna og byrja upp á nýtt:
+
+```sh
+git merge --abort
+```
+
+## Gott að muna
+
+- **`git pull` áður en þú pushar** (og helst áður en þú commit-ar) — sæktu reglulega ef fleiri
+  vinna á branch-inu eða `main`.
+- **`git status` og `git log` fyrst** — aldrei laga í blindni.
+- **`revert` fram yfir `reset --hard` + `--force`** á sameiginlegum branchum.
+- **Ef þú verður að nota force, notaðu `--force-with-lease`**, aldrei á `main`.
+- **Í vafa — spurðu áður en þú pushar force.** Það er auðveldara að laga ópushað mistök.
+
+## Samantektartafla
+
+| Vandamál | Skipun |
+|----------|--------|
+| Push hafnað (branch á eftir GitHub) | `git pull` → leysa → `git push` |
+| Branch klofnað frá `main` (diverging) | `git pull origin main` |
+| Gleymd skrá í síðasta commit | `git commit --amend --no-edit` |
+| Afturkalla commit, halda breytingum | `git reset --soft HEAD~1` |
+| Afturkalla commit, henda breytingum | `git reset --hard HEAD~1` |
+| Pushað óvart á `main` | `git checkout -b nytt` → `git reset --hard origin/main` |
+| Commit á röngu branch | `git cherry-pick <hash>` |
+| Afturkalla pushaða breytingu (öruggt) | `git revert <hash>` |
+| Endurnefna branch | `git branch -m gamalt nytt` |
+| Hætta við merge | `git merge --abort` |
+| Öruggara force-push | `git push --force-with-lease` |

@@ -1,0 +1,85 @@
+---
+title: "Birting með GitHub Pages"
+description: >-
+  Tvær leiðir til að birta statíska heimasíðu: GitHub Actions þýðir kóðann fyrir þig,
+  eða þú birtir tilbúið úttak úr docs-möppu.
+---
+
+Þegar skýrslan eða vefsíðan er tilbúin viljum við birta hana á vefnum. **GitHub Pages** birtir
+statíska heimasíðu ókeypis beint úr kóðageymslunni. Það eru tvær meginleiðir að því — og
+munurinn snýst um **hver þýðir kóðann**.
+
+::: {.callout-important}
+## GitHub Pages birtir bara `main`
+GitHub Pages fylgist aðeins með **`main`-greininni** og þeim stað sem þú tilgreinir í
+stillingunum (t.d. `docs/`-möppunni). Ef þú ert að vinna á annarri grein sérðu ekkert birtast
+fyrr en breytingarnar eru komnar á `main`. Þetta gildir í báðum leiðunum hér að neðan.
+:::
+
+## Leið 1 — GitHub Actions þýðir fyrir þig
+
+**GitHub Actions** er sjálfvirknikerfi GitHub: í hvert sinn sem þú ýtir breytingum getur GitHub
+keyrt kóðann þinn á sínum eigin þjónum. Fyrir Quarto-síðu þýðir það að GitHub:
+
+1. sækir kóðageymsluna,
+2. setur upp R/Python og Quarto,
+3. keyrir alla kóðabútana og þýðir `.qmd` skrárnar, og
+4. birtir tilbúna HTML-úttakið á GitHub Pages.
+
+Kostur: þú ýtir bara `.qmd` skránum og GitHub sér um restina — úttakið er alltaf í takt við
+kóðann.
+
+Galli: þýðingin fer fram **í skýinu** og tekur tíma (það þarf að setja upp R/Python og keyra
+alla kóðabútana í hvert sinn). Slík keyrsla notar **GitHub Actions-mínútur/credits**, sem eru
+takmarkaðar (ókeypis kvóti á opnum geymslum, en telja á einkageymslum).
+
+::: {.callout-tip}
+## Léttu bygginguna með `freeze`
+Quarto getur _fryst_ niðurstöður kóðabútanna í möppu (`_freeze/`) sem þú commit-ar með í
+kóðageymsluna. Á meðan `.qmd`-skráin er óbreytt keyrir Quarto **ekki** kóðann aftur — það notar
+frystu niðurstöðurnar. Þá þarf CI aðeins að setja upp Quarto (ekki R/Python) og byggja HTML úr
+frystu niðurstöðunum, sem gerir cloud-bygginguna mun léttari og ódýrari. Þú keyrir kóðann
+locally til að frysta hann; GitHub sér um afganginn.
+:::
+
+::: {.callout-important}
+## Þarf að kveikja á Actions í stillingum
+GitHub Actions er ekki sjálfvirkt á. Það þarf að bæta við _workflow_-skrá (undir
+`.github/workflows/`) **og** velja réttu stillinguna undir **Settings → Pages → Build and
+deployment → Source: GitHub Actions** í kóðageymslunni.
+:::
+
+## Leið 2 — Birta þýtt úttak úr `docs/`
+
+Ef þýðingin er of þung — t.d. dæmin taka langan tíma að keyra eða þarfnast pakka sem erfitt er
+að setja upp á þjóni GitHub — er hægt að **slökkva á GitHub Actions** og láta GitHub Pages
+frekar birta úttak úr fastri möppu.
+
+Þá:
+
+1. þýðir **notandinn sjálfur** skýrsluna á eigin tölvu (`quarto render`),
+2. ýtir tilbúna HTML-úttakinu (sem lendir í möppu, oftast `docs/`) inn í kóðageymsluna, og
+3. stillir **Settings → Pages → Source: Deploy from a branch** og velur `docs/` möppuna.
+
+GitHub keyrir þá engan kóða — það birtir bara skrárnar eins og þær koma fyrir.
+
+::: {.callout-note}
+## Hvernig þessi vefsíða er birt
+Þessi bók notar **Leið 1 með `freeze`**: GitHub Actions þýðir hana og birtir sjálfkrafa við
+merge á `main`. Keyranlegu R-dæmin eru fryst í `_freeze/` og commit-uð, svo CI byggir með Quarto
+einu saman — án þess að setja upp R í skýinu. Höfundur getur enn þýtt locally (`quarto render`)
+til að forskoða, en það er valkvætt: það þarf aðeins þegar keyranlegur kóði breytist, til að
+uppfæra frystu niðurstöðurnar.
+:::
+
+## Hvor leiðin hentar?
+
+| | Actions þýðir | `docs/` mappa |
+|---|---|---|
+| **Hver keyrir kóðann?** | GitHub | Þú, á eigin tölvu |
+| **Kostnaður** | Actions-mínútur/credits (þýðing í skýi) | Enginn (bara birting) |
+| **Handavinna** | Ýta `.qmd` og gleyma því | Muna að `render` + ýta `docs/` |
+| **Best þegar** | Þýðing er létt og hröð | Þýðing er þung eða flókin |
+
+Í stuttu máli: byrjaðu á **GitHub Actions** því það heldur úttakinu sjálfkrafa í takt við
+kóðann. Ef byggingin verður of þung skaltu skipta yfir í `docs/`-leiðina.

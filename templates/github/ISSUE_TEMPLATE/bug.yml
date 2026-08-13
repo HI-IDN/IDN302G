@@ -1,0 +1,49 @@
+name: 🐛 Villa
+description: Eitthvað í kóða, greiningu eða skýrslu teymisins virkar ekki eins og til stóð.
+title: "[VILLA] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: hvad_gerdist
+    attributes:
+      label: Hvað gerðist?
+      description: Lýstu villunni — hvað sástu?
+      placeholder: "Keyrsla á greiningarskriptunni stöðvast með villuskilaboðum..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: atti_ad_gerast
+    attributes:
+      label: Hvað átti að gerast?
+      description: Hver var vænt hegðun?
+    validations:
+      required: true
+
+  - type: textarea
+    id: endurgera
+    attributes:
+      label: Skref til að endurgera
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: input
+    id: hvar
+    attributes:
+      label: Hvar?
+      description: Hvaða skrá, mappa eða hluti verkefnisins á í hlut?
+      placeholder: "src/clean_data.py, línur 40–60"
+    validations:
+      required: false
+
+  - type: textarea
+    id: umhverfi
+    attributes:
+      label: Umhverfi
+      description: (Valkvætt) Stýrikerfi, útgáfur, villuskilaboð eða skjámynd sem hjálpar.
+    validations:
+      required: false

@@ -1,0 +1,106 @@
+---
+title: "Setja upp Git"
+description: >-
+  Hvernig á að setja upp Git á Windows, macOS og Linux, staðfesta uppsetninguna
+  og stilla nafn og netfang í fyrsta skipti.
+---
+
+**Git** er útgáfustjórnunarkerfið sem allt vinnuflæðið í námskeiðinu byggir á. Það er sjálfstætt
+forrit sem keyrir á þinni tölvu — óháð GitHub, sem er vefþjónustan sem hýsir geymslurnar. Þú
+þarft því að setja Git upp locally áður en þú getur klónað eða unnið með geymslur.
+
+## Fljótleg byrjun með myndbandi
+
+Ef þú vilt sjá Git og GitHub í VS Code í verki áður en þú lest lengra:
+
+{{< video https://youtu.be/NFjz1AGKA4c >}}
+
+Sama efni er líka til sem **textaleiðbeiningar** hjá GitHub:
+[GitHub for Beginners: Getting started with Git and GitHub in VS Code](https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/).
+
+::: {.callout-tip}
+## Notar þú VS Code? Þá er þetta oft einfaldara
+Ef þú ert með [VS Code](ide.qmd) þarftu kannski ekki að setja Git upp handvirkt. VS Code er með
+innbyggðan Git-stuðning: farðu í **Extensions** (eða **Source Control**-flipann) og ef Git vantar
+á vélina bendir VS Code þér á að sækja það og leiðir þig í gegnum uppsetninguna. Þú getur þá
+sleppt handvirku skrefunum hér að neðan — en gott er samt að þekkja þau.
+:::
+
+## Uppsetning eftir stýrikerfi
+
+::: {.panel-tabset}
+
+### Windows
+
+Sæktu og keyrðu uppsetningarforritið af [git-scm.com/download/win](https://git-scm.com/download/win),
+eða settu upp gegnum `winget` í PowerShell:
+
+```powershell
+winget install --id Git.Git -e
+```
+
+Uppsetningin fylgir líka **Git Bash** — skeljarhermir sem gefur þér Unix-líkar skipanir á
+Windows, sem er þægilegt fyrir Git-vinnu.
+
+### macOS
+
+Einfaldast er að setja upp Xcode Command Line Tools, sem innihalda Git:
+
+```sh
+xcode-select --install
+```
+
+Eða, ef þú notar [Homebrew](https://brew.sh):
+
+```sh
+brew install git
+```
+
+### Linux
+
+Notaðu pakkastjóra dreifingarinnar, t.d. á Debian/Ubuntu:
+
+```sh
+sudo apt update && sudo apt install git
+```
+
+:::
+
+## Staðfestu uppsetninguna
+
+Opnaðu skel (Git Bash, Terminal eða PowerShell) og keyrðu:
+
+```sh
+git --version
+```
+
+Ef þú sérð útgáfunúmer (t.d. `git version 2.45.0`) er Git komið upp.
+
+## Stilltu nafn og netfang
+
+Í fyrsta skipti þarftu að segja Git hver þú ert — þessar upplýsingar fara á hvert commit sem þú
+býrð til:
+
+```sh
+git config --global user.name "Nafn Nafnsson"
+git config --global user.email "netfang@hi.is"
+```
+
+::: {.callout-tip}
+Notaðu sama netfang og er tengt GitHub-aðganginum þínum, svo commit-in þín tengist rétt við
+prófílinn þinn á GitHub.
+:::
+
+Þegar þetta er komið ertu tilbúin að klóna geymslu og byrja að vinna — sjá
+[Skipanir í Git](../github/basics/git_commands.qmd).
+
+## GitHub Copilot — sjálfvirkar tillögur
+
+Ef þú hefur sótt um [GitHub Education](https://education.github.com/) pakkann færðu **GitHub
+Copilot** frítt sem nemandi. Með Copilot-viðbótinni í ritlinum (t.d. VS Code) færðu sjálfvirkar
+kóðatillögur (*autocomplete*) beint inn í ritilinn á meðan þú skrifar — mjög öflugt og þægilegt.
+
+::: {.callout-note}
+Copilot er hjálpartól, ekki staðgengill skilnings. Um ábyrga notkun gervigreindar við forritun,
+sjá lotuna [Erindrekar](../ai-tools/responsible-use.qmd).
+:::

@@ -1,0 +1,45 @@
+name: 🛠️ Tæknileg villa á vefnum
+description: Síðan sjálf er biluð — myndbrot, dark mode, farsími, aðgengi eða leit sem virkar ekki.
+title: "[Vefur] "
+labels: ["site-bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Notaðu þetta form þegar **vefsíðan sjálf** hegðar sér rangt. Er villa í *innihaldinu*
+        (texti, kóði, hlekkur)? Notaðu þá frekar *🐛 Villa í efni*.
+
+  - type: input
+    id: sida
+    attributes:
+      label: Síða
+      description: Á hvaða síðu kemur vandamálið fram?
+      placeholder: "https://hi-idn.github.io/IDN302G/storytelling/interactive.html"
+    validations:
+      required: true
+
+  - type: textarea
+    id: lysing
+    attributes:
+      label: Hvað gerðist?
+      description: Lýstu vandamálinu — hvað sérðu og hvað áttir þú von á?
+      placeholder: "Gagnvirka grafið hleðst ekki, ég sé bara auðan reit..."
+    validations:
+      required: true
+
+  - type: input
+    id: umhverfi
+    attributes:
+      label: Vafri og tæki
+      description: Hvaða vafra og tæki notarðu? (Hjálpar við að endurgera villuna.)
+      placeholder: "Chrome á Windows / Safari á iPhone"
+    validations:
+      required: false
+
+  - type: textarea
+    id: skjamynd
+    attributes:
+      label: Skjámynd
+      description: (Valkvætt) Dragðu inn skjámynd ef hún hjálpar.
+    validations:
+      required: false

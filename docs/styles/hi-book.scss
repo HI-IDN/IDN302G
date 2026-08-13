@@ -1,0 +1,1064 @@
+/*-- scss:defaults --*/
+
+// HÍ Palette (honnun.hi.is)
+$hi-blue:    #10099F;
+$hi-teal:    #2DD2C0;
+$hi-green:   #00FFBA;
+$hi-yellow:  #FAC55B;
+$hi-orange:  #FFA05F;
+$hi-red:     #FC8484;
+$hi-pink:    #d61f69;
+$hi-paper:   #F5F5F5;
+$hi-panel:   #EEEEEE;
+$hi-ink:     #262626;
+$hi-white:   #ffffff;
+
+$hi-blue-dark:  darken($hi-blue, 8%);
+$hi-teal-dark:  darken($hi-teal, 15%);
+
+// Bootstrap/Quarto overrides
+$grid-sidebar-width:        375px;
+$grid-docked-sidebar-width: 375px;
+$font-family-sans-serif: "Jost", system-ui, sans-serif;
+$font-family-monospace:  "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+$headings-font-weight:   800;
+$headings-color:         $hi-blue;
+$body-color:             $hi-ink;
+$body-bg:                $hi-white;
+$link-color:             $hi-blue;
+$link-hover-color:       $hi-blue-dark;
+$primary:                $hi-blue;
+$secondary:              $hi-teal;
+$code-color:             $hi-pink;
+$code-bg:                rgba($hi-pink, 0.07);
+$border-radius:          0;
+
+/*-- scss:rules --*/
+
+:root {
+  --quarto-sidebar-width: 375px;
+  --hi-blue:    #{$hi-blue};
+  --hi-teal:    #{$hi-teal};
+  --hi-yellow:  #{$hi-yellow};
+  --hi-orange:  #{$hi-orange};
+  --hi-red:     #{$hi-red};
+  --hi-paper:   #{$hi-paper};
+  --hi-panel:   #{$hi-panel};
+  --hi-ink:     #{$hi-ink};
+}
+
+// ── Navbar ────────────────────────────────────────────────────────────────────
+.navbar {
+  background: $hi-blue !important;
+  border-bottom: none;  // breadcrumb bar takes this role
+
+  .navbar-brand {
+    img { height: 30px; filter: brightness(0) invert(1); }
+    &:hover { opacity: 0.85; }
+  }
+
+  .navbar-brand, .nav-link, .navbar-nav .nav-link {
+    color: $hi-white !important;
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-link:hover { color: $hi-teal !important; }
+
+  .quarto-navbar-tools .nav-link { color: rgba($hi-white, 0.75) !important; }
+
+  // Logo left, title absolutely centred in the bar
+  .navbar-container { position: relative; }
+
+  // Reset brand-container so logo sits naturally on the left
+  .navbar-brand-container {
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    margin: 0 !important;
+  }
+
+  // Logo link — left-aligned, no centering
+  .navbar-brand-logo {
+    pointer-events: auto;
+    img { height: 30px; filter: brightness(0) invert(1); }
+  }
+
+  // Title link — absolutely centred across the full navbar
+  .navbar-brand:not(.navbar-brand-logo) {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    pointer-events: auto;
+    white-space: nowrap;
+  }
+
+  .navbar-title {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    color: $hi-white !important;
+  }
+}
+
+// ── Breadcrumb bar ────────────────────────────────────────────────────────────
+#hi-breadcrumb {
+  background: $hi-blue;
+  border-top: 1px solid rgba($hi-white, 0.12);
+  border-bottom: 3px solid $hi-teal;
+  padding: 0.28em 1.4em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  position: sticky;
+  top: 0;
+  z-index: 1019;  // just below navbar (1020)
+
+  .hi-bc-part    { color: $hi-teal; }
+  .hi-bc-sep     { color: rgba($hi-white, 0.4); font-size: 0.9em; }
+  .hi-bc-chapter { color: rgba($hi-white, 0.9); }
+}
+
+// ── Sidebar ───────────────────────────────────────────────────────────────────
+.sidebar {
+  border-right: 1px solid $hi-panel;
+  font-size: 0.87rem;
+
+  .sidebar-title a {
+    color: $hi-blue;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
+    font-weight: 800;
+    color: $hi-teal !important;
+    font-size: 0.85rem;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    margin-top: 0.6em;
+
+    .menu-text { color: $hi-teal; font-weight: 800; }
+  }
+
+  .sidebar-item-section .sidebar-section-item {
+    font-weight: 700;
+    color: $hi-blue;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-left: 3px solid $hi-teal;
+    padding-left: 0.5em;
+    margin-top: 0.8em;
+  }
+
+  .chapter-number { display: none; }
+
+  .chapter-title {
+    color: $hi-ink !important;
+    font-weight: 400 !important;
+  }
+
+  // Index page — JS (breadcrumb.inc) handles removing the chapter number.
+  // CSS only adds the teal+bold style; exact href matching is not possible in CSS
+  // so we use a data attribute set by the JS instead.
+  a.hi-index-link {
+    font-weight: 800 !important;
+    color: $hi-teal !important;
+    font-size: 0.85rem;
+  }
+
+  .sidebar-item.active > .sidebar-item-text a,
+  .sidebar-item.active > a {
+    color: $hi-blue !important;
+    font-weight: 700;
+    background: rgba($hi-teal, 0.12);
+    border-radius: 2px;
+  }
+
+  a { color: #{rgba($hi-ink, 0.75)}; }
+  a:hover { color: $hi-blue; }
+}
+
+// ── Main content ──────────────────────────────────────────────────────────────
+#quarto-content main {
+  max-width: 860px;
+}
+
+// ── Headings ──────────────────────────────────────────────────────────────────
+h1 {
+  color: $hi-blue;
+  font-weight: 900;
+  border-bottom: 3px solid $hi-teal;
+  padding-bottom: 0.25em;
+  margin-bottom: 0.75em;
+}
+
+h2 {
+  color: $hi-blue;
+  font-weight: 800;
+  border-bottom: 1px solid $hi-panel;
+  padding-bottom: 0.15em;
+  margin-top: 1.8em;
+}
+
+h3 {
+  color: $hi-blue;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 1.4em;
+}
+
+// ── Links ─────────────────────────────────────────────────────────────────────
+a {
+  color: $hi-blue;
+  text-decoration-color: rgba($hi-teal, 0.5);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+
+  &:hover {
+    color: $hi-blue-dark;
+    text-decoration-color: $hi-teal;
+  }
+}
+
+// ── Code ─────────────────────────────────────────────────────────────────────
+code {
+  color: $hi-pink;
+  background: rgba($hi-pink, 0.07);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+
+pre.sourceCode, div.sourceCode {
+  background: $hi-paper;
+  border: none;
+  border-left: 4px solid $hi-teal;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+
+  pre { padding: 1em 1.2em; margin: 0; }
+  code { color: $hi-ink; background: none; padding: 0; }
+}
+
+.code-with-filename .code-with-filename-file {
+  background: $hi-blue;
+  color: $hi-white;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25em 1em;
+  border-radius: 0;
+}
+
+// ── Callouts ──────────────────────────────────────────────────────────────────
+.callout {
+  border-radius: 0;
+  border-left-width: 4px;
+
+  &.callout-note {
+    border-left-color: $hi-blue !important;
+    background: rgba($hi-blue, 0.05);
+    .callout-title { color: $hi-blue; }
+  }
+
+  &.callout-tip {
+    border-left-color: $hi-teal !important;
+    background: rgba($hi-teal, 0.05);
+    opacity: 0.7;
+    .callout-title { color: $hi-teal-dark; font-style: italic; }
+  }
+
+  &.callout-warning {
+    border-left-color: $hi-yellow !important;
+    background: rgba($hi-yellow, 0.1);
+    .callout-title { color: darken($hi-yellow, 25%); }
+  }
+
+  &.callout-important {
+    border-left-color: $hi-red !important;
+    background: rgba($hi-red, 0.07);
+    .callout-title { color: darken($hi-red, 20%); }
+  }
+}
+
+// ── Course module cards ───────────────────────────────────────────────────────
+.lotu-list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.lotu-card {
+  border-left: 4px solid $hi-blue;
+  background: rgba($hi-blue, 0.045);
+  padding: 0.85rem 1rem;
+
+  > h3 {
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+    color: $hi-blue;
+    font-size: 1.05rem;
+  }
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.lotu-card-muted {
+  border-left-color: $hi-teal;
+  background: rgba($hi-teal, 0.055);
+
+  > h3 {
+    color: $hi-teal-dark;
+  }
+}
+
+.lotu-status {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.08rem 0.4rem;
+  border-radius: 999px;
+  background: rgba($hi-teal, 0.15);
+  color: $hi-teal-dark;
+  font-size: 0.72em;
+  font-style: italic;
+  font-weight: 600;
+  vertical-align: 0.08em;
+}
+
+// ── Blockquote ────────────────────────────────────────────────────────────────
+blockquote {
+  border-left: 4px solid $hi-blue;
+  background: rgba($hi-blue, 0.04);
+  padding: 0.75em 1.2em;
+  color: #{rgba($hi-ink, 0.8)};
+  font-style: italic;
+  margin: 1.2em 0;
+}
+
+// ── Tables ────────────────────────────────────────────────────────────────────
+table {
+  font-size: 0.9rem;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+
+  th {
+    background: $hi-blue;
+    color: $hi-white;
+    font-weight: 700;
+    padding: 0.6em 0.9em;
+    text-align: left;
+  }
+
+  td {
+    padding: 0.5em 0.9em;
+    border-bottom: 1px solid $hi-panel;
+  }
+
+  tbody tr:nth-child(even) td { background: $hi-paper; }
+  tbody tr:hover td { background: rgba($hi-teal, 0.07); }
+}
+
+// ── Page navigation ───────────────────────────────────────────────────────────
+.page-navigation {
+  margin-top: 3rem;
+  border-top: 2px solid $hi-panel;
+  padding-top: 1.2rem;
+
+  .nav-page a {
+    color: $hi-blue;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+
+    &:hover { color: $hi-teal-dark; }
+  }
+
+  .nav-page-text { color: #{rgba($hi-ink, 0.5)}; font-size: 0.78rem; }
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+.nav-footer {
+  background: $hi-blue;
+  color: $hi-white;
+  padding: 0.9em 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  a { color: $hi-teal; &:hover { color: $hi-white; } }
+  .nav-footer-left, .nav-footer-right, .nav-footer-center { color: rgba($hi-white, 0.85); }
+}
+
+// ── Search ────────────────────────────────────────────────────────────────────
+.aa-DetachedSearchButton {
+  border-color: rgba($hi-white, 0.4) !important;
+  color: $hi-white !important;
+}
+
+// ── Repo-actions: hide everywhere except margin sidebar ───────────────────────
+#quarto-document-content .quarto-other-links,
+.nav-footer .quarto-other-links,
+.page-navigation .quarto-other-links { display: none !important; }
+
+// ── Margin sidebar — repo-actions pinned to bottom ────────────────────────────
+#quarto-margin-sidebar {
+  display: flex !important;
+  flex-direction: column;
+
+  nav#TOC { flex: 1; }
+
+  .quarto-other-links {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    border-top: 1px solid $hi-panel;
+    font-size: 0.82rem;
+
+    a { color: #{rgba($hi-ink, 0.6)}; font-weight: 500; }
+    a:hover { color: $hi-blue; }
+  }
+}
+
+// ── Schedule calendar (kennsluáætlun) ──────────────────────────────────────────
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin: 1.5em 0;
+
+  thead th {
+    background: $hi-blue;
+    color: $hi-white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.5em 0.7em;
+    text-align: left;
+  }
+  thead th:first-child { width: 3.5em; text-align: center; }
+  thead th:nth-child(2) { width: 9.5em; }
+
+  tbody tr:nth-child(even) td { background: #{rgba($hi-panel, 0.5)}; }
+
+  td {
+    padding: 0.45em 0.7em;
+    border-bottom: 1px solid $hi-panel;
+    vertical-align: middle;
+  }
+  td.sch-week {
+    font-weight: 800;
+    color: $hi-blue;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+  td.sch-module {
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: $hi-ink;
+  }
+
+  tr.sch-sep td {
+    background: $hi-teal !important;
+    height: 2px;
+    padding: 0;
+  }
+
+  .sch-chips { display: flex; flex-direction: column; gap: 0.3em; }
+
+  .sch-badge {
+    display: inline-flex;
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 0.76rem;
+    font-weight: 600;
+    width: fit-content;
+
+    .l, .r { padding: 0.15em 0.5em; white-space: nowrap; }
+    .l { color: $hi-white; }
+  }
+  .sch-badge.solo .l { border-radius: 4px; }
+
+  .sch-intro .l { background: #6b7280; } .sch-intro .r { background: #{rgba(#6b7280, 0.15)}; color: #374151; }
+  .sch-exam  .l { background: $hi-red; }  .sch-exam  .r { background: #{rgba($hi-red, 0.18)};  color: #7f1d1d; }
+  .sch-work  .l { background: #15803d; } .sch-work  .r { background: #{rgba(#15803d, 0.15)}; color: #14532d; }
+  .sch-ita   .l { background: $hi-blue; } .sch-ita   .r { background: #{rgba($hi-blue, 0.12)}; color: $hi-blue-dark; }
+  .sch-skil  .l { background: $hi-orange; } .sch-skil .r { background: #{rgba($hi-orange, 0.2)}; color: #78350f; }
+  .sch-final .l { background: $hi-blue-dark; } .sch-final .r { background: $hi-teal; color: #0f2860; }
+  .sch-qa    .l { background: $hi-pink; } .sch-qa    .r { background: #{rgba($hi-pink, 0.15)}; color: #4c1d95; }
+}
+
+.schedule-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-bottom: 1em;
+  align-items: center;
+}
+
+// ── Misc ──────────────────────────────────────────────────────────────────────
+.quarto-title-block .quarto-title { padding-top: 0.5em; }
+
+hr {
+  border: none;
+  border-top: 2px solid $hi-panel;
+  margin: 2em 0;
+}
+
+img { max-width: 100%; height: auto; }
+
+// ── Lotu-taktur TL;DR ────────────────────────────────────────────────────────
+.lotu-taktur {
+  --lotu-arrow: 1.25rem;
+  display: flex;
+  gap: 0;
+  margin: 1.4rem 0 2rem;
+  filter: drop-shadow(0 8px 18px rgba($hi-ink, 0.12));
+  overflow: visible;
+}
+
+.lotu-skref {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 13rem;
+  margin-left: calc(-0.55 * var(--lotu-arrow));
+  padding: 1.15rem calc(var(--lotu-arrow) + 0.85rem) 1.15rem 1.55rem;
+  color: $hi-white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  clip-path: polygon(
+    calc(100% - var(--lotu-arrow)) 0,
+    100% 50%,
+    calc(100% - var(--lotu-arrow)) 100%,
+    0 100%,
+    var(--lotu-arrow) 50%,
+    0 0
+  );
+
+  &:nth-child(1) {
+    z-index: 5;
+    margin-left: 0;
+    padding-left: 1rem;
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--lotu-arrow)) 0,
+      100% 50%,
+      calc(100% - var(--lotu-arrow)) 100%,
+      0 100%
+    );
+  }
+
+  &:nth-child(2) { z-index: 4; }
+  &:nth-child(3) { z-index: 3; }
+  &:nth-child(4) { z-index: 2; }
+
+  &:nth-child(5) {
+    z-index: 1;
+    padding-right: 1rem;
+    padding-left: 1.55rem;
+    clip-path: polygon(
+      100% 0,
+      100% 100%,
+      0 100%,
+      var(--lotu-arrow) 50%,
+      0 0
+    );
+  }
+
+  > p:first-child {
+    align-self: flex-start;
+    background: rgba($hi-white, 0.92);
+    color: $hi-blue;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    margin: 0 0 0.25rem;
+    font-weight: 900;
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    color: inherit;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 900;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+
+  .lotu-places {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .lotu-place {
+    align-self: flex-start;
+    padding: 0.12rem 0.55rem;
+    border-radius: 999px;
+    background: rgba($hi-white, 0.22);
+    color: inherit;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+  }
+
+  &.prep {
+    background: $hi-blue;
+    .lotu-place { background: lighten($hi-blue, 12%); color: $hi-white; }
+  }
+
+  &.rat  {
+    background: $hi-teal;
+    color: $hi-blue;
+    .lotu-place { background: rgba($hi-blue, 0.12); color: $hi-blue; }
+  }
+
+  &.app  {
+    background: $hi-yellow;
+    color: $hi-ink;
+    .lotu-place { background: darken($hi-yellow, 12%); color: $hi-ink; }
+  }
+
+  &.ref  {
+    background: $hi-orange;
+    .lotu-place { background: darken($hi-orange, 10%); color: $hi-white; }
+  }
+
+  &.ta   {
+    background: $hi-red;
+    .lotu-place { background: darken($hi-red, 10%); color: $hi-white; }
+  }
+}
+
+@media (max-width: 900px) {
+  .lotu-taktur {
+    display: grid;
+    grid-template-columns: 1fr;
+    filter: none;
+  }
+
+  .lotu-skref,
+  .lotu-skref:nth-child(1),
+  .lotu-skref:nth-child(5) {
+    min-height: auto;
+    margin-left: 0;
+    padding: 1.15rem 1rem;
+    clip-path: none;
+  }
+}
+
+// ── Capstone accumulation flow ────────────────────────────────────────────────
+.capstone-flow {
+  --capstone-arrow: 1.15rem;
+  display: flex;
+  gap: 0;
+  margin: 1.25rem 0 1.8rem;
+  filter: drop-shadow(0 8px 18px rgba($hi-ink, 0.12));
+  overflow: visible;
+}
+
+.capstone-flow-step {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 9rem;
+  margin-left: calc(-0.55 * var(--capstone-arrow));
+  padding: 1.1rem calc(var(--capstone-arrow) + 0.85rem) 1.1rem 1.45rem;
+  color: $hi-white;
+  background: $hi-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  clip-path: polygon(
+    calc(100% - var(--capstone-arrow)) 0,
+    100% 50%,
+    calc(100% - var(--capstone-arrow)) 100%,
+    0 100%,
+    var(--capstone-arrow) 50%,
+    0 0
+  );
+
+  &:nth-child(1) {
+    z-index: 4;
+    margin-left: 0;
+    padding-left: 1rem;
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--capstone-arrow)) 0,
+      100% 50%,
+      calc(100% - var(--capstone-arrow)) 100%,
+      0 100%
+    );
+  }
+
+  &:nth-child(2) {
+    z-index: 3;
+    background: $hi-teal;
+    color: $hi-blue;
+  }
+
+  &:nth-child(3) {
+    z-index: 2;
+    background: $hi-yellow;
+    color: $hi-ink;
+  }
+
+  &:nth-child(4) {
+    z-index: 1;
+    padding-right: 1rem;
+    padding-left: 1.45rem;
+    clip-path: polygon(
+      100% 0,
+      100% 100%,
+      0 100%,
+      var(--capstone-arrow) 50%,
+      0 0
+    );
+  }
+
+  h3 {
+    color: inherit;
+    margin: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+    font-size: 1.05rem;
+    font-weight: 900;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    font-weight: 650;
+  }
+}
+
+@media (max-width: 900px) {
+  .capstone-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    filter: none;
+  }
+
+  .capstone-flow-step,
+  .capstone-flow-step:nth-child(1),
+  .capstone-flow-step:nth-child(4) {
+    min-height: auto;
+    margin-left: 0;
+    padding: 1rem;
+    clip-path: none;
+  }
+}
+
+// ── Data-to-value flow ───────────────────────────────────────────────────────
+.value-flow {
+  --value-arrow: 1.05rem;
+  display: flex;
+  gap: 0;
+  margin: 1.25rem 0 1.8rem;
+  filter: drop-shadow(0 8px 18px rgba($hi-ink, 0.12));
+  overflow: visible;
+}
+
+.value-step {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 8rem;
+  margin-left: calc(-0.55 * var(--value-arrow));
+  padding: 1.05rem calc(var(--value-arrow) + 0.7rem) 1.05rem 1.35rem;
+  color: $hi-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  clip-path: polygon(
+    calc(100% - var(--value-arrow)) 0,
+    100% 50%,
+    calc(100% - var(--value-arrow)) 100%,
+    0 100%,
+    var(--value-arrow) 50%,
+    0 0
+  );
+
+  &:nth-child(1) {
+    z-index: 6;
+    margin-left: 0;
+    padding-left: 1rem;
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--value-arrow)) 0,
+      100% 50%,
+      calc(100% - var(--value-arrow)) 100%,
+      0 100%
+    );
+  }
+
+  &:nth-child(2) { z-index: 5; }
+  &:nth-child(3) { z-index: 4; }
+  &:nth-child(4) { z-index: 3; }
+  &:nth-child(5) { z-index: 2; }
+
+  &:nth-child(6) {
+    z-index: 1;
+    padding-right: 1rem;
+    padding-left: 1.35rem;
+    clip-path: polygon(
+      100% 0,
+      100% 100%,
+      0 100%,
+      var(--value-arrow) 50%,
+      0 0
+    );
+  }
+
+  h3 {
+    color: inherit;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 900;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    font-weight: 650;
+  }
+
+  &.data,
+  &.value {
+    background: $hi-blue;
+  }
+
+  &.info {
+    background: $hi-teal;
+    color: $hi-blue;
+  }
+
+  &.knowledge {
+    background: $hi-yellow;
+    color: $hi-ink;
+  }
+
+  &.decision {
+    background: $hi-orange;
+  }
+
+  &.action {
+    background: $hi-red;
+  }
+}
+
+@media (max-width: 900px) {
+  .value-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    filter: none;
+  }
+
+  .value-step,
+  .value-step:nth-child(1),
+  .value-step:nth-child(6) {
+    min-height: auto;
+    margin-left: 0;
+    padding: 1rem;
+    clip-path: none;
+  }
+}
+
+// ── Visible review/evidence cards ─────────────────────────────────────────────
+.visible-evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.25rem 0 1.6rem;
+}
+
+.visible-evidence-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: $hi-white;
+  border: 1px solid rgba($hi-ink, 0.08);
+  box-shadow: 0 10px 24px rgba($hi-ink, 0.08);
+  padding: 1.15rem 1.2rem 1.15rem 5.25rem;
+  min-height: 11rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3.7rem;
+    background: $hi-blue;
+  }
+
+  &::after {
+    position: absolute;
+    left: 1.15rem;
+    top: 1.25rem;
+    color: $hi-teal;
+    font-family: "Font Awesome 6 Free";
+    font-size: 1.65rem;
+    font-weight: 900;
+  }
+
+  &.practice::after,
+  &.git-include::after { content: "\f00c"; }
+  &.evidence::after { content: "\f06e"; }
+  &.git-exclude::after { content: "\f05e"; }
+
+  &.git-include::after,
+  &.git-exclude::after {
+    color: $hi-white;
+  }
+
+  &.git-include::before {
+    background: $hi-green;
+  }
+
+  &.git-exclude::before {
+    background: $hi-red;
+  }
+
+  h3 {
+    margin-top: 0;
+    color: $hi-ink;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li + li {
+    margin-top: 0.35rem;
+  }
+
+  .card-note {
+    margin: auto 0 0;
+    padding-top: 0.85rem;
+    color: rgba($hi-ink, 0.68);
+    font-size: 0.82rem;
+    font-style: italic;
+  }
+}
+
+@media (max-width: 900px) {
+  .visible-evidence-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Description lead ─────────────────────────────────────────────────────────
+// Birtir `description` úr frontmatter sem stílaðan inngang efst á síðunni
+// (sett inn af filters/description-lead.lua).
+.page-lead {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba($hi-ink, 0.72);
+  margin: 0 0 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba($hi-ink, 0.12);
+
+  p {
+    margin: 0;
+  }
+}
+
+// ── Sidebar grouping ─────────────────────────────────────────────────────────
+// Set the intro section apart from the main course material (before "Git og
+// GitHub"), set the technical-setup reference section apart (before
+// "Tæknimál"), and separate the occasional course slides at the end (before
+// "Glærur"). Because "Tæknimál" sits right before "Glærur", the slides divider
+// also acts as the closing divider after "Tæknimál". Keyed off the sections'
+// content links rather than positional section numbers, so reordering or adding
+// parts in _quarto.yml does not move the dividers to the wrong section.
+#quarto-sidebar .sidebar-item-section:has(a[href*="github/"]),
+#quarto-sidebar .sidebar-item-section:has(a[href*="tech-setup/"]),
+#quarto-sidebar .sidebar-item-section:has(a[href*="slides/"]) {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba($hi-ink, 0.14);
+}
+
+// ── Wider docked sidebar in preview-sized windows ─────────────────────────────
+// Quarto collapses the docked sidebar below the Bootstrap lg breakpoint (992px).
+// The in-app preview panel is often just under that width, so keep the left
+// course navigation visible from md screens upward and make it 50% wider than
+// Quarto's default 250px.
+@media (min-width: 768px) and (max-width: 991.98px) {
+  body.nav-sidebar.docked #quarto-sidebar {
+    display: block !important;
+    visibility: visible !important;
+    width: 375px !important;
+    max-width: 375px !important;
+    grid-column: screen-start / page-start;
+  }
+
+  body.nav-sidebar.docked #quarto-content {
+    grid-template-columns:
+      [screen-start] 1.5em
+      [screen-start-inset page-start] 375px
+      [page-start-inset body-start-outset] 1.5em
+      [body-start body-content-start] minmax(0, 860px)
+      [body-content-end] 1.5em
+      [body-end body-end-outset page-end-inset page-end] minmax(0, 1fr)
+      [screen-end-inset] 1.5em
+      [screen-end] !important;
+  }
+
+  body.nav-sidebar.docked .quarto-secondary-nav .quarto-btn-toggle {
+    display: none;
+  }
+}
+
+// ── Collapsible support videos ───────────────────────────────────────────────
+.video-details {
+  margin: 1rem 0 1.4rem;
+  border: 1px solid rgba($hi-ink, 0.14);
+  border-radius: 0.5rem;
+  background: rgba($hi-teal, 0.05);
+  overflow: hidden;
+
+  summary {
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    color: $hi-ink;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .ratio {
+    margin: 0;
+  }
+
+  .caption {
+    margin: 0;
+    padding: 0.65rem 1rem 0.8rem;
+    color: rgba($hi-ink, 0.72);
+    font-size: 0.9rem;
+  }
+}

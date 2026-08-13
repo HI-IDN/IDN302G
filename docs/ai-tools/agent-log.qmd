@@ -1,0 +1,51 @@
+---
+title: "Erindreka-dagbók (`AGENT_LOG.md`)"
+description: >-
+  Hvað AGENT_LOG.md er, hvenær á að skrá í hana og hvernig hún gerir notkun erindreka sýnilega og rekjanlega.
+---
+
+`AGENT_LOG.md` heldur utan um marktæka notkun erindreka í verkefninu. Markmiðið er ekki að skrá hvert einasta prompt, heldur að gera sýnilegt hvar AI hafði áhrif á vinnuna og hvað teymið yfirfór.
+
+Þetta er hluti af rekjanleika verkefnisins: teymið ber ábyrgð á lokavinnunni, líka þegar erindreki hjálpaði til.
+
+## Hvenær á að skrá í AGENT_LOG.md?
+
+Góð regla er að byrja nýja færslu í upphafi hvers branch þar sem erindreki er notaður marktækt.
+
+Ein færsla per branch er oft nóg. Uppfærið sömu færslu á meðan unnið er á branchinu.
+
+Skráið sérstaklega þegar erindreki hjálpar við:
+
+- kóða,
+- gagnahreinsun,
+- SQL fyrirspurnir,
+- texta eða skýrslur,
+- uppsetningu Quarto/GitHub Pages,
+- kóðarýni eða villuleit.
+
+## Hvað á að skrá?
+
+Færsla á að svara:
+
+- hvaða branch var unnið á,
+- hver notaði agentinn,
+- hvað var beðið um,
+- hvað breyttist,
+- hvaða skrár breyttust,
+- hvað teymið yfirfór,
+- hvað var óljóst, rangt eða lagað handvirkt.
+
+## Hver á að uppfæra loggið?
+
+Sá sem submit-ar breytinguna ber ábyrgð á `AGENT_LOG.md`. Rýnandi eða Copilot reviewer á ekki að skrifa loggið fyrir viðkomandi.
+
+Rýnandi getur hins vegar bent á ef PR-lýsing, commit eða skrár sýna að erindreki var notaður en `AGENT_LOG.md` vantar eða er óskýrt.
+
+## Falið sniðmát
+
+Í teymisrepo er gott að hafa:
+
+- `.AGENT_LOG.md` — falið sniðmát fyrir nýjar færslur,
+- `AGENT_LOG.md` — raunverulega loggskráin sem teymið fyllir út.
+
+Sniðmát er í <a href="https://github.com/HI-IDN/IDN302G/blob/main/templates/.AGENT_LOG.md">templates/.AGENT_LOG.md</a>.

@@ -1,0 +1,57 @@
+name: 🧭 Ákvörðun
+description: Skrá ákvörðun sem teymið tók — hvaða leið var valin og af hverju (ADR-létt).
+title: "[ÁKVÖRÐUN] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Þetta form er til að **skrá** ákvörðun, ekki til að biðja um vinnu. Það heldur utan um
+        _af hverju_ teymið valdi ákveðna leið, svo hægt sé að rekja það síðar. Ólíkt *Verkefni*
+        (sem lýsir vinnu sem á að vinna) lokast ákvörðun sem heimild, ekki með verkþáttum.
+
+  - type: textarea
+    id: samhengi
+    attributes:
+      label: Samhengi
+      description: Hvaða spurning eða vandamál kallaði á ákvörðun?
+      placeholder: "Við þurfum að velja gagnagrunn fyrir verkefnið..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: valkostir
+    attributes:
+      label: Valkostir sem voru skoðaðir
+      value: |
+        - Valkostur A —
+        - Valkostur B —
+    validations:
+      required: true
+
+  - type: textarea
+    id: akvordun
+    attributes:
+      label: Ákvörðun
+      description: Hvað var ákveðið?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rok
+    attributes:
+      label: Rök og afleiðingar
+      description: Af hverju þessi leið? Hvaða afleiðingar (kostir/gallar) fylgja henni?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stada
+    attributes:
+      label: Staða
+      options:
+        - Lögð til
+        - Samþykkt
+        - Úrelt (leyst af annarri ákvörðun)
+    validations:
+      required: true

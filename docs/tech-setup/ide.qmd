@@ -1,0 +1,52 @@
+---
+title: "Þróunarumhverfi (IDE)"
+description: >-
+  Hvað IDE er, hvenær alhliða ritill eins og VS Code dugar og hvenær sérhæft
+  JetBrains-IDE borgar sig fram yfir.
+---
+
+Þróunarumhverfi (e. *IDE — Integrated Development Environment*) er forrit til að skrifa kóða sem
+sameinar ritil, keyrslu, villuleit, útgáfustjórnun og fleira á einum stað. Þú *getur* skrifað
+kóða í einföldum textaritli, en IDE flýtir fyrir með sjálfvirkri klárun, villumerkingum og
+innbyggðum tengingum við Git og gagnagrunna.
+
+## VS Code — alhliða kosturinn
+
+[Visual Studio Code](https://code.visualstudio.com/) er ókeypis, létt og **alhliða** — það
+styður nánast öll forritunarmál gegnum viðbætur (*extensions*). Þú setur upp viðbót fyrir það
+mál sem þú vinnur í (Python, R, SQL o.s.frv.) og færð þá viðeigandi stuðning.
+
+Fyrir flest í þessu námskeiði er VS Code fínn sjálfgefinn kostur: einn ritill sem ræður við
+Markdown, Quarto, Git og flest málin sem koma við sögu.
+
+## JetBrains — sérhæfð IDE
+
+Þegar þú vinnur mikið í **einu tilteknu** forritunarmáli eða sviði borgar sig oft að nota IDE
+sem sérhæfir sig í því. [JetBrains](https://www.jetbrains.com/) gerir röð slíkra umhverfa —
+hvert stillt fyrir sitt svið, með dýpri stuðningi en almenn viðbót gefur:
+
+| IDE | Sérsvið |
+|-----|---------|
+| **PyCharm** | Python |
+| **DataGrip** | Gagnagrunnar og SQL |
+| **CLion** | C / C++ |
+| **IntelliJ IDEA** | Java / Kotlin |
+| **WebStorm** | Vefþróun (JavaScript/TypeScript) |
+
+::: {.callout-tip}
+## Ókeypis stúdentaleyfi
+JetBrains-umhverfin eru að jafnaði greidd, en nemendur fá **frítt leyfi** að öllum þeirra með
+`@hi.is` netfangi — sjá [JetBrains for students](https://www.jetbrains.com/community/education/).
+:::
+
+Kennari námskeiðsins notar til dæmis **PyCharm**, **DataGrip** og **CLion** úr JetBrains-röðinni
+eftir því hvað hentar hverju verkefni.
+
+## Hvað á ég að velja?
+
+- **Byrjaðu á VS Code** ef þú ert óviss — það er alhliða og dugar fyrir megnið af námsefninu.
+- **Bættu við sérhæfðu IDE** þegar þú vinnur mikið í einu máli eða sviði og vilt dýpri stuðning
+  — t.d. DataGrip fyrir gagnagrunnsvinnu.
+
+Fyrir gagnagrunnshluta námskeiðsins er farið nánar í uppsetningu á DataGrip, DBeaver og VS Code
+og tengingu við gagnagrunn í [Gagnagrunnstól](databases.qmd).
