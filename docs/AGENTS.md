@@ -52,7 +52,7 @@ Use the `Makefile` in the repository root (`public/`) for local work:
 - `make full` — full render; required after `_quarto.yml`, `styles/*.scss`, or any
   structural/chapter change, because those affect the sidebar/theme on **every** page
 - `make preview` — live preview with auto-reload while editing
-- `make serve` — static server on the built `_site/` to inspect the final output
+- `make server` — static server on the built `_site/` to inspect the final output
 
 **Workflow:**
 
