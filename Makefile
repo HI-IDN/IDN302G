@@ -4,7 +4,7 @@
 #   make            # renderar aðeins .qmd/.md sem hafa breyst (hratt, fyrir efnisbreytingar)
 #   make full       # heildar-render (þarf eftir _quarto.yml / .scss / uppbyggingarbreytingar)
 #   make preview    # quarto preview: fylgist með breytingum og endurhleður sjálfkrafa
-#   make serve      # static server á tilbúnu _site/ (skoða lokaútgáfu)
+#   make server      # static server á tilbúnu _site/ (skoða lokaútgáfu)
 #
 # Heimildaskrár eru í docs/ (þar er _quarto.yml). Quarto skrifar HTML í _site/
 # (byggt af GitHub Actions í skýinu, ekki commit-að). Sniðmát eru í templates/ á
@@ -23,9 +23,9 @@ SRC  := $(filter-out docs/_freeze/% docs/site_libs/% docs/.quarto/% docs/AGENTS.
 # Samsvarandi HTML í _site/ (t.d. docs/github/index.qmd -> _site/github/index.html).
 HTML := $(patsubst docs/%,_site/%,$(patsubst %.qmd,%.html,$(patsubst %.md,%.html,$(SRC))))
 
-.PHONY: help all full preview serve
+.PHONY: help all full preview server
 
-# Höfn fyrir `make serve` (static server á _site/).
+# Höfn fyrir `make server` (static server á _site/).
 PORT ?= 8000
 
 # Bert `make` byggir (all), ekki help.
@@ -40,11 +40,11 @@ help:
 	@echo "  make full     Heildar-render. Nota eftir _quarto.yml / .scss /"
 	@echo "                kaflabreytingar (uppfaerir hlidarstiku a OLLUM sidum)."
 	@echo "  make preview  Quarto preview: fylgist med breytingum + endurhledur (vinna)."
-	@echo "  make serve    Static server a tilbunu _site/ (skoda lokautgafu, sja PORT)."
+	@echo "  make server   Static server a tilbunu _site/ (skoda lokautgafu, sja PORT)."
 	@echo "  make help     Synir thennan lista."
 	@echo ""
 	@echo "Efnisbreyting -> 'make'.  Uppbygging/hlidarstika -> 'make full'."
-	@echo "Vinna med live-reload -> 'make preview'.  Skoda lokautgafu -> 'make serve'."
+	@echo "Vinna med live-reload -> 'make preview'.  Skoda lokautgafu -> 'make server'."
 
 # Sjálfgefið: renderar hverja skrá sem er nýrri en HTML-úttakið hennar.
 all: $(HTML)
@@ -65,6 +65,6 @@ preview:
 	cd docs && quarto preview
 
 # Static server á tilbúnu _site/ (það sem GitHub Pages birtir). Sjálfgefið á porti
-# 8000 — breyta má með `make serve PORT=8080`. Byggðu fyrst með `make full`.
-serve:
+# 8000 — breyta má með `make server PORT=8080`. Byggðu fyrst með `make full`.
+server:
 	cd _site && python -m http.server $(PORT)

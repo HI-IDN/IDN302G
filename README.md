@@ -77,13 +77,13 @@ Til að einfalda byggingu og forskoðun fylgir **`Makefile`** í rót geymslunna
 Quarto fyrir þig og virkar bæði í Git Bash og PowerShell (þarf [Quarto](https://quarto.org)
 uppsett, og `make`).
 
-| Skipun | Aðgerð |
-|--------|--------|
-| `make` | Renderar aðeins þær síður sem hafa breyst (hratt, fyrir efnisbreytingar). |
-| `make full` | Heildar-render. Nota eftir breytingar á `_quarto.yml`, stílum eða kaflaskipan. |
-| `make preview` | Quarto preview með sjálfvirkri endurhleðslu meðan þú vinnur. |
-| `make serve` | Static server á tilbúnu `_site/` (skoða lokaútgáfu; `make serve PORT=8080`). |
-| `make help` | Sýnir þennan lista. |
+| Skipun         | Aðgerð                                                                         |
+|----------------|--------------------------------------------------------------------------------|
+| `make`         | Renderar aðeins þær síður sem hafa breyst (hratt, fyrir efnisbreytingar).      |
+| `make full`    | Heildar-render. Nota eftir breytingar á `_quarto.yml`, stílum eða kaflaskipan. |
+| `make preview` | Quarto preview með sjálfvirkri endurhleðslu meðan þú vinnur.                   |
+| `make server`  | Static server á tilbúnu `_site/` (skoða lokaútgáfu; `make server PORT=8080`).  |
+| `make help`    | Sýnir þennan lista.                                                            |
 
 Dæmigert vinnuflæði: keyrðu `make preview` meðan þú breytir. Ef þú breytir keyranlegum kóða
 skaltu keyra `make full` áður en þú commitar svo frystu niðurstöðurnar í `docs/_freeze/` uppfærist.
