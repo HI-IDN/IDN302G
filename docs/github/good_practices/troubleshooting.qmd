@@ -18,6 +18,28 @@ git status      # hvaða skrár eru breyttar / í undirbúningi?
 git log --oneline --graph -10   # síðustu commit og hvar branch-in standa
 ```
 
+## Sæktu reglulega — `pull` áður en þú pushar
+
+Langalgengasta vandamálið er einfalt: **það gleymdist að `pull`-a áður en pushað var.** Staðbundna
+afritið þitt er þá á eftir GitHub — einhver annar (eða þú sjálf/ur á annarri vél) hefur pushað á
+meðan — og push-ið þitt er hafnað eða árekstur myndast. Þetta má að mestu forðast með einni
+vinnureglu:
+
+- **`git pull` áður en þú pushar** — alltaf. Þá færðu nýjustu breytingar inn fyrst og push-ið
+  gengur snurðulaust í stað þess að vera hafnað.
+- **Sæktu reglulega meðan þú vinnur** (`git fetch` eða `git pull`), ekki bara í lokin —
+  **sérstaklega þegar fleiri vinna á sömu grein** (eins og t.d. `main`).
+- **Vinnugrein sem á að sameina við `main`:** ef þið vinnið á eigin greinum en ætlið svo að
+  sameina við `main`, munið að `main` gæti hafa breyst á meðan. Þá þarf að **uppfæra
+  vinnugreinina ykkar með breytingum af `main`** (eða þeirri grein sem þið ætlið að senda inn í)
+  áður en hægt er að sameina hreint — sjá
+  [Branch-ið mitt hefur klofnað frá `main`](#branch-ið-mitt-hefur-klofnað-frá-main-diverging) hér að neðan.
+
+```sh
+git pull                 # sækir og sameinar nýjustu breytingar á ÞÍNU branch
+git pull origin main     # sækir main inn í branch-ið þitt (ef main hefur breyst)
+```
+
 ::: {.callout-warning}
 ## Um `--force` — farðu varlega
 `git push --force` **skrifar yfir** sögu á GitHub og getur eytt vinnu annarra á sameiginlegum
@@ -113,6 +135,26 @@ git push origin nytt-nafn                  # pushar nýja nafninu
 git push origin --delete gamalt-nafn       # eyðir gamla af GitHub
 ```
 
+### Branch-ið mitt hefur klofnað frá `main` (diverging)
+
+Ef `main` hefur breyst — til dæmis annað PR var samþykkt — á meðan þú vannst, þá hafa branch-in
+**klofnað**: hvort um sig á sín eigin nýju commit. Git segir þá gjarnan *„your branch and
+'main' have diverged"*. Til að ná breytingunum af `main` inn í branch-ið þitt:
+
+```sh
+git checkout mitt-branch
+git pull origin main        # sækir main og sameinar inn í branch-ið þitt
+```
+
+Þetta býr til merge commit sem tengir saman. Komi upp árekstrar leysirðu þá eins og venjulegan
+merge conflict (sjá hér að neðan). Að því loknu er branch-ið aftur í takt við `main` og PR-ið
+þitt uppfærist sjálfkrafa.
+
+::: {.callout-tip}
+Gerðu þetta **reglulega meðan PR er opið** — því lengur sem branch-ið er á eftir `main`, því
+stærri og erfiðari verða árekstrarnir þegar loks er sameinað.
+:::
+
 ### Merge conflict
 
 Þegar Git getur ekki sameinað sjálfkrafa færðu merkin `<<<<<<<`, `=======` og `>>>>>>>` í
@@ -125,6 +167,8 @@ git merge --abort
 
 ## Gott að muna
 
+- **`git pull` áður en þú pushar** (og helst áður en þú commit-ar) — sæktu reglulega ef fleiri
+  vinna á branch-inu eða `main`.
 - **`git status` og `git log` fyrst** — aldrei laga í blindni.
 - **`revert` fram yfir `reset --hard` + `--force`** á sameiginlegum branchum.
 - **Ef þú verður að nota force, notaðu `--force-with-lease`**, aldrei á `main`.
@@ -134,6 +178,8 @@ git merge --abort
 
 | Vandamál | Skipun |
 |----------|--------|
+| Push hafnað (branch á eftir GitHub) | `git pull` → leysa → `git push` |
+| Branch klofnað frá `main` (diverging) | `git pull origin main` |
 | Gleymd skrá í síðasta commit | `git commit --amend --no-edit` |
 | Afturkalla commit, halda breytingum | `git reset --soft HEAD~1` |
 | Afturkalla commit, henda breytingum | `git reset --hard HEAD~1` |
