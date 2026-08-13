@@ -136,6 +136,3 @@ gagna.
 eða graf sem hefur misvísandi ása (hvort sem það er lóðrétti eða lárétti ásinn), getur leitt til
 misskilnings og villandi túlkunar. Gögn þurfa að vera sett fram á skýran og einfaldan hátt til að
 auðvelda notendum að lesa og skilja upplýsingar.
-
-
-

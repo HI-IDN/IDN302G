@@ -49,4 +49,3 @@ vinna með gögnin til að sía þau og skoða í öðrum forritum.
 * Síðan síum við gögnin þannig að einungis gögn frá Króatíu og Íslandi eru valin.
 * Setjið innihald síuðu töflunnar í nýja CSV skrá.
 * Opnið CSV skránna og skoðið innihaldið, til dæmis með Excel eða öðru forriti sem styður CSV skjöl.
-

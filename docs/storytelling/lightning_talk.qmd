@@ -92,5 +92,3 @@ sem sameinar allar mikilvægustu upplýsingar:
 
 Þessi setning lýsir áskoruninni við að hanna stutta en áhrifaríka kynningu. Það krefst mikillar
 undirbúnings að hnitmiða upplýsingar á þann hátt að þær hafi hámarksáhrif.
-
-

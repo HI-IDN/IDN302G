@@ -71,7 +71,3 @@ SELECT * FROM pg_views WHERE schemaname IN ('got','atlas')
 ```
 
 Hér getiði þið skoða dálkinn `definition` til að sjá hvernig sýndartöflan er skilgreind.
-
-
-
-

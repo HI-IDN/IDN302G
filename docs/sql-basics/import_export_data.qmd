@@ -79,4 +79,3 @@ CSV formi, notum við eftirfarandi skipanir:
 \copy
 (SELECT * FROM operators) TO 'operators.csv' WITH (FORMAT CSV, HEADER);
 ```
-

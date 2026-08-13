@@ -250,4 +250,3 @@ sérniðinnni gagnatýpu fyrir sig, þá getum við notað `unnest` fallið á u
 
 - **Fyrirspurnahagræðing**: _PostgreSQL_ býður upp á öflugri fyrirspurnahagræðingarvélar, sem geta
   aukið afköst fyrir stór gagnasöfn.
-

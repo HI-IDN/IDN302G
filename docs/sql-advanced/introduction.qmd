@@ -71,4 +71,3 @@ OFFSET <tala>;
   [hér](joins.qmd).
 - `WHERE`: Skilyrði sem takmarkar niðurstöður. Það er einnig hægt að nota undirfyrirspurnir
   í `WHERE` hlutnum (sjá [hér](../sql-basics/subquery.qmd)). 
-

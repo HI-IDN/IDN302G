@@ -226,4 +226,3 @@ Engin almenn mætingarskylda — en eftirfarandi gildir:
 - **Verkefnastjóri** þarf sérstaklega að mæta þar sem kennarinn spyr hann um lokna lotu.
 - Hlutverkum (kóðari, rýnir, verkefnastjóri) skal skipt sem jafnast á milli allra hópmeðlima
   yfir misserið — enginn á alltaf að vera kóðari, alltaf rýnir eða alltaf verkefnastjóri.
-

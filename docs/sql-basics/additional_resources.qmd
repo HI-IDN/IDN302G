@@ -47,4 +47,3 @@ sem mælt er með að nemendur skoði. Þetta efni er bæði gagnlegt til að l�
   gagnagrunnskerfum (_PostgreSQL_, _Oracle_, _MySQL_, o.fl.).
 - Hentar bæði byrjendum og lengra komnum með ítarlegum dæmum.
 - Góð uppflettibók fyrir nemendur sem vilja skilja SQL í mismunandi gagnagrunnskerfum.
-

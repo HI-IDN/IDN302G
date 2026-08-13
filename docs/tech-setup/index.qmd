@@ -5,8 +5,8 @@ description: >-
   svo þú komir vinnuumhverfinu þínu í gang.
 ---
 
-Áður en þú getur unnið verkefnin þarftu að koma nokkrum tólum fyrir á eigin tölvu. Þessi lota
-safnar saman hagnýtri uppsetningu sem er annars dreifð um námsefnið:
+Áður en þú getur unnið verkefnin þarftu að koma nokkrum tólum fyrir á eigin tölvu. Þessi hluti
+safnar saman hagnýtum atriðum varðandi uppsetningu sem er annars dreift um námsefnið:
 
 - [Þróunarumhverfi (IDE)](ide.qmd) — hvaða ritil/IDE er gott að nota, og hvenær sérhæft IDE
   borgar sig fram yfir alhliða.
