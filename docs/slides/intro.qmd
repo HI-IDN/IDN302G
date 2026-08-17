@@ -26,6 +26,37 @@ format:
     margin: 0.04
     transition: slide
     background-transition: fade
+    include-in-header:
+      text: |
+        <link rel="icon" type="image/svg+xml" href="../img/hi/favicon.svg">
+    include-after-body:
+      text: |
+        <script>
+        (function () {
+          const BASE = "Upplýsingaverkfræði";
+          function currentName() {
+            if (!window.Reveal || !Reveal.getCurrentSlide) return "";
+            const slide = Reveal.getCurrentSlide();
+            if (!slide) return "";
+            const heading = slide.querySelector("h1, h2, h3");
+            return heading ? heading.textContent.trim() : "";
+          }
+          function updateTitle() {
+            const name = currentName();
+            document.title = name ? BASE + " – " + name : BASE;
+          }
+          function init() {
+            if (window.Reveal && Reveal.on) {
+              Reveal.on("ready", updateTitle);
+              Reveal.on("slidechanged", updateTitle);
+              updateTitle();
+            } else {
+              setTimeout(init, 200);
+            }
+          }
+          init();
+        })();
+        </script>
 ---
 
 ## {.title-slide .center}
@@ -541,11 +572,11 @@ Capstone verkefnið er þráðurinn í gegnum misserið.
 
 :::
 
+::: {.card-grid}
+
 ---
 
 ## Hvað skilar hver lota inn í capstone?
-
-::: {.card-grid}
 
 ::: {.card}
 <h3>Ný aðferð</h3>
