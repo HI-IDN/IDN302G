@@ -55,7 +55,7 @@ $$
 
 ## Kóðabútur og útkoma
 
-Kóðabútur er skrifaður milli þriggja hornklofa (` ``` `) með tungumálinu í slaufusvigum. Þetta
+Kóðabútur er skrifaður milli þriggja *backticks* (` ``` `) með tungumálinu í slaufusvigum. Þetta
 skrifar þú í `.qmd` skrána:
 
 ```` markdown
