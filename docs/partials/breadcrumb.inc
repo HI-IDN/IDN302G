@@ -24,9 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (partLink) partTitle = partLink.textContent.trim();
   }
 
-  var chapterText = activeLink.querySelector('.menu-text');
-  var chapterTitle = chapterText ? chapterText.textContent.trim() : activeLink.textContent.trim();
-
   // Browser tab title: course name + part, constant across a part's subpages
   // (e.g. "Upplýsingaverkfræði – Erindrekar"), instead of the page name.
   var TAB_BASE = 'Upplýsingaverkfræði';
@@ -59,26 +56,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  if (!partTitle && !chapterTitle) return;
-
-  // Build breadcrumb bar
-  var bar = document.createElement('div');
-  bar.id = 'hi-breadcrumb';
-  bar.setAttribute('aria-label', 'brauðmola');
-
-  if (partTitle && chapterTitle && partTitle !== chapterTitle) {
-    bar.innerHTML =
-      '<span class="hi-bc-part">' + partTitle + '</span>' +
-      '<span class="hi-bc-sep" aria-hidden="true">›</span>' +
-      '<span class="hi-bc-chapter">' + chapterTitle + '</span>';
-  } else {
-    bar.innerHTML = '<span class="hi-bc-chapter">' + (partTitle || chapterTitle) + '</span>';
-  }
-
-  // Insert right after navbar
-  var navbar = document.querySelector('nav.navbar');
-  if (navbar && navbar.parentNode) {
-    navbar.parentNode.insertBefore(bar, navbar.nextSibling);
-  }
 });
 </script>
