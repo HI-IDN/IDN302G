@@ -348,20 +348,20 @@ IÐN302G er inngangskúrs. Í IÐN610M Viðskiptagreind er virðiskeðjan tekin 
 ::: {.card-grid}
 
 ::: {.card}
-<h3>Að kanna</h3>
-<h2>Exploratory analysis</h2>
+<h3>Exploratory analysis</h3>
+<h2>Að kanna</h2>
 
-- spyrja: hvað er í gögnunum?
+- spyrja: *hvað er í gögnunum?*
 - leita að mynstrum og frávikum
 - prófa margar leiðir
 - halda túlkunum opnum
 :::
 
 ::: {.card}
-<h3>Að útskýra</h3>
-<h2>Explanatory analysis</h2>
+<h3>Explanatory analysis</h3>
+<h2>Að útskýra</h2>
 
-- spyrja: hvað þurfa aðrir að skilja?
+- spyrja: *hvað þurfa aðrir að skilja?*
 - velja skýra frásögn
 - styðja niðurstöðu með gögnum
 - leiða lesanda að ákvörðun
@@ -480,6 +480,12 @@ Vinnuflæði, GitHub og skýrslur sem hægt er að keyra aftur.
 :::
 
 ::: {.card}
+<h3>Vefþjónustur</h3>
+
+Sækja og vinna gögn frá vefþjónustum og API-um.
+:::
+
+::: {.card}
 <h3>Reglulegar segðir</h3>
 
 Leit, mynstragreining og vinnsla textagagna.
@@ -536,11 +542,11 @@ Gagnafrásögn, gröf, kort og mælaborð.
   <div class="step-chip"><strong>Release</strong><span>Nokkur PR komin inn á aðalgrein; áfangi merktur sem útgáfa.</span></div>
 </div>
 
-::: {.blue-note}
+::: {.callout}
 PR á að vera nógu lítið til að hægt sé að rýna það vel.
 :::
 
-::: {.blue-note}
+::: {.callout}
 Ef breytingin er orðin of víðfeðm er það merki um að skipta henni upp.
 :::
 
