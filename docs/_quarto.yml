@@ -5,6 +5,7 @@ project:
     # Vísað í úr glæru-CSS (css:/mask-image) sem Quarto skannar ekki, svo við
     # afritum þær handvirkt inn í úttakið.
     - styles/watermark.css
+    - styles/book-watermark.css
     - img/hi/hi_logo.svg
     # Myndir sem standalone-glærur vísa í (t.d. ../img/slides/vr2.jpg); bókin
     # skannar þær ekki, svo við afritum möppuna inn í úttakið.
@@ -149,6 +150,7 @@ format:
     theme:
       - cosmo
       - styles/hi-book.scss
+    css: styles/book-watermark.css
     include-in-header: partials/header-includes.inc
     include-after-body: partials/breadcrumb.inc
     toc: true
