@@ -659,26 +659,29 @@ em.emph {
   h3 { margin-top: 0; }
 }
 
-// Numbered cards: add `.numbered` to a `.card-grid` to prefix each card
-// heading with an auto-incrementing circular badge (1, 2, 3 …).
+// Numbered cards: add `.numbered` to a `.card-grid` to auto-number the cards
+// (1, 2, 3 …) inside a widened blue left stripe.
 .card-grid.numbered {
   counter-reset: card-num;
 
-  .card { counter-increment: card-num; }
+  .card {
+    counter-increment: card-num;
+    position: relative;
+    border-left-width: 44px;
+  }
 
-  .card h3::before {
+  .card::before {
     content: counter(card-num);
-    display: inline-grid;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -44px;
+    width: 44px;
+    display: grid;
     place-items: center;
-    width: 27px;
-    height: 27px;
-    margin-right: 10px;
-    border-radius: 999px;
-    background: var(--blue);
     color: var(--white);
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 800;
-    vertical-align: middle;
   }
 }
 
