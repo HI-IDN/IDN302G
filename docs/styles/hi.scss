@@ -659,6 +659,29 @@ em.emph {
   h3 { margin-top: 0; }
 }
 
+// Numbered cards: add `.numbered` to a `.card-grid` to prefix each card
+// heading with an auto-incrementing circular badge (1, 2, 3 …).
+.card-grid.numbered {
+  counter-reset: card-num;
+
+  .card { counter-increment: card-num; }
+
+  .card h3::before {
+    content: counter(card-num);
+    display: inline-grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    margin-right: 10px;
+    border-radius: 999px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 800;
+    vertical-align: middle;
+  }
+}
+
 .soft {
   background: var(--panel);
   padding: 24px 26px;

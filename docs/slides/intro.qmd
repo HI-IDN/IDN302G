@@ -471,7 +471,7 @@ AI getur hjálpað, en teymið ber ábyrgð á að skilja, prófa og rýna niðu
 
 ## Námskeiðsskipulag
 
-::: {.card-grid}
+::: {.card-grid .numbered}
 
 ::: {.card}
 <h3>Git, erindrekar og endurtækar skýrslur</h3>
@@ -480,15 +480,9 @@ Vinnuflæði, GitHub og skýrslur sem hægt er að keyra aftur.
 :::
 
 ::: {.card}
-<h3>Vefþjónustur</h3>
+<h3>Vefþjónustur og reglulegar segðir</h3>
 
-Sækja og vinna gögn frá vefþjónustum og API-um.
-:::
-
-::: {.card}
-<h3>Reglulegar segðir</h3>
-
-Leit, mynstragreining og vinnsla textagagna.
+Sækja gögn frá vefþjónustum og API-um; leit, mynstragreining og vinnsla textagagna.
 :::
 
 ::: {.card}
