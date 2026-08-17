@@ -34,6 +34,31 @@ document.addEventListener('DOMContentLoaded', function () {
     ? TAB_BASE + ' – ' + partTitle
     : TAB_BASE;
 
+  // Prefix the previous/next page links with the part name when they cross into
+  // a different part (e.g. "Git og GitHub: Inngangur"); leave same-part links as
+  // just the page name.
+  function partOfHref(abs) {
+    var links = document.querySelectorAll('.sidebar-link');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].href === abs) {
+        var s = links[i].closest('.sidebar-item-section');
+        if (s) {
+          var m = s.querySelector(':scope > .sidebar-item-container .menu-text');
+          return m ? m.textContent.trim() : '';
+        }
+      }
+    }
+    return '';
+  }
+  document.querySelectorAll('.page-navigation a').forEach(function (link) {
+    var span = link.querySelector('.nav-page-text');
+    if (!span) return;
+    var targetPart = partOfHref(link.href);
+    if (targetPart && targetPart !== partTitle) {
+      span.textContent = targetPart + ': ' + span.textContent.trim();
+    }
+  });
+
   if (!partTitle && !chapterTitle) return;
 
   // Build breadcrumb bar
