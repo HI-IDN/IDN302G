@@ -13,19 +13,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // Find active sidebar item
-  var activeLink = document.querySelector('.sidebar-item.active > .sidebar-item-container > a, .sidebar-item.active > a');
+  var activeLink = document.querySelector('a.sidebar-link.active, .sidebar-item.active > .sidebar-item-container > a, .sidebar-item.active > a');
   if (!activeLink) return;
 
   // Walk up to find parent part section
   var partTitle = '';
   var section = activeLink.closest('.sidebar-item-section');
   if (section) {
-    var partLink = section.querySelector(':scope > .sidebar-item-container > .sidebar-item-text .menu-text');
+    var partLink = section.querySelector(':scope > .sidebar-item-container .menu-text');
     if (partLink) partTitle = partLink.textContent.trim();
   }
 
   var chapterText = activeLink.querySelector('.menu-text');
   var chapterTitle = chapterText ? chapterText.textContent.trim() : activeLink.textContent.trim();
+
+  // Browser tab title: course name + part, constant across a part's subpages
+  // (e.g. "Upplýsingaverkfræði – Erindrekar"), instead of the page name.
+  var TAB_BASE = 'Upplýsingaverkfræði';
+  document.title = (partTitle && partTitle !== TAB_BASE)
+    ? TAB_BASE + ' – ' + partTitle
+    : TAB_BASE;
 
   if (!partTitle && !chapterTitle) return;
 
