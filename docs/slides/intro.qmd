@@ -24,8 +24,8 @@ format:
     width: 1280
     height: 720
     margin: 0.04
-    transition: slide
-    background-transition: fade
+    transition: none
+    background-transition: none
     include-in-header:
       text: |
         <link rel="icon" type="image/svg+xml" href="../img/hi/favicon.svg">
@@ -578,11 +578,11 @@ Capstone verkefnið er þráðurinn í gegnum misserið.
 
 :::
 
-::: {.card-grid}
-
 ---
 
 ## Hvað skilar hver lota inn í capstone?
+
+::: {.card-grid}
 
 ::: {.card}
 <h3>Ný aðferð</h3>
