@@ -314,12 +314,11 @@ IÐN302G er inngangskúrs. Í IÐN610M Viðskiptagreind er virðiskeðjan tekin 
 
 ## Að kanna vs. að útskýra
 
-::: {.two-col}
+::: {.card-grid}
 
-::: {}
-### Að kanna
-
-*Exploratory analysis*
+::: {.card}
+<h3>Að kanna</h3>
+<h2>Exploratory analysis</h2>
 
 - spyrja: hvað er í gögnunum?
 - leita að mynstrum og frávikum
@@ -327,10 +326,9 @@ IÐN302G er inngangskúrs. Í IÐN610M Viðskiptagreind er virðiskeðjan tekin 
 - halda túlkunum opnum
 :::
 
-::: {}
-### Að útskýra
-
-*Explanatory analysis*
+::: {.card}
+<h3>Að útskýra</h3>
+<h2>Explanatory analysis</h2>
 
 - spyrja: hvað þurfa aðrir að skilja?
 - velja skýra frásögn
@@ -498,13 +496,22 @@ Gagnafrásögn, gröf, kort og mælaborð.
 
 ## GitHub vinnuflæðið
 
-::: {.callout}
-Issue → branch → draft PR → eigin yfirferð → kóðarýni → merge → release
+<div class="steps-row value-chain" style="--steps-count: 6;">
+  <div class="step-chip"><strong>Issue</strong><span>Skilgreina verkefnið, ræða nálgun og gera aðgerðaáætlun áður en vinna hefst.</span></div>
+  <div class="step-chip"><strong>Branch</strong><span>Afmörkuð virkni útfærð á sérgrein, aðskilin frá <code>main</code>.</span></div>
+  <div class="step-chip"><strong>draft PR</strong><span>Eigin yfirferð og fyrstu drög sett fram til umræðu.</span></div>
+  <div class="step-chip"><strong>PR</strong><span>Hópmeðlimir rýna, spyrja spurninga og gefa endurgjöf.</span></div>
+  <div class="step-chip"><strong>Merge</strong><span>Breytingar samþykktar og sameinaðar inn á aðalgrein (<code>main</code>).</span></div>
+  <div class="step-chip"><strong>Release</strong><span>Nokkur PR komin inn á aðalgrein; áfangi merktur sem útgáfa.</span></div>
+</div>
+
+::: {.blue-note}
+PR á að vera nógu lítið til að hægt sé að rýna það vel.
 :::
 
-PR á að vera nógu lítið til að hægt sé að rýna það vel.
-
-Ef breytingin er orðin of víðfem er það merki um að skipta henni upp.
+::: {.blue-note}
+Ef breytingin er orðin of víðfeðm er það merki um að skipta henni upp.
+:::
 
 ---
 
@@ -512,10 +519,10 @@ Ef breytingin er orðin of víðfem er það merki um að skipta henni upp.
 
 Capstone verkefnið er þráðurinn í gegnum misserið.
 
-::: {.two-col}
+::: {.card-grid}
 
-::: {}
-### Þið veljið þema
+::: {.card}
+<h3>Þið veljið þema</h3>
 
 - opin gögn
 - spurning sem skiptir máli
@@ -523,8 +530,8 @@ Capstone verkefnið er þráðurinn í gegnum misserið.
 - lifandi GitHub Pages síða
 :::
 
-::: {}
-### Þið byggið upp verkefnið
+::: {.card}
+<h3>Þið byggið upp verkefnið</h3>
 
 - gögn og hreinsun
 - fyrirspurnir og greining
@@ -608,18 +615,18 @@ Að vinnan sé sýnileg í GitHub og hægt sé að fylgja þróuninni.
 
 ## Verkfærin
 
-::: {.two-col}
+::: {.card-grid}
 
-::: {}
-### Námsefni og skil
+::: {.card}
+<h3>Námsefni og skil</h3>
 
 - námskeiðsbók í Quarto
 - Canvas fyrir formleg skil
 - GitHub Pages fyrir birtingu
 :::
 
-::: {}
-### Vinna og samvinna
+::: {.card}
+<h3>Vinna og samvinna</h3>
 
 - GitHub repo
 - Issues og Projects

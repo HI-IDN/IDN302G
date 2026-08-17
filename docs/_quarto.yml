@@ -6,6 +6,9 @@ project:
     # afritum þær handvirkt inn í úttakið.
     - styles/watermark.css
     - img/hi/hi_logo.svg
+    # Myndir sem standalone-glærur vísa í (t.d. ../img/slides/vr2.jpg); bókin
+    # skannar þær ekki, svo við afritum möppuna inn í úttakið.
+    - img/slides
 
 execute:
   freeze: auto
