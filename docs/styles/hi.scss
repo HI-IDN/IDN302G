@@ -683,6 +683,15 @@ em.emph {
     font-size: 22px;
     font-weight: 800;
   }
+
+  // Accent card (e.g. an integration / wrap-up step): teal stripe and a light
+  // tint so it reads as set apart from the blue modules; dark number for
+  // contrast on the lighter stripe.
+  .card.accent {
+    border-left-color: var(--teal);
+    background: var(--soft-blue-bg);
+  }
+  .card.accent::before { color: var(--blue); }
 }
 
 .soft {

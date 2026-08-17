@@ -509,6 +509,12 @@ JOIN, CTE, views, föll, PostgreSQL og PostGIS.
 Gagnafrásögn, gröf, kort og mælaborð.
 :::
 
+::: {.card .accent}
+<h3>Samþætting</h3>
+
+Ekki ný aðferð — hér er fínpússað og ítrað á fyrri lotur og allt tengt saman í heildstæða gagnasögu fyrir capstone.
+:::
+
 :::
 
 ---
@@ -669,43 +675,13 @@ Að vinnan sé sýnileg í GitHub og hægt sé að fylgja þróuninni.
 
 ---
 
-## Erindrekar
-
-Erindrekar geta hjálpað við:
-
-- að skrifa eða endurskipuleggja kóða,
-- að útskýra villur,
-- að gera fyrstu drög að texta,
-- að rýna breytingar,
-- að finna hvað þarf að prófa betur.
-
-::: {.callout}
-En: teymið þarf alltaf að skilja, prófa og sannreyna niðurstöðuna.
-:::
-
----
-
-## Agent log
-
-Ef erindreki hefur marktæk áhrif á vinnuna á branchi á að skrá það í `AGENT_LOG.md`.
-
-Skráið:
-
-- hvað var beðið um,
-- hvað breyttist,
-- hvaða skrár breyttust,
-- hvað teymið yfirfór,
-- hvað þurfti að laga handvirkt.
-
----
-
 ## Fyrstu skref
 
-1. Staðfesta GitHub-aðgang.
-2. Skoða námskeiðsbókina og templates.
-3. Mynda teymi.
-4. Velja eða móta capstone-þema.
-5. Byrja á issue áður en branch og PR verða til.
+1. Velja Capstone þema og mynda 3ja manna teymi
+2. Staðfesta GitHub-aðgang.
+3. Setja upp Git á eigin vélum.
+4. Setja upp SSH lykil
+5. Klóna æfingasvæði (einstaklings og teymis) og prófa sig áfram.
 
 ::: {.callout}
 Við erum að æfa vinnulagið sem þið eigið eftir að nota allt misserið.
