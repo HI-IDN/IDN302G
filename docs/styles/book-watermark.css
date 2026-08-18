@@ -21,6 +21,12 @@ body::after {
   z-index: 0;
 }
 
+/* Keep the watermark behind the page content. */
+#quarto-content {
+  position: relative;
+  z-index: 1;
+}
+
 /* Only show it when there is spare room to the right of the content column. */
 @media (max-width: 1500px) {
   body::after { display: none; }
