@@ -1,5 +1,5 @@
 ---
-title: "Að skrifa góð fyrirmæli (prompts)"
+title: "Að skrifa góð fyrirmæli"
 description: >-
   Hvernig skýr og samhengisrík fyrirmæli (prompts) bæta gæði þess sem erindreki skilar.
 ---
