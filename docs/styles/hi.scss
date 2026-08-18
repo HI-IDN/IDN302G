@@ -659,6 +659,41 @@ em.emph {
   h3 { margin-top: 0; }
 }
 
+// Numbered cards: add `.numbered` to a `.card-grid` to auto-number the cards
+// (1, 2, 3 …) inside a widened blue left stripe.
+.card-grid.numbered {
+  counter-reset: card-num;
+
+  .card {
+    counter-increment: card-num;
+    position: relative;
+    border-left-width: 44px;
+  }
+
+  .card::before {
+    content: counter(card-num);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -44px;
+    width: 44px;
+    display: grid;
+    place-items: center;
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  // Accent card (e.g. an integration / wrap-up step): teal stripe and a light
+  // tint so it reads as set apart from the blue modules; dark number for
+  // contrast on the lighter stripe.
+  .card.accent {
+    border-left-color: var(--teal);
+    background: var(--soft-blue-bg);
+  }
+  .card.accent::before { color: var(--blue); }
+}
+
 .soft {
   background: var(--panel);
   padding: 24px 26px;

@@ -24,8 +24,41 @@ format:
     width: 1280
     height: 720
     margin: 0.04
-    transition: slide
-    background-transition: fade
+    transition: none
+    background-transition: none
+    include-in-header:
+      text: |
+        <link rel="icon" type="image/svg+xml" href="../img/hi/favicon.svg">
+    include-after-body:
+      text: |
+        <script>
+        (function () {
+          const BASE = "Upplýsingaverkfræði";
+          function currentName() {
+            if (!window.Reveal || !Reveal.getCurrentSlide) return "";
+            const slide = Reveal.getCurrentSlide();
+            if (!slide) return "";
+            const heading = slide.querySelector("h1, h2, h3");
+            return heading ? heading.textContent.trim() : "";
+          }
+          function updateTitle() {
+            const name = currentName();
+            document.title = name ? BASE + " – " + name : BASE;
+          }
+          let tries = 0;
+          const MAX_TRIES = 50;
+          function init() {
+            if (window.Reveal && Reveal.on) {
+              Reveal.on("ready", updateTitle);
+              Reveal.on("slidechanged", updateTitle);
+              updateTitle();
+            } else if (tries++ < MAX_TRIES) {
+              setTimeout(init, 200);
+            }
+          }
+          init();
+        })();
+        </script>
 ---
 
 ## {.title-slide .center}
@@ -314,25 +347,23 @@ IÐN302G er inngangskúrs. Í IÐN610M Viðskiptagreind er virðiskeðjan tekin 
 
 ## Að kanna vs. að útskýra
 
-::: {.two-col}
+::: {.card-grid}
 
-::: {}
-### Að kanna
+::: {.card}
+<h3>Exploratory analysis</h3>
+<h2>Að kanna</h2>
 
-*Exploratory analysis*
-
-- spyrja: hvað er í gögnunum?
+- spyrja: *hvað er í gögnunum?*
 - leita að mynstrum og frávikum
 - prófa margar leiðir
 - halda túlkunum opnum
 :::
 
-::: {}
-### Að útskýra
+::: {.card}
+<h3>Explanatory analysis</h3>
+<h2>Að útskýra</h2>
 
-*Explanatory analysis*
-
-- spyrja: hvað þurfa aðrir að skilja?
+- spyrja: *hvað þurfa aðrir að skilja?*
 - velja skýra frásögn
 - styðja niðurstöðu með gögnum
 - leiða lesanda að ákvörðun
@@ -442,7 +473,7 @@ AI getur hjálpað, en teymið ber ábyrgð á að skilja, prófa og rýna niðu
 
 ## Námskeiðsskipulag
 
-::: {.card-grid}
+::: {.card-grid .numbered}
 
 ::: {.card}
 <h3>Git, erindrekar og endurtækar skýrslur</h3>
@@ -451,9 +482,9 @@ Vinnuflæði, GitHub og skýrslur sem hægt er að keyra aftur.
 :::
 
 ::: {.card}
-<h3>Reglulegar segðir</h3>
+<h3>Vefþjónustur og reglulegar segðir</h3>
 
-Leit, mynstragreining og vinnsla textagagna.
+Sækja gögn frá vefþjónustum og API-um; leit, mynstragreining og vinnsla textagagna.
 :::
 
 ::: {.card}
@@ -480,6 +511,12 @@ JOIN, CTE, views, föll, PostgreSQL og PostGIS.
 Gagnafrásögn, gröf, kort og mælaborð.
 :::
 
+::: {.card .accent}
+<h3>Samþætting</h3>
+
+Ekki ný aðferð — hér er fínpússað og ítrað á fyrri lotur og allt tengt saman í heildstæða gagnasögu fyrir capstone.
+:::
+
 :::
 
 ---
@@ -498,13 +535,22 @@ Gagnafrásögn, gröf, kort og mælaborð.
 
 ## GitHub vinnuflæðið
 
+<div class="steps-row value-chain" style="--steps-count: 6;">
+  <div class="step-chip"><strong>Issue</strong><span>Skilgreina verkefnið, ræða nálgun og gera aðgerðaáætlun áður en vinna hefst.</span></div>
+  <div class="step-chip"><strong>Branch</strong><span>Afmörkuð virkni útfærð á sérgrein, aðskilin frá <code>main</code>.</span></div>
+  <div class="step-chip"><strong>draft PR</strong><span>Eigin yfirferð og fyrstu drög sett fram til umræðu.</span></div>
+  <div class="step-chip"><strong>PR</strong><span>Hópmeðlimir rýna, spyrja spurninga og gefa endurgjöf.</span></div>
+  <div class="step-chip"><strong>Merge</strong><span>Breytingar samþykktar og sameinaðar inn á aðalgrein (<code>main</code>).</span></div>
+  <div class="step-chip"><strong>Release</strong><span>Nokkur PR komin inn á aðalgrein; áfangi merktur sem útgáfa.</span></div>
+</div>
+
 ::: {.callout}
-Issue → branch → draft PR → eigin yfirferð → kóðarýni → merge → release
+PR á að vera nógu lítið til að hægt sé að rýna það vel.
 :::
 
-PR á að vera nógu lítið til að hægt sé að rýna það vel.
-
-Ef breytingin er orðin of víðfem er það merki um að skipta henni upp.
+::: {.callout}
+Ef breytingin er orðin of víðfeðm er það merki um að skipta henni upp.
+:::
 
 ---
 
@@ -512,10 +558,10 @@ Ef breytingin er orðin of víðfem er það merki um að skipta henni upp.
 
 Capstone verkefnið er þráðurinn í gegnum misserið.
 
-::: {.two-col}
+::: {.card-grid}
 
-::: {}
-### Þið veljið þema
+::: {.card}
+<h3>Þið veljið þema</h3>
 
 - opin gögn
 - spurning sem skiptir máli
@@ -523,8 +569,8 @@ Capstone verkefnið er þráðurinn í gegnum misserið.
 - lifandi GitHub Pages síða
 :::
 
-::: {}
-### Þið byggið upp verkefnið
+::: {.card}
+<h3>Þið byggið upp verkefnið</h3>
 
 - gögn og hreinsun
 - fyrirspurnir og greining
@@ -608,18 +654,18 @@ Að vinnan sé sýnileg í GitHub og hægt sé að fylgja þróuninni.
 
 ## Verkfærin
 
-::: {.two-col}
+::: {.card-grid}
 
-::: {}
-### Námsefni og skil
+::: {.card}
+<h3>Námsefni og skil</h3>
 
 - námskeiðsbók í Quarto
 - Canvas fyrir formleg skil
 - GitHub Pages fyrir birtingu
 :::
 
-::: {}
-### Vinna og samvinna
+::: {.card}
+<h3>Vinna og samvinna</h3>
 
 - GitHub repo
 - Issues og Projects
@@ -631,43 +677,13 @@ Að vinnan sé sýnileg í GitHub og hægt sé að fylgja þróuninni.
 
 ---
 
-## Erindrekar
-
-Erindrekar geta hjálpað við:
-
-- að skrifa eða endurskipuleggja kóða,
-- að útskýra villur,
-- að gera fyrstu drög að texta,
-- að rýna breytingar,
-- að finna hvað þarf að prófa betur.
-
-::: {.callout}
-En: teymið þarf alltaf að skilja, prófa og sannreyna niðurstöðuna.
-:::
-
----
-
-## Agent log
-
-Ef erindreki hefur marktæk áhrif á vinnuna á branchi á að skrá það í `AGENT_LOG.md`.
-
-Skráið:
-
-- hvað var beðið um,
-- hvað breyttist,
-- hvaða skrár breyttust,
-- hvað teymið yfirfór,
-- hvað þurfti að laga handvirkt.
-
----
-
 ## Fyrstu skref
 
-1. Staðfesta GitHub-aðgang.
-2. Skoða námskeiðsbókina og templates.
-3. Mynda teymi.
-4. Velja eða móta capstone-þema.
-5. Byrja á issue áður en branch og PR verða til.
+1. Velja Capstone þema og mynda 3ja manna teymi
+2. Staðfesta GitHub-aðgang.
+3. Setja upp Git á eigin vélum.
+4. Setja upp SSH lykil
+5. Klóna æfingasvæði (einstaklings og teymis) og prófa sig áfram.
 
 ::: {.callout}
 Við erum að æfa vinnulagið sem þið eigið eftir að nota allt misserið.
