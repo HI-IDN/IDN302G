@@ -28,8 +28,8 @@ jobs:
       - name: Render book and standalone slides
         working-directory: docs
         run: |
-          quarto render --execute never
-          quarto render slides/intro.qmd --execute never
+          quarto render --no-execute
+          quarto render slides/intro.qmd --no-execute
           mkdir -p ../_site/slides
           mkdir -p ../_site/styles
           rm -f ../_site/slides/intro.html
