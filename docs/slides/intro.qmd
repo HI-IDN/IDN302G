@@ -45,12 +45,14 @@ format:
             const name = currentName();
             document.title = name ? BASE + " – " + name : BASE;
           }
+          let tries = 0;
+          const MAX_TRIES = 50;
           function init() {
             if (window.Reveal && Reveal.on) {
               Reveal.on("ready", updateTitle);
               Reveal.on("slidechanged", updateTitle);
               updateTitle();
-            } else {
+            } else if (tries++ < MAX_TRIES) {
               setTimeout(init, 200);
             }
           }
