@@ -11,9 +11,6 @@ project:
     # skannar þær ekki, svo við afritum möppuna inn í úttakið.
     - img/slides
 
-execute:
-  freeze: auto
-
 book:
   title: "Upplýsingaverkfræði IÐN302G"
   author: "Helga Ingimundardóttir"
