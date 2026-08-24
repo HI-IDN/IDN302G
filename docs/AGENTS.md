@@ -6,7 +6,7 @@ University of Iceland. Published at [hi-idn.github.io/IDN302G](https://hi-idn.gi
 ## Structure
 
 ```
-public/
+./
 ├── docs/             ← Source for the Quarto book; edit content here
 │   ├── about-course/ ← Course overview, schedule, learning outcomes, repo guide
 │   ├── github/       ← Git og GitHub module
@@ -61,7 +61,7 @@ gitignored, so nothing you have cached locally reaches CI.
   `docs/.quarto/_freeze/<chapter>/` and render again. Quarto will not re-execute a chunk whose
   source has not changed, even when the cached result is wrong.
 
-Use the `Makefile` in the repository root (`public/`) for local work:
+Use the `Makefile` in the repository root for local work:
 
 - `make` — render only changed pages (fast, for content edits)
 - `make full` — full render; required after `_quarto.yml`, `styles/*.scss`, or any
