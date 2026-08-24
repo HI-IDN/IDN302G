@@ -16,7 +16,7 @@ sá sem hefur hann getur gert allt sem þú mátt gera, í þínu nafni.
 ```r
 # ALDREI SVONA
 svar <- request("https://api.example.is/gogn") |>
-  req_headers(Authorization = "Bearer ghp_R4nD0mT0k3nH3r") |>
+  req_headers(Authorization = "Bearer LYKILLINN-MINN") |>
   req_perform()
 ```
 
@@ -30,8 +30,16 @@ Rétta leiðin er að geyma lykilinn í **umhverfisbreytu** utan geymslunnar. Í
 
 ``` bash
 # ~/.Renviron  — eða .Renviron í rót verkefnisins
-GITHUB_TOKEN=ghp_R4nD0mT0k3nH3r
+GITHUB_TOKEN=<lykillinn-thinn-hingad>
 ```
+
+::: {.callout-note}
+## Plasshaldari, ekki alvöru lykill
+
+Raunverulegur GitHub-lykill byrjar á `ghp_` og er 40 stafir. Slíkur strengur er hér vísvitandi
+**ekki** notaður, jafnvel sem dæmi: leyndarmálaskannar leita að því sniði og myndu flagga
+skjölunina. Notaðu sama hátt í þínum eigin dæmum og README-skrám.
+:::
 
 Endurræstu R og lestu hann með `Sys.getenv()`:
 

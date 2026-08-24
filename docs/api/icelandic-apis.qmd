@@ -206,10 +206,12 @@ Tölurnar eru í `value`, og heiti áranna í `dimension`. Að setja þetta sama
 ## R
 
 ```{r}
-mannfjoldi <- data.frame(
-  ar         = as.integer(names(d$dimension[["Ár"]]$category$label)),
-  mannfjoldi = d$value
-)
+# index gefur stodu hvers ars i value-vigrinum. Rodun label-hlutarins er
+# ekki skilgreind i JSON og ma ekki treysta a hana.
+idx <- unlist(d$dimension[["Ár"]]$category$index)
+ar  <- names(idx)[order(idx)]
+
+mannfjoldi <- data.frame(ar = as.integer(ar), mannfjoldi = d$value)
 mannfjoldi
 ```
 
@@ -229,7 +231,10 @@ mannfjoldi |>
 ``` python
 import pandas as pd
 
-ar = list(d["dimension"]["Ár"]["category"]["label"].values())
+# index gefur stöðu hvers árs í value-listanum. Röðun label-hlutarins er
+# ekki skilgreind í JSON og má ekki treysta á hana.
+cat = d["dimension"]["Ár"]["category"]
+ar = [k for k, _ in sorted(cat["index"].items(), key=lambda kv: kv[1])]
 
 mannfjoldi = pd.DataFrame({
     "ar": [int(a) for a in ar],
