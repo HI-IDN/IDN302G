@@ -38,7 +38,7 @@ jobs:
           use-public-rspm: true
 
       - name: Install R packages
-        run: Rscript -e 'install.packages("plotly")'
+        run: Rscript -e 'install.packages(c("knitr", "plotly"))'
 
       - name: Render book and standalone slides
         working-directory: docs
