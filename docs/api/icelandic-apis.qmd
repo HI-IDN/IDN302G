@@ -552,7 +552,8 @@ polygon + active        9
 
 Úr 776 í 9 — og þú reiknar fjarlægð á níu stöðvar í stað 776.
 
-#### Hvaðan kemur marghyrningurinn?
+::: {.callout-note}
+## Hvaðan kemur marghyrningurinn?
 
 Þú teiknar hann sjálf/ur: kassi utan um punktinn, radíus umreiknaður í gráður. Breiddargráða er
 alls staðar ~111 km, en lengdargráða styttist í $111\cos\varphi$ — aðeins ~49 km á Íslandi, svo
@@ -560,6 +561,7 @@ kassinn er breiðari í lengd en breidd.
 
 Fyrir 5 km um VR-II gefur það `POLYGON((-22.0589 64.0936, -21.8524 64.0936, -21.8524 64.1837,
 -22.0589 64.1837, -22.0589 64.0936))` — og **9 virkar stöðvar**.
+:::
 
 ::: {.callout-tip}
 ## Tvennt sem klikkar alltaf
@@ -572,8 +574,7 @@ sjálfa — um 60 m á kant fyrir VR-II — svo hann finnur enga veðurstöð.
 :::
 
 **Reiknaðu fjarlægðina** með
-[haversine-formúlunni](https://en.wikipedia.org/wiki/Haversine_formula) (ekkert íslenskt heiti
-er til yfir hana), sem gefur stórbaugsfjarlægð milli tveggja hnita á kúlu:
+[haversine-formúlunni](https://en.wikipedia.org/wiki/Haversine_formula), sem gefur stórbaugsfjarlægð milli tveggja hnita á kúlu:
 
 $$
 d = 2r \arcsin\!\left(\sqrt{\sin^2\!\frac{\varphi_2-\varphi_1}{2}
