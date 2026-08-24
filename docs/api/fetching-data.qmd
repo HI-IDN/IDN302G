@@ -554,9 +554,7 @@ og allt sem skilmálar þjónustunnar banna þér að dreifa. Sjá
 ::: {.callout-tip}
 ## Í Quarto
 
-`execute: freeze: auto` gerir það sama sjálfkrafa fyrir kóðabúta: niðurstöður eru geymdar og
-búturinn er ekki keyrður aftur nema hann breytist. Þessi bók notar einmitt það, sem er ástæðan
-fyrir því að hún byggist í skýinu án þess að R sé sett upp þar.
+`execute: freeze: auto` getur fryst niðurstöður keyranlegs kóða svo bútur keyrist ekki aftur nema hann breytist. Í þessari bók er það hins vegar ekki notað í CI; GitHub Actions setur upp R og keyrir runnable R-búta frá grunni við hverja byggingu (sjá `.github/workflows/publish.yml`).
 :::
 
 ## Æfing
