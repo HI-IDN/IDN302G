@@ -1,0 +1,624 @@
+---
+title: "Íslenskar vefþjónustur"
+description: >-
+  Tvö raunveruleg dæmi: Hagstofan (POST með fyrirspurn, json-stat2) og
+  Veðurstofan (GET, OpenAPI-skjölun) — með lifandi svari beint í vafranum.
+---
+
+Hingað til hafa dæmin snúist um GitHub. Hér eru tvær íslenskar þjónustur sem þú getur notað í
+verkefnum, og þær sýna mynstur sem GitHub gerir ekki: fyrirspurn send með `POST`, og formleg
+vélleshæf skjölun.
+
+## Hagstofan
+
+Hagstofan keyrir **PxWeb**, sama kerfi og hagstofur á Norðurlöndunum. Það er ólíkt GitHub að
+því leyti að þú sækir gögnin með `POST`, ekki `GET`: taflan getur verið risastór, svo þú sendir
+inn *fyrirspurn* um hvaða sneið þú vilt.
+
+### Fyrst: hvað er í töflunni?
+
+Gagnasöfnin eru í tré sem þú getur flakkað um. Efsta lagið:
+
+```
+https://px.hagstofa.is/pxis/api/v1/is/
+```
+
+Hver `GET` skilar möppum þar til þú lendir á töflu — skrá sem endar á `.px`. Við notum
+lykiltölur mannfjöldans:
+
+```
+https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/1_yfirlit/Yfirlit_mannfjolda/MAN00000.px
+```
+
+`GET` á töfluna sjálfa skilar **lýsigögnum** (e. *metadata*) — hvaða breytur eru í boði og
+hvaða gildi þær mega taka:
+
+``` json
+{
+  "title": "Lykiltölur mannfjöldans 1703-2026",
+  "variables": [
+    { "code": "Ár", "text": "Ár", "values": ["1703", "1734", "…", "2026"], "time": true },
+    { "code": "Eining", "text": "Eining",
+      "values": ["0", "1", "2", "3", "4", "5"],
+      "valueTexts": ["Mannfjöldi 1. janúar", "Árleg fjölgun", "Fjölgun",
+                     "Aðfluttir umfram brottflutta", "Fæddir umfram dána",
+                     "Leiðréttingarþáttur"] }
+  ]
+}
+```
+
+::: {.callout-important}
+## Lestu lýsigögnin fyrst
+
+Taktu eftir að `values` eru **kóðar** (`"0"`) en `valueTexts` eru **heitin** (`"Mannfjöldi 1.
+janúar"`). Í fyrirspurninni notar þú kóðana, ekki heitin. Þetta er algengasta ástæðan fyrir því
+að fyrsta PxWeb-fyrirspurnin skilar villu.
+:::
+
+### Svo: fyrirspurnin
+
+`POST` á sömu slóð með JSON-hlut sem segir hvaða gildi þú vilt:
+
+``` json
+{
+  "query": [
+    { "code": "Ár",     "selection": { "filter": "item",
+                                       "values": ["2020","2021","2022","2023","2024","2025","2026"] } },
+    { "code": "Eining", "selection": { "filter": "item", "values": ["0"] } }
+  ],
+  "response": { "format": "json-stat2" }
+}
+```
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+library(httr2)
+
+slod <- paste0("https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/",
+               "1_yfirlit/Yfirlit_mannfjolda/MAN00000.px")
+
+fyrirspurn <- list(
+  query = list(
+    list(code = "Ár",
+         selection = list(filter = "item",
+                          values = as.character(2020:2026))),
+    list(code = "Eining",
+         selection = list(filter = "item", values = list("0")))
+  ),
+  response = list(format = "json-stat2")
+)
+
+svar <- request(slod) |>
+  req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
+  req_body_json(fyrirspurn) |>
+  req_perform()
+
+resp_status(svar)
+d <- resp_body_json(svar, simplifyVector = TRUE)
+str(d, max.level = 1)
+```
+
+Útkoma:
+
+```
+[1] 200
+
+List of 11
+ $ class    : chr "dataset"
+ $ label    : chr "Lykiltölur mannfjöldans 1703-2026 by Ár og Eining"
+ $ source   : chr "Hagstofa Íslands, Hagskinna"
+ $ updated  : chr "2018-03-22T14:57:00Z"
+ $ id       : chr [1:2] "Ár" "Eining"
+ $ size     : int [1:2] 7 1
+ $ dimension:List of 2
+ $ value    : int [1:7] 354042 358298 364917 375218 383726 389444 394324
+ $ role     :List of 1
+ $ version  : chr "2.0"
+ $ extension:List of 1
+```
+
+Taktu eftir `$value`: tölurnar sjö sem þú baðst um eru þarna, en árin sjálf eru í `$dimension`.
+Það er einkenni json-stat2 og efni næsta undirkafla.
+
+## Python
+
+``` python
+import requests
+
+slod = ("https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/"
+        "1_yfirlit/Yfirlit_mannfjolda/MAN00000.px")
+
+fyrirspurn = {
+    "query": [
+        {"code": "Ár",
+         "selection": {"filter": "item",
+                       "values": [str(a) for a in range(2020, 2027)]}},
+        {"code": "Eining",
+         "selection": {"filter": "item", "values": ["0"]}},
+    ],
+    "response": {"format": "json-stat2"},
+}
+
+svar = requests.post(
+    slod,
+    json=fyrirspurn,                       # setur Content-Type sjálfkrafa
+    headers={"User-Agent": "IDN302G-nemandi (nafn@hi.is)"},
+    timeout=30,
+)
+svar.raise_for_status()
+d = svar.json()
+
+print(svar.status_code)
+print(list(d.keys()))
+print(d["value"])
+```
+
+Útkoma:
+
+```
+200
+['class', 'label', 'source', 'updated', 'id', 'size', 'dimension', 'value',
+ 'role', 'version', 'extension']
+[354042, 358298, 364917, 375218, 383726, 389444, 394324]
+```
+
+Sama svar og R fær — enda er þetta sama JSON-skjalið. Munurinn er aðeins hvernig málin
+tvö birta það: R sem `List of 11`, Python sem `dict` með ellefu lyklum.
+
+Taktu eftir `json=` frekar en `data=` — `requests` raðar hlutnum sjálft í JSON og setur réttan
+`Content-Type`. Með `data=` þyrftirðu að gera hvort tveggja handvirkt.
+:::
+
+### Að lesa json-stat2
+
+Svarið er á sniðinu **json-stat2**, sem geymir tölurnar í einum flötum vigri og víddirnar
+sérstaklega. Það kemur á óvart í fyrsta sinn:
+
+```{r}
+#| message: false
+library(jsonlite)
+
+# Raunverulegt svar, stytt — sótt af Hagstofunni
+svar_txt <- '{
+  "label": "Lykiltölur mannfjöldans 1703-2026 by Ár og Eining",
+  "size": [7, 1],
+  "dimension": {
+    "Ár": { "category": { "index": {"2020":0,"2021":1,"2022":2,"2023":3,
+                                    "2024":4,"2025":5,"2026":6},
+                          "label": {"2020":"2020","2021":"2021","2022":"2022","2023":"2023",
+                                    "2024":"2024","2025":"2025","2026":"2026"} } },
+    "Eining": { "category": { "label": {"0": "Mannfjöldi 1. janúar"} } }
+  },
+  "value": [354042, 358298, 364917, 375218, 383726, 389444, 394324]
+}'
+
+d <- fromJSON(svar_txt)
+d$label
+d$size
+```
+
+Tölurnar eru í `value`, og heiti áranna í `dimension`. Að setja þetta saman í töflu:
+
+::: {.panel-tabset}
+## R
+
+```{r}
+# index gefur stodu hvers ars i value-vigrinum. Rodun label-hlutarins er
+# ekki skilgreind i JSON og ma ekki treysta a hana.
+idx <- unlist(d$dimension[["Ár"]]$category$index)
+ar  <- names(idx)[order(idx)]
+
+mannfjoldi <- data.frame(ar = as.integer(ar), mannfjoldi = d$value)
+mannfjoldi
+```
+
+Þaðan er þetta venjuleg gagnavinnsla:
+
+```{r}
+#| message: false
+library(dplyr)
+
+mannfjoldi |>
+  mutate(fjolgun = mannfjoldi - lag(mannfjoldi),
+         hlutfall = round(fjolgun / lag(mannfjoldi) * 100, 2))
+```
+
+## Python
+
+``` python
+import pandas as pd
+
+# index gefur stöðu hvers árs í value-listanum. Röðun label-hlutarins er
+# ekki skilgreind í JSON og má ekki treysta á hana.
+cat = d["dimension"]["Ár"]["category"]
+ar = [k for k, _ in sorted(cat["index"].items(), key=lambda kv: kv[1])]
+
+mannfjoldi = pd.DataFrame({
+    "ar": [int(a) for a in ar],
+    "mannfjoldi": d["value"],
+})
+
+mannfjoldi["fjolgun"] = mannfjoldi["mannfjoldi"].diff()
+mannfjoldi["hlutfall"] = (mannfjoldi["fjolgun"] /
+                          mannfjoldi["mannfjoldi"].shift() * 100).round(2)
+mannfjoldi
+```
+
+```
+     ar  mannfjoldi  fjolgun  hlutfall
+0  2020      354042      NaN       NaN
+1  2021      358298   4256.0      1.20
+2  2022      364917   6619.0      1.85
+3  2023      375218  10301.0      2.82
+4  2024      383726   8508.0      2.27
+5  2025      389444   5718.0      1.49
+6  2026      394324   4880.0      1.25
+```
+
+`diff()` og `shift()` gegna sama hlutverki og `lag()` í R.
+
+Taktu eftir tvennu sem er ólíkt R-flipanum: `pandas` sýnir `NaN` þar sem R sýnir `NA`, og
+`fjolgun` verður **kommutala** (`4256.0`) en ekki heiltala. Ástæðan er að `NaN` er
+fleytitölugildi í `numpy`, svo heiltöludálkur með einu `NaN` breytist allur í fleytitölur.
+Þurfirðu heiltölur áfram má nota `.astype("Int64")` — stóra I-ið gefur heiltölugerð sem
+þolir tómt gildi.
+:::
+
+::: {.callout-tip}
+## Einfaldari leið
+
+Sé json-stat2 fyrirhöfnin ekki þess virði geturðu beðið um `"format": "csv"` í stað
+`"json-stat2"` og lesið svarið beint með `readr::read_csv()`. Þú tapar lýsigögnunum en færð
+töflu strax.
+:::
+
+## Veðurstofan
+
+Veðurstofan býður `GET`-þjónustu á `api.vedur.is`, og með henni **formlega skjölun** á
+[api.vedur.is/weather](https://api.vedur.is/weather/).
+
+Sú síða er *Swagger UI*, sjálfvirkt viðmót byggt á **OpenAPI**-skilgreiningu: vélleshæfri
+lýsingu á öllum endapunktum þjónustunnar. Skilgreininguna sjálfa má sækja:
+
+```
+https://api.vedur.is/weather/openapi.json
+```
+
+::: {.callout-note}
+## Af hverju OpenAPI skiptir máli
+
+Þegar þjónusta birtir OpenAPI-skrá þarftu ekki að giska. Þar stendur hver endapunktur, hvaða
+færibreytur hann tekur, hvað hann skilar og hvaða stöðukóðar eru mögulegir. Mörg tól geta lesið
+hana og búið til kóða sjálfkrafa. Sé slík skrá til, byrjaðu þar.
+:::
+
+Einfaldur endapunktur — listi yfir veðurstöðvar. Skjölunin segir að hann taki `station_id`,
+svo við biðjum um þrjár tilteknar stöðvar:
+
+```
+https://api.vedur.is/weather/stations?station_id=1&station_id=178&station_id=1350
+```
+
+Þessa slóð máttu opna beint í vafra. Svarið er fylki af hlutum:
+
+``` json
+[
+  {
+    "station": 1,
+    "name": "Reykjavík",
+    "abbr": "rvk",
+    "type": "sk",
+    "lat": 64.1288833618,
+    "lon": -21.9081897736,
+    "ele": 60.2000007629,
+    "wigos": "0-20000-0-04030",
+    "owner": "Veðurstofa Íslands",
+    "start": 1920,
+    "ending": null
+  },
+  …
+]
+```
+
+Fylki af hlutum með sömu lykla er einmitt formið sem verður að töflu án fyrirhafnar:
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+library(httr2); library(dplyr)
+
+stodvar <- request("https://api.vedur.is/weather/stations") |>
+  req_url_query(station_id = c(1, 178, 1350), .multi = "explode") |>
+  req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
+  req_perform() |>
+  resp_body_json(simplifyVector = TRUE)
+
+stodvar |>
+  select(station, name, lat, lon, ele, start)
+```
+
+```
+  station                 name      lat       lon  ele start
+1       1            Reykjavík 64.12888 -21.90819 60.2  1920
+2     178        Stykkishólmur 65.07403 -22.73388 13.2  1845
+3    1350 Keflavíkurflugvöllur 63.98290 -22.60052 50.9  2008
+```
+
+`.multi = "explode"` endurtekur `station_id=` fyrir hvert gildi, sem er það sem þessi þjónusta
+býst við.
+
+## Python
+
+``` python
+import requests
+import pandas as pd
+
+svar = requests.get(
+    "https://api.vedur.is/weather/stations",
+    params={"station_id": [1, 178, 1350]},
+    headers={"User-Agent": "IDN302G-nemandi (nafn@hi.is)"},
+    timeout=30,
+)
+svar.raise_for_status()
+
+stodvar = pd.DataFrame(svar.json())
+stodvar[["station", "name", "lat", "lon", "ele", "start"]]
+```
+
+```
+   station                  name        lat        lon        ele  start
+0        1             Reykjavík  64.128883 -21.908190  60.200001   1920
+1      178         Stykkishólmur  65.074028 -22.733879  13.200000   1845
+2     1350  Keflavíkurflugvöllur  63.982899 -22.600519  50.900002   2008
+```
+
+Listi sem gildi í `params` verður sjálfkrafa að endurteknu `station_id=` í slóðinni.
+:::
+
+::: {.callout-important}
+## Óþekktar færibreytur eru þagðar í hel
+
+Sleppirðu `station_id` skilar endapunkturinn **öllum 776 stöðvunum**. Og biðjirðu um eitthvað
+sem er ekki til — `?limit=3` til dæmis — færðu líka allar 776. Þjónustan hunsar færibreytu sem
+hún þekkir ekki, svarar `200`, og ekkert bendir til að nokkuð sé að.
+
+Þetta er nákvæmlega gildran úr [HTTP-kaflanum](http.qmd): `200` þýðir að samskiptin gengu, ekki
+að þú hafir fengið það sem þú baðst um. Athugaðu alltaf **hversu margar færslur** komu til baka
+og berðu saman við það sem þú bjóst við.
+:::
+
+## Prófaðu sjálf/ur — lifandi svar
+
+Hnappurinn hér að neðan sendir raunverulega beiðni á Veðurstofuna **úr vafranum þínum** og
+sýnir svarið óbreytt. Þetta er sama beiðni og R-kóðinn að ofan sendir:
+
+```{=html}
+<div class="api-demo">
+  <div class="api-demo-url"><code>GET https://api.vedur.is/weather/stations?station_id=1&amp;station_id=178</code></div>
+  <button id="api-demo-btn" class="api-demo-btn" type="button" aria-controls="api-demo-out" aria-describedby="api-demo-status">Senda beiðni</button>
+  <span id="api-demo-status" class="api-demo-status" role="status" aria-live="polite"></span>
+  <pre id="api-demo-out" class="api-demo-out" hidden aria-live="polite" aria-label="Svar frá vefþjónustu"></pre
+</div>
+
+<style>
+.api-demo{border:1px solid #ddd;border-radius:8px;padding:1em;margin:1.2em 0;background:#fafafa}
+.api-demo-url{font-size:.85rem;margin-bottom:.7em;color:#444}
+.api-demo-btn{font:inherit;font-weight:600;cursor:pointer;border:1px solid #10099F;
+  background:#10099F;color:#fff;padding:.4em 1em;border-radius:6px}
+.api-demo-btn:hover{filter:brightness(1.15)}
+.api-demo-btn[disabled]{opacity:.6;cursor:progress}
+.api-demo-status{margin-left:.8em;font-size:.88rem;font-weight:600}
+.api-demo-status.ok{color:#1a9b8d} .api-demo-status.err{color:#b03a24}
+.api-demo-out{margin-top:.8em;max-height:22em;overflow:auto;background:#262626;color:#eee;
+  padding:.8em 1em;border-radius:6px;font-size:.82rem;line-height:1.45}
+</style>
+
+<script>
+document.getElementById('api-demo-btn').addEventListener('click', async function () {
+  const btn = this;
+  const out = document.getElementById('api-demo-out');
+  const st  = document.getElementById('api-demo-status');
+  btn.disabled = true;
+  st.className = 'api-demo-status';
+  st.textContent = 'Sendi…';
+  const t0 = performance.now();
+  try {
+    const r = await fetch('https://api.vedur.is/weather/stations?station_id=1&station_id=178');
+    const ms = Math.round(performance.now() - t0);
+    const txt = await r.text();
+    st.className = 'api-demo-status ' + (r.ok ? 'ok' : 'err');
+    st.textContent = (r.statusText ? r.status + ' ' + r.statusText : String(r.status))
+                   + ' · ' + ms + ' ms';
+    try { out.textContent = JSON.stringify(JSON.parse(txt), null, 2); }
+    catch (e) { out.textContent = txt; }
+    out.hidden = false;
+  } catch (e) {
+    st.className = 'api-demo-status err';
+    st.textContent = 'Beiðnin komst ekki á leiðarenda: ' + e.message;
+    out.textContent = 'Þjónustan gæti verið niðri, eða netið lokað á hana.';
+    out.hidden = false;
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+```
+
+::: {.callout-note}
+## Af hverju þetta virkar í vafranum
+
+Vafrar banna vefsíðu að sækja gögn af öðru léni nema þjónustan leyfi það sérstaklega. Það
+heitir **CORS** (*Cross-Origin Resource Sharing*), og þjónustan gefur leyfið með hausnum
+`Access-Control-Allow-Origin`. Veðurstofan sendir `*`, sem þýðir "hver sem er má".
+
+Sendi þjónusta ekki þann haus færðu villu í vafranum þótt slóðin sé rétt — og *sama* beiðni
+virkar samt fínt úr R eða `curl`. CORS er regla vafrans, ekki þjónustunnar. Rekist þú á
+`CORS error` í vafranum en ekki í R, þá er það þetta.
+:::
+
+## Æfingar
+
+Tvær æfingar, ein á hvora þjónustu. Báðar enda á sama stað: **er svarið sem þú fékkst
+raunverulega nothæft?**
+
+### 1. Hagstofan — hverjir klára BS-námið?
+
+Hversu stór hluti þeirra sem byrja í þriggja ára bakkalárnámi í verkfræði lýkur því? Og er
+það hlutfall hærra eða lægra en í öðrum greinum?
+
+Taflan heitir **SKO04208b**, *Brautskráningarhlutfall og árgangsbrotthvarf í þriggja ára
+bakkalárnámi eftir námssviði*:
+
+```
+https://px.hagstofa.is/pxis/api/v1/is/Samfelag/skolamal/4_haskolastig/1_hsProf/SKO04208b.px
+```
+
+1. Sæktu lýsigögnin með `GET`. Hvaða breytur eru í boði og hvaða gildi mega þær taka?
+2. Finndu kóðann fyrir *Verkfræði, framleiðsla og mannvirkjagerð* — mundu að nota **kóðana**
+   úr `values`, ekki heitin úr `valueTexts`.
+3. Sendu `POST` og sæktu **hlutfall** (ekki fjölda) fyrir brautskráða, brottfallna og þá sem
+   eru enn í námi, fyrir innritunarárið 2017.
+4. Berðu verkfræðisviðið saman við `Alls` og við tvö önnur svið að eigin vali.
+
+Niðurstaðan lítur svona út:
+
+```
+námssvið                                    brautskráðir  brottfallnir  enn í námi
+Alls                                                73.5          19.6         6.9
+Raunvísindi, stærðfræði og tölfræði                 71.0          22.5         6.5
+Upplýsinga- og samskiptatækni                       68.6          23.4         8.0
+Verkfræði, framleiðsla og mannvirkjagerð            84.3          11.9         3.8
+```
+
+::: {.callout-important}
+## Lestu `Tími` áður en þú túlkar töluna
+
+Breytan `Tími` hefur eitt gildi: `n+3`, sem `valueTexts` þýðir sem **„Sex árum eftir
+innritun"**.
+
+Þessi 84,3% eru því ekki hlutfall þeirra sem kláruðu **á þremur árum** — heldur þeirra sem
+voru búnir **sex árum** eftir að þeir byrjuðu. Það er allt önnur fullyrðing, og hún stendur
+hvergi í tölunni sjálfri.
+
+Fullyrðing eins og „84% verkfræðinema klára á réttum tíma" væri því röng, byggð á réttum
+gögnum. Lýsigögnin ráða því hvað talan þýðir.
+:::
+
+Svaraðu svo:
+
+5. Hvers vegna leggja dálkarnir þrír saman í 100?
+6. Innritunarárin í töflunni eru aðeins **tvö** (2014 og 2017). Hvers vegna er varasamt að
+   draga ályktun um þróun út frá tveimur punktum?
+7. Sæktu sömu tölur skipt eftir kyni. Breytist myndin?
+
+### 2. Veðurstofan — hvaða stöð á forritið að lesa?
+
+Segjum að þú ætlir að smíða lítið forrit sem sýnir veðrið uppi í skóla. Fyrsta spurningin er:
+**hvaða veðurstöð á það að lesa?**
+
+Augljósa svarið er sú sem er næst VR-II (Hjarðarhaga 6, 107 Reykjavík). En áður en þú byggir
+forritið á því svari þarftu að ganga úr skugga um að það sé **nothæft** — stöð sem hætti
+mælingum 1963 er jafn nálæg og hún var, og jafn gagnslaus.
+
+**Finndu hnitin.** Þú getur flett þeim upp með annarri vefþjónustu,
+[Nominatim](https://nominatim.openstreetmap.org/) frá OpenStreetMap:
+
+```
+https://nominatim.openstreetmap.org/search?q=Hjarðarhagi+6,+107+Reykjavík&format=json
+```
+
+**Síaðu í beiðninni, ekki eftir á.** Endapunkturinn skilar 776 stöðvum sé hann beðinn um allt.
+Skjölunin sýnir tvær færibreytur sem gera vinnuna fyrir þig:
+
+| Færibreyta | Hvað hún gerir |
+|---|---|
+| `active=true` | aðeins stöðvar sem mæla enn |
+| `polygon=POLYGON((…))` | aðeins stöðvar innan tiltekins svæðis |
+
+```
+https://api.vedur.is/weather/stations
+  ?active=true
+  &polygon=POLYGON((-22.0589 64.0936,-21.8524 64.0936,-21.8524 64.1837,-22.0589 64.1837,-22.0589 64.0936))
+```
+
+Berðu saman hvað kemur til baka:
+
+```
+engin sía             776 stöðvar
+active=true           347
+polygon                21
+polygon + active        9
+```
+
+Úr 776 í 9 — og þú reiknar fjarlægð á níu stöðvar í stað 776.
+
+::: {.callout-note}
+## Hvaðan kemur marghyrningurinn?
+
+Þú teiknar hann sjálf/ur: kassi utan um punktinn, radíus umreiknaður í gráður. Breiddargráða er
+alls staðar ~111 km, en lengdargráða styttist í $111\cos\varphi$ — aðeins ~49 km á Íslandi, svo
+kassinn er breiðari í lengd en breidd.
+
+Fyrir 5 km um VR-II gefur það `POLYGON((-22.0589 64.0936, -21.8524 64.0936, -21.8524 64.1837,
+-22.0589 64.1837, -22.0589 64.0936))` — og **9 virkar stöðvar**.
+:::
+
+::: {.callout-tip}
+## Tvennt til að hafa hugfast sem gæti annars valdið villu
+
+**Hnitaröðin er `lengd breidd`** (e. *lon lat*) — öfugt við `lat,lon` sem flestar þjónustur
+skila. Marghyrningurinn þarf líka að lokast: fyrsta og síðasta hnitið eru þau sömu.
+
+**`boundingbox` frá Nominatim dugar ekki.** Fyrir heimilisfang er hann kassi utan um bygginguna
+sjálfa — um 60 m á kant fyrir VR-II — svo hann finnur enga veðurstöð.
+:::
+
+**Reiknaðu fjarlægðina** með
+[haversine-formúlunni](https://en.wikipedia.org/wiki/Haversine_formula), sem gefur stórbaugsfjarlægð milli tveggja hnita á kúlu:
+
+$$
+d = 2r \arcsin\!\left(\sqrt{\sin^2\!\frac{\varphi_2-\varphi_1}{2}
+    + \cos\varphi_1 \cos\varphi_2 \sin^2\!\frac{\lambda_2-\lambda_1}{2}}\right)
+$$
+
+þar sem $\varphi$ er breiddargráða, $\lambda$ lengdargráða og $r \approx 6371$ km. Mundu að
+umbreyta gráðum í radíana.
+
+**Sannreyndu svarið.** Sæktu líka stöðvarnar án `active`-síunnar og berðu saman:
+
+1. Hver er næsta stöð þegar allar stöðvar eru með? Er hún enn í notkun?
+2. Hver er næsta **virka** stöðin, og hversu miklu munar á þeim?
+3. Hversu margar af 776 stöðvunum eru virkar? Hvað segir það þér um að treysta listanum óséðum?
+4. Forritið þitt á að sýna veðrið **núna**. Hvaða reit í svarinu þarftu að skoða til að vita
+   hvort stöð dugi í það?
+5. Ef þú vildir í staðinn bera saman veður í dag við veður fyrir 50 árum — væri sama stöð rétt?
+   Hvers vegna ekki?
+
+::: {.callout-important}
+## Sami lærdómur og í fyrri æfingunni
+
+Þjónustan skilar aflögðum stöðvum með þeim virku, jafn gildum á að líta. Ekkert í mælingunum
+sjálfum segir þér að stöð hafi hætt árið 1963 — það stendur í **lýsigögnunum**, í reitnum
+`ending`.
+
+Í Hagstofuæfingunni réð `Tími` því hvað talan þýddi. Hér ræður `ending` því hvort stöðin sé
+nothæf. Í bæði skiptin eru það lýsigögnin, ekki mælingarnar, sem skera úr.
+:::
+
+::: {.callout-warning}
+## Hnitin þín geta snúið svarinu við
+
+Munurinn á tveimur næstu stöðvum er um **50 metrar** — minna en skekkjan sem þú færð með því að
+slá inn hnit „á að giska" fyrir bygginguna.
+
+Þetta er ekki tilgáta: fyrsta útgáfa þessarar æfingar notaði ágiskuð hnit sem lágu 100 m sunnar
+en VR-II stendur í raun, og þá raðaðist listinn í **öfuga röð**.
+
+Skráðu því alltaf hvaða hnit þú notaðir og hvaðan þau komu. Það er forsenda þess að einhver
+annar fái sömu niðurstöðu.
+:::

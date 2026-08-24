@@ -1,0 +1,572 @@
+---
+title: "Að sækja gögn"
+description: >-
+  Beiðni byggð, svar lesið, villur meðhöndlaðar og allar síður sóttar — sömu
+  skref í R (httr2) og Python (requests).
+---
+
+Hér er sama verkið unnið í tveimur málum. Veldu flipann sem á við þig — hugtökin eru þau sömu,
+aðeins rithátturinn er ólíkur.
+
+::: {.callout-note}
+## Uppsetning
+
+::: {.panel-tabset}
+## R
+
+``` r
+install.packages(c("httr2", "jsonlite", "dplyr"))
+```
+
+`httr2` er arftaki eldri pakkans `httr`, sem er ekki lengur í virkri þróun. Mörg dæmi á netinu
+nota `httr` — rithátturinn er annar og þeir blandast ekki.
+
+## Python
+
+``` bash
+pip install requests pandas
+```
+
+`requests` er staðalvalið fyrir HTTP í Python. `urllib` fylgir með Python en er óþægilegra.
+:::
+:::
+
+## Af hverju ekki bara að lesa slóðina beint
+
+Bæði mál bjóða styttri leið — `jsonlite::fromJSON(url)` í R, `pandas.read_json(url)` í Python.
+Hún virkar til að kíkja á gögn, en felur allt sem skiptir máli þegar eitthvað fer úrskeiðis: þú
+sérð ekki stöðukóðann, ekki hausana, og færð óskiljanlega villu í stað `404`.
+
+Í skýrslum sem aðrir eiga að treysta notarðu réttu tólin.
+
+## Beiðni í skrefum
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+library(httr2)
+
+svar <- request("https://api.github.com") |>
+  req_url_path("repos", "HI-IDN", "IDN302G") |>
+  req_headers("Accept" = "application/vnd.github+json") |>
+  req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
+  req_perform()
+
+resp_status(svar)
+resp_content_type(svar)
+```
+
+```
+[1] 200
+[1] "application/json"
+```
+
+Ekkert er sent fyrr en `req_perform()` er kallað, svo þú getur skoðað beiðnina fyrst:
+
+```{r}
+#| eval: false
+request("https://api.github.com") |>
+  req_url_path("search", "repositories") |>
+  req_url_query(q = "quarto", per_page = 5) |>
+  req_dry_run()
+```
+
+```
+GET /search/repositories HTTP/1.1
+accept: */*
+accept-encoding: deflate, gzip
+host: api.github.com
+user-agent: httr2/1.3.0 r-curl/7.0.0 libcurl/8.14.1
+```
+
+`req_dry_run()` sýnir aðferðina, slóðina og alla hausa — en sendir ekkert.
+
+::: {.callout-warning}
+## Fyrirspurnarstrengurinn sést ekki hér
+
+Taktu eftir að `?q=quarto&per_page=5` vantar í úttakið að ofan. `req_dry_run()` prentar
+slóðina án fyrirspurnarstrengs, svo hún dugar til að skoða **hausa** en ekki til að staðfesta
+að færibreyturnar hafi ratað rétt. Til þess skoðarðu slóðina sjálfa:
+
+```{r}
+#| eval: false
+req <- request("https://api.github.com") |>
+  req_url_path("search", "repositories") |>
+  req_url_query(q = "quarto", per_page = 5)
+
+req$url
+```
+
+```
+[1] "https://api.github.com/search/repositories?q=quarto&per_page=5"
+```
+
+Þetta samsvarar `print(svar.url)` í Python.
+:::
+
+## Python
+
+``` python
+import requests
+
+svar = requests.get(
+    "https://api.github.com/repos/HI-IDN/IDN302G",
+    headers={
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "IDN302G-nemandi (nafn@hi.is)",
+    },
+    timeout=30,
+)
+
+svar.status_code
+svar.headers["Content-Type"]
+```
+
+```
+200
+'application/json; charset=utf-8'
+```
+
+Til að sjá hvernig slóðin varð eftir að færibreytur bættust við:
+
+``` python
+svar = requests.get(
+    "https://api.github.com/search/repositories",
+    params={"q": "quarto", "per_page": 5},
+    timeout=30,
+)
+print(svar.url)
+```
+
+```
+https://api.github.com/search/repositories?q=quarto&per_page=5
+```
+:::
+
+::: {.callout-tip}
+## Láttu pakkann byggja slóðina
+
+Notaðu `req_url_query()` (R) eða `params=` (Python) frekar en að líma saman streng. Þeir sjá um
+URL-kóðun sérstafa, svo `"jarðskjálfti á Reykjanesi"` virkar án þess að þú hugsir út í það.
+:::
+
+::: {.callout-warning}
+## Settu alltaf `timeout`
+
+Í Python bíður `requests` að eilífu ef þjónustan svarar ekki — skýrslan hangir án villu.
+Gefðu alltaf `timeout=`. `httr2` hefur sjálfgefið tímamark, svo þar er þetta valfrjálst.
+:::
+
+## Frá svari yfir í töflu
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+library(dplyr)
+
+leit <- request("https://api.github.com") |>
+  req_url_path("search", "repositories") |>
+  req_url_query(q = "quarto language:R", sort = "stars", per_page = 10) |>
+  req_user_agent("IDN302G-nemandi") |>
+  req_perform() |>
+  resp_body_json(simplifyVector = TRUE)
+
+leit$items |>
+  select(full_name, stargazers_count, language, updated_at) |>
+  arrange(desc(stargazers_count))
+```
+
+## Python
+
+``` python
+import requests
+import pandas as pd
+
+svar = requests.get(
+    "https://api.github.com/search/repositories",
+    params={"q": "quarto language:R", "sort": "stars", "per_page": 10},
+    headers={"User-Agent": "IDN302G-nemandi"},
+    timeout=30,
+)
+svar.raise_for_status()
+
+d = svar.json()
+df = pd.json_normalize(d["items"])
+
+df[["full_name", "stargazers_count", "language", "updated_at"]] \
+    .sort_values("stargazers_count", ascending=False)
+```
+
+`pd.json_normalize()` flettir líka út hreiðruð svæði: `owner.login` verður eigin dálkur.
+:::
+
+Útkoman lítur svona út:
+
+```
+                     full_name stargazers_count language           updated_at
+1           benmarwick/rrtools              721        R 2026-08-06T08:24:42Z
+2              gadenbuie/epoxy              217        R 2026-08-05T14:23:50Z
+3    surveydown-dev/surveydown              180        R 2026-08-20T22:28:19Z
+4          quarto-dev/quarto-r              161        R 2026-07-01T02:18:16Z
+5 andrewheiss/quarto-wordcount              151        R 2026-08-24T13:32:31Z
+```
+
+::: {.callout-note}
+## Tölurnar eru frá síðustu byggingu
+
+Leitin skilaði 1.124 geymslum þegar þessi síða var síðast byggð með GitHub Actions. Stjörnur og
+`updated_at` breytast stöðugt, svo þínar tölur verða aðrar — og röðin líka. Það er einmitt
+eðli gagna sem sótt eru um vefþjónustu: þau eru ekki föst, og þess vegna skiptir máli að skrá
+**hvenær** var sótt (sjá [góða starfshætti](good-practices.qmd)).
+:::
+
+## Villur
+
+::: {.panel-tabset}
+## R
+
+`httr2` kastar sjálfgefið villu ef stöðukóði er `4xx` eða `5xx`. Það er rétt hegðun.
+
+Þurfirðu að bregðast við sjálf/ur:
+
+```{r}
+#| eval: false
+svar <- request("https://api.github.com/repos/HI-IDN/ekki-til") |>
+  req_error(is_error = \(resp) FALSE) |>     # ekki kasta, ég sé um þetta
+  req_perform()
+
+resp_status(svar)
+
+if (resp_status(svar) == 404) {
+  message("Geymslan fannst ekki — athugaðu nafnið.")
+} else {
+  d <- resp_body_json(svar, simplifyVector = TRUE)
+}
+```
+
+```
+[1] 404
+Geymslan fannst ekki — athugaðu nafnið.
+```
+
+## Python
+
+`requests` kastar **ekki** villu sjálfkrafa — `svar.status_code` getur verið `404` og
+forritið haldið glaðlega áfram. Þú verður að kalla á `raise_for_status()`:
+
+``` python
+svar = requests.get("https://api.github.com/repos/HI-IDN/IDN302G", timeout=30)
+svar.raise_for_status()      # kastar HTTPError ef 4xx/5xx
+d = svar.json()
+```
+
+Þessi tekst (`200`) og heldur áfram þegjandi. Kalliðu á slóð sem er ekki til fellur það svona:
+
+```
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url:
+https://api.github.com/repos/HI-IDN/ekki-til
+```
+
+Eða meðhöndla sjálf/ur:
+
+``` python
+svar = requests.get("https://api.github.com/repos/HI-IDN/ekki-til", timeout=30)
+
+print(svar.status_code)
+print(svar.json()["message"])
+
+if svar.status_code == 404:
+    print("Geymslan fannst ekki — athugaðu nafnið.")
+else:
+    svar.raise_for_status()
+    d = svar.json()
+```
+
+```
+404
+Not Found
+Geymslan fannst ekki — athugaðu nafnið.
+```
+:::
+
+::: {.callout-important}
+## Þögul mistök eru verst
+
+Freistingin er að vefja allt í `try()` / `try:` svo skýrslan brotni ekki. Ekki gera það.
+Skýrsla sem klárast með röngum eða tómum gögnum er verri en skýrsla sem stoppar — því enginn
+tekur eftir villunni. Láttu hana falla og lagaðu ástæðuna.
+
+Þetta á sérstaklega við í Python, þar sem `200` er ekki sjálfgefið athugað.
+:::
+
+## Endurtilraunir og álagsmörk
+
+Sé þjónustan niðri (`5xx`) eða þú kominn yfir álagsmörk (`429`) er rétt viðbragð að bíða og
+reyna aftur.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+svar <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
+  req_retry(max_tries = 3) |>
+  req_throttle(rate = 30 / 60) |>    # í mesta lagi 30 beiðnir á mínútu
+  req_perform()
+```
+
+`req_retry()` virðir `Retry-After`-hausinn og bíður sjálfkrafa réttan tíma.
+
+## Python
+
+``` python
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
+
+retry = Retry(
+    total=3,
+    backoff_factor=1,                       # 1s, 2s, 4s …
+    status_forcelist=[429, 500, 502, 503, 504],
+    respect_retry_after_header=True,
+)
+
+s = requests.Session()
+s.mount("https://", HTTPAdapter(max_retries=retry))
+
+svar = s.get("https://api.github.com/repos/HI-IDN/IDN302G", timeout=30)
+```
+
+`Session` heldur líka tengingunni opinni milli beiðna, sem er hraðvirkara þegar þú sækir margt.
+:::
+
+## Allar síður
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+svor <- request("https://api.github.com") |>
+  req_url_path("repos", "HI-IDN", "IDN302G", "commits") |>
+  req_url_query(per_page = 100) |>
+  req_perform_iterative(
+    next_req = iterate_with_link_url(rel = "next"),
+    max_reqs = 10
+  )
+
+commits <- svor |>
+  lapply(resp_body_json, simplifyVector = TRUE) |>
+  bind_rows()
+
+nrow(commits)
+```
+
+```
+[1] 108
+```
+
+## Python
+
+`requests` les `Link`-hausinn sjálfkrafa í `svar.links`:
+
+``` python
+url = "https://api.github.com/repos/HI-IDN/IDN302G/commits"
+params = {"per_page": 100}
+allt = []
+
+for _ in range(10):                       # öryggisventill
+    svar = s.get(url, params=params, timeout=30)
+    svar.raise_for_status()
+    allt.extend(svar.json())
+
+    if "next" not in svar.links:
+        break
+    url = svar.links["next"]["url"]
+    params = None                         # slóðin ber þær nú þegar
+
+df = pd.json_normalize(allt)
+len(df)
+```
+
+```
+108
+```
+
+Fyrsta síðan skilaði 100 og sú næsta 8 — `Link`-hausinn sagði hvenær var hætt. Hefðirðu ekki
+farið gegnum allar síður hefðirðu misst af átta commits án þess að nokkuð benti til þess.
+:::
+
+::: {.callout-warning}
+## Alltaf öryggisventil á lykkjuna
+
+`max_reqs` (R) og `range(10)` (Python) eru ekki skraut. Án þeirra getur ein villa sótt gögn
+þar til þjónustan lokar á þig — eða lykkjan hættir aldrei.
+:::
+
+## Að geyma svarið
+
+Sæktu ekki sömu gögnin í hvert sinn sem skýrslan er þýdd.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+# skyndiminni: endurnýtir svar sem þjónustan segir óbreytt
+req <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
+  req_cache(tempdir())
+
+# eða vista hrá gögn
+d <- resp_body_json(svar, simplifyVector = TRUE)
+saveRDS(list(gogn = d, sott = Sys.time()), "data/github_raw.rds")
+```
+
+## Python
+
+``` python
+import json, datetime, pathlib
+
+# vista hrá gögn ásamt tímastimpli
+raw = {
+    "gogn": svar.json(),
+    "sott": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+}
+pathlib.Path("data").mkdir(exist_ok=True)
+pathlib.Path("data/github_raw.json").write_text(
+    json.dumps(raw, ensure_ascii=False, indent=2), encoding="utf-8"
+)
+```
+
+Þarftu skyndiminni sjálfkrafa er `pip install requests-cache` einfaldasta leiðin.
+:::
+
+Seinni leiðin — að vista svarið — er sú sem hentar skýrslum best: greiningin verður
+**endurtakanleg** því hún er ekki lengur háð því að þjónustan sé uppi eða hafi ekki breyst.
+
+::: {.callout-tip}
+## Quarto getur gert þetta fyrir þig
+
+Þurfirðu ekki hráu gögnin sjálf, heldur bara að skýrslan endurbyggist án þess að sækja aftur,
+þá býður Quarto upp á `execute: freeze: auto`. Þá eru niðurstöður kóðabútanna frystar og
+búturinn keyrður aftur aðeins ef hann breytist — sem þýðir líka að CI þarf ekki að setja upp
+R eða Python. Sjá [birtingu með GitHub Pages](../reproducible-reports/publishing.qmd).
+
+Þessi bók frystir ekki: GitHub Actions setur upp R og keyrir bútana frá grunni. Þess vegna eru
+netbeiðnirnar hér `eval: false` — annars væri byggingin háð því að þjónustan væri uppi.
+:::
+
+## Hvað á heima í geymslunni?
+
+Hér þarf dómgreind. Hrátt svar frá vefþjónustu er oftast margfalt stærra en það sem þú notar —
+GitHub skilar 86 lyklum þegar þú vildir einn. Að henda öllu inn í Git-geymsluna þýðir að þú
+ert að útgáfustýra rusli: skránum fjölgar, `git clone` hægist, og enginn sér hvað breyttist
+því hávaðinn drekkir merkingunni.
+
+Vinnureglan er í þremur skrefum:
+
+**1. Vistaðu hráa svarið — utan Git.** Þú þarft það meðan þú ert að átta þig á gögnunum, en
+það á ekki heima í sögunni. Settu möppuna í `.gitignore` strax:
+
+``` bash
+# .gitignore
+data/raw/
+```
+
+**2. Skrifaðu skriftu sem sækir og strípar.** Ein skrá sem sækir svarið og skilar aðeins því
+sem greiningin þarf. Skriftan sjálf fer í Git — hún er uppskriftin:
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+# scripts/saekja_geymslur.R
+library(httr2); library(dplyr); library(readr)
+
+d <- request("https://api.github.com/search/repositories") |>
+  req_url_query(q = "quarto language:R", per_page = 100) |>
+  req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
+  req_perform() |>
+  resp_body_json(simplifyVector = TRUE)
+
+# hrátt: utan Git, til vara meðan unnið er
+saveRDS(d, "data/raw/geymslur.rds")
+
+# strípað: aðeins dálkarnir sem greiningin notar
+d$items |>
+  select(full_name, stargazers_count, language, updated_at) |>
+  mutate(sott = Sys.Date()) |>
+  write_csv("data/geymslur.csv")
+```
+
+## Python
+
+``` python
+# scripts/saekja_geymslur.py
+import datetime, json, pathlib
+import requests, pandas as pd
+
+svar = requests.get(
+    "https://api.github.com/search/repositories",
+    params={"q": "quarto language:R", "per_page": 100},
+    headers={"User-Agent": "IDN302G-nemandi (nafn@hi.is)"},
+    timeout=30,
+)
+svar.raise_for_status()
+d = svar.json()
+
+# hrátt: utan Git, til vara meðan unnið er
+pathlib.Path("data/raw").mkdir(parents=True, exist_ok=True)
+pathlib.Path("data/raw/geymslur.json").write_text(
+    json.dumps(d, ensure_ascii=False), encoding="utf-8"
+)
+
+# strípað: aðeins dálkarnir sem greiningin notar
+(pd.json_normalize(d["items"])
+   [["full_name", "stargazers_count", "language", "updated_at"]]
+   .assign(sott=datetime.date.today())
+   .to_csv("data/geymslur.csv", index=False))
+```
+:::
+
+**3. Committaðu aðeins strípuðu skrána.** `data/geymslur.csv` er lítil, læsileg og
+`git diff` sýnir raunverulega breytingu milli útgáfna. Hráa `.rds`/`.json` skráin er í
+`.gitignore` og enginn saknar hennar — skriftan endurskapar hana hvenær sem er.
+
+::: {.callout-tip}
+## Af hverju CSV?
+
+CSV er textasnið, svo Git getur borið saman útgáfur línu fyrir línu. Tvíundarsnið (`.rds`,
+`.xlsx`, `.parquet`) geymast sem einn ógegnsær kubbur — þú sérð að skráin breyttist en ekki
+hverju. Fyrir hóflega stór gögn í Git-geymslu er CSV nær alltaf rétta valið.
+:::
+
+::: {.callout-note}
+## Þegar CSV dugar ekki
+
+Vaxi gögnin — margar skrár, tengsl milli þeirra, endurteknar fyrirspurnir — er næsta skref að
+setja þau í einfaldan gagnagrunn í stað þess að hlaða CSV-skrám í minni í hvert sinn. Það er
+efni [SQL-lotanna](../sql-basics/introduction.qmd) síðar í áfanganum, þar sem við skoðum
+hvernig CSV-skrár verða að töflum sem hægt er að spyrja.
+:::
+
+::: {.callout-warning}
+## Aldrei í Git
+
+Óháð stærð eiga þessi gögn aldrei heima í geymslunni: aðgangslyklar, persónugreinanleg gögn,
+og allt sem skilmálar þjónustunnar banna þér að dreifa. Sjá
+[góða starfshætti](good-practices.qmd).
+:::
+
+## Æfing
+
+1. Sæktu upplýsingar um geymsluna þína á GitHub og prentaðu `updated_at`.
+2. Staðfestu að slóðin sé eins og þú bjóst við — `req_dry_run()` (R) eða `print(svar.url)` (Python).
+3. Sæktu síðustu 100 commits og teldu hversu margir eru frá þér.
+4. Kallaðu á slóð sem er ekki til og staðfestu að þú fáir `404` — ekki þögult tómt svar.
+   Í Python: hvað gerist ef þú *gleymir* `raise_for_status()`?

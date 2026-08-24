@@ -82,9 +82,14 @@ book:
         - reproducible-reports/tools.qmd
         - reproducible-reports/quarto.qmd
         - reproducible-reports/publishing.qmd
-    - part: "API / vefþjónustur"
+    - part: "Vefþjónustur"
       chapters:
         - api/index.qmd
+        - api/http.qmd
+        - api/json.qmd
+        - api/fetching-data.qmd
+        - api/icelandic-apis.qmd
+        - api/good-practices.qmd
     - part: "Reglulegar segðir"
       chapters:
         - regex/index.qmd

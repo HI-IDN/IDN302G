@@ -1,12 +1,98 @@
 ---
-title: "API / vefþjónustur"
+title: "Inngangur"
 description: >-
-  Samskipti við vefþjónustur og gagnaveitur með API (Application Programming Interfaces). Í vinnslu.
-number-sections: false
+  Hvað vefþjónusta (API) er, hvers vegna hún kemur í stað handvirkrar
+  niðurhalunar, og hvernig gögn sótt um API halda vinnuflæðinu endurtakanlegu.
 ---
 
-Þessi hluti er í vinnslu.
+## Vandamálið sem API leysir
 
-Hér verður farið yfir **API** og **vefþjónustur** (*Application Programming Interfaces*):
-hvernig forrit geta sótt gögn frá vefþjónustum, hvernig beiðnir og svör eru uppbyggð
-og hvernig hægt er að nota opin gögn í endurtakanlegu vinnuflæði.
+Þú þarft gögn um jarðskjálfta síðustu viku. Þú ferð á vefinn, finnur töfluna, afritar hana
+inn í Excel, lagar dagsetningarnar og vistar `skjalftar_endanlegt_v3.xlsx`.
+
+Viku síðar þarftu sömu greiningu með nýjum gögnum. Þú gerir þetta allt aftur.
+
+Þetta brýtur allt sem lotan um [endurtækar skýrslur](../reproducible-reports/index.qmd) snerist
+um: enginn getur endurtekið skrefin, ekki einu sinni þú sjálf/ur eftir mánuð. Handvirka
+afritunin er hvergi skráð og villur í henni eru ósýnilegar.
+
+**Vefþjónusta** (e. *API*, *Application Programming Interface*) er leiðin framhjá þessu. Í stað
+þess að *þú* smellir á vefsíðu sem er hönnuð fyrir augu, þá *biður forritið þitt* um gögnin í
+sniði sem er hannað fyrir vélar. Sama skipun sótt á morgun skilar uppfærðum gögnum án þess að
+nokkur snerti mús.
+
+## Vefsíða fyrir menn, API fyrir vélar
+
+Sama þjónustan býður oft hvort tveggja. Berðu saman:
+
+| | Vefsíða | Vefþjónusta (API) |
+|---|---|---|
+| Ætluð | fólki | forritum |
+| Skilar | HTML: litum, letri, valmyndum | gögnum: JSON eða CSV |
+| Uppsetning | breytist við hverja endurhönnun | skilgreind og stöðug |
+| Endurtakanlegt | nei — handavinna | já — ein skipun |
+
+Þess vegna er API-leiðin ekki bara þægilegri, hún er **forsenda** þess að greiningin þín sé
+endurtakanleg.
+
+::: {.callout-note}
+## Hvað þýðir orðið?
+
+*API* stendur fyrir **A**pplication **P**rogramming **I**nterface — viðmót sem eitt forrit
+býður öðru. Á íslensku er talað um **vefþjónustu** þegar viðmótið er aðgengilegt yfir vefinn,
+sem er það sem við fjöllum um hér.
+:::
+
+## Hvernig samtalið lítur út
+
+Öll samskipti við vefþjónustu fylgja sama einfalda mynstri:
+
+```{mermaid}
+sequenceDiagram
+    participant F as Forritið þitt
+    participant V as Vefþjónustan
+    F->>V: Beiðni (request) — "gefðu mér gögn um X"
+    V-->>F: Svar (response) — stöðukóði + gögn
+```
+
+Þú sendir **beiðni** og færð **svar**. Ekkert annað gerist. Það sem þú þarft að læra er:
+
+1. hvernig beiðnin er byggð upp — hvaða slóð, hvaða skilyrði,
+2. hvernig lesa á svarið — tókst þetta, og hvað kom til baka,
+3. hvernig gögnin úr svarinu verða að töflu sem þú getur unnið með.
+
+Þessi þrjú skref eru einmitt kaflarnir sem á eftir koma.
+
+## Dæmi: sama spurning, tvær leiðir
+
+Segjum að þig langi að vita hvenær geymslan `HI-IDN/IDN302G` var síðast uppfærð.
+
+**Handvirkt:** opna github.com, finna geymsluna, skruna niður, lesa dagsetningu, skrifa hana
+hjá þér.
+
+**Um vefþjónustu:** biðja um slóðina
+
+```
+https://api.github.com/repos/HI-IDN/IDN302G
+```
+
+og fá til baka gagnaskrá þar sem meðal annars geta staðið reitir eins og:
+
+``` json
+{
+  "full_name": "HI-IDN/IDN302G",
+  "description": "Námsefni fyrir IÐN302G",
+  "updated_at": "2026-08-18T12:33:04Z",
+  "stargazers_count": 3
+}
+```
+
+Þessa slóð máttu opna í vafra beint — prófaðu. Það sem þú sérð er nákvæmlega það sama og
+forritið þitt fær.
+
+::: {.callout-tip}
+## Tengsl við aðra hluta
+
+Reglulegar segðir eru í sömu lotu og eru systurtól: API skilar þér gögnum, og
+[reglulegar segðir](../regex/index.qmd) hjálpa þér að hreinsa textann sem kemur út úr þeim.
+:::
