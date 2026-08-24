@@ -448,6 +448,18 @@ pathlib.Path("data/github_raw.json").write_text(
 Seinni leiðin — að vista svarið — er sú sem hentar skýrslum best: greiningin verður
 **endurtakanleg** því hún er ekki lengur háð því að þjónustan sé uppi eða hafi ekki breyst.
 
+::: {.callout-tip}
+## Quarto getur gert þetta fyrir þig
+
+Þurfirðu ekki hráu gögnin sjálf, heldur bara að skýrslan endurbyggist án þess að sækja aftur,
+þá býður Quarto upp á `execute: freeze: auto`. Þá eru niðurstöður kóðabútanna frystar og
+búturinn keyrður aftur aðeins ef hann breytist — sem þýðir líka að CI þarf ekki að setja upp
+R eða Python. Sjá [birtingu með GitHub Pages](../reproducible-reports/publishing.qmd).
+
+Þessi bók frystir ekki: GitHub Actions setur upp R og keyrir bútana frá grunni. Þess vegna eru
+netbeiðnirnar hér `eval: false` — annars væri byggingin háð því að þjónustan væri uppi.
+:::
+
 ## Hvað á heima í geymslunni?
 
 Hér þarf dómgreind. Hrátt svar frá vefþjónustu er oftast margfalt stærra en það sem þú notar —
