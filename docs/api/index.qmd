@@ -76,7 +76,7 @@ hjá þér.
 https://api.github.com/repos/HI-IDN/IDN302G
 ```
 
-og fá til baka gagnaskrá þar sem meðal annars stendur:
+og fá til baka gagnaskrá þar sem meðal annars geta staðið reitir eins og:
 
 ``` json
 {
