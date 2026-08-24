@@ -400,9 +400,9 @@ sýnir svarið óbreytt. Þetta er sama beiðni og R-kóðinn að ofan sendir:
 ```{=html}
 <div class="api-demo">
   <div class="api-demo-url"><code>GET https://api.vedur.is/weather/stations?station_id=1&amp;station_id=178</code></div>
-  <button id="api-demo-btn" class="api-demo-btn" type="button">Senda beiðni</button>
-  <span id="api-demo-status" class="api-demo-status"></span>
-  <pre id="api-demo-out" class="api-demo-out" hidden></pre>
+  <button id="api-demo-btn" class="api-demo-btn" type="button" aria-controls="api-demo-out" aria-describedby="api-demo-status">Senda beiðni</button>
+  <span id="api-demo-status" class="api-demo-status" role="status" aria-live="polite"></span>
+  <pre id="api-demo-out" class="api-demo-out" hidden aria-live="polite" aria-label="Svar frá vefþjónustu"></pre
 </div>
 
 <style>
