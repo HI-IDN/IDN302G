@@ -19,6 +19,41 @@ Dæmi:
 Regex er ekki sérstakt forritunarmál fyrir eina aðgerð. Sama hugmyndin birtist í R, Python,
 JavaScript, gagnagrunnum, textaritlum og leitartólum eins og `grep`.
 
+::: {.callout-note}
+## „Write-only“ tungumál
+
+Það er stundum grínast með að regex sé *write-only*: það sé hægt að skrifa reglulega segð, en
+nær ómögulegt að lesa hana aftur. Það er ekki alveg ósatt.
+
+Mynstur sem þú skrifar í dag getur verið óskiljanlegt eftir tvær vikur. Mynstur sem einhver annar
+skrifaði getur litið út eins og töfrar eða skemmd rafmagnsteikning. Oft er fljótlegra að skrifa
+mynstrið upp á nýtt út frá dæmunum heldur en að ráða í gamalt mynstur sem enginn skýrði.
+
+Þess vegna skiptir máli að skrifa regex eins og annað kóðaefni: í litlum skrefum, með dæmum og
+með stuttri skýringu á því hvað á að passa og hvað á ekki að passa.
+:::
+
+## Prófaðu í regex101
+
+Gott vinnulag er að prófa mynstur utan kóðans áður en þú setur það inn í skýrslu, scriptu eða
+SQL-fyrirspurn. [regex101.com](https://regex101.com/) er nytsamlegt til þess:
+
+- þú límir inn textasýni,
+- skrifar regex-mynstur,
+- sérð strax hvað passar,
+- færð útskýringu á einstökum bútum mynstrsins.
+
+Þetta er sérstaklega gagnlegt þegar mynstrið er orðið langt. Ef þú getur ekki útskýrt mynstrið í
+regex101, er það líklega ekki tilbúið til að fara inn í verkefnið.
+
+::: {.callout-tip}
+## Veldu rétt regex-bragð
+
+Regex er ekki alveg eins í öllum verkfærum. Python, R, JavaScript og PostgreSQL eru mjög lík, en
+ekki nákvæmlega eins. Þegar þú notar regex101 skaltu velja það „flavor“ sem líkist verkfærinu
+þínu, til dæmis **Python** þegar þú vinnur í Python eða **PCRE2** fyrir mörg almenn dæmi.
+:::
+
 ## Byrjaðu á einföldu mynstri
 
 Venjulegir stafir passa við sjálfa sig:
@@ -91,7 +126,7 @@ Síðasta dæmið er augljóslega ekki raunveruleg dagsetning. Regex getur athug
 þýðir ekki sjálfkrafa að gildið sé rétt.
 
 ::: {.callout-important}
-## Regex sannreynir ekki merkingu nema þú biðjir um það
+## Regex sannreynir ekki merkingu nema þú biður um það
 
 `\d{6}-\d{4}` athugar bara lögun textans. Ef þú þarft að vita hvort dagur, mánuður og vartala
 séu gild þarf annaðhvort nákvæmara regex eða venjulegan kóða sem túlkar kennitöluna.
@@ -197,13 +232,118 @@ Taktu eftir að í R þarf oft að tvöfalda bakskástrik í strengjum: `\\d` í
 í regex. Í Python er algengt að nota hráa strengi með `r"..."`, þá þarf síður að tvöfalda
 bakskástrik.
 
+## Hvar notum við regex í gagnavinnu?
+
+Regex er sjaldnast lokamarkmið. Það er verkfæri sem kemur að gagni þegar gögnin eru of
+óregluleg fyrir venjulega dálkavinnslu en samt nógu regluleg til að mynstur sjáist.
+
+### Í SQL
+
+Í SQL byrjum við oft á einfaldari mynstraleit með `LIKE`:
+
+``` sql
+SELECT *
+FROM contacts
+WHERE email LIKE '%@hi.is';
+```
+
+`LIKE` er ekki full regex. Það notar bara tvo algildisstafi:
+
+| Tákn | Merking í `LIKE` |
+|---|---|
+| `%` | hvaða texti sem er, líka enginn texti |
+| `_` | nákvæmlega einn stafur |
+
+Þegar mynstrið verður flóknara þarf regex-stuðning gagnagrunnsins. Í PostgreSQL má til dæmis nota
+`~` til að prófa regex:
+
+``` sql
+SELECT *
+FROM contacts
+WHERE phone ~ '^[0-9]{3}[- ]?[0-9]{4}$';
+```
+
+Þetta finnur símanúmer sem eru annaðhvort `5551234`, `555-1234` eða `555 1234`.
+
+PostgreSQL býður líka upp á föll eins og `regexp_replace()` til að hreinsa texta:
+
+``` sql
+SELECT regexp_replace(phone, '^([0-9]{3})[- ]?([0-9]{4})$', '\1-\2') AS phone_clean
+FROM contacts;
+```
+
+Þá er regex ekki bara leit, heldur gagnahreinsun inni í gagnagrunninum.
+
+::: {.callout-note}
+## `LIKE` er litla systkini regex
+
+Í SQL-köflunum notum við `LIKE` til að kynna mynsturleit. Það er gott fyrsta skref, en það er ekki
+sama mál og regex. Þegar þú þarft valkosti, hópa, endurtekningar eða nákvæma sannprófun ferðu úr
+`LIKE` yfir í regex-aðgerðir gagnagrunnsins.
+:::
+
+### Eftir API-kall
+
+Vefþjónusta skilar oft skipulögðum gögnum, til dæmis JSON. Þá áttu fyrst að nota JSON-parser og
+breyta svarinu í töflu. En reitirnir inni í töflunni geta samt verið sóðalegir:
+
+``` text
+"Hjarðarhagi 6, 107 Reykjavík"
+"Sími: 525-4000"
+"Uppfært 2026-08-24T13:45:00Z"
+```
+
+Þar getur regex hjálpað til við að draga út hluta:
+
+``` text
+\d{3}\s+[A-Za-zÁÉÍÓÚÝÞÆÖáéíóúýþæö]+
+\d{3}[- ]?\d{4}
+^\d{4}-\d{2}-\d{2}
+```
+
+Mikilvæga reglan er: notaðu skipulagða lesara fyrst, regex síðan. Ekki reyna að lesa JSON með
+regex ef þú getur notað JSON-lesara.
+
+### Þegar API er ekki til
+
+Stundum er engin vefþjónusta í boði. Þá er freistandi að skrapa gögn af HTML-síðu. Þar gildir
+sama regla og áður: ef taflan er alvöru HTML-tafla, notaðu HTML-parser. Regex er samt gagnlegt
+við jaðarverk:
+
+- finna hvort slóð lítur rétt út áður en hún er sótt,
+- finna ákveðna línu eða merki í hráum texta,
+- hreinsa bil, tíma eða aukatexta eftir að taflan hefur verið lesin,
+- greina hálfskipulögð gögn sem koma ekki í hreinni töflu.
+
+Til dæmis má finna hlaupahraða á sniðinu `04:25/km` með:
+
+``` text
+\d{2}:\d{2}/km
+```
+
+og halda bara tímanum með hópi:
+
+``` text
+(\d{2}:\d{2})/km
+```
+
+::: {.callout-warning}
+## Ekki nota regex sem HTML-parser
+
+Regex getur hjálpað við skrap, en HTML er tré, ekki línulegur texti. Ef þú reynir að lesa heila
+HTML-síðu með einni stórri reglulegri segð verður mynstrið bæði brothætt og illlæsilegt. Notaðu
+HTML-parser til að finna töflur og reiti, og regex til að hreinsa textann sem kemur út.
+:::
+
 ## Góð vinnubrögð
 
 - Prófaðu mynstrið á litlu sýni áður en þú keyrir það á öll gögnin.
 - Skrifaðu niður dæmi sem eiga að passa og dæmi sem eiga ekki að passa.
+- Prófaðu flókin mynstur í [regex101](https://regex101.com/) og lestu skýringuna.
 - Notaðu `^` og `$` þegar öll línan á að passa, ekki bara hluti hennar.
 - Mundu að `.` þarf að vera `\.` ef þú vilt punkt.
 - Forðastu að nota `.*` of snemma; það gleypir oft meira en þú ætlaðir.
+- Skiptu löngum mynstrum í búta í textanum í kringum kóðann, jafnvel þótt regexið sjálft sé ein lína.
 - Þegar gögnin eru skipulögð, til dæmis HTML eða JSON, notaðu parser frekar en regex.
 
 ## Æfing
