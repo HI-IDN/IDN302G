@@ -6,7 +6,7 @@ University of Iceland. Published at [hi-idn.github.io/IDN302G](https://hi-idn.gi
 ## Structure
 
 ```
-public/
+./
 ├── docs/             ← Source for the Quarto book; edit content here
 │   ├── about-course/ ← Course overview, schedule, learning outcomes, repo guide
 │   ├── github/       ← Git og GitHub module
@@ -16,7 +16,7 @@ public/
 │   ├── sql-advanced/ ← SQL framhald module
 │   ├── storytelling/ ← Myndræn framsetning module
 │   ├── index.qmd     ← Landing page
-│   ├── _freeze/      ← Frozen results of executed code (committed; lets CI skip R)
+│   ├── .quarto/      ← Local Quarto cache incl. _freeze/ (gitignored, NOT committed)
 │   └── _quarto.yml   ← Quarto book configuration; outputs to ../_site
 ├── templates/        ← Student templates (repo root); linked from the book via GitHub URLs
 └── _site/            ← Rendered output; built by GitHub Actions, NOT committed
@@ -36,17 +36,32 @@ public/
   own repos; keep them generic. The book links to them with GitHub URLs
   (`github.com/HI-IDN/IDN302G/blob/main/templates/...`), not relative paths
 - The `_quarto.yml` controls navigation — update it when adding or renaming pages
-- If you change an executable code cell, re-render locally so `docs/_freeze/` updates,
-  and commit the refreshed `_freeze/` — otherwise CI serves stale results
+- If you change an executable code cell, re-render locally and check the result. Nothing about
+  execution is committed — CI runs every cell itself (see *Building and publishing*)
 
 ## Building and publishing
 
 Publishing is automated: **GitHub Actions** renders the book and deploys it to GitHub Pages.
-Because executed code results are committed in `docs/_freeze/` (`execute: freeze: auto`), CI
-builds with Quarto only — it does not install R. You do **not** commit the built site; `_site/`
-is generated in the cloud and is gitignored.
+CI installs both Quarto *and* R, and **executes every runnable code cell from scratch** — see
+`.github/workflows/publish.yml`. You do **not** commit the built site; `_site/` is generated in
+the cloud and is gitignored.
 
-Use the `Makefile` in the repository root (`public/`) for local work:
+There is no `execute: freeze:` setting. `docs/.quarto/_freeze/` is a purely local cache and is
+gitignored, so nothing you have cached locally reaches CI.
+
+**Two consequences worth knowing:**
+
+- **Any package a runnable cell loads must be installed by the workflow.** The `Install R
+  packages` step lists them explicitly with a comment saying which chapter needs each one. Add
+  a `library()` call to an executed chunk without updating that step and the build fails.
+  Network calls belong in `#| eval: false` chunks so CI never depends on a third-party service
+  being up.
+- **The local cache can serve stale output.** If a chapter shows results that do not match its
+  code — wrong values, or non-ASCII printed as `<U+00E1>` — delete
+  `docs/.quarto/_freeze/<chapter>/` and render again. Quarto will not re-execute a chunk whose
+  source has not changed, even when the cached result is wrong.
+
+Use the `Makefile` in the repository root for local work:
 
 - `make` — render only changed pages (fast, for content edits)
 - `make full` — full render; required after `_quarto.yml`, `styles/*.scss`, or any
@@ -57,7 +72,8 @@ Use the `Makefile` in the repository root (`public/`) for local work:
 **Workflow:**
 
 1. Edit source under `docs/`; preview with `make preview`.
-2. If you touched executable code, run `make full` so `docs/_freeze/` is up to date.
+2. If you touched executable code, render it and check the output is what you expect. Should
+   it look stale, clear `docs/.quarto/_freeze/<chapter>/` and render again.
 3. `main` is protected — commit on a branch and open a pull request. Draft PRs skip CI;
    mark **Ready for review** to trigger the render check. Merging to `main` publishes.
 

@@ -1,0 +1,443 @@
+---
+title: "JSON"
+description: >-
+  Sniðið sem nær öll API skila: uppbygging JSON, hvernig það kortleggst í
+  R og Python, og hvernig hreiðruð gögn verða að töflu.
+---
+
+## Hvað er JSON?
+
+**JSON** (*JavaScript Object Notation*) er textasnið til að lýsa gögnum. Nær allar
+vefþjónustur skila því, svo þú þarft að geta lesið það.
+
+Það er byggt úr aðeins tveimur samsettum gerðum:
+
+| Tákn | Heitir | Í R | Í Python |
+|---|---|---|---|
+| `{ }` | hlutur (e. *object*) — lyklar og gildi | nefndur listi | `dict` |
+| `[ ]` | fylki (e. *array*) — raðaður listi | vigur eða listi | `list` |
+
+Og fjórum einföldum: texti í `"gæsalöppum"`, tölur, `true`/`false` og `null`.
+
+``` json
+{
+  "namskeid": "IÐN302G",
+  "einingar": 6,
+  "skyldunamskeid": true,
+  "kennarar": ["Helga", "Máni"],
+  "misseri": { "ar": 2026, "onn": "haust" }
+}
+```
+
+Lestu þetta svona: ysta `{}` er hlutur með fimm lykla. `kennarar` er fylki með tveimur
+strengjum. `misseri` er hlutur inni í hlut — það kallast **hreiðrun** (e. *nesting*) og er
+algengasta ástæða þess að fólk lendir í vandræðum með JSON.
+
+::: {.callout-warning}
+## Algengustu villurnar
+
+JSON er ströng um form:
+
+- lyklar verða að vera í tvöföldum gæsalöppum — `{'a': 1}` er **ekki** gilt JSON
+- ekkert komma má vera á eftir síðasta atriði — `[1, 2, 3,]` er ógilt
+- `true`/`false` eru lágstafa — ekki `True`/`False` eins og í Python
+- `NA` og `None` eru ekki til; það heitir `null`
+:::
+
+## Frá JSON yfir í gagnahluti
+
+::: {.panel-tabset}
+## R
+
+`jsonlite` þýðir á milli. `fromJSON()` les JSON og skilar R-hlut:
+
+```{r}
+library(jsonlite)
+
+txt <- '{
+  "namskeid": "IÐN302G",
+  "einingar": 6,
+  "skyldunamskeid": true,
+  "kennarar": ["Helga", "Máni"],
+  "misseri": { "ar": 2026, "onn": "haust" }
+}'
+
+nam <- fromJSON(txt)
+str(nam)
+```
+
+Niðurstaðan er venjulegur nefndur listi og þú nálgast hann með `$`:
+
+```{r}
+nam$namskeid
+nam$kennarar
+nam$misseri$ar
+```
+
+## Python
+
+`json` fylgir Python — það þarf ekki að setja upp neinn pakka:
+
+``` python
+import json
+
+txt = '''{
+  "namskeid": "IÐN302G",
+  "einingar": 6,
+  "skyldunamskeid": true,
+  "kennarar": ["Helga", "Máni"],
+  "misseri": { "ar": 2026, "onn": "haust" }
+}'''
+
+nam = json.loads(txt)
+type(nam)
+```
+
+```
+<class 'dict'>
+```
+
+Niðurstaðan er `dict` og þú nálgast hana með hornklofum:
+
+``` python
+nam["namskeid"]
+nam["kennarar"]
+nam["misseri"]["ar"]
+```
+
+```
+'IÐN302G'
+['Helga', 'Máni']
+2026
+```
+
+Ólíkt R, þar sem hreiðraði hlutinn `misseri` verður listi inni í lista, er hann einfaldlega
+`dict` inni í `dict` — sami hlutur alla leið niður.
+
+Í `requests` þarftu ekki `json.loads()` — `svar.json()` gerir þetta beint.
+:::
+
+::: {.callout-note}
+## `true` verður `TRUE` og `True`
+
+JSON-gildið `true` verður `TRUE` í R og `True` í Python — bæði mál kortleggja það á sína eigin
+sannindagerð. Á leiðinni til baka gerist hið gagnstæða, og þess vegna er `json.dumps()` og
+`toJSON()` rétta leiðin frekar en að byggja strenginn sjálf/ur.
+:::
+
+## Listi af hlutum verður tafla
+
+Þetta er mikilvægasta tilfellið í reynd: þegar API skilar *lista af hlutum sem hafa sömu lykla*
+liggur tafla beint við.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+svar <- '[
+  {"nafn": "Quarto",  "stjornur": 4200, "mal": "TypeScript"},
+  {"nafn": "knitr",   "stjornur": 2500, "mal": "R"},
+  {"nafn": "jsonlite","stjornur":  400, "mal": "C"}
+]'
+
+tafla <- fromJSON(svar)
+tafla
+class(tafla)
+```
+
+`jsonlite` býr til `data.frame` sjálfkrafa. Þaðan vinnur `dplyr` með þetta eins og hverja aðra
+töflu:
+
+```{r}
+#| message: false
+library(dplyr)
+
+tafla |>
+  filter(stjornur > 1000) |>
+  arrange(desc(stjornur))
+```
+
+## Python
+
+``` python
+import json
+import pandas as pd
+
+svar = '''[
+  {"nafn": "Quarto",  "stjornur": 4200, "mal": "TypeScript"},
+  {"nafn": "knitr",   "stjornur": 2500, "mal": "R"},
+  {"nafn": "jsonlite","stjornur":  400, "mal": "C"}
+]'''
+
+tafla = pd.DataFrame(json.loads(svar))
+tafla
+```
+
+```
+       nafn  stjornur         mal
+0    Quarto      4200  TypeScript
+1     knitr      2500           R
+2  jsonlite       400           C
+```
+
+Og síun:
+
+``` python
+tafla[tafla["stjornur"] > 1000].sort_values("stjornur", ascending=False)
+```
+
+```
+     nafn  stjornur         mal
+0  Quarto      4200  TypeScript
+1   knitr      2500           R
+```
+
+Sama niðurstaða og í R-flipanum. Munurinn er að `pandas` sýnir vísitölu (`0`, `1`) í fyrsta
+dálki þar sem R sýnir raðnúmer.
+:::
+
+## Þegar gögnin eru hreiðruð
+
+Raunveruleg svör eru sjaldan svona snyrtileg. Oftast eru gögnin sem þú vilt **grafin inni** í
+umbúðum, og einstakir dálkar geta sjálfir verið hlutir:
+
+``` json
+{
+  "total_count": 3,
+  "items": [
+    {"nafn": "Quarto", "eigandi": {"login": "quarto-dev", "type": "Organization"}},
+    {"nafn": "knitr",  "eigandi": {"login": "yihui",      "type": "User"}}
+  ]
+}
+```
+
+::: {.panel-tabset}
+## R
+
+```{r}
+svar <- '{
+  "total_count": 3,
+  "items": [
+    {"nafn": "Quarto", "eigandi": {"login": "quarto-dev", "type": "Organization"}},
+    {"nafn": "knitr",  "eigandi": {"login": "yihui",      "type": "User"}}
+  ]
+}'
+
+d <- fromJSON(svar)
+items <- d$items
+str(items)
+```
+
+`eigandi` er **data.frame inni í data.frame**. Það kemur á óvart og brýtur `dplyr`-keðjur.
+Lausnin er `flatten()`:
+
+```{r}
+flatten(items)
+```
+
+## Python
+
+``` python
+d = json.loads(svar)
+
+# rangt: eigandi verður dálkur með dict-um í
+pd.DataFrame(d["items"])
+```
+
+```
+     nafn                                          eigandi
+0  Quarto  {'login': 'quarto-dev', 'type': 'Organization'}
+1   knitr               {'login': 'yihui', 'type': 'User'}
+```
+
+Dálkurinn `eigandi` ber heila `dict`-hluti — ónothæft til greiningar. `json_normalize()`
+flettir hreiðrunina út:
+
+``` python
+pd.json_normalize(d["items"])
+```
+
+```
+     nafn eigandi.login  eigandi.type
+0  Quarto    quarto-dev  Organization
+1   knitr         yihui          User
+```
+
+Dálkarnir `eigandi.login` og `eigandi.type` — sama niðurstaða og `flatten()` skilar í R.
+
+Sé listinn grafinn dýpra má benda á hann beint:
+
+``` python
+pd.json_normalize(d, record_path="items")
+```
+
+```
+     nafn eigandi.login  eigandi.type
+0  Quarto    quarto-dev  Organization
+1   knitr         yihui          User
+```
+
+Sama tafla — munurinn er aðeins að þú bendir á `items` innan úr svarinu í stað þess að taka
+það út fyrst.
+:::
+
+::: {.callout-tip}
+## Vinnuregla
+
+Ekki reyna að giska á uppbygginguna. Skoðaðu svarið **fyrst** — `str(x, max.level = 2)` í R,
+eða `print(json.dumps(d, indent=2, ensure_ascii=False)[:500])` í Python — og flettu svo út.
+:::
+
+## Að skoða ókunnugt svar
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+d <- fromJSON("https://api.github.com/repos/HI-IDN/IDN302G")
+
+length(d)                 # hversu stórt er svarið?
+names(d)[1:12]            # hvaða lyklar eru í boði?
+```
+
+```
+[1] 86
+
+ [1] "id"          "node_id"     "name"        "full_name"   "private"    
+ [6] "owner"       "html_url"    "description" "fork"        "url"        
+[11] "forks_url"   "keys_url"   
+```
+
+Áttatíu og sex lyklar — `str(d)` á öllu væri ólæsilegt. Taktu því sneið af því sem þú þarft:
+
+```{r}
+#| eval: false
+str(d[c("name", "full_name", "description", "updated_at", "stargazers_count")],
+    max.level = 1)
+
+d$updated_at
+```
+
+```
+List of 5
+ $ name            : chr "IDN302G"
+ $ full_name       : chr "HI-IDN/IDN302G"
+ $ description     : chr "Námsefni fyrir námskeiðið Upplýsingaverfræði IÐN302G við Háskóla Ísl"| __truncated__
+ $ updated_at      : chr "2026-08-18T12:55:15Z"
+ $ stargazers_count: int 0
+
+[1] "2026-08-18T12:55:15Z"
+```
+
+## Python
+
+``` python
+import requests
+
+d = requests.get("https://api.github.com/repos/HI-IDN/IDN302G", timeout=30).json()
+
+len(d)                    # hversu stórt er svarið?
+list(d)[:12]              # hvaða lyklar eru í boði?
+```
+
+```
+86
+
+['id', 'node_id', 'name', 'full_name', 'private', 'owner', 'html_url',
+ 'description', 'fork', 'url', 'forks_url', 'keys_url']
+```
+
+Áttatíu og sex lyklar — prentaðu ekki allt. Taktu sneið af því sem þú þarft:
+
+``` python
+{k: d[k] for k in ["name", "full_name", "updated_at", "stargazers_count"]}
+```
+
+```
+{'name': 'IDN302G',
+ 'full_name': 'HI-IDN/IDN302G',
+ 'updated_at': '2026-08-18T12:55:15Z',
+ 'stargazers_count': 0}
+```
+:::
+
+::: {.callout-tip}
+## Raunveruleg svör eru stór
+
+Áttatíu og sex lyklar fyrir eina geymslu er ekkert einsdæmi — þjónustur skila öllu sem þær
+eiga, ekki því sem þú baðst um. Fyrsta verkið er alltaf að finna út hvað er í boði, og annað
+verkið að henda öllu hinu.
+:::
+
+Þetta er fínt til að skoða, en fyrir alvöru vinnu áttu að nota `httr2` / `requests` með
+villumeðhöndlun — þau gefa þér stöðukóða og hausa sem stuttu leiðirnar fela. Það er efni
+[næsta kafla](fetching-data.qmd).
+
+## Hin áttin
+
+Stundum þarftu að *senda* JSON, t.d. þegar þjónusta krefst `POST` — eins og
+[Hagstofan](icelandic-apis.qmd) gerir.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+listi <- list(nafn = "Máni", lotur = c(1, 2, 3))
+toJSON(listi, auto_unbox = TRUE, pretty = TRUE)
+```
+
+Íslenski stafurinn skilar sér óbreyttur — `jsonlite` skrifar UTF-8 sjálfgefið og hefur ekkert
+viðfang til að slökkva á því. Python hagar sér öfugt; sjá Python-flipann.
+
+::: {.callout-note}
+## Hvað `auto_unbox` gerir
+
+R á enga stærð sem er "ein tala" — `5` er í raun vigur af lengd 1. Án `auto_unbox = TRUE`
+skrifar `toJSON()` því `["Helga"]` þar sem þjónustan bjóst við `"Helga"`. Þetta veldur `400`
+sem er erfitt að rekja, svo hafðu þetta á.
+:::
+
+## Python
+
+``` python
+listi = {"nafn": "Máni", "lotur": [1, 2, 3]}
+print(json.dumps(listi, ensure_ascii=False, indent=2))
+```
+
+```
+{
+  "nafn": "Máni",
+  "lotur": [
+    1,
+    2,
+    3
+  ]
+}
+```
+
+**`ensure_ascii=False` er nauðsyn fyrir íslenska stafi.** Sjálfgefið flýr `json.dumps()` alla
+stafi utan ASCII:
+
+``` python
+json.dumps({"nafn": "Máni", "stadur": "Þingvellir"})
+json.dumps({"nafn": "Máni", "stadur": "Þingvellir"}, ensure_ascii=False)
+```
+
+```
+'{"nafn": "M\\u00e1ni", "stadur": "\\u00deingvellir"}'
+'{"nafn": "Máni", "stadur": "Þingvellir"}'
+```
+
+Hvort tveggja er **gilt JSON** og þjónustan skilur bæði — en það fyrra er ólæsilegt þegar þú
+skoðar skrána sjálf/ur eða vistar hana í geymsluna.
+
+Þetta er ólíkt R: `jsonlite::toJSON()` hefur ekkert `ensure_ascii`-viðfang og skrifar UTF-8
+sjálfgefið. Gildran er því aðeins Python-megin.
+
+Í `requests` sendirðu hlutinn beint og pakkinn sér um umbreytinguna:
+
+``` python
+requests.post(slod, json=listi, timeout=30)
+```
+:::

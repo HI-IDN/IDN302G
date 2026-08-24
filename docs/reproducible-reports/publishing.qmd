@@ -65,11 +65,14 @@ GitHub keyrir þá engan kóða — það birtir bara skrárnar eins og þær ko
 
 ::: {.callout-note}
 ## Hvernig þessi vefsíða er birt
-Þessi bók notar **Leið 1 með `freeze`**: GitHub Actions þýðir hana og birtir sjálfkrafa við
-merge á `main`. Keyranlegu R-dæmin eru fryst í `_freeze/` og commit-uð, svo CI byggir með Quarto
-einu saman — án þess að setja upp R í skýinu. Höfundur getur enn þýtt locally (`quarto render`)
-til að forskoða, en það er valkvætt: það þarf aðeins þegar keyranlegur kóði breytist, til að
-uppfæra frystu niðurstöðurnar.
+Þessi bók notar **Leið 1**: GitHub Actions þýðir hana og birtir sjálfkrafa við merge á `main`.
+
+Hún **frystir ekki**. CI setur upp R og keyrir kóðabútana frá grunni við hverja byggingu, svo
+það sem stendur á síðunni er alltaf nýkeyrt. Frysting er valkostur sem borgar sig þegar kóðinn
+er þungur í keyrslu eða þarf uppsetningu sem er fyrirhafnarsöm í skýinu — hvorugt á við hér.
+
+Höfundur þýðir locally (`quarto render`) til að forskoða, en það er valkvætt; GitHub byggir
+hvort eð er upp á nýtt.
 :::
 
 ## Hvor leiðin hentar?
