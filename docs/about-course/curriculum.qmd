@@ -27,8 +27,8 @@ Notkun gervigreindar (LLM) sem erindreka við forritun, kóðarýni, gagnagreini
 Skýrslur sem eru keyrðar beint af gögnum og endurtækar (reproducible).
 :::
 
-::: {.lotu-card .lotu-card-muted}
-### API / vefþjónustur <span class="lotu-status">kemur</span>
+::: {.lotu-card}
+### API / vefþjónustur
 Samskipti við vefþjónustur og gagnaveitur með API (*Application Programming Interfaces*).
 :::
 
