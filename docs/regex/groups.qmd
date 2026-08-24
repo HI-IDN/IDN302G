@@ -1,0 +1,90 @@
+---
+title: "Hópar og notkun"
+description: >-
+  Hvernig svigar grípa hluta úr texta, hvernig endurraða má texta, og hvernig
+  sama mynstur er notað í R og Python.
+---
+
+## Hópar og endurnotkun
+
+Svigar gera tvennt:
+
+1. þeir hópa hluta af mynstri,
+2. þeir geta gripið textann sem fannst.
+
+Dæmi: línur á sniðinu `nafn, netfang`.
+
+``` text
+^(.+),\s*(.+@.+)$
+```
+
+| Bútur | Merking |
+|---|---|
+| `^` | byrjun línu |
+| `(.+)` | fyrsti hópur: nafn |
+| `,` | komma |
+| `\s*` | núll eða fleiri bil |
+| `(.+@.+)` | einföld hugmynd um netfang |
+| `$` | endir línu |
+
+Hóparnir gera okkur kleift að endurraða texta. Ef línan er:
+
+``` text
+Helga, helga@hi.is
+```
+
+má breyta henni í:
+
+``` text
+helga@hi.is	Helga
+```
+
+með því að vísa í hóp 2 og svo hóp 1.
+
+::: {.callout-note}
+## Einfalt fyrst, strangt seinna
+
+Það er oft skynsamlegt að byrja á einföldu mynstri sem finnur líkleg tilvik, skoða niðurstöðuna,
+og herða svo mynstrið. Fullkomið netfangaregex er langt og ólærdómsríkt; fyrir gagnahreinsun er
+oft betra að nota nógu gott mynstur og skoða undantekningarnar.
+:::
+
+## Í R og Python
+
+Sama mynstur má nota í mörgum málum. Hér er einfalt dæmi sem finnur netföng í texta.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| eval: false
+txt <- c(
+  "Hafðu samband við helga@hi.is",
+  "Þetta er ekki netfang",
+  "Prófun: nemandi.1@example.org"
+)
+
+mynstur <- "[\\w._%+-]+@[\\w.-]+\\.[A-Za-z]{2,}"
+fundid <- gregexpr(mynstur, txt)
+regmatches(txt, fundid)
+```
+
+## Python
+
+``` python
+import re
+
+txt = [
+    "Hafðu samband við helga@hi.is",
+    "Þetta er ekki netfang",
+    "Prófun: nemandi.1@example.org",
+]
+
+for lina in txt:
+    print(re.findall(r"[\w._%+-]+@[\w.-]+\.[A-Za-z]{2,}", lina))
+```
+:::
+
+Taktu eftir að í R þarf oft að tvöfalda bakskástrik í strengjum: `\\d` í R-streng verður `\d`
+í regex. Í Python er algengt að nota hráa strengi með `r"..."`, þá þarf síður að tvöfalda
+bakskástrik.

@@ -88,6 +88,10 @@ book:
     - part: "Reglulegar segðir"
       chapters:
         - regex/index.qmd
+        - regex/syntax.qmd
+        - regex/groups.qmd
+        - regex/data-cleaning.qmd
+        - regex/exercises.qmd
     - part: "Rökfræði og mengi"
       chapters:
         - logic-sets/index.qmd
