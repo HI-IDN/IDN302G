@@ -1,8 +1,8 @@
 ---
 title: "Æfingar"
 description: >-
-  Stutt æfing í að finna netföng, hreinsa símanúmer og meta hvort textagögn séu
-  tilbúin í hreina töflu.
+  Stuttar æfingar í að finna netföng, hreinsa símanúmer og lesa vinnuslóð eftir
+  erindreka með reglulegum segðum.
 ---
 
 ## Tengiliðir
@@ -37,4 +37,67 @@ mynstrið, prófað það, séð hvað það finnur ranglega og lagað það me�
 Settu textann og mynstrin inn á [regex101](https://regex101.com/) áður en þú skrifar lausnina í
 R eða Python. Skráðu hjá þér eitt dæmi sem passar rétt og eitt dæmi sem mynstrið finnur ekki eða
 finnur ranglega.
+:::
+
+## Hvað er erindrekinn að gera?
+
+Hér er brot úr vinnuslóð eftir erindreka:
+
+```` text
+Setting up environment
+Start 'github-mcp-server' MCP server
+Start 'playwright' MCP server
+Search 7 times
+\.card-grid
+^description-meta:
+install\.packages\(
+```{{r}}|```{\.r|```{r}|\{\.r \.cell-code\}
+\.nav-footer
+\blibrary\(
+^description:
+Search \.card-grid|\.card\b
+View 5 files
+docs/styles/hi.scss:420-710
+docs/_quarto.yml:1-80
+docs/styles/hi-book.scss:370-430
+.github/workflows/publish.yml:1-140
+docs/reproducible-reports/quarto.qmd:1-160
+Search nav-footer\b
+View 3 files
+docs/storytelling/dashboard.qmd:40-90
+docs/sql-basics/database_interaction.qmd:110-180
+docs/storytelling/interactive.qmd:1-150
+Search ```\{r\}|```\{\s*r\s*[,}]
+Call to vote_memory
+Search knitr|rmarkdown|renv
+Store comment
+Store comment
+Search \.card-grid\.numbered
+Store fix
+````
+
+1. Finndu allar línur sem byrja á `Search`.
+2. Finndu öll regex-mynstur sem erindrekinn leitaði að.
+3. Finndu allar línur sem vísa í skrá og línubil, til dæmis `docs/_quarto.yml:1-80`.
+4. Teldu hversu oft erindrekinn vistaði athugasemd (`Store comment`) eða lagfæringu (`Store fix`).
+5. Svaraðu í einni málsgrein: lítur þetta út eins og code review vinna? Hvaða línur styðja svarið?
+
+Athugaðu að `Search 7 times` er samantekt úr viðmótinu. Línurnar beint á eftir eru mynstrin sem
+voru notuð í þeim sjö leitum.
+
+Mynstur til að byrja með:
+
+``` text
+^Search (.+)$
+^(.+\.(qmd|yml|yaml|scss)):\d+-\d+$
+^Store (comment|fix)$
+^Start '([^']+)' MCP server$
+```
+
+::: {.callout-note}
+## Að lesa erindreka er gagnalæsi
+
+Markmiðið er ekki bara að finna línurnar. Markmiðið er að læra að lesa ferlið: hvaða verkfæri eru
+ræst, hverju er leitað að, hvaða skrár eru skoðaðar og hvort niðurstaðan sé athugasemd,
+lagfæring eða eitthvað annað.
 :::
