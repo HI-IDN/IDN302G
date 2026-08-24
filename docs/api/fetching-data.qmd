@@ -551,12 +551,6 @@ og allt sem skilmálar þjónustunnar banna þér að dreifa. Sjá
 [góða starfshætti](good-practices.qmd).
 :::
 
-::: {.callout-tip}
-## Í Quarto
-
-`execute: freeze: auto` getur fryst niðurstöður keyranlegs kóða svo bútur keyrist ekki aftur nema hann breytist. Í þessari bók er það hins vegar ekki notað í CI; GitHub Actions setur upp R og keyrir runnable R-búta frá grunni við hverja byggingu (sjá `.github/workflows/publish.yml`).
-:::
-
 ## Æfing
 
 1. Sæktu upplýsingar um geymsluna þína á GitHub og prentaðu `updated_at`.
