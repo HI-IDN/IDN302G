@@ -564,7 +564,7 @@ Fyrir 5 km um VR-II gefur það `POLYGON((-22.0589 64.0936, -21.8524 64.0936, -2
 :::
 
 ::: {.callout-tip}
-## Tvennt sem klikkar alltaf
+## Tvennt til að hafa hugfast sem gæti annars valdið villu
 
 **Hnitaröðin er `lengd breidd`** (e. *lon lat*) — öfugt við `lat,lon` sem flestar þjónustur
 skila. Marghyrningurinn þarf líka að lokast: fyrsta og síðasta hnitið eru þau sömu.
