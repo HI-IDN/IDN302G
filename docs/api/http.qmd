@@ -1,0 +1,148 @@
+---
+title: "HTTP: beiðnir og svör"
+description: >-
+  Uppbygging vefslóðar, HTTP-aðferðirnar, stöðukóðar og hausar — það sem þarf
+  til að lesa hvað gerðist þegar beiðni tekst ekki.
+---
+
+## Slóðin er spurningin
+
+Beiðni til vefþjónustu er í grunninn bara vefslóð. Slóðin sjálf ber alla spurninguna, og hún
+skiptist í hluta sem hver hefur sitt hlutverk:
+
+```
+https://api.github.com/search/repositories?q=quarto&per_page=5
+└─┬─┘   └──────┬─────┘└────────┬────────┘ └─────────┬────────┘
+ skema      hýsill           slóðin            fyrirspurnarstrengur
+```
+
+| Hluti | Dæmi | Hlutverk |
+|---|---|---|
+| Skema | `https` | dulkóðuð samskipti — notaðu alltaf `https` |
+| Hýsill | `api.github.com` | hvaða þjónusta svarar |
+| Slóð | `/search/repositories` | hvaða **auðlind** er beðið um |
+| Fyrirspurn | `?q=quarto&per_page=5` | skilyrði og stillingar |
+
+Fyrirspurnarstrengurinn byrjar á `?`, hvert par er `lykill=gildi` og pörin eru aðskilin með `&`.
+Þetta er sami rithátturinn og þú sérð í leitarslóðum í vafranum.
+
+::: {.callout-warning}
+## Sérstafir þurfa kóðun
+
+Slóðir mega ekki innihalda bil eða íslenska stafi beint. `q=jarðskjálfti á Reykjanesi` verður
+að `q=jar%C3%B0skj%C3%A1lfti%20%C3%A1%20Reykjanesi`. Þetta heitir *URL-kóðun* — þú átt aldrei
+að gera hana í höndunum, pakkarnir sjá um hana ef þú lætur þá byggja slóðina (sjá
+[Að sækja gögn](fetching-data.qmd)).
+:::
+
+## Aðferðirnar
+
+Beiðni ber líka **aðferð** (e. *method*) sem segir hvað á að gera við auðlindina:
+
+| Aðferð | Merking | Breytir gögnum? |
+|---|---|---|
+| `GET` | sækja | nei |
+| `POST` | búa til nýtt | já |
+| `PUT` / `PATCH` | uppfæra | já |
+| `DELETE` | eyða | já |
+
+Í þessum áfanga notarðu nær eingöngu **`GET`** — þú ert að sækja opin gögn, ekki breyta þeim.
+`GET` er sjálfgefna aðferðin þegar þú slærð slóð inn í vafra.
+
+::: {.callout-important}
+## `GET` á að vera hættulaus
+
+`GET` má aldrei breyta neinu hjá þjónustunni. Þess vegna er óhætt að endurtaka hana, hlaða
+síðunni aftur eða keyra skýrsluna tvisvar. Aðferðirnar sem breyta gögnum eru ekki hættulausar —
+sértu að nota þær ertu að skrifa, og þá gilda aðrar reglur.
+:::
+
+## Stöðukóðar
+
+Svarið ber alltaf þriggja stafa tölu sem segir hvernig fór. **Þetta er fyrsta sem þú átt að
+skoða þegar eitthvað virkar ekki.**
+
+| Kóði | Flokkur | Merking í reynd |
+|---|---|---|
+| `200` | tókst | allt í lagi, gögnin eru í svarinu |
+| `301` / `302` | tilvísun | auðlindin flutti sig |
+| `400` | villa hjá þér | beiðnin var ekki rétt byggð |
+| `401` | villa hjá þér | vantar auðkenningu — sjá [góða starfshætti](good-practices.qmd) |
+| `403` | villa hjá þér | þú mátt þetta ekki, eða ert komin/n yfir álagsmörk |
+| `404` | villa hjá þér | auðlindin er ekki til — oftast stafsetningarvilla í slóð |
+| `429` | villa hjá þér | of margar beiðnir, of hratt |
+| `500` / `503` | villa hjá þeim | þjónustan bilaði eða er niðri |
+
+Reglan til að muna: **4xx er þér að kenna, 5xx er þeim að kenna.** Fáirðu `404` skaltu lesa
+slóðina aftur. Fáirðu `500` bíddu og reyndu aftur — það lagast ekki við að breyta beiðninni.
+
+::: {.callout-note}
+## `200` þýðir ekki að gögnin séu rétt
+
+Stöðukóðinn segir aðeins að samskiptin hafi gengið. Þjónusta getur skilað `200` með tómum
+lista af því að leitin þín fann ekkert. Athugaðu alltaf **bæði** kóðann og innihaldið.
+:::
+
+## Hausar
+
+Bæði beiðni og svar bera **hausa** (e. *headers*) — lykil/gildi pör með upplýsingum um sjálf
+samskiptin frekar en gögnin.
+
+Gagnlegustu hausarnir sem þú *sendir*:
+
+| Haus | Til hvers |
+|---|---|
+| `Accept` | hvaða snið þú vilt, t.d. `application/json` |
+| `User-Agent` | hver þú ert — sumar þjónustur hafna beiðnum án hans |
+| `Authorization` | aðgangslykillinn þinn, þegar þjónustan krefst hans |
+
+Gagnlegustu hausarnir sem þú *færð*:
+
+| Haus | Til hvers |
+|---|---|
+| `Content-Type` | hvaða snið gögnin eru á |
+| `X-RateLimit-Remaining` | hve margar beiðnir þú átt eftir |
+| `Retry-After` | hve lengi þú átt að bíða eftir `429` |
+| `Link` | slóð á næstu síðu þegar svarið er of stórt |
+
+## Síðuskipting
+
+Vefþjónustur skila sjaldnast öllu í einu. Biðjirðu um 10.000 færslur færðu líklega 30 og
+vísbendingu um hvernig næstu eru sóttar. Tvö algeng mynstur:
+
+``` bash
+# 1) síðunúmer
+https://api.github.com/repos/HI-IDN/IDN302G/commits?per_page=100&page=2
+
+# 2) offset og limit
+https://einhver.thjonusta.is/gogn?limit=100&offset=200
+```
+
+`Link`-hausinn í svarinu inniheldur þá oft slóð merkta `rel="next"`. Að fara í gegnum allar
+síður heitir *paging* og þarf lykkju — við gerum það í [kaflanum um að sækja gögn](fetching-data.qmd).
+
+::: {.callout-tip}
+## Prófaðu í vafranum fyrst
+
+Áður en þú skrifar staka línu af kóða skaltu líma slóðina í vafra. Sjáirðu gögnin þar er
+slóðin rétt og vandinn liggur í kóðanum. Sjáirðu villu er slóðin röng og kóðinn ekki
+vandamálið. Þetta sparar ótrúlega mikinn tíma.
+:::
+
+## Skjölin ráða
+
+Það er engin ein alþjóðleg regla um hvað þjónusta kallar hlutina. Ein notar `per_page`, önnur
+`limit`, sú þriðja `count`. **Skjöl þjónustunnar** (e. *API documentation*) eru eina rétta
+heimildin — byrjaðu þar, ekki á ágiskun.
+
+Nokkrar þjónustur sem gott er að æfa sig á:
+
+| Þjónusta | Skjölun | Lykill? |
+|---|---|---|
+| GitHub | [docs.github.com/rest](https://docs.github.com/rest) | ekki fyrir opin gögn |
+| Hagstofa Íslands | [px.hagstofa.is](https://px.hagstofa.is/pxis/api/v1/is/) | nei |
+| Veðurstofan | [api.vedur.is/weather](https://api.vedur.is/weather/) | nei |
+| TMDB (kvikmyndir) | [developer.themoviedb.org](https://developer.themoviedb.org/docs) | já — ókeypis fyrir persónuleg verkefni |
+
+Íslensku þjónusturnar tvær eru teknar fyrir í [Íslenskar vefþjónustur](icelandic-apis.qmd), og
+TMDB er dæmið um þjónustu sem krefst lykils í [góðum starfsháttum](good-practices.qmd).

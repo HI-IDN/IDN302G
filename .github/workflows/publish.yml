@@ -30,15 +30,22 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # quarto.qmd keyrir raunverulegan R-kóða (mtcars + plotly), svo R þarf að
-      # vera til staðar. Pökkum sótt sem forþýdd tvíundargögn gegnum RSPM (fljótt).
+      # Nokkrir kaflar keyra raunverulegan R-kóða við þýðingu, svo R þarf að vera
+      # til staðar. Pökkum sótt sem forþýdd tvíundargögn gegnum RSPM (fljótt).
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
+      # knitr    <- Quarto notar hann til að keyra alla {r}-búta. Hann fylgir
+      #             plotly sem ósjálfstæði, en er talinn upp berum orðum svo
+      #             byggingin brotni ekki þótt sú keðja breytist.
+      # plotly   <- reproducible-reports/quarto.qmd
+      # jsonlite, dplyr <- api/json.qmd, api/icelandic-apis.qmd
+      # httr2 er EKKI þörf: allir httr2-bútar eru eval: false — netbeiðnir eiga
+      # ekki að keyra í CI.
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "plotly"))'
+        run: Rscript -e 'install.packages(c("knitr", "plotly", "jsonlite", "dplyr"))'
 
       - name: Render book and standalone slides
         working-directory: docs
