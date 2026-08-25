@@ -1,18 +1,17 @@
-# Verkefni: regex á mbl.is
+# Regex æfing
 
 Hingað til höfum við unnið með stutta texta sem passa í eina breytu. Raunveruleg gögn eru
 sjaldnast svona snyrtileg. Í þessum kafla sækjum við forsíðu [mbl.is](https://www.mbl.is/) —
 eina stóra HTML-skrá — og drögum úr henni upplýsingar sem hvergi eru gefnar sem hrein gögn.
 
 Þetta er ekki API. Það er enginn `/v1/frettir` endapunktur sem skilar snyrtilegu JSON-i.
-Það eina sem við höfum er markúpið sjálft, og regex er fljótlegasta leiðin til að ná tökum á því.
+Það eina sem við höfum er HTML-kóðinn sjálfur, og regex er fljótlegasta leiðin til að ná tökum á honum.
 
 ::: {.callout-note}
 ## Byrjun, ekki fullbúin lausn
 
 Hér að neðan er byrjunin unnin fyrir þig: við sækjum síðuna og leysum **fyrsta** dæmið í bæði
-R og Python. Æfingarnar á eftir eru þínar að klára. Mynstrin sem þú skrifar hér nýtast beint í
-hópverkefninu, svo geymdu þau.
+R og Python. Æfingarnar á eftir eru þínar að klára.
 :::
 
 ## Kurteisi við vefþjóna
@@ -68,7 +67,7 @@ len(html)
 ```
 :::
 
-Þetta er ein skrá upp á rúmlega hundrað þúsund stafi. Við ætlum ekki að lesa hana — við ætlum
+Þetta er ein skrá upp á mörg hundruð þúsund stafi. Við ætlum ekki að lesa hana — við ætlum
 að spyrja hana spurninga.
 
 ## Hvaða útgáfa af síðunni er þetta?
@@ -93,34 +92,14 @@ Gátsumman gerir okkur kleift að **sanna** að tvær keyrslur hafi unnið úr s
 aðra summu en félagi þinn, þá eruð þið einfaldlega ekki með sömu síðuna — og þá er tilgangslaust
 að bera saman tölurnar ykkar.
 
-Ef þú vilt sjá hvernig síðan leit út á þessum tíma má fletta henni upp hjá
-[Internet Archive](https://web.archive.org/):
-
 ```{r}
 #| label: mbl-r-wayback
 #| output: asis
 stimpill <- format(sott, "%Y%m%d%H%M%S", tz = "UTC")
 slod <- sprintf("https://web.archive.org/web/%s/https://www.mbl.is/", stimpill)
 
-cat(sprintf("[Vistun mbl.is næst þýðingartíma þessarar síðu](%s)", slod))
+cat(sprintf("[Opna þá útgáfu af mbl.is sem þessi síða vinnur út frá](%s)", slod))
 ```
-
-Athugaðu að vistunin er **ekki** sama eintak og við sóttum — Internet Archive vistar síðuna
-strjált — og að forsíður fréttamiðla endurspilast oft illa þar, því vistaði JavaScript-kóðinn
-nær ekki í þau gögn sem hann sækir venjulega. Það er einmitt ástæðan fyrir því að við festum
-gátsummuna: hún er áreiðanleg, myndin er það ekki.
-
-::: {.callout-note}
-## Af hverju speglum við ekki síðuna sjálf?
-
-Við gætum vistað HTML-ið sem við sóttum og birt það hér — þá sæirðu nákvæmlega það eintak sem
-mynstrin unnu úr. Við gerum það samt ekki: þá værum við að endurbirta efni mbl.is á okkar eigin
-vef, og það er ekki okkar að gera.
-
-Gátsumman gefur sömu sannreynanleika án þess að afrita efnið. Þetta er sama röksemd og gildir um
-gögn í hópverkefninu — þú mátt vinna úr þeim og birta niðurstöður, en það þýðir ekki að þú megir
-dreifa hrágögnunum áfram.
-:::
 
 ## Unnið dæmi: hvaða fréttaflokkar eru á forsíðunni?
 
@@ -166,13 +145,14 @@ Counter(flokkar).most_common()
 ```
 :::
 
-Bæði málin skila sömu flokkunum. Talan verður önnur hjá þér en hér — og ef þú rýnir í
-flipana tvo hér að ofan sérðu að hún er meira að segja ekki alveg sú sama í R og Python.
+Bæði málin skila sömu flokkunum, og talan verður önnur hjá þér en hér.
 
-Það er ekki villa í mynstrinu. Flipparnir sóttu síðuna hvor í sínu lagi, með nokkurra sekúndna
-millibili, og forsíða fréttamiðils breytist á þeim tíma. **Gögnin sjálf eru á hreyfingu.** Ef þú
-vilt bera saman tvær aðferðir verðurðu að láta þær vinna á sama svarinu — sæktu einu sinni,
-vistaðu, og keyrðu bæði mynstrin á vistuðu skránni.
+Berðu flipana tvo saman. Oftast stemma þeir, en stundum ekki — og þá er það ekki villa í
+mynstrinu. Flipparnir sækja síðuna hvor í sínu lagi, með nokkurra sekúndna millibili, og forsíða
+fréttamiðils getur breyst á þeim tíma. **Gögnin sjálf eru á hreyfingu.**
+
+Þess vegna: ef þú vilt bera saman tvær aðferðir verða þær að vinna á sama svarinu. Sæktu einu
+sinni, vistaðu skrána, og keyrðu bæði mynstrin á henni.
 
 ::: {.callout-tip}
 ## Af hverju `[a-z]+` en ekki `\w+`?
@@ -202,7 +182,7 @@ heildarfjöldann. Munurinn kemur á óvart.
 
 Veðurkassinn efst á síðunni sýnir hita í gráðum.
 
-*Vísbending:* skoðaðu markúpið kringum töluna. Hún og gráðumerkið eru **ekki í sama taggi**, svo
+*Vísbending:* skoðaðu HTML-kóðann kringum töluna. Hún og gráðumerkið eru **ekki í sama taggi**, svo
 mynstrið verður að spanna bæði — og leyfa línuskil á milli. Mundu líka að hiti getur verið
 neikvæður.
 
@@ -210,9 +190,9 @@ neikvæður.
 
 Þetta er lúmskasta æfingin, og hún kennir mikilvægustu lexíuna í kaflanum.
 
-*Vísbending:* leitaðu að `USD` í markúpinu. Reiturinn sem sýnir gengið á síðunni er **tómur** —
+*Vísbending:* leitaðu að `USD` í HTML-kóðanum. Reiturinn sem sýnir gengið á síðunni er **tómur** —
 `value=""` — því talan er sett inn með JavaScript eftir að síðan hleðst. Gengið er samt í
-skránni, en neðar, í kóða en ekki í sýnilegu markúpi. Finndu það og skrifaðu mynstur sem nær
+skránni, en neðar, inni í JavaScript en ekki í því sem birtist á síðunni. Finndu það og skrifaðu mynstur sem nær
 gjaldmiðilstákninu og upphæðinni saman.
 
 Lærdómurinn: **það sem þú sérð í vafranum er ekki endilega það sem þú færð í svarinu.** Notaðu
@@ -241,7 +221,7 @@ tölu, og engin þeirra er rétt: sumar auglýsingar eru sóttar eftir á, og `a
 ::: {.callout-warning}
 ## Mynstur sem virkar í dag getur brotnað í næstu viku
 
-mbl.is breytir markúpinu sínu án þess að láta neinn vita. Það er eðlismunur á því að lesa API —
+mbl.is breytir uppbyggingu síðunnar sinnar án þess að láta neinn vita. Það er eðlismunur á því að lesa API —
 sem lofar ákveðnu sniði — og að lesa HTML, sem lofar engu.
 
 Þess vegna: skrifaðu prófanir sem segja til ef mynstrið hættir að finna neitt. Mynstur sem
