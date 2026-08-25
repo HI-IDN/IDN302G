@@ -7,6 +7,9 @@ eina stóra HTML-skrá — og drögum úr henni upplýsingar sem hvergi eru gefn
 Þetta er ekki API. Það er enginn `/v1/frettir` endapunktur sem skilar snyrtilegu JSON-i.
 Það eina sem við höfum er HTML-kóðinn sjálfur, og regex er fljótlegasta leiðin til að ná tökum á honum.
 
+Við vinnum ekki með forsíðuna eins og hún er í dag, heldur með **fasta vistun** af henni. Hvers
+vegna kemur í ljós hér að neðan.
+
 ::: {.callout-note}
 ## Byrjun, ekki fullbúin lausn
 
@@ -25,7 +28,44 @@ R og Python. Æfingarnar á eftir eru þínar að klára.
 - **Vistaðu svarið** meðan þú þróar mynstrið — þá ertu ekki að hamra á þjóninum í hvert sinn
   sem þú lagfærir eitt `+`.
 
+::: {.callout-important}
+## Þjónninn ræður, ekki þú
+
+Þessi bók er þýdd sjálfvirkt á þjóni hjá GitHub. Þegar hún reyndi að sækja `https://www.mbl.is/`
+þaðan svaraði mbl.is með **`403 Forbidden`** — beiðninni var einfaldlega hafnað, þótt nákvæmlega
+sami kóði virki fínt úr fartölvu.
+
+Það er ekkert að kóðanum. Taktu eftir að `robots.txt` **leyfir** forsíðuna — það er ekki
+bannið sem stoppar okkur.
+
+mbl.is er á bak við [Cloudflare](https://www.cloudflare.com/), sem metur hverja beiðni og gefur
+henni einkunn eftir því hversu líkleg hún er til að koma frá manneskju. `robots.txt` segir hvað
+þú **mátt**; Cloudflare ræður hvað þú **kemst**. Það tvennt fer ekki alltaf saman.
+
+Sami kóði, tvær niðurstöður — af hverju?
+
+| | Fartölvan þín | Þjónn hjá GitHub |
+|---|---|---|
+| IP-tala | heimatenging eða skólanet | gagnaver, þekkt IP-bil |
+| Fyrri umferð | þú hefur heimsótt mbl.is í vafra | engin saga, engar kökur |
+| Beiðnatíðni | ein og ein | þúsundir verkefna af sama neti |
+
+Ekkert af þessu tengist kóðanum þínum. Þess vegna er **„það virkar hjá mér" ekki sönnun** — það
+segir aðeins að það virki þaðan sem þú situr.
+
+Þú getur lent í þessu hvenær sem er: á VPN, í skólanetinu, eða einfaldlega eftir of margar
+beiðnir í röð.
+
+Þess vegna sækjum við hér **vistun** af síðunni hjá [Internet Archive](https://web.archive.org/)
+í stað lifandi slóðarinnar. Það leysir tvennt í einu: þjónninn hleypir okkur að, og allir fá
+nákvæmlega sömu síðuna — þú, við, og bókin í hvert sinn sem hún er þýdd.
+:::
+
 ## Sækjum síðuna
+
+Slóðin er löng en segir allt sem þarf: `web.archive.org`, tímastimpillinn `20260802211226`, og
+upprunalega slóðin aftast. Viðskeytið `if_` biður Internet Archive um síðuna sjálfa, án
+leiðsöguslárinnar sem það setur venjulega ofan á.
 
 ::: {.panel-tabset}
 ## R
@@ -36,15 +76,16 @@ R og Python. Æfingarnar á eftir eru þínar að klára.
 #| warning: false
 library(httr2)
 
-svar <- request("https://www.mbl.is/") |>
+# Föst vistun frá 2. ágúst 2026 — sama síða í hvert sinn.
+slod <- "https://web.archive.org/web/20260802211226if_/https://www.mbl.is/"
+
+svar <- request(slod) |>
   req_user_agent("IDN302G kennsluefni (netfang@hi.is)") |>
-  req_timeout(30) |>
+  req_timeout(60) |>
   req_retry(max_tries = 3) |>
   req_perform()
 
 html <- resp_body_string(svar)
-sott <- resp_date(svar)
-
 nchar(html)
 ```
 
@@ -55,10 +96,13 @@ nchar(html)
 import re
 import requests
 
+# Sama vistun og R-flipinn sækir.
+slod = "https://web.archive.org/web/20260802211226if_/https://www.mbl.is/"
+
 svar = requests.get(
-    "https://www.mbl.is/",
+    slod,
     headers={"User-Agent": "IDN302G kennsluefni (netfang@hi.is)"},
-    timeout=30,
+    timeout=60,
 )
 svar.raise_for_status()
 
@@ -70,11 +114,10 @@ len(html)
 Þetta er ein skrá upp á mörg hundruð þúsund stafi. Við ætlum ekki að lesa hana — við ætlum
 að spyrja hana spurninga.
 
-## Hvaða útgáfa af síðunni er þetta?
+## Er þetta örugglega sama síðan?
 
-Forsíða fréttamiðils er ekki fast skjal. Talan sem þú sérð hér að neðan var rétt þegar þessi
-bók var þýdd, og er líklega orðin röng þegar þú lest hana. Þess vegna festum við nákvæmlega
-hvaða svar við unnum úr — tíma, stærð og gátsummu:
+Tímastimpillinn í slóðinni segir hvaða vistun við báðum um, en hann sannar ekki að við höfum
+fengið sömu bætin og þú færð. Til þess þarf gátsummu:
 
 ```{r}
 #| label: mbl-r-meta
@@ -82,24 +125,18 @@ skra <- tempfile(fileext = ".html")
 writeLines(html, skra, useBytes = TRUE)
 
 data.frame(
-  sott      = format(sott, "%Y-%m-%d %H:%M:%S", tz = "UTC"),
   staerd_kb = round(nchar(html, type = "bytes") / 1024),
   md5       = unname(tools::md5sum(skra))
 )
 ```
 
-Gátsumman gerir okkur kleift að **sanna** að tvær keyrslur hafi unnið úr sama svari. Fáir þú
-aðra summu en félagi þinn, þá eruð þið einfaldlega ekki með sömu síðuna — og þá er tilgangslaust
-að bera saman tölurnar ykkar.
+Keyrðu kaflann sjálf og þú átt að fá sömu summu. Fáir þú aðra ertu ekki með sömu síðuna, og þá
+er tilgangslaust að bera saman tölurnar okkar.
 
-```{r}
-#| label: mbl-r-wayback
-#| output: asis
-stimpill <- format(sott, "%Y%m%d%H%M%S", tz = "UTC")
-slod <- sprintf("https://web.archive.org/web/%s/https://www.mbl.is/", stimpill)
+Þú getur líka [skoðað vistunina í vafra](https://web.archive.org/web/20260802211226/https://www.mbl.is/).
 
-cat(sprintf("[Opna þá útgáfu af mbl.is sem þessi síða vinnur út frá](%s)", slod))
-```
+Berðu þetta saman við lifandi forsíðu: hún breytist oft á dag, svo gátsumman væri ný í hvert
+sinn og engar tvær keyrslur sambærilegar.
 
 ## Unnið dæmi: hvaða fréttaflokkar eru á forsíðunni?
 
@@ -119,12 +156,24 @@ Flokkurinn er því annar liður í slóðinni, alltaf lágstafir, alltaf á und
 til að skrifa mynstur — við grípum flokkinn með sviga og krefjumst þess að fjórar tölur komi
 strax á eftir, svo við lendum ekki á öðrum hlekkjum sem byrja eins.
 
+Eitt í viðbót. Af því að við sækjum vistun, byrja hlekkirnir ekki á `/frettir/` heldur á slóð
+Internet Archive:
+
+```
+href="/web/20260802211226/https://www.mbl.is/frettir/innlent/2026/08/02/..."
+                                                └──── það sem við viljum ────┘
+```
+
+Mynstrið má því ekki gera ráð fyrir að slóðin byrji á rótinni. Við leyfum hverju sem er á milli
+`href="` og `/frettir/` — en aðeins innan sömu gæsalappa, svo mynstrið hlaupi ekki yfir í næsta
+tagg.
+
 ::: {.panel-tabset}
 ## R
 
 ```{r}
 #| label: mbl-r-2
-mynstur <- 'href="/frettir/([a-z]+)/\\d{4}/'
+mynstur <- 'href="[^"]*?/frettir/([a-z]+)/\\d{4}/'
 
 fundid <- regmatches(html, gregexpr(mynstur, html, perl = TRUE))[[1]]
 flokkar <- sub(mynstur, "\\1", fundid, perl = TRUE)
@@ -138,30 +187,23 @@ sort(table(flokkar), decreasing = TRUE)
 #| label: mbl-py-2
 from collections import Counter
 
-mynstur = r'href="/frettir/([a-z]+)/\d{4}/'
+mynstur = r'href="[^"]*?/frettir/([a-z]+)/\d{4}/'
 flokkar = re.findall(mynstur, html)
 
 Counter(flokkar).most_common()
 ```
 :::
 
-Bæði málin skila sömu flokkunum, en talan verður önnur hjá þér en hér — og hún getur meira að
-segja verið ólík milli flipanna tveggja.
+Flipparnir tveir skila **nákvæmlega sömu tölum**. Það er ekki tilviljun: þeir sækja sömu
+vistunina, svo inntakið er það sama og mynstrin eins. Sama mynstur á sama texta gefur alltaf
+sömu niðurstöðu, í hvoru málinu sem er.
 
-Það er ekki munur á R og Python. Sama mynstur á sama texta gefur alltaf sömu niðurstöðu, í hvoru
-málinu sem er. Munurinn liggur í **inntakinu**: flipparnir sækja forsíðuna hvor í sínu lagi, og
-forsíða fréttamiðils er lifandi skjal sem getur breyst hvenær sem er — jafnvel á þeim sekúndum
-sem líða milli beiðnanna tveggja.
+Reyndu þetta á lifandi forsíðu og þú færð aðra sögu. Þá sækir hvor flipi sína útgáfu, með
+sekúndum á milli, og forsíða fréttamiðils getur breyst á þeim tíma. Þá er munur á tölunum —
+ekki af því að R og Python séu ólík, heldur af því að **inntakið var ekki það sama**.
 
-Þess vegna eru tvær leiðir til að fá endurtakanlega niðurstöðu:
-
-- **Sæktu einu sinni og vistaðu.** Vinndu svo alla úrvinnsluna á vistuðu skránni. Þá vinna allar
-  aðferðirnar þínar á nákvæmlega sama inntaki.
-- **Notaðu fasta vistun.** Hlekkur á tiltekna vistun hjá Internet Archive vísar alltaf á sama
-  eintak, ólíkt `https://www.mbl.is/` sem vísar á það sem er efst í dag.
-
-Þetta er ekki sérviska. Ef þú getur ekki bent á nákvæmlega hvaða gögn niðurstaðan þín byggir á,
-getur enginn — þar með talið þú sjálf í næstu viku — endurtekið hana.
+Þetta er ástæðan fyrir því að við festum vistunina. Ef þú getur ekki bent á nákvæmlega hvaða
+gögn niðurstaðan byggir á, getur enginn endurtekið hana — þar með talin þú sjálf í næstu viku.
 
 ::: {.callout-tip}
 ## Af hverju `[a-z]+` en ekki `\w+`?
