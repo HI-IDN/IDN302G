@@ -195,10 +195,6 @@ Veðurkassinn efst á síðunni sýnir hita í gráðum.
 mynstrið verður að spanna bæði — og leyfa línuskil á milli. Mundu líka að hiti getur verið
 neikvæður.
 
-**Hvernig sannreynirðu það?** Keyrirðu þetta að sumri finnurðu aldrei mínustölu, og veist því
-ekkert um hvort mynstrið þitt ræður við hana. Finndu leið til að prófa tilvik sem er ekki í
-gögnunum sem þú hefur við höndina.
-
 ### 3. Hvert er gengi Bandaríkjadals?
 
 Þetta er lúmskasta æfingin, og hún kennir mikilvægustu lexíuna í kaflanum.
@@ -230,6 +226,25 @@ Prófaðu að telja þær. Skrifaðu svo niður hvers vegna þú **treystir ekki
 `data-ad`, `adunit` eða `googletag`, eða að klösum sem innihalda `ad`. Hver aðferð gefur sína
 tölu, og engin þeirra er rétt: sumar auglýsingar eru sóttar eftir á, og `ad` finnst líka í
 óskyldum orðum. Þetta er raunverulega staðan þegar gögnin eru ekki merkt fyrir þig.
+
+::: {.callout-important}
+## Virkar mynstrið á öðrum útgáfum af gögnunum?
+
+Mynstur sem gengur upp á einni síðu er ekki þar með rétt. Það gæti verið of sértækt — sniðið að
+því eina eintaki sem þú varst með fyrir framan þig.
+
+Hitaæfingin er gott dæmi. Að sumri finnurðu aldrei mínustölu, svo þú kemst aldrei að því hvort
+mynstrið ræður við hana. En þetta er ekki bundið við neikvæðar tölur: fyrirsagnir eru mislangar,
+sumar fréttir eru án myndar, tölur eru stundum með aukastaf, og stundum vantar reitinn alveg.
+
+Spurðu því um hvert mynstur sem þú skrifar:
+
+- Hvaða tilvik eru **ekki** í eintakinu sem ég er að vinna með?
+- Hvernig næ ég í annað eintak af sömu gögnum til að prófa á?
+- Hvað á að gerast þegar reiturinn er tómur eða vantar — á kóðinn að þegja eða láta vita?
+
+Prófaðu mynstrin þín á fleiri en einu eintaki af forsíðunni áður en þú telur þau tilbúin.
+:::
 
 ::: {.callout-warning}
 ## Mynstur sem virkar í dag getur brotnað í næstu viku
