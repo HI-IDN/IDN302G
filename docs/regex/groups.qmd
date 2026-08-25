@@ -57,6 +57,7 @@ Sama mynstur má nota í mörgum málum. Hér er einfalt dæmi sem finnur netfö
 ## R
 
 ```{r}
+#| label: groups-r-1
 txt <- c(
   "Hafðu samband við helga@hi.is",
   "Þetta er ekki netfang",
@@ -95,6 +96,7 @@ Sömu föll taka `perl = TRUE`: `grepl()`, `sub()`, `gsub()`, `regexpr()`.
 ## Python
 
 ```{python}
+#| label: groups-py-1
 import re
 
 txt = [

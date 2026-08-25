@@ -67,6 +67,7 @@ skrifar þú í `.qmd` skrána:
 Þegar Quarto þýðir skrána keyrir það bútinn og sýnir bæði kóðann og niðurstöðuna fyrir neðan:
 
 ```{r}
+#| label: quarto-r-1
 1 + 1
 ```
 
@@ -75,12 +76,14 @@ skrifar þú í `.qmd` skrána:
 `mtcars` er innbyggt gagnasafn í R með upplýsingum um 32 bíla. Við skoðum fyrstu línurnar:
 
 ```{r}
+#| label: quarto-r-2
 head(mtcars)
 ```
 
 Og reiknum meðaleyðslu (`mpg`, mílur á gallon) eftir fjölda strokka (`cyl`):
 
 ```{r}
+#| label: quarto-r-3
 aggregate(mpg ~ cyl, data = mtcars, FUN = mean)
 ```
 
@@ -93,6 +96,7 @@ Sama gagnasafn, en núna sem gagnvirk mynd. Prófaðu að sveima yfir punktana o
 þysja:
 
 ```{r}
+#| label: quarto-r-4
 #| message: false
 #| warning: false
 library(plotly)
