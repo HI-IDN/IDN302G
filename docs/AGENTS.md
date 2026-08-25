@@ -17,6 +17,7 @@ University of Iceland. Published at [hi-idn.github.io/IDN302G](https://hi-idn.gi
 │   ├── storytelling/ ← Myndræn framsetning module
 │   ├── index.qmd     ← Landing page
 │   ├── .quarto/      ← Local Quarto cache incl. _freeze/ (gitignored, NOT committed)
+│   ├── _freeze/      ← Committed results for pages marked `freeze: true` (one chapter today)
 │   └── _quarto.yml   ← Quarto book configuration; outputs to ../_site
 ├── templates/        ← Student templates (repo root); linked from the book via GitHub URLs
 └── _site/            ← Rendered output; built by GitHub Actions, NOT committed
@@ -77,8 +78,19 @@ CI installs both Quarto *and* R, and **executes every runnable code cell from sc
 `.github/workflows/publish.yml`. You do **not** commit the built site; `_site/` is generated in
 the cloud and is gitignored.
 
-There is no `execute: freeze:` setting. `docs/.quarto/_freeze/` is a purely local cache and is
-gitignored, so nothing you have cached locally reaches CI.
+Almost nothing is frozen. **One** page sets `execute: freeze: true` — `api/good-practices.qmd`,
+because it needs a TMDB token that must not reach CI. Everything else executes on the build
+server every time.
+
+Two directories with confusingly similar names are involved, and only one of them is committed:
+
+| Path | What it is | Committed? |
+|---|---|---|
+| `docs/.quarto/_freeze/` | local render cache, rebuilt whenever you render | no, gitignored |
+| `docs/_freeze/` | results for pages marked `freeze: true`, read by CI | yes, the `execute-results` only |
+
+Nothing in the local cache reaches CI. The committed results do, which is the whole point of
+them — see *Frozen chapters* below.
 
 **Two consequences worth knowing:**
 
