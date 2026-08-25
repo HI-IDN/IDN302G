@@ -113,6 +113,26 @@ export RETICULATE_PYTHON="$(which python)"
 Put that line in the `.Renviron` that R reads at startup so it survives between sessions. The
 workflow sets the same variable, which is why this failure only ever shows up locally.
 
+### Frozen chapters
+
+`api/good-practices.qmd` carries `execute: freeze: true` because it queries TMDB, which needs a
+personal token that must not reach CI. Its results live in `docs/_freeze/` and are committed.
+Actions reads them instead of sending the request.
+
+Quarto keys the freeze on the **md5 of the source file**. Any edit invalidates it — including a
+typo fix in prose that touches no code. If you change that chapter and do not refresh the freeze,
+Actions will try to execute the cell, get `401`, and the build fails.
+
+After editing it, re-render just that file with the token available and commit the result:
+
+```bash
+cd docs && quarto render api/good-practices.qmd
+git add docs/_freeze/api/good-practices
+```
+
+Never let a cell in a frozen chapter print a secret. The freeze stores the output, and the
+output is committed.
+
 Use the `Makefile` in the repository root for local work:
 
 - `make` — render only changed pages (fast, for content edits)
