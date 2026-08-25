@@ -53,11 +53,13 @@ jobs:
       #             byggingin brotni ekki þótt sú keðja breytist.
       # plotly   <- reproducible-reports/quarto.qmd
       # httr2, jsonlite, dplyr <- api/*.qmd
+      # httpuv   <- req_dry_run() i api/fetching-data.qmd. httr2 telur hann
+      #             ekki upp sem nauðsyn, svo hann verður að koma sérstaklega.
       # reticulate <- Quarto/knitr notar hann til að keyra {python}-búta.
       # readr    <- eval: false skriftudæmi í api/fetching-data.qmd, talið upp hér
       #             svo nemendur geti keyrt sömu uppskriftir án þess að leita.
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "jsonlite", "dplyr", "readr"))'
+        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "jsonlite", "dplyr", "readr"))'
 
       # Bútarnir lesa GITHUB_TOKEN úr umhverfinu. Án hans keyra GitHub-beiðnirnar
       # óauðkenndar og lenda á 60/klst markinu; með honum eru mörkin 5.000/klst.
