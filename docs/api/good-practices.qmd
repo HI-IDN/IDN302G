@@ -3,6 +3,8 @@ title: "Góðir starfshættir"
 description: >-
   Aðgangslyklar sem lenda aldrei í Git, álagsmörk og kurteisi við þjónustur,
   og hvernig gögn sótt um API haldast endurtakanleg.
+execute:
+  freeze: true
 ---
 
 ## Lyklar fara aldrei í Git
@@ -86,7 +88,8 @@ hann í `.Renviron` (R) eða `.env` (Python) — **aldrei í kóðann**.
 
 ```{r}
 #| label: starfshaettir-r-2
-#| eval: false
+#| message: false
+#| warning: false
 library(httr2)
 
 myndir <- request("https://api.themoviedb.org/3/search/movie") |>
@@ -97,11 +100,6 @@ myndir <- request("https://api.themoviedb.org/3/search/movie") |>
 
 myndir$results |>
   dplyr::select(title, release_date, vote_average)
-```
-
-```
-           title release_date vote_average
-1 Remote Control   1992-09-09          6.6
 ```
 
 ::: {.callout-important}
@@ -120,7 +118,6 @@ Athugaðu að hann hafi lesist áður en þú sendir beiðni:
 
 ```{r}
 #| label: starfshaettir-r-3
-#| eval: false
 nzchar(Sys.getenv("TMDB_TOKEN"))   # TRUE ef lykillinn er kominn inn
 ```
 
@@ -129,9 +126,11 @@ Skráin þarf líka að **enda á línuskilum** — annars sleppir R síðustu l
 
 ## Python
 
-``` python
+```{python}
+#| label: starfshaettir-py-1
 import os
 import requests
+import pandas as pd
 
 svar = requests.get(
     "https://api.themoviedb.org/3/search/movie",
@@ -141,13 +140,7 @@ svar = requests.get(
 )
 svar.raise_for_status()
 
-import pandas as pd
 pd.json_normalize(svar.json()["results"])[["title", "release_date", "vote_average"]]
-```
-
-```
-            title release_date  vote_average
-0  Remote Control   1992-09-09           6.6
 ```
 
 Í Python les `python-dotenv` skrána `.env` inn í `os.environ`:
@@ -174,6 +167,16 @@ load_dotenv()          # les .env úr vinnumöppunni
 #| eval: false
 Sys.getenv("TMDB_TOKEN")
 ```
+
+::: {.callout-caution}
+## Þessi bútur má aldrei keyra
+
+Hann prentar lykilinn. Væri hann keyrður á vél þar sem lykillinn er til staðar færi hann inn í
+frystu niðurstöðurnar — og þær eru í opinni geymslu. `eval: false` er hér öryggisráðstöfun, ekki
+þægindi.
+
+Sama gildir um þinn eigin kóða: það sem búturinn prentar endar í skjalinu.
+:::
 
 ```
 [1] ""
@@ -245,11 +248,23 @@ Athugaðu því alltaf að lykillinn hafi lesist áður en þú sendir beiðnina
 :::
 
 ::: {.callout-note}
-## Þessi bútur er ekki keyrður við byggingu
+## Hvernig þetta er keyrt án þess að lykillinn fari á netið
 
-Öll önnur kóðadæmi í þessum kafla eru keyrð þegar bókin er byggð. TMDB-dæmið er það ekki, því
-það krefst aðgangslykils — og lykillinn á ekki heima í GitHub Actions frekar en í kóðanum.
-Útkoman að ofan er afrituð úr raunverulegri keyrslu.
+Taflan að ofan er raunveruleg niðurstaða úr TMDB — ekki afrituð með höndunum. En byggingarþjónninn
+hjá GitHub hefur engan lykil og fær hann ekki.
+
+Lausnin er **frysting**. Þessi síða er merkt `freeze: true`, sem þýðir:
+
+1. Kennarinn keyrir kaflann á sinni vél, þar sem lykillinn er í `.Renviron`.
+2. Quarto vistar niðurstöðurnar í `_freeze/`, sem fylgir með í geymsluna.
+3. Þegar bókin er byggð les Quarto frystu niðurstöðurnar í stað þess að senda beiðni.
+
+Lykillinn fer aldrei úr vélinni sem keyrði kóðann. Frystu skrárnar geyma **úttakið**, ekki
+umhverfisbreyturnar — þess vegna má enginn bútur hér prenta lykilinn.
+
+Munurinn á þessu og handskrifaðri töflu er sá að frysta útgáfan var raunverulega keyrð, og
+uppfærist um leið og kaflinn er keyrður aftur. Handskrifuð tafla helst óbreytt þótt kóðinn
+hætti að virka.
 :::
 
 ::: {.callout-warning}
