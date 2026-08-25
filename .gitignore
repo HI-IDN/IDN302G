@@ -18,6 +18,7 @@
 
 # Quarto render leftovers
 **/*.rmarkdown
+**/*.knit.md
 
 # /docs/_freeze/ IS committed, but only for pages marked `freeze: true`.
 # Everything else is executed from scratch by Actions. Today that means the
