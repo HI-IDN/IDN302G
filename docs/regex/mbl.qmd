@@ -195,22 +195,9 @@ Veðurkassinn efst á síðunni sýnir hita í gráðum.
 mynstrið verður að spanna bæði — og leyfa línuskil á milli. Mundu líka að hiti getur verið
 neikvæður.
 
-**Hvernig sannreynirðu það síðasta?** Ef þú keyrir þetta að sumri finnurðu aldrei mínustölu, og
-þá veistu ekkert um hvort mynstrið þitt ræður við hana. Þetta er algengt vandamál: jaðartilvikið
-er einfaldlega ekki í gögnunum sem þú hefur við höndina.
-
-Tvær leiðir, og þú þarft báðar:
-
-1. **Búðu til inntakið sjálf.** Skrifaðu stuttan streng með `-5` í réttu HTML-formi og keyrðu
-   mynstrið á honum. Þetta tekur mínútu og er það fyrsta sem þú átt að gera.
-2. **Finndu raunveruleg gögn sem reyna á tilvikið.** Tilbúið dæmi sannar aðeins að mynstrið ráði
-   við *þitt* dæmi, ekki að raunverulega síðan líti svona út. Hér koma vistanir að gagni:
-   forsíða mbl.is frá janúar eða febrúar sýnir aðra tölu en forsíðan í ágúst. Internet Archive
-   er með [API](https://archive.org/wayback/available?url=mbl.is&timestamp=20250210) sem skilar
-   þeirri vistun sem næst er tilteknum tíma.
-
-Þetta er sami vandi og bíður ykkar í hópverkefninu: gögnin sem þið sækið í dag innihalda ekki
-endilega tilvikin sem brjóta kóðann ykkar á morgun.
+**Hvernig sannreynirðu það?** Keyrirðu þetta að sumri finnurðu aldrei mínustölu, og veist því
+ekkert um hvort mynstrið þitt ræður við hana. Finndu leið til að prófa tilvik sem er ekki í
+gögnunum sem þú hefur við höndina.
 
 ### 3. Hvert er gengi Bandaríkjadals?
 
