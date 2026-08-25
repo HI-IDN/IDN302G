@@ -17,7 +17,7 @@ University of Iceland. Published at [hi-idn.github.io/IDN302G](https://hi-idn.gi
 │   ├── storytelling/ ← Myndræn framsetning module
 │   ├── index.qmd     ← Landing page
 │   ├── .quarto/      ← Local Quarto cache incl. _freeze/ (gitignored, NOT committed)
-│   ├── _freeze/      ← Committed results for pages marked `freeze: true` (one chapter today)
+│   ├── _freeze/      ← Committed results for pages marked `freeze: true` (two chapters today)
 │   └── _quarto.yml   ← Quarto book configuration; outputs to ../_site
 ├── templates/        ← Student templates (repo root); linked from the book via GitHub URLs
 └── _site/            ← Rendered output; built by GitHub Actions, NOT committed
@@ -78,9 +78,8 @@ CI installs both Quarto *and* R, and **executes every runnable code cell from sc
 `.github/workflows/publish.yml`. You do **not** commit the built site; `_site/` is generated in
 the cloud and is gitignored.
 
-Almost nothing is frozen. **One** page sets `execute: freeze: true` — `api/good-practices.qmd`,
-because it needs a TMDB token that must not reach CI. Everything else executes on the build
-server every time.
+Almost nothing is frozen. **Two** pages set `execute: freeze: true`, both because the service
+they query refuses the build server. Everything else executes on the build server every time.
 
 Two directories with confusingly similar names are involved, and only one of them is committed:
 
@@ -127,20 +126,33 @@ workflow sets the same variable, which is why this failure only ever shows up lo
 
 ### Frozen chapters
 
-`api/good-practices.qmd` carries `execute: freeze: true` because it queries TMDB, which needs a
-personal token that must not reach CI. Its results live in `docs/_freeze/` and are committed.
-Actions reads them instead of sending the request.
+Two chapters carry `execute: freeze: true`. Their results live in `docs/_freeze/` and are
+committed; Actions reads them instead of sending the request.
+
+| Chapter | Why it cannot run in CI |
+|---|---|
+| `api/good-practices.qmd` | TMDB needs a personal token, which must not reach CI |
+| `regex/mbl.qmd` | mbl.is sits behind Cloudflare and answers `403` to datacenter traffic |
+
+Freezing is the documented exception to *cells must run*, and it is meant to stay rare. Two out
+of 85 pages is an exception; if you find yourself adding a fifth, the rule no longer describes
+the book and the rule is what should change.
 
 Quarto keys the freeze on the **md5 of the source file**. Any edit invalidates it — including a
-typo fix in prose that touches no code. If you change that chapter and do not refresh the freeze,
-Actions will try to execute the cell, get `401`, and the build fails.
+typo fix in prose that touches no code. If you change a frozen chapter and do not refresh the
+freeze, Actions will try to execute the cell, fail to reach the service, and the build fails.
 
-After editing it, re-render just that file with the token available and commit the result:
+After editing one, re-render **just that file** — a single-file render always executes, even with
+`freeze: true` — and commit the result:
 
 ```bash
-cd docs && quarto render api/good-practices.qmd
-git add docs/_freeze/api/good-practices
+cd docs && quarto render api/good-practices.qmd   # eða regex/mbl.qmd
+git add docs/_freeze
 ```
+
+Note the asymmetry, because it trips people up: a **project** render (`quarto render`, `make
+full`) honours the freeze and skips those cells. A **single-file** render ignores it and
+executes. That is what makes refreshing a freeze possible at all.
 
 Never let a cell in a frozen chapter print a secret. The freeze stores the output, and the
 output is committed.
