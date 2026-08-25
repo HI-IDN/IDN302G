@@ -32,8 +32,8 @@ Skýrslur sem eru keyrðar beint af gögnum og endurtækar (reproducible).
 Samskipti við vefþjónustur og gagnaveitur með API (*Application Programming Interfaces*).
 :::
 
-::: {.lotu-card .lotu-card-muted}
-### Reglulegar segðir <span class="lotu-status">kemur</span>
+::: {.lotu-card}
+### Reglulegar segðir
 Leit og vinnslur á textagögnum með reglulegar segðir (regex) í R og öðrum tólum.
 :::
 
