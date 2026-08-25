@@ -195,6 +195,23 @@ Veðurkassinn efst á síðunni sýnir hita í gráðum.
 mynstrið verður að spanna bæði — og leyfa línuskil á milli. Mundu líka að hiti getur verið
 neikvæður.
 
+**Hvernig sannreynirðu það síðasta?** Ef þú keyrir þetta að sumri finnurðu aldrei mínustölu, og
+þá veistu ekkert um hvort mynstrið þitt ræður við hana. Þetta er algengt vandamál: jaðartilvikið
+er einfaldlega ekki í gögnunum sem þú hefur við höndina.
+
+Tvær leiðir, og þú þarft báðar:
+
+1. **Búðu til inntakið sjálf.** Skrifaðu stuttan streng með `-5` í réttu HTML-formi og keyrðu
+   mynstrið á honum. Þetta tekur mínútu og er það fyrsta sem þú átt að gera.
+2. **Finndu raunveruleg gögn sem reyna á tilvikið.** Tilbúið dæmi sannar aðeins að mynstrið ráði
+   við *þitt* dæmi, ekki að raunverulega síðan líti svona út. Hér koma vistanir að gagni:
+   forsíða mbl.is frá janúar eða febrúar sýnir aðra tölu en forsíðan í ágúst. Internet Archive
+   er með [API](https://archive.org/wayback/available?url=mbl.is&timestamp=20250210) sem skilar
+   þeirri vistun sem næst er tilteknum tíma.
+
+Þetta er sami vandi og bíður ykkar í hópverkefninu: gögnin sem þið sækið í dag innihalda ekki
+endilega tilvikin sem brjóta kóðann ykkar á morgun.
+
 ### 3. Hvert er gengi Bandaríkjadals?
 
 Þetta er lúmskasta æfingin, og hún kennir mikilvægustu lexíuna í kaflanum.
@@ -238,16 +255,17 @@ skilar skyndilega `character(0)` eða tómum lista á að vera villa í verkefni
 núll í töflu.
 :::
 
-## Gátlisti fyrir hópverkefnið
+## Gátlisti
 
-Þessi kafli er upphitun. Í hópverkefninu vinnið þið með gögn sem enginn hefur snyrt fyrir ykkur.
-Farið yfir þennan lista áður en þið skilið regex-kóða inn í verkefnið:
+Þessi listi á við um alla regex-vinnu, ekki bara æfinguna hér að ofan. Farðu yfir hann áður en
+regex-kóði fer inn í verkefni:
 
-- [ ] Ég hef skoðað hráa svarið sjálf og giska ekki á sniðið.
-- [ ] Mynstrið mitt er eins þröngt og það kemst upp með — engin `.*` sem ég get komist hjá.
+- [ ] Ég hef skoðað hrágögnin sjálf og giska ekki á sniðið.
+- [ ] Mynstrið er eins þröngt og komist verður upp með — engin `.*` að óþörfu.
 - [ ] Ég á skrifleg dæmi sem eiga að passa og dæmi sem eiga **ekki** að passa.
+- [ ] Jaðartilvikin eru með í þeim dæmum, líka þau sem vantar í gögnin sem ég hef við höndina.
 - [ ] Ég hef prófað mynstrið í [regex101](https://regex101.com/) og get útskýrt hvern hluta þess.
-- [ ] Svarið er vistað á disk, svo vinnan stöðvast ekki þótt þjónninn svari ekki.
-- [ ] Ég veit hvaða útgáfa gagnanna liggur til grundvallar — tími, stærð eða gátsumma.
+- [ ] Ég veit hvaða útgáfa gagnanna liggur til grundvallar og get sótt nákvæmlega hana aftur.
+- [ ] Úrvinnslan keyrir á vistuðum gögnum, ekki nýrri beiðni í hvert skipti.
 - [ ] Kóðinn lætur vita ef mynstrið hættir að finna nokkuð, í stað þess að skila þöglu núlli.
-- [ ] Í R er `perl = TRUE` á sínum stað ef mynstrið notar `\w`, `\d` eða `\s`.
+- [ ] Ég veit hvaða regex-vél ég er að nota — í R þarf `perl = TRUE` fyrir `\w`, `\d` og `\s`.
