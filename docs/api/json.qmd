@@ -219,7 +219,7 @@ flatten(items)
 
 ```{python}
 svar = '''{
-  "total_count": 3,
+  "total_count": 2,
   "items": [
     {"nafn": "Quarto", "eigandi": {"login": "quarto-dev", "type": "Organization"}},
     {"nafn": "knitr",  "eigandi": {"login": "yihui",      "type": "User"}}
@@ -300,12 +300,15 @@ Svarið ber fleiri reiti en þú þarft. Taktu sneið af því sem skiptir máli
 ::: {.callout-note}
 ## Af hverju ekki GitHub hér?
 
-`fromJSON(slod)` og `requests.get(slod)` geta ekki sent **auðkenningarhaus**. GitHub leyfir
-aðeins 60 óauðkenndar beiðnir á klukkustund, svo dæmi sem byggist á þeim er brothætt. Veðurstofan
-krefst engrar auðkenningar og hentar því betur til að sýna stuttu leiðina.
+Stuttu dæmin hér að ofan senda **enga hausa** — `fromJSON(slod)` tekur ekki við þeim, og þótt
+`requests.get()` styðji `headers=` er það ekki notað þegar slóðin ein er gefin. Beiðnin fer því
+óauðkennd af stað.
 
-Þetta er ein af ástæðunum fyrir því að nota `httr2` / `requests` með hausum þegar alvara er á
-ferðum — sjá [næsta kafla](fetching-data.qmd).
+GitHub leyfir aðeins 60 óauðkenndar beiðnir á klukkustund, svo dæmi sem byggist á þeim er
+brothætt. Veðurstofan krefst engrar auðkenningar og hentar því betur til að sýna stuttu leiðina.
+
+Þurfirðu auðkenningu — eða yfirleitt að stjórna hausum, stöðukóðum og villum — notarðu `httr2` /
+`requests` að fullu. Sjá [næsta kafla](fetching-data.qmd).
 :::
 
 ::: {.callout-tip}

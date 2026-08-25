@@ -487,8 +487,13 @@ R eða Python. Sjá [birtingu með GitHub Pages](../reproducible-reports/publish
 netbeiðnirnar hér eru **raunverulega sendar** í hverri byggingu. Liggi þjónusta niðri fellur
 byggingin með tímamörkum og villuboðum — þá keyrir maður hana einfaldlega aftur.
 
-Undantekningin er beiðni sem krefst **auðkenningar**. Hún er `eval: false`, því aðgangslykill á
-ekki heima í opinni geymslu og því ekki í GitHub Actions heldur.
+Undantekningin er beiðni sem krefst **persónulegs aðgangslykils**, eins og TMDB-dæmið í
+[góðum starfsháttum](good-practices.qmd). Slíkur lykill á ekki heima í opinni geymslu, svo sá
+bútur er `eval: false`.
+
+GitHub-beiðnirnar eru annað mál: GitHub Actions býr sjálfkrafa til tímabundinn `GITHUB_TOKEN`
+sem má senda með í `env:`. Hann lyftir álagsmörkunum úr 60 í 5.000 beiðnir á klukkustund og
+rennur út þegar keyrslunni lýkur, svo hann er óhættur í opinni geymslu.
 :::
 
 ## Hvað á heima í geymslunni?

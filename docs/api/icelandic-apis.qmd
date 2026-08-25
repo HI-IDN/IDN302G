@@ -185,9 +185,10 @@ Tölurnar eru í `value`, og heiti áranna í `dimension`. Að setja þetta sama
 ## R
 
 ```{r}
-# index gefur stodu hvers ars i value-vigrinum. Rodun label-hlutarins er
-# ekki skilgreind i JSON og ma ekki treysta a hana.
-ar_kodi <- names(d$dimension)[1]
+# d$id skilgreinir rod viddanna i json-stat2 þegar reiturinn er til staðar.
+# Í styttu sýnidæmi notum við fyrsta dimension-lykilinn í staðinn.
+# index gefur svo stodu hvers ars i value-vigrinum.
+ar_kodi <- if (!is.null(d$id) && length(d$id) > 0) d$id[1] else names(d$dimension)[1]
 idx <- unlist(d$dimension[[ar_kodi]]$category$index)
 ar  <- names(idx)[order(idx)]
 
