@@ -1,5 +1,9 @@
 /.quarto/
-/_freeze/
 **/*.quarto_ipynb
 *.html
 **/*.html
+
+# Frystar niðurstöður eru í útgáfustýringu (sjá AGENTS.md), en site_libs undir
+# þeim er myndað JavaScript sem Quarto býr til við hverja þýðingu. Það eru
+# 4 MB af jquery/plotly sem eiga ekkert erindi í sögu geymslunnar.
+/_freeze/site_libs/

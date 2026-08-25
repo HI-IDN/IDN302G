@@ -35,11 +35,20 @@ jobs:
         with:
           python-version: "3.x"
 
+      # Pakkarnir eru taldir upp í requirements.txt, sömu skrá og notuð er
+      # staðbundið, svo byggingin keyri á sömu útgáfum og höfundur þróaði með.
       - name: Install Python packages
         run: |
           python -m pip install --upgrade pip
-          python -m pip install requests pandas python-dotenv
+          python -m pip install -r requirements.txt
           echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
+
+      # RSPM skilar forþýddum tvíundargögnum fyrir flesta pakka, en sé CRAN með
+      # nýrri útgáfu velur install.packages hana og þýðir frá frumkóða. Þá
+      # þarf hausaskrár kerfisbókasafnanna. curl féll einmitt þannig: CRAN var
+      # með 8.0.0, RSPM eldri, og þýðingin stöðvaðist á curl/curl.h.
+      - name: Install system libraries
+        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev
 
       # Nokkrir kaflar keyra raunverulegan R-kóða við þýðingu, svo R þarf að vera
       # til staðar. Pökkum sótt sem forþýdd tvíundargögn gegnum RSPM (fljótt).
@@ -55,11 +64,15 @@ jobs:
       # httr2, jsonlite, dplyr <- api/*.qmd
       # httpuv   <- req_dry_run() i api/fetching-data.qmd. httr2 telur hann
       #             ekki upp sem nauðsyn, svo hann verður að koma sérstaklega.
+      # curl     <- httr2 notar hann í url_parse(). Hann fylgir httr2 sem
+      #             ósjálfstæði, en er talinn upp hér líka svo bilun í honum
+      #             stöðvi þetta skref í stað þess að birtast 40 skrám síðar
+      #             sem "there is no package called 'curl'".
       # reticulate <- Quarto/knitr notar hann til að keyra {python}-búta.
       # readr    <- eval: false skriftudæmi í api/fetching-data.qmd, talið upp hér
       #             svo nemendur geti keyrt sömu uppskriftir án þess að leita.
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "jsonlite", "dplyr", "readr"))'
+        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr"))'
 
       # Bútarnir lesa GITHUB_TOKEN úr umhverfinu. Án hans keyra GitHub-beiðnirnar
       # óauðkenndar og lenda á 60/klst markinu; með honum eru mörkin 5.000/klst.

@@ -18,9 +18,12 @@
 
 # Quarto render leftovers
 **/*.rmarkdown
+**/*.knit.md
 
-# NOTE: /docs/_freeze/ IS committed on purpose — it stores executed code
-# results so Actions can build without installing R.
+# /docs/_freeze/ IS committed, but only for pages marked `freeze: true`.
+# Everything else is executed from scratch by Actions. Today that means the
+# TMDB chapter alone: it needs a personal token that must not reach CI, so
+# the teacher renders it locally and commits the result.
 
 
 # Standalone render can leave site_libs next to source

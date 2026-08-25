@@ -17,6 +17,7 @@ University of Iceland. Published at [hi-idn.github.io/IDN302G](https://hi-idn.gi
 │   ├── storytelling/ ← Myndræn framsetning module
 │   ├── index.qmd     ← Landing page
 │   ├── .quarto/      ← Local Quarto cache incl. _freeze/ (gitignored, NOT committed)
+│   ├── _freeze/      ← Committed results for pages marked `freeze: true` (one chapter today)
 │   └── _quarto.yml   ← Quarto book configuration; outputs to ../_site
 ├── templates/        ← Student templates (repo root); linked from the book via GitHub URLs
 └── _site/            ← Rendered output; built by GitHub Actions, NOT committed
@@ -77,8 +78,19 @@ CI installs both Quarto *and* R, and **executes every runnable code cell from sc
 `.github/workflows/publish.yml`. You do **not** commit the built site; `_site/` is generated in
 the cloud and is gitignored.
 
-There is no `execute: freeze:` setting. `docs/.quarto/_freeze/` is a purely local cache and is
-gitignored, so nothing you have cached locally reaches CI.
+Almost nothing is frozen. **One** page sets `execute: freeze: true` — `api/good-practices.qmd`,
+because it needs a TMDB token that must not reach CI. Everything else executes on the build
+server every time.
+
+Two directories with confusingly similar names are involved, and only one of them is committed:
+
+| Path | What it is | Committed? |
+|---|---|---|
+| `docs/.quarto/_freeze/` | local render cache, rebuilt whenever you render | no, gitignored |
+| `docs/_freeze/` | results for pages marked `freeze: true`, read by CI | yes, the `execute-results` only |
+
+Nothing in the local cache reaches CI. The committed results do, which is the whole point of
+them — see *Frozen chapters* below.
 
 **Two consequences worth knowing:**
 
@@ -91,6 +103,47 @@ gitignored, so nothing you have cached locally reaches CI.
   code — wrong values, or non-ASCII printed as `<U+00E1>` — delete
   `docs/.quarto/_freeze/<chapter>/` and render again. Quarto will not re-execute a chunk whose
   source has not changed, even when the cached result is wrong.
+
+### Python setup
+
+Python packages are pinned in `requirements.txt` at the repository root. The same file is used
+locally and by Actions, so a chapter that renders on your machine renders on the build server:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Quarto runs `{python}` cells through **reticulate**, not through the `python` on your `PATH`.
+Unless told otherwise, reticulate creates its own environment — one that does not have `pandas`
+in it — and the build fails with `ModuleNotFoundError` even though `pip list` shows the package.
+Point it at the interpreter you installed into:
+
+```bash
+export RETICULATE_PYTHON="$(which python)"
+```
+
+Put that line in the `.Renviron` that R reads at startup so it survives between sessions. The
+workflow sets the same variable, which is why this failure only ever shows up locally.
+
+### Frozen chapters
+
+`api/good-practices.qmd` carries `execute: freeze: true` because it queries TMDB, which needs a
+personal token that must not reach CI. Its results live in `docs/_freeze/` and are committed.
+Actions reads them instead of sending the request.
+
+Quarto keys the freeze on the **md5 of the source file**. Any edit invalidates it — including a
+typo fix in prose that touches no code. If you change that chapter and do not refresh the freeze,
+Actions will try to execute the cell, get `401`, and the build fails.
+
+After editing it, re-render just that file with the token available and commit the result:
+
+```bash
+cd docs && quarto render api/good-practices.qmd
+git add docs/_freeze/api/good-practices
+```
+
+Never let a cell in a frozen chapter print a secret. The freeze stores the output, and the
+output is committed.
 
 Use the `Makefile` in the repository root for local work:
 
