@@ -30,6 +30,17 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install Python packages
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests pandas python-dotenv
+          echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
+
       # Nokkrir kaflar keyra raunverulegan R-kóða við þýðingu, svo R þarf að vera
       # til staðar. Pökkum sótt sem forþýdd tvíundargögn gegnum RSPM (fljótt).
       - name: Set up R
@@ -41,11 +52,12 @@ jobs:
       #             plotly sem ósjálfstæði, en er talinn upp berum orðum svo
       #             byggingin brotni ekki þótt sú keðja breytist.
       # plotly   <- reproducible-reports/quarto.qmd
-      # jsonlite, dplyr <- api/json.qmd, api/icelandic-apis.qmd
-      # httr2 er EKKI þörf: allir httr2-bútar eru eval: false — netbeiðnir eiga
-      # ekki að keyra í CI.
+      # httr2, jsonlite, dplyr <- api/*.qmd
+      # reticulate <- Quarto/knitr notar hann til að keyra {python}-búta.
+      # readr    <- eval: false skriftudæmi í api/fetching-data.qmd, talið upp hér
+      #             svo nemendur geti keyrt sömu uppskriftir án þess að leita.
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "plotly", "jsonlite", "dplyr"))'
+        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "jsonlite", "dplyr", "readr"))'
 
       - name: Render book and standalone slides
         working-directory: docs

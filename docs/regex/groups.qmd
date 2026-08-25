@@ -57,7 +57,6 @@ Sama mynstur má nota í mörgum málum. Hér er einfalt dæmi sem finnur netfö
 ## R
 
 ```{r}
-#| eval: false
 txt <- c(
   "Hafðu samband við helga@hi.is",
   "Þetta er ekki netfang",
@@ -71,7 +70,7 @@ regmatches(txt, fundid)
 
 ## Python
 
-``` python
+```{python}
 import re
 
 txt = [
@@ -88,3 +87,37 @@ for lina in txt:
 Taktu eftir að í R þarf oft að tvöfalda bakskástrik í strengjum: `\\d` í R-streng verður `\d`
 í regex. Í Python er algengt að nota hráa strengi með `r"..."`, þá þarf síður að tvöfalda
 bakskástrik.
+
+## Æfing: tengiliðir
+
+Gefinn er þessi texti:
+
+``` text
+Jón, jon@example.is, 5551234
+Guðrún, gudrun@hi.is, 510-7000
+Villa, ekki-netfang, 123
+Nemandi, nemandi.1@hi.is, 555 9876
+```
+
+1. Finndu allar línur sem innihalda netfang.
+2. Finndu öll símanúmer, hvort sem þau eru skrifuð `5551234`, `555-1234` eða `555 1234`.
+3. Breyttu símanúmerunum yfir í samræmt snið: `555-1234`.
+4. Hver af línunum ætti ekki að fara inn í hreina tengiliðatöflu? Af hverju?
+
+Mynstur til að byrja með:
+
+``` text
+[\w._%+-]+@[\w.-]+\.[A-Za-z]{2,}
+\d{3}[- ]?\d{4}
+```
+
+Markmiðið er ekki að skrifa fullkomið regex í fyrstu tilraun. Markmiðið er að geta lesið
+mynstrið, prófað það, séð hvað það finnur ranglega og lagað það meðvitað.
+
+::: {.callout-tip}
+## Prófaðu fyrst utan kóða
+
+Settu textann og mynstrin inn á [regex101](https://regex101.com/) áður en þú skrifar lausnina í
+R eða Python. Skráðu hjá þér eitt dæmi sem passar rétt og eitt dæmi sem mynstrið finnur ekki eða
+finnur ranglega.
+:::

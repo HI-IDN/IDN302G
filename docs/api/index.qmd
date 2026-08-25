@@ -78,13 +78,28 @@ https://api.github.com/repos/HI-IDN/IDN302G
 
 og fá til baka gagnaskrá þar sem meðal annars geta staðið reitir eins og:
 
-``` json
-{
-  "full_name": "HI-IDN/IDN302G",
-  "description": "Námsefni fyrir IÐN302G",
-  "updated_at": "2026-08-18T12:33:04Z",
-  "stargazers_count": 3
-}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(jsonlite)
+library(httr2)
+
+lykill <- Sys.getenv("GITHUB_TOKEN")
+gh_auth <- if (nzchar(lykill)) paste("Bearer", lykill) else NULL
+
+geymsla <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
+  req_headers("Accept" = "application/vnd.github+json",
+              Authorization = gh_auth) |>
+  req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
+  req_perform() |>
+  resp_body_json(simplifyVector = TRUE)
+
+toJSON(
+  geymsla[c("full_name", "description", "updated_at", "stargazers_count")],
+  auto_unbox = TRUE,
+  pretty = TRUE
+)
 ```
 
 Þessa slóð máttu opna í vafra beint — prófaðu. Það sem þú sérð er nákvæmlega það sama og

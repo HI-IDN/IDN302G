@@ -74,18 +74,24 @@ að fyrsta PxWeb-fyrirspurnin skilar villu.
 ## R
 
 ```{r}
-#| eval: false
+#| message: false
+#| warning: false
 library(httr2)
 
 slod <- paste0("https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/",
                "1_yfirlit/Yfirlit_mannfjolda/MAN00000.px")
 
+lysing <- request(slod) |>
+  req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
+  req_perform() |>
+  resp_body_json(simplifyVector = FALSE)
+
 fyrirspurn <- list(
   query = list(
-    list(code = "Ár",
+    list(code = lysing$variables[[1]]$code,
          selection = list(filter = "item",
                           values = as.character(2020:2026))),
-    list(code = "Eining",
+    list(code = lysing$variables[[2]]$code,
          selection = list(filter = "item", values = list("0")))
   ),
   response = list(format = "json-stat2")
@@ -101,31 +107,12 @@ d <- resp_body_json(svar, simplifyVector = TRUE)
 str(d, max.level = 1)
 ```
 
-Útkoma:
-
-```
-[1] 200
-
-List of 11
- $ class    : chr "dataset"
- $ label    : chr "Lykiltölur mannfjöldans 1703-2026 by Ár og Eining"
- $ source   : chr "Hagstofa Íslands, Hagskinna"
- $ updated  : chr "2018-03-22T14:57:00Z"
- $ id       : chr [1:2] "Ár" "Eining"
- $ size     : int [1:2] 7 1
- $ dimension:List of 2
- $ value    : int [1:7] 354042 358298 364917 375218 383726 389444 394324
- $ role     :List of 1
- $ version  : chr "2.0"
- $ extension:List of 1
-```
-
 Taktu eftir `$value`: tölurnar sjö sem þú baðst um eru þarna, en árin sjálf eru í `$dimension`.
 Það er einkenni json-stat2 og efni næsta undirkafla.
 
 ## Python
 
-``` python
+```{python}
 import requests
 
 slod = ("https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/"
@@ -156,15 +143,6 @@ print(list(d.keys()))
 print(d["value"])
 ```
 
-Útkoma:
-
-```
-200
-['class', 'label', 'source', 'updated', 'id', 'size', 'dimension', 'value',
- 'role', 'version', 'extension']
-[354042, 358298, 364917, 375218, 383726, 389444, 394324]
-```
-
 Sama svar og R fær — enda er þetta sama JSON-skjalið. Munurinn er aðeins hvernig málin
 tvö birta það: R sem `List of 11`, Python sem `dict` með ellefu lyklum.
 
@@ -179,6 +157,7 @@ sérstaklega. Það kemur á óvart í fyrsta sinn:
 
 ```{r}
 #| message: false
+#| warning: false
 library(jsonlite)
 
 # Raunverulegt svar, stytt — sótt af Hagstofunni
@@ -208,7 +187,8 @@ Tölurnar eru í `value`, og heiti áranna í `dimension`. Að setja þetta sama
 ```{r}
 # index gefur stodu hvers ars i value-vigrinum. Rodun label-hlutarins er
 # ekki skilgreind i JSON og ma ekki treysta a hana.
-idx <- unlist(d$dimension[["Ár"]]$category$index)
+ar_kodi <- names(d$dimension)[1]
+idx <- unlist(d$dimension[[ar_kodi]]$category$index)
 ar  <- names(idx)[order(idx)]
 
 mannfjoldi <- data.frame(ar = as.integer(ar), mannfjoldi = d$value)
@@ -219,6 +199,7 @@ mannfjoldi
 
 ```{r}
 #| message: false
+#| warning: false
 library(dplyr)
 
 mannfjoldi |>
@@ -247,17 +228,6 @@ mannfjoldi["hlutfall"] = (mannfjoldi["fjolgun"] /
 mannfjoldi
 ```
 
-```
-     ar  mannfjoldi  fjolgun  hlutfall
-0  2020      354042      NaN       NaN
-1  2021      358298   4256.0      1.20
-2  2022      364917   6619.0      1.85
-3  2023      375218  10301.0      2.82
-4  2024      383726   8508.0      2.27
-5  2025      389444   5718.0      1.49
-6  2026      394324   4880.0      1.25
-```
-
 `diff()` og `shift()` gegna sama hlutverki og `lag()` í R.
 
 Taktu eftir tvennu sem er ólíkt R-flipanum: `pandas` sýnir `NaN` þar sem R sýnir `NA`, og
@@ -280,7 +250,7 @@ töflu strax.
 Veðurstofan býður `GET`-þjónustu á `api.vedur.is`, og með henni **formlega skjölun** á
 [api.vedur.is/weather](https://api.vedur.is/weather/).
 
-Sú síða er *Swagger UI*, sjálfvirkt viðmót byggt á **OpenAPI**-skilgreiningu: vélleshæfri
+Sú síða er [Swagger UI](https://swagger.io/open-source/swagger-ui/), sjálfvirkt viðmót byggt á **OpenAPI**-skilgreiningu: vélleshæfri
 lýsingu á öllum endapunktum þjónustunnar. Skilgreininguna sjálfa má sækja:
 
 ```
@@ -299,7 +269,7 @@ Einfaldur endapunktur — listi yfir veðurstöðvar. Skjölunin segir að hann 
 svo við biðjum um þrjár tilteknar stöðvar:
 
 ```
-https://api.vedur.is/weather/stations?station_id=1&station_id=178&station_id=1350
+https://api.vedur.is/weather/stations?station_id=1&station_id=422&station_id=1350
 ```
 
 Þessa slóð máttu opna beint í vafra. Svarið er fylki af hlutum:
@@ -329,7 +299,8 @@ Fylki af hlutum með sömu lykla er einmitt formið sem verður að töflu án f
 ## R
 
 ```{r}
-#| eval: false
+#| message: false
+#| warning: false
 library(httr2); library(dplyr)
 
 stodvar <- request("https://api.vedur.is/weather/stations") |>
@@ -342,19 +313,12 @@ stodvar |>
   select(station, name, lat, lon, ele, start)
 ```
 
-```
-  station                 name      lat       lon  ele start
-1       1            Reykjavík 64.12888 -21.90819 60.2  1920
-2     178        Stykkishólmur 65.07403 -22.73388 13.2  1845
-3    1350 Keflavíkurflugvöllur 63.98290 -22.60052 50.9  2008
-```
-
 `.multi = "explode"` endurtekur `station_id=` fyrir hvert gildi, sem er það sem þessi þjónusta
 býst við.
 
 ## Python
 
-``` python
+```{python}
 import requests
 import pandas as pd
 
@@ -368,13 +332,6 @@ svar.raise_for_status()
 
 stodvar = pd.DataFrame(svar.json())
 stodvar[["station", "name", "lat", "lon", "ele", "start"]]
-```
-
-```
-   station                  name        lat        lon        ele  start
-0        1             Reykjavík  64.128883 -21.908190  60.200001   1920
-1      178         Stykkishólmur  65.074028 -22.733879  13.200000   1845
-2     1350  Keflavíkurflugvöllur  63.982899 -22.600519  50.900002   2008
 ```
 
 Listi sem gildi í `params` verður sjálfkrafa að endurteknu `station_id=` í slóðinni.
@@ -399,10 +356,10 @@ sýnir svarið óbreytt. Þetta er sama beiðni og R-kóðinn að ofan sendir:
 
 ```{=html}
 <div class="api-demo">
-  <div class="api-demo-url"><code>GET https://api.vedur.is/weather/stations?station_id=1&amp;station_id=178</code></div>
+  <div class="api-demo-url"><code>GET https://api.vedur.is/weather/stations?station_id=1&amp;station_id=422</code></div>
   <button id="api-demo-btn" class="api-demo-btn" type="button" aria-controls="api-demo-out" aria-describedby="api-demo-status">Senda beiðni</button>
   <span id="api-demo-status" class="api-demo-status" role="status" aria-live="polite"></span>
-  <pre id="api-demo-out" class="api-demo-out" hidden aria-live="polite" aria-label="Svar frá vefþjónustu"></pre
+  <pre id="api-demo-out" class="api-demo-out" hidden aria-live="polite" aria-label="Svar frá vefþjónustu"></pre>
 </div>
 
 <style>
@@ -428,7 +385,7 @@ document.getElementById('api-demo-btn').addEventListener('click', async function
   st.textContent = 'Sendi…';
   const t0 = performance.now();
   try {
-    const r = await fetch('https://api.vedur.is/weather/stations?station_id=1&station_id=178');
+    const r = await fetch('https://api.vedur.is/weather/stations?station_id=1&station_id=422');
     const ms = Math.round(performance.now() - t0);
     const txt = await r.text();
     st.className = 'api-demo-status ' + (r.ok ? 'ok' : 'err');
