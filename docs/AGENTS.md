@@ -92,6 +92,27 @@ gitignored, so nothing you have cached locally reaches CI.
   `docs/.quarto/_freeze/<chapter>/` and render again. Quarto will not re-execute a chunk whose
   source has not changed, even when the cached result is wrong.
 
+### Python setup
+
+Python packages are pinned in `requirements.txt` at the repository root. The same file is used
+locally and by Actions, so a chapter that renders on your machine renders on the build server:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Quarto runs `{python}` cells through **reticulate**, not through the `python` on your `PATH`.
+Unless told otherwise, reticulate creates its own environment — one that does not have `pandas`
+in it — and the build fails with `ModuleNotFoundError` even though `pip list` shows the package.
+Point it at the interpreter you installed into:
+
+```bash
+export RETICULATE_PYTHON="$(which python)"
+```
+
+Put that line in the `.Renviron` that R reads at startup so it survives between sessions. The
+workflow sets the same variable, which is why this failure only ever shows up locally.
+
 Use the `Makefile` in the repository root for local work:
 
 - `make` — render only changed pages (fast, for content edits)

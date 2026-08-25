@@ -35,10 +35,12 @@ jobs:
         with:
           python-version: "3.x"
 
+      # Pakkarnir eru taldir upp í requirements.txt, sömu skrá og notuð er
+      # staðbundið, svo byggingin keyri á sömu útgáfum og höfundur þróaði með.
       - name: Install Python packages
         run: |
           python -m pip install --upgrade pip
-          python -m pip install requests pandas python-dotenv
+          python -m pip install -r requirements.txt
           echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
 
       # Nokkrir kaflar keyra raunverulegan R-kóða við þýðingu, svo R þarf að vera
