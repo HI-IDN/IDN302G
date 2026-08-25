@@ -54,8 +54,7 @@ lykill <- Sys.getenv("GITHUB_TOKEN")           # tómt ef hann er ekki settur
 gh_auth <- if (nzchar(lykill)) paste("Bearer", lykill) else NULL
 ```
 
-`req_headers()` sleppir hausum sem eru `NULL`, svo sama kóðadæmi virkar hvort sem lykillinn er
-til eða ekki — bara með ólíkum álagsmörkum. Sjá [góða starfshætti](good-practices.qmd) um það
+`req_headers()` endurstillir haus á sjálfgefið gildi ef þú gefur `NULL`. Fyrir `Authorization` þýðir það að enginn auðkenningarhaus er sendur, svo sama kóðadæmi virkar hvort sem lykillinn er til eða ekki — bara með ólíkum álagsmörkum. Sjá [góða starfshætti](good-practices.qmd) um það
 hvernig lykillinn er geymdur.
 
 ## Beiðni í skrefum
