@@ -43,6 +43,13 @@ jobs:
           python -m pip install -r requirements.txt
           echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
 
+      # RSPM skilar forþýddum tvíundargögnum fyrir flesta pakka, en sé CRAN með
+      # nýrri útgáfu velur install.packages hana og þýðir frá frumkóða. Þá
+      # þarf hausaskrár kerfisbókasafnanna. curl féll einmitt þannig: CRAN var
+      # með 8.0.0, RSPM eldri, og þýðingin stöðvaðist á curl/curl.h.
+      - name: Install system libraries
+        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev
+
       # Nokkrir kaflar keyra raunverulegan R-kóða við þýðingu, svo R þarf að vera
       # til staðar. Pökkum sótt sem forþýdd tvíundargögn gegnum RSPM (fljótt).
       - name: Set up R
