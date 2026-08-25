@@ -64,11 +64,15 @@ jobs:
       # httr2, jsonlite, dplyr <- api/*.qmd
       # httpuv   <- req_dry_run() i api/fetching-data.qmd. httr2 telur hann
       #             ekki upp sem nauðsyn, svo hann verður að koma sérstaklega.
+      # curl     <- httr2 notar hann í url_parse(). Hann fylgir httr2 sem
+      #             ósjálfstæði, en er talinn upp hér líka svo bilun í honum
+      #             stöðvi þetta skref í stað þess að birtast 40 skrám síðar
+      #             sem "there is no package called 'curl'".
       # reticulate <- Quarto/knitr notar hann til að keyra {python}-búta.
       # readr    <- eval: false skriftudæmi í api/fetching-data.qmd, talið upp hér
       #             svo nemendur geti keyrt sömu uppskriftir án þess að leita.
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "jsonlite", "dplyr", "readr"))'
+        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr"))'
 
       # Bútarnir lesa GITHUB_TOKEN úr umhverfinu. Án hans keyra GitHub-beiðnirnar
       # óauðkenndar og lenda á 60/klst markinu; með honum eru mörkin 5.000/klst.
