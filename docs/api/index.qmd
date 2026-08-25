@@ -48,6 +48,7 @@ sem er það sem við fjöllum um hér.
 Öll samskipti við vefþjónustu fylgja sama einfalda mynstri:
 
 ```{mermaid}
+%%| label: inng-mermaid-1
 sequenceDiagram
     participant F as Forritið þitt
     participant V as Vefþjónustan
