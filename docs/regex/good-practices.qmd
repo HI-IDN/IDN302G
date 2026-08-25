@@ -1,0 +1,45 @@
+---
+title: "Góð vinnubrögð"
+description: >-
+  Að prófa mynstur utan kóðans, velja rétt regex-bragð og skrifa mynstur sem
+  einhver annar getur lesið.
+---
+
+## Prófaðu í regex101
+
+Gott vinnulag er að prófa mynstur utan kóðans áður en þú setur það inn í skýrslu, scriptu eða
+SQL-fyrirspurn. [regex101.com](https://regex101.com/) er nytsamlegt til þess:
+
+- þú límir inn textasýni,
+- skrifar regex-mynstur,
+- sérð strax hvað passar,
+- færð útskýringu á einstökum bútum mynstrsins.
+
+Þetta er sérstaklega gagnlegt þegar mynstrið er orðið langt. Ef þú getur ekki útskýrt mynstrið í
+regex101, er það líklega ekki tilbúið til að fara inn í verkefnið.
+
+::: {.callout-tip}
+## Veldu rétt regex-bragð
+
+Regex er ekki alveg eins í öllum verkfærum. Python, R, JavaScript og PostgreSQL eru mjög lík, en
+ekki nákvæmlega eins. Þegar þú notar regex101 skaltu velja það „flavor“ sem líkist verkfærinu
+þínu, til dæmis **Python** þegar þú vinnur í Python eða **PCRE2** fyrir mörg almenn dæmi.
+:::
+
+## Prófaðu fyrst utan kóða
+
+Settu textann og mynstrin inn á [regex101](https://regex101.com/) áður en þú skrifar lausnina í
+R eða Python. Skráðu hjá þér eitt dæmi sem passar rétt og eitt dæmi sem mynstrið finnur ekki eða
+finnur ranglega.
+:::
+
+## Góð vinnubrögð
+
+- Prófaðu mynstrið á litlu sýni áður en þú keyrir það á öll gögnin.
+- Skrifaðu niður dæmi sem eiga að passa og dæmi sem eiga ekki að passa.
+- Prófaðu flókin mynstur í [regex101](https://regex101.com/) og lestu skýringuna.
+- Notaðu `^` og `$` þegar öll línan á að passa, ekki bara hluti hennar.
+- Mundu að `.` þarf að vera `\.` ef þú vilt punkt.
+- Forðastu að nota `.*` of snemma; það gleypir oft meira en þú ætlaðir.
+- Skiptu löngum mynstrum í búta í textanum í kringum kóðann, jafnvel þótt regexið sjálft sé ein lína.
+- Þegar gögnin eru skipulögð, til dæmis HTML eða JSON, notaðu parser frekar en regex.

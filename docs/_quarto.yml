@@ -96,7 +96,8 @@ book:
         - regex/syntax.qmd
         - regex/groups.qmd
         - regex/data-cleaning.qmd
-        - regex/exercises.qmd
+        - regex/agents.qmd
+        - regex/good-practices.qmd
     - part: "Rökfræði og mengi"
       chapters:
         - logic-sets/index.qmd

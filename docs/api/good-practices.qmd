@@ -80,28 +80,6 @@ notkunin sé ekki í viðskiptaskyni, og færð hann samstundis.
 Sæktu lykilinn á [developer.themoviedb.org](https://developer.themoviedb.org/docs) og settu
 hann í `.Renviron` (R) eða `.env` (Python) — **aldrei í kóðann**.
 
-::: {.callout-important}
-## `.Renviron` er lesin við ræsingu
-
-Tvennt fer alltaf úrskeiðis í fyrsta skipti:
-
-**R les `.Renviron` aðeins þegar hún ræsist.** Bætirðu lykli við skrána meðan R er opin gerist
-ekkert — þú verður að endurræsa (í RStudio: *Session → Restart R*).
-
-**Skráin verður að vera í þeirri möppu sem R ræsist úr.** Sé `.Renviron` í rót verkefnisins
-finnur R hana aðeins ef R ræsist þar — sem er sjálfgefið þegar unnið er í RStudio-verkefni.
-Viltu að lykillinn gildi alls staðar seturðu hann í `~/.Renviron` í heimamöppunni þinni.
-
-Athugaðu að hann hafi lesist áður en þú sendir beiðni:
-
-```{r}
-#| eval: false
-nzchar(Sys.getenv("TMDB_TOKEN"))   # TRUE ef lykillinn er kominn inn
-```
-
-Skráin þarf líka að **enda á línuskilum** — annars sleppir R síðustu línunni þegjandi.
-:::
-
 ::: {.panel-tabset}
 ## R
 
@@ -123,6 +101,28 @@ myndir$results |>
            title release_date vote_average
 1 Remote Control   1992-09-09          6.6
 ```
+
+::: {.callout-important}
+## `.Renviron` er lesin við ræsingu
+
+Tvennt sem eru líklegir villuvaldar:
+
+**R les `.Renviron` aðeins þegar hún ræsist.** Bætirðu lykli við skrána meðan R er opin gerist
+ekkert — þú verður að endurræsa (í RStudio: *Session → Restart R*).
+
+**Skráin verður að vera í þeirri möppu sem R ræsist úr.** Sé `.Renviron` í rót verkefnisins
+finnur R hana aðeins ef R ræsist þar — sem er sjálfgefið þegar unnið er í RStudio-verkefni.
+Viltu að lykillinn gildi alls staðar seturðu hann í `~/.Renviron` í heimamöppunni þinni.
+
+Athugaðu að hann hafi lesist áður en þú sendir beiðni:
+
+```{r}
+#| eval: false
+nzchar(Sys.getenv("TMDB_TOKEN"))   # TRUE ef lykillinn er kominn inn
+```
+
+Skráin þarf líka að **enda á línuskilum** — annars sleppir R síðustu línunni þegjandi.
+:::
 
 ## Python
 
