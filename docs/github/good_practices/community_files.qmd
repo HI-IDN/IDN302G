@@ -1,0 +1,165 @@
+---
+title: "Skrár sem geymslan á að hafa"
+description: >-
+  Siðareglur, leiðbeiningar fyrir þátttakendur, öryggisstefna og sniðmát — hvað
+  hver skrá svarar og hvar GitHub leitar að þeim.
+---
+
+`README.md` segir hvað verkefnið er. En sá sem rekst á geymsluna þína hefur fleiri spurningar:
+Má ég breyta einhverju? Hvernig? Hvað ef ég finn öryggisgalla? Hvernig er komið fram við fólk hér?
+
+Þú getur svarað þeim í hvert sinn sem einhver spyr, eða skrifað svarið einu sinni. GitHub þekkir
+þessar skrár og sýnir þær á réttum stöðum: siðareglurnar þegar einhver opnar issue, gátlistann
+þinn þegar einhver opnar pull request.
+
+## Gátlistinn
+
+GitHub heldur utan um þetta og gefur geymslunni einkunn. Þú sérð hana undir **Insights →
+Community Standards**, en það má líka sækja hana beint:
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: samfelag-r-1
+#| message: false
+#| warning: false
+library(httr2)
+
+lykill <- Sys.getenv("GITHUB_TOKEN")
+
+svar <- request("https://api.github.com/repos/HI-IDN/IDN302G/community/profile") |>
+  req_user_agent("IDN302G kennsluefni") |>
+  req_headers(Authorization = if (nzchar(lykill)) paste("Bearer", lykill) else NULL) |>
+  req_timeout(30) |>
+  req_retry(max_tries = 3) |>
+  req_perform() |>
+  resp_body_json(simplifyVector = TRUE)
+
+cat("Einkunn:", svar$health_percentage, "%\n\n")
+data.frame(
+  skra = names(svar$files),
+  til  = unlist(lapply(svar$files, is.list)),
+  row.names = NULL
+)
+```
+
+## Python
+
+```{python}
+#| label: samfelag-py-1
+import os
+import requests
+
+hausar = {"User-Agent": "IDN302G kennsluefni", "Accept": "application/vnd.github+json"}
+lykill = os.environ.get("GITHUB_TOKEN")
+if lykill:
+    hausar["Authorization"] = "Bearer " + lykill
+
+svar = requests.get(
+    "https://api.github.com/repos/HI-IDN/IDN302G/community/profile",
+    headers=hausar,
+    timeout=30,
+)
+svar.raise_for_status()
+d = svar.json()
+
+print("Einkunn:", d["health_percentage"], "%")
+{skra: gildi is not None for skra, gildi in d["files"].items()}
+```
+:::
+
+Talan er ekki markmið í sjálfu sér. Hún er áminning um hvað þú hefur ekki svarað enn.
+
+::: {.callout-warning}
+## Listinn segir ekki alla söguna
+
+Taktu eftir `issue_template` hér að ofan. Þessi geymsla **er** með issue-sniðmát — fjögur talsins,
+í `.github/ISSUE_TEMPLATE/` — en API-ið telur þau ekki með.
+
+Ástæðan er sú að svarið hér listar tilteknar, staðlaðar skrár. Sniðmátin okkar eru *issue forms*,
+YAML-skrár í möppu, og falla ekki undir það sem þessi reitur leitar að. Vefsíðan undir **Insights
+→ Community Standards** telur þau hins vegar með.
+
+Þetta er sama lexía og í kaflanum um [vefþjónustur](../../api/index.qmd): svar frá API er ekki
+sannleikurinn sjálfur, heldur það sem þjónustan valdi að segja þér. Athugaðu alltaf hvað reiturinn
+merkir í raun áður en þú byggir ályktun á honum.
+:::
+
+## Skrárnar fjórar
+
+| Skrá | Spurningin sem hún svarar |
+|---|---|
+| `CODE_OF_CONDUCT.md` | Hvernig er komið fram við fólk hér, og hvað geri ég ef brotið er á mér? |
+| `CONTRIBUTING.md` | Hvernig legg ég eitthvað til, og hvað þarf ég að setja upp? |
+| `SECURITY.md` | Ég fann öryggisgalla — við hvern tala ég, og ekki opinberlega? |
+| `pull_request_template.md` | Hvað þarf að vera í lagi áður en ég sendi þetta inn? |
+
+Þær mega liggja í rót geymslunnar eða í `.github/`. GitHub finnur þær á báðum stöðum; `.github/`
+heldur rótinni snyrtilegri þegar skrárnar eru orðnar margar. Sniðmátin sjálf verða þó að vera í
+`.github/`.
+
+### Siðareglur
+
+**Ekki skrifa þínar eigin.** Notaðu [Contributor Covenant](https://www.contributor-covenant.org/),
+sem er þýddur á tugi tungumála og þekktur um allan heim. GitHub býður hann í boði með einum
+smelli: **Insights → Community Standards → Add**.
+
+Eitt verðurðu samt að gera sjálf: **fylla út tengiliðinn**. Sniðmátið kemur með
+`[INSERT CONTACT METHOD]`, og siðareglur sem segja fólki að tilkynna brot til staðgengils eru
+verri en engar. Þær lofa vernd sem er ekki til.
+
+### Leiðbeiningar fyrir þátttakendur
+
+Þetta er skráin sem sparar mestan tíma, og sú sem oftast er gagnslaus. „Sendu pull request" segir
+ekkert. Gagnleg `CONTRIBUTING.md` svarar því sem þú myndir annars þurfa að útskýra í hverri
+einustu yfirferð:
+
+- Hvernig set ég verkefnið upp og hvað þarf ég að hafa uppsett?
+- Hvernig prófa ég að breytingin mín virki, áður en ég sendi hana?
+- Eru einhverjar húsreglur um kóða sem ég myndi ekki giska á?
+
+Síðasti punkturinn skiptir mestu. Skrifaðu niður það sem hefur raunverulega farið úrskeiðis hjá
+ykkur — gildruna sem allir lenda í. Almennt sniðmát af netinu inniheldur ekki gildruna ykkar.
+
+::: {.callout-tip}
+## Dæmi: þessi geymsla
+
+Bókin sem þú ert að lesa er í [opinni geymslu](https://github.com/HI-IDN/IDN302G), og skrárnar
+fjórar eru þar allar. `CONTRIBUTING.md` þar nefnir meðal annars að Quarto keyri Python gegnum
+`reticulate` en ekki gegnum `python` á `PATH` — sem veldur villu sem lítur út eins og pakkinn sé
+ekki uppsettur þótt hann sé það.
+
+Það er ekkert sniðmát á netinu sem hefði sagt okkur það. Við lentum í því og skrifuðum það niður.
+:::
+
+### Öryggisstefna
+
+Stutt skrá með einu svari: **við hvern tala ég, í einrúmi?**
+
+Það síðasta er kjarninn. Sá sem finnur lykil í geymslunni þinni og opnar issue um það hefur
+gert vandann verri — issue eru opin öllum og benda beint á lykilinn. `SECURITY.md` gefur þeim
+annan stað að fara á.
+
+Taktu líka fram hvað fellur **utan**. Brotinn hlekkur er ekki öryggismál, og ef þú segir það ekki
+færðu tilkynningar um brotna hlekki í netfangið sem átti að vera fyrir alvörumál.
+
+### Sniðmát
+
+Sniðmát eru gátlisti á réttum stað á réttum tíma — í glugganum þar sem verið er að skrifa, ekki í
+skrá sem enginn les.
+
+- `.github/pull_request_template.md` fyllist sjálfkrafa inn í hvern nýjan pull request.
+- `.github/ISSUE_TEMPLATE/` geymir issue-sniðmátin, sem [sérstakur kafli](issues.qmd) fjallar um.
+
+Haltu gátlistanum stuttum. Listi með tuttugu atriðum verður hakaður hugsunarlaust; listi með
+fimm er lesinn.
+
+## Æfing
+
+Skoðaðu geymsluna fyrir hópverkefnið ykkar.
+
+1. Sæktu einkunnina fyrir hana með sömu fyrirspurn og að ofan — skiptu bara út `HI-IDN/IDN302G`.
+2. Hvaða skrár vantar? Bætið við þeirri sem myndi spara ykkur mestan tíma.
+3. Skrifið **eitt atriði** í `CONTRIBUTING.md` sem einhver í hópnum hefur þegar þurft að útskýra
+   fyrir öðrum. Það er verðmætasta línan í skránni.
