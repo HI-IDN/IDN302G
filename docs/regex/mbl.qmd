@@ -44,6 +44,8 @@ svar <- request("https://www.mbl.is/") |>
   req_perform()
 
 html <- resp_body_string(svar)
+sott <- resp_date(svar)
+
 nchar(html)
 ```
 
@@ -68,6 +70,57 @@ len(html)
 
 Þetta er ein skrá upp á rúmlega hundrað þúsund stafi. Við ætlum ekki að lesa hana — við ætlum
 að spyrja hana spurninga.
+
+## Hvaða útgáfa af síðunni er þetta?
+
+Forsíða fréttamiðils er ekki fast skjal. Talan sem þú sérð hér að neðan var rétt þegar þessi
+bók var þýdd, og er líklega orðin röng þegar þú lest hana. Þess vegna festum við nákvæmlega
+hvaða svar við unnum úr — tíma, stærð og gátsummu:
+
+```{r}
+#| label: mbl-r-meta
+skra <- tempfile(fileext = ".html")
+writeLines(html, skra, useBytes = TRUE)
+
+data.frame(
+  sott      = format(sott, "%Y-%m-%d %H:%M:%S", tz = "UTC"),
+  staerd_kb = round(nchar(html, type = "bytes") / 1024),
+  md5       = unname(tools::md5sum(skra))
+)
+```
+
+Gátsumman gerir okkur kleift að **sanna** að tvær keyrslur hafi unnið úr sama svari. Fáir þú
+aðra summu en félagi þinn, þá eruð þið einfaldlega ekki með sömu síðuna — og þá er tilgangslaust
+að bera saman tölurnar ykkar.
+
+Ef þú vilt sjá hvernig síðan leit út á þessum tíma má fletta henni upp hjá
+[Internet Archive](https://web.archive.org/):
+
+```{r}
+#| label: mbl-r-wayback
+#| output: asis
+stimpill <- format(sott, "%Y%m%d%H%M%S", tz = "UTC")
+slod <- sprintf("https://web.archive.org/web/%s/https://www.mbl.is/", stimpill)
+
+cat(sprintf("[Vistun mbl.is næst þýðingartíma þessarar síðu](%s)", slod))
+```
+
+Athugaðu að vistunin er **ekki** sama eintak og við sóttum — Internet Archive vistar síðuna
+strjált — og að forsíður fréttamiðla endurspilast oft illa þar, því vistaði JavaScript-kóðinn
+nær ekki í þau gögn sem hann sækir venjulega. Það er einmitt ástæðan fyrir því að við festum
+gátsummuna: hún er áreiðanleg, myndin er það ekki.
+
+::: {.callout-note}
+## Af hverju speglum við ekki síðuna sjálf?
+
+Við gætum vistað HTML-ið sem við sóttum og birt það hér — þá sæirðu nákvæmlega það eintak sem
+mynstrin unnu úr. Við gerum það samt ekki: þá værum við að endurbirta efni mbl.is á okkar eigin
+vef, og það er ekki okkar að gera.
+
+Gátsumman gefur sömu sannreynanleika án þess að afrita efnið. Þetta er sama röksemd og gildir um
+gögn í hópverkefninu — þú mátt vinna úr þeim og birta niðurstöður, en það þýðir ekki að þú megir
+dreifa hrágögnunum áfram.
+:::
 
 ## Unnið dæmi: hvaða fréttaflokkar eru á forsíðunni?
 
