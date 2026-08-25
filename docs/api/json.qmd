@@ -52,6 +52,7 @@ JSON er ströng um form:
 `jsonlite` þýðir á milli. `fromJSON()` les JSON og skilar R-hlut:
 
 ```{r}
+#| label: json-r-1
 #| message: false
 #| warning: false
 library(jsonlite)
@@ -71,6 +72,7 @@ str(nam)
 Niðurstaðan er venjulegur nefndur listi og þú nálgast hann með `$`:
 
 ```{r}
+#| label: json-r-2
 nam$namskeid
 nam$kennarar
 nam$misseri$ar
@@ -81,6 +83,7 @@ nam$misseri$ar
 `json` fylgir Python — það þarf ekki að setja upp neinn pakka:
 
 ```{python}
+#| label: json-py-1
 import json
 
 txt = '''{
@@ -98,6 +101,7 @@ type(nam)
 Niðurstaðan er `dict` og þú nálgast hana með hornklofum:
 
 ```{python}
+#| label: json-py-2
 nam["namskeid"]
 nam["kennarar"]
 nam["misseri"]["ar"]
@@ -126,6 +130,7 @@ liggur tafla beint við.
 ## R
 
 ```{r}
+#| label: json-r-3
 svar <- '[
   {"nafn": "Quarto",  "stjornur": 4200, "mal": "TypeScript"},
   {"nafn": "knitr",   "stjornur": 2500, "mal": "R"},
@@ -141,6 +146,7 @@ class(tafla)
 töflu:
 
 ```{r}
+#| label: json-r-4
 #| message: false
 #| warning: false
 library(dplyr)
@@ -153,6 +159,7 @@ tafla |>
 ## Python
 
 ```{python}
+#| label: json-py-3
 import json
 import pandas as pd
 
@@ -169,6 +176,7 @@ tafla
 Og síun:
 
 ```{python}
+#| label: json-py-4
 tafla[tafla["stjornur"] > 1000].sort_values("stjornur", ascending=False)
 ```
 
@@ -195,6 +203,7 @@ umbúðum, og einstakir dálkar geta sjálfir verið hlutir:
 ## R
 
 ```{r}
+#| label: json-r-5
 svar <- '{
   "total_count": 3,
   "items": [
@@ -212,12 +221,14 @@ str(items)
 Lausnin er `flatten()`:
 
 ```{r}
+#| label: json-r-6
 flatten(items)
 ```
 
 ## Python
 
 ```{python}
+#| label: json-py-5
 svar = '''{
   "total_count": 2,
   "items": [
@@ -236,6 +247,7 @@ Dálkurinn `eigandi` ber heila `dict`-hluti — ónothæft til greiningar. `json
 flettir hreiðrunina út:
 
 ```{python}
+#| label: json-py-6
 pd.json_normalize(d["items"])
 ```
 
@@ -244,6 +256,7 @@ Dálkarnir `eigandi.login` og `eigandi.type` — sama niðurstaða og `flatten()
 Sé listinn grafinn dýpra má benda á hann beint:
 
 ```{python}
+#| label: json-py-7
 pd.json_normalize(d, record_path="items")
 ```
 
@@ -264,6 +277,7 @@ eða `print(json.dumps(d, indent=2, ensure_ascii=False)[:500])` í Python — og
 ## R
 
 ```{r}
+#| label: json-r-7
 slod <- "https://api.vedur.is/weather/stations?station_id=1"
 d <- fromJSON(slod)
 
@@ -274,12 +288,14 @@ names(d)                  # hvaða reitir eru í boði?
 Svarið ber fleiri reiti en þú þarft. Taktu sneið af því sem skiptir máli:
 
 ```{r}
+#| label: json-r-8
 str(d[c("station", "name", "lat", "lon", "ele")])
 ```
 
 ## Python
 
 ```{python}
+#| label: json-py-8
 import requests
 
 slod = "https://api.vedur.is/weather/stations?station_id=1"
@@ -292,6 +308,7 @@ list(d[0])                # hvaða reitir eru í boði?
 Svarið ber fleiri reiti en þú þarft. Taktu sneið af því sem skiptir máli:
 
 ```{python}
+#| label: json-py-9
 {k: d[0][k] for k in ["station", "name", "lat", "lon", "ele"]}
 ```
 
@@ -332,6 +349,7 @@ Stundum þarftu að *senda* JSON, t.d. þegar þjónusta krefst `POST` — eins 
 ## R
 
 ```{r}
+#| label: json-r-9
 listi <- list(nafn = "Máni", lotur = c(1, 2, 3))
 toJSON(listi, auto_unbox = TRUE, pretty = TRUE)
 ```
@@ -350,6 +368,7 @@ sem er erfitt að rekja, svo hafðu þetta á.
 ## Python
 
 ```{python}
+#| label: json-py-10
 listi = {"nafn": "Máni", "lotur": [1, 2, 3]}
 print(json.dumps(listi, ensure_ascii=False, indent=2))
 ```
@@ -358,6 +377,7 @@ print(json.dumps(listi, ensure_ascii=False, indent=2))
 stafi utan ASCII:
 
 ```{python}
+#| label: json-py-11
 json.dumps({"nafn": "Máni", "stadur": "Þingvellir"})
 json.dumps({"nafn": "Máni", "stadur": "Þingvellir"}, ensure_ascii=False)
 ```
@@ -371,6 +391,7 @@ sjálfgefið. Gildran er því aðeins Python-megin.
 Í `requests` sendirðu hlutinn beint og pakkinn sér um umbreytinguna:
 
 ```{python}
+#| label: json-py-12
 #| eval: false
 requests.post(slod, json=listi, timeout=30)
 ```

@@ -79,6 +79,7 @@ https://api.github.com/repos/HI-IDN/IDN302G
 og fá til baka gagnaskrá þar sem meðal annars geta staðið reitir eins og:
 
 ```{r}
+#| label: inng-r-1
 #| echo: false
 #| message: false
 #| warning: false

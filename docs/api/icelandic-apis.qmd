@@ -74,6 +74,7 @@ að fyrsta PxWeb-fyrirspurnin skilar villu.
 ## R
 
 ```{r}
+#| label: island-r-1
 #| message: false
 #| warning: false
 library(httr2)
@@ -113,6 +114,7 @@ Taktu eftir `$value`: tölurnar sjö sem þú baðst um eru þarna, en árin sj�
 ## Python
 
 ```{python}
+#| label: island-py-1
 import requests
 
 slod = ("https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/"
@@ -156,6 +158,7 @@ Svarið er á sniðinu **json-stat2**, sem geymir tölurnar í einum flötum vig
 sérstaklega. Það kemur á óvart í fyrsta sinn:
 
 ```{r}
+#| label: island-r-2
 #| message: false
 #| warning: false
 library(jsonlite)
@@ -185,6 +188,7 @@ Tölurnar eru í `value`, og heiti áranna í `dimension`. Að setja þetta sama
 ## R
 
 ```{r}
+#| label: island-r-3
 # d$id skilgreinir rod viddanna i json-stat2 þegar reiturinn er til staðar.
 # Í styttu sýnidæmi notum við fyrsta dimension-lykilinn í staðinn.
 # index gefur svo stodu hvers ars i value-vigrinum.
@@ -199,6 +203,7 @@ mannfjoldi
 Þaðan er þetta venjuleg gagnavinnsla:
 
 ```{r}
+#| label: island-r-4
 #| message: false
 #| warning: false
 library(dplyr)
@@ -211,6 +216,7 @@ mannfjoldi |>
 ## Python
 
 ```{python}
+#| label: island-py-2
 import pandas as pd
 
 # index gefur stöðu hvers árs í value-listanum. Röðun label-hlutarins er
@@ -300,6 +306,7 @@ Fylki af hlutum með sömu lykla er einmitt formið sem verður að töflu án f
 ## R
 
 ```{r}
+#| label: island-r-5
 #| message: false
 #| warning: false
 library(httr2); library(dplyr)
@@ -320,6 +327,7 @@ býst við.
 ## Python
 
 ```{python}
+#| label: island-py-3
 import requests
 import pandas as pd
 

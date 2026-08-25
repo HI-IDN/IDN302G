@@ -39,6 +39,37 @@ University of Iceland. Published at [hi-idn.github.io/IDN302G](https://hi-idn.gi
 - If you change an executable code cell, re-render locally and check the result. Nothing about
   execution is committed — CI runs every cell itself (see *Building and publishing*)
 
+### Code cells
+
+**Cells must run. Do not paste output by hand.**
+
+Write cells as executable — ```` ```{r} ```` / ```` ```{python} ```` — and let Quarto produce the
+output. A hand-written result block looks identical to a real one but drifts silently: the code
+changes, the numbers do not. Two real bugs in this book were found only once the cells started
+executing, because the pasted output showed a result the code never produced.
+
+The same goes for numbers in prose. Write `` `r nrow(commits)` `` rather than typing the figure —
+otherwise the text contradicts the table above it the first time the data changes.
+
+Static output is allowed in exactly one case: **the cell cannot run in CI**. That means it needs a
+personal access token (TMDB), writes files, or is a fragment that is not valid on its own. Mark
+such cells `#| eval: false` and say in the text why they are not executed. Network requests to
+open services are *not* an exception — they run, and a service being briefly down is handled by
+`req_timeout()` / `req_retry()` and re-running the build.
+
+**Every cell needs a label.**
+
+```{{r}}
+#| label: island-r-2
+```
+
+Without one, a failure reports `[unnamed-chunk-14]` and you have to count cells in the file to
+find it. With one, the error names it directly. Convention: `<page>-<r|py>-<n>`, unique within
+the document.
+
+Cells that load packages should carry `#| message: false` and `#| warning: false`; startup
+chatter from `library()` is noise in teaching material.
+
 ## Building and publishing
 
 Publishing is automated: **GitHub Actions** renders the book and deploys it to GitHub Pages.

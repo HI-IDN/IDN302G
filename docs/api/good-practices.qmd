@@ -44,6 +44,7 @@ skjölunina. Notaðu sama hátt í þínum eigin dæmum og README-skrám.
 Endurræstu R og lestu hann með `Sys.getenv()`:
 
 ```{r}
+#| label: starfshaettir-r-1
 #| eval: false
 token <- Sys.getenv("GITHUB_TOKEN")
 
@@ -84,6 +85,7 @@ hann í `.Renviron` (R) eða `.env` (Python) — **aldrei í kóðann**.
 ## R
 
 ```{r}
+#| label: starfshaettir-r-2
 #| eval: false
 library(httr2)
 
@@ -117,6 +119,7 @@ Viltu að lykillinn gildi alls staðar seturðu hann í `~/.Renviron` í heimam�
 Athugaðu að hann hafi lesist áður en þú sendir beiðni:
 
 ```{r}
+#| label: starfshaettir-r-3
 #| eval: false
 nzchar(Sys.getenv("TMDB_TOKEN"))   # TRUE ef lykillinn er kominn inn
 ```
@@ -167,6 +170,7 @@ load_dotenv()          # les .env úr vinnumöppunni
 ## R
 
 ```{r}
+#| label: starfshaettir-r-4
 #| eval: false
 Sys.getenv("TMDB_TOKEN")
 ```
@@ -186,6 +190,7 @@ Villan bendir á lykilinn, en ekki á að hann hafi aldrei verið lesinn. Þess 
 að athuga sjálf/ur:
 
 ```{r}
+#| label: starfshaettir-r-5
 #| eval: false
 token <- Sys.getenv("TMDB_TOKEN", unset = NA)
 stopifnot(!is.na(token), nzchar(token))
@@ -271,6 +276,7 @@ leki. Settu líka gildistíma á hann ef það býðst.
 beiðnum án hans, og þeir sem reka þjónustuna geta haft samband ef eitthvað er að.
 
 ```{r}
+#| label: starfshaettir-r-6
 #| eval: false
 req_user_agent("IDN302G-verkefni (nafn@hi.is)")
 ```
@@ -279,6 +285,7 @@ req_user_agent("IDN302G-verkefni (nafn@hi.is)")
 `429` og getur lent í banni. `req_throttle()` heldur þér réttum megin:
 
 ```{r}
+#| label: starfshaettir-r-7
 #| eval: false
 req_throttle(rate = 30 / 60)   # 30 beiðnir á mínútu
 ```
@@ -315,6 +322,7 @@ greiningin þín skilar annarri niðurstöðu á morgun. Þrennt heldur skýrslu
 **Skráðu hvenær var sótt.** Dagsetningin á að vera í skýrslunni sjálfri, ekki í minninu þínu.
 
 ```{r}
+#| label: starfshaettir-r-8
 #| eval: false
 sott <- Sys.time()
 d <- resp_body_json(svar, simplifyVector = TRUE)
