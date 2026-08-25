@@ -145,14 +145,23 @@ Counter(flokkar).most_common()
 ```
 :::
 
-Bæði málin skila sömu flokkunum, og talan verður önnur hjá þér en hér.
+Bæði málin skila sömu flokkunum, en talan verður önnur hjá þér en hér — og hún getur meira að
+segja verið ólík milli flipanna tveggja.
 
-Berðu flipana tvo saman. Oftast stemma þeir, en stundum ekki — og þá er það ekki villa í
-mynstrinu. Flipparnir sækja síðuna hvor í sínu lagi, með nokkurra sekúndna millibili, og forsíða
-fréttamiðils getur breyst á þeim tíma. **Gögnin sjálf eru á hreyfingu.**
+Það er ekki munur á R og Python. Sama mynstur á sama texta gefur alltaf sömu niðurstöðu, í hvoru
+málinu sem er. Munurinn liggur í **inntakinu**: flipparnir sækja forsíðuna hvor í sínu lagi, og
+forsíða fréttamiðils er lifandi skjal sem getur breyst hvenær sem er — jafnvel á þeim sekúndum
+sem líða milli beiðnanna tveggja.
 
-Þess vegna: ef þú vilt bera saman tvær aðferðir verða þær að vinna á sama svarinu. Sæktu einu
-sinni, vistaðu skrána, og keyrðu bæði mynstrin á henni.
+Þess vegna eru tvær leiðir til að fá endurtakanlega niðurstöðu:
+
+- **Sæktu einu sinni og vistaðu.** Vinndu svo alla úrvinnsluna á vistuðu skránni. Þá vinna allar
+  aðferðirnar þínar á nákvæmlega sama inntaki.
+- **Notaðu fasta vistun.** Hlekkur á tiltekna vistun hjá Internet Archive vísar alltaf á sama
+  eintak, ólíkt `https://www.mbl.is/` sem vísar á það sem er efst í dag.
+
+Þetta er ekki sérviska. Ef þú getur ekki bent á nákvæmlega hvaða gögn niðurstaðan þín byggir á,
+getur enginn — þar með talið þú sjálf í næstu viku — endurtekið hana.
 
 ::: {.callout-tip}
 ## Af hverju `[a-z]+` en ekki `\w+`?
