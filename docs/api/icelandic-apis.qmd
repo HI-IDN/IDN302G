@@ -210,7 +210,7 @@ mannfjoldi |>
 
 ## Python
 
-``` python
+```{python}
 import pandas as pd
 
 # index gefur stöðu hvers árs í value-listanum. Röðun label-hlutarins er

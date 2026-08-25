@@ -59,8 +59,13 @@ jobs:
       - name: Install R packages
         run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "jsonlite", "dplyr", "readr"))'
 
+      # Bútarnir lesa GITHUB_TOKEN úr umhverfinu. Án hans keyra GitHub-beiðnirnar
+      # óauðkenndar og lenda á 60/klst markinu; með honum eru mörkin 5.000/klst.
+      # Actions býr tokenið til sjálfkrafa og það rennur út með keyrslunni.
       - name: Render book and standalone slides
         working-directory: docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           quarto render
           quarto render slides/intro.qmd

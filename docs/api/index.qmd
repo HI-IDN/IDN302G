@@ -92,6 +92,8 @@ geymsla <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
   req_headers("Accept" = "application/vnd.github+json",
               Authorization = gh_auth) |>
   req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
+  req_timeout(30) |>
+  req_retry(max_tries = 3) |>          # tímabundin 5xx eiga ekki að fella bygginguna
   req_perform() |>
   resp_body_json(simplifyVector = TRUE)
 
