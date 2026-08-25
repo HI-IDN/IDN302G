@@ -365,6 +365,18 @@ skrifar `toJSON()` því `["Helga"]` þar sem þjónustan bjóst við `"Helga"`.
 sem er erfitt að rekja, svo hafðu þetta á.
 :::
 
+Í `httr2` sendirðu listann beint og pakkinn sér um umbreytinguna:
+
+```{r}
+#| label: json-r-10
+#| eval: false
+slod <- "https://example.com/api"  # slóð sem tekur við JSON með POST
+
+request(slod) |>
+  req_body_json(listi, auto_unbox = TRUE) |>
+  req_perform()
+```
+
 ## Python
 
 ```{python}
@@ -393,6 +405,8 @@ sjálfgefið. Gildran er því aðeins Python-megin.
 ```{python}
 #| label: json-py-12
 #| eval: false
+slod = "https://example.com/api"  # slóð sem tekur við JSON með POST
+
 requests.post(slod, json=listi, timeout=30)
 ```
 :::
