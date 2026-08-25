@@ -1,8 +1,8 @@
 ---
-title: "Reglulegar segðir"
+title: "Inngangur"
 description: >-
-  Inngangur að reglulegum segðum: hvað þær leysa, af hverju þær eru erfiðar að
-  lesa, og hvernig á að prófa þær með góðu vinnulagi.
+  Inngangur að reglulegum segðum: hvað þær leysa, hvar þær koma fyrir og
+  af hverju þær eru erfiðar aflestrar.
 ---
 
 Reglulegar segðir (e. *regular expressions*, oft stytt í *regex*) eru leið til að lýsa mynstri í
@@ -27,41 +27,11 @@ nær ómögulegt að lesa hana aftur. Það er ekki alveg ósatt.
 
 Mynstur sem þú skrifar í dag getur verið óskiljanlegt eftir tvær vikur. Mynstur sem einhver annar
 skrifaði getur litið út eins og töfrar eða skemmd rafmagnsteikning. Oft er fljótlegra að skrifa
-mynstrið upp á nýtt út frá dæmunum heldur en að ráða í gamalt mynstur sem enginn skýrði.
+mynstrið upp á nýtt út frá dæmunum heldur en að ráða í gamalt mynstur sem engin skýring fylgir.
 
 Þess vegna skiptir máli að skrifa regex eins og annað kóðaefni: í litlum skrefum, með dæmum og
 með stuttri skýringu á því hvað á að passa og hvað á ekki að passa.
 :::
-
-## Prófaðu í regex101
-
-Gott vinnulag er að prófa mynstur utan kóðans áður en þú setur það inn í skýrslu, scriptu eða
-SQL-fyrirspurn. [regex101.com](https://regex101.com/) er nytsamlegt til þess:
-
-- þú límir inn textasýni,
-- skrifar regex-mynstur,
-- sérð strax hvað passar,
-- færð útskýringu á einstökum bútum mynstrsins.
-
-Þetta er sérstaklega gagnlegt þegar mynstrið er orðið langt. Ef þú getur ekki útskýrt mynstrið í
-regex101, er það líklega ekki tilbúið til að fara inn í verkefnið.
-
-::: {.callout-tip}
-## Veldu rétt regex-bragð
-
-Regex er ekki alveg eins í öllum verkfærum. Python, R, JavaScript og PostgreSQL eru mjög lík, en
-ekki nákvæmlega eins. Þegar þú notar regex101 skaltu velja það „flavor“ sem líkist verkfærinu
-þínu, til dæmis **Python** þegar þú vinnur í Python eða **PCRE2** fyrir mörg almenn dæmi.
-:::
-
-## Hvað er í þessum hluta?
-
-Í þessum hluta byrjum við smátt og byggjum upp:
-
-1. [Grunnmynstur](syntax.qmd): tákn, endurtekningar og fyrsta kennitöludæmið.
-2. [Hópar og notkun](groups.qmd): hvernig grípa má hluta úr texta og nota regex í R og Python.
-3. [Regex í gagnavinnu](data-cleaning.qmd): tenging við SQL, API-gögn og skrap.
-4. [Æfingar](exercises.qmd): lítil æfing í leit, hreinsun og gagnaskoðun.
 
 Markmiðið er ekki að muna öll tákn utan að. Markmiðið er að geta lesið mynstur í bútum, prófað
 þau á dæmum og vita hvenær regex er rétta verkfærið.

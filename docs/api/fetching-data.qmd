@@ -39,18 +39,40 @@ sérð ekki stöðukóðann, ekki hausana, og færð óskiljanlega villu í sta�
 
 Í skýrslum sem aðrir eiga að treysta notarðu réttu tólin.
 
+## Álagsmörk GitHub
+
+GitHub leyfir **60 beiðnir á klukkustund** án auðkenningar, en **5.000** með aðgangslykli.
+Dæmin hér að neðan eru keyrð í hvert sinn sem bókin er byggð, svo þau nota lykil þegar hann er
+til staðar í umhverfinu:
+
+```{r}
+#| label: saekja-r-1
+#| message: false
+#| warning: false
+library(httr2)
+
+lykill <- Sys.getenv("GITHUB_TOKEN")           # tómt ef hann er ekki settur
+gh_auth <- if (nzchar(lykill)) paste("Bearer", lykill) else NULL
+```
+
+`req_headers()` endurstillir haus á sjálfgefið gildi ef þú gefur `NULL`. Fyrir `Authorization` þýðir það að enginn auðkenningarhaus er sendur, svo sama kóðadæmi virkar hvort sem lykillinn er til eða ekki — bara með ólíkum álagsmörkum. Sjá [góða starfshætti](good-practices.qmd) um það
+hvernig lykillinn er geymdur.
+
 ## Beiðni í skrefum
 
 ::: {.panel-tabset}
 ## R
 
 ```{r}
-#| eval: false
+#| label: saekja-r-2
+#| message: false
+#| warning: false
 library(httr2)
 
 svar <- request("https://api.github.com") |>
   req_url_path("repos", "HI-IDN", "IDN302G") |>
-  req_headers("Accept" = "application/vnd.github+json") |>
+  req_headers("Accept" = "application/vnd.github+json",
+              Authorization = gh_auth) |>
   req_user_agent("IDN302G-nemandi (nafn@hi.is)") |>
   req_perform()
 
@@ -58,27 +80,14 @@ resp_status(svar)
 resp_content_type(svar)
 ```
 
-```
-[1] 200
-[1] "application/json"
-```
-
 Ekkert er sent fyrr en `req_perform()` er kallað, svo þú getur skoðað beiðnina fyrst:
 
 ```{r}
-#| eval: false
+#| label: saekja-r-3
 request("https://api.github.com") |>
   req_url_path("search", "repositories") |>
   req_url_query(q = "quarto", per_page = 5) |>
   req_dry_run()
-```
-
-```
-GET /search/repositories HTTP/1.1
-accept: */*
-accept-encoding: deflate, gzip
-host: api.github.com
-user-agent: httr2/1.3.0 r-curl/7.0.0 libcurl/8.14.1
 ```
 
 `req_dry_run()` sýnir aðferðina, slóðina og alla hausa — en sendir ekkert.
@@ -91,7 +100,7 @@ slóðina án fyrirspurnarstrengs, svo hún dugar til að skoða **hausa** en ek
 að færibreyturnar hafi ratað rétt. Til þess skoðarðu slóðina sjálfa:
 
 ```{r}
-#| eval: false
+#| label: saekja-r-4
 req <- request("https://api.github.com") |>
   req_url_path("search", "repositories") |>
   req_url_query(q = "quarto", per_page = 5)
@@ -99,24 +108,27 @@ req <- request("https://api.github.com") |>
 req$url
 ```
 
-```
-[1] "https://api.github.com/search/repositories?q=quarto&per_page=5"
-```
-
 Þetta samsvarar `print(svar.url)` í Python.
 :::
 
 ## Python
 
-``` python
+```{python}
+#| label: saekja-py-1
 import requests
+
+import os
+
+hausar = {
+    "Accept": "application/vnd.github+json",
+    "User-Agent": "IDN302G-nemandi (nafn@hi.is)",
+}
+if os.environ.get("GITHUB_TOKEN"):                    # sama og gh_auth í R
+    hausar["Authorization"] = "Bearer " + os.environ["GITHUB_TOKEN"]
 
 svar = requests.get(
     "https://api.github.com/repos/HI-IDN/IDN302G",
-    headers={
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "IDN302G-nemandi (nafn@hi.is)",
-    },
+    headers=hausar,
     timeout=30,
 )
 
@@ -124,24 +136,16 @@ svar.status_code
 svar.headers["Content-Type"]
 ```
 
-```
-200
-'application/json; charset=utf-8'
-```
-
 Til að sjá hvernig slóðin varð eftir að færibreytur bættust við:
 
-``` python
+```{python}
+#| label: saekja-py-2
 svar = requests.get(
     "https://api.github.com/search/repositories",
     params={"q": "quarto", "per_page": 5},
     timeout=30,
 )
 print(svar.url)
-```
-
-```
-https://api.github.com/search/repositories?q=quarto&per_page=5
 ```
 :::
 
@@ -165,37 +169,43 @@ Gefðu alltaf `timeout=`. `httr2` hefur sjálfgefið tímamark, svo þar er þet
 ## R
 
 ```{r}
-#| eval: false
+#| label: saekja-r-5
+#| message: false
+#| warning: false
 library(dplyr)
 
 leit <- request("https://api.github.com") |>
   req_url_path("search", "repositories") |>
   req_url_query(q = "quarto language:R", sort = "stars", per_page = 10) |>
   req_user_agent("IDN302G-nemandi") |>
+  req_headers(Authorization = gh_auth) |>
   req_perform() |>
   resp_body_json(simplifyVector = TRUE)
 
 leit$items |>
   select(full_name, stargazers_count, language, updated_at) |>
+  mutate(updated_at = as.Date(updated_at)) |>   # ISO-tímastimpill -> dagsetning
   arrange(desc(stargazers_count))
 ```
 
 ## Python
 
-``` python
+```{python}
+#| label: saekja-py-3
 import requests
 import pandas as pd
 
 svar = requests.get(
     "https://api.github.com/search/repositories",
     params={"q": "quarto language:R", "sort": "stars", "per_page": 10},
-    headers={"User-Agent": "IDN302G-nemandi"},
+    headers=hausar,
     timeout=30,
 )
 svar.raise_for_status()
 
 d = svar.json()
 df = pd.json_normalize(d["items"])
+df["updated_at"] = pd.to_datetime(df["updated_at"]).dt.date   # -> dagsetning
 
 df[["full_name", "stargazers_count", "language", "updated_at"]] \
     .sort_values("stargazers_count", ascending=False)
@@ -204,24 +214,13 @@ df[["full_name", "stargazers_count", "language", "updated_at"]] \
 `pd.json_normalize()` flettir líka út hreiðruð svæði: `owner.login` verður eigin dálkur.
 :::
 
-Útkoman lítur svona út:
-
-```
-                     full_name stargazers_count language           updated_at
-1           benmarwick/rrtools              721        R 2026-08-06T08:24:42Z
-2              gadenbuie/epoxy              217        R 2026-08-05T14:23:50Z
-3    surveydown-dev/surveydown              180        R 2026-08-20T22:28:19Z
-4          quarto-dev/quarto-r              161        R 2026-07-01T02:18:16Z
-5 andrewheiss/quarto-wordcount              151        R 2026-08-24T13:32:31Z
-```
-
 ::: {.callout-note}
-## Tölurnar eru frá síðustu byggingu
+## Tölurnar breytast
 
-Leitin skilaði 1.124 geymslum þegar þessi síða var síðast byggð með GitHub Actions. Stjörnur og
-`updated_at` breytast stöðugt, svo þínar tölur verða aðrar — og röðin líka. Það er einmitt
-eðli gagna sem sótt eru um vefþjónustu: þau eru ekki föst, og þess vegna skiptir máli að skrá
-**hvenær** var sótt (sjá [góða starfshætti](good-practices.qmd)).
+Taflan að ofan var sótt þegar þessi síða var síðast byggð. Stjörnur og `updated_at` breytast
+stöðugt, svo þínar tölur verða aðrar — og röðin líka. Það er einmitt eðli gagna sem sótt eru um
+vefþjónustu: þau eru ekki föst, og þess vegna skiptir máli að skrá **hvenær** var sótt (sjá
+[góða starfshætti](good-practices.qmd)).
 :::
 
 ## Villur
@@ -234,8 +233,9 @@ eðli gagna sem sótt eru um vefþjónustu: þau eru ekki föst, og þess vegna 
 Þurfirðu að bregðast við sjálf/ur:
 
 ```{r}
-#| eval: false
+#| label: saekja-r-6
 svar <- request("https://api.github.com/repos/HI-IDN/ekki-til") |>
+  req_headers(Authorization = gh_auth) |>
   req_error(is_error = \(resp) FALSE) |>     # ekki kasta, ég sé um þetta
   req_perform()
 
@@ -248,18 +248,15 @@ if (resp_status(svar) == 404) {
 }
 ```
 
-```
-[1] 404
-Geymslan fannst ekki — athugaðu nafnið.
-```
-
 ## Python
 
 `requests` kastar **ekki** villu sjálfkrafa — `svar.status_code` getur verið `404` og
 forritið haldið glaðlega áfram. Þú verður að kalla á `raise_for_status()`:
 
-``` python
-svar = requests.get("https://api.github.com/repos/HI-IDN/IDN302G", timeout=30)
+```{python}
+#| label: saekja-py-4
+svar = requests.get("https://api.github.com/repos/HI-IDN/IDN302G",
+                    headers=hausar, timeout=30)
 svar.raise_for_status()      # kastar HTTPError ef 4xx/5xx
 d = svar.json()
 ```
@@ -273,8 +270,10 @@ https://api.github.com/repos/HI-IDN/ekki-til
 
 Eða meðhöndla sjálf/ur:
 
-``` python
-svar = requests.get("https://api.github.com/repos/HI-IDN/ekki-til", timeout=30)
+```{python}
+#| label: saekja-py-5
+svar = requests.get("https://api.github.com/repos/HI-IDN/ekki-til",
+                    headers=hausar, timeout=30)
 
 print(svar.status_code)
 print(svar.json()["message"])
@@ -284,12 +283,6 @@ if svar.status_code == 404:
 else:
     svar.raise_for_status()
     d = svar.json()
-```
-
-```
-404
-Not Found
-Geymslan fannst ekki — athugaðu nafnið.
 ```
 :::
 
@@ -312,8 +305,9 @@ reyna aftur.
 ## R
 
 ```{r}
-#| eval: false
+#| label: saekja-r-7
 svar <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
+  req_headers(Authorization = gh_auth) |>
   req_retry(max_tries = 3) |>
   req_throttle(rate = 30 / 60) |>    # í mesta lagi 30 beiðnir á mínútu
   req_perform()
@@ -323,7 +317,8 @@ svar <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
 
 ## Python
 
-``` python
+```{python}
+#| label: saekja-py-6
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
@@ -336,6 +331,7 @@ retry = Retry(
 )
 
 s = requests.Session()
+s.headers.update(hausar)                 # auðkenning fylgir öllum beiðnum
 s.mount("https://", HTTPAdapter(max_retries=retry))
 
 svar = s.get("https://api.github.com/repos/HI-IDN/IDN302G", timeout=30)
@@ -350,10 +346,11 @@ svar = s.get("https://api.github.com/repos/HI-IDN/IDN302G", timeout=30)
 ## R
 
 ```{r}
-#| eval: false
+#| label: saekja-r-8
 svor <- request("https://api.github.com") |>
   req_url_path("repos", "HI-IDN", "IDN302G", "commits") |>
   req_url_query(per_page = 100) |>
+  req_headers(Authorization = gh_auth) |>
   req_perform_iterative(
     next_req = iterate_with_link_url(rel = "next"),
     max_reqs = 10
@@ -366,15 +363,12 @@ commits <- svor |>
 nrow(commits)
 ```
 
-```
-[1] 108
-```
-
 ## Python
 
 `requests` les `Link`-hausinn sjálfkrafa í `svar.links`:
 
-``` python
+```{python}
+#| label: saekja-py-7
 url = "https://api.github.com/repos/HI-IDN/IDN302G/commits"
 params = {"per_page": 100}
 allt = []
@@ -392,14 +386,19 @@ for _ in range(10):                       # öryggisventill
 df = pd.json_normalize(allt)
 len(df)
 ```
-
-```
-108
-```
-
-Fyrsta síðan skilaði 100 og sú næsta 8 — `Link`-hausinn sagði hvenær var hætt. Hefðirðu ekki
-farið gegnum allar síður hefðirðu misst af átta commits án þess að nokkuð benti til þess.
 :::
+
+```{r}
+#| label: saekja-r-9
+#| echo: false
+n <- nrow(commits)
+fyrsta <- min(n, 100)
+afgangur <- n - fyrsta
+```
+
+Alls `r n` commit: fyrsta síðan skilaði `r fyrsta` og sú næsta `r afgangur`. `Link`-hausinn
+sagði hvenær var hætt. Hefðirðu ekki farið gegnum allar síður hefðirðu misst af
+`r afgangur` commitum án þess að nokkuð benti til þess.
 
 ::: {.callout-warning}
 ## Alltaf öryggisventil á lykkjuna
@@ -410,28 +409,39 @@ farið gegnum allar síður hefðirðu misst af átta commits án þess að nokk
 
 ## Að geyma svarið
 
-Sæktu ekki sömu gögnin í hvert sinn sem skýrslan er þýdd.
+Sæktu ekki sömu gögnin í hvert sinn sem skýrslan er þýdd. Tvær leiðir: láta pakkann halda
+skyndiminni, eða vista svarið sjálf/ur í skrá.
 
 ::: {.panel-tabset}
 ## R
 
 ```{r}
+#| label: saekja-r-10
 #| eval: false
-# skyndiminni: endurnýtir svar sem þjónustan segir óbreytt
+library(jsonlite)
+
+# 1) skyndiminni: endurnýtir svar sem þjónustan segir óbreytt
 req <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
   req_cache(tempdir())
 
-# eða vista hrá gögn
+# 2) vista svarið sjálf/ur, ásamt tímastimpli
 d <- resp_body_json(svar, simplifyVector = TRUE)
-saveRDS(list(gogn = d, sott = Sys.time()), "data/github_raw.rds")
+
+dir.create("data", showWarnings = FALSE)
+write_json(list(gogn = d, sott = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")),
+           "data/github_raw.json", auto_unbox = TRUE, pretty = TRUE)
 ```
+
+Lesið til baka með `read_json("data/github_raw.json", simplifyVector = TRUE)`.
 
 ## Python
 
-``` python
+```{python}
+#| label: saekja-py-8
+#| eval: false
 import json, datetime, pathlib
 
-# vista hrá gögn ásamt tímastimpli
+# vista svarið, ásamt tímastimpli
 raw = {
     "gogn": svar.json(),
     "sott": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -442,7 +452,41 @@ pathlib.Path("data/github_raw.json").write_text(
 )
 ```
 
+Lesið til baka með `json.loads(pathlib.Path("data/github_raw.json").read_text("utf-8"))`.
+
 Þarftu skyndiminni sjálfkrafa er `pip install requests-cache` einfaldasta leiðin.
+:::
+
+::: {.callout-note}
+## JSON eða innfætt tvíundarsnið?
+
+Bæði málin eiga **eigið snið** sem geymir hlutinn nákvæmlega eins og hann er: `.rds` í R
+(`saveRDS()` / `readRDS()`) og `pickle` í Python (`pickle.dumps()` / `pickle.loads()`).
+
+|  | JSON | `.rds` / `pickle` |
+|---|---|---|
+| Læsilegt í textaritli | já | nei |
+| `git diff` sýnir breytinguna | já | nei, bara að skráin breyttist |
+| Annað mál getur lesið | já | nei |
+| Geymir gerðir nákvæmlega | nei | já |
+
+Innfæddu sniðin geyma `datetime`, `set`, `data.frame`, eigin klasa — allt sem JSON ræður ekki
+við. Þess vegna þurfti `.isoformat()` (Python) og `format(...)` (R) á tímastimpilinn hér að ofan:
+JSON á enga dagsetningagerð.
+
+**Notaðu samt JSON** þegar skráin á að fara í Git, til samstarfsfólks eða inn í skýrslu sem
+einhver annar keyrir. Innfædda sniðið er fyrir þitt eigið millistig, þegar hluturinn er flókinn
+og þú ætlar að lesa hann aftur í sama máli.
+:::
+
+::: {.callout-warning}
+## Aldrei `pickle.loads()` á skrá sem þú treystir ekki
+
+`pickle` getur keyrt kóða þegar hlutur er lesinn, svo skrá frá ókunnugum getur tekið yfir
+vélina þína. `readRDS()` í R er ekki alveg jafn varasamt en á sömu varúð skilið.
+
+Þetta er önnur ástæða fyrir því að JSON og CSV eru sjálfgefna valið þegar gögn fara á milli
+manna.
 :::
 
 Seinni leiðin — að vista svarið — er sú sem hentar skýrslum best: greiningin verður
@@ -456,8 +500,17 @@ Seinni leiðin — að vista svarið — er sú sem hentar skýrslum best: grein
 búturinn keyrður aftur aðeins ef hann breytist — sem þýðir líka að CI þarf ekki að setja upp
 R eða Python. Sjá [birtingu með GitHub Pages](../reproducible-reports/publishing.qmd).
 
-Þessi bók frystir ekki: GitHub Actions setur upp R og keyrir bútana frá grunni. Þess vegna eru
-netbeiðnirnar hér `eval: false` — annars væri byggingin háð því að þjónustan væri uppi.
+Þessi bók frystir ekki: GitHub Actions setur upp R og Python og keyrir bútana frá grunni, svo
+netbeiðnirnar hér eru **raunverulega sendar** í hverri byggingu. Liggi þjónusta niðri fellur
+byggingin með tímamörkum og villuboðum — þá keyrir maður hana einfaldlega aftur.
+
+Undantekningin er beiðni sem krefst **persónulegs aðgangslykils**, eins og TMDB-dæmið í
+[góðum starfsháttum](good-practices.qmd). Slíkur lykill á ekki heima í opinni geymslu, svo sá
+bútur er `eval: false`.
+
+GitHub-beiðnirnar eru annað mál: GitHub Actions býr sjálfkrafa til tímabundinn `GITHUB_TOKEN`
+sem má senda með í `env:`. Hann lyftir álagsmörkunum úr 60 í 5.000 beiðnir á klukkustund og
+rennur út þegar keyrslunni lýkur, svo hann er óhættur í opinni geymslu.
 :::
 
 ## Hvað á heima í geymslunni?
@@ -484,9 +537,10 @@ sem greiningin þarf. Skriftan sjálf fer í Git — hún er uppskriftin:
 ## R
 
 ```{r}
+#| label: saekja-r-11
 #| eval: false
 # scripts/saekja_geymslur.R
-library(httr2); library(dplyr); library(readr)
+library(httr2); library(dplyr); library(readr); library(jsonlite)
 
 d <- request("https://api.github.com/search/repositories") |>
   req_url_query(q = "quarto language:R", per_page = 100) |>
@@ -495,7 +549,8 @@ d <- request("https://api.github.com/search/repositories") |>
   resp_body_json(simplifyVector = TRUE)
 
 # hrátt: utan Git, til vara meðan unnið er
-saveRDS(d, "data/raw/geymslur.rds")
+dir.create("data/raw", recursive = TRUE, showWarnings = FALSE)
+write_json(d, "data/raw/geymslur.json", auto_unbox = TRUE)
 
 # strípað: aðeins dálkarnir sem greiningin notar
 d$items |>
@@ -506,7 +561,9 @@ d$items |>
 
 ## Python
 
-``` python
+```{python}
+#| label: saekja-py-9
+#| eval: false
 # scripts/saekja_geymslur.py
 import datetime, json, pathlib
 import requests, pandas as pd
@@ -535,7 +592,7 @@ pathlib.Path("data/raw/geymslur.json").write_text(
 :::
 
 **3. Committaðu aðeins strípuðu skrána.** `data/geymslur.csv` er lítil, læsileg og
-`git diff` sýnir raunverulega breytingu milli útgáfna. Hráa `.rds`/`.json` skráin er í
+`git diff` sýnir raunverulega breytingu milli útgáfna. Hráa JSON-skráin er í
 `.gitignore` og enginn saknar hennar — skriftan endurskapar hana hvenær sem er.
 
 ::: {.callout-tip}

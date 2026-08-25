@@ -1,45 +1,48 @@
 ---
-title: "Æfingar"
+title: "Að lesa erindreka"
 description: >-
-  Stuttar æfingar í að finna netföng, hreinsa símanúmer og lesa vinnuslóð eftir
-  erindreka með reglulegum segðum.
+  Vinnuslóð erindreka er texti með mynstri. Regex gerir hana að gögnum sem
+  hægt er að telja og rýna.
 ---
 
-## Tengiliðir
+## Að lesa hvað erindreki er að gera
 
-Gefinn er þessi texti:
-
-``` text
-Jón, jon@example.is, 5551234
-Guðrún, gudrun@hi.is, 510-7000
-Villa, ekki-netfang, 123
-Nemandi, nemandi.1@hi.is, 555 9876
-```
-
-1. Finndu allar línur sem innihalda netfang.
-2. Finndu öll símanúmer, hvort sem þau eru skrifuð `5551234`, `555-1234` eða `555 1234`.
-3. Breyttu símanúmerunum yfir í samræmt snið: `555-1234`.
-4. Hver af línunum ætti ekki að fara inn í hreina tengiliðatöflu? Af hverju?
-
-Mynstur til að byrja með:
+Regex getur líka hjálpað okkur að lesa vinnuslóð eftir erindreka. Þegar erindreki vinnur í
+kóðageymslu birtast oft línur sem líta svona út:
 
 ``` text
-[\w._%+-]+@[\w.-]+\.[A-Za-z]{2,}
-\d{3}[- ]?\d{4}
+Start 'github-mcp-server' MCP server
+Start 'playwright' MCP server
+Search \.card-grid
+Search ^description:
+View 5 files
+View docs/_quarto.yml:1-80
+Store comment
+Store fix
 ```
 
-Markmiðið er ekki að skrifa fullkomið regex í fyrstu tilraun. Markmiðið er að geta lesið
-mynstrið, prófað það, séð hvað það finnur ranglega og lagað það meðvitað.
+Þetta er ekki gagnatafla, en það er samt mynstur í textanum. Við getum flokkað línurnar:
 
-::: {.callout-tip}
-## Prófaðu fyrst utan kóða
+| Spurning | Mynstur |
+|---|---|
+| Hvaða MCP-þjónar voru ræstir? | `^Start '([^']+)' MCP server$` |
+| Hverju leitaði erindrekinn að? | `^Search (.+)$` |
+| Hvaða skrár voru opnaðar? | `^View (.+)$` |
+| Voru athugasemdir vistaðar? | `^Store comment$` |
+| Voru lagfæringar vistaðar? | `^Store fix$` |
 
-Settu textann og mynstrin inn á [regex101](https://regex101.com/) áður en þú skrifar lausnina í
-R eða Python. Skráðu hjá þér eitt dæmi sem passar rétt og eitt dæmi sem mynstrið finnur ekki eða
-finnur ranglega.
+Úr þessu má lesa vinnubrögðin: erindrekinn setur upp umhverfi, leitar að mynstrum, skoðar
+viðeigandi skrár og skráir niður athugasemdir eða lagfæringar.
+
+::: {.callout-note}
+## Lítur þetta út eins og code review?
+
+Ef vinnuslóðin inniheldur margar `Search` línur, `View ...` á kóðaskrár, og síðan `Store comment`
+eða `Store fix`, er mjög líklegt að erindrekinn sé í rýni eða undirbúningi rýni. Hann er ekki bara
+að keyra kóða; hann er að safna samhengi, finna möguleg vandamál og móta athugasemdir.
 :::
 
-## Hvað er erindrekinn að gera?
+## Æfing
 
 Hér er brot úr vinnuslóð eftir erindreka:
 

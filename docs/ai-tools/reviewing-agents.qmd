@@ -268,16 +268,16 @@ Betra:
 > Þar sem gögnin okkar geta verið á íslensku sniði þurfum við annaðhvort að laga parserinn
 > eða skrá þessa takmörkun skýrt.
 
-## Checklist fyrir samþykki
+## Gátlisti fyrir samþykki
 
 Áður en PR er samþykkt þarf hópurinn að geta svarað:
 
-- Skiljum við hvað breytingin gerir?
-- Leysti hún verkefnið sem lagt var fyrir?
-- Eru forsendur og takmarkanir skýrar?
-- Er kóðinn/skýrslan nógu læsileg til að næsti hópmeðlimur geti unnið áfram?
-- Hefur einhver annar en erindrekinn sannreynt lausnina?
-- Eru athugasemdir rýnenda annaðhvort leystar eða svarað með skýrum rökum?
+- [ ] Skiljum við hvað breytingin gerir?
+- [ ] Leysti hún verkefnið sem lagt var fyrir?
+- [ ] Eru forsendur og takmarkanir skýrar?
+- [ ] Er kóðinn/skýrslan nógu læsileg til að næsti hópmeðlimur geti unnið áfram?
+- [ ] Hefur einhver annar en erindrekinn sannreynt lausnina?
+- [ ] Eru athugasemdir rýnenda annaðhvort leystar eða svarað með skýrum rökum?
 
 ## Skil
 
