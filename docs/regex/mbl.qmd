@@ -150,7 +150,7 @@ data.frame(
 import hashlib
 
 {
-    "sott": svar.headers["Date"],
+    "sott": svar.headers.get("Date", "óþekkt"),
     "staerd_kb": round(len(svar.content) / 1024),
     "md5": hashlib.md5(svar.content).hexdigest(),
 }
@@ -166,9 +166,13 @@ Berðu flipana tvo saman: **summurnar stemma ekki**, og tímarnir muna nokkrum s
 vandann svart á hvítu. R og Python sendu sína beiðnina hvor, og á þeim sekúndum sem liðu á milli
 breyttist forsíðan. Gátsumman gerir það sýnilegt sem annars hefði farið framhjá okkur.
 
-Keyrir þú kaflann sjálf færðu enn aðra summu, og það er heldur ekki villa. Forsíðan hefur breyst
-síðan þessi keyrsla fór fram. Gátsumman er þess vegna gagnleg: hún segir þér strax hvort þú sért að
-vinna úr sama eintaki og einhver annar, í stað þess að þið rífist um hvor hafi talið rétt.
+Viljirðu prófa þetta sjálf skiptir máli **hvernig** þú þýðir. Þessi síða er fryst, svo þýðing á
+bókinni allri les tölurnar hér að ofan úr geymdri niðurstöðu og sendir enga beiðni. Þýðirðu hins
+vegar þessa einu skrá — `quarto render regex/mbl.qmd` — keyrir Quarto bútana upp á nýtt og þú
+færð þínar eigin tölur, aðrar en þessar, því forsíðan hefur breyst síðan.
+
+Gátsumman er þess vegna gagnleg: hún segir þér strax hvort þú sért að vinna úr sama eintaki og
+einhver annar, í stað þess að þið rífist um hvor hafi talið rétt.
 
 ## Unnið dæmi: hvaða fréttaflokkar eru á forsíðunni?
 
