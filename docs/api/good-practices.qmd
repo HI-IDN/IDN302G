@@ -13,7 +13,7 @@ Margar þjónustur krefjast **aðgangslykils** (e. *API key* eða *token*). Lyki
 sá sem hefur hann getur gert allt sem þú mátt gera, í þínu nafni.
 
 ::: {.callout-important}
-## Þetta er algengasta alvarlega mistökin
+## Þetta eru algengustu alvarlegu mistökin
 
 ```r
 # ALDREI SVONA
