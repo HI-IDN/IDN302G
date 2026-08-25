@@ -64,9 +64,33 @@ txt <- c(
 )
 
 mynstur <- "[\\w._%+-]+@[\\w.-]+\\.[A-Za-z]{2,}"
-fundid <- gregexpr(mynstur, txt)
+fundid <- gregexpr(mynstur, txt, perl = TRUE)
 regmatches(txt, fundid)
 ```
+
+::: {.callout-warning}
+## `perl = TRUE` — annars finnur R ekkert
+
+R hefur **tvær regex-vélar**. Sú sjálfgefna er POSIX og þekkir ekki `\w`, `\d` né `\s`.
+Slepptu `perl = TRUE` og mynstrið hér að ofan skilar `character(0)` fyrir allar línurnar —
+engin villa, engin viðvörun, bara tómt svar.
+
+Þetta er sérstaklega lúmskt þegar mynstur er afritað úr Python eða af regex101, því þar eru
+`\w` og `\d` sjálfsögð.
+
+Tveir kostir í boði:
+
+```{r}
+#| label: groups-r-perl
+# 1) kveikja á PCRE-vélinni
+regmatches(txt, gregexpr("[\\w.]+@[\\w.-]+", txt, perl = TRUE))
+
+# 2) nota POSIX-klasa sem sjálfgefna vélin skilur
+regmatches(txt, gregexpr("[[:alnum:]._]+@[[:alnum:].-]+", txt))
+```
+
+Sömu föll taka `perl = TRUE`: `grepl()`, `sub()`, `gsub()`, `regexpr()`.
+:::
 
 ## Python
 

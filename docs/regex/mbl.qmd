@@ -1,0 +1,207 @@
+# Verkefni: regex á mbl.is
+
+Hingað til höfum við unnið með stutta texta sem passa í eina breytu. Raunveruleg gögn eru
+sjaldnast svona snyrtileg. Í þessum kafla sækjum við forsíðu [mbl.is](https://www.mbl.is/) —
+eina stóra HTML-skrá — og drögum úr henni upplýsingar sem hvergi eru gefnar sem hrein gögn.
+
+Þetta er ekki API. Það er enginn `/v1/frettir` endapunktur sem skilar snyrtilegu JSON-i.
+Það eina sem við höfum er markúpið sjálft, og regex er fljótlegasta leiðin til að ná tökum á því.
+
+::: {.callout-note}
+## Byrjun, ekki fullbúin lausn
+
+Hér að neðan er byrjunin unnin fyrir þig: við sækjum síðuna og leysum **fyrsta** dæmið í bæði
+R og Python. Æfingarnar á eftir eru þínar að klára. Mynstrin sem þú skrifar hér nýtast beint í
+hópverkefninu, svo geymdu þau.
+:::
+
+## Kurteisi við vefþjóna
+
+Áður en við sækjum nokkuð:
+
+- **Lestu `robots.txt`.** Hjá mbl.is er [robots.txt](https://www.mbl.is/robots.txt) sem bannar
+  meðal annars `/frimg/`, `/myndir/` og `/go/`, en leyfir forsíðuna og `/frettir/`.
+- **Auðkenndu þig** með `User-Agent` sem segir hver þú ert og hvernig má ná í þig.
+- **Sæktu eina síðu í einu.** Ekki setja `for`-lykkju yfir hundrað slóðir án tafar á milli.
+- **Vistaðu svarið** meðan þú þróar mynstrið — þá ertu ekki að hamra á þjóninum í hvert sinn
+  sem þú lagfærir eitt `+`.
+
+## Sækjum síðuna
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: mbl-r-1
+#| message: false
+#| warning: false
+library(httr2)
+
+svar <- request("https://www.mbl.is/") |>
+  req_user_agent("IDN302G kennsluefni (netfang@hi.is)") |>
+  req_timeout(30) |>
+  req_retry(max_tries = 3) |>
+  req_perform()
+
+html <- resp_body_string(svar)
+nchar(html)
+```
+
+## Python
+
+```{python}
+#| label: mbl-py-1
+import re
+import requests
+
+svar = requests.get(
+    "https://www.mbl.is/",
+    headers={"User-Agent": "IDN302G kennsluefni (netfang@hi.is)"},
+    timeout=30,
+)
+svar.raise_for_status()
+
+html = svar.text
+len(html)
+```
+:::
+
+Þetta er ein skrá upp á rúmlega hundrað þúsund stafi. Við ætlum ekki að lesa hana — við ætlum
+að spyrja hana spurninga.
+
+## Unnið dæmi: hvaða fréttaflokkar eru á forsíðunni?
+
+Fyrst skoðum við hvernig fréttahlekkur lítur út. Þeir eru allir eins uppbyggðir:
+
+```
+/frettir/innlent/2026/08/25/eitthvad_gerdist/
+ └─ 1 ─┘ └─ 2 ─┘ └── 3 ──┘ └────── 4 ──────┘
+```
+
+1. fastur upphafshluti,
+2. **flokkurinn** — það sem við viljum,
+3. dagsetning í þremur liðum,
+4. slóðarnafn fréttarinnar.
+
+Flokkurinn er því annar liður í slóðinni, alltaf lágstafir, alltaf á undan ártali. Það dugar
+til að skrifa mynstur — við grípum flokkinn með sviga og krefjumst þess að fjórar tölur komi
+strax á eftir, svo við lendum ekki á öðrum hlekkjum sem byrja eins.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: mbl-r-2
+mynstur <- 'href="/frettir/([a-z]+)/\\d{4}/'
+
+fundid <- regmatches(html, gregexpr(mynstur, html, perl = TRUE))[[1]]
+flokkar <- sub(mynstur, "\\1", fundid, perl = TRUE)
+
+sort(table(flokkar), decreasing = TRUE)
+```
+
+## Python
+
+```{python}
+#| label: mbl-py-2
+from collections import Counter
+
+mynstur = r'href="/frettir/([a-z]+)/\d{4}/'
+flokkar = re.findall(mynstur, html)
+
+Counter(flokkar).most_common()
+```
+:::
+
+Bæði málin skila sömu flokkunum. Talan verður önnur hjá þér en hér — og ef þú rýnir í
+flipana tvo hér að ofan sérðu að hún er meira að segja ekki alveg sú sama í R og Python.
+
+Það er ekki villa í mynstrinu. Flipparnir sóttu síðuna hvor í sínu lagi, með nokkurra sekúndna
+millibili, og forsíða fréttamiðils breytist á þeim tíma. **Gögnin sjálf eru á hreyfingu.** Ef þú
+vilt bera saman tvær aðferðir verðurðu að láta þær vinna á sama svarinu — sæktu einu sinni,
+vistaðu, og keyrðu bæði mynstrin á vistuðu skránni.
+
+::: {.callout-tip}
+## Af hverju `[a-z]+` en ekki `\w+`?
+
+`\w` nær líka yfir tölustafi og undirstrik. Þá myndi mynstrið éta ártalið í sumum tilfellum og
+skila `2026` sem flokki. Þrengsta mynstrið sem virkar er alltaf besta mynstrið.
+
+Athugaðu líka `perl = TRUE` í R-útgáfunni — án hennar þekkir R ekki `\d`. Sjá
+[Hópar og grip](groups.qmd).
+:::
+
+## Æfingar
+
+Hver æfing byggir á sama `html` og að ofan. Leystu þær í því máli sem þú notar í hópverkefninu,
+og prófaðu mynstrin í [regex101](https://regex101.com/) áður en þú skrifar þau í kóðann.
+
+### 1. Hversu margar fréttir eru á forsíðunni?
+
+Teldu **einstakar** greinar, ekki hlekki. Sama fréttin birtist oft tvisvar eða þrisvar á
+forsíðunni: einu sinni sem mynd, einu sinni sem fyrirsögn.
+
+*Vísbending:* gríptu alla slóðina, ekki bara flokkinn — dagsetningin og slóðarnafnið eru hluti
+af auðkenni fréttarinnar. Notaðu svo `unique()` (R) eða `set()` (Python) og berðu saman við
+heildarfjöldann. Munurinn kemur á óvart.
+
+### 2. Hvað er hitastigið í Reykjavík?
+
+Veðurkassinn efst á síðunni sýnir hita í gráðum.
+
+*Vísbending:* skoðaðu markúpið kringum töluna. Hún og gráðumerkið eru **ekki í sama taggi**, svo
+mynstrið verður að spanna bæði — og leyfa línuskil á milli. Mundu líka að hiti getur verið
+neikvæður.
+
+### 3. Hvert er gengi Bandaríkjadals?
+
+Þetta er lúmskasta æfingin, og hún kennir mikilvægustu lexíuna í kaflanum.
+
+*Vísbending:* leitaðu að `USD` í markúpinu. Reiturinn sem sýnir gengið á síðunni er **tómur** —
+`value=""` — því talan er sett inn með JavaScript eftir að síðan hleðst. Gengið er samt í
+skránni, en neðar, í kóða en ekki í sýnilegu markúpi. Finndu það og skrifaðu mynstur sem nær
+gjaldmiðilstákninu og upphæðinni saman.
+
+Lærdómurinn: **það sem þú sérð í vafranum er ekki endilega það sem þú færð í svarinu.** Notaðu
+alltaf það sem þú sóttir sjálf til að skrifa mynstrið, ekki það sem þróunartólin sýna.
+
+### 4. Hversu mörg orð eru á síðunni?
+
+Aðeins sýnilegur texti telur.
+
+*Vísbending:* þetta er hreinsun í þremur skrefum. Fyrst burt með `<script>` og `<style>` —
+**með innihaldinu**, ekki bara töggunum sjálfum. Svo burt með öllum öðrum töggum. Loks burt með
+HTML-táknum eins og `&nbsp;` og `&#8230;`. Þá er eftir texti sem þú getur talið orð í — mundu að
+íslenskir stafir eru ekki í `[a-z]`.
+
+Hvaða tíu orð lengri en fjórir stafir eru algengust? Segir listinn eitthvað um fréttadaginn?
+
+### 5. Hversu margar auglýsingar eru á síðunni?
+
+Prófaðu að telja þær. Skrifaðu svo niður hvers vegna þú **treystir ekki** tölunni sem þú fékkst.
+
+*Vísbending:* það er ekkert `<auglysing>` tagg. Þú getur leitað að `augl` í slóðum, að
+`data-ad`, `adunit` eða `googletag`, eða að klösum sem innihalda `ad`. Hver aðferð gefur sína
+tölu, og engin þeirra er rétt: sumar auglýsingar eru sóttar eftir á, og `ad` finnst líka í
+óskyldum orðum. Þetta er raunverulega staðan þegar gögnin eru ekki merkt fyrir þig.
+
+::: {.callout-warning}
+## Mynstur sem virkar í dag getur brotnað í næstu viku
+
+mbl.is breytir markúpinu sínu án þess að láta neinn vita. Það er eðlismunur á því að lesa API —
+sem lofar ákveðnu sniði — og að lesa HTML, sem lofar engu.
+
+Þess vegna: skrifaðu prófanir sem segja til ef mynstrið hættir að finna neitt. Mynstur sem
+skilar skyndilega `character(0)` eða tómum lista á að vera villa í verkefninu þínu, ekki þögult
+núll í töflu.
+:::
+
+## Fyrir hópverkefnið
+
+Þessi kafli er upphitun. Í hópverkefninu munuð þið vinna með gögn sem enginn hefur snyrt fyrir
+ykkur, og þar gilda sömu reglur:
+
+- Byrjaðu á að skoða hráa svarið — ekki giska á sniðið.
+- Skrifaðu mynstrið eins þröngt og þú kemst upp með.
+- Geymdu bæði dæmi sem eiga að passa og dæmi sem eiga **ekki** að passa.
+- Vistaðu svarið meðan þú vinnur, svo þú sért ekki háð því að þjónninn svari.
