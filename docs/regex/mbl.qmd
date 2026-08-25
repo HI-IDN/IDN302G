@@ -229,12 +229,16 @@ skilar skyndilega `character(0)` eða tómum lista á að vera villa í verkefni
 núll í töflu.
 :::
 
-## Fyrir hópverkefnið
+## Gátlisti fyrir hópverkefnið
 
-Þessi kafli er upphitun. Í hópverkefninu munuð þið vinna með gögn sem enginn hefur snyrt fyrir
-ykkur, og þar gilda sömu reglur:
+Þessi kafli er upphitun. Í hópverkefninu vinnið þið með gögn sem enginn hefur snyrt fyrir ykkur.
+Farið yfir þennan lista áður en þið skilið regex-kóða inn í verkefnið:
 
-- Byrjaðu á að skoða hráa svarið — ekki giska á sniðið.
-- Skrifaðu mynstrið eins þröngt og þú kemst upp með.
-- Geymdu bæði dæmi sem eiga að passa og dæmi sem eiga **ekki** að passa.
-- Vistaðu svarið meðan þú vinnur, svo þú sért ekki háð því að þjónninn svari.
+- [ ] Ég hef skoðað hráa svarið sjálf og giska ekki á sniðið.
+- [ ] Mynstrið mitt er eins þröngt og það kemst upp með — engin `.*` sem ég get komist hjá.
+- [ ] Ég á skrifleg dæmi sem eiga að passa og dæmi sem eiga **ekki** að passa.
+- [ ] Ég hef prófað mynstrið í [regex101](https://regex101.com/) og get útskýrt hvern hluta þess.
+- [ ] Svarið er vistað á disk, svo vinnan stöðvast ekki þótt þjónninn svari ekki.
+- [ ] Ég veit hvaða útgáfa gagnanna liggur til grundvallar — tími, stærð eða gátsumma.
+- [ ] Kóðinn lætur vita ef mynstrið hættir að finna nokkuð, í stað þess að skila þöglu núlli.
+- [ ] Í R er `perl = TRUE` á sínum stað ef mynstrið notar `\w`, `\d` eða `\s`.
