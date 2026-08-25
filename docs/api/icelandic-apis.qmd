@@ -432,6 +432,18 @@ virkar samt fínt úr R eða `curl`. CORS er regla vafrans, ekki þjónustunnar.
 Tvær æfingar, ein á hvora þjónustu. Báðar enda á sama stað: **er svarið sem þú fékkst
 raunverulega nothæft?**
 
+::: {.callout-note}
+## Tölurnar hér að neðan eru sóttar, ekki skrifaðar
+
+Niðurstöðurnar sem fylgja hvorri æfingu voru sóttar þegar þessi síða var þýdd. Kóðinn er falinn
+svo hann gefi ekki lausnina, en hann keyrir.
+
+Það þýðir tvennt. Þú átt að geta fengið sömu tölur, og breytist þjónustan breytast þær hér líka
+í stað þess að standa eftir rangar. Veðurstöðvum fjölgar og fækkar, og brautskráningartölur eru
+endurskoðaðar. Tala sem er slegin inn með höndunum verður þögul ósannindi um leið og gögnin
+hreyfast.
+:::
+
 ### 1. Hagstofan — hverjir klára BS-námið?
 
 Hversu stór hluti þeirra sem byrja í þriggja ára bakkalárnámi í verkfræði lýkur því? Og er
@@ -453,12 +465,58 @@ https://px.hagstofa.is/pxis/api/v1/is/Samfelag/skolamal/4_haskolastig/1_hsProf/S
 
 Niðurstaðan lítur svona út:
 
-```
-námssvið                                    brautskráðir  brottfallnir  enn í námi
-Alls                                                73.5          19.6         6.9
-Raunvísindi, stærðfræði og tölfræði                 71.0          22.5         6.5
-Upplýsinga- og samskiptatækni                       68.6          23.4         8.0
-Verkfræði, framleiðsla og mannvirkjagerð            84.3          11.9         3.8
+```{r}
+#| label: island-r-svar-1
+#| echo: false
+#| message: false
+#| warning: false
+library(httr2)
+
+slod <- paste0(
+  "https://px.hagstofa.is/pxis/api/v1/is/Samfelag/skolamal/",
+  "4_haskolastig/1_hsProf/SKO04208b.px"
+)
+
+fyrirspurn <- list(
+  query = list(
+    list(code = "Innritunarár",    selection = list(filter = "item", values = list("2017"))),
+    list(code = "Nemendur",        selection = list(filter = "item", values = list("5", "6", "7"))),
+    list(code = "Fjöldi/Hlutfall", selection = list(filter = "item", values = list("1"))),
+    list(code = "Námssvið",        selection = list(filter = "item",
+                                                    values = list("Alls", "05", "06", "07"))),
+    list(code = "Kyn",             selection = list(filter = "item", values = list("Alls")))
+  ),
+  response = list(format = "json-stat2")
+)
+
+d <- request(slod) |>
+  req_body_json(fyrirspurn, auto_unbox = TRUE) |>
+  req_timeout(60) |>
+  req_retry(max_tries = 3) |>
+  req_perform() |>
+  resp_body_json(simplifyVector = TRUE)
+
+# category$index ræður röðinni, ekki röð lyklanna í skjalinu.
+heiti <- function(vidd) {
+  fl <- d$dimension[[vidd]]$category
+  unlist(fl$label[names(sort(unlist(fl$index)))], use.names = FALSE)
+}
+
+asar <- lapply(d$id, heiti)
+names(asar) <- d$id
+
+# Síðasta víddin breytist hraðast, öfugt við expand.grid.
+grind <- expand.grid(rev(asar), stringsAsFactors = FALSE)
+grind <- grind[, rev(names(grind)), drop = FALSE]
+grind$gildi <- d$value
+
+grind$Námssvið <- factor(grind$Námssvið, levels = asar[["Námssvið"]])
+grind$Nemendur <- factor(grind$Nemendur, levels = asar[["Nemendur"]])
+
+knitr::kable(
+  tapply(grind$gildi, list(grind$Námssvið, grind$Nemendur), identity),
+  caption = "Hlutfall (%) sex árum eftir innritun 2017"
+)
 ```
 
 ::: {.callout-important}
@@ -514,14 +572,39 @@ https://api.vedur.is/weather/stations
 
 Berðu saman hvað kemur til baka:
 
-```
-engin sía             776 stöðvar
-active=true           347
-polygon                21
-polygon + active        9
+```{r}
+#| label: island-r-svar-2
+#| echo: false
+#| message: false
+#| warning: false
+library(httr2)
+
+marghyrningur <- paste0(
+  "POLYGON((-22.0589 64.0936,-21.8524 64.0936,-21.8524 64.1837,",
+  "-22.0589 64.1837,-22.0589 64.0936))"
+)
+
+telja <- function(sia = list()) {
+  bein <- request("https://api.vedur.is/weather/stations") |>
+    req_user_agent("IDN302G kennsluefni (netfang@hi.is)") |>
+    req_timeout(60) |>
+    req_retry(max_tries = 3)
+  if (length(sia)) bein <- do.call(req_url_query, c(list(bein), sia))
+  length(resp_body_json(req_perform(bein)))
+}
+
+knitr::kable(data.frame(
+  sía = c("engin sía", "active=true", "polygon", "polygon + active"),
+  stöðvar = c(
+    telja(),
+    telja(list(active = "true")),
+    telja(list(polygon = marghyrningur)),
+    telja(list(active = "true", polygon = marghyrningur))
+  )
+), col.names = c("sía", "stöðvar"))
 ```
 
-Úr 776 í 9 — og þú reiknar fjarlægð á níu stöðvar í stað 776.
+Úr mörg hundruð stöðvum niður í örfáar — og þú reiknar fjarlægð á þær í stað allra hinna.
 
 ::: {.callout-note}
 ## Hvaðan kemur marghyrningurinn?
