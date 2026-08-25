@@ -1,0 +1,100 @@
+---
+title: "Grunnmynstur"
+description: >-
+  Helstu tákn reglulegra segða: bókstafir, sértákn, endurtekningar og einfalt
+  kennitöludæmi.
+---
+
+## Byrjaðu á einföldu mynstri
+
+Venjulegir stafir passa við sjálfa sig:
+
+| Mynstur | Passar við |
+|---|---|
+| `háskóli` | textann `háskóli` |
+| `2026` | textann `2026` |
+| `@hi.is` | textann `@hi.is` |
+
+Krafturinn kemur þegar við bætum við táknum sem þýða meira en einn staf.
+
+| Tákn | Merking | Dæmi |
+|---|---|---|
+| `.` | hvaða einn stafur sem er | `h.s` passar við `hús` og `has` |
+| `\d` | tölustafur | `\d\d\d` passar við `101` |
+| `\w` | orðastafur | bókstafur, tala eða `_` |
+| `\s` | bil, tab eða línuskil | `\s+` passar við eitt eða fleiri bil |
+| `[abc]` | einn stafur úr mengi | `[abc]` passar við `a`, `b` eða `c` |
+| `[0-9]` | einn stafur á bili | sama og `\d` |
+| `^` | byrjun línu | `^#` finnur línur sem byrja á `#` |
+| `$` | endir línu | `\.csv$` finnur texta sem endar á `.csv` |
+
+::: {.callout-tip}
+## Punktur er ekki alltaf punktur
+
+Í regex þýðir `.` „hvaða stafur sem er“. Ef þú vilt leita að alvöru punkti þarftu að skrifa
+`\.`.
+
+Mynstrið `hi.is` passar til dæmis líka við `hiXis`. Mynstrið `hi\.is` passar bara við `hi.is`.
+:::
+
+## Hversu oft má eitthvað koma?
+
+Endurtekningartákn segja hversu oft mynstrið á undan má koma fyrir.
+
+| Tákn | Merking | Dæmi |
+|---|---|---|
+| `?` | núll eða einu sinni | `https?` passar við `http` og `https` |
+| `*` | núll sinnum eða oftar | `a*` passar við ekkert, `a`, `aa`, ... |
+| `+` | einu sinni eða oftar | `\s+` passar við eitt eða fleiri bil |
+| `{3}` | nákvæmlega þrisvar | `\d{3}` passar við þrjá tölustafi |
+| `{2,4}` | tvisvar til fjórum sinnum | `\d{2,4}` passar við 2-4 tölustafi |
+
+Þetta gerir mynstrið bæði styttra og nákvæmara. Símanúmer á sniðinu `555-1234` má skrifa sem:
+
+``` text
+\d{3}-\d{4}
+```
+
+Það þýðir: þrír tölustafir, bandstrik, fjórir tölustafir.
+
+## Dæmi: kennitala
+
+Íslensk kennitala er oft skrifuð sem sex tölustafir, bandstrik og fjórir tölustafir:
+
+``` text
+\d{6}-\d{4}
+```
+
+Þetta finnur texta sem *lítur út eins og* kennitala:
+
+``` text
+120389-4569
+010101-0000
+999999-9999
+```
+
+Síðasta dæmið er augljóslega ekki raunveruleg dagsetning. Regex getur athugað formið, en það
+þýðir ekki sjálfkrafa að gildið sé rétt.
+
+::: {.callout-important}
+## Regex sannreynir ekki merkingu nema þú biður um það
+
+`\d{6}-\d{4}` athugar bara lögun textans. Ef þú þarft að vita hvort dagur, mánuður og vartala
+séu gild þarf annaðhvort nákvæmara regex eða venjulegan kóða sem túlkar kennitöluna.
+:::
+
+Örlítið strangara mynstur má takmarka dag og mánuð:
+
+``` text
+(0[1-9]|[12]\d|3[01])(0[1-9]|1[0-2])\d{2}-\d{4}
+```
+
+Lestu það í bútum:
+
+| Bútur | Merking |
+|---|---|
+| `(0[1-9]|[12]\d|3[01])` | dagur frá 01 til 31 |
+| `(0[1-9]|1[0-2])` | mánuður frá 01 til 12 |
+| `\d{2}` | tveir tölustafir fyrir ár |
+| `-` | bandstrik |
+| `\d{4}` | fjórir tölustafir |

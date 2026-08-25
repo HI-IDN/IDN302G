@@ -1,0 +1,106 @@
+---
+title: "Að lesa erindreka"
+description: >-
+  Vinnuslóð erindreka er texti með mynstri. Regex gerir hana að gögnum sem
+  hægt er að telja og rýna.
+---
+
+## Að lesa hvað erindreki er að gera
+
+Regex getur líka hjálpað okkur að lesa vinnuslóð eftir erindreka. Þegar erindreki vinnur í
+kóðageymslu birtast oft línur sem líta svona út:
+
+``` text
+Start 'github-mcp-server' MCP server
+Start 'playwright' MCP server
+Search \.card-grid
+Search ^description:
+View 5 files
+View docs/_quarto.yml:1-80
+Store comment
+Store fix
+```
+
+Þetta er ekki gagnatafla, en það er samt mynstur í textanum. Við getum flokkað línurnar:
+
+| Spurning | Mynstur |
+|---|---|
+| Hvaða MCP-þjónar voru ræstir? | `^Start '([^']+)' MCP server$` |
+| Hverju leitaði erindrekinn að? | `^Search (.+)$` |
+| Hvaða skrár voru opnaðar? | `^View (.+)$` |
+| Voru athugasemdir vistaðar? | `^Store comment$` |
+| Voru lagfæringar vistaðar? | `^Store fix$` |
+
+Úr þessu má lesa vinnubrögðin: erindrekinn setur upp umhverfi, leitar að mynstrum, skoðar
+viðeigandi skrár og skráir niður athugasemdir eða lagfæringar.
+
+::: {.callout-note}
+## Lítur þetta út eins og code review?
+
+Ef vinnuslóðin inniheldur margar `Search` línur, `View ...` á kóðaskrár, og síðan `Store comment`
+eða `Store fix`, er mjög líklegt að erindrekinn sé í rýni eða undirbúningi rýni. Hann er ekki bara
+að keyra kóða; hann er að safna samhengi, finna möguleg vandamál og móta athugasemdir.
+:::
+
+## Æfing
+
+Hér er brot úr vinnuslóð eftir erindreka:
+
+```` text
+Setting up environment
+Start 'github-mcp-server' MCP server
+Start 'playwright' MCP server
+Search 7 times
+\.card-grid
+^description-meta:
+install\.packages\(
+```{{r}}|```{\.r|```{r}|\{\.r \.cell-code\}
+\.nav-footer
+\blibrary\(
+^description:
+Search \.card-grid|\.card\b
+View 5 files
+docs/styles/hi.scss:420-710
+docs/_quarto.yml:1-80
+docs/styles/hi-book.scss:370-430
+.github/workflows/publish.yml:1-140
+docs/reproducible-reports/quarto.qmd:1-160
+Search nav-footer\b
+View 3 files
+docs/storytelling/dashboard.qmd:40-90
+docs/sql-basics/database_interaction.qmd:110-180
+docs/storytelling/interactive.qmd:1-150
+Search ```\{r\}|```\{\s*r\s*[,}]
+Call to vote_memory
+Search knitr|rmarkdown|renv
+Store comment
+Store comment
+Search \.card-grid\.numbered
+Store fix
+````
+
+1. Finndu allar línur sem byrja á `Search`.
+2. Finndu öll regex-mynstur sem erindrekinn leitaði að.
+3. Finndu allar línur sem vísa í skrá og línubil, til dæmis `docs/_quarto.yml:1-80`.
+4. Teldu hversu oft erindrekinn vistaði athugasemd (`Store comment`) eða lagfæringu (`Store fix`).
+5. Svaraðu í einni málsgrein: lítur þetta út eins og code review vinna? Hvaða línur styðja svarið?
+
+Athugaðu að `Search 7 times` er samantekt úr viðmótinu. Línurnar beint á eftir eru mynstrin sem
+voru notuð í þeim sjö leitum.
+
+Mynstur til að byrja með:
+
+``` text
+^Search (.+)$
+^(.+\.(qmd|yml|yaml|scss)):\d+-\d+$
+^Store (comment|fix)$
+^Start '([^']+)' MCP server$
+```
+
+::: {.callout-note}
+## Að lesa erindreka er gagnalæsi
+
+Markmiðið er ekki bara að finna línurnar. Markmiðið er að læra að lesa ferlið: hvaða verkfæri eru
+ræst, hverju er leitað að, hvaða skrár eru skoðaðar og hvort niðurstaðan sé athugasemd,
+lagfæring eða eitthvað annað.
+:::

@@ -1,25 +1,37 @@
 ---
 title: "Inngangur"
 description: >-
-  Reglulegar segðir (regex) eru öflugt tæki til að leita í og vinna úr textagögnum.
+  Inngangur að reglulegum segðum: hvað þær leysa, hvar þær koma fyrir og
+  af hverju þær eru erfiðar aflestrar.
 ---
 
-::: {.callout-tip}
-## Í vinnslu
-Þessi hluti er í vinnslu og verður bættur við síðar.
+Reglulegar segðir (e. *regular expressions*, oft stytt í *regex*) eru leið til að lýsa mynstri í
+texta. Þær eru notaðar þegar þú veist ekki nákvæmlega hvaða texta þú leitar að, en veist hvernig
+hann lítur út.
+
+Dæmi:
+
+- „finndu öll netföng“
+- „finndu línur sem byrja á dagsetningu“
+- „skiptu símanúmerum úr `5551234` yfir í `555-1234`“
+- „hreinsaðu auka bil úr textadálki“
+
+Regex er ekki sérstakt forritunarmál fyrir eina aðgerð. Sama hugmyndin birtist í R, Python,
+JavaScript, gagnagrunnum, textaritlum og leitartólum eins og `grep`.
+
+::: {.callout-note}
+## „Write-only“ tungumál
+
+Það er stundum grínast með að regex sé *write-only*: það sé hægt að skrifa reglulega segð, en
+nær ómögulegt að lesa hana aftur. Það er ekki alveg ósatt.
+
+Mynstur sem þú skrifar í dag getur verið óskiljanlegt eftir tvær vikur. Mynstur sem einhver annar
+skrifaði getur litið út eins og töfrar eða skemmd rafmagnsteikning. Oft er fljótlegra að skrifa
+mynstrið upp á nýtt út frá dæmunum heldur en að ráða í gamalt mynstur sem engin skýring fylgir.
+
+Þess vegna skiptir máli að skrifa regex eins og annað kóðaefni: í litlum skrefum, með dæmum og
+með stuttri skýringu á því hvað á að passa og hvað á ekki að passa.
 :::
 
-## Hvað eru reglulegar segðir?
-
-Reglulegar segðir (e. *regular expressions*, skammstafað *regex*) eru mynstur sem notuð eru til
-að leita í, finna og vinna úr texta. Þær eru studdar í nær öllum forritunarmálum, þar á meðal R,
-Python og JavaScript.
-
-## Efni sem verður farið yfir
-
-- Grunntákn og mynstur (`^`, `$`, `.`, `*`, `+`, `?`)
-- Flokkar (`[a-z]`, `[0-9]`, `\d`, `\w`, `\s`)
-- Hópar og vísunar (`(...)`, `\1`)
-- Reglulegar segðir í R (`stringr`, `grepl`, `gsub`)
-- Leit í skrám með regex
-- Æfingar og dæmi
+Markmiðið er ekki að muna öll tákn utan að. Markmiðið er að geta lesið mynstur í bútum, prófað
+þau á dæmum og vita hvenær regex er rétta verkfærið.

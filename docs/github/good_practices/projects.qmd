@@ -42,7 +42,7 @@ Projects og issues eru tvær hliðar á sömu vinnu:
 - **Projects** er taflan sem raðar þessum issues eftir stöðu og forgangi.
 
 Þegar issue er sett á töfluna verður það að spjaldi. Spjaldið vísar áfram í issue-ið sjálft,
-svo öll umræða, checklist og tenglar haldast á einum stað — taflan er bara annað sjónarhorn á
+svo öll umræða, gátlisti og tenglar haldast á einum stað — taflan er bara annað sjónarhorn á
 sama issue.
 
 Dæmigert flæði í námskeiðinu:

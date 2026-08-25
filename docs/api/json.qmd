@@ -10,14 +10,14 @@ description: >-
 **JSON** (*JavaScript Object Notation*) er textasnið til að lýsa gögnum. Nær allar
 vefþjónustur skila því, svo þú þarft að geta lesið það.
 
-Það er byggt úr aðeins tveimur samsettum gerðum:
+JSON er byggt úr tveimur **samsettum** gerðum, sem geta geymt aðrar gerðir inni í sér:
 
 | Tákn | Heitir | Í R | Í Python |
 |---|---|---|---|
 | `{ }` | hlutur (e. *object*) — lyklar og gildi | nefndur listi | `dict` |
 | `[ ]` | fylki (e. *array*) — raðaður listi | vigur eða listi | `list` |
 
-Og fjórum einföldum: texti í `"gæsalöppum"`, tölur, `true`/`false` og `null`.
+Grunngerðirnar eru svo fjórar: texti í `"gæsalöppum"`, tölur, `true`/`false` og `null`.
 
 ``` json
 {
@@ -52,6 +52,9 @@ JSON er ströng um form:
 `jsonlite` þýðir á milli. `fromJSON()` les JSON og skilar R-hlut:
 
 ```{r}
+#| label: json-r-1
+#| message: false
+#| warning: false
 library(jsonlite)
 
 txt <- '{
@@ -69,6 +72,7 @@ str(nam)
 Niðurstaðan er venjulegur nefndur listi og þú nálgast hann með `$`:
 
 ```{r}
+#| label: json-r-2
 nam$namskeid
 nam$kennarar
 nam$misseri$ar
@@ -78,7 +82,8 @@ nam$misseri$ar
 
 `json` fylgir Python — það þarf ekki að setja upp neinn pakka:
 
-``` python
+```{python}
+#| label: json-py-1
 import json
 
 txt = '''{
@@ -93,22 +98,13 @@ nam = json.loads(txt)
 type(nam)
 ```
 
-```
-<class 'dict'>
-```
-
 Niðurstaðan er `dict` og þú nálgast hana með hornklofum:
 
-``` python
+```{python}
+#| label: json-py-2
 nam["namskeid"]
 nam["kennarar"]
 nam["misseri"]["ar"]
-```
-
-```
-'IÐN302G'
-['Helga', 'Máni']
-2026
 ```
 
 Ólíkt R, þar sem hreiðraði hlutinn `misseri` verður listi inni í lista, er hann einfaldlega
@@ -134,6 +130,7 @@ liggur tafla beint við.
 ## R
 
 ```{r}
+#| label: json-r-3
 svar <- '[
   {"nafn": "Quarto",  "stjornur": 4200, "mal": "TypeScript"},
   {"nafn": "knitr",   "stjornur": 2500, "mal": "R"},
@@ -149,7 +146,9 @@ class(tafla)
 töflu:
 
 ```{r}
+#| label: json-r-4
 #| message: false
+#| warning: false
 library(dplyr)
 
 tafla |>
@@ -159,7 +158,8 @@ tafla |>
 
 ## Python
 
-``` python
+```{python}
+#| label: json-py-3
 import json
 import pandas as pd
 
@@ -173,23 +173,11 @@ tafla = pd.DataFrame(json.loads(svar))
 tafla
 ```
 
-```
-       nafn  stjornur         mal
-0    Quarto      4200  TypeScript
-1     knitr      2500           R
-2  jsonlite       400           C
-```
-
 Og síun:
 
-``` python
+```{python}
+#| label: json-py-4
 tafla[tafla["stjornur"] > 1000].sort_values("stjornur", ascending=False)
-```
-
-```
-     nafn  stjornur         mal
-0  Quarto      4200  TypeScript
-1   knitr      2500           R
 ```
 
 Sama niðurstaða og í R-flipanum. Munurinn er að `pandas` sýnir vísitölu (`0`, `1`) í fyrsta
@@ -215,6 +203,7 @@ umbúðum, og einstakir dálkar geta sjálfir verið hlutir:
 ## R
 
 ```{r}
+#| label: json-r-5
 svar <- '{
   "total_count": 3,
   "items": [
@@ -232,49 +221,43 @@ str(items)
 Lausnin er `flatten()`:
 
 ```{r}
+#| label: json-r-6
 flatten(items)
 ```
 
 ## Python
 
-``` python
+```{python}
+#| label: json-py-5
+svar = '''{
+  "total_count": 2,
+  "items": [
+    {"nafn": "Quarto", "eigandi": {"login": "quarto-dev", "type": "Organization"}},
+    {"nafn": "knitr",  "eigandi": {"login": "yihui",      "type": "User"}}
+  ]
+}'''
+
 d = json.loads(svar)
 
 # rangt: eigandi verður dálkur með dict-um í
 pd.DataFrame(d["items"])
 ```
 
-```
-     nafn                                          eigandi
-0  Quarto  {'login': 'quarto-dev', 'type': 'Organization'}
-1   knitr               {'login': 'yihui', 'type': 'User'}
-```
-
 Dálkurinn `eigandi` ber heila `dict`-hluti — ónothæft til greiningar. `json_normalize()`
 flettir hreiðrunina út:
 
-``` python
+```{python}
+#| label: json-py-6
 pd.json_normalize(d["items"])
-```
-
-```
-     nafn eigandi.login  eigandi.type
-0  Quarto    quarto-dev  Organization
-1   knitr         yihui          User
 ```
 
 Dálkarnir `eigandi.login` og `eigandi.type` — sama niðurstaða og `flatten()` skilar í R.
 
 Sé listinn grafinn dýpra má benda á hann beint:
 
-``` python
+```{python}
+#| label: json-py-7
 pd.json_normalize(d, record_path="items")
-```
-
-```
-     nafn eigandi.login  eigandi.type
-0  Quarto    quarto-dev  Organization
-1   knitr         yihui          User
 ```
 
 Sama tafla — munurinn er aðeins að þú bendir á `items` innan úr svarinu í stað þess að taka
@@ -294,78 +277,61 @@ eða `print(json.dumps(d, indent=2, ensure_ascii=False)[:500])` í Python — og
 ## R
 
 ```{r}
-#| eval: false
-d <- fromJSON("https://api.github.com/repos/HI-IDN/IDN302G")
+#| label: json-r-7
+slod <- "https://api.vedur.is/weather/stations?station_id=1"
+d <- fromJSON(slod)
 
-length(d)                 # hversu stórt er svarið?
-names(d)[1:12]            # hvaða lyklar eru í boði?
+dim(d)                    # hversu stórt er svarið?
+names(d)                  # hvaða reitir eru í boði?
 ```
 
-```
-[1] 86
-
- [1] "id"          "node_id"     "name"        "full_name"   "private"    
- [6] "owner"       "html_url"    "description" "fork"        "url"        
-[11] "forks_url"   "keys_url"   
-```
-
-Áttatíu og sex lyklar — `str(d)` á öllu væri ólæsilegt. Taktu því sneið af því sem þú þarft:
+Svarið ber fleiri reiti en þú þarft. Taktu sneið af því sem skiptir máli:
 
 ```{r}
-#| eval: false
-str(d[c("name", "full_name", "description", "updated_at", "stargazers_count")],
-    max.level = 1)
-
-d$updated_at
-```
-
-```
-List of 5
- $ name            : chr "IDN302G"
- $ full_name       : chr "HI-IDN/IDN302G"
- $ description     : chr "Námsefni fyrir námskeiðið Upplýsingaverfræði IÐN302G við Háskóla Ísl"| __truncated__
- $ updated_at      : chr "2026-08-18T12:55:15Z"
- $ stargazers_count: int 0
-
-[1] "2026-08-18T12:55:15Z"
+#| label: json-r-8
+str(d[c("station", "name", "lat", "lon", "ele")])
 ```
 
 ## Python
 
-``` python
+```{python}
+#| label: json-py-8
 import requests
 
-d = requests.get("https://api.github.com/repos/HI-IDN/IDN302G", timeout=30).json()
+slod = "https://api.vedur.is/weather/stations?station_id=1"
+d = requests.get(slod, timeout=30).json()
 
-len(d)                    # hversu stórt er svarið?
-list(d)[:12]              # hvaða lyklar eru í boði?
+len(d)                    # hversu margar færslur?
+list(d[0])                # hvaða reitir eru í boði?
 ```
 
-```
-86
+Svarið ber fleiri reiti en þú þarft. Taktu sneið af því sem skiptir máli:
 
-['id', 'node_id', 'name', 'full_name', 'private', 'owner', 'html_url',
- 'description', 'fork', 'url', 'forks_url', 'keys_url']
-```
-
-Áttatíu og sex lyklar — prentaðu ekki allt. Taktu sneið af því sem þú þarft:
-
-``` python
-{k: d[k] for k in ["name", "full_name", "updated_at", "stargazers_count"]}
+```{python}
+#| label: json-py-9
+{k: d[0][k] for k in ["station", "name", "lat", "lon", "ele"]}
 ```
 
-```
-{'name': 'IDN302G',
- 'full_name': 'HI-IDN/IDN302G',
- 'updated_at': '2026-08-18T12:55:15Z',
- 'stargazers_count': 0}
-```
+:::
+
+::: {.callout-note}
+## Af hverju ekki GitHub hér?
+
+Stuttu dæmin hér að ofan senda **enga hausa** — `fromJSON(slod)` tekur ekki við þeim, og þótt
+`requests.get()` styðji `headers=` er það ekki notað þegar slóðin ein er gefin. Beiðnin fer því
+óauðkennd af stað.
+
+GitHub leyfir aðeins 60 óauðkenndar beiðnir á klukkustund, svo dæmi sem byggist á þeim er
+brothætt. Veðurstofan krefst engrar auðkenningar og hentar því betur til að sýna stuttu leiðina.
+
+Þurfirðu auðkenningu — eða yfirleitt að stjórna hausum, stöðukóðum og villum — notarðu `httr2` /
+`requests` að fullu. Sjá [næsta kafla](fetching-data.qmd).
 :::
 
 ::: {.callout-tip}
 ## Raunveruleg svör eru stór
 
-Áttatíu og sex lyklar fyrir eina geymslu er ekkert einsdæmi — þjónustur skila öllu sem þær
+Langur lyklalisti fyrir eina geymslu er ekkert einsdæmi — þjónustur skila öllu sem þær
 eiga, ekki því sem þú baðst um. Fyrsta verkið er alltaf að finna út hvað er í boði, og annað
 verkið að henda öllu hinu.
 :::
@@ -383,6 +349,7 @@ Stundum þarftu að *senda* JSON, t.d. þegar þjónusta krefst `POST` — eins 
 ## R
 
 ```{r}
+#| label: json-r-9
 listi <- list(nafn = "Máni", lotur = c(1, 2, 3))
 toJSON(listi, auto_unbox = TRUE, pretty = TRUE)
 ```
@@ -398,35 +365,33 @@ skrifar `toJSON()` því `["Helga"]` þar sem þjónustan bjóst við `"Helga"`.
 sem er erfitt að rekja, svo hafðu þetta á.
 :::
 
+Í `httr2` sendirðu listann beint og pakkinn sér um umbreytinguna:
+
+```{r}
+#| label: json-r-10
+#| eval: false
+slod <- "https://example.com/api"  # slóð sem tekur við JSON með POST
+
+request(slod) |>
+  req_body_json(listi, auto_unbox = TRUE) |>
+  req_perform()
+```
+
 ## Python
 
-``` python
+```{python}
+#| label: json-py-10
 listi = {"nafn": "Máni", "lotur": [1, 2, 3]}
 print(json.dumps(listi, ensure_ascii=False, indent=2))
-```
-
-```
-{
-  "nafn": "Máni",
-  "lotur": [
-    1,
-    2,
-    3
-  ]
-}
 ```
 
 **`ensure_ascii=False` er nauðsyn fyrir íslenska stafi.** Sjálfgefið flýr `json.dumps()` alla
 stafi utan ASCII:
 
-``` python
+```{python}
+#| label: json-py-11
 json.dumps({"nafn": "Máni", "stadur": "Þingvellir"})
 json.dumps({"nafn": "Máni", "stadur": "Þingvellir"}, ensure_ascii=False)
-```
-
-```
-'{"nafn": "M\\u00e1ni", "stadur": "\\u00deingvellir"}'
-'{"nafn": "Máni", "stadur": "Þingvellir"}'
 ```
 
 Hvort tveggja er **gilt JSON** og þjónustan skilur bæði — en það fyrra er ólæsilegt þegar þú
@@ -437,7 +402,11 @@ sjálfgefið. Gildran er því aðeins Python-megin.
 
 Í `requests` sendirðu hlutinn beint og pakkinn sér um umbreytinguna:
 
-``` python
+```{python}
+#| label: json-py-12
+#| eval: false
+slod = "https://example.com/api"  # slóð sem tekur við JSON með POST
+
 requests.post(slod, json=listi, timeout=30)
 ```
 :::

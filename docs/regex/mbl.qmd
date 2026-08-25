@@ -1,0 +1,338 @@
+# Regex æfing
+
+Hingað til höfum við unnið með stutta texta sem passa í eina breytu. Raunveruleg gögn eru
+sjaldnast svona snyrtileg. Í þessum kafla sækjum við forsíðu [mbl.is](https://www.mbl.is/) —
+eina stóra HTML-skrá — og drögum úr henni upplýsingar sem hvergi eru gefnar sem hrein gögn.
+
+Þetta er ekki API. Það er enginn `/v1/frettir` endapunktur sem skilar snyrtilegu JSON-i.
+Það eina sem við höfum er HTML-kóðinn sjálfur, og regex er fljótlegasta leiðin til að ná tökum á honum.
+
+Við vinnum ekki með forsíðuna eins og hún er í dag, heldur með **fasta vistun** af henni. Hvers
+vegna kemur í ljós hér að neðan.
+
+::: {.callout-note}
+## Byrjun, ekki fullbúin lausn
+
+Hér að neðan er byrjunin unnin fyrir þig: við sækjum síðuna og leysum **fyrsta** dæmið í bæði
+R og Python. Æfingarnar á eftir eru þínar að klára.
+:::
+
+## Kurteisi við vefþjóna
+
+Áður en við sækjum nokkuð:
+
+- **Lestu `robots.txt`.** Hjá mbl.is er [robots.txt](https://www.mbl.is/robots.txt) sem bannar
+  meðal annars `/frimg/`, `/myndir/` og `/go/`, en leyfir forsíðuna og `/frettir/`.
+- **Auðkenndu þig** með `User-Agent` sem segir hver þú ert og hvernig má ná í þig.
+- **Sæktu eina síðu í einu.** Ekki setja `for`-lykkju yfir hundrað slóðir án tafar á milli.
+- **Vistaðu svarið** meðan þú þróar mynstrið — þá ertu ekki að hamra á þjóninum í hvert sinn
+  sem þú lagfærir eitt `+`.
+
+::: {.callout-important}
+## Þjónninn ræður, ekki þú
+
+Þessi bók er þýdd sjálfvirkt á þjóni hjá GitHub. Þegar hún reyndi að sækja `https://www.mbl.is/`
+þaðan svaraði mbl.is með **`403 Forbidden`** — beiðninni var einfaldlega hafnað, þótt nákvæmlega
+sami kóði virki fínt úr fartölvu.
+
+Það er ekkert að kóðanum. Taktu eftir að `robots.txt` **leyfir** forsíðuna — það er ekki
+bannið sem stoppar okkur.
+
+mbl.is er á bak við [Cloudflare](https://www.cloudflare.com/), sem metur hverja beiðni og gefur
+henni einkunn eftir því hversu líkleg hún er til að koma frá manneskju. `robots.txt` segir hvað
+þú **mátt**; Cloudflare ræður hvað þú **kemst**. Það tvennt fer ekki alltaf saman.
+
+Sami kóði, tvær niðurstöður — af hverju?
+
+| | Fartölvan þín | Þjónn hjá GitHub |
+|---|---|---|
+| IP-tala | heimatenging eða skólanet | gagnaver, þekkt IP-bil |
+| Fyrri umferð | þú hefur heimsótt mbl.is í vafra | engin saga, engar kökur |
+| Beiðnatíðni | ein og ein | þúsundir verkefna af sama neti |
+
+Ekkert af þessu tengist kóðanum þínum. Þess vegna er **„það virkar hjá mér" ekki sönnun** — það
+segir aðeins að það virki þaðan sem þú situr.
+
+Þú getur lent í þessu hvenær sem er: á VPN, í skólanetinu, eða einfaldlega eftir of margar
+beiðnir í röð.
+
+Þess vegna sækjum við hér **vistun** af síðunni hjá [Internet Archive](https://web.archive.org/)
+í stað lifandi slóðarinnar. Það leysir tvennt í einu: þjónninn hleypir okkur að, og allir fá
+nákvæmlega sömu síðuna — þú, við, og bókin í hvert sinn sem hún er þýdd.
+:::
+
+## Sækjum síðuna
+
+Slóðin er löng en segir allt sem þarf: `web.archive.org`, tímastimpillinn `20260802211226`, og
+upprunalega slóðin aftast. Viðskeytið `if_` biður Internet Archive um síðuna sjálfa, án
+leiðsöguslárinnar sem það setur venjulega ofan á.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: mbl-r-1
+#| message: false
+#| warning: false
+library(httr2)
+
+# Föst vistun frá 2. ágúst 2026 — sama síða í hvert sinn.
+slod <- "https://web.archive.org/web/20260802211226if_/https://www.mbl.is/"
+
+svar <- request(slod) |>
+  req_user_agent("IDN302G kennsluefni (netfang@hi.is)") |>
+  req_timeout(60) |>
+  req_retry(max_tries = 3) |>
+  req_perform()
+
+html <- resp_body_string(svar)
+nchar(html)
+```
+
+## Python
+
+```{python}
+#| label: mbl-py-1
+import re
+import requests
+
+# Sama vistun og R-flipinn sækir.
+slod = "https://web.archive.org/web/20260802211226if_/https://www.mbl.is/"
+
+svar = requests.get(
+    slod,
+    headers={"User-Agent": "IDN302G kennsluefni (netfang@hi.is)"},
+    timeout=60,
+)
+svar.raise_for_status()
+
+html = svar.text
+len(html)
+```
+:::
+
+Þetta er ein skrá upp á mörg hundruð þúsund stafi. Við ætlum ekki að lesa hana — við ætlum
+að spyrja hana spurninga.
+
+## Er þetta örugglega sama síðan?
+
+Tímastimpillinn í slóðinni segir hvaða vistun við báðum um, en hann sannar ekki að við höfum
+fengið sömu bætin og þú færð. Til þess þarf gátsummu:
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: mbl-r-meta
+hratt <- resp_body_raw(svar)
+
+skra <- tempfile()
+writeBin(hratt, skra)
+
+data.frame(
+  staerd_kb = round(length(hratt) / 1024),
+  md5       = unname(tools::md5sum(skra))
+)
+```
+
+## Python
+
+```{python}
+#| label: mbl-py-meta
+import hashlib
+
+{
+    "staerd_kb": round(len(svar.content) / 1024),
+    "md5": hashlib.md5(svar.content).hexdigest(),
+}
+```
+:::
+
+Taktu eftir að við hashum **hráu bætin** úr svarinu — `resp_body_raw()` og `svar.content` — en
+ekki textann sem við lásum úr því. Það skiptir máli: um leið og bætunum er breytt í streng koma
+stafatöflur og línuskil við sögu, og málin tvö fara ekki eins að. Sömu bæti gefa sömu summu í
+báðum flipum; sami *texti* gerir það ekki endilega.
+
+Keyrðu kaflann sjálf og þú átt að fá sömu summu. Fáir þú aðra ertu ekki með sömu síðuna, og þá
+er tilgangslaust að bera saman tölurnar okkar.
+
+Þú getur líka [skoðað vistunina í vafra](https://web.archive.org/web/20260802211226/https://www.mbl.is/).
+
+Berðu þetta saman við lifandi forsíðu: hún breytist oft á dag, svo gátsumman væri ný í hvert
+sinn og engar tvær keyrslur sambærilegar.
+
+## Unnið dæmi: hvaða fréttaflokkar eru á forsíðunni?
+
+Fyrst skoðum við hvernig fréttahlekkur lítur út. Þeir eru allir eins uppbyggðir:
+
+```
+/frettir/innlent/2026/08/25/eitthvad_gerdist/
+ └─ 1 ─┘ └─ 2 ─┘ └── 3 ──┘ └────── 4 ──────┘
+```
+
+1. fastur upphafshluti,
+2. **flokkurinn** — það sem við viljum,
+3. dagsetning í þremur liðum,
+4. slóðarnafn fréttarinnar.
+
+Flokkurinn er því annar liður í slóðinni, alltaf lágstafir, alltaf á undan ártali. Það dugar
+til að skrifa mynstur — við grípum flokkinn með sviga og krefjumst þess að fjórar tölur komi
+strax á eftir, svo við lendum ekki á öðrum hlekkjum sem byrja eins.
+
+Eitt í viðbót. Af því að við sækjum vistun, byrja hlekkirnir ekki á `/frettir/` heldur á slóð
+Internet Archive:
+
+```
+href="/web/20260802211226/https://www.mbl.is/frettir/innlent/2026/08/02/..."
+                                                └──── það sem við viljum ────┘
+```
+
+Mynstrið má því ekki gera ráð fyrir að slóðin byrji á rótinni. Við leyfum hverju sem er á milli
+`href="` og `/frettir/` — en aðeins innan sömu gæsalappa, svo mynstrið hlaupi ekki yfir í næsta
+tagg.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: mbl-r-2
+mynstur <- 'href="[^"]*?/frettir/([a-z]+)/\\d{4}/'
+
+fundid <- regmatches(html, gregexpr(mynstur, html, perl = TRUE))[[1]]
+flokkar <- sub(mynstur, "\\1", fundid, perl = TRUE)
+
+sort(table(flokkar), decreasing = TRUE)
+```
+
+## Python
+
+```{python}
+#| label: mbl-py-2
+from collections import Counter
+
+mynstur = r'href="[^"]*?/frettir/([a-z]+)/\d{4}/'
+flokkar = re.findall(mynstur, html)
+
+Counter(flokkar).most_common()
+```
+:::
+
+Flipparnir tveir skila **nákvæmlega sömu tölum**. Það er ekki tilviljun: þeir sækja sömu
+vistunina, svo inntakið er það sama og mynstrin eins. Sama mynstur á sama texta gefur alltaf
+sömu niðurstöðu, í hvoru málinu sem er.
+
+Reyndu þetta á lifandi forsíðu og þú færð aðra sögu. Þá sækir hvor flipi sína útgáfu, með
+sekúndum á milli, og forsíða fréttamiðils getur breyst á þeim tíma. Þá er munur á tölunum —
+ekki af því að R og Python séu ólík, heldur af því að **inntakið var ekki það sama**.
+
+Þetta er ástæðan fyrir því að við festum vistunina. Ef þú getur ekki bent á nákvæmlega hvaða
+gögn niðurstaðan byggir á, getur enginn endurtekið hana — þar með talin þú sjálf í næstu viku.
+
+::: {.callout-tip}
+## Af hverju `[a-z]+` en ekki `\w+`?
+
+`\w` nær líka yfir tölustafi og undirstrik. Þá myndi mynstrið éta ártalið í sumum tilfellum og
+skila `2026` sem flokki. Þrengsta mynstrið sem virkar er alltaf besta mynstrið.
+
+Athugaðu líka `perl = TRUE` í R-útgáfunni — án hennar þekkir R ekki `\d`. Sjá
+[Hópar og grip](groups.qmd).
+:::
+
+## Æfingar
+
+Hver æfing byggir á sama `html` og að ofan. Leystu þær í því máli sem þú notar í hópverkefninu,
+og prófaðu mynstrin í [regex101](https://regex101.com/) áður en þú skrifar þau í kóðann.
+
+### 1. Hversu margar fréttir eru á forsíðunni?
+
+Teldu **einstakar** greinar, ekki hlekki. Sama fréttin birtist oft tvisvar eða þrisvar á
+forsíðunni: einu sinni sem mynd, einu sinni sem fyrirsögn.
+
+*Vísbending:* gríptu alla slóðina, ekki bara flokkinn — dagsetningin og slóðarnafnið eru hluti
+af auðkenni fréttarinnar. Notaðu svo `unique()` (R) eða `set()` (Python) og berðu saman við
+heildarfjöldann. Munurinn kemur á óvart.
+
+### 2. Hvað er hitastigið í Reykjavík?
+
+Veðurkassinn efst á síðunni sýnir hita í gráðum.
+
+*Vísbending:* skoðaðu HTML-kóðann kringum töluna. Hún og gráðumerkið eru **ekki í sama taggi**, svo
+mynstrið verður að spanna bæði — og leyfa línuskil á milli. Mundu líka að hiti getur verið
+neikvæður.
+
+### 3. Hvert er gengi Bandaríkjadals?
+
+Þetta er lúmskasta æfingin, og hún kennir mikilvægustu lexíuna í kaflanum.
+
+*Vísbending:* leitaðu að `USD` í HTML-kóðanum. Reiturinn sem sýnir gengið á síðunni er **tómur** —
+`value=""` — því talan er sett inn með JavaScript eftir að síðan hleðst. Gengið er samt í
+skránni, en neðar, inni í JavaScript en ekki í því sem birtist á síðunni. Finndu það og skrifaðu mynstur sem nær
+gjaldmiðilstákninu og upphæðinni saman.
+
+Lærdómurinn: **það sem þú sérð í vafranum er ekki endilega það sem þú færð í svarinu.** Notaðu
+alltaf það sem þú sóttir sjálf til að skrifa mynstrið, ekki það sem þróunartólin sýna.
+
+### 4. Hversu mörg orð eru á síðunni?
+
+Aðeins sýnilegur texti telur.
+
+*Vísbending:* þetta er hreinsun í þremur skrefum. Fyrst burt með `<script>` og `<style>` —
+**með innihaldinu**, ekki bara töggunum sjálfum. Svo burt með öllum öðrum töggum. Loks burt með
+HTML-táknum eins og `&nbsp;` og `&#8230;`. Þá er eftir texti sem þú getur talið orð í — mundu að
+íslenskir stafir eru ekki í `[a-z]`.
+
+Hvaða tíu orð lengri en fjórir stafir eru algengust? Segir listinn eitthvað um fréttadaginn?
+
+### 5. Hversu margar auglýsingar eru á síðunni?
+
+Prófaðu að telja þær. Skrifaðu svo niður hvers vegna þú **treystir ekki** tölunni sem þú fékkst.
+
+*Vísbending:* það er ekkert `<auglysing>` tagg. Þú getur leitað að `augl` í slóðum, að
+`data-ad`, `adunit` eða `googletag`, eða að klösum sem innihalda `ad`. Hver aðferð gefur sína
+tölu, og engin þeirra er rétt: sumar auglýsingar eru sóttar eftir á, og `ad` finnst líka í
+óskyldum orðum. Þetta er raunverulega staðan þegar gögnin eru ekki merkt fyrir þig.
+
+::: {.callout-important}
+## Virkar mynstrið á öðrum útgáfum af gögnunum?
+
+Mynstur sem gengur upp á einni síðu er ekki þar með rétt. Það gæti verið of sértækt — sniðið að
+því eina eintaki sem þú varst með fyrir framan þig.
+
+Hitaæfingin er gott dæmi. Að sumri finnurðu aldrei mínustölu, svo þú kemst aldrei að því hvort
+mynstrið ræður við hana. En þetta er ekki bundið við neikvæðar tölur: fyrirsagnir eru mislangar,
+sumar fréttir eru án myndar, tölur eru stundum með aukastaf, og stundum vantar reitinn alveg.
+
+Spurðu því um hvert mynstur sem þú skrifar:
+
+- Hvaða tilvik eru **ekki** í eintakinu sem ég er að vinna með?
+- Hvernig næ ég í annað eintak af sömu gögnum til að prófa á?
+- Hvað á að gerast þegar reiturinn er tómur eða vantar — á kóðinn að þegja eða láta vita?
+
+Prófaðu mynstrin þín á fleiri en einu eintaki af forsíðunni áður en þú telur þau tilbúin.
+:::
+
+::: {.callout-warning}
+## Mynstur sem virkar í dag getur brotnað í næstu viku
+
+mbl.is breytir uppbyggingu síðunnar sinnar án þess að láta neinn vita. Það er eðlismunur á því að lesa API —
+sem lofar ákveðnu sniði — og að lesa HTML, sem lofar engu.
+
+Þess vegna: skrifaðu prófanir sem segja til ef mynstrið hættir að finna neitt. Mynstur sem
+skilar skyndilega `character(0)` eða tómum lista á að vera villa í verkefninu þínu, ekki þögult
+núll í töflu.
+:::
+
+## Gátlisti
+
+Þessi listi á við um alla regex-vinnu, ekki bara æfinguna hér að ofan. Farðu yfir hann áður en
+regex-kóði fer inn í verkefni:
+
+- [ ] Ég hef skoðað hrágögnin sjálf og giska ekki á sniðið.
+- [ ] Mynstrið er eins þröngt og komist verður upp með — engin `.*` að óþörfu.
+- [ ] Ég á skrifleg dæmi sem eiga að passa og dæmi sem eiga **ekki** að passa.
+- [ ] Jaðartilvikin eru með í þeim dæmum, líka þau sem vantar í gögnin sem ég hef við höndina.
+- [ ] Ég hef prófað mynstrið í [regex101](https://regex101.com/) og get útskýrt hvern hluta þess.
+- [ ] Ég veit hvaða útgáfa gagnanna liggur til grundvallar og get sótt nákvæmlega hana aftur.
+- [ ] Úrvinnslan keyrir á vistuðum gögnum, ekki nýrri beiðni í hvert skipti.
+- [ ] Kóðinn lætur vita ef mynstrið hættir að finna nokkuð, í stað þess að skila þöglu núlli.
+- [ ] Ég veit hvaða regex-vél ég er að nota — í R þarf `perl = TRUE` fyrir `\w`, `\d` og `\s`.

@@ -57,6 +57,41 @@ síðunni aftur eða keyra skýrsluna tvisvar. Aðferðirnar sem breyta gögnum 
 sértu að nota þær ertu að skrifa, og þá gilda aðrar reglur.
 :::
 
+## REST: nafnorð í slóðinni, sögn í aðferðinni
+
+Þú sérð þjónustur kallaðar **REST-þjónustur** (e. *REST API*) — skjöl GitHub eru meira að segja
+á `docs.github.com/rest`. REST (*Representational State Transfer*) er ekki staðall heldur
+**byggingarstíll**, og kjarninn í honum er einfaldur:
+
+> Slóðin segir **hvaða hlut** þú átt við. Aðferðin segir **hvað þú vilt gera** við hann.
+
+Slóðin ber því nafnorð, ekki sögn. Sama slóð með ólíkri aðferð þýðir ólíka aðgerð:
+
+| Beiðni | Merking |
+|---|---|
+| `GET /repos/HI-IDN/IDN302G` | sæktu þessa geymslu |
+| `PATCH /repos/HI-IDN/IDN302G` | breyttu henni |
+| `DELETE /repos/HI-IDN/IDN302G` | eyddu henni |
+| `GET /repos/HI-IDN/IDN302G/issues` | sæktu issues hennar |
+| `POST /repos/HI-IDN/IDN302G/issues` | búðu til nýtt issue |
+
+Taktu eftir að hvergi stendur `/getRepo` eða `/deleteRepo`. Sé slóð með sagnorði í sér — t.d.
+`/api/fetchUserData` — er þjónustan ekki að fylgja REST, sem er í lagi en gott að taka eftir.
+
+::: {.callout-note}
+## Ekki eru allar þjónustur REST — og það er allt í lagi
+
+REST er venja, ekki lög. [Hagstofan](icelandic-apis.qmd) er gott dæmi um frávik: þar sendirðu
+**`POST`** til að *sækja* gögn, sem stríðir gegn reglunni um að `GET` sæki og `POST` búi til.
+
+Ástæðan er praktísk: taflan er of stór til að sækja alla, svo fyrirspurnin — hvaða ár, hvaða
+breytur — er of löng og of flókin fyrir fyrirspurnarstreng í slóð. Hún er því send í meginmáli
+beiðninnar, og þá þarf `POST`.
+
+Lærdómurinn er sá sami og annars staðar í þessum kafla: **skjölin ráða**, ekki það sem þú
+býst við.
+:::
+
 ## Stöðukóðar
 
 Svarið ber alltaf þriggja stafa tölu sem segir hvernig fór. **Þetta er fyrsta sem þú átt að

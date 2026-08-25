@@ -1,0 +1,149 @@
+---
+title: "Hópar og notkun"
+description: >-
+  Hvernig svigar grípa hluta úr texta, hvernig endurraða má texta, og hvernig
+  sama mynstur er notað í R og Python.
+---
+
+## Hópar og endurnotkun
+
+Svigar gera tvennt:
+
+1. þeir hópa hluta af mynstri,
+2. þeir geta gripið textann sem fannst.
+
+Dæmi: línur á sniðinu `nafn, netfang`.
+
+``` text
+^(.+),\s*(.+@.+)$
+```
+
+| Bútur | Merking |
+|---|---|
+| `^` | byrjun línu |
+| `(.+)` | fyrsti hópur: nafn |
+| `,` | komma |
+| `\s*` | núll eða fleiri bil |
+| `(.+@.+)` | einföld hugmynd um netfang |
+| `$` | endir línu |
+
+Hóparnir gera okkur kleift að endurraða texta. Ef línan er:
+
+``` text
+Helga, helga@hi.is
+```
+
+má breyta henni í:
+
+``` text
+helga@hi.is	Helga
+```
+
+með því að vísa í hóp 2 og svo hóp 1.
+
+::: {.callout-note}
+## Einfalt fyrst, strangt seinna
+
+Það er oft skynsamlegt að byrja á einföldu mynstri sem finnur líkleg tilvik, skoða niðurstöðuna,
+og herða svo mynstrið. Fullkomið netfangaregex er langt og ólærdómsríkt; fyrir gagnahreinsun er
+oft betra að nota nógu gott mynstur og skoða undantekningarnar.
+:::
+
+## Í R og Python
+
+Sama mynstur má nota í mörgum málum. Hér er einfalt dæmi sem finnur netföng í texta.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: groups-r-1
+txt <- c(
+  "Hafðu samband við helga@hi.is",
+  "Þetta er ekki netfang",
+  "Prófun: nemandi.1@example.org"
+)
+
+mynstur <- "[\\w._%+-]+@[\\w.-]+\\.[A-Za-z]{2,}"
+fundid <- gregexpr(mynstur, txt, perl = TRUE)
+regmatches(txt, fundid)
+```
+
+::: {.callout-warning}
+## `perl = TRUE` — annars finnur R ekkert
+
+R hefur **tvær regex-vélar**. Sú sjálfgefna er POSIX og þekkir ekki `\w`, `\d` né `\s`.
+Slepptu `perl = TRUE` og mynstrið hér að ofan skilar `character(0)` fyrir allar línurnar —
+engin villa, engin viðvörun, bara tómt svar.
+
+Þetta er sérstaklega lúmskt þegar mynstur er afritað úr Python eða af regex101, því þar eru
+`\w` og `\d` sjálfsögð.
+
+Tveir kostir í boði:
+
+```{r}
+#| label: groups-r-perl
+# 1) kveikja á PCRE-vélinni
+regmatches(txt, gregexpr("[\\w.]+@[\\w.-]+", txt, perl = TRUE))
+
+# 2) nota POSIX-klasa sem sjálfgefna vélin skilur
+regmatches(txt, gregexpr("[[:alnum:]._]+@[[:alnum:].-]+", txt))
+```
+
+Sömu föll taka `perl = TRUE`: `grepl()`, `sub()`, `gsub()`, `regexpr()`.
+:::
+
+## Python
+
+```{python}
+#| label: groups-py-1
+import re
+
+txt = [
+    "Hafðu samband við helga@hi.is",
+    "Þetta er ekki netfang",
+    "Prófun: nemandi.1@example.org",
+]
+
+for lina in txt:
+    print(re.findall(r"[\w._%+-]+@[\w.-]+\.[A-Za-z]{2,}", lina))
+```
+:::
+
+Taktu eftir að í R þarf oft að tvöfalda bakskástrik í strengjum: `\\d` í R-streng verður `\d`
+í regex. Í Python er algengt að nota hráa strengi með `r"..."`, þá þarf síður að tvöfalda
+bakskástrik.
+
+## Æfing: tengiliðir
+
+Gefinn er þessi texti:
+
+``` text
+Jón, jon@example.is, 5551234
+Guðrún, gudrun@hi.is, 510-7000
+Villa, ekki-netfang, 123
+Nemandi, nemandi.1@hi.is, 555 9876
+```
+
+1. Finndu allar línur sem innihalda netfang.
+2. Finndu öll símanúmer, hvort sem þau eru skrifuð `5551234`, `555-1234` eða `555 1234`.
+3. Breyttu símanúmerunum yfir í samræmt snið: `555-1234`.
+4. Hver af línunum ætti ekki að fara inn í hreina tengiliðatöflu? Af hverju?
+
+Mynstur til að byrja með:
+
+``` text
+[\w._%+-]+@[\w.-]+\.[A-Za-z]{2,}
+\d{3}[- ]?\d{4}
+```
+
+Markmiðið er ekki að skrifa fullkomið regex í fyrstu tilraun. Markmiðið er að geta lesið
+mynstrið, prófað það, séð hvað það finnur ranglega og lagað það meðvitað.
+
+::: {.callout-tip}
+## Prófaðu fyrst utan kóða
+
+Settu textann og mynstrin inn á [regex101](https://regex101.com/) áður en þú skrifar lausnina í
+R eða Python. Skráðu hjá þér eitt dæmi sem passar rétt og eitt dæmi sem mynstrið finnur ekki eða
+finnur ranglega.
+:::
