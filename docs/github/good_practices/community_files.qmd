@@ -112,9 +112,13 @@ verri en engar. Þær lofa vernd sem er ekki til.
 Sáttmálinn er til á 25 tungumálum, en **íslenska er ekki þar á meðal**. Þá stendurðu frammi fyrir
 vali: enskur texti sem allir skilja ekki til fulls, eða þýðing sem enginn hefur vottað.
 
-Þessi geymsla fór þriðju leiðina — íslensk þýðing merkt sem óopinber, með enska frumtextann
-geymdan við hliðina og þeirri reglu að hann gildi komi upp vafi. Leyfið á sáttmálanum
-(CC BY 4.0) heimilar það. Reglur sem lesandinn skilur ekki vernda engan.
+Þessi geymsla fór þriðju leiðina: íslensk þýðing, merkt óopinber, með hlekk á **útgáfufestu**
+opinberu slóðina og þeirri reglu að hún gildi komi upp vafi. Leyfið á sáttmálanum (CC BY 4.0)
+heimilar það.
+
+Taktu eftir að hlekkurinn vísar á `/version/2/0/`, ekki á forsíðuna. Sáttmálinn fær nýjar
+útgáfur, og vafaregla sem vísar á „nýjustu útgáfu" merkir eitthvað annað eftir tvö ár en hún
+gerði daginn sem hún var skrifuð.
 
 ### Leiðbeiningar fyrir þátttakendur
 

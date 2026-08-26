@@ -2,7 +2,8 @@
 
 > **Óopinber þýðing.** Þetta er íslensk þýðing á [Contributor Covenant][heimasida] útgáfu 2.0.
 > Þýðingin er gerð fyrir þessa geymslu og hefur ekki verið yfirfarin af höfundum sáttmálans.
-> Komi upp vafi um merkingu gildir [enski frumtextinn](CODE_OF_CONDUCT.en.md).
+> Komi upp vafi um merkingu gildir
+> [enski frumtextinn](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html).
 
 ## Heit okkar
 
