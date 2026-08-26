@@ -85,8 +85,19 @@ uppsett, og `make`).
 | `make server`  | Static server á tilbúnu `_site/` (skoða lokaútgáfu; `make server PORT=8080`).  |
 | `make help`    | Sýnir þennan lista.                                                            |
 
-Dæmigert vinnuflæði: keyrðu `make preview` meðan þú breytir. Ef þú breytir keyranlegum kóða
-skaltu keyra `make full` áður en þú commitar svo frystu niðurstöðurnar í `docs/_freeze/` uppfærist.
+Dæmigert vinnuflæði: keyrðu `make preview` meðan þú breytir, og `make full` áður en þú commitar
+ef breytingin snertir keyranlegan kóða.
+
+Tveir kaflar eru **frystir** — `api/good-practices.qmd` og `regex/mbl.qmd` — af því að þjónustan
+sem þeir tala við hleypir byggingarþjóninum ekki að. `make full` endurkeyrir þá **ekki**; hann
+les geymdu niðurstöðuna. Breytirðu þeim, líka aðeins texta, verðurðu að þýða skrána eina og
+skila `docs/_freeze/` með:
+
+```bash
+cd docs && quarto render api/good-practices.qmd && git add docs/_freeze   # eða regex/mbl.qmd
+```
+
+Sleppirðu því fellur byggingin, því Quarto lyklar frystinguna á innihald skrárinnar.
 
 ---
 
@@ -96,6 +107,23 @@ skaltu keyra `make full` áður en þú commitar svo frystu niðurstöðurnar í
 - Haltu þig við Markdown – ekki nota HTML nema nauðsynlegt sé
 - Eitt PR = ein breyting; ekki blanda saman mörgum ótengdum breytingum
 - Lýstu breytingunni skýrt í PR lýsingunni
+
+Ítarlegri leiðbeiningar — uppsetning, þýðing og húsreglur um kóðabúta — eru í
+[`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+---
+
+## Skjöl geymslunnar
+
+| Skrá | Hvað hún svarar |
+|------|-----------------|
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Hvernig legg ég eitthvað til, og hvað þarf ég að setja upp? |
+| [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) | Hvernig er komið fram við fólk hér, og hvað geri ég ef brotið er á mér? |
+| [`SECURITY.md`](SECURITY.md) | Ég fann aðgangslykil eða öryggisgalla — við hvern tala ég, í einrúmi? |
+| [`docs/AGENTS.md`](docs/AGENTS.md) | Hvernig er bókin byggð upp? Lesin bæði af fólki og erindrekum. |
+
+Námsefnið sjálft fjallar um þessar skrár í kaflanum
+[Skrár sem geymslan á að hafa](https://hi-idn.github.io/IDN302G/github/good_practices/community_files.html).
 
 ---
 
