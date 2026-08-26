@@ -22,9 +22,10 @@ regex101, er það líklega ekki tilbúið til að fara inn í verkefnið.
 prófunartextinn með samsvörunum merktum, og hægra megin skýring á hverjum hluta mynstrsins ásamt
 lista yfir hverja samsvörun og staðsetningu hennar.](figures/regex101.png)
 
-Taktu eftir talningunni efst til hægri við mynstrið: **6 matches (13 steps, 0.2ms)**. Skrefafjöldinn
-segir hversu mikla vinnu vélin þurfti að leggja í leitina, og hann er gagnlegur mælikvarði á hvort
-mynstrið sé skynsamlegt. Mynstur sem þarf þúsundir skrefa á stuttan texta er yfirleitt of gráðugt.
+Taktu eftir talningunni efst til hægri við mynstrið, til dæmis: **6 matches (13 steps, 0.2ms)**.
+Skrefafjöldinn segir hversu mikla vinnu vélin þurfti að leggja í leitina, og hann er gagnlegur
+mælikvarði á hvort mynstrið sé skynsamlegt. Mynstur sem þarf þúsundir skrefa á stuttan texta er
+yfirleitt of gráðugt.
 
 ::: {.callout-tip}
 ## Veldu rétt regex-bragð
