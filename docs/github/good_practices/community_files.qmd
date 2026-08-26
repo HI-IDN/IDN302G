@@ -109,6 +109,13 @@ Eitt verðurðu samt að gera sjálf: **fylla út tengiliðinn**. Sniðmátið k
 `[INSERT CONTACT METHOD]`, og siðareglur sem segja fólki að tilkynna brot til staðgengils eru
 verri en engar. Þær lofa vernd sem er ekki til.
 
+Sáttmálinn er til á 25 tungumálum, en **íslenska er ekki þar á meðal**. Þá stendurðu frammi fyrir
+vali: enskur texti sem allir skilja ekki til fulls, eða þýðing sem enginn hefur vottað.
+
+Þessi geymsla fór þriðju leiðina — íslensk þýðing merkt sem óopinber, með enska frumtextann
+geymdan við hliðina og þeirri reglu að hann gildi komi upp vafi. Leyfið á sáttmálanum
+(CC BY 4.0) heimilar það. Reglur sem lesandinn skilur ekki vernda engan.
+
 ### Leiðbeiningar fyrir þátttakendur
 
 Þetta er skráin sem sparar mestan tíma, og sú sem oftast er gagnslaus. „Sendu pull request" segir

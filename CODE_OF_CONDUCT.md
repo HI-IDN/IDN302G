@@ -1,128 +1,118 @@
-# Contributor Covenant Code of Conduct
+# Siðareglur samfélagsins
 
-## Our Pledge
+> **Óopinber þýðing.** Þetta er íslensk þýðing á [Contributor Covenant][heimasida] útgáfu 2.0.
+> Þýðingin er gerð fyrir þessa geymslu og hefur ekki verið yfirfarin af höfundum sáttmálans.
+> Komi upp vafi um merkingu gildir [enski frumtextinn](CODE_OF_CONDUCT.en.md).
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.
+## Heit okkar
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+Við sem meðlimir, þátttakendur og forsvarsfólk heitum því að gera þátttöku í samfélagi okkar
+lausa við áreitni fyrir öll, óháð aldri, líkamsstærð, sýnilegri eða ósýnilegri fötlun,
+þjóðerni, kyneinkennum, kynvitund og kyntjáningu, reynslustigi, menntun, félagslegri og
+efnahagslegri stöðu, ríkisfangi, útliti, kynþætti, trú eða kynhneigð.
 
-## Our Standards
+Við heitum því að koma fram og eiga samskipti á þann hátt sem stuðlar að opnu, vinsamlegu,
+fjölbreyttu og heilbrigðu samfélagi þar sem öll eiga heima.
 
-Examples of behavior that contributes to a positive environment for our
-community include:
+## Viðmið okkar
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the
-  overall community
+Dæmi um hegðun sem stuðlar að jákvæðu umhverfi í samfélagi okkar:
 
-Examples of unacceptable behavior include:
+* Að sýna öðrum samkennd og góðvild
+* Að bera virðingu fyrir ólíkum skoðunum, sjónarmiðum og reynslu
+* Að gefa uppbyggilega endurgjöf og taka henni af æðruleysi
+* Að axla ábyrgð, biðjast afsökunar gagnvart þeim sem verða fyrir mistökum okkar og læra
+  af reynslunni
+* Að hafa í huga hvað er best fyrir samfélagið í heild, ekki aðeins okkur sjálf
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+Dæmi um óásættanlega hegðun:
 
-## Enforcement Responsibilities
+* Kynferðislegt orðfæri eða myndefni, og kynferðisleg athygli eða ágengni af hvaða tagi sem er
+* Niðrandi eða móðgandi athugasemdir, uppnámsskrif og persónulegar eða pólitískar árásir
+* Áreitni, hvort sem hún er opinber eða í einkasamskiptum
+* Að birta persónuupplýsingar annarra, svo sem heimilisfang eða netfang, án skýrs leyfis þeirra
+* Önnur hegðun sem með sanngirni má telja óviðeigandi á vinnustað
 
-Community leaders are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
-or harmful.
+## Ábyrgð á framfylgd
 
-Community leaders have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.
+Forsvarsfólk samfélagsins ber ábyrgð á að skýra og framfylgja viðmiðum okkar um ásættanlega
+hegðun og mun grípa til viðeigandi og sanngjarnra aðgerða vegna hegðunar sem það telur
+óviðeigandi, ógnandi, móðgandi eða skaðlega.
 
-## Scope
+Forsvarsfólk hefur rétt og skyldu til að fjarlægja, breyta eða hafna athugasemdum, færslum,
+kóða, wiki-breytingum, issue-um og öðrum framlögum sem samræmast ekki þessum siðareglum, og
+mun útskýra ástæður slíkra ákvarðana þegar við á.
 
-This Code of Conduct applies within all community spaces, and also applies when
-an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official e-mail address,
-posting via an official social media account, or acting as an appointed
-representative at an online or offline event.
+## Gildissvið
 
-## Enforcement
+Þessar siðareglur gilda í öllum rýmum samfélagsins og einnig þegar einstaklingur kemur fram
+fyrir hönd þess á opinberum vettvangi. Dæmi um það er að nota opinbert netfang, birta efni á
+opinberum samfélagsmiðlareikningi eða koma fram sem tilnefndur fulltrúi á viðburði, hvort sem
+hann er á netinu eða ekki.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-helgaingim [at] hi.is.
-All complaints will be reviewed and investigated promptly and fairly.
+## Framfylgd
 
-All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.
+Tilvik um misnotkun, áreitni eða aðra óásættanlega hegðun má tilkynna til forsvarsfólks
+samfélagsins, sem ber ábyrgð á framfylgd, á **helgaingim [hjá] hi.is**.
+Allar kvartanir verða teknar til skoðunar og rannsakaðar tafarlaust og af sanngirni.
 
-## Enforcement Guidelines
+Allt forsvarsfólk er skuldbundið til að virða friðhelgi og öryggi þess sem tilkynnir atvik.
 
-Community leaders will follow these Community Impact Guidelines in determining
-the consequences for any action they deem in violation of this Code of Conduct:
+## Leiðbeiningar um framfylgd
 
-### 1. Correction
+Forsvarsfólk fylgir eftirfarandi leiðbeiningum þegar það metur afleiðingar hegðunar sem það
+telur brjóta gegn þessum siðareglum:
 
-**Community Impact**: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.
+### 1. Leiðrétting
 
-**Consequence**: A private, written warning from community leaders, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.
+**Áhrif á samfélagið**: Óviðeigandi orðfæri eða önnur hegðun sem telst ófagleg eða óvelkomin
+í samfélaginu.
 
-### 2. Warning
+**Afleiðing**: Skrifleg viðvörun í einkasamskiptum frá forsvarsfólki, þar sem eðli brotsins er
+skýrt og útskýrt hvers vegna hegðunin var óviðeigandi. Óskað kann að vera eftir opinberri
+afsökunarbeiðni.
 
-**Community Impact**: A violation through a single incident or series
-of actions.
+### 2. Viðvörun
 
-**Consequence**: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or
-permanent ban.
+**Áhrif á samfélagið**: Brot með einu atviki eða röð athafna.
 
-### 3. Temporary Ban
+**Afleiðing**: Viðvörun um afleiðingar haldi hegðunin áfram. Engin samskipti við þau sem
+hlut eiga að máli í tiltekinn tíma, þar með talin óumbeðin samskipti við þau sem framfylgja
+siðareglunum. Þetta nær bæði til rýma samfélagsins og annarra vettvanga á borð við
+samfélagsmiðla. Brot gegn þessum skilmálum getur leitt til tímabundinnar eða varanlegrar
+útilokunar.
 
-**Community Impact**: A serious violation of community standards, including
-sustained inappropriate behavior.
+### 3. Tímabundin útilokun
 
-**Consequence**: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.
+**Áhrif á samfélagið**: Alvarlegt brot gegn viðmiðum samfélagsins, þar á meðal viðvarandi
+óviðeigandi hegðun.
 
-### 4. Permanent Ban
+**Afleiðing**: Tímabundin útilokun frá hvers kyns samskiptum eða opinberum tjáskiptum við
+samfélagið í tiltekinn tíma. Engin samskipti, opinber eða í einrúmi, við þau sem hlut eiga
+að máli eru leyfð á þeim tíma, þar með talin óumbeðin samskipti við þau sem framfylgja
+siðareglunum. Brot gegn þessum skilmálum getur leitt til varanlegrar útilokunar.
 
-**Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
-individual, or aggression toward or disparagement of classes of individuals.
+### 4. Varanleg útilokun
 
-**Consequence**: A permanent ban from any sort of public interaction within
-the community.
+**Áhrif á samfélagið**: Endurtekin brot gegn viðmiðum samfélagsins, þar á meðal viðvarandi
+óviðeigandi hegðun, áreitni gagnvart einstaklingi eða árásir á eða lítilsvirðing í garð hópa
+fólks.
 
-## Attribution
+**Afleiðing**: Varanleg útilokun frá hvers kyns opinberum samskiptum innan samfélagsins.
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available at
-https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+## Heimild
 
-Community Impact Guidelines were inspired by [Mozilla's code of conduct
-enforcement ladder](https://github.com/mozilla/diversity).
+Þessar siðareglur eru byggðar á [Contributor Covenant][heimasida], útgáfu 2.0, sem er aðgengileg
+á https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
 
-[homepage]: https://www.contributor-covenant.org
+Leiðbeiningarnar um áhrif á samfélagið eru innblásnar af
+[framfylgdarstiga Mozilla](https://github.com/mozilla/diversity).
 
-For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at
+[heimasida]: https://www.contributor-covenant.org
+
+Svör við algengum spurningum um þessar siðareglur eru á
+https://www.contributor-covenant.org/faq. Þýðingar á önnur tungumál eru á
 https://www.contributor-covenant.org/translations.
+
+Contributor Covenant er gefinn út undir [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/),
+sem heimilar þýðingu á borð við þessa.
