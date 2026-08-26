@@ -64,6 +64,7 @@ book:
         - github/good_practices/pull_requests.qmd
         - github/good_practices/code_review.qmd
         - github/good_practices/writing_a_readme.qmd
+        - github/good_practices/community_files.qmd
         - github/basics/security_best_practices.qmd
         - github/good_practices/issues.qmd
         - github/good_practices/projects.qmd

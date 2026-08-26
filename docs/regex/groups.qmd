@@ -114,6 +114,54 @@ Taktu eftir að í R þarf oft að tvöfalda bakskástrik í strengjum: `\\d` í
 í regex. Í Python er algengt að nota hráa strengi með `r"..."`, þá þarf síður að tvöfalda
 bakskástrik.
 
+::: {.callout-important}
+## Fyrsta samsvörun eða allar?
+
+Mynstur getur passað víða í sama texta. Föllin skiptast í tvennt: sum skila **fyrstu**
+samsvörun frá vinstri, önnur skila **öllum**.
+
+| | Fyrsta samsvörun | Allar samsvaranir |
+|---|---|---|
+| Base R | `regexpr()` | `gregexpr()` |
+| stringr | `str_extract()` | `str_extract_all()` |
+| Python | `re.search()` | `re.findall()` |
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: groups-r-first-vs-all
+pantanir <- "Pantanir: 12, 345 og 6789"
+
+# fyrsta samsvörun
+regmatches(pantanir, regexpr("\\d+", pantanir, perl = TRUE))
+
+# allar samsvaranir
+regmatches(pantanir, gregexpr("\\d+", pantanir, perl = TRUE))
+```
+
+## Python
+
+```{python}
+#| label: groups-py-first-vs-all
+import re
+
+pantanir = "Pantanir: 12, 345 og 6789"
+
+print(re.search(r"\d+", pantanir).group())   # fyrsta samsvörun
+print(re.findall(r"\d+", pantanir))          # allar samsvaranir
+```
+:::
+
+Innan hverrar samsvörunar er `+` **gráðugt**: það tekur eins marga tölustafi og það kemst
+upp með í röð, en stoppar á fyrsta stafnum sem passar ekki. Þá er `\d+` á `588-5522`
+ekki allt símanúmerið heldur bara `588` — bandstrikið er ekki tölustafur. Ef númerið
+allt á að fylgja þarf mynstrið að segja það: `\d{3}-\d{4}`.
+
+Þetta skiptir máli þegar ein tala á að fara í töflu: fyrsta samsvörun er ekki endilega
+sú sem þú ætlaðir að lesa. Skoðaðu alltaf allar samsvaranir áður en þú velur eina.
+:::
+
 ## Æfing: tengiliðir
 
 Gefinn er þessi texti:
