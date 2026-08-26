@@ -55,7 +55,7 @@ make preview
 
 Þrennt sem skiptir mestu og er auðvelt að misstíga sig á:
 
-**Kóðabútar eiga að keyra.** Skrifaðu ` ```{r} ` eða ` ```{python} ` og láttu Quarto búa til
+**Kóðabútar eiga að keyra.** Skrifaðu ```` ```{r} ```` eða ```` ```{python} ```` og láttu Quarto búa til
 úttakið. Handskrifuð niðurstaða lítur eins út en úreldist þegjandi — kóðinn breytist, talan ekki.
 Sama gildir um tölur í texta: skrifaðu `` `r nrow(x)` `` í stað þess að slá töluna inn.
 

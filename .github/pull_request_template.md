@@ -17,7 +17,7 @@ Byrjaðu sem drög. Þegar þú merkir PR-inn "Ready for review" fer þýðingar
 ## Frystir kaflar
 
 <!--
-Snertirðu api/good-practices.qmd eða regex/mbl.qmd? Þeir eru frystir, og hvaða breyting sem er
+Snertirðu docs/api/good-practices.qmd eða docs/regex/mbl.qmd? Þeir eru frystir, og hvaða breyting sem er
 — líka innsláttarvilla í texta — ógildir frystinguna. Þá fellur byggingin.
 -->
 
