@@ -16,6 +16,44 @@ stillingunum (t.d. `docs/`-möppunni). Ef þú ert að vinna á annarri grein s�
 fyrr en breytingarnar eru komnar á `main`. Þetta gildir í báðum leiðunum hér að neðan.
 :::
 
+## Forskoðun með `quarto preview`
+
+Áður en breytingar fara á `main` — og þar með í birtingu — viltu sjá hvernig síðan lítur út.
+Til þess er **forskoðun** (e. *preview*): Quarto þýðir bókina á tölvunni þinni og opnar hana í
+vafranum á staðbundinni slóð (`http://localhost:…`), án þess að nokkuð fari á vefinn.
+
+Skipunin `quarto preview` gerir þrennt:
+
+1. **þýðir bókina** og opnar hana í vafranum,
+2. **fylgist með heimildaskránum** — í hvert sinn sem þú vistar `.qmd`-skrá þýðir Quarto hana
+   upp á nýtt, og
+3. **endurhleður vafrann sjálfkrafa** svo þú sérð breytinguna strax.
+
+Þetta er _live reload_-vinnuflæði: þú skrifar, vistar og lítur á vafrann. Forskoðunin keyrir
+áfram í skipanaglugganum þar til þú stöðvar hana með `Ctrl+C`.
+
+Forskoðunin þýðir **á þinni tölvu** og notar þína R/Python-uppsetningu. Hún segir því ekki til
+um hvort byggingin heppnist í skýinu (Leið 1) — til þess þarf að ýta á grein og láta GitHub
+Actions reyna.
+
+::: {.callout-important}
+## Þú verður að vera í réttri möppu
+Quarto-verkefnið er skilgreint í skránni `_quarto.yml`, og í þessari geymslu er sú skrá í
+möppunni `docs/` — **ekki** í rót geymslunnar. `quarto preview` leitar að `_quarto.yml` í
+möppunni sem þú stendur í (og upp á við); finni það hana ekki forskoðar það í mesta lagi eina
+staka skrá — eða gerir ekki neitt.
+
+Því þarf að skipta í réttu möppuna fyrst:
+
+``` bash
+cd docs
+quarto preview
+```
+
+`make preview` (keyrt úr rót geymslunnar) er stytting á nákvæmlega þessu — það keyrir
+`cd docs && quarto preview` fyrir þig.
+:::
+
 ## Leið 1 — GitHub Actions þýðir fyrir þig
 
 **GitHub Actions** er sjálfvirknikerfi GitHub: í hvert sinn sem þú ýtir breytingum getur GitHub
