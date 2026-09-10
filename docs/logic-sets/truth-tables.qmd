@@ -7,125 +7,99 @@ description: >-
 
 SQL byrjar oft sem venjuleg spurning á mannamáli:
 
-> Hver birtist í `A New Hope`?
+> Hverjir eru í Rebel Alliance?
 
-Til að svara henni þurfum við að geta prófað fullyrðingu um hverja röð í töflu. Slík fullyrðing er
+Til að svara henni þurfum við að geta prófað fullyrðingu um hverja persónu. Slík fullyrðing er
 kölluð **yrðing** ef hægt er að segja hvort hún sé sönn eða ósönn.
 
-Ef við lesum röðina `(1, 10)` úr venslatöflunni sjáum við að persóna 1 er Luke og mynd 10 er
-`A New Hope`. Þá er yrðingin „Luke birtist í `A New Hope`“ sönn. Ef við lesum röðina `(5, 20)` sjáum
-við að Yoda birtist í `The Empire Strikes Back`; þá er yrðingin „Yoda birtist í `A New Hope`“ ósönn
-fyrir þá röð.
+Við notum töflurnar úr innganginum. Þar sjáum við til dæmis að Luke hefur röð í `member_of` sem
+vísar í Rebel Alliance. Yrðingin „Luke er Rebel“ er því sönn. Darth Vader hefur hins vegar röð sem
+vísar í Galactic Empire, en enga röð sem vísar í Rebel Alliance. Yrðingin „Darth Vader er Rebel“ er
+því ósönn í þessu litla gagnasafni.
 
 ## Frá setningu yfir í skilyrði
 
-Hugsum okkur að við séum með þrjár litlar töflur. Fyrst koma persónur:
+Spurningin:
 
-| character_id | name |
-|---:|---|
-| 1 | Luke |
-| 2 | Leia |
-| 3 | Han |
-| 4 | Darth Vader |
-| 5 | Yoda |
-| 6 | Chewbacca |
+> Hverjir eru Rebels?
 
-Svo koma kvikmyndir:
+verður að skilyrði á mannamáli:
 
-| movie_id | title |
-|---:|---|
-| 10 | A New Hope |
-| 20 | The Empire Strikes Back |
-| 30 | Return of the Jedi |
+> persónan hefur tengingu við `Rebel Alliance`
 
-Taflan `appears_in` tengir svo persónur við kvikmyndir:
-
-| character_id | movie_id |
-|---:|---:|
-| 1 | 10 |
-| 1 | 20 |
-| 1 | 30 |
-| 2 | 10 |
-| 2 | 20 |
-| 2 | 30 |
-| 5 | 20 |
-| 5 | 30 |
-
-Spurningin „hver birtist í `A New Hope`?“ verður að skilyrði:
-
-> `movie_id` vísar í myndina `A New Hope`
-
-Í SQL birtist það síðar sem:
-
-```sql
-WHERE movie_id = 10
-```
-
-Það mikilvægasta hér er ekki SQL-setningafræðin. Það mikilvægasta er að skilja að við erum að
-prófa skilyrðið fyrir hverja röð og halda þeim röðum þar sem skilyrðið er satt.
+Síðar verður þetta að SQL-skilyrði. Hér þurfum við fyrst að venjast því að prófa skilyrði og halda
+þeim tilvikum þar sem skilyrðið er satt.
 
 ## `og`
 
 Stundum þurfa tvö skilyrði að vera sönn í einu.
 
-> Hver birtist í `A New Hope` og er Luke?
+> Hverjir eru Rebels og Jedi?
 
-| Skilyrði A | Skilyrði B | A og B |
+Látum:
+
+- $p$ merkja „persónan er Rebel“,
+- $q$ merkja „persónan er Jedi“.
+
+| $p$ | $q$ | $p \land q$ |
 |---|---|---|
 | satt | satt | satt |
 | satt | ósatt | ósatt |
 | ósatt | satt | ósatt |
 | ósatt | ósatt | ósatt |
 
-`og` er strangt. Bæði þurfa að ganga upp.
+`og` er strangt. Bæði þurfa að ganga upp. Í gögnunum okkar er Luke dæmi um persónu þar sem bæði eru
+sönn: hann er skráður í Rebel Alliance og Jedi Order.
 
-Í SQL verður þessi hugsun síðar:
-
-```sql
-WHERE movie_id = 10
-  AND character_id = 1
-```
+`og` merkir að við viljum persónur þar sem bæði skilyrðin gilda. Seinna lærum við hvernig við
+þýðum svona spurningu yfir í SQL þegar aðildin liggur í mörgum röðum.
 
 ## `eða`
 
 Stundum dugar að annað skilyrðið sé satt.
 
-> Hver birtist í `A New Hope` eða `The Empire Strikes Back`?
+> Hverjir eru Rebels eða Jedi?
 
-| Skilyrði A | Skilyrði B | A eða B |
+| $p$ | $q$ | $p \lor q$ |
 |---|---|---|
 | satt | satt | satt |
 | satt | ósatt | satt |
 | ósatt | satt | satt |
 | ósatt | ósatt | ósatt |
 
-`eða` er víðara en `og`. Það tekur með raðir sem uppfylla annað skilyrðið eða bæði.
+`eða` er víðara en `og`. Það tekur með persónur sem uppfylla annað skilyrðið eða bæði. Luke kemur
+með vegna þess að hann er bæði Rebel og Jedi. Leia kemur með vegna þess að hún er Rebel. Yoda kemur
+með vegna þess að hann er Jedi.
 
-Í SQL verður þessi hugsun síðar:
-
-```sql
-WHERE movie_id = 10
-   OR movie_id = 20
-```
+Seinna lærum við að þýða svona `eða`-spurningu yfir í SQL. Hér skiptir mestu að sjá hvaða persónur
+eiga að vera í svarinu.
 
 ## `ekki`
 
 `ekki` snýr skilyrði við.
 
-> Hver birtist ekki í `A New Hope`?
+> Hverjir eru ekki Rebels?
 
-| Skilyrði A | ekki A |
+| $p$ | $\neg p$ |
 |---|---|
 | satt | ósatt |
 | ósatt | satt |
 
-Í SQL verður þessi hugsun síðar:
+Ef $p$ er „persónan er Rebel“, þá er $\neg p$ „persónan er ekki Rebel“.
 
-```sql
-WHERE NOT movie_id = 10
-```
+Hér skiptir mestu að sjá hvernig skilyrðið snýst við: þeir sem voru inni í Rebel-hópnum detta út,
+og hinir koma til greina.
+
+## Þegar persóna er í tveimur hópum
+
+Spurningin:
+
+> Hver er bæði í Resistance og First Order?
+
+er líka `og`-spurning. Hún leitar að skörun milli tveggja hópa. Í litla gagnasafninu okkar er Finn
+slíkt dæmi: hann hefur tengingu við First Order og Resistance.
 
 ::: {.callout-tip title="Lesið fyrst, skrifið svo"}
-Áður en þið skrifið SQL, prófið að segja skilyrðið með orðum: „ég vil raðir þar sem ...“. Ef
+Áður en þið skrifið SQL, prófið að segja skilyrðið með orðum: „ég vil persónur þar sem ...“. Ef
 setningin er skýr verður SQL yfirleitt miklu auðveldara.
 :::

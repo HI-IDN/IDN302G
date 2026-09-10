@@ -1,35 +1,55 @@
 ---
 title: "Vensl sem töflur"
 description: >-
-  Hvernig tafla getur lýst sambandi milli tveggja hópa, til dæmis fólks og
-  kvikmynda.
+  Hvernig tafla getur lýst sambandi milli tveggja hópa, til dæmis persóna og
+  liða eða persóna og kvikmynda.
 ---
 
-Vensl lýsa sambandi milli hluta. Í þessu dæmi eru tvö mengi:
+Vensl lýsa sambandi milli hluta. Í þessu dæmi höfum við meðal annars þessi mengi:
 
 - persónur,
+- lið,
 - kvikmyndir.
 
-Við geymum persónur á einum stað:
+Í innganginum geymdum við persónur í `character`, lið í `faction` og kvikmyndir í `movie`. Síðan
+notuðum við tvær tengitöflur:
 
-| character_id | name |
-|---:|---|
-| 1 | Luke |
-| 2 | Leia |
-| 3 | Han |
-| 4 | Darth Vader |
-| 5 | Yoda |
-| 6 | Chewbacca |
+- `member_of` segir hvaða persóna tengist hvaða liði,
+- `appears_in` segir hvaða persóna tengist hvaða mynd.
 
-Við geymum kvikmyndir á einum stað:
+## Dæmi: persóna tengist liði
 
-| movie_id | title |
-|---:|---|
-| 10 | A New Hope |
-| 20 | The Empire Strikes Back |
-| 30 | Return of the Jedi |
+Taflan `member_of` lýsir sambandi milli persóna og liða. Hver röð er par af auðkennum:
 
-Taflan `appears_in` lýsir svo sambandinu milli þeirra. Hver röð er par af auðkennum:
+| character_id | faction_id |
+|---:|---:|
+| 1 | 100 |
+| 1 | 300 |
+| 2 | 100 |
+| 3 | 100 |
+| 4 | 200 |
+| 4 | 300 |
+| 5 | 300 |
+| 6 | 100 |
+| 7 | 400 |
+| 7 | 500 |
+
+Röðin `(1, 100)` segir að persóna 1 tengist liði 100 með venslinu „er í“. Til að lesa hana flettum
+við upp `character_id = 1` í `character` og `faction_id = 100` í `faction`. Þá fáum við: Luke er í
+Rebel Alliance.
+
+Þetta má lesa sem:
+
+$$
+member\_of \subseteq character \times faction
+$$
+
+Það þýðir að `member_of` er safn af pörum þar sem fyrra stakið kemur úr hópi persóna og seinna
+stakið úr hópi liða.
+
+## Dæmi: persóna tengist kvikmynd
+
+Taflan `appears_in` lýsir sambandi milli persóna og kvikmynda:
 
 | character_id | movie_id |
 |---:|---:|
@@ -50,19 +70,16 @@ Taflan `appears_in` lýsir svo sambandinu milli þeirra. Hver röð er par af au
 | 6 | 10 |
 | 6 | 20 |
 | 6 | 30 |
+| 7 | 40 |
 
-Röðin `(1, 10)` segir að persóna 1 tengist mynd 10 með venslinu „birtist í“. Til að lesa hana
-flettum við upp `character_id = 1` í `character` og `movie_id = 10` í `movie`. Þá fáum við: Luke
-birtist í `A New Hope`.
+Röðin `(7, 40)` segir að persóna 7 tengist mynd 40 með venslinu „birtist í“. Þegar við flettum upp
+auðkennunum sjáum við: Finn birtist í `The Force Awakens`.
 
 Þetta má lesa sem:
 
 $$
 appears\_in \subseteq character \times movie
 $$
-
-Það þýðir að `appears_in` er safn af pörum þar sem fyrra stakið kemur úr hópi persóna og seinna
-stakið úr hópi kvikmynda.
 
 ## Hvernig lítur þetta út?
 
@@ -71,22 +88,26 @@ Sambandið milli taflnanna má teikna svona:
 ```mermaid
 flowchart LR
   character["character<br/>character_id<br/>name"]
+  faction["faction<br/>faction_id<br/>faction"]
   movie["movie<br/>movie_id<br/>title"]
+  member_of["member_of<br/>character_id<br/>faction_id"]
   appears_in["appears_in<br/>character_id<br/>movie_id"]
 
+  member_of -->|"character_id vísar í"| character
+  member_of -->|"faction_id vísar í"| faction
   appears_in -->|"character_id vísar í"| character
   appears_in -->|"movie_id vísar í"| movie
 ```
 
-Ein röð í `character` getur tengst mörgum röðum í `appears_in`, því sama persóna getur birst í
-mörgum myndum. Ein röð í `movie` getur líka tengst mörgum röðum í `appears_in`, því sama mynd getur
-haft margar persónur.
+Ein persóna getur tengst mörgum röðum í `member_of`, því sama persóna getur verið í fleiri en einu
+liði. Finn getur til dæmis tengst bæði First Order og Resistance. Ein persóna getur líka tengst
+mörgum röðum í `appears_in`, því sama persóna getur birst í mörgum myndum.
 
 ## Af hverju margar litlar töflur?
 
-Ef við skrifum nafnið `The Empire Strikes Back` í hverja einustu röð þar sem myndin kemur fyrir,
-þurfum við að laga margar línur ef titillinn er rangt stafsettur. Ef myndin er geymd einu sinni í
-`movie` þurfum við bara að laga eina línu.
+Ef við skrifum nafnið `Rebel Alliance` í hverja einustu röð þar sem liðið kemur fyrir, þurfum við að
+laga margar línur ef nafnið er rangt stafsett. Ef liðið er geymt einu sinni í `faction` þurfum við
+bara að laga eina línu.
 
 Þetta er hugmyndin á bak við normaliseringu í venslagagnasöfnum. Codd setti fram reglur um hvernig
 mætti skipuleggja töflur til að minnka endurtekningar og koma í veg fyrir mótsagnir í gögnum.
@@ -96,7 +117,10 @@ hver dálkur eigi að lýsa lyklinum, öllum lyklinum og engu nema lyklinum.
 Í okkar litla dæmi þýðir það:
 
 - `name` lýsir `character_id`, svo það á heima í `character`.
+- `faction` lýsir `faction_id`, svo það á heima í `faction`.
 - `title` lýsir `movie_id`, svo það á heima í `movie`.
+- sambandið „er í“ er ekki eiginleiki persónunnar eða liðsins einnar og sér, svo það á heima í
+  `member_of`.
 - sambandið „birtist í“ er ekki eiginleiki persónunnar eða myndarinnar einnar og sér, svo það á
   heima í `appears_in`.
 
@@ -119,18 +143,6 @@ getum við hugsað:
 > Ég vil þær raðir þar sem fullyrðingin er sönn.
 
 Þetta er kjarninn í `WHERE`.
-
-## Sama hlutur getur tengst mörgu
-
-Vensl þurfa ekki að vera eitt-á-eitt. Luke getur birst í fleiri en einni mynd, og sama mynd getur
-haft fleiri en eina persónu.
-
-Það er ein ástæða fyrir því að töflur henta vel fyrir gögn. Þær leyfa mörg pör:
-
-- Luke tengist `A New Hope`,
-- Luke tengist `The Empire Strikes Back`,
-- Yoda tengist `The Empire Strikes Back`,
-- Yoda tengist `Return of the Jedi`.
 
 Seinna, þegar við lærum `JOIN`, notum við sömu hugsun til að tengja töflur saman. Hér þurfum við
 bara að sjá að tafla getur táknað samband.

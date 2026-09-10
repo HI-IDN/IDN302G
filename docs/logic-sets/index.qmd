@@ -19,17 +19,103 @@ hverju SQL-hegðun er stundum öðruvísi en venjulegur kóði.
 
 ## Rauði þráðurinn
 
-Við notum lítið Star Wars dæmi. Í stað þess að setja allt í eina stóra töflu skiptum við gögnunum í
-nokkrar litlar töflur:
-
-- `character` geymir persónur,
-- `movie` geymir kvikmyndir,
-- `appears_in` geymir hvaða persóna birtist í hvaða mynd.
-
-Þetta er ekki gagnagrunnur um Star Wars fræði. Þetta er lítill æfingavöllur fyrir spurninguna sem
-skiptir mestu í SQL:
+Við notum lítið Star Wars dæmi. Þetta er ekki gagnagrunnur um Star Wars fræði. Þetta er
+æfingavöllur fyrir spurninguna sem skiptir mestu í SQL:
 
 > Hvaða raðir og dálkar eiga að vera í niðurstöðunni?
+
+Í stað þess að setja allt í eina stóra töflu skiptum við gögnunum í nokkrar litlar töflur. Þá getum
+við spurt skýrar spurningar eins og:
+
+- hverjir eru Rebels?
+- hverjir eru Jedi?
+- hverjir birtast í `A New Hope`?
+- hverjir eru bæði í Resistance og First Order?
+
+Síðasta spurningin er sérstaklega góð fyrir mengjahugsun: hún snýst um skörun milli tveggja hópa.
+Finn er skemmtilegt dæmi, því hann hefur tengingu við First Order en endar með Resistance. Það er
+akkúrat svona smá flækja sem fær okkur til að hugsa betur um hvað spurningin þýðir.
+
+## Litli gagnheimurinn okkar
+
+Við geymum persónur á einum stað:
+
+| character_id | name |
+|---:|---|
+| 1 | Luke |
+| 2 | Leia |
+| 3 | Han |
+| 4 | Darth Vader |
+| 5 | Yoda |
+| 6 | Chewbacca |
+| 7 | Finn |
+
+Við geymum hópa eða lið á einum stað:
+
+| faction_id | faction |
+|---:|---|
+| 100 | Rebel Alliance |
+| 200 | Galactic Empire |
+| 300 | Jedi Order |
+| 400 | Resistance |
+| 500 | First Order |
+
+Svo tengjum við persónur við lið í sérstakri töflu:
+
+| character_id | faction_id |
+|---:|---:|
+| 1 | 100 |
+| 1 | 300 |
+| 2 | 100 |
+| 3 | 100 |
+| 4 | 200 |
+| 4 | 300 |
+| 5 | 300 |
+| 6 | 100 |
+| 7 | 400 |
+| 7 | 500 |
+
+Við geymum kvikmyndir á einum stað:
+
+| movie_id | title |
+|---:|---|
+| 10 | A New Hope |
+| 20 | The Empire Strikes Back |
+| 30 | Return of the Jedi |
+| 40 | The Force Awakens |
+
+Og við tengjum persónur við myndir í annarri töflu:
+
+| character_id | movie_id |
+|---:|---:|
+| 1 | 10 |
+| 1 | 20 |
+| 1 | 30 |
+| 2 | 10 |
+| 2 | 20 |
+| 2 | 30 |
+| 3 | 10 |
+| 3 | 20 |
+| 3 | 30 |
+| 4 | 10 |
+| 4 | 20 |
+| 4 | 30 |
+| 5 | 20 |
+| 5 | 30 |
+| 6 | 10 |
+| 6 | 20 |
+| 6 | 30 |
+| 7 | 40 |
+
+Töflurnar segja okkur ekki söguna sjálfar. Við þurfum að lesa þær sem litlar staðreyndir:
+
+- röðin `(1, 100)` í `member_of` segir að Luke sé í Rebel Alliance,
+- röðin `(7, 500)` í `member_of` segir að Finn hafi tengingu við First Order,
+- röðin `(7, 400)` í `member_of` segir að Finn sé líka í Resistance,
+- röðin `(1, 10)` í `appears_in` segir að Luke birtist í `A New Hope`.
+
+Á næstu síðum notum við þessar töflur til að tala um yrðingar, sanntöflur, mengi, vensl, tómar
+niðurstöður og `NULL`.
 
 ## Hvað kemur næst?
 

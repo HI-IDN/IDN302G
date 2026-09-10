@@ -5,66 +5,41 @@ description: >-
   eru í báðum hópum og þau sem eru aðeins í öðrum.
 ---
 
-Mengi er hópur af hlutum. Í SQL er gagnlegt að hugsa um niðurstöðu fyrirspurnar sem hóp raða sem
-uppfylla ákveðið skilyrði.
+Mengi er hópur af hlutum. Í SQL er gagnlegt að hugsa um niðurstöðu fyrirspurnar sem hóp raða eða
+hluta sem uppfylla ákveðið skilyrði.
 
-Við getum til dæmis búið til tvo hópa úr Star Wars dæminu:
+Við notum töflurnar úr innganginum og byrjum á einfaldri spurningu:
 
-- $A$ = persónur sem birtast í `A New Hope`
-- $E$ = persónur sem birtast í `The Empire Strikes Back`
+> Hverjir eru Rebels?
 
-Út frá þessum þremur töflum:
+Þá erum við að búa til hóp persóna sem hafa tengingu við `Rebel Alliance` í `member_of`.
 
-| character_id | name |
-|---:|---|
-| 1 | Luke |
-| 2 | Leia |
-| 3 | Han |
-| 4 | Darth Vader |
-| 5 | Yoda |
-| 6 | Chewbacca |
+Látum:
 
-| movie_id | title |
-|---:|---|
-| 10 | A New Hope |
-| 20 | The Empire Strikes Back |
-| 30 | Return of the Jedi |
+- $R$ vera hóp Rebels,
+- $J$ vera hóp Jedi,
+- $G$ vera hóp þeirra sem eru í Galactic Empire,
+- $S$ vera hóp þeirra sem eru í Resistance,
+- $F$ vera hóp þeirra sem eru í First Order.
 
-| character_id | movie_id |
-|---:|---:|
-| 1 | 10 |
-| 1 | 20 |
-| 1 | 30 |
-| 2 | 10 |
-| 2 | 20 |
-| 2 | 30 |
-| 3 | 10 |
-| 3 | 20 |
-| 3 | 30 |
-| 4 | 10 |
-| 4 | 20 |
-| 4 | 30 |
-| 5 | 20 |
-| 5 | 30 |
-| 6 | 10 |
-| 6 | 20 |
-| 6 | 30 |
+Út frá töflunum í innganginum fáum við:
 
-fáum við:
-
-- $A = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Chewbacca}\}$
-- $E = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Yoda}, \text{Chewbacca}\}$
+- $R = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Chewbacca}\}$
+- $J = \{\text{Luke}, \text{Darth Vader}, \text{Yoda}\}$
+- $G = \{\text{Darth Vader}\}$
+- $S = \{\text{Finn}\}$
+- $F = \{\text{Finn}\}$
 
 ## Í öðrum hvorum hópnum
 
 Spurning:
 
-> Hver birtist í `A New Hope` eða `The Empire Strikes Back`?
+> Hverjir eru Rebels eða Jedi?
 
-Þá viljum við allar persónur sem eru í $A$, $E$ eða báðum:
+Þá viljum við allar persónur sem eru í $R$, $J$ eða báðum:
 
 $$
-A \cup E = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Yoda}, \text{Chewbacca}\}
+R \cup J = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Chewbacca}, \text{Darth Vader}, \text{Yoda}\}
 $$
 
 Í SQL hugsun er þetta undirbúningur fyrir `OR`: skilyrðið má vera satt á fleiri en einn hátt.
@@ -73,26 +48,35 @@ $$
 
 Spurning:
 
-> Hver birtist bæði í `A New Hope` og `The Empire Strikes Back`?
+> Hverjir eru bæði Rebels og Jedi?
 
 Þá viljum við þau sem eru í sköruninni:
 
 $$
-A \cap E = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Chewbacca}\}
+R \cap J = \{\text{Luke}\}
 $$
 
-Í SQL hugsun er þetta undirbúningur fyrir spurningar þar sem fleiri en eitt þarf að gilda.
+Sama hugsun virkar fyrir spurninguna:
+
+> Hver er bæði í Resistance og First Order?
+
+$$
+S \cap F = \{\text{Finn}\}
+$$
+
+Þetta er „góður gaur með tengingu við vonda liðið“ dæmið. Gögnin segja ekki alla söguna, en þau
+leyfa okkur að spyrja skýrt: hvaða persónur eru í báðum hópum?
 
 ## Í einum hópi en ekki öðrum
 
 Spurning:
 
-> Hver birtist í `The Empire Strikes Back` en ekki `A New Hope`?
+> Hverjir eru Jedi en ekki Rebels?
 
-Þá viljum við þau sem eru í $E$, en ekki í $A$:
+Þá viljum við þau sem eru í $J$, en ekki í $R$:
 
 $$
-E - A = \{\text{Yoda}\}
+J - R = \{\text{Darth Vader}, \text{Yoda}\}
 $$
 
 Þetta er gagnleg hugsun áður en við lærum flóknari SQL. Fyrst þurfum við að vita nákvæmlega hvaða
@@ -102,10 +86,15 @@ hópur á að koma út.
 
 Stundum er enginn í hópnum.
 
-> Hver birtist í `The Phantom Menace`?
+> Hverjir eru bæði Rebels og Galactic Empire?
 
-Ef engin röð í töflunni hefur þá mynd, þá er niðurstaðan tóm. Tóm niðurstaða er ekki villa. Hún
-segir bara að ekkert uppfyllti skilyrðið.
+Í þessu gagnasafni er engin persóna skráð í báða hópa:
+
+$$
+R \cap G = \emptyset
+$$
+
+Tóm niðurstaða er ekki villa. Hún segir bara að ekkert uppfyllti skilyrðið.
 
 ## Tómt mengi og `NULL`
 
@@ -115,8 +104,8 @@ $$
 \emptyset
 $$
 
-Það þýðir að hópurinn hefur engin stök. Ef spurningin er „hver birtist í `The Phantom Menace`?“ og
-engin slík röð er til, þá er svarið tómt mengi: engin persóna í dæminu uppfyllir skilyrðið.
+Það þýðir að hópurinn hefur engin stök. Ef spurningin er „hverjir eru bæði Rebels og Galactic
+Empire?“ og engin persóna uppfyllir bæði skilyrðin, þá er svarið tómt mengi.
 
 `NULL` er annað. `NULL` merkir ekki „enginn í hópnum“, heldur að gildi vantar einhvers staðar í
 gögnunum. Til dæmis gæti tafla haft persónu sem er til, en heimaplánetu hennar vantar. Þá er persónan
@@ -133,37 +122,37 @@ Skoðum tvö lík dæmi.
 
 **Dæmi 1: tómt mengi**
 
-| character_id | movie_id |
+| character_id | faction_id |
 |---:|---:|
-| 1 | 10 |
-| 1 | 20 |
-| 2 | 10 |
+| 1 | 100 |
+| 2 | 100 |
+| 4 | 200 |
 
 Spurning:
 
-> Hvaða persónur birtast í mynd 99?
+> Hvaða persónur eru bæði í Rebel Alliance og Galactic Empire?
 
-Engin röð hefur `movie_id = 99`, svo svarið er tómt mengi:
+Engin persóna hefur bæði tengslin, svo svarið er tómt mengi:
 
 $$
 \emptyset
 $$
 
-Hér vantar ekki gildi í röð. Það er bara engin röð sem passar við spurninguna.
+Hér vantar ekki gildi í röð. Það er bara engin persóna sem passar við spurninguna.
 
 **Dæmi 2: ekki tómt mengi, heldur vantað gildi**
 
-| character_id | movie_id |
+| character_id | faction_id |
 |---:|---:|
-| 1 | 10 |
+| 1 | 100 |
 | 2 |  |
-| 3 | 20 |
+| 4 | 200 |
 
 Spurning:
 
-> Hver er skráð/ur með óþekkta mynd?
+> Hver er skráð/ur með óþekkt lið?
 
-Hér er röð til: `character_id = 2`. Það sem vantar er gildið í `movie_id`. Svarið er því ekki tómt
+Hér er röð til: `character_id = 2`. Það sem vantar er gildið í `faction_id`. Svarið er því ekki tómt
 mengi. Svarið er hópur með einu staki:
 
 $$
