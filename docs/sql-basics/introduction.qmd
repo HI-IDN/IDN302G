@@ -104,7 +104,7 @@ FROM tbl
 ORDER BY col1 DESC;
 
 -- Select the first 10 rows
-SELECT TOP 10 *
+SELECT TOP (10) *
 FROM tbl;
 ```
 
@@ -126,7 +126,124 @@ FROM tbl
 FETCH FIRST 10 ROWS ONLY;
 ```
 
+## IBM Db2
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows
+SELECT *
+FROM tbl
+FETCH FIRST 10 ROWS ONLY;
+```
+
 :::
+
+Setningafræðin hér að ofan er staðfest í opinberum skjölum fyrir
+[PostgreSQL](https://www.postgresql.org/docs/current/queries-limit.html),
+[MySQL](https://dev.mysql.com/doc/refman/8.4/en/select.html),
+[SQLite](https://www.sqlite.org/lang_select.html),
+[Microsoft SQL Server](https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql),
+[Oracle](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SELECT.html) og
+[IBM Db2](https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=selection-fetching-limited-number-rows).
+
+Ekki öll kerfin í topp 10 eru hefðbundin venslagagnasöfn með nákvæmlega sömu SQL-setningafræði.
+Samt er gagnlegt að sjá hvernig sama hugsun birtist í þeim: velja gögn, raða þeim og takmarka fjölda
+niðurstaðna.
+
+::: {.panel-tabset}
+
+## Snowflake
+
+Snowflake notar SQL og styður bæði `LIMIT` og `FETCH`. Hér er PostgreSQL-líka leiðin:
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows
+SELECT *
+FROM tbl
+LIMIT 10;
+```
+
+## Databricks SQL
+
+Databricks SQL styður líka `LIMIT`:
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows
+SELECT *
+FROM tbl
+LIMIT 10;
+```
+
+## MongoDB
+
+MongoDB er skjalagagnagrunnur, svo dæmið er ekki SQL heldur `mongosh` skipun. Hugmyndin er samt
+svipuð: finna skjöl, velja reiti, raða og takmarka fjölda niðurstaðna.
+
+```javascript
+// Select all documents from a collection
+db.tbl.find({});
+
+// Select specific fields and sort by a field
+db.tbl
+  .find({}, { col1: 1, col2: 1, _id: 0 })
+  .sort({ col1: -1 });
+
+// Select the first 10 documents
+db.tbl
+  .find({})
+  .limit(10);
+```
+
+## Redis Search
+
+Redis er lykil-gildis gagnagrunnur. Fyrir leit í skjölum er oft notað Redis Search, þar sem
+`FT.SEARCH` getur raðað og takmarkað niðurstöður. Þetta dæmi gerir ráð fyrir að til sé index sem
+heitir `idx`.
+
+```bash
+# Return matching documents
+FT.SEARCH idx "*"
+
+# Return selected fields and sort by a field
+FT.SEARCH idx "*" RETURN 2 col1 col2 SORTBY col1 DESC
+
+# Return the first 10 matches
+FT.SEARCH idx "*" LIMIT 0 10
+```
+
+:::
+
+Sjá einnig opinber skjöl fyrir
+[Snowflake](https://docs.snowflake.com/en/sql-reference/constructs/limit),
+[Databricks SQL](https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-qry-select-limit),
+[MongoDB](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/) og
+[Redis Search](https://redis.io/docs/latest/commands/ft.search/).
 
 ## Gagnasafnskerfi
 
