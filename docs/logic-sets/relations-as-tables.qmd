@@ -33,6 +33,7 @@ Taflan `member_of` lýsir sambandi milli persóna og liða. Hver röð er par af
 | 6 | 100 |
 | 7 | 400 |
 | 7 | 500 |
+| 8 | 600 |
 
 Röðin `(1, 100)` segir að persóna 1 tengist liði 100 með venslinu „er í“. Til að lesa hana flettum
 við upp `character_id = 1` í `character` og `faction_id = 100` í `faction`. Þá fáum við: Luke er í
@@ -71,6 +72,8 @@ Taflan `appears_in` lýsir sambandi milli persóna og kvikmynda:
 | 6 | 20 |
 | 6 | 30 |
 | 7 | 40 |
+| 8 | 20 |
+| 8 | 30 |
 
 Röðin `(7, 40)` segir að persóna 7 tengist mynd 40 með venslinu „birtist í“. Þegar við flettum upp
 auðkennunum sjáum við: Finn birtist í `The Force Awakens`.
@@ -100,8 +103,9 @@ flowchart LR
 ```
 
 Ein persóna getur tengst mörgum röðum í `member_of`, því sama persóna getur verið í fleiri en einu
-liði. Finn getur til dæmis tengst bæði First Order og Resistance. Ein persóna getur líka tengst
-mörgum röðum í `appears_in`, því sama persóna getur birst í mörgum myndum.
+liði. Finn getur til dæmis tengst bæði First Order og Resistance. Boba Fett tengist hins vegar
+Bounty Hunters og er hvorki skráður í Rebel Alliance né Galactic Empire. Ein persóna getur líka
+tengst mörgum röðum í `appears_in`, því sama persóna getur birst í mörgum myndum.
 
 ## Af hverju margar litlar töflur?
 

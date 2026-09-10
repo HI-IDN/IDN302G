@@ -90,6 +90,18 @@ Ef $p$ er „persónan er Rebel“, þá er $\neg p$ „persónan er ekki Rebel�
 Hér skiptir mestu að sjá hvernig skilyrðið snýst við: þeir sem voru inni í Rebel-hópnum detta út,
 og hinir koma til greina.
 
+Við getum líka snúið tveimur skilyrðum við í einu:
+
+> Hverjir eru hvorki Rebels né í Galactic Empire?
+
+Þá erum við að spyrja um persónur þar sem bæði er satt:
+
+- persónan er ekki Rebel,
+- persónan er ekki í Galactic Empire.
+
+Boba Fett er gott dæmi um slíka persónu í töflunum okkar: hann er skráður sem Bounty Hunter, ekki
+sem Rebel eða Galactic Empire.
+
 ## Þegar persóna er í tveimur hópum
 
 Spurningin:

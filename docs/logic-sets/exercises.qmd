@@ -16,6 +16,7 @@ Notið töflurnar úr innganginum.
 4. Darth Vader er Jedi eða í Galactic Empire.
 5. Finn er bæði í Resistance og First Order.
 6. Leia er í First Order.
+7. Boba Fett er hvorki í Rebel Alliance né Galactic Empire.
 
 ## Mengi
 
@@ -25,7 +26,9 @@ Látum:
 - $J$ vera hóp Jedi,
 - $G$ vera hóp þeirra sem eru í Galactic Empire,
 - $S$ vera hóp þeirra sem eru í Resistance,
-- $F$ vera hóp þeirra sem eru í First Order.
+- $F$ vera hóp þeirra sem eru í First Order,
+- $B$ vera hóp Bounty Hunters,
+- $C$ vera hóp allra persóna í dæminu.
 
 Finnið:
 
@@ -36,6 +39,8 @@ Finnið:
 5. $J - R$
 6. $R \cap G$
 7. $S \cap F$
+8. $C - (R \cup G)$
+9. $B - (R \cup G)$
 
 ## Sanntafla
 
@@ -71,6 +76,8 @@ Skrifið eftirfarandi sem skilyrði á mannamáli. Ekki byrja á SQL.
 3. Persónur sem eru bæði í Rebel Alliance og Jedi Order.
 4. Persónur sem eru bæði í Resistance og First Order.
 5. Persónur sem eru í Jedi Order en ekki í Rebel Alliance.
+6. Persónur sem eru hvorki í Rebel Alliance né Galactic Empire.
+7. Bounty Hunters sem eru hvorki í Rebel Alliance né Galactic Empire.
 
 ## Tómt mengi og vöntun
 

@@ -20,7 +20,9 @@ Látum:
 - $J$ vera hóp Jedi,
 - $G$ vera hóp þeirra sem eru í Galactic Empire,
 - $S$ vera hóp þeirra sem eru í Resistance,
-- $F$ vera hóp þeirra sem eru í First Order.
+- $F$ vera hóp þeirra sem eru í First Order,
+- $B$ vera hóp Bounty Hunters,
+- $C$ vera hóp allra persóna í dæminu.
 
 Út frá töflunum í innganginum fáum við:
 
@@ -29,6 +31,8 @@ Látum:
 - $G = \{\text{Darth Vader}\}$
 - $S = \{\text{Finn}\}$
 - $F = \{\text{Finn}\}$
+- $B = \{\text{Boba Fett}\}$
+- $C = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Yoda}, \text{Chewbacca}, \text{Finn}, \text{Boba Fett}\}$
 
 ## Í öðrum hvorum hópnum
 
@@ -81,6 +85,28 @@ $$
 
 Þetta er gagnleg hugsun áður en við lærum flóknari SQL. Fyrst þurfum við að vita nákvæmlega hvaða
 hópur á að koma út.
+
+## Hvorki í einum hópi né öðrum
+
+Spurning:
+
+> Hverjir eru hvorki Rebels né í Galactic Empire?
+
+Þá byrjum við á öllum persónum og tökum burt þá sem eru í $R$ eða $G$:
+
+$$
+C - (R \cup G) = \{\text{Yoda}, \text{Finn}, \text{Boba Fett}\}
+$$
+
+Ef við viljum sérstaklega spyrja um bounty hunters sem eru hvorki Rebels né Empire fáum við:
+
+$$
+B - (R \cup G) = \{\text{Boba Fett}\}
+$$
+
+Þetta er góð áminning um að `ekki` þýðir ekki sjálfkrafa „hitt liðið“. Sá sem er ekki Rebel þarf
+ekki að vera í Galactic Empire. Hann gæti verið Jedi, Resistance, First Order, Bounty Hunter eða
+eitthvað annað.
 
 ## Tóm niðurstaða
 

@@ -31,10 +31,15 @@ við spurt skýrar spurningar eins og:
 - hverjir eru Jedi?
 - hverjir birtast í `A New Hope`?
 - hverjir eru bæði í Resistance og First Order?
+- hverjir eru hvorki í Rebel Alliance né Galactic Empire?
 
 Síðasta spurningin er sérstaklega góð fyrir mengjahugsun: hún snýst um skörun milli tveggja hópa.
 Finn er skemmtilegt dæmi, því hann hefur tengingu við First Order en endar með Resistance. Það er
 akkúrat svona smá flækja sem fær okkur til að hugsa betur um hvað spurningin þýðir.
+
+Við notum líka Boba Fett til að sjá að gögn þurfa ekki alltaf að vera tvískipt. Ef spurningin er
+„hverjir eru hvorki Rebels né Empire?“ þá er Boba gott dæmi um persónu sem er til í gögnunum en
+fellur utan beggja hópa.
 
 ## Litli gagnheimurinn okkar
 
@@ -49,6 +54,7 @@ Við geymum persónur á einum stað:
 | 5 | Yoda |
 | 6 | Chewbacca |
 | 7 | Finn |
+| 8 | Boba Fett |
 
 Við geymum hópa eða lið á einum stað:
 
@@ -59,6 +65,7 @@ Við geymum hópa eða lið á einum stað:
 | 300 | Jedi Order |
 | 400 | Resistance |
 | 500 | First Order |
+| 600 | Bounty Hunters |
 
 Svo tengjum við persónur við lið í sérstakri töflu:
 
@@ -74,6 +81,7 @@ Svo tengjum við persónur við lið í sérstakri töflu:
 | 6 | 100 |
 | 7 | 400 |
 | 7 | 500 |
+| 8 | 600 |
 
 Við geymum kvikmyndir á einum stað:
 
@@ -106,12 +114,15 @@ Og við tengjum persónur við myndir í annarri töflu:
 | 6 | 20 |
 | 6 | 30 |
 | 7 | 40 |
+| 8 | 20 |
+| 8 | 30 |
 
 Töflurnar segja okkur ekki söguna sjálfar. Við þurfum að lesa þær sem litlar staðreyndir:
 
 - röðin `(1, 100)` í `member_of` segir að Luke sé í Rebel Alliance,
 - röðin `(7, 500)` í `member_of` segir að Finn hafi tengingu við First Order,
 - röðin `(7, 400)` í `member_of` segir að Finn sé líka í Resistance,
+- röðin `(8, 600)` í `member_of` segir að Boba Fett sé Bounty Hunter,
 - röðin `(1, 10)` í `appears_in` segir að Luke birtist í `A New Hope`.
 
 Á næstu síðum notum við þessar töflur til að tala um yrðingar, sanntöflur, mengi, vensl, tómar
