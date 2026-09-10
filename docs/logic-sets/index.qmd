@@ -24,11 +24,7 @@ Við notum lítið Stjörnustríðsdæmi. Þetta er ekki gagnagrunnur um Stjörn
 
 > Hvaða raðir og dálkar eiga að vera í niðurstöðunni?
 
-Nöfnin í dæminu sækja innblástur í íslensku þýðinguna. Samkvæmt
-[íslensku Wikipediu um Stjörnustríð](https://is.wikipedia.org/wiki/Stj%C3%B6rnustr%C3%AD%C3%B0#%C3%8Dslenska_%C3%BE%C3%BD%C3%B0ingin)
-gerði Hersteinn Pálsson fyrstu íslensku þýðinguna á sögunni í bókinni *Stjörnustríð* árið 1978.
-Þar voru mörg sérheiti íslenskuð; nöfn eins og Svarthöfði og Logi Geimgengill hafa lifað áfram,
-meðan önnur, eins og Hans Óli, eru meira dásamlegar þýðingaperlur úr sögunni.
+Nöfnin í dæminu sækja innblástur í íslensku þýðinguna.[^stjornustrid-thyding]
 
 Í stað þess að setja allt í eina stóra töflu skiptum við gögnunum í nokkrar litlar töflur. Þá getum
 við spurt skýrar spurningar eins og:
@@ -165,3 +161,9 @@ niðurstöður og `NULL`.
 
 Ef þið getið spáð fyrir um litla niðurstöðu með höndunum áður en þið keyrið SQL, eruð þið komin með
 rétta hugarlíkanið.
+
+[^stjornustrid-thyding]: Samkvæmt
+    [íslensku Wikipediu um Stjörnustríð](https://is.wikipedia.org/wiki/Stj%C3%B6rnustr%C3%AD%C3%B0#%C3%8Dslenska_%C3%BE%C3%BD%C3%B0ingin)
+    gerði Hersteinn Pálsson fyrstu íslensku þýðinguna á sögunni í bókinni *Stjörnustríð* árið 1978.
+    Þar voru mörg sérheiti íslenskuð; nöfn eins og Svarthöfði og Logi Geimgengill hafa lifað áfram,
+    meðan önnur, eins og Hans Óli, eru meira dásamlegar þýðingaperlur úr sögunni.
