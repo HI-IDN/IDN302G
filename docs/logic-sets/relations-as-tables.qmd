@@ -45,8 +45,9 @@ $$
 member\_of \subseteq character \times faction
 $$
 
-Það þýðir að `member_of` er safn af pörum þar sem fyrra stakið kemur úr hópi persóna og seinna
-stakið úr hópi liða.
+Táknið $\subseteq$ má lesa sem „er hlutmengi af“. Línan segir því að `member_of` sé hlutmengi af
+öllum mögulegum pörum úr `character` og `faction`. Í okkar dæmi er `member_of` safn þeirra para sem
+eru raunverulega skráð: fyrra stakið kemur úr hópi persóna og seinna stakið úr hópi liða.
 
 ## Dæmi: persóna tengist kvikmynd
 
@@ -83,6 +84,9 @@ auðkennunum sjáum við: Finnur birtist í `Mátturinn vaknar`.
 $$
 appears\_in \subseteq character \times movie
 $$
+
+Með orðum: `appears_in` er hlutmengi af öllum mögulegum pörum úr `character` og `movie`. Taflan
+geymir bara þau pör sem eru skráð í dæminu.
 
 ## Hvernig lítur þetta út?
 
