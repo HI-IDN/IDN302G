@@ -1,0 +1,103 @@
+---
+title: "Æfing"
+description: >-
+  Orðadæmi um yrðingar, sanntöflur, mengi og vensl áður en SQL er skrifað.
+---
+
+Notið eftirfarandi töflur:
+
+| character_id | name |
+|---:|---|
+| 1 | Luke |
+| 2 | Leia |
+| 3 | Han |
+| 4 | Darth Vader |
+| 5 | Yoda |
+| 6 | Chewbacca |
+
+| movie_id | title |
+|---:|---|
+| 10 | A New Hope |
+| 20 | The Empire Strikes Back |
+| 30 | Return of the Jedi |
+
+| character_id | movie_id |
+|---:|---:|
+| 1 | 10 |
+| 1 | 20 |
+| 1 | 30 |
+| 2 | 10 |
+| 2 | 20 |
+| 2 | 30 |
+| 3 | 10 |
+| 3 | 20 |
+| 3 | 30 |
+| 4 | 10 |
+| 4 | 20 |
+| 4 | 30 |
+| 5 | 20 |
+| 5 | 30 |
+| 6 | 10 |
+| 6 | 20 |
+| 6 | 30 |
+
+## Yrðingar
+
+Ákvarðið hvort fullyrðingarnar séu sannar eða ósannar út frá töflunum.
+
+1. Luke birtist í `A New Hope`.
+2. Yoda birtist í `A New Hope`.
+3. Leia birtist bæði í `A New Hope` og `The Empire Strikes Back`.
+4. Darth Vader birtist í `A New Hope` eða `The Empire Strikes Back`.
+5. Chewbacca hefur skráða kvikmynd í `appears_in`.
+
+## Mengi
+
+Látum:
+
+- $A$ vera hóp þeirra persóna sem birtast í `A New Hope`,
+- $E$ vera hóp þeirra persóna sem birtast í `The Empire Strikes Back`.
+
+Finnið:
+
+1. $A$
+2. $E$
+3. $A \cup E$
+4. $A \cap E$
+5. $E - A$
+6. $A - E$
+
+## Sanntafla
+
+Látum:
+
+- $p$ merkja „persónan birtist í `A New Hope`“,
+- $q$ merkja „persónan birtist í `The Empire Strikes Back`“.
+
+Fyllið út sanntöflu fyrir:
+
+1. $p \land q$
+2. $p \lor q$
+3. $\neg p$
+
+Notið svo töflurnar hér að ofan til að finna hvaða persónur lenda í hverri línu sanntöflunnar.
+
+## Undirbúningur fyrir SQL
+
+Skrifið eftirfarandi sem skilyrði á mannamáli. Ekki byrja á SQL.
+
+1. Raðir þar sem titillinn er `A New Hope`.
+2. Raðir þar sem titillinn er `A New Hope` eða `The Empire Strikes Back`.
+3. Raðir þar sem nafnið er `Luke` og titillinn er `The Empire Strikes Back`.
+4. Persónur sem hafa enga skráða röð í `appears_in`.
+
+## Tómt mengi og vöntun
+
+Svaraðu með orðum:
+
+1. Hvaða spurning myndi skila tómu mengi í þessu dæmi?
+2. Hver er munurinn á því að persóna hafi enga röð í `appears_in` og því að einhver dálkur í röð
+   væri `NULL`?
+
+Þegar þið farið inn í SQL-kaflann verður þessi síðasta æfing þýdd yfir í `WHERE`, `AND`, `OR`,
+`NOT` og `IS NULL`.

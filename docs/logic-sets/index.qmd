@@ -1,15 +1,45 @@
 ---
 title: "Inngangur"
 description: >-
-  Boole-rökfræði, mengjafræði og vensl — undirstaða SQL JOIN og flókinna fyrirspurna. Bætt við síðar.
+  Af hverju mengi og rökfræði hjálpa okkur að hugsa um SQL áður en við byrjum að
+  skrifa fyrirspurnir.
 ---
 
-::: {.callout-note title="Kemur"}
-Þessi lota verður bætt við síðar.
-:::
+SQL verður auðveldara þegar við hugsum fyrst um niðurstöðuna sem við viljum fá,
+ekki skrefin sem tölvan á að taka.
 
-Í þessari lotu verður fjallað um rökfræði, mengi og vensl sem undirstöðu fyrir
-gagnavinnslu og gagnagrunnsfyrirspurnir.
+Í hefðbundinni forritun skrifum við oft lykkju: „farðu í gegnum hverja línu,
+prófaðu skilyrði og bættu við niðurstöðu“. Í SQL lýsum við frekar eiginleikum
+niðurstöðunnar: hvaða raðir eiga að koma út og hvaða dálkar skipta máli.
 
-Við tengjum hugtökin sérstaklega við SQL, þar sem skilyrði, síur, `JOIN`,
-`NULL`-gildi og samsettar fyrirspurnir byggja á sömu grunnatriðum.
+Þessi hluti námskeiðsins undirbýr ykkur fyrir SQL með nokkrum hugtökum úr mengjum og rökfræði.
+Markmiðið er ekki að læra mengjafræði eða strjála stærðfræði sem sjálfstætt námsefni hér.
+Markmiðið er að geta horft á litlar töflur, spáð fyrir um niðurstöður fyrirspurna og skilja af
+hverju SQL-hegðun er stundum öðruvísi en venjulegur kóði.
+
+## Rauði þráðurinn
+
+Við notum lítið Star Wars dæmi. Í stað þess að setja allt í eina stóra töflu skiptum við gögnunum í
+nokkrar litlar töflur:
+
+- `character` geymir persónur,
+- `movie` geymir kvikmyndir,
+- `appears_in` geymir hvaða persóna birtist í hvaða mynd.
+
+Þetta er ekki gagnagrunnur um Star Wars fræði. Þetta er lítill æfingavöllur fyrir spurninguna sem
+skiptir mestu í SQL:
+
+> Hvaða raðir og dálkar eiga að vera í niðurstöðunni?
+
+## Hvað kemur næst?
+
+Í þessum hluta förum við í gegnum:
+
+1. hvernig fullyrðingar geta verið sannar eða ósannar,
+2. hvernig `og`, `eða` og `ekki` virka í sanntöflum,
+3. hvernig mengi hjálpa okkur að hugsa um hópa,
+4. hvernig litlar töflur geta táknað hluti og vensl milli þeirra,
+5. hvernig þessi hugsun verður síðar að `WHERE`, `AND`, `OR` og `NOT` í SQL.
+
+Ef þið getið spáð fyrir um litla niðurstöðu með höndunum áður en þið keyrið SQL, eruð þið komin með
+rétta hugarlíkanið.

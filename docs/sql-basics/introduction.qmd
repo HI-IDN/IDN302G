@@ -166,6 +166,9 @@ skilvirkan hátt. Þau byggja á mengjum og venslum, eins og tvístæðum venslu
 
 ### Mengi og vensl
 
+Í kaflanum [Rökfræði og mengi](../logic-sets/index.qmd) æfum við fyrst að lesa töflur sem hópa,
+yrðingar og vensl áður en við skrifum SQL. Hér tengjum við sömu hugmyndir við venslagagnasöfn.
+
 Mengi eru oft notuð til þess að halda utan um hópa hluti sem hafa svipaða eiginleika, eins og allir
 nemendur í upplýsingaverkfræði eða allir nemendur Háskóla Íslands. Mengi eru óraðað safn af hlutum,
 og hlutir í mengi eru kallaðir stök. Vensl segja okkur til um samband staka milli mengja, eins og

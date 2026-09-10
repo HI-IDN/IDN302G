@@ -11,6 +11,10 @@ description: >-
 SQL leyfir dálkum að vera óskilgreindir með `NULL` gildum, það segir til um að gildi vantar. Þau
 eru ekki jafngild `0` eða tómum streng.
 
+Það er líka gagnlegt að greina `NULL` frá tómu mengi. Tóm niðurstaða þýðir að engar raðir uppfylltu
+skilyrðið. `NULL` þýðir að röð getur verið til, en ákveðið gildi í henni vantar eða er óþekkt. Þessi
+munur var undirbúinn í [Rökfræði og mengi](../logic-sets/sets-as-questions.qmd#tómt-mengi-og-null).
+
 Dæmi um hvernig við getum sett inn `NULL` gildi:
 
 ```sql

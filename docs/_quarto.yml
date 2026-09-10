@@ -103,6 +103,10 @@ book:
     - part: "Rökfræði og mengi"
       chapters:
         - logic-sets/index.qmd
+        - logic-sets/truth-tables.qmd
+        - logic-sets/sets-as-questions.qmd
+        - logic-sets/relations-as-tables.qmd
+        - logic-sets/exercises.qmd
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.qmd

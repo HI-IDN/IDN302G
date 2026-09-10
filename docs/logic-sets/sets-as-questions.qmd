@@ -1,0 +1,178 @@
+---
+title: "Mengi sem hópar"
+description: >-
+  Hvernig má hugsa um niðurstöður sem hópa: þau sem uppfylla skilyrði, þau sem
+  eru í báðum hópum og þau sem eru aðeins í öðrum.
+---
+
+Mengi er hópur af hlutum. Í SQL er gagnlegt að hugsa um niðurstöðu fyrirspurnar sem hóp raða sem
+uppfylla ákveðið skilyrði.
+
+Við getum til dæmis búið til tvo hópa úr Star Wars dæminu:
+
+- $A$ = persónur sem birtast í `A New Hope`
+- $E$ = persónur sem birtast í `The Empire Strikes Back`
+
+Út frá þessum þremur töflum:
+
+| character_id | name |
+|---:|---|
+| 1 | Luke |
+| 2 | Leia |
+| 3 | Han |
+| 4 | Darth Vader |
+| 5 | Yoda |
+| 6 | Chewbacca |
+
+| movie_id | title |
+|---:|---|
+| 10 | A New Hope |
+| 20 | The Empire Strikes Back |
+| 30 | Return of the Jedi |
+
+| character_id | movie_id |
+|---:|---:|
+| 1 | 10 |
+| 1 | 20 |
+| 1 | 30 |
+| 2 | 10 |
+| 2 | 20 |
+| 2 | 30 |
+| 3 | 10 |
+| 3 | 20 |
+| 3 | 30 |
+| 4 | 10 |
+| 4 | 20 |
+| 4 | 30 |
+| 5 | 20 |
+| 5 | 30 |
+| 6 | 10 |
+| 6 | 20 |
+| 6 | 30 |
+
+fáum við:
+
+- $A = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Chewbacca}\}$
+- $E = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Yoda}, \text{Chewbacca}\}$
+
+## Í öðrum hvorum hópnum
+
+Spurning:
+
+> Hver birtist í `A New Hope` eða `The Empire Strikes Back`?
+
+Þá viljum við allar persónur sem eru í $A$, $E$ eða báðum:
+
+$$
+A \cup E = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Yoda}, \text{Chewbacca}\}
+$$
+
+Í SQL hugsun er þetta undirbúningur fyrir `OR`: skilyrðið má vera satt á fleiri en einn hátt.
+
+## Í báðum hópum
+
+Spurning:
+
+> Hver birtist bæði í `A New Hope` og `The Empire Strikes Back`?
+
+Þá viljum við þau sem eru í sköruninni:
+
+$$
+A \cap E = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Chewbacca}\}
+$$
+
+Í SQL hugsun er þetta undirbúningur fyrir spurningar þar sem fleiri en eitt þarf að gilda.
+
+## Í einum hópi en ekki öðrum
+
+Spurning:
+
+> Hver birtist í `The Empire Strikes Back` en ekki `A New Hope`?
+
+Þá viljum við þau sem eru í $E$, en ekki í $A$:
+
+$$
+E - A = \{\text{Yoda}\}
+$$
+
+Þetta er gagnleg hugsun áður en við lærum flóknari SQL. Fyrst þurfum við að vita nákvæmlega hvaða
+hópur á að koma út.
+
+## Tóm niðurstaða
+
+Stundum er enginn í hópnum.
+
+> Hver birtist í `The Phantom Menace`?
+
+Ef engin röð í töflunni hefur þá mynd, þá er niðurstaðan tóm. Tóm niðurstaða er ekki villa. Hún
+segir bara að ekkert uppfyllti skilyrðið.
+
+## Tómt mengi og `NULL`
+
+Tóm niðurstaða minnir á tóma mengið:
+
+$$
+\emptyset
+$$
+
+Það þýðir að hópurinn hefur engin stök. Ef spurningin er „hver birtist í `The Phantom Menace`?“ og
+engin slík röð er til, þá er svarið tómt mengi: engin persóna í dæminu uppfyllir skilyrðið.
+
+`NULL` er annað. `NULL` merkir ekki „enginn í hópnum“, heldur að gildi vantar einhvers staðar í
+gögnunum. Til dæmis gæti tafla haft persónu sem er til, en heimaplánetu hennar vantar. Þá er persónan
+enn röð í töflunni, en eitt gildi í röðinni er óþekkt.
+
+Þetta verður mikilvægt í SQL:
+
+- tóm niðurstaða: engar raðir komu til baka,
+- `NULL`: röð er til, en eitthvað gildi í henni vantar.
+
+Í SQL-kaflanum lærum við þess vegna að spyrja sérstaklega um vöntun með `IS NULL`.
+
+Skoðum tvö lík dæmi.
+
+**Dæmi 1: tómt mengi**
+
+| character_id | movie_id |
+|---:|---:|
+| 1 | 10 |
+| 1 | 20 |
+| 2 | 10 |
+
+Spurning:
+
+> Hvaða persónur birtast í mynd 99?
+
+Engin röð hefur `movie_id = 99`, svo svarið er tómt mengi:
+
+$$
+\emptyset
+$$
+
+Hér vantar ekki gildi í röð. Það er bara engin röð sem passar við spurninguna.
+
+**Dæmi 2: ekki tómt mengi, heldur vantað gildi**
+
+| character_id | movie_id |
+|---:|---:|
+| 1 | 10 |
+| 2 |  |
+| 3 | 20 |
+
+Spurning:
+
+> Hver er skráð/ur með óþekkta mynd?
+
+Hér er röð til: `character_id = 2`. Það sem vantar er gildið í `movie_id`. Svarið er því ekki tómt
+mengi. Svarið er hópur með einu staki:
+
+$$
+\{\text{persóna 2}\}
+$$
+
+Munurinn er þessi:
+
+| Aðstæður | Hvað þýðir það? | Hugmynd |
+|---|---|---|
+| Engin röð passar | ekkert stak er í svarinu | tómt mengi |
+| Röð passar, en gildi vantar | stakið er til, en ein upplýsingar vantar | `NULL` |
