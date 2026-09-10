@@ -35,26 +35,12 @@ oft mjög keimlíkar og auðvelt að aðlaga sig á milli kerfa. Fyrir frekari u
 hvernig `SELECT` skipanir eru búnar til, sem verða útskýrð betur í
 [grunnatriði í SQL](basic_sql_queries.qmd).
 
-Hér eru dæmi um grunnskipanir í SQL fyrir mismunandi gagnagrunnskerfi:
+Hér eru sömu grunnfyrirspurnir í nokkrum algengum SQL-kerfum. Takið eftir að fyrstu tvær
+fyrirspurnirnar eru eins í öllum dæmunum. Munurinn sést helst þegar við viljum takmarka fjölda raða.
 
-#### PostgreSQL
+::: {.panel-tabset}
 
-```sql
--- Select all rows from a table
-SELECT *
-FROM tbl;
-
--- Select specific columns and sort by a column
-SELECT col1, col2
-FROM tbl
-ORDER BY col1 DESC;
-
--- Select the first 10 rows
-SELECT *
-FROM tbl LIMIT 10;
-```
-
-#### MySQL
+## PostgreSQL
 
 ```sql
 -- Select all rows from a table
@@ -71,7 +57,7 @@ SELECT *
 FROM tbl LIMIT 10;
 ```
 
-#### SQLite
+## MySQL
 
 ```sql
 -- Select all rows from a table
@@ -88,7 +74,24 @@ SELECT *
 FROM tbl LIMIT 10;
 ```
 
-#### Microsoft SQL Server
+## SQLite
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows
+SELECT *
+FROM tbl LIMIT 10;
+```
+
+## Microsoft SQL Server
 
 ```sql
 -- Select all rows from a table
@@ -104,6 +107,26 @@ ORDER BY col1 DESC;
 SELECT TOP 10 *
 FROM tbl;
 ```
+
+## Oracle
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows
+SELECT *
+FROM tbl
+FETCH FIRST 10 ROWS ONLY;
+```
+
+:::
 
 ## Gagnasafnskerfi
 
