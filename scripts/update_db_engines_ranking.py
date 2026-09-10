@@ -213,6 +213,7 @@ def build_qmd(systems: str, month: str, year: str, rows: list[dict[str, str]]) -
     lines = [
         f"::: {{.callout-note title=\"{title}\"}}",
         f"Taflan er afrit af efstu 10 sætunum í [DB-Engines Ranking]({URL}). Hún er geymd sem stöðug tafla í námsefninu og má endurnýja mánaðarlega með `scripts/update_db_engines_ranking.py`.",
+        ":::",
         "",
         f"*{summary}*",
         "",
@@ -223,7 +224,6 @@ def build_qmd(systems: str, month: str, year: str, rows: list[dict[str, str]]) -
         lines.append(
             "| {rank} | {prev_month} | {prev_year} | {dbms} | {model} | {score} | {delta_month} | {delta_year} |".format(**row)
         )
-    lines.append(":::")
     lines.append("")
     return "\n".join(lines)
 
