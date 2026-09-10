@@ -36,8 +36,8 @@ Taflan `member_of` lýsir sambandi milli persóna og liða. Hver röð er par af
 | 8 | 600 |
 
 Röðin `(1, 100)` segir að persóna 1 tengist liði 100 með venslinu „er í“. Til að lesa hana flettum
-við upp `character_id = 1` í `character` og `faction_id = 100` í `faction`. Þá fáum við: Luke er í
-Rebel Alliance.
+við upp `character_id = 1` í `character` og `faction_id = 100` í `faction`. Þá fáum við: Logi er í
+Uppreisnarmönnum.
 
 Þetta má lesa sem:
 
@@ -76,7 +76,7 @@ Taflan `appears_in` lýsir sambandi milli persóna og kvikmynda:
 | 8 | 30 |
 
 Röðin `(7, 40)` segir að persóna 7 tengist mynd 40 með venslinu „birtist í“. Þegar við flettum upp
-auðkennunum sjáum við: Finn birtist í `The Force Awakens`.
+auðkennunum sjáum við: Finn birtist í `Mátturinn vaknar`.
 
 Þetta má lesa sem:
 
@@ -103,13 +103,13 @@ flowchart LR
 ```
 
 Ein persóna getur tengst mörgum röðum í `member_of`, því sama persóna getur verið í fleiri en einu
-liði. Finn getur til dæmis tengst bæði First Order og Resistance. Boba Fett tengist hins vegar
-Bounty Hunters og er hvorki skráður í Rebel Alliance né Galactic Empire. Ein persóna getur líka
+liði. Finn getur til dæmis tengst bæði Frumreglunni og Andspyrnunni. Boba Fett tengist hins vegar
+hausaveiðurum og er hvorki skráður í Uppreisnarmenn né í Keisaradæmið. Ein persóna getur líka
 tengst mörgum röðum í `appears_in`, því sama persóna getur birst í mörgum myndum.
 
 ## Af hverju margar litlar töflur?
 
-Ef við skrifum nafnið `Rebel Alliance` í hverja einustu röð þar sem liðið kemur fyrir, þurfum við að
+Ef við skrifum nafnið `Uppreisnarmenn` í hverja einustu röð þar sem liðið kemur fyrir, þurfum við að
 laga margar línur ef nafnið er rangt stafsett. Ef liðið er geymt einu sinni í `faction` þurfum við
 bara að laga eina línu.
 
@@ -150,3 +150,15 @@ getum við hugsað:
 
 Seinna, þegar við lærum `JOIN`, notum við sömu hugsun til að tengja töflur saman. Hér þurfum við
 bara að sjá að tafla getur táknað samband.
+
+::: {.callout-note title="Lesið töflurnar sem staðreyndir"}
+Svarið með orðum áður en þið hugsið um SQL:
+
+1. Hvaða vensl táknar `member_of`?
+2. Hvaða vensl táknar `appears_in`?
+3. Af hverju er betra að geyma `Uppreisnarmenn` einu sinni í `faction` frekar en að skrifa nafnið í
+   hverja röð í `member_of`?
+4. Af hverju getur sama persóna haft margar raðir í `member_of`?
+5. Hvernig mynduð þið orða skilyrðið „persónur sem eru hvorki í Uppreisnarmönnum né Keisaradæminu“
+   án þess að skrifa SQL?
+:::

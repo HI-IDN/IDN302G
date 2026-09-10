@@ -10,40 +10,40 @@ hluta sem uppfylla ákveðið skilyrði.
 
 Við notum töflurnar úr innganginum og byrjum á einfaldri spurningu:
 
-> Hverjir eru Rebels?
+> Hverjir eru Uppreisnarmenn?
 
-Þá erum við að búa til hóp persóna sem hafa tengingu við `Rebel Alliance` í `member_of`.
+Þá erum við að búa til hóp persóna sem hafa tengingu við `Uppreisnarmenn` í `member_of`.
 
 Látum:
 
-- $R$ vera hóp Rebels,
-- $J$ vera hóp Jedi,
-- $G$ vera hóp þeirra sem eru í Galactic Empire,
-- $S$ vera hóp þeirra sem eru í Resistance,
-- $F$ vera hóp þeirra sem eru í First Order,
-- $B$ vera hóp Bounty Hunters,
+- $R$ vera hóp uppreisnarmanna,
+- $J$ vera hóp Jeda,
+- $G$ vera hóp þeirra sem eru í Keisaradæminu,
+- $S$ vera hóp þeirra sem eru í Andspyrnunni,
+- $F$ vera hóp þeirra sem eru í Frumreglunni,
+- $B$ vera hóp hausaveiðara,
 - $C$ vera hóp allra persóna í dæminu.
 
 Út frá töflunum í innganginum fáum við:
 
-- $R = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Chewbacca}\}$
-- $J = \{\text{Luke}, \text{Darth Vader}, \text{Yoda}\}$
-- $G = \{\text{Darth Vader}\}$
+- $R = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Loðinn}\}$
+- $J = \{\text{Logi}, \text{Svarthöfði}, \text{Jóda}\}$
+- $G = \{\text{Svarthöfði}\}$
 - $S = \{\text{Finn}\}$
 - $F = \{\text{Finn}\}$
 - $B = \{\text{Boba Fett}\}$
-- $C = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Darth Vader}, \text{Yoda}, \text{Chewbacca}, \text{Finn}, \text{Boba Fett}\}$
+- $C = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Svarthöfði}, \text{Jóda}, \text{Loðinn}, \text{Finn}, \text{Boba Fett}\}$
 
 ## Í öðrum hvorum hópnum
 
 Spurning:
 
-> Hverjir eru Rebels eða Jedi?
+> Hverjir eru uppreisnarmenn eða jedar?
 
 Þá viljum við allar persónur sem eru í $R$, $J$ eða báðum:
 
 $$
-R \cup J = \{\text{Luke}, \text{Leia}, \text{Han}, \text{Chewbacca}, \text{Darth Vader}, \text{Yoda}\}
+R \cup J = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Loðinn}, \text{Svarthöfði}, \text{Jóda}\}
 $$
 
 Í SQL hugsun er þetta undirbúningur fyrir `OR`: skilyrðið má vera satt á fleiri en einn hátt.
@@ -52,17 +52,17 @@ $$
 
 Spurning:
 
-> Hverjir eru bæði Rebels og Jedi?
+> Hverjir eru bæði uppreisnarmenn og jedar?
 
 Þá viljum við þau sem eru í sköruninni:
 
 $$
-R \cap J = \{\text{Luke}\}
+R \cap J = \{\text{Logi}\}
 $$
 
 Sama hugsun virkar fyrir spurninguna:
 
-> Hver er bæði í Resistance og First Order?
+> Hver er bæði í Andspyrnunni og Frumreglunni?
 
 $$
 S \cap F = \{\text{Finn}\}
@@ -75,12 +75,12 @@ leyfa okkur að spyrja skýrt: hvaða persónur eru í báðum hópum?
 
 Spurning:
 
-> Hverjir eru Jedi en ekki Rebels?
+> Hverjir eru jedar en ekki uppreisnarmenn?
 
 Þá viljum við þau sem eru í $J$, en ekki í $R$:
 
 $$
-J - R = \{\text{Darth Vader}, \text{Yoda}\}
+J - R = \{\text{Svarthöfði}, \text{Jóda}\}
 $$
 
 Þetta er gagnleg hugsun áður en við lærum flóknari SQL. Fyrst þurfum við að vita nákvæmlega hvaða
@@ -90,29 +90,45 @@ hópur á að koma út.
 
 Spurning:
 
-> Hverjir eru hvorki Rebels né í Galactic Empire?
+> Hverjir eru hvorki Uppreisnarmenn né í Keisaradæminu?
 
 Þá byrjum við á öllum persónum og tökum burt þá sem eru í $R$ eða $G$:
 
 $$
-C - (R \cup G) = \{\text{Yoda}, \text{Finn}, \text{Boba Fett}\}
+C - (R \cup G) = \{\text{Jóda}, \text{Finn}, \text{Boba Fett}\}
 $$
 
-Ef við viljum sérstaklega spyrja um bounty hunters sem eru hvorki Rebels né Empire fáum við:
+Ef við viljum sérstaklega spyrja um hausaveiðara sem eru hvorki uppreisnarmenn né í Keisaradæminu
+fáum við:
 
 $$
 B - (R \cup G) = \{\text{Boba Fett}\}
 $$
 
-Þetta er góð áminning um að `ekki` þýðir ekki sjálfkrafa „hitt liðið“. Sá sem er ekki Rebel þarf
-ekki að vera í Galactic Empire. Hann gæti verið Jedi, Resistance, First Order, Bounty Hunter eða
-eitthvað annað.
+Þetta er góð áminning um að `ekki` þýðir ekki sjálfkrafa „hitt liðið“. Sá sem er ekki
+uppreisnarmaður þarf ekki að vera í Keisaradæminu. Hann gæti verið Jedi, í Andspyrnunni,
+í Frumreglunni, hausaveiðari eða eitthvað annað.
+
+::: {.callout-note title="Staldrið við"}
+Notið mengin hér að ofan og finnið:
+
+1. $R \cup J$
+2. $R \cap J$
+3. $J - R$
+4. $R \cap G$
+5. $S \cap F$
+6. $C - (R \cup G)$
+7. $B - (R \cup G)$
+
+Skrifið svo eina setningu með orðum fyrir hvert svar. Til dæmis: „$S \cap F$ þýðir persónur sem eru
+bæði í Andspyrnunni og Frumreglunni.“
+:::
 
 ## Tóm niðurstaða
 
 Stundum er enginn í hópnum.
 
-> Hverjir eru bæði Rebels og Galactic Empire?
+> Hverjir eru bæði Uppreisnarmenn og Keisaradæmið?
 
 Í þessu gagnasafni er engin persóna skráð í báða hópa:
 
@@ -130,8 +146,8 @@ $$
 \emptyset
 $$
 
-Það þýðir að hópurinn hefur engin stök. Ef spurningin er „hverjir eru bæði Rebels og Galactic
-Empire?“ og engin persóna uppfyllir bæði skilyrðin, þá er svarið tómt mengi.
+Það þýðir að hópurinn hefur engin stök. Ef spurningin er „hverjir eru bæði uppreisnarmenn og í
+Keisaradæminu?“ og engin persóna uppfyllir bæði skilyrðin, þá er svarið tómt mengi.
 
 `NULL` er annað. `NULL` merkir ekki „enginn í hópnum“, heldur að gildi vantar einhvers staðar í
 gögnunum. Til dæmis gæti tafla haft persónu sem er til, en heimaplánetu hennar vantar. Þá er persónan
@@ -156,7 +172,7 @@ Skoðum tvö lík dæmi.
 
 Spurning:
 
-> Hvaða persónur eru bæði í Rebel Alliance og Galactic Empire?
+> Hvaða persónur eru bæði í Uppreisnarmönnum og Keisaradæminu?
 
 Engin persóna hefur bæði tengslin, svo svarið er tómt mengi:
 
@@ -191,3 +207,8 @@ Munurinn er þessi:
 |---|---|---|
 | Engin röð passar | ekkert stak er í svarinu | tómt mengi |
 | Röð passar, en gildi vantar | stakið er til, en ein upplýsingar vantar | `NULL` |
+
+::: {.callout-note title="Hugsið aðeins"}
+Hvaða spurning úr Stjörnustríðsdæminu myndi skila tómu mengi? Hver er munurinn á því að persóna hafi
+enga röð í `member_of` og því að einhver dálkur í röð væri `NULL`?
+:::

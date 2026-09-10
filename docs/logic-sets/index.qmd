@@ -19,55 +19,84 @@ hverju SQL-hegðun er stundum öðruvísi en venjulegur kóði.
 
 ## Rauði þráðurinn
 
-Við notum lítið Star Wars dæmi. Þetta er ekki gagnagrunnur um Star Wars fræði. Þetta er
+Við notum lítið Stjörnustríðsdæmi. Þetta er ekki gagnagrunnur um Stjörnustríðsfræði. Þetta er
 æfingavöllur fyrir spurninguna sem skiptir mestu í SQL:
 
 > Hvaða raðir og dálkar eiga að vera í niðurstöðunni?
 
+Nöfnin í dæminu sækja innblástur í íslensku þýðinguna. Samkvæmt
+[íslensku Wikipediu um Stjörnustríð](https://is.wikipedia.org/wiki/Stj%C3%B6rnustr%C3%AD%C3%B0#%C3%8Dslenska_%C3%BE%C3%BD%C3%B0ingin)
+gerði Hersteinn Pálsson fyrstu íslensku þýðinguna á sögunni í bókinni *Stjörnustríð* árið 1978.
+Þar voru mörg sérheiti íslenskuð; nöfn eins og Svarthöfði og Logi Geimgengill hafa lifað áfram,
+meðan önnur, eins og Hans Óli, eru meira dásamlegar þýðingaperlur úr sögunni.
+
 Í stað þess að setja allt í eina stóra töflu skiptum við gögnunum í nokkrar litlar töflur. Þá getum
 við spurt skýrar spurningar eins og:
 
-- hverjir eru Rebels?
-- hverjir eru Jedi?
-- hverjir birtast í `A New Hope`?
-- hverjir eru bæði í Resistance og First Order?
-- hverjir eru hvorki í Rebel Alliance né Galactic Empire?
+- hverjir eru uppreisnarmenn?
+- hverjir eru jedar?
+- hverjir birtast í `Ný von`?
+- hverjir eru bæði í Andspyrnunni og Frumreglunni?
+- hverjir eru hvorki í Uppreisnarmönnum né Keisaradæminu?
 
-Síðasta spurningin er sérstaklega góð fyrir mengjahugsun: hún snýst um skörun milli tveggja hópa.
-Finn er skemmtilegt dæmi, því hann hefur tengingu við First Order en endar með Resistance. Það er
-akkúrat svona smá flækja sem fær okkur til að hugsa betur um hvað spurningin þýðir.
-
-Við notum líka Boba Fett til að sjá að gögn þurfa ekki alltaf að vera tvískipt. Ef spurningin er
-„hverjir eru hvorki Rebels né Empire?“ þá er Boba gott dæmi um persónu sem er til í gögnunum en
-fellur utan beggja hópa.
+Finn er skemmtilegt dæmi fyrir skörun milli tveggja hópa, því hann hefur tengingu við Frumregluna en
+endar með Andspyrnunni. Boba Fett er svo gott dæmi um „hvorki né“: hann er til í gögnunum, en er
+hvorki skráður í Uppreisnarmenn né í Keisaradæmið.
 
 ## Litli gagnheimurinn okkar
 
-Við geymum persónur á einum stað:
+Byrjum á þremur litlum grunntöflum. Þær geyma hluti sem við viljum geta vísað í aftur og aftur:
+persónur, lið og kvikmyndir.
 
-| character_id | name |
+:::: {.columns}
+
+::: {.column width="33%"}
+**`character`**
+
+| id | nafn |
 |---:|---|
-| 1 | Luke |
-| 2 | Leia |
-| 3 | Han |
-| 4 | Darth Vader |
-| 5 | Yoda |
-| 6 | Chewbacca |
+| 1 | Logi |
+| 2 | Lilja |
+| 3 | Hans Óli |
+| 4 | Svarthöfði |
+| 5 | Jóda |
+| 6 | Loðinn |
 | 7 | Finn |
 | 8 | Boba Fett |
+:::
 
-Við geymum hópa eða lið á einum stað:
+::: {.column width="33%"}
+**`faction`**
 
-| faction_id | faction |
+| id | lið |
 |---:|---|
-| 100 | Rebel Alliance |
-| 200 | Galactic Empire |
-| 300 | Jedi Order |
-| 400 | Resistance |
-| 500 | First Order |
-| 600 | Bounty Hunters |
+| 100 | Uppreisnarmenn |
+| 200 | Keisaradæmið |
+| 300 | Jedar |
+| 400 | Andspyrnan |
+| 500 | Frumreglan |
+| 600 | Hausaveiðarar |
+:::
 
-Svo tengjum við persónur við lið í sérstakri töflu:
+::: {.column width="33%"}
+**`movie`**
+
+| id | mynd |
+|---:|---|
+| 10 | Ný von |
+| 20 | Gagnárás keisaradæmisins |
+| 30 | Jedinn snýr aftur |
+| 40 | Mátturinn vaknar |
+:::
+
+::::
+
+Svo bætum við við tveimur litlum venslatöflum. Þær geyma tengingar milli hluta.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**`member_of`**
 
 | character_id | faction_id |
 |---:|---:|
@@ -82,17 +111,10 @@ Svo tengjum við persónur við lið í sérstakri töflu:
 | 7 | 400 |
 | 7 | 500 |
 | 8 | 600 |
+:::
 
-Við geymum kvikmyndir á einum stað:
-
-| movie_id | title |
-|---:|---|
-| 10 | A New Hope |
-| 20 | The Empire Strikes Back |
-| 30 | Return of the Jedi |
-| 40 | The Force Awakens |
-
-Og við tengjum persónur við myndir í annarri töflu:
+::: {.column width="50%"}
+**`appears_in`**
 
 | character_id | movie_id |
 |---:|---:|
@@ -116,14 +138,17 @@ Og við tengjum persónur við myndir í annarri töflu:
 | 7 | 40 |
 | 8 | 20 |
 | 8 | 30 |
+:::
+
+::::
 
 Töflurnar segja okkur ekki söguna sjálfar. Við þurfum að lesa þær sem litlar staðreyndir:
 
-- röðin `(1, 100)` í `member_of` segir að Luke sé í Rebel Alliance,
-- röðin `(7, 500)` í `member_of` segir að Finn hafi tengingu við First Order,
-- röðin `(7, 400)` í `member_of` segir að Finn sé líka í Resistance,
-- röðin `(8, 600)` í `member_of` segir að Boba Fett sé Bounty Hunter,
-- röðin `(1, 10)` í `appears_in` segir að Luke birtist í `A New Hope`.
+- röðin `(1, 100)` í `member_of` segir að Logi sé í Uppreisnarmönnum,
+- röðin `(7, 500)` í `member_of` segir að Finn hafi tengingu við Frumregluna,
+- röðin `(7, 400)` í `member_of` segir að Finn sé líka í Andspyrnunni,
+- röðin `(8, 600)` í `member_of` segir að Boba Fett sé hausaveiðari,
+- röðin `(1, 10)` í `appears_in` segir að Logi birtist í `Ný von`.
 
 Á næstu síðum notum við þessar töflur til að tala um yrðingar, sanntöflur, mengi, vensl, tómar
 niðurstöður og `NULL`.
