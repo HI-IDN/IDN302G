@@ -30,7 +30,7 @@ Nöfnin í dæminu sækja innblástur í íslensku þýðinguna.[^stjornustrid-t
 við spurt skýrar spurningar eins og:
 
 - hverjir eru uppreisnarmenn?
-- hverjir eru jedar?
+- hverjir eru Væringjar (e. Jedi)?
 - hverjir birtast í `Ný von`?
 - hverjir eru bæði í Andspyrnunni og Frumreglunni?
 - hverjir eru hvorki í Uppreisnarmönnum né Keisaradæminu?
@@ -68,7 +68,7 @@ persónur, lið og kvikmyndir.
 |---:|---|
 | 100 | Uppreisnarmenn |
 | 200 | Keisaradæmið |
-| 300 | Jedar |
+| 300 | Væringjar |
 | 400 | Andspyrnan |
 | 500 | Frumreglan |
 | 600 | Hausaveiðarar |

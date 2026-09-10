@@ -17,7 +17,7 @@ Við notum töflurnar úr innganginum og byrjum á einfaldri spurningu:
 Látum:
 
 - $R$ vera hóp uppreisnarmanna,
-- $J$ vera hóp Jeda,
+- $J$ vera hóp Væringja,
 - $G$ vera hóp þeirra sem eru í Keisaradæminu,
 - $S$ vera hóp þeirra sem eru í Andspyrnunni,
 - $F$ vera hóp þeirra sem eru í Frumreglunni,
@@ -38,7 +38,7 @@ Látum:
 
 Spurning:
 
-> Hverjir eru uppreisnarmenn eða jedar?
+> Hverjir eru uppreisnarmenn eða Væringjar?
 
 Þá viljum við allar persónur sem eru í $R$, $J$ eða báðum:
 
@@ -52,7 +52,7 @@ $$
 
 Spurning:
 
-> Hverjir eru bæði uppreisnarmenn og jedar?
+> Hverjir eru bæði uppreisnarmenn og Væringjar?
 
 Þá viljum við þau sem eru í sköruninni:
 
@@ -75,7 +75,7 @@ leyfa okkur að spyrja skýrt: hvaða persónur eru í báðum hópum?
 
 Spurning:
 
-> Hverjir eru jedar en ekki uppreisnarmenn?
+> Hverjir eru Væringjar en ekki uppreisnarmenn?
 
 Þá viljum við þau sem eru í $J$, en ekki í $R$:
 
@@ -106,7 +106,7 @@ B - (R \cup G) = \{\text{Boba Fett}\}
 $$
 
 Þetta er góð áminning um að `ekki` þýðir ekki sjálfkrafa „hitt liðið“. Sá sem er ekki
-uppreisnarmaður þarf ekki að vera í Keisaradæminu. Hann gæti verið Jedi, í Andspyrnunni,
+uppreisnarmaður þarf ekki að vera í Keisaradæminu. Hann gæti verið Væringur, í Andspyrnunni,
 í Frumreglunni, hausaveiðari eða eitthvað annað.
 
 ::: {.callout-note title="Staldrið við"}
