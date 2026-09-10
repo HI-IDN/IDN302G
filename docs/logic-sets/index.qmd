@@ -35,7 +35,7 @@ við spurt skýrar spurningar eins og:
 - hverjir eru bæði í Andspyrnunni og Frumreglunni?
 - hverjir eru hvorki í Uppreisnarmönnum né Keisaradæminu?
 
-Finn er skemmtilegt dæmi fyrir skörun milli tveggja hópa, því hann hefur tengingu við Frumregluna en
+Finnur er skemmtilegt dæmi fyrir skörun milli tveggja hópa, því hann hefur tengingu við Frumregluna en
 endar með Andspyrnunni. Boba Fett er svo gott dæmi um „hvorki né“: hann er til í gögnunum, en er
 hvorki skráður í Uppreisnarmenn né í Keisaradæmið.
 
@@ -57,7 +57,7 @@ persónur, lið og kvikmyndir.
 | 4 | Svarthöfði |
 | 5 | Jóda |
 | 6 | Loðinn |
-| 7 | Finn |
+| 7 | Finnur |
 | 8 | Boba Fett |
 :::
 
@@ -141,8 +141,8 @@ Svo bætum við við tveimur litlum venslatöflum. Þær geyma tengingar milli h
 Töflurnar segja okkur ekki söguna sjálfar. Við þurfum að lesa þær sem litlar staðreyndir:
 
 - röðin `(1, 100)` í `member_of` segir að Logi sé í Uppreisnarmönnum,
-- röðin `(7, 500)` í `member_of` segir að Finn hafi tengingu við Frumregluna,
-- röðin `(7, 400)` í `member_of` segir að Finn sé líka í Andspyrnunni,
+- röðin `(7, 500)` í `member_of` segir að Finnur hafi tengingu við Frumregluna,
+- röðin `(7, 400)` í `member_of` segir að Finnur sé líka í Andspyrnunni,
 - röðin `(8, 600)` í `member_of` segir að Boba Fett sé hausaveiðari,
 - röðin `(1, 10)` í `appears_in` segir að Logi birtist í `Ný von`.
 

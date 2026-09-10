@@ -76,7 +76,7 @@ Taflan `appears_in` lýsir sambandi milli persóna og kvikmynda:
 | 8 | 30 |
 
 Röðin `(7, 40)` segir að persóna 7 tengist mynd 40 með venslinu „birtist í“. Þegar við flettum upp
-auðkennunum sjáum við: Finn birtist í `Mátturinn vaknar`.
+auðkennunum sjáum við: Finnur birtist í `Mátturinn vaknar`.
 
 Þetta má lesa sem:
 
@@ -103,7 +103,7 @@ flowchart LR
 ```
 
 Ein persóna getur tengst mörgum röðum í `member_of`, því sama persóna getur verið í fleiri en einu
-liði. Finn getur til dæmis tengst bæði Frumreglunni og Andspyrnunni. Boba Fett tengist hins vegar
+liði. Finnur getur til dæmis tengst bæði Frumreglunni og Andspyrnunni. Boba Fett tengist hins vegar
 hausaveiðurum og er hvorki skráður í Uppreisnarmenn né í Keisaradæmið. Ein persóna getur líka
 tengst mörgum röðum í `appears_in`, því sama persóna getur birst í mörgum myndum.
 

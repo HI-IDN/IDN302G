@@ -29,10 +29,10 @@ Látum:
 - $R = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Loðinn}\}$
 - $J = \{\text{Logi}, \text{Svarthöfði}, \text{Jóda}\}$
 - $G = \{\text{Svarthöfði}\}$
-- $S = \{\text{Finn}\}$
-- $F = \{\text{Finn}\}$
+- $S = \{\text{Finnur}\}$
+- $F = \{\text{Finnur}\}$
 - $B = \{\text{Boba Fett}\}$
-- $C = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Svarthöfði}, \text{Jóda}, \text{Loðinn}, \text{Finn}, \text{Boba Fett}\}$
+- $C = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Svarthöfði}, \text{Jóda}, \text{Loðinn}, \text{Finnur}, \text{Boba Fett}\}$
 
 ## Í öðrum hvorum hópnum
 
@@ -65,7 +65,7 @@ Sama hugsun virkar fyrir spurninguna:
 > Hver er bæði í Andspyrnunni og Frumreglunni?
 
 $$
-S \cap F = \{\text{Finn}\}
+S \cap F = \{\text{Finnur}\}
 $$
 
 Þetta er „góður gaur með tengingu við vonda liðið“ dæmið. Gögnin segja ekki alla söguna, en þau
@@ -95,7 +95,7 @@ Spurning:
 Þá byrjum við á öllum persónum og tökum burt þá sem eru í $R$ eða $G$:
 
 $$
-C - (R \cup G) = \{\text{Jóda}, \text{Finn}, \text{Boba Fett}\}
+C - (R \cup G) = \{\text{Jóda}, \text{Finnur}, \text{Boba Fett}\}
 $$
 
 Ef við viljum sérstaklega spyrja um hausaveiðara sem eru hvorki uppreisnarmenn né í Keisaradæminu

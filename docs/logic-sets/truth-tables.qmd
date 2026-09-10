@@ -109,7 +109,7 @@ Notið töflurnar úr innganginum og ákveðið hvort fullyrðingarnar séu sann
 2. Jóda er í Uppreisnarmönnum.
 3. Logi er bæði uppreisnarmaður og Væringur.
 4. Svarthöfði er Væringur eða í Keisaradæminu.
-5. Finn er bæði í Andspyrnunni og Frumreglunni.
+5. Finnur er bæði í Andspyrnunni og Frumreglunni.
 6. Lilja er í Frumreglunni.
 7. Boba Fett er hvorki í Uppreisnarmönnum né Keisaradæminu.
 :::
@@ -120,7 +120,7 @@ Spurningin:
 
 > Hver er bæði í Andspyrnunni og Frumreglunni?
 
-er líka `og`-spurning. Hún leitar að skörun milli tveggja hópa. Í litla gagnasafninu okkar er Finn
+er líka `og`-spurning. Hún leitar að skörun milli tveggja hópa. Í litla gagnasafninu okkar er Finnur
 slíkt dæmi: hann hefur tengingu við Frumregluna og Andspyrnuna.
 
 ::: {.callout-tip title="Lesið fyrst, skrifið svo"}
