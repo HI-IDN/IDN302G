@@ -19,18 +19,36 @@ fyrirspurnarmál sem er notað til að hafa samskipti við venslagagnasöfn.
 
 ### Ólík SQL fyrirspurnarmál
 
-Samkvæmt [DB-Engines Ranking](https://db-engines.com/en/ranking) eru vinsælustu gagnagrunnskerfin:
+Samkvæmt [DB-Engines Ranking](https://db-engines.com/en/ranking) voru vinsælustu gagnagrunnskerfin í
+september 2026:
 
 1. Oracle
 2. MySQL
 3. Microsoft SQL Server
 4. PostgreSQL
 5. MongoDB
-6. Redis
-7. Snowflake
-8. Elasticsearch
+6. Snowflake
+7. Databricks
+8. Redis
 9. IBM Db2
 10. SQLite
+
+Hægt er að skoða lifandi röðunina beint hjá DB-Engines:
+
+```{=html}
+<iframe
+  src="https://db-engines.com/en/ranking"
+  title="DB-Engines Ranking"
+  width="100%"
+  height="520"
+  style="border: 1px solid #ddd; border-radius: 0.5rem;"
+  loading="lazy">
+</iframe>
+<p>
+  Ef taflan birtist ekki hér má opna hana beint á
+  <a href="https://db-engines.com/en/ranking">DB-Engines Ranking</a>.
+</p>
+```
 
 Við munum kynnast _SQLite_ og _PostgreSQL_ í þessu námskeiði.
 
