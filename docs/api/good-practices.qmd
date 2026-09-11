@@ -12,6 +12,8 @@ execute:
 Margar þjónustur krefjast **aðgangslykils** (e. *API key* eða *token*). Lykill er lykilorð:
 sá sem hefur hann getur gert allt sem þú mátt gera, í þínu nafni.
 
+![Þegar kennarinn talar um apaköll en á við API calls.](../img/meme/api-calls.jpg){fig-alt="Meme um rugling milli orðsins apaköll og API calls." width="70%"}
+
 ::: {.callout-important}
 ## Þetta eru algengustu alvarlegu mistökin
 
