@@ -73,6 +73,7 @@ að fyrsta PxWeb-fyrirspurnin skilar villu.
 
 ```{r}
 #| label: island-r-1
+#| eval: false
 #| message: false
 #| warning: false
 library(httr2)
@@ -307,6 +308,7 @@ Fylki af hlutum með sömu lykla er einmitt formið sem verður að töflu án f
 
 ```{r}
 #| label: island-r-5
+#| eval: false
 #| message: false
 #| warning: false
 library(httr2); library(dplyr)
