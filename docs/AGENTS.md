@@ -96,8 +96,8 @@ them — see *Frozen chapters* below.
 - **Any package a runnable cell loads must be installed by the workflow.** The `Install R
   packages` step lists them explicitly with a comment saying which chapter needs each one. Add
   a `library()` call to an executed chunk without updating that step and the build fails.
-  Network calls belong in `#| eval: false` chunks so CI never depends on a third-party service
-  being up.
+  Network cells should either run in CI with timeouts/retries or be deliberately frozen/fixture-backed
+  when the service is rate-limited, token-gated, or otherwise unsuitable for build-server execution.
 - **The local cache can serve stale output.** If a chapter shows results that do not match its
   code — wrong values, or non-ASCII printed as `<U+00E1>` — delete
   `docs/.quarto/_freeze/<chapter>/` and render again. Quarto will not re-execute a chunk whose
@@ -131,7 +131,7 @@ committed; Actions reads them instead of sending the request.
 
 | Chapter | Why it cannot run in CI |
 |---|---|
-| `api/good-practices.qmd` | TMDB needs a personal token, which must not reach CI |
+| `api/open-apis.qmd` | Hagstofan can rate-limit repeated build-server requests, so the teaching output is frozen |
 | `regex/mbl.qmd` | mbl.is sits behind Cloudflare and answers `403` to datacenter traffic |
 
 Freezing is the documented exception to *cells must run*, and it is meant to stay rare. Two out
@@ -146,7 +146,7 @@ After editing one, re-render **just that file** — a single-file render always 
 `freeze: true` — and commit the result:
 
 ```bash
-cd docs && quarto render api/good-practices.qmd   # eða regex/mbl.qmd
+cd docs && quarto render api/open-apis.qmd   # eða regex/mbl.qmd
 git add docs/_freeze
 ```
 

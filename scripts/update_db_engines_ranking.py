@@ -15,7 +15,6 @@ from urllib.request import Request, urlopen
 import argparse
 import re
 import ssl
-import sys
 
 URL = "https://db-engines.com/en/ranking"
 OUT = Path("docs/sql-basics/includes/db-engines-ranking.qmd")
@@ -153,11 +152,6 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Disable TLS certificate verification. Use only when local Python certificates are misconfigured.",
     )
-    parser.add_argument(
-        "--strict-tls",
-        action="store_true",
-        help="Fail instead of falling back to --insecure when local TLS certificate verification fails.",
-    )
     args = parser.parse_args(argv)
 
     req = Request(URL, headers={"User-Agent": "IDN302G course material updater"})
@@ -167,23 +161,13 @@ def main(argv: list[str] | None = None) -> int:
             html = response.read().decode("utf-8", errors="replace")
     except URLError as exc:
         reason = getattr(exc, "reason", None)
-        if isinstance(reason, ssl.SSLCertVerificationError) and not args.insecure and not args.strict_tls:
-            print(
-                "TLS certificate verification failed; retrying with --insecure. "
-                "Use --strict-tls to make this a hard failure.",
-                file=sys.stderr,
-            )
-            with urlopen(req, timeout=30, context=ssl._create_unverified_context()) as response:
-                html = response.read().decode("utf-8", errors="replace")
-        elif isinstance(reason, ssl.SSLCertVerificationError):
-            print(
+        if isinstance(reason, ssl.SSLCertVerificationError):
+            raise RuntimeError(
                 "TLS certificate verification failed. Install/update local Python certificates "
-                "or rerun without --strict-tls to allow the documented fallback.",
-                file=sys.stderr,
-            )
-            raise
-        else:
-            raise
+                "or rerun with --insecure only if you explicitly accept fetching without "
+                "certificate verification."
+            ) from exc
+        raise
     systems, month, year, rows = parse_rows(html)
     OUT.write_text(build_qmd(systems, month, year, rows), encoding="utf-8")
     print(f"Wrote {OUT} from {month} {year}")

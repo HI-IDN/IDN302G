@@ -88,13 +88,13 @@ uppsett, og `make`).
 Dæmigert vinnuflæði: keyrðu `make preview` meðan þú breytir, og `make full` áður en þú commitar
 ef breytingin snertir keyranlegan kóða.
 
-Tveir kaflar eru **frystir** — `api/good-practices.qmd` og `regex/mbl.qmd` — af því að þjónustan
+Tveir kaflar eru **frystir** — `api/open-apis.qmd` og `regex/mbl.qmd` — af því að þjónustan
 sem þeir tala við hleypir byggingarþjóninum ekki að. `make full` endurkeyrir þá **ekki**; hann
 les geymdu niðurstöðuna. Breytirðu þeim, líka aðeins texta, verðurðu að þýða skrána eina og
 skila `docs/_freeze/` með:
 
 ```bash
-cd docs && quarto render api/good-practices.qmd && git add docs/_freeze   # eða regex/mbl.qmd
+cd docs && quarto render api/open-apis.qmd && git add docs/_freeze   # eða regex/mbl.qmd
 ```
 
 Sleppirðu því fellur byggingin, því Quarto lyklar frystinguna á innihald skrárinnar.

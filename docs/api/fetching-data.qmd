@@ -115,7 +115,6 @@ req$url
 
 ```{python}
 #| label: saekja-py-1
-#| eval: false
 import requests
 
 import os
