@@ -21,7 +21,8 @@ fyrirspurnarmál sem er notað til að hafa samskipti við venslagagnasöfn.
 
 Það eru til alls konar gagnagrunnskerfi og þau nota ekki öll sama fyrirspurnarmál. Sum eru
 hefðbundin SQL-kerfi, eins og _PostgreSQL_, _SQLite_, _MySQL_, _Oracle_ og _Microsoft SQL Server_.
-Önnur eru óhefðbundnari eða sérhæfðari, til dæmis _MongoDB_, _Redis_, _Snowflake_ og _Databricks_.
+Sum kerfi nota SQL en eru sérhæfð fyrir gagnavöruhús eða gagnaplatform, til dæmis _Snowflake_ og
+_Databricks SQL_. Önnur eru óhefðbundnari fyrirspurnarumhverfi, til dæmis _MongoDB_ og _Redis_.
 
 Taflan hér fyrir neðan sýnir vinsæl gagnagrunnskerfi samkvæmt
 [DB-Engines Ranking](https://db-engines.com/en/ranking) í september 2026. Hún er ekki listi yfir
@@ -164,15 +165,6 @@ FROM tbl
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-:::
-
-
-Ekki öll kerfin í topp 10 eru hefðbundin venslagagnasöfn með nákvæmlega sömu SQL-setningafræði.
-Samt er gagnlegt að sjá hvernig sama hugsun birtist í þeim: velja gögn, raða þeim og takmarka fjölda
-niðurstaðna.
-
-::: {.panel-tabset}
-
 ## Snowflake
 
 Skjölun: [Snowflake LIMIT / FETCH](https://docs.snowflake.com/en/sql-reference/constructs/limit)
@@ -216,6 +208,13 @@ SELECT *
 FROM tbl
 LIMIT 10;
 ```
+
+:::
+
+MongoDB og Redis eru öðruvísi en SQL-kerfin hér að ofan. Samt er gagnlegt að sjá hvernig sama hugsun
+birtist í þeim: velja gögn, raða þeim og takmarka fjölda niðurstaðna.
+
+::: {.panel-tabset}
 
 ## MongoDB
 
