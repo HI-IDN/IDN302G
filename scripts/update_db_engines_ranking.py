@@ -8,8 +8,6 @@ builds do not depend on live network access.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin
 from urllib.error import URLError
@@ -37,103 +35,6 @@ MONTHS_IS = {
 }
 
 
-@dataclass
-class Cell:
-    text: str = ""
-    links: list[tuple[str, str]] | None = None
-
-
-class TableParser(HTMLParser):
-    def __init__(self) -> None:
-        super().__init__()
-        self.in_table = False
-        self.table_depth = 0
-        self.in_row = False
-        self.in_cell = False
-        self.current_row: list[Cell] = []
-        self.current_cell: Cell | None = None
-        self.current_href: str | None = None
-        self.rows: list[list[Cell]] = []
-        self.page_text: list[str] = []
-        self.skip_depth = 0
-
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        attrs_d = dict(attrs)
-        class_name = attrs_d.get("class") or ""
-        if self.in_cell and tag == "span" and "info" in class_name.split():
-            self.skip_depth += 1
-            return
-        if self.skip_depth:
-            self.skip_depth += 1
-            return
-        if tag == "table":
-            if not self.in_table:
-                self.in_table = True
-                self.table_depth = 1
-            elif self.in_table:
-                self.table_depth += 1
-        elif self.in_table and tag == "tr":
-            if self.in_row:
-                self._finish_cell()
-                self._finish_row()
-            self.in_row = True
-            self.current_row = []
-        elif self.in_table and tag in {"td", "th"}:
-            if self.in_cell:
-                self._finish_cell()
-            self.in_cell = True
-            self.current_cell = Cell("", [])
-        elif self.in_cell and tag == "a":
-            self.current_href = attrs_d.get("href")
-        elif self.in_cell and tag == "br":
-            self._append_text(" ")
-
-    def handle_endtag(self, tag: str) -> None:
-        if self.skip_depth:
-            self.skip_depth -= 1
-            return
-        if self.in_cell and tag == "a":
-            self.current_href = None
-        elif self.in_table and tag in {"td", "th"}:
-            self._finish_cell()
-        elif self.in_table and tag == "tr":
-            self._finish_cell()
-            self._finish_row()
-        elif self.in_table and tag == "table":
-            self._finish_cell()
-            self._finish_row()
-            self.table_depth -= 1
-            if self.table_depth == 0:
-                self.in_table = False
-
-    def handle_data(self, data: str) -> None:
-        self.page_text.append(data)
-        if self.in_cell and not self.skip_depth:
-            self._append_text(data)
-            if self.current_href and self.current_cell is not None:
-                text = clean_text(data)
-                if text:
-                    self.current_cell.links.append((text, urljoin(URL, self.current_href)))
-
-    def _append_text(self, data: str) -> None:
-        if self.current_cell is not None:
-            self.current_cell.text += data
-
-    def _finish_cell(self) -> None:
-        if self.current_cell is not None:
-            self.current_cell.text = clean_text(self.current_cell.text)
-            self.current_row.append(self.current_cell)
-        self.current_cell = None
-        self.in_cell = False
-        self.current_href = None
-
-    def _finish_row(self) -> None:
-        if self.current_row:
-            self.rows.append(self.current_row)
-        self.current_row = []
-        self.in_row = False
-
-
 def clean_text(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
 
@@ -153,7 +54,7 @@ def extract_month(page_text: str) -> tuple[str, str, str]:
 
 def parse_rows(html: str) -> tuple[str, str, str, list[dict[str, str]]]:
     systems, month, year = extract_month(clean_text(re.sub(r"<[^>]+>", " ", html)))
-    table_match = re.search(r"<table class=dbi>(.*?)(?:</table>|<p><div)", html, flags=re.S)
+    table_match = re.search(r"<table\b(?=[^>]*class=[\'\"][^\'\"]*(?:db-ranking|dbi)[^\'\"]*[\'\"]|[^>]*class=(?:db-ranking|dbi)\b)[^>]*>(.*?)(?:</table>|<p><div)", html, flags=re.S)
     if not table_match:
         raise RuntimeError("Could not find DB-Engines ranking table")
     table_html = table_match.group(1)
