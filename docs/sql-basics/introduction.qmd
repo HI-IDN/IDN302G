@@ -17,14 +17,22 @@ Markmið námskeiðsins er að kynnast fyrirspurnarmálinu SQL:
 SQL (Structured Query Language), borið fram eins og „sequel“ eða „ess-cue-ell“, er staðlað
 fyrirspurnarmál sem er notað til að hafa samskipti við venslagagnasöfn.
 
-### Ólík SQL fyrirspurnarmál
+### Ólík fyrirspurnarmál og gagnagrunnskerfi
 
-Samkvæmt [DB-Engines Ranking](https://db-engines.com/en/ranking) voru vinsælustu gagnagrunnskerfin
-í september 2026:
+Það eru til alls konar gagnagrunnskerfi og þau nota ekki öll sama fyrirspurnarmál. Sum eru
+hefðbundin SQL-kerfi, eins og _PostgreSQL_, _SQLite_, _MySQL_, _Oracle_ og _Microsoft SQL Server_.
+Önnur eru óhefðbundnari eða sérhæfðari, til dæmis _MongoDB_, _Redis_, _Snowflake_ og _Databricks_.
+
+Taflan hér fyrir neðan sýnir vinsæl gagnagrunnskerfi samkvæmt
+[DB-Engines Ranking](https://db-engines.com/en/ranking) í september 2026. Hún er ekki listi yfir
+það sem þið þurfið að kunna allt saman. Hún sýnir bara landslagið: SQL er stór hluti af því, en ekki
+eina leiðin til að spyrja gagnakerfi.
 
 {{< include includes/db-engines-ranking.qmd >}}
 
-Við munum kynnast _SQLite_ og _PostgreSQL_ í þessu námskeiði.
+Í þessu námskeiði munum við fyrst og fremst kynnast _SQLite_ og _PostgreSQL_. _SQLite_ er þægilegt
+fyrir lítil staðbundin verkefni og æfingar. _PostgreSQL_ er dæmi um öflugt SQL-kerfi sem er mikið
+notað í raunverulegum kerfum.
 
 ### Líkindi milli SQL fyrirspurnarmála
 
@@ -41,6 +49,8 @@ fyrirspurnirnar eru eins í öllum dæmunum. Munurinn sést helst þegar við vi
 ::: {.panel-tabset}
 
 ## PostgreSQL
+
+Skjölun: [PostgreSQL LIMIT og OFFSET](https://www.postgresql.org/docs/current/queries-limit.html)
 
 ```sql
 -- Select all rows from a table
@@ -59,6 +69,8 @@ FROM tbl LIMIT 10;
 
 ## MySQL
 
+Skjölun: [MySQL SELECT](https://dev.mysql.com/doc/refman/8.4/en/select.html)
+
 ```sql
 -- Select all rows from a table
 SELECT *
@@ -75,6 +87,8 @@ FROM tbl LIMIT 10;
 ```
 
 ## SQLite
+
+Skjölun: [SQLite SELECT](https://www.sqlite.org/lang_select.html)
 
 ```sql
 -- Select all rows from a table
@@ -93,6 +107,8 @@ FROM tbl LIMIT 10;
 
 ## Microsoft SQL Server
 
+Skjölun: [SQL Server TOP](https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql)
+
 ```sql
 -- Select all rows from a table
 SELECT *
@@ -109,6 +125,8 @@ FROM tbl;
 ```
 
 ## Oracle
+
+Skjölun: [Oracle SELECT](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SELECT.html)
 
 ```sql
 -- Select all rows from a table
@@ -128,6 +146,8 @@ FETCH FIRST 10 ROWS ONLY;
 
 ## IBM Db2
 
+Skjölun: [IBM Db2 FETCH FIRST](https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=selection-fetching-limited-number-rows)
+
 ```sql
 -- Select all rows from a table
 SELECT *
@@ -146,13 +166,6 @@ FETCH FIRST 10 ROWS ONLY;
 
 :::
 
-Setningafræðin hér að ofan er staðfest í opinberum skjölum fyrir
-[PostgreSQL](https://www.postgresql.org/docs/current/queries-limit.html),
-[MySQL](https://dev.mysql.com/doc/refman/8.4/en/select.html),
-[SQLite](https://www.sqlite.org/lang_select.html),
-[Microsoft SQL Server](https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql),
-[Oracle](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SELECT.html) og
-[IBM Db2](https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=selection-fetching-limited-number-rows).
 
 Ekki öll kerfin í topp 10 eru hefðbundin venslagagnasöfn með nákvæmlega sömu SQL-setningafræði.
 Samt er gagnlegt að sjá hvernig sama hugsun birtist í þeim: velja gögn, raða þeim og takmarka fjölda
@@ -161,6 +174,8 @@ niðurstaðna.
 ::: {.panel-tabset}
 
 ## Snowflake
+
+Skjölun: [Snowflake LIMIT / FETCH](https://docs.snowflake.com/en/sql-reference/constructs/limit)
 
 Snowflake notar SQL og styður bæði `LIMIT` og `FETCH`. Hér er PostgreSQL-líka leiðin:
 
@@ -182,6 +197,8 @@ LIMIT 10;
 
 ## Databricks SQL
 
+Skjölun: [Databricks SQL LIMIT](https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-qry-select-limit)
+
 Databricks SQL styður líka `LIMIT`:
 
 ```sql
@@ -201,6 +218,8 @@ LIMIT 10;
 ```
 
 ## MongoDB
+
+Skjölun: [MongoDB `find()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
 
 MongoDB er skjalagagnagrunnur, svo dæmið er ekki SQL heldur `mongosh` skipun. Hugmyndin er samt
 svipuð: finna skjöl, velja reiti, raða og takmarka fjölda niðurstaðna.
@@ -222,6 +241,8 @@ db.tbl
 
 ## Redis Search
 
+Skjölun: [Redis FT.SEARCH](https://redis.io/docs/latest/commands/ft.search/)
+
 Redis er lykil-gildis gagnagrunnur. Fyrir leit í skjölum er oft notað Redis Search, þar sem
 `FT.SEARCH` getur raðað og takmarkað niðurstöður. Þetta dæmi gerir ráð fyrir að til sé index sem
 heitir `idx`.
@@ -239,11 +260,6 @@ FT.SEARCH idx "*" LIMIT 0 10
 
 :::
 
-Sjá einnig opinber skjöl fyrir
-[Snowflake](https://docs.snowflake.com/en/sql-reference/constructs/limit),
-[Databricks SQL](https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-qry-select-limit),
-[MongoDB](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/) og
-[Redis Search](https://redis.io/docs/latest/commands/ft.search/).
 
 ## Gagnasafnskerfi
 
