@@ -11,10 +11,10 @@ munurinn snýst um **hver þýðir kóðann**.
 
 ::: {.callout-important}
 ## Í þessu vinnuflæði birtum við frá `main`
-GitHub Pages er stillanlegt: hægt er að velja hvaða grein og hvaða möppu á að birta úr. Í þessu
-námskeiði er venjan að birta frá **`main`-greininni** og þeim stað sem er valinn í stillingunum
-(t.d. `docs/`-möppunni). Ef þú ert að vinna á annarri grein sérðu því yfirleitt ekkert birtast fyrr
-en breytingarnar eru komnar á `main`. Þetta gildir í báðum leiðunum hér að neðan.
+GitHub Pages er stillanlegt. Í **Leið 1** er uppspretta síðunnar GitHub Actions og hún birtir
+úttakið eftir breytingar á **`main`-greininni**. Í **Leið 2** er hægt að velja grein og möppu,
+hér **`main`** og `docs/`, undir Pages-stillingunum. Ef þú ert að vinna á annarri grein sérðu því
+yfirleitt ekkert birtast fyrr en breytingarnar eru komnar á `main`.
 :::
 
 ## Forskoðun með `quarto preview`
