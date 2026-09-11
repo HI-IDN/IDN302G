@@ -3,6 +3,7 @@
 # Secret stuff
 .env
 .Renviron
+/data/raw/
 
 # Quarto build cache (not output)
 /.quarto/
