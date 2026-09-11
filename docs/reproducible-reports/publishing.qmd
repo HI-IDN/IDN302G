@@ -10,10 +10,11 @@ statíska heimasíðu ókeypis beint úr kóðageymslunni. Það eru tvær megin
 munurinn snýst um **hver þýðir kóðann**.
 
 ::: {.callout-important}
-## GitHub Pages birtir bara `main`
-GitHub Pages fylgist aðeins með **`main`-greininni** og þeim stað sem þú tilgreinir í
-stillingunum (t.d. `docs/`-möppunni). Ef þú ert að vinna á annarri grein sérðu ekkert birtast
-fyrr en breytingarnar eru komnar á `main`. Þetta gildir í báðum leiðunum hér að neðan.
+## Í þessu vinnuflæði birtum við frá `main`
+GitHub Pages er stillanlegt: hægt er að velja hvaða grein og hvaða möppu á að birta úr. Í þessu
+námskeiði er venjan að birta frá **`main`-greininni** og þeim stað sem er valinn í stillingunum
+(t.d. `docs/`-möppunni). Ef þú ert að vinna á annarri grein sérðu því yfirleitt ekkert birtast fyrr
+en breytingarnar eru komnar á `main`. Þetta gildir í báðum leiðunum hér að neðan.
 :::
 
 ## Forskoðun með `quarto preview`
