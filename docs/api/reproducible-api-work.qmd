@@ -63,7 +63,8 @@ greiningin þín skilar annarri niðurstöðu á morgun. Þrennt heldur skýrslu
 #| eval: false
 sott <- Sys.time()
 d <- resp_body_json(svar, simplifyVector = TRUE)
-saveRDS(list(gogn = d, sott = sott), "data/raw.rds")
+dir.create("data/raw", recursive = TRUE, showWarnings = FALSE)
+saveRDS(list(gogn = d, sott = sott), "data/raw/raw.rds")
 ```
 
 **Geymdu hráu gögnin — en ekki í Git.** Vistaðu svarið óbreytt og hreinsaðu í sérstöku

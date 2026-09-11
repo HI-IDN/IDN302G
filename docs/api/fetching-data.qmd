@@ -140,7 +140,6 @@ Til að sjá hvernig slóðin varð eftir að færibreytur bættust við:
 
 ```{python}
 #| label: saekja-py-2
-#| eval: false
 svar = requests.get(
     "https://api.github.com/search/repositories",
     params={"q": "quarto", "per_page": 5},
@@ -193,7 +192,6 @@ leit$items |>
 
 ```{python}
 #| label: saekja-py-3
-#| eval: false
 import requests
 import pandas as pd
 
@@ -257,7 +255,6 @@ forritið haldið glaðlega áfram. Þú verður að kalla á `raise_for_status(
 
 ```{python}
 #| label: saekja-py-4
-#| eval: false
 svar = requests.get("https://api.github.com/repos/HI-IDN/IDN302G",
                     headers=hausar, timeout=30)
 svar.raise_for_status()      # kastar HTTPError ef 4xx/5xx
@@ -275,7 +272,6 @@ Eða meðhöndla sjálf/ur:
 
 ```{python}
 #| label: saekja-py-5
-#| eval: false
 svar = requests.get("https://api.github.com/repos/HI-IDN/ekki-til",
                     headers=hausar, timeout=30)
 
@@ -323,7 +319,6 @@ svar <- request("https://api.github.com/repos/HI-IDN/IDN302G") |>
 
 ```{python}
 #| label: saekja-py-6
-#| eval: false
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
@@ -374,7 +369,6 @@ nrow(commits)
 
 ```{python}
 #| label: saekja-py-7
-#| eval: false
 import pandas as pd
 
 url = "https://api.github.com/repos/HI-IDN/IDN302G/commits"
