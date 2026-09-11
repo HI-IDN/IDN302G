@@ -53,7 +53,7 @@ The same goes for numbers in prose. Write `` `r nrow(commits)` `` rather than ty
 otherwise the text contradicts the table above it the first time the data changes.
 
 Static output is allowed in exactly one case: **the cell cannot run in CI**. That means it needs a
-personal access token (TMDB), writes files, or is a fragment that is not valid on its own. Mark
+personal access token, writes files, or is a fragment that is not valid on its own. Mark
 such cells `#| eval: false` and say in the text why they are not executed. Network requests to
 open services are *not* an exception — they run, and a service being briefly down is handled by
 `req_timeout()` / `req_retry()` and re-running the build.
@@ -147,7 +147,7 @@ After editing one, re-render **just that file** — a single-file render always 
 
 ```bash
 cd docs && quarto render api/open-apis.qmd   # eða regex/mbl.qmd
-git add docs/_freeze
+git add _freeze
 ```
 
 Note the asymmetry, because it trips people up: a **project** render (`quarto render`, `make

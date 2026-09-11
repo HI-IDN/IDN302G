@@ -94,7 +94,7 @@ les geymdu niðurstöðuna. Breytirðu þeim, líka aðeins texta, verðurðu a�
 skila `docs/_freeze/` með:
 
 ```bash
-cd docs && quarto render api/open-apis.qmd && git add docs/_freeze   # eða regex/mbl.qmd
+cd docs && quarto render api/open-apis.qmd && git add _freeze   # eða regex/mbl.qmd
 ```
 
 Sleppirðu því fellur byggingin, því Quarto lyklar frystinguna á innihald skrárinnar.
