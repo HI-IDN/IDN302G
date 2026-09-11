@@ -21,6 +21,8 @@ afritunin er hvergi skráð og villur í henni eru ósýnilegar.
 sniði sem er hannað fyrir vélar. Sama skipun sótt á morgun skilar uppfærðum gögnum án þess að
 nokkur snerti mús.
 
+![Þegar kennarinn talar um apaköll en á við API calls.](../img/meme/api-calls.jpg){fig-alt="Meme um rugling milli orðsins apaköll og API calls." width="70%"}
+
 ## Vefsíða fyrir menn, API fyrir vélar
 
 Sama þjónustan býður oft hvort tveggja. Berðu saman:
