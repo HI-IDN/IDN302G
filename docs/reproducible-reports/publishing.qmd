@@ -2,7 +2,7 @@
 title: "Birting með GitHub Pages"
 description: >-
   Tvær leiðir til að birta statíska heimasíðu: GitHub Actions þýðir kóðann fyrir þig,
-  eða þú birtir tilbúið úttak úr docs-möppu.
+  eða þú birtir tilbúið úttak úr útgáfumöppu.
 ---
 
 Þegar skýrslan eða vefsíðan er tilbúin viljum við birta hana á vefnum. **GitHub Pages** birtir
@@ -12,9 +12,9 @@ munurinn snýst um **hver þýðir kóðann**.
 ::: {.callout-important}
 ## Í þessu vinnuflæði birtum við frá `main`
 GitHub Pages er stillanlegt. Í **Leið 1** er uppspretta síðunnar GitHub Actions og hún birtir
-úttakið eftir breytingar á **`main`-greininni**. Í **Leið 2** er hægt að velja grein og möppu,
-hér **`main`** og `docs/`, undir Pages-stillingunum. Ef þú ert að vinna á annarri grein sérðu því
-yfirleitt ekkert birtast fyrr en breytingarnar eru komnar á `main`.
+úttakið eftir breytingar á **`main`-greininni**. Í **Leið 2** er uppspretta síðunnar tilbúið
+HTML-úttak í valinni grein og möppu. Í báðum tilfellum þarf birtingin að byggja á skrám sem eru
+komnar á `main`, svo breytingar á annarri grein birtast ekki fyrr en þær hafa verið sameinaðar.
 :::
 
 ## Forskoðun með `quarto preview`
@@ -88,7 +88,7 @@ GitHub Actions er ekki sjálfvirkt á. Það þarf að bæta við _workflow_-skr
 deployment → Source: GitHub Actions** í kóðageymslunni.
 :::
 
-## Leið 2 — Birta þýtt úttak úr `docs/`
+## Leið 2 — Birta þýtt úttak úr útgáfumöppu
 
 Ef þýðingin er of þung — t.d. dæmin taka langan tíma að keyra eða þarfnast pakka sem erfitt er
 að setja upp á þjóni GitHub — er hægt að **slökkva á GitHub Actions** og láta GitHub Pages
@@ -97,10 +97,21 @@ frekar birta úttak úr fastri möppu.
 Þá:
 
 1. þýðir **notandinn sjálfur** skýrsluna á eigin tölvu (`quarto render`),
-2. ýtir tilbúna HTML-úttakinu (sem lendir í möppu, oftast `docs/`) inn í kóðageymsluna, og
-3. stillir **Settings → Pages → Source: Deploy from a branch** og velur `docs/` möppuna.
+2. ýtir tilbúna HTML-úttakinu inn í kóðageymsluna, og
+3. stillir **Settings → Pages → Source: Deploy from a branch** og velur möppuna sem geymir
+   HTML-úttakið.
 
 GitHub keyrir þá engan kóða — það birtir bara skrárnar eins og þær koma fyrir.
+
+::: {.callout-warning}
+## `docs/` er ekki sjálfkrafa útgáfumappa
+
+Í þessari geymslu eru `.qmd`-heimildaskrárnar í `docs/`, en venjulegt `quarto render` skrifar
+HTML-úttakið í `_site/`, sem er ekki committað. Ef þú velur **Deploy from a branch** þarf
+útgáfumappan að innihalda HTML-skrárnar sem GitHub á að birta. Það þýðir annaðhvort að breyta
+Quarto-stillingunni þannig að úttakið fari í möppu sem á að committa, eða færa/copy-a tilbúna
+úttakið í slíka möppu áður en þú ýtir á GitHub.
+:::
 
 ::: {.callout-note}
 ## Hvernig þessi vefsíða er birt
@@ -116,12 +127,12 @@ hvort eð er upp á nýtt.
 
 ## Hvor leiðin hentar?
 
-| | Actions þýðir | `docs/` mappa |
+| | Actions þýðir | Útgáfumappa |
 |---|---|---|
 | **Hver keyrir kóðann?** | GitHub | Þú, á eigin tölvu |
 | **Kostnaður** | Actions-mínútur/credits (þýðing í skýi) | Enginn (bara birting) |
-| **Handavinna** | Ýta `.qmd` og gleyma því | Muna að `render` + ýta `docs/` |
+| **Handavinna** | Ýta `.qmd` og gleyma því | Muna að `render` + ýta HTML-úttaki |
 | **Best þegar** | Þýðing er létt og hröð | Þýðing er þung eða flókin |
 
 Í stuttu máli: byrjaðu á **GitHub Actions** því það heldur úttakinu sjálfkrafa í takt við
-kóðann. Ef byggingin verður of þung skaltu skipta yfir í `docs/`-leiðina.
+kóðann. Ef byggingin verður of þung skaltu skipta yfir í útgáfumöppu-leiðina.
