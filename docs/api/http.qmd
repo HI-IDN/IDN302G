@@ -81,7 +81,7 @@ Taktu eftir að hvergi stendur `/getRepo` eða `/deleteRepo`. Sé slóð með sa
 ::: {.callout-note}
 ## Ekki eru allar þjónustur REST — og það er allt í lagi
 
-REST er venja, ekki lög. [Hagstofan](icelandic-apis.qmd) er gott dæmi um frávik: þar sendirðu
+REST er venja, ekki lög. [Hagstofan](open-apis.qmd) er gott dæmi um frávik: þar sendirðu
 **`POST`** til að *sækja* gögn, sem stríðir gegn reglunni um að `GET` sæki og `POST` búi til.
 
 Ástæðan er praktísk: taflan er of stór til að sækja alla, svo fyrirspurnin — hvaða ár, hvaða
@@ -102,7 +102,7 @@ skoða þegar eitthvað virkar ekki.**
 | `200` | tókst | allt í lagi, gögnin eru í svarinu |
 | `301` / `302` | tilvísun | auðlindin flutti sig |
 | `400` | villa hjá þér | beiðnin var ekki rétt byggð |
-| `401` | villa hjá þér | vantar auðkenningu — sjá [góða starfshætti](good-practices.qmd) |
+| `401` | villa hjá þér | vantar auðkenningu — sjá [aðgangsstýrðar vefþjónustur](access-controlled-apis.qmd) |
 | `403` | villa hjá þér | þú mátt þetta ekki, eða ert komin/n yfir álagsmörk |
 | `404` | villa hjá þér | auðlindin er ekki til — oftast stafsetningarvilla í slóð |
 | `429` | villa hjá þér | of margar beiðnir, of hratt |
@@ -179,5 +179,5 @@ Nokkrar þjónustur sem gott er að æfa sig á:
 | Veðurstofan | [api.vedur.is/weather](https://api.vedur.is/weather/) | nei |
 | TMDB (kvikmyndir) | [developer.themoviedb.org](https://developer.themoviedb.org/docs) | já — ókeypis fyrir persónuleg verkefni |
 
-Íslensku þjónusturnar tvær eru teknar fyrir í [Íslenskar vefþjónustur](icelandic-apis.qmd), og
-TMDB er dæmið um þjónustu sem krefst lykils í [góðum starfsháttum](good-practices.qmd).
+Íslensku þjónusturnar tvær eru teknar fyrir í [Opnar vefþjónustur](open-apis.qmd), og
+TMDB er dæmið um þjónustu sem krefst lykils í [aðgangsstýrðum vefþjónustum](access-controlled-apis.qmd).

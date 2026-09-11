@@ -1,13 +1,11 @@
 ---
-title: "Íslenskar vefþjónustur"
+title: "Opnar vefþjónustur"
 description: >-
-  Tvö raunveruleg dæmi: Hagstofan (POST með fyrirspurn, json-stat2) og
-  Veðurstofan (GET, OpenAPI-skjölun) — með lifandi svari beint í vafranum.
+  Tvö raunveruleg dæmi um þjónustur sem má prófa án aðgangslykils:
+  Hagstofan (POST með fyrirspurn, json-stat2) og Veðurstofan (GET, OpenAPI-skjölun).
 ---
 
-Hingað til hafa dæmin snúist um GitHub. Hér eru tvær íslenskar þjónustur sem þú getur notað í
-verkefnum, og þær sýna mynstur sem GitHub gerir ekki: fyrirspurn send með `POST`, og formleg
-vélleshæf skjölun.
+Hingað til hafa dæmin snúist um GitHub. Hér eru tvær opnar íslenskar þjónustur sem þú getur notað í verkefnum án þess að sækja fyrst um lykil. Þær sýna mynstur sem GitHub gerir ekki: fyrirspurn send með `POST`, og formleg vélleshæf skjölun.
 
 ## Hagstofan
 
@@ -115,6 +113,7 @@ Taktu eftir `$value`: tölurnar sjö sem þú baðst um eru þarna, en árin sj�
 
 ```{python}
 #| label: island-py-1
+#| eval: false
 import requests
 
 slod = ("https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/"
@@ -217,6 +216,7 @@ mannfjoldi |>
 
 ```{python}
 #| label: island-py-2
+#| eval: false
 import pandas as pd
 
 # index gefur stöðu hvers árs í value-listanum. Röðun label-hlutarins er
@@ -328,6 +328,7 @@ býst við.
 
 ```{python}
 #| label: island-py-3
+#| eval: false
 import requests
 import pandas as pd
 
@@ -467,6 +468,7 @@ Niðurstaðan lítur svona út:
 
 ```{r}
 #| label: island-r-svar-1
+#| eval: false
 #| echo: false
 #| message: false
 #| warning: false
@@ -510,11 +512,11 @@ grind <- expand.grid(rev(asar), stringsAsFactors = FALSE)
 grind <- grind[, rev(names(grind)), drop = FALSE]
 grind$gildi <- d$value
 
-grind$Námssvið <- factor(grind$Námssvið, levels = asar[["Námssvið"]])
-grind$Nemendur <- factor(grind$Nemendur, levels = asar[["Nemendur"]])
+grind[["Námssvið"]] <- factor(grind[["Námssvið"]], levels = asar[["Námssvið"]])
+grind[["Nemendur"]] <- factor(grind[["Nemendur"]], levels = asar[["Nemendur"]])
 
 knitr::kable(
-  tapply(grind$gildi, list(grind$Námssvið, grind$Nemendur), identity),
+  tapply(grind[["gildi"]], list(grind[["Námssvið"]], grind[["Nemendur"]]), identity),
   caption = "Hlutfall (%) sex árum eftir innritun 2017"
 )
 ```
@@ -574,6 +576,7 @@ Berðu saman hvað kemur til baka:
 
 ```{r}
 #| label: island-r-svar-2
+#| eval: false
 #| echo: false
 #| message: false
 #| warning: false

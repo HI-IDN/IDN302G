@@ -343,7 +343,7 @@ villumeðhöndlun — þau gefa þér stöðukóða og hausa sem stuttu leiðirn
 ## Hin áttin
 
 Stundum þarftu að *senda* JSON, t.d. þegar þjónusta krefst `POST` — eins og
-[Hagstofan](icelandic-apis.qmd) gerir.
+[Hagstofan](open-apis.qmd) gerir.
 
 ::: {.panel-tabset}
 ## R

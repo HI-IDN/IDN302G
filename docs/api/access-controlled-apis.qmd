@@ -1,10 +1,8 @@
 ---
-title: "Góðir starfshættir"
+title: "Aðgangsstýrðar vefþjónustur"
 description: >-
-  Aðgangslyklar sem lenda aldrei í Git, álagsmörk og kurteisi við þjónustur,
-  og hvernig gögn sótt um API haldast endurtakanleg.
-execute:
-  freeze: true
+  Hvernig á að vinna með vefþjónustur sem krefjast aðgangslykils: geyma lykla utan Git,
+  lesa þá úr umhverfisbreytum og frysta niðurstöður sem má endurbyggja síðar.
 ---
 
 ## Lyklar fara aldrei í Git
@@ -88,6 +86,7 @@ hann í `.Renviron` (R) eða `.env` (Python) — **aldrei í kóðann**.
 
 ```{r}
 #| label: starfshaettir-r-2
+#| eval: false
 #| message: false
 #| warning: false
 library(httr2)
@@ -128,6 +127,7 @@ Skráin þarf líka að **enda á línuskilum** — annars sleppir R síðustu l
 
 ```{python}
 #| label: starfshaettir-py-1
+#| eval: false
 import os
 import requests
 import pandas as pd
@@ -172,7 +172,7 @@ Sys.getenv("TMDB_TOKEN")
 ## Þessi bútur má aldrei keyra
 
 Hann prentar lykilinn. Væri hann keyrður á vél þar sem lykillinn er til staðar færi hann inn í
-frystu niðurstöðurnar — og þær eru í opinni geymslu. `eval: false` er hér öryggisráðstöfun, ekki
+úttak skjalsins — og það er í opinni geymslu. `eval: false` er hér öryggisráðstöfun, ekki
 þægindi.
 
 Sama gildir um þinn eigin kóða: það sem búturinn prentar endar í skjalinu.
@@ -248,23 +248,15 @@ Athugaðu því alltaf að lykillinn hafi lesist áður en þú sendir beiðnina
 :::
 
 ::: {.callout-note}
-## Hvernig þetta er keyrt án þess að lykillinn fari á netið
+## Ef niðurstöður eru birtar úr lykilstýrðri þjónustu
 
-Taflan að ofan er raunveruleg niðurstaða úr TMDB — ekki afrituð með höndunum. En byggingarþjónninn
-hjá GitHub hefur engan lykil og fær hann ekki.
+Byggingarþjónninn hjá GitHub á ekki að fá kennaralykil eða nemendalykil. Ef þú vilt birta
+niðurstöður úr þjónustu eins og TMDB er örugga mynstrið að keyra sóknina á eigin vél, vista
+strípuð gögn í skrá og láta skýrsluna lesa þá skrá.
 
-Lausnin er **frysting**. Þessi síða er merkt `freeze: true`, sem þýðir:
-
-1. Kennarinn keyrir kaflann á sinni vél, þar sem lykillinn er í `.Renviron`.
-2. Quarto vistar niðurstöðurnar í `_freeze/`, sem fylgir með í geymsluna.
-3. Þegar bókin er byggð les Quarto frystu niðurstöðurnar í stað þess að senda beiðni.
-
-Lykillinn fer aldrei úr vélinni sem keyrði kóðann. Frystu skrárnar geyma **úttakið**, ekki
-umhverfisbreyturnar — þess vegna má enginn bútur hér prenta lykilinn.
-
-Munurinn á þessu og handskrifaðri töflu er sá að frysta útgáfan var raunverulega keyrð, og
-uppfærist um leið og kaflinn er keyrður aftur. Handskrifuð tafla helst óbreytt þótt kóðinn
-hætti að virka.
+Þá fer lykillinn aldrei úr vélinni sem sótti gögnin. Það sem fer í geymsluna er kóðinn sem
+skýrir hvernig gögnin voru sótt og lítil gagnaskrá með því sem greiningin þarf — ekki
+umhverfisbreytan sjálf.
 :::
 
 ::: {.callout-warning}
@@ -282,95 +274,3 @@ TMDB krefst þess líka að getið sé heimildar þegar gögnin eru birt.
 Þegar þú býrð til lykil er oft hægt að velja hvað hann má. Veldu **minnstu réttindi sem duga**.
 Lykill sem á bara að lesa opin gögn þarf engin skrifréttindi, og þá er tjónið lítið þótt hann
 leki. Settu líka gildistíma á hann ef það býðst.
-
-## Kurteisi við þjónustuna
-
-Á hinum endanum er tölva sem einhver borgar fyrir. Nokkrar reglur:
-
-**Segðu hver þú ert.** `User-Agent`-hausinn á að bera nafn og tilgang. Sumar þjónustur hafna
-beiðnum án hans, og þeir sem reka þjónustuna geta haft samband ef eitthvað er að.
-
-```{r}
-#| label: starfshaettir-r-6
-#| eval: false
-req_user_agent("IDN302G-verkefni (nafn@hi.is)")
-```
-
-**Haltu þig innan marka.** Þjónustur setja hámark á beiðnir á tímaeiningu. Farirðu yfir færðu
-`429` og getur lent í banni. `req_throttle()` heldur þér réttum megin:
-
-```{r}
-#| label: starfshaettir-r-7
-#| eval: false
-req_throttle(rate = 30 / 60)   # 30 beiðnir á mínútu
-```
-
-**Sæktu einu sinni.** Ertu að prófa þig áfram? Vistaðu svarið og notaðu skrána á meðan þú
-þróar kóðann. Það er engin ástæða til að senda nýja beiðni í hvert sinn sem þú lagar eina
-línu í greiningunni.
-
-**Sæktu bara það sem þú þarft.** Síaðu í beiðninni með fyrirspurnarfæribreytum, ekki eftir á.
-
-## Skilmálar og leyfi
-
-Að gögn séu aðgengileg þýðir ekki að þú megir allt með þau:
-
-- **Skilmálar** (e. *terms of service*) segja hvað er leyfilegt. Sumar þjónustur banna
-  geymslu gagna eða endurbirtingu.
-- **Leyfi** (e. *licence*) segir hvernig þú mátt deila gögnunum áfram. Opin gögn krefjast oft
-  þess að heimildar sé getið.
-- **Persónugreinanleg gögn** eru sérstakt mál. Nöfn, kennitölur og netföng lúta
-  persónuverndarlögum óháð því hvernig þú náðir í þau.
-
-::: {.callout-warning}
-## Í verkefnum áfangans
-
-Sæktu ekki persónugreinanleg gögn um fólk sem hefur ekki samþykkt það, og committaðu þeim
-aldrei í geymsluna þína. Sértu í vafa, spurðu kennara áður en þú sækir.
-:::
-
-## Endurtakanleiki
-
-Gögn sótt um API eru **hreyfanlegt skotmark** — þjónustan uppfærist, færslum fjölgar, og
-greiningin þín skilar annarri niðurstöðu á morgun. Þrennt heldur skýrslunni traustri:
-
-**Skráðu hvenær var sótt.** Dagsetningin á að vera í skýrslunni sjálfri, ekki í minninu þínu.
-
-```{r}
-#| label: starfshaettir-r-8
-#| eval: false
-sott <- Sys.time()
-d <- resp_body_json(svar, simplifyVector = TRUE)
-saveRDS(list(gogn = d, sott = sott), "data/raw.rds")
-```
-
-**Geymdu hráu gögnin — en ekki í Git.** Vistaðu svarið óbreytt og hreinsaðu í sérstöku
-skrefi. Þá geturðu lagað hreinsunina án þess að sækja aftur. Hráa skráin fer í `.gitignore`;
-það sem committast er skriftan sem sækir og strípar, ásamt lítilli CSV-skrá með því sem
-greiningin raunverulega notar. Sjá
-[hvað á heima í geymslunni](fetching-data.qmd#hvað-á-heima-í-geymslunni).
-
-**Aðskildu sókn og greiningu.** Eitt skjal sækir og vistar; annað les skrána og greinir. Þá
-gengur greiningin upp þótt netið liggi niðri eða lykillinn sé útrunninn — sem er einmitt það
-sem skiptir máli þegar einhver annar les skýrsluna þína eftir hálft ár.
-
-::: {.callout-note}
-## Tenging við lotuna um endurtækar skýrslur
-
-Þetta er sama meginregla og í [endurtækum skýrslum](../reproducible-reports/index.qmd): allt
-sem greiningin byggir á á að vera skjalfest og keyranlegt. API breytir ekki reglunni — það
-gerir hana bara mikilvægari, því gögnin eru ekki lengur í þinni vörslu.
-:::
-
-## Gátlisti
-
-Áður en þú skilar verkefni sem sækir gögn um API:
-
-- [ ] Enginn lykill í kóðanum eða Git-sögunni
-- [ ] `.Renviron` / `.env` í `.gitignore`
-- [ ] `User-Agent` með nafni og tengilið
-- [ ] Álagsmörk virt — `req_throttle()` eða handvirk bið
-- [ ] Villum ekki kaffært — skýrslan stoppar frekar en að skila tómu
-- [ ] Hrá gögn vistuð og tímastimpluð — utan Git
-- [ ] Aðeins strípuð gögn (t.d. CSV) committuð, ásamt skriftunni sem býr þau til
-- [ ] Heimildar getið og skilmálar lesnir

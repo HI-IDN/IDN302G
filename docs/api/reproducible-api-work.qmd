@@ -1,0 +1,98 @@
+---
+title: "Endurtakanleg API-vinna"
+description: >-
+  Kurteisi við vefþjónustur, álagsmörk, skilmálar og hvernig gögn sótt um API
+  haldast rekjanleg og endurtakanleg.
+---
+
+## Kurteisi við þjónustuna
+
+Á hinum endanum er tölva sem einhver borgar fyrir. Nokkrar reglur:
+
+**Segðu hver þú ert.** `User-Agent`-hausinn á að bera nafn og tilgang. Sumar þjónustur hafna
+beiðnum án hans, og þeir sem reka þjónustuna geta haft samband ef eitthvað er að.
+
+```{r}
+#| label: starfshaettir-r-6
+#| eval: false
+req_user_agent("IDN302G-verkefni (nafn@hi.is)")
+```
+
+**Haltu þig innan marka.** Þjónustur setja hámark á beiðnir á tímaeiningu. Farirðu yfir færðu
+`429` og getur lent í banni. `req_throttle()` heldur þér réttum megin:
+
+```{r}
+#| label: starfshaettir-r-7
+#| eval: false
+req_throttle(rate = 30 / 60)   # 30 beiðnir á mínútu
+```
+
+**Sæktu einu sinni.** Ertu að prófa þig áfram? Vistaðu svarið og notaðu skrána á meðan þú
+þróar kóðann. Það er engin ástæða til að senda nýja beiðni í hvert sinn sem þú lagar eina
+línu í greiningunni.
+
+**Sæktu bara það sem þú þarft.** Síaðu í beiðninni með fyrirspurnarfæribreytum, ekki eftir á.
+
+## Skilmálar og leyfi
+
+Að gögn séu aðgengileg þýðir ekki að þú megir allt með þau:
+
+- **Skilmálar** (e. *terms of service*) segja hvað er leyfilegt. Sumar þjónustur banna
+  geymslu gagna eða endurbirtingu.
+- **Leyfi** (e. *licence*) segir hvernig þú mátt deila gögnunum áfram. Opin gögn krefjast oft
+  þess að heimildar sé getið.
+- **Persónugreinanleg gögn** eru sérstakt mál. Nöfn, kennitölur og netföng lúta
+  persónuverndarlögum óháð því hvernig þú náðir í þau.
+
+::: {.callout-warning}
+## Í verkefnum áfangans
+
+Sæktu ekki persónugreinanleg gögn um fólk sem hefur ekki samþykkt það, og committaðu þeim
+aldrei í geymsluna þína. Sértu í vafa, spurðu kennara áður en þú sækir.
+:::
+
+## Endurtakanleiki
+
+Gögn sótt um API eru **hreyfanlegt skotmark** — þjónustan uppfærist, færslum fjölgar, og
+greiningin þín skilar annarri niðurstöðu á morgun. Þrennt heldur skýrslunni traustri:
+
+**Skráðu hvenær var sótt.** Dagsetningin á að vera í skýrslunni sjálfri, ekki í minninu þínu.
+
+```{r}
+#| label: starfshaettir-r-8
+#| eval: false
+sott <- Sys.time()
+d <- resp_body_json(svar, simplifyVector = TRUE)
+saveRDS(list(gogn = d, sott = sott), "data/raw.rds")
+```
+
+**Geymdu hráu gögnin — en ekki í Git.** Vistaðu svarið óbreytt og hreinsaðu í sérstöku
+skrefi. Þá geturðu lagað hreinsunina án þess að sækja aftur. Hráa skráin fer í `.gitignore`;
+það sem committast er skriftan sem sækir og strípar, ásamt lítilli CSV-skrá með því sem
+greiningin raunverulega notar. Sjá
+[hvað á heima í geymslunni](fetching-data.qmd#hvað-á-heima-í-geymslunni).
+
+**Aðskildu sókn og greiningu.** Eitt skjal sækir og vistar; annað les skrána og greinir. Þá
+gengur greiningin upp þótt netið liggi niðri eða lykillinn sé útrunninn — sem er einmitt það
+sem skiptir máli þegar einhver annar les skýrsluna þína eftir hálft ár.
+
+::: {.callout-note}
+## Tenging við lotuna um endurtækar skýrslur
+
+Þetta er sama meginregla og í [endurtækum skýrslum](../reproducible-reports/index.qmd): allt
+sem greiningin byggir á á að vera skjalfest og keyranlegt. API breytir ekki reglunni — það
+gerir hana bara mikilvægari, því gögnin eru ekki lengur í þinni vörslu.
+:::
+
+## Gátlisti
+
+Áður en þú skilar verkefni sem sækir gögn um API:
+
+- [ ] Enginn lykill í kóðanum eða Git-sögunni
+- [ ] `.Renviron` / `.env` í `.gitignore`
+- [ ] `User-Agent` með nafni og tengilið
+- [ ] Álagsmörk virt — `req_throttle()` eða handvirk bið
+- [ ] Villum ekki kaffært — skýrslan stoppar frekar en að skila tómu
+- [ ] Hrá gögn vistuð og tímastimpluð — utan Git
+- [ ] Aðeins strípuð gögn (t.d. CSV) committuð, ásamt skriftunni sem býr þau til
+- [ ] Heimildar getið og skilmálar lesnir

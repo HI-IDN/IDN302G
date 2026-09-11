@@ -89,8 +89,9 @@ book:
         - api/http.qmd
         - api/json.qmd
         - api/fetching-data.qmd
-        - api/icelandic-apis.qmd
-        - api/good-practices.qmd
+        - api/open-apis.qmd
+        - api/access-controlled-apis.qmd
+        - api/reproducible-api-work.qmd
     - part: "Reglulegar segðir"
       chapters:
         - regex/index.qmd
