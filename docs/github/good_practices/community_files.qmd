@@ -48,6 +48,7 @@ data.frame(
 
 ```{python}
 #| label: samfelag-py-1
+#| eval: false
 import os
 import requests
 

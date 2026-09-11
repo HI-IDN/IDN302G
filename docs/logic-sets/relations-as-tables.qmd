@@ -36,7 +36,7 @@ Taflan `member_of` lýsir sambandi milli persóna og liða. Hver röð er par af
 | 8 | 600 |
 
 Röðin `(1, 100)` segir að persóna 1 tengist liði 100 með venslinu „er í“. Til að lesa hana flettum
-við upp `character_id = 1` í `character` og `faction_id = 100` í `faction`. Þá fáum við: Logi er í
+við upp `character.character_id = 1` og `faction.faction_id = 100`. Þá fáum við: Logi er í
 Uppreisnarmönnum.
 
 Þetta má lesa sem:
@@ -92,7 +92,8 @@ geymir bara þau pör sem eru skráð í dæminu.
 
 Sambandið milli taflnanna má teikna svona:
 
-```mermaid
+```{mermaid}
+%%| label: relations-mermaid-1
 flowchart LR
   character["character<br/>character_id<br/>name"]
   faction["faction<br/>faction_id<br/>faction"]

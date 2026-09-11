@@ -270,8 +270,9 @@ Hvað þýðir þetta allt saman og hvernig tengist þetta
 [rökfræði og mengjum](../logic-sets/index.qmd)? Þegar við skrifum `WHERE` skilyrði erum við að
 þýða orðadæmi yfir í próf sem hver röð þarf að standast.
 
-SQL skipunin `SELECT x FROM A WHERE P(x);` þýðir að velja línur úr töflunni $A$ sem uppfylla
-skilyrðið $P(x)$. Í mengjahugsun er þetta:
+SQL skipunin `SELECT * FROM A WHERE ...;` þýðir að velja raðir úr töflunni $A$ sem uppfylla
+skilyrðið í `WHERE`. Í mengjahugsun köllum við eina röð $x$ og skilyrðið $P(x)$. Þá er
+niðurstaðan:
 
 $$
 \{x \in A \mid P(x)\}

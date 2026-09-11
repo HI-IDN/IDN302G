@@ -24,10 +24,10 @@ hefðbundin SQL-kerfi, eins og _PostgreSQL_, _SQLite_, _MySQL_, _Oracle_ og _Mic
 Sum kerfi nota SQL en eru sérhæfð fyrir gagnavöruhús eða gagnaplatform, til dæmis _Snowflake_ og
 _Databricks SQL_. Önnur eru óhefðbundnari fyrirspurnarumhverfi, til dæmis _MongoDB_ og _Redis_.
 
-Taflan hér fyrir neðan sýnir vinsæl gagnagrunnskerfi samkvæmt
-[DB-Engines Ranking](https://db-engines.com/en/ranking) í september 2026. Hún er ekki listi yfir
-það sem þið þurfið að kunna allt saman. Hún sýnir bara landslagið: SQL er stór hluti af því, en ekki
-eina leiðin til að spyrja gagnakerfi.
+Taflan hér fyrir neðan sýnir nýlega stöðu vinsælla gagnagrunnskerfa samkvæmt
+[DB-Engines Ranking](https://db-engines.com/en/ranking). Dagsetningin kemur fram í töflunni sjálfri,
+því hana má endurnýja mánaðarlega. Hún er ekki listi yfir það sem þið þurfið að kunna allt saman.
+Hún sýnir bara landslagið: SQL er stór hluti af því, en ekki eina leiðin til að spyrja gagnakerfi.
 
 {{< include includes/db-engines-ranking.qmd >}}
 
@@ -63,9 +63,11 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
-FROM tbl LIMIT 10;
+FROM tbl
+ORDER BY col1
+LIMIT 10;
 ```
 
 ## MySQL
@@ -82,9 +84,11 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
-FROM tbl LIMIT 10;
+FROM tbl
+ORDER BY col1
+LIMIT 10;
 ```
 
 ## SQLite
@@ -101,9 +105,11 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
-FROM tbl LIMIT 10;
+FROM tbl
+ORDER BY col1
+LIMIT 10;
 ```
 
 ## Microsoft SQL Server
@@ -120,9 +126,10 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT TOP (10) *
-FROM tbl;
+FROM tbl
+ORDER BY col1;
 ```
 
 ## Oracle
@@ -139,9 +146,10 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
 FROM tbl
+ORDER BY col1
 FETCH FIRST 10 ROWS ONLY;
 ```
 
@@ -159,9 +167,10 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
 FROM tbl
+ORDER BY col1
 FETCH FIRST 10 ROWS ONLY;
 ```
 
@@ -181,9 +190,10 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
 FROM tbl
+ORDER BY col1
 LIMIT 10;
 ```
 
@@ -203,9 +213,10 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
 FROM tbl
+ORDER BY col1
 LIMIT 10;
 ```
 
@@ -232,9 +243,10 @@ db.tbl
   .find({}, { col1: 1, col2: 1, _id: 0 })
   .sort({ col1: -1 });
 
-// Select the first 10 documents
+// Select the first 10 documents after sorting
 db.tbl
   .find({})
+  .sort({ col1: 1 })
   .limit(10);
 ```
 
@@ -253,8 +265,8 @@ FT.SEARCH idx "*"
 # Return selected fields and sort by a field
 FT.SEARCH idx "*" RETURN 2 col1 col2 SORTBY col1 DESC
 
-# Return the first 10 matches
-FT.SEARCH idx "*" LIMIT 0 10
+# Return the first 10 matches after sorting
+FT.SEARCH idx "*" SORTBY col1 ASC LIMIT 0 10
 ```
 
 :::

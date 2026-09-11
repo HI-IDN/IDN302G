@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin
+from urllib.error import URLError
 from urllib.request import Request, urlopen
 import argparse
 import re
@@ -232,6 +233,18 @@ def build_qmd(systems: str, month: str, year: str, rows: list[dict[str, str]]) -
     return "\n".join(lines)
 
 
+def https_context(insecure: bool) -> ssl.SSLContext | None:
+    if insecure:
+        return ssl._create_unverified_context()
+
+    try:
+        import certifi  # type: ignore
+    except ImportError:
+        return None
+
+    return ssl.create_default_context(cafile=certifi.where())
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -239,12 +252,37 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Disable TLS certificate verification. Use only when local Python certificates are misconfigured.",
     )
+    parser.add_argument(
+        "--strict-tls",
+        action="store_true",
+        help="Fail instead of falling back to --insecure when local TLS certificate verification fails.",
+    )
     args = parser.parse_args(argv)
 
     req = Request(URL, headers={"User-Agent": "IDN302G course material updater"})
-    context = ssl._create_unverified_context() if args.insecure else None
-    with urlopen(req, timeout=30, context=context) as response:
-        html = response.read().decode("utf-8", errors="replace")
+    context = https_context(args.insecure)
+    try:
+        with urlopen(req, timeout=30, context=context) as response:
+            html = response.read().decode("utf-8", errors="replace")
+    except URLError as exc:
+        reason = getattr(exc, "reason", None)
+        if isinstance(reason, ssl.SSLCertVerificationError) and not args.insecure and not args.strict_tls:
+            print(
+                "TLS certificate verification failed; retrying with --insecure. "
+                "Use --strict-tls to make this a hard failure.",
+                file=sys.stderr,
+            )
+            with urlopen(req, timeout=30, context=ssl._create_unverified_context()) as response:
+                html = response.read().decode("utf-8", errors="replace")
+        elif isinstance(reason, ssl.SSLCertVerificationError):
+            print(
+                "TLS certificate verification failed. Install/update local Python certificates "
+                "or rerun without --strict-tls to allow the documented fallback.",
+                file=sys.stderr,
+            )
+            raise
+        else:
+            raise
     systems, month, year, rows = parse_rows(html)
     OUT.write_text(build_qmd(systems, month, year, rows), encoding="utf-8")
     print(f"Wrote {OUT} from {month} {year}")
