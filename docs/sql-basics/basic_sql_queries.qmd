@@ -266,19 +266,29 @@ case_sensitive_like = ON;
 
 ## Tengsl við strjála stærðfræði
 
-Hvað þýðir þetta allt saman og hvernig tengist þetta undanfarið námsefni? SQL og strjál stærðfræði
-hafa ýmis tengsl sem við getum skoðað í samhengi við fyrirspurnir og mengjafræði.
+Hvað þýðir þetta allt saman og hvernig tengist þetta
+[rökfræði og mengjum](../logic-sets/index.qmd)? Þegar við skrifum `WHERE` skilyrði erum við að
+þýða orðadæmi yfir í próf sem hver röð þarf að standast.
 
-SQL skipunin `SELECT x FROM A WHERE P(X);`þýðir að velja línur úr töflunni $$A$$ sem uppfylla
-skilyrðið $$P(X)$$. Í strjálli stærðfræði er þetta jafngilt menginu: $$\{x \in A \mid P(x) \}$$ sem
-þýðir „mengi þeirra staka $$x$$ úr $$A$$ sem uppfylla yrðinguna $$P(X)$$.“
+SQL skipunin `SELECT * FROM A WHERE ...;` þýðir að velja raðir úr töflunni $A$ sem uppfylla
+skilyrðið í `WHERE`. Í mengjahugsun köllum við eina röð $x$ og skilyrðið $P(x)$. Þá er
+niðurstaðan:
 
-Hér eru nokkur lykilhugtök og tengingar við strjála stærðfræði:
+$$
+\{x \in A \mid P(x)\}
+$$
 
-* **Mengi**: Tafla er mengi af línum.
-* **Vensl**: Tafla skilgreinir vensl milli staka.
-* **Yrðingar**: Veljum úttakið með yrðingu (`WHERE`skilyrði).
-* **Reglulegar segðir**: Yrðingar geta notað reglulegar segðir (`LIKE`) til að sía gögn.
+sem þýðir „mengi þeirra staka $x$ úr $A$ sem uppfylla yrðinguna $P(x)$.“
+
+Hér er sama brúin í einföldu máli:
+
+- **Tafla** er hópur raða sem við getum spurt um.
+- **Röð** er eitt tilvik í hópnum.
+- **Skilyrði** er yrðing sem er sönn eða ósönn fyrir hverja röð.
+- **`AND`, `OR` og `NOT`** fylgja sömu hugsun og `og`, `eða` og `ekki` í sanntöflum.
+
+Þess vegna er gott að byrja á orðadæminu. Ef þið getið sagt „ég vil raðir þar sem ...“ er stutt
+skref yfir í `WHERE`.
 
 ## Setja inn gögn í töflur með `INSERT`
 

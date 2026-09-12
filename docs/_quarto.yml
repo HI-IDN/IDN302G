@@ -89,8 +89,9 @@ book:
         - api/http.qmd
         - api/json.qmd
         - api/fetching-data.qmd
-        - api/icelandic-apis.qmd
-        - api/good-practices.qmd
+        - api/open-apis.qmd
+        - api/access-controlled-apis.qmd
+        - api/reproducible-api-work.qmd
     - part: "Reglulegar segðir"
       chapters:
         - regex/index.qmd
@@ -103,6 +104,9 @@ book:
     - part: "Rökfræði og mengi"
       chapters:
         - logic-sets/index.qmd
+        - logic-sets/truth-tables.qmd
+        - logic-sets/sets-as-questions.qmd
+        - logic-sets/relations-as-tables.qmd
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.qmd

@@ -1,15 +1,169 @@
 ---
 title: "Inngangur"
 description: >-
-  Boole-rökfræði, mengjafræði og vensl — undirstaða SQL JOIN og flókinna fyrirspurna. Bætt við síðar.
+  Af hverju mengi og rökfræði hjálpa okkur að hugsa um SQL áður en við byrjum að
+  skrifa fyrirspurnir.
 ---
 
-::: {.callout-note title="Kemur"}
-Þessi lota verður bætt við síðar.
+SQL verður auðveldara þegar við hugsum fyrst um niðurstöðuna sem við viljum fá,
+ekki skrefin sem tölvan á að taka.
+
+Í hefðbundinni forritun skrifum við oft lykkju: „farðu í gegnum hverja línu,
+prófaðu skilyrði og bættu við niðurstöðu“. Í SQL lýsum við frekar eiginleikum
+niðurstöðunnar: hvaða raðir eiga að koma út og hvaða dálkar skipta máli.
+
+Þessi hluti námskeiðsins undirbýr ykkur fyrir SQL með nokkrum hugtökum úr mengjum og rökfræði.
+Markmiðið er ekki að læra mengjafræði eða strjála stærðfræði sem sjálfstætt námsefni hér.
+Markmiðið er að geta horft á litlar töflur, spáð fyrir um niðurstöður fyrirspurna og skilja af
+hverju SQL-hegðun er stundum öðruvísi en venjulegur kóði.
+
+## Rauði þráðurinn
+
+Við notum lítið Stjörnustríðsdæmi. Þetta er ekki gagnagrunnur um Stjörnustríðsfræði. Þetta er
+æfingavöllur fyrir spurninguna sem skiptir mestu í SQL:
+
+> Hvaða raðir og dálkar eiga að vera í niðurstöðunni?
+
+Nöfnin í dæminu sækja innblástur í íslensku þýðinguna.[^stjornustrid-thyding]
+
+Í stað þess að setja allt í eina stóra töflu skiptum við gögnunum í nokkrar litlar töflur. Þá getum
+við spurt skýrar spurningar eins og:
+
+- hverjir eru uppreisnarmenn?
+- hverjir eru Væringjar (e. Jedi)?
+- hverjir birtast í `Ný von`?
+- hverjir eru bæði í Andspyrnunni og Frumreglunni?
+- hverjir eru hvorki í Uppreisnarmönnum né Keisaradæminu?
+
+Finnur er skemmtilegt dæmi fyrir skörun milli tveggja hópa, því hann hefur tengingu við Frumregluna en
+endar með Andspyrnunni. Boba Fett er svo gott dæmi um „hvorki né“: hann er til í gögnunum, en er
+hvorki skráður í Uppreisnarmenn né í Keisaradæmið.
+
+## Litli gagnheimurinn okkar
+
+Byrjum á þremur litlum grunntöflum. Þær geyma hluti sem við viljum geta vísað í aftur og aftur:
+persónur, lið og kvikmyndir.
+
+:::: {.columns}
+
+::: {.column width="33%"}
+**`character`**
+
+| character_id | nafn |
+|---:|---|
+| 1 | Logi |
+| 2 | Lilja |
+| 3 | Hans Óli |
+| 4 | Svarthöfði |
+| 5 | Jóda |
+| 6 | Loðinn |
+| 7 | Finnur |
+| 8 | Boba Fett |
 :::
 
-Í þessari lotu verður fjallað um rökfræði, mengi og vensl sem undirstöðu fyrir
-gagnavinnslu og gagnagrunnsfyrirspurnir.
+::: {.column width="33%"}
+**`faction`**
 
-Við tengjum hugtökin sérstaklega við SQL, þar sem skilyrði, síur, `JOIN`,
-`NULL`-gildi og samsettar fyrirspurnir byggja á sömu grunnatriðum.
+| faction_id | lið |
+|---:|---|
+| 100 | Uppreisnarmenn |
+| 200 | Keisaradæmið |
+| 300 | Væringjar |
+| 400 | Andspyrnan |
+| 500 | Frumreglan |
+| 600 | Hausaveiðarar |
+:::
+
+::: {.column width="33%"}
+**`movie`**
+
+| movie_id | mynd |
+|---:|---|
+| 10 | Ný von |
+| 20 | Gagnárás keisaradæmisins |
+| 30 | Jedinn snýr aftur |
+| 40 | Mátturinn vaknar |
+:::
+
+::::
+
+Svo bætum við við tveimur litlum venslatöflum. Þær geyma tengingar milli hluta.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**`member_of`**
+
+| character_id | faction_id |
+|---:|---:|
+| 1 | 100 |
+| 1 | 300 |
+| 2 | 100 |
+| 3 | 100 |
+| 4 | 200 |
+| 4 | 300 |
+| 5 | 300 |
+| 6 | 100 |
+| 7 | 400 |
+| 7 | 500 |
+| 8 | 600 |
+:::
+
+::: {.column width="50%"}
+**`appears_in`**
+
+| character_id | movie_id |
+|---:|---:|
+| 1 | 10 |
+| 1 | 20 |
+| 1 | 30 |
+| 2 | 10 |
+| 2 | 20 |
+| 2 | 30 |
+| 3 | 10 |
+| 3 | 20 |
+| 3 | 30 |
+| 4 | 10 |
+| 4 | 20 |
+| 4 | 30 |
+| 5 | 20 |
+| 5 | 30 |
+| 6 | 10 |
+| 6 | 20 |
+| 6 | 30 |
+| 7 | 40 |
+| 8 | 20 |
+| 8 | 30 |
+:::
+
+::::
+
+Töflurnar segja okkur ekki söguna sjálfar. Við þurfum að lesa þær sem litlar staðreyndir:
+
+- röðin `(1, 100)` í `member_of` segir að Logi sé í Uppreisnarmönnum,
+- röðin `(7, 500)` í `member_of` segir að Finnur hafi tengingu við Frumregluna,
+- röðin `(7, 400)` í `member_of` segir að Finnur sé líka í Andspyrnunni,
+- röðin `(8, 600)` í `member_of` segir að Boba Fett sé hausaveiðari,
+- röðin `(1, 10)` í `appears_in` segir að Logi birtist í `Ný von`.
+
+Á næstu síðum notum við þessar töflur til að tala um yrðingar, sanntöflur, mengi, vensl, tómar
+niðurstöður og `NULL`.
+
+## Hvað kemur næst?
+
+Í þessum hluta förum við í gegnum:
+
+1. hvernig fullyrðingar geta verið sannar eða ósannar,
+2. hvernig `og`, `eða` og `ekki` virka í sanntöflum,
+3. hvernig mengi hjálpa okkur að hugsa um hópa,
+4. hvernig litlar töflur geta táknað hluti og vensl milli þeirra,
+5. hvernig þessi hugsun verður síðar að `WHERE`, `AND`, `OR` og `NOT` í SQL.
+
+Ef þið getið spáð fyrir um litla niðurstöðu með höndunum áður en þið keyrið SQL, eruð þið komin með
+rétta hugarlíkanið.
+
+[^stjornustrid-thyding]: Samkvæmt
+    [íslensku Wikipediu um Stjörnustríð](https://is.wikipedia.org/wiki/Stj%C3%B6rnustr%C3%AD%C3%B0#%C3%8Dslenska_%C3%BE%C3%BD%C3%B0ingin)
+    gerði Hersteinn Pálsson fyrstu íslensku þýðinguna á sögunni í bókinni *Stjörnustríð* árið 1978.
+    Þar voru mörg sérheiti íslenskuð; nöfn eins og Svarthöfði og Logi Geimgengill hafa lifað áfram,
+    meðan önnur, eins og Hans Óli, eru meira dásamlegar þýðingaperlur úr sögunni.

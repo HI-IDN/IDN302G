@@ -3,6 +3,7 @@
 # Secret stuff
 .env
 .Renviron
+/data/raw/
 
 # Quarto build cache (not output)
 /.quarto/
@@ -21,9 +22,9 @@
 **/*.knit.md
 
 # /docs/_freeze/ IS committed, but only for pages marked `freeze: true`.
-# Everything else is executed from scratch by Actions. Today that means the
-# TMDB chapter alone: it needs a personal token that must not reach CI, so
-# the teacher renders it locally and commits the result.
+# Everything else is executed from scratch by Actions. Frozen results are used
+# only when live services are unsuitable for CI, such as rate-limited services
+# or sites that block datacenter traffic.
 
 
 # Standalone render can leave site_libs next to source

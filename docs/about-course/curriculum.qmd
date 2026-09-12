@@ -37,9 +37,9 @@ Samskipti við vefþjónustur og gagnaveitur með API (*Application Programming 
 Leit og vinnslur á textagögnum með reglulegar segðir (regex) í R og öðrum tólum.
 :::
 
-::: {.lotu-card .lotu-card-muted}
-### Rökfræði og mengi <span class="lotu-status">kemur</span>
-Boole-rökfræði, mengjafræði og vensl — undirstaða SQL JOIN og flókinna fyrirspurna.
+::: {.lotu-card}
+### Rökfræði og mengi
+Boole-rökfræði, mengjafræði og vensl — brú yfir í SQL, `WHERE`, `JOIN` og tómar niðurstöður.
 :::
 
 ::: {.lotu-card}

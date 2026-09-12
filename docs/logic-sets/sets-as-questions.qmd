@@ -1,0 +1,214 @@
+---
+title: "Mengi sem hópar"
+description: >-
+  Hvernig má hugsa um niðurstöður sem hópa: þau sem uppfylla skilyrði, þau sem
+  eru í báðum hópum og þau sem eru aðeins í öðrum.
+---
+
+Mengi er hópur af hlutum. Í SQL er gagnlegt að hugsa um niðurstöðu fyrirspurnar sem hóp raða eða
+hluta sem uppfylla ákveðið skilyrði.
+
+Við notum töflurnar úr innganginum og byrjum á einfaldri spurningu:
+
+> Hverjir eru Uppreisnarmenn?
+
+Þá erum við að búa til hóp persóna sem hafa tengingu við `Uppreisnarmenn` í `member_of`.
+
+Látum:
+
+- $R$ vera hóp uppreisnarmanna,
+- $J$ vera hóp Væringja,
+- $G$ vera hóp þeirra sem eru í Keisaradæminu,
+- $S$ vera hóp þeirra sem eru í Andspyrnunni,
+- $F$ vera hóp þeirra sem eru í Frumreglunni,
+- $B$ vera hóp hausaveiðara,
+- $C$ vera hóp allra persóna í dæminu.
+
+Út frá töflunum í innganginum fáum við:
+
+- $R = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Loðinn}\}$
+- $J = \{\text{Logi}, \text{Svarthöfði}, \text{Jóda}\}$
+- $G = \{\text{Svarthöfði}\}$
+- $S = \{\text{Finnur}\}$
+- $F = \{\text{Finnur}\}$
+- $B = \{\text{Boba Fett}\}$
+- $C = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Svarthöfði}, \text{Jóda}, \text{Loðinn}, \text{Finnur}, \text{Boba Fett}\}$
+
+## Í öðrum hvorum hópnum
+
+Spurning:
+
+> Hverjir eru uppreisnarmenn eða Væringjar?
+
+Þá viljum við allar persónur sem eru í $R$, $J$ eða báðum:
+
+$$
+R \cup J = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Loðinn}, \text{Svarthöfði}, \text{Jóda}\}
+$$
+
+Í SQL hugsun er þetta undirbúningur fyrir `OR`: skilyrðið má vera satt á fleiri en einn hátt.
+
+## Í báðum hópum
+
+Spurning:
+
+> Hverjir eru bæði uppreisnarmenn og Væringjar?
+
+Þá viljum við þau sem eru í sköruninni:
+
+$$
+R \cap J = \{\text{Logi}\}
+$$
+
+Sama hugsun virkar fyrir spurninguna:
+
+> Hver er bæði í Andspyrnunni og Frumreglunni?
+
+$$
+S \cap F = \{\text{Finnur}\}
+$$
+
+Þetta er „góður gaur með tengingu við vonda liðið“ dæmið. Gögnin segja ekki alla söguna, en þau
+leyfa okkur að spyrja skýrt: hvaða persónur eru í báðum hópum?
+
+## Í einum hópi en ekki öðrum
+
+Spurning:
+
+> Hverjir eru Væringjar en ekki uppreisnarmenn?
+
+Þá viljum við þau sem eru í $J$, en ekki í $R$:
+
+$$
+J - R = \{\text{Svarthöfði}, \text{Jóda}\}
+$$
+
+Þetta er gagnleg hugsun áður en við lærum flóknari SQL. Fyrst þurfum við að vita nákvæmlega hvaða
+hópur á að koma út.
+
+## Hvorki í einum hópi né öðrum
+
+Spurning:
+
+> Hverjir eru hvorki Uppreisnarmenn né í Keisaradæminu?
+
+Þá byrjum við á öllum persónum og tökum burt þá sem eru í $R$ eða $G$:
+
+$$
+C - (R \cup G) = \{\text{Jóda}, \text{Finnur}, \text{Boba Fett}\}
+$$
+
+Ef við viljum sérstaklega spyrja um hausaveiðara sem eru hvorki uppreisnarmenn né í Keisaradæminu
+fáum við:
+
+$$
+B - (R \cup G) = \{\text{Boba Fett}\}
+$$
+
+Þetta er góð áminning um að `ekki` þýðir ekki sjálfkrafa „hitt liðið“. Sá sem er ekki
+uppreisnarmaður þarf ekki að vera í Keisaradæminu. Hann gæti verið Væringur, í Andspyrnunni,
+í Frumreglunni, hausaveiðari eða eitthvað annað.
+
+::: {.callout-note title="Staldrið við"}
+Notið mengin hér að ofan og finnið:
+
+1. $R \cup J$
+2. $R \cap J$
+3. $J - R$
+4. $R \cap G$
+5. $S \cap F$
+6. $C - (R \cup G)$
+7. $B - (R \cup G)$
+
+Skrifið svo eina setningu með orðum fyrir hvert svar. Til dæmis: „$S \cap F$ þýðir persónur sem eru
+bæði í Andspyrnunni og Frumreglunni.“
+:::
+
+## Tóm niðurstaða
+
+Stundum er enginn í hópnum.
+
+> Hverjir eru bæði Uppreisnarmenn og Keisaradæmið?
+
+Í þessu gagnasafni er engin persóna skráð í báða hópa:
+
+$$
+R \cap G = \emptyset
+$$
+
+Tóm niðurstaða er ekki villa. Hún segir bara að ekkert uppfyllti skilyrðið.
+
+## Tómt mengi og `NULL`
+
+Tóm niðurstaða minnir á tóma mengið:
+
+$$
+\emptyset
+$$
+
+Það þýðir að hópurinn hefur engin stök. Ef spurningin er „hverjir eru bæði uppreisnarmenn og í
+Keisaradæminu?“ og engin persóna uppfyllir bæði skilyrðin, þá er svarið tómt mengi.
+
+`NULL` er annað. `NULL` merkir ekki „enginn í hópnum“, heldur að gildi vantar einhvers staðar í
+gögnunum. Til dæmis gæti tafla haft persónu sem er til, en heimaplánetu hennar vantar. Þá er persónan
+enn röð í töflunni, en eitt gildi í röðinni er óþekkt.
+
+Þetta verður mikilvægt í SQL:
+
+- tóm niðurstaða: engar raðir komu til baka,
+- `NULL`: röð er til, en eitthvað gildi í henni vantar.
+
+Í SQL-kaflanum lærum við þess vegna að spyrja sérstaklega um vöntun með `IS NULL`.
+
+Skoðum tvö lík dæmi.
+
+**Dæmi 1: tómt mengi**
+
+| character_id | faction_id |
+|---:|---:|
+| 1 | 100 |
+| 2 | 100 |
+| 4 | 200 |
+
+Spurning:
+
+> Hvaða persónur eru bæði í Uppreisnarmönnum og Keisaradæminu?
+
+Engin persóna hefur bæði tengslin, svo svarið er tómt mengi:
+
+$$
+\emptyset
+$$
+
+Hér vantar ekki gildi í röð. Það er bara engin persóna sem passar við spurninguna.
+
+**Dæmi 2: ekki tómt mengi, heldur vantað gildi**
+
+| character_id | faction_id |
+|---:|---:|
+| 1 | 100 |
+| 2 | `NULL` |
+| 4 | 200 |
+
+Spurning:
+
+> Hver er skráð/ur með óþekkt lið?
+
+Hér er röð til: `character_id = 2`. Það sem vantar er gildið í `faction_id`. Svarið er því ekki tómt
+mengi. Svarið er hópur með einu staki:
+
+$$
+\{\text{persóna 2}\}
+$$
+
+Munurinn er þessi:
+
+| Aðstæður | Hvað þýðir það? | Hugmynd |
+|---|---|---|
+| Engin röð passar | ekkert stak er í svarinu | tómt mengi |
+| Röð passar, en gildi vantar | stakið er til, en ein upplýsingar vantar | `NULL` |
+
+::: {.callout-note title="Hugsið aðeins"}
+Hvaða spurning úr Stjörnustríðsdæminu myndi skila tómu mengi? Hver er munurinn á því að persóna hafi
+enga röð í `member_of` og því að einhver dálkur í röð væri `NULL`?
+:::

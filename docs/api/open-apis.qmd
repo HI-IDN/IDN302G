@@ -1,13 +1,13 @@
 ---
-title: "Íslenskar vefþjónustur"
+title: "Opnar vefþjónustur"
 description: >-
-  Tvö raunveruleg dæmi: Hagstofan (POST með fyrirspurn, json-stat2) og
-  Veðurstofan (GET, OpenAPI-skjölun) — með lifandi svari beint í vafranum.
+  Tvö raunveruleg dæmi um þjónustur sem má prófa án aðgangslykils:
+  Hagstofan (POST með fyrirspurn, json-stat2) og Veðurstofan (GET, OpenAPI-skjölun).
+execute:
+  freeze: true
 ---
 
-Hingað til hafa dæmin snúist um GitHub. Hér eru tvær íslenskar þjónustur sem þú getur notað í
-verkefnum, og þær sýna mynstur sem GitHub gerir ekki: fyrirspurn send með `POST`, og formleg
-vélleshæf skjölun.
+Hingað til hafa dæmin snúist um GitHub. Hér eru tvær opnar íslenskar þjónustur sem þú getur notað í verkefnum án þess að sækja fyrst um lykil. Þær sýna mynstur sem GitHub gerir ekki: fyrirspurn send með `POST`, og formleg vélleshæf skjölun.
 
 ## Hagstofan
 
@@ -75,6 +75,7 @@ að fyrsta PxWeb-fyrirspurnin skilar villu.
 
 ```{r}
 #| label: island-r-1
+#| eval: false
 #| message: false
 #| warning: false
 library(httr2)
@@ -115,6 +116,7 @@ Taktu eftir `$value`: tölurnar sjö sem þú baðst um eru þarna, en árin sj�
 
 ```{python}
 #| label: island-py-1
+#| eval: false
 import requests
 
 slod = ("https://px.hagstofa.is/pxis/api/v1/is/Ibuar/mannfjoldi/"
@@ -217,6 +219,7 @@ mannfjoldi |>
 
 ```{python}
 #| label: island-py-2
+#| eval: false
 import pandas as pd
 
 # index gefur stöðu hvers árs í value-listanum. Röðun label-hlutarins er
@@ -307,6 +310,7 @@ Fylki af hlutum með sömu lykla er einmitt formið sem verður að töflu án f
 
 ```{r}
 #| label: island-r-5
+#| eval: false
 #| message: false
 #| warning: false
 library(httr2); library(dplyr)
@@ -328,6 +332,7 @@ býst við.
 
 ```{python}
 #| label: island-py-3
+#| eval: false
 import requests
 import pandas as pd
 
@@ -433,15 +438,11 @@ Tvær æfingar, ein á hvora þjónustu. Báðar enda á sama stað: **er svari�
 raunverulega nothæft?**
 
 ::: {.callout-note}
-## Tölurnar hér að neðan eru sóttar, ekki skrifaðar
+## Tölurnar hér að neðan eru fryst kennsluúttak
 
-Niðurstöðurnar sem fylgja hvorri æfingu voru sóttar þegar þessi síða var þýdd. Kóðinn er falinn
-svo hann gefi ekki lausnina, en hann keyrir.
+Niðurstöðurnar sem fylgja hvorri æfingu eru dæmi um úttak úr þjónustunum. Lifandi köll eru ekki keyrð í sjálfri bókarbyggingunni, því opnar þjónustur geta tímabundið svarað með `429 Too Many Requests` þegar margir byggja eða prófa í einu.
 
-Það þýðir tvennt. Þú átt að geta fengið sömu tölur, og breytist þjónustan breytast þær hér líka
-í stað þess að standa eftir rangar. Veðurstöðvum fjölgar og fækkar, og brautskráningartölur eru
-endurskoðaðar. Tala sem er slegin inn með höndunum verður þögul ósannindi um leið og gögnin
-hreyfast.
+Það þýðir tvennt. Þú átt að geta fengið sömu gerð af svari þegar þú keyrir kóðann sjálf/ur, en þú þarft alltaf að bera tölurnar saman við nýjustu gögnin. Veðurstöðvum fjölgar og fækkar, og brautskráningartölur eru endurskoðaðar. Tala sem er slegin inn með höndunum verður þögul ósannindi um leið og gögnin hreyfast.
 :::
 
 ### 1. Hagstofan — hverjir klára BS-námið?
@@ -467,6 +468,7 @@ Niðurstaðan lítur svona út:
 
 ```{r}
 #| label: island-r-svar-1
+#| eval: false
 #| echo: false
 #| message: false
 #| warning: false
@@ -510,11 +512,11 @@ grind <- expand.grid(rev(asar), stringsAsFactors = FALSE)
 grind <- grind[, rev(names(grind)), drop = FALSE]
 grind$gildi <- d$value
 
-grind$Námssvið <- factor(grind$Námssvið, levels = asar[["Námssvið"]])
-grind$Nemendur <- factor(grind$Nemendur, levels = asar[["Nemendur"]])
+grind[["Námssvið"]] <- factor(grind[["Námssvið"]], levels = asar[["Námssvið"]])
+grind[["Nemendur"]] <- factor(grind[["Nemendur"]], levels = asar[["Nemendur"]])
 
 knitr::kable(
-  tapply(grind$gildi, list(grind$Námssvið, grind$Nemendur), identity),
+  tapply(grind[["gildi"]], list(grind[["Námssvið"]], grind[["Nemendur"]]), identity),
   caption = "Hlutfall (%) sex árum eftir innritun 2017"
 )
 ```
@@ -574,6 +576,7 @@ Berðu saman hvað kemur til baka:
 
 ```{r}
 #| label: island-r-svar-2
+#| eval: false
 #| echo: false
 #| message: false
 #| warning: false
@@ -671,3 +674,4 @@ en VR-II stendur í raun, og þá raðaðist listinn í **öfuga röð**.
 Skráðu því alltaf hvaða hnit þú notaðir og hvaðan þau komu. Það er forsenda þess að einhver
 annar fái sömu niðurstöðu.
 :::
+

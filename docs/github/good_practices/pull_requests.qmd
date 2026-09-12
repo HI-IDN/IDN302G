@@ -8,6 +8,8 @@ description: >-
 
 Pull requests (PRs) eru mikilvægur hluti af samvinnu í GitHub verkefnum. Gott PR ætti að vera skýrt og veita rýnum (reviewers) nauðsynlegan bakgrunn til að meta breytingarnar.
 
+![Kennarinn biður nemendur um að senda pull request á hópfélagana.](../../img/meme/pull-request.jpg){fig-alt="Meme þar sem kennarinn segir nemendum að senda pull request á hópfélagana." width="70%"}
+
 ::: {.callout-tip icon="true"}
 Góð kóðarýni snýst ekki aðeins um að leita að villum, heldur líka um að gera vinnuna
 skýrari, rekjanlegri og auðveldari fyrir teymið að viðhalda.

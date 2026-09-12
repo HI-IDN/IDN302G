@@ -17,22 +17,23 @@ Markmið námskeiðsins er að kynnast fyrirspurnarmálinu SQL:
 SQL (Structured Query Language), borið fram eins og „sequel“ eða „ess-cue-ell“, er staðlað
 fyrirspurnarmál sem er notað til að hafa samskipti við venslagagnasöfn.
 
-### Ólík SQL fyrirspurnarmál
+### Ólík fyrirspurnarmál og gagnagrunnskerfi
 
-Samkvæmt [DB-Engines Ranking](https://db-engines.com/en/ranking) eru vinsælustu gagnagrunnskerfin:
+Það eru til alls konar gagnagrunnskerfi og þau nota ekki öll sama fyrirspurnarmál. Sum eru
+hefðbundin SQL-kerfi, eins og _PostgreSQL_, _SQLite_, _MySQL_, _Oracle_ og _Microsoft SQL Server_.
+Sum kerfi nota SQL en eru sérhæfð fyrir gagnavöruhús eða gagnaplatform, til dæmis _Snowflake_ og
+_Databricks SQL_. Önnur eru óhefðbundnari fyrirspurnarumhverfi, til dæmis _MongoDB_ og _Redis_.
 
-1. Oracle
-2. MySQL
-3. Microsoft SQL Server
-4. PostgreSQL
-5. MongoDB
-6. Redis
-7. Snowflake
-8. Elasticsearch
-9. IBM Db2
-10. SQLite
+Taflan hér fyrir neðan sýnir nýlega stöðu vinsælla gagnagrunnskerfa samkvæmt
+[DB-Engines Ranking](https://db-engines.com/en/ranking). Dagsetningin kemur fram í töflunni sjálfri,
+því hana má endurnýja mánaðarlega. Hún er ekki listi yfir það sem þið þurfið að kunna allt saman.
+Hún sýnir bara landslagið: SQL er stór hluti af því, en ekki eina leiðin til að spyrja gagnakerfi.
 
-Við munum kynnast _SQLite_ og _PostgreSQL_ í þessu námskeiði.
+{{< include includes/db-engines-ranking.qmd >}}
+
+Í þessu námskeiði munum við fyrst og fremst kynnast _SQLite_ og _PostgreSQL_. _SQLite_ er þægilegt
+fyrir lítil staðbundin verkefni og æfingar. _PostgreSQL_ er dæmi um öflugt SQL-kerfi sem er mikið
+notað í raunverulegum kerfum.
 
 ### Líkindi milli SQL fyrirspurnarmála
 
@@ -43,26 +44,14 @@ oft mjög keimlíkar og auðvelt að aðlaga sig á milli kerfa. Fyrir frekari u
 hvernig `SELECT` skipanir eru búnar til, sem verða útskýrð betur í
 [grunnatriði í SQL](basic_sql_queries.qmd).
 
-Hér eru dæmi um grunnskipanir í SQL fyrir mismunandi gagnagrunnskerfi:
+Hér eru sömu grunnfyrirspurnir í nokkrum algengum SQL-kerfum. Takið eftir að fyrstu tvær
+fyrirspurnirnar eru eins í öllum dæmunum. Munurinn sést helst þegar við viljum takmarka fjölda raða.
 
-#### PostgreSQL
+::: {.panel-tabset}
 
-```sql
--- Select all rows from a table
-SELECT *
-FROM tbl;
+## PostgreSQL
 
--- Select specific columns and sort by a column
-SELECT col1, col2
-FROM tbl
-ORDER BY col1 DESC;
-
--- Select the first 10 rows
-SELECT *
-FROM tbl LIMIT 10;
-```
-
-#### MySQL
+Skjölun: [PostgreSQL LIMIT og OFFSET](https://www.postgresql.org/docs/current/queries-limit.html)
 
 ```sql
 -- Select all rows from a table
@@ -74,12 +63,16 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
-FROM tbl LIMIT 10;
+FROM tbl
+ORDER BY col1
+LIMIT 10;
 ```
 
-#### SQLite
+## MySQL
+
+Skjölun: [MySQL SELECT](https://dev.mysql.com/doc/refman/8.4/en/select.html)
 
 ```sql
 -- Select all rows from a table
@@ -91,12 +84,16 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
+-- Select the first 10 rows after sorting
 SELECT *
-FROM tbl LIMIT 10;
+FROM tbl
+ORDER BY col1
+LIMIT 10;
 ```
 
-#### Microsoft SQL Server
+## SQLite
+
+Skjölun: [SQLite SELECT](https://www.sqlite.org/lang_select.html)
 
 ```sql
 -- Select all rows from a table
@@ -108,10 +105,172 @@ SELECT col1, col2
 FROM tbl
 ORDER BY col1 DESC;
 
--- Select the first 10 rows
-SELECT TOP 10 *
-FROM tbl;
+-- Select the first 10 rows after sorting
+SELECT *
+FROM tbl
+ORDER BY col1
+LIMIT 10;
 ```
+
+## Microsoft SQL Server
+
+Skjölun: [SQL Server TOP](https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql)
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows after sorting
+SELECT TOP (10) *
+FROM tbl
+ORDER BY col1;
+```
+
+## Oracle
+
+Skjölun: [Oracle SELECT](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SELECT.html)
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows after sorting
+SELECT *
+FROM tbl
+ORDER BY col1
+FETCH FIRST 10 ROWS ONLY;
+```
+
+## IBM Db2
+
+Skjölun: [IBM Db2 FETCH FIRST](https://www.ibm.com/docs/en/db2-for-zos/12.0.0?topic=selection-fetching-limited-number-rows)
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows after sorting
+SELECT *
+FROM tbl
+ORDER BY col1
+FETCH FIRST 10 ROWS ONLY;
+```
+
+## Snowflake
+
+Skjölun: [Snowflake LIMIT / FETCH](https://docs.snowflake.com/en/sql-reference/constructs/limit)
+
+Snowflake notar SQL og styður bæði `LIMIT` og `FETCH`. Hér er PostgreSQL-líka leiðin:
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows after sorting
+SELECT *
+FROM tbl
+ORDER BY col1
+LIMIT 10;
+```
+
+## Databricks SQL
+
+Skjölun: [Databricks SQL LIMIT](https://docs.databricks.com/aws/en/sql/language-manual/sql-ref-syntax-qry-select-limit)
+
+Databricks SQL styður líka `LIMIT`:
+
+```sql
+-- Select all rows from a table
+SELECT *
+FROM tbl;
+
+-- Select specific columns and sort by a column
+SELECT col1, col2
+FROM tbl
+ORDER BY col1 DESC;
+
+-- Select the first 10 rows after sorting
+SELECT *
+FROM tbl
+ORDER BY col1
+LIMIT 10;
+```
+
+:::
+
+MongoDB og Redis eru öðruvísi en SQL-kerfin hér að ofan. Samt er gagnlegt að sjá hvernig sama hugsun
+birtist í þeim: velja gögn, raða þeim og takmarka fjölda niðurstaðna.
+
+::: {.panel-tabset}
+
+## MongoDB
+
+Skjölun: [MongoDB `find()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
+
+MongoDB er skjalagagnagrunnur, svo dæmið er ekki SQL heldur `mongosh` skipun. Hugmyndin er samt
+svipuð: finna skjöl, velja reiti, raða og takmarka fjölda niðurstaðna.
+
+```javascript
+// Select all documents from a collection
+db.tbl.find({});
+
+// Select specific fields and sort by a field
+db.tbl
+  .find({}, { col1: 1, col2: 1, _id: 0 })
+  .sort({ col1: -1 });
+
+// Select the first 10 documents after sorting
+db.tbl
+  .find({})
+  .sort({ col1: 1 })
+  .limit(10);
+```
+
+## Redis Search
+
+Skjölun: [Redis FT.SEARCH](https://redis.io/docs/latest/commands/ft.search/)
+
+Redis er lykil-gildis gagnagrunnur. Fyrir leit í skjölum er oft notað Redis Search, þar sem
+`FT.SEARCH` getur raðað og takmarkað niðurstöður. Þetta dæmi gerir ráð fyrir að til sé index sem
+heitir `idx`.
+
+```bash
+# Return matching documents
+FT.SEARCH idx "*"
+
+# Return selected fields and sort by a field
+FT.SEARCH idx "*" RETURN 2 col1 col2 SORTBY col1 DESC
+
+# Return the first 10 matches after sorting
+FT.SEARCH idx "*" SORTBY col1 ASC LIMIT 0 10
+```
+
+:::
+
 
 ## Gagnasafnskerfi
 
@@ -165,6 +324,9 @@ skilvirkan hátt. Þau byggja á mengjum og venslum, eins og tvístæðum venslu
 - Gögn geymd á skipulögðu formi.
 
 ### Mengi og vensl
+
+Í kaflanum [Rökfræði og mengi](../logic-sets/index.qmd) æfum við fyrst að lesa töflur sem hópa,
+yrðingar og vensl áður en við skrifum SQL. Hér tengjum við sömu hugmyndir við venslagagnasöfn.
 
 Mengi eru oft notuð til þess að halda utan um hópa hluti sem hafa svipaða eiginleika, eins og allir
 nemendur í upplýsingaverkfræði eða allir nemendur Háskóla Íslands. Mengi eru óraðað safn af hlutum,

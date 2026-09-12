@@ -14,4 +14,4 @@
 
 requests==2.32.5        # api/*.qmd, regex/mbl.qmd
 pandas==3.0.1           # töflur úr JSON-svörum
-python-dotenv==1.2.2    # .env í api/good-practices.qmd
+python-dotenv==1.2.2    # .env í api/access-controlled-apis.qmd

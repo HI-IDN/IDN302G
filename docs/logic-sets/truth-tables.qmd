@@ -1,0 +1,129 @@
+---
+title: "Yrðingar og sanntöflur"
+description: >-
+  Hvernig einfaldar fullyrðingar verða að skilyrðum og hvernig og, eða og ekki
+  breyta sanngildi þeirra.
+---
+
+SQL byrjar oft sem venjuleg spurning á mannamáli:
+
+> Hverjir eru í Uppreisnarmönnum?
+
+Til að svara henni þurfum við að geta prófað fullyrðingu um hverja persónu. Slík fullyrðing er
+kölluð **yrðing** ef hægt er að segja hvort hún sé sönn eða ósönn.
+
+Við notum töflurnar úr innganginum. Þar sjáum við til dæmis að Logi hefur röð í `member_of` sem
+tengir hann við Uppreisnarmenn. Yrðingin „Logi er uppreisnarmaður“ er því sönn. Svarthöfði hefur
+hins vegar röð sem tengir hann við Keisaradæmið, en enga röð sem tengir hann við Uppreisnarmenn.
+Yrðingin „Svarthöfði er uppreisnarmaður“ er því ósönn í þessu litla gagnasafni.
+
+## Frá setningu yfir í skilyrði
+
+Spurningin:
+
+> Hverjir eru Uppreisnarmenn?
+
+verður að skilyrði á mannamáli:
+
+> persónan hefur tengingu við `Uppreisnarmenn`
+
+Síðar verður þetta að SQL-skilyrði. Hér þurfum við fyrst að venjast því að prófa skilyrði og halda
+þeim tilvikum þar sem skilyrðið er satt.
+
+## `og`
+
+Stundum þurfa tvö skilyrði að vera sönn í einu.
+
+> Hverjir eru uppreisnarmenn og Væringjar?
+
+Látum:
+
+- $p$ merkja „persónan er uppreisnarmaður“,
+- $q$ merkja „persónan er Væringur“.
+
+| $p$ | $q$ | $p \land q$ |
+|---|---|---|
+| satt | satt | satt |
+| satt | ósatt | ósatt |
+| ósatt | satt | ósatt |
+| ósatt | ósatt | ósatt |
+
+`og` er strangt. Bæði þurfa að ganga upp. Í gögnunum okkar er Logi dæmi um persónu þar sem bæði eru
+sönn: hann er skráður í Uppreisnarmenn og Væringja.
+
+`og` merkir að við viljum persónur þar sem bæði skilyrðin gilda. Seinna lærum við hvernig við
+þýðum svona spurningu yfir í SQL þegar aðildin liggur í mörgum röðum.
+
+## `eða`
+
+Stundum dugar að annað skilyrðið sé satt.
+
+> Hverjir eru uppreisnarmenn eða Væringjar?
+
+| $p$ | $q$ | $p \lor q$ |
+|---|---|---|
+| satt | satt | satt |
+| satt | ósatt | satt |
+| ósatt | satt | satt |
+| ósatt | ósatt | ósatt |
+
+`eða` er víðara en `og`. Það tekur með persónur sem uppfylla annað skilyrðið eða bæði. Logi kemur
+með vegna þess að hann er bæði uppreisnarmaður og Væringur. Lilja kemur með vegna þess að hún er
+uppreisnarmaður. Jóda kemur með vegna þess að hann er Væringur.
+
+Seinna lærum við að þýða svona `eða`-spurningu yfir í SQL. Hér skiptir mestu að sjá hvaða persónur
+eiga að vera í svarinu.
+
+## `ekki`
+
+`ekki` snýr skilyrði við.
+
+> Hverjir eru ekki Uppreisnarmenn?
+
+| $p$ | $\neg p$ |
+|---|---|
+| satt | ósatt |
+| ósatt | satt |
+
+Ef $p$ er „persónan er uppreisnarmaður“, þá er $\neg p$ „persónan er ekki uppreisnarmaður“.
+
+Hér skiptir mestu að sjá hvernig skilyrðið snýst við: þeir sem voru inni í hópi uppreisnarmanna detta út,
+og hinir koma til greina.
+
+Við getum líka snúið tveimur skilyrðum við í einu:
+
+> Hverjir eru hvorki Uppreisnarmenn né í Keisaradæminu?
+
+Þá erum við að spyrja um persónur þar sem bæði er satt:
+
+- persónan er ekki uppreisnarmaður,
+- persónan er ekki í Keisaradæminu.
+
+Boba Fett er gott dæmi um slíka persónu í töflunum okkar: hann er skráður sem hausaveiðari, ekki
+sem uppreisnarmaður eða hluti af Keisaradæminu.
+
+::: {.callout-note title="Prófið áður en þið haldið áfram"}
+Notið töflurnar úr innganginum og ákveðið hvort fullyrðingarnar séu sannar eða ósannar:
+
+1. Logi er í Uppreisnarmönnum.
+2. Jóda er í Uppreisnarmönnum.
+3. Logi er bæði uppreisnarmaður og Væringur.
+4. Svarthöfði er Væringur eða í Keisaradæminu.
+5. Finnur er bæði í Andspyrnunni og Frumreglunni.
+6. Lilja er í Frumreglunni.
+7. Boba Fett er hvorki í Uppreisnarmönnum né Keisaradæminu.
+:::
+
+## Þegar persóna er í tveimur hópum
+
+Spurningin:
+
+> Hver er bæði í Andspyrnunni og Frumreglunni?
+
+er líka `og`-spurning. Hún leitar að skörun milli tveggja hópa. Í litla gagnasafninu okkar er Finnur
+slíkt dæmi: hann hefur tengingu við Frumregluna og Andspyrnuna.
+
+::: {.callout-tip title="Lesið fyrst, skrifið svo"}
+Áður en þið skrifið SQL, prófið að segja skilyrðið með orðum: „ég vil persónur þar sem ...“. Ef
+setningin er skýr verður SQL yfirleitt miklu auðveldara.
+:::

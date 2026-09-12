@@ -55,7 +55,7 @@ lykill <- Sys.getenv("GITHUB_TOKEN")           # tómt ef hann er ekki settur
 gh_auth <- if (nzchar(lykill)) paste("Bearer", lykill) else NULL
 ```
 
-`req_headers()` endurstillir haus á sjálfgefið gildi ef þú gefur `NULL`. Fyrir `Authorization` þýðir það að enginn auðkenningarhaus er sendur, svo sama kóðadæmi virkar hvort sem lykillinn er til eða ekki — bara með ólíkum álagsmörkum. Sjá [góða starfshætti](good-practices.qmd) um það
+`req_headers()` endurstillir haus á sjálfgefið gildi ef þú gefur `NULL`. Fyrir `Authorization` þýðir það að enginn auðkenningarhaus er sendur, svo sama kóðadæmi virkar hvort sem lykillinn er til eða ekki — bara með ólíkum álagsmörkum. Sjá [aðgangsstýrðar vefþjónustur](access-controlled-apis.qmd) um það
 hvernig lykillinn er geymdur.
 
 ## Beiðni í skrefum
@@ -220,7 +220,7 @@ df[["full_name", "stargazers_count", "language", "updated_at"]] \
 Taflan að ofan var sótt þegar þessi síða var síðast byggð. Stjörnur og `updated_at` breytast
 stöðugt, svo þínar tölur verða aðrar — og röðin líka. Það er einmitt eðli gagna sem sótt eru um
 vefþjónustu: þau eru ekki föst, og þess vegna skiptir máli að skrá **hvenær** var sótt (sjá
-[góða starfshætti](good-practices.qmd)).
+[endurtakanlega API-vinnu](reproducible-api-work.qmd)).
 :::
 
 ## Villur
@@ -369,6 +369,8 @@ nrow(commits)
 
 ```{python}
 #| label: saekja-py-7
+import pandas as pd
+
 url = "https://api.github.com/repos/HI-IDN/IDN302G/commits"
 params = {"per_page": 100}
 allt = []
@@ -505,7 +507,7 @@ netbeiðnirnar hér eru **raunverulega sendar** í hverri byggingu. Liggi þjón
 byggingin með tímamörkum og villuboðum — þá keyrir maður hana einfaldlega aftur.
 
 Undantekningin er beiðni sem krefst **persónulegs aðgangslykils**, eins og TMDB-dæmið í
-[góðum starfsháttum](good-practices.qmd). Slíkur lykill á ekki heima í opinni geymslu, svo sá
+[aðgangsstýrðum vefþjónustum](access-controlled-apis.qmd). Slíkur lykill á ekki heima í opinni geymslu, svo sá
 bútur er `eval: false`.
 
 GitHub-beiðnirnar eru annað mál: GitHub Actions býr sjálfkrafa til tímabundinn `GITHUB_TOKEN`
@@ -617,7 +619,7 @@ hvernig CSV-skrár verða að töflum sem hægt er að spyrja.
 
 Óháð stærð eiga þessi gögn aldrei heima í geymslunni: aðgangslyklar, persónugreinanleg gögn,
 og allt sem skilmálar þjónustunnar banna þér að dreifa. Sjá
-[góða starfshætti](good-practices.qmd).
+[endurtakanlega API-vinnu](reproducible-api-work.qmd).
 :::
 
 ## Æfing
