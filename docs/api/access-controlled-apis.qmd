@@ -274,3 +274,80 @@ TMDB krefst þess líka að getið sé heimildar þegar gögnin eru birt.
 Þegar þú býrð til lykil er oft hægt að velja hvað hann má. Veldu **minnstu réttindi sem duga**.
 Lykill sem á bara að lesa opin gögn þarf engin skrifréttindi, og þá er tjónið lítið þótt hann
 leki. Settu líka gildistíma á hann ef það býðst.
+
+### Hvers vegna lágmarksréttindi?
+
+Þetta kallast *meginreglan um lágmarksréttindi* (e. *principle of least privilege*). Gott er að
+hugsa um áhættuna af lykli sem tvo þætti sem margfaldast saman:
+
+> **áhætta ≈ líkur á að lykillinn leki × tjónið sem hægt er að valda með honum**
+
+Fyrri þættinum ræður þú aldrei alveg. Lykill getur lent í Git-sögu, skjáskoti, spjallskilaboðum
+eða úttaki skjals, eins og sýnt er hér að ofan. Seinni þættinum ræður þú hins vegar alveg, og það
+gerirðu á þeirri stundu sem þú býrð lykilinn til. Lesaðgangur að opnum gögnum sem lekur er
+óþægilegur. Lykill sem má eyða gögnum, skrifa í geymslur eða stofna til kostnaðar getur valdið
+raunverulegu tjóni.
+
+### Einn lykill, einn tilgangur
+
+*Aðgreining* þýðir að nota ekki sama lykilinn alls staðar. Búðu frekar til sérstakan lykil fyrir
+hvern tilgang:
+
+- **Hvern liðsmann.** Hver og einn í hópnum sækir sinn eigin lykil og geymir hann í sinni eigin
+  `.Renviron` eða `.env`. Lyklum er ekki deilt í spjalli eða tölvupósti.
+- **Hvert verkefni.** Lykillinn fyrir hópverkefnið á ekki að vera sá sami og þú notar í eigin
+  tilraunir eða önnur námskeið.
+- **Hvert umhverfi.** Ef sjálfvirk keyrsla þarf lykil fær hún sinn eigin, ekki lykilinn af
+  fartölvunni þinni.
+
+Þetta borgar sig þegar eitthvað fer úrskeiðis:
+
+1. **Þú getur afturkallað einn lykil án þess að brjóta allt hitt.** Leki lykill eins liðsmanns
+   þarf aðeins að skipta þeim lykli út. Aðrir í hópnum halda áfram að vinna.
+2. **Þú sérð hvaðan notkunin kemur.** Margar þjónustur sýna notkun og takmörk (e. *rate limit*)
+   eftir lyklum. Hagi einn lykill sér undarlega veistu strax hvar á að leita.
+3. **Hver lykill fær aðeins þau réttindi sem hlutverk hans krefst.** Aðgreining gerir
+   lágmarksréttindi mögulegar. Lykill sem á að þjóna öllu þarf að mega allt.
+
+Gefðu lyklunum lýsandi nöfn þegar þjónustan leyfir, til dæmis `idn302g-hopverkefni-lestur`, svo
+auðvelt sé að sjá síðar hvaða lykil á að afturkalla.
+
+### Dæmi: fínstilltur GitHub-lykill
+
+GitHub býður upp á *fine-grained personal access tokens* (undir *Settings → Developer settings*).
+Þar velurðu sjálf/ur hvaða geymslur lykillinn nær til, hvaða réttindi hann hefur og hvenær hann
+rennur út:
+
+| Stilling | Of víðtækt | Lágmarksréttindi |
+|---|---|---|
+| *Repository access* | *All repositories* | Aðeins sú geymsla sem verkefnið þarf |
+| *Permissions* | *Read and write* á allt | Aðeins það sem þarf, t.d. *Contents: Read-only* |
+| *Expiration* | *No expiration* | Út önnina eða skemur |
+
+Leki lykill úr hægri dálkinum gefur hann aðeins lesaðgang að einni geymslu í takmarkaðan tíma.
+Leki lykill úr vinstri dálkinum getur sá sem finnur hann breytt eða eytt öllum geymslunum þínum
+þar til þú tekur eftir því.
+
+### Gildistími
+
+Lykill án gildistíma er virkur þar til einhver man eftir að afturkalla hann, og það gleymist.
+Hópverkefnið klárast, önnin líður, en lykillinn liggur enn í gamalli `.Renviron` eða í
+Git-sögu einhvers staðar. Með gildistíma verður gleymdur lykill sjálfkrafa skaðlaus. Þegar hann
+rennur út býrðu einfaldlega til nýjan og setur hann í stað þess gamla.
+
+Bjóði þjónustan ekki upp á gildistíma, eins og á við um suma ókeypis lykla, skaltu
+**afturkalla lykilinn sjálf/ur** þegar verkefninu lýkur.
+
+Lekur lykill þrátt fyrir allt gildir það sama og áður: afturkallaðu hann strax (sjá
+*Hafi lykill lekið* ofar á síðunni). Aðgreining og lágmarksréttindi breyta því ekki, en þau
+tryggja að tjónið sé lítið og að viðbrögðin séu einföld.
+
+### Gátlisti
+
+Áður en þú notar nýjan lykil:
+
+- [ ] Hefur lykillinn **aðeins** þau réttindi sem verkefnið þarf?
+- [ ] Er hann bundinn við **eitt verkefni og einn notanda**?
+- [ ] Er **gildistími** á honum, eða veistu hvenær þú afturkallar hann?
+- [ ] Er hann geymdur í `.Renviron` eða `.env`, og er sú skrá í `.gitignore`?
+- [ ] Veistu **hvar og hvernig** á að afturkalla hann?
