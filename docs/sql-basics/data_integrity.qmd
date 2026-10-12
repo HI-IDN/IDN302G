@@ -33,7 +33,7 @@ CREATE TABLE starfsmannalisti
 ```
 Hér er `Kennitala` aðallykillinn (e. _primary key_), sem þarf að vera einkvæmur og ekki _NULL_. 
 
-> **Athugið**: Aðallykill getur verið samsettur lykill, þar sem tvö eða fleiri dálkar mynda 
+> **Athugið**: Aðallykill getur verið samsettur lykill, þar sem tveir eða fleiri dálkar mynda 
 > aðallykilinn. En ef lykill er einn dálkur, þá er hann oftast `INTEGER` eða `SERIAL`, og 
 > mögulega sjálfvirkt upphækkaður með `AUTOINCREMENT` (þ.e.a.s. þarf ekki að setja gildi í dálkinn).
 > Kosturinn við hafa einn dálk er að hann er þá kjörinn kandídat til að vera ytri lykill í 

@@ -337,7 +337,7 @@ Tvístæð vensl frá $A$ til $B$ er mengið $R$ af röðuðum pörum þar sem f
 pari kemur frá $A$ og það síðara frá $B$. Þegar $(a,b)$ tilheyrir $R$ þá er $a$ sagt vera með vensl
 í $b$ með $R$ (skrifað $aRb$).
 
-Dæmi um tvístæð vensl $R$ frá mengi $A$ til $B$: $A = \{0,1,2\}$, $B = \{a, b\} $. Tvístæð
+Dæmi um tvístæð vensl $R$ frá mengi $A$ til $B$: $A = \{0,1,2\}$, $B = \{a, b\}$. Tvístæð
 vensl væru þá t.d. $R: \{(0, a), (0, b), (1, a), (2, b)\}$. Athugið, við þurfum ekki að hafa öll pör
 af tengingum milli mengja.
 
