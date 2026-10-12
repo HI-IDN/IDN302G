@@ -36,4 +36,18 @@ Gestafyrirlestur Guðmundar Einarssonar, tölfræðings hjá TM undir hatti Land
 [Opna glærurnar *AI in the Analytics Workplace*](https://gumeo.github.io/lectures/ai_analytics_workplace/)
 :::
 
+::: {.lotu-card}
+### 2026-10-12 Samhengi skiptir máli
+
+Gestafyrirlestur Vic Valenzuela um hvernig fyrirsjáanlegt vinnuferli og vel skilgreint samhengi gera vinnu með ófyrirsjáanlegum gervigreindarerindrekum markvissari.
+
+[Opna glærurnar *Context Matters: Predictable process for unpredictable agents*](https://vic.valenzuela.is/presentations/context-matters/)
+
+Tengd verk fyrirlesarans:
+
+- [rondo](https://github.com/sandsower/rondo): breytir verkefnavinnu í aðskildar, sjálfvirkar útfærslukeyrslur svo teymi stýri vinnunni frekar en að vakta erindrekana.
+- [memento-vault](https://github.com/sandsower/memento-vault): varanleg þekkingarsöfnun fyrir erindreka, þar sem lotur eru flokkaðar í leitanlegar Zettelkasten-glósur.
+- [beislid](https://github.com/sandsower/beislid): ákveðin vinnuflæði (skills) fyrir erindreka, óháð verkfæri, með skýrum hliðum frekar en tilmælum.
+:::
+
 :::
