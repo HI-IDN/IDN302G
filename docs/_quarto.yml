@@ -149,9 +149,10 @@ book:
         - tech-setup/git-install.qmd
         - tech-setup/ssh.qmd
         - tech-setup/databases.qmd
-    - part: "Glærur"
+    - part: "Viðauki"
       chapters:
         - slides/index.qmd
+        - slides/related-material.qmd
     - part: "Um efnið"
       chapters:
         - about-material/license.qmd
