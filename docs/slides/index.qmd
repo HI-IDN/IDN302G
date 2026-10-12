@@ -39,7 +39,7 @@ Gestafyrirlestur Guðmundar Einarssonar, tölfræðings hjá TM undir hatti Land
 ::: {.lotu-card}
 ### 2026-10-12 Samhengi skiptir máli
 
-Gestafyrirlestur Vic Valenzuela um hvernig fyrirsjáanlegt vinnuferli og vel skilgreint samhengi gera vinnu með ófyrirsjáanlegum gervigreindarerindrekum markvissari.
+Gestafyrirlestur Vic Valenzuela, hugbúnaðarverkfræðings í Reykjavík og sérfræðings í gervigreindarerindrekum. Vic hefur í fimmtán ár smíðað hugbúnað þar sem mistök eru dýrkeypt, svo sem fyrir uppboðshús, gervihné og tímabókanir í heilbrigðisþjónustu, og vinnur nú að því hvernig hægt er að treysta því sem gervigreind smíðar. Fyrirlesturinn fjallar um hvernig fyrirsjáanlegt vinnuferli og vel skilgreint samhengi gera vinnu með ófyrirsjáanlegum erindrekum markvissari.
 
 [Opna glærurnar *Context Matters: Predictable process for unpredictable agents*](https://vic.valenzuela.is/presentations/context-matters/)
 
