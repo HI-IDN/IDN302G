@@ -71,8 +71,9 @@ jobs:
       # reticulate <- Quarto/knitr notar hann til að keyra {python}-búta.
       # readr    <- eval: false skriftudæmi í api/fetching-data.qmd, talið upp hér
       #             svo nemendur geti keyrt sömu uppskriftir án þess að leita.
+      # DBI, RSQLite <- {sql}-bútar á data/kennarar.db í sql-basics/introduction.qmd
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr"))'
+        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr", "DBI", "RSQLite"))'
 
       # Bútarnir lesa GITHUB_TOKEN úr umhverfinu. Án hans keyra GitHub-beiðnirnar
       # óauðkenndar og lenda á 60/klst markinu; með honum eru mörkin 5.000/klst.
