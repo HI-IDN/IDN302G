@@ -169,11 +169,11 @@ Hér að neðan eru fyrirlestraraðir á YouTube um sambærilegt efni og farið 
 
 ```{=html}
 <details class="video-details">
-  <summary>Myndbandaröð 1</summary>
+  <summary>Myndbandaröð: <em>SawFin Mathematics</em> — Discrete Math I</summary>
   <div class="ratio ratio-16x9">
     <iframe
       src="https://www.youtube.com/embed/A3Ffwsnad0k?list=PLl-gb0E4MII28GykmtuBXNUNoej-vY5Rz"
-      title="Myndbandaröð 1 um rökfræði, mengi og vensl"
+      title="SawFin Mathematics: Discrete Math I"
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen>
     </iframe>
@@ -184,11 +184,11 @@ Hér að neðan eru fyrirlestraraðir á YouTube um sambærilegt efni og farið 
 
 ```{=html}
 <details class="video-details">
-  <summary>Myndbandaröð 2</summary>
+  <summary>Myndbandaröð: <em>Dr. Trefor Bazett</em> — Discrete Math (Full Course)</summary>
   <div class="ratio ratio-16x9">
     <iframe
       src="https://www.youtube.com/embed/rdXw7Ps9vxc?list=PLHXZ9OQGMqxersk8fUxiUMSIx0DBqsKZS"
-      title="Myndbandaröð 2 um rökfræði, mengi og vensl"
+      title="Dr. Trefor Bazett: Discrete Math (Full Course)"
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen>
     </iframe>
@@ -199,11 +199,11 @@ Hér að neðan eru fyrirlestraraðir á YouTube um sambærilegt efni og farið 
 
 ```{=html}
 <details class="video-details">
-  <summary>Myndbandaröð 3</summary>
+  <summary>Myndbandaröð: <em>TrevTutor</em> — Discrete Math</summary>
   <div class="ratio ratio-16x9">
     <iframe
       src="https://www.youtube.com/embed/tyDKR4FG3Yw?list=PLDDGPdw7e6Ag1EIznZ-m-qXu4XX3A0cIz"
-      title="Myndbandaröð 3 um rökfræði, mengi og vensl"
+      title="TrevTutor: Discrete Math"
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen>
     </iframe>
