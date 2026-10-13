@@ -1,0 +1,19 @@
+---
+title: "Tengt efni"
+description: >-
+  Ráðstefnugreinar og annað efni sem tengist kennsluhönnun IÐN302G.
+---
+
+Eftirfarandi efni tengist námskeiðinu óbeint og sýnir hluta af þeirri kennsluhönnun
+sem IÐN302G byggir á.
+
+- [CDIO-BI](https://github.com/tungufoss/CDIO-BI) tengist námskeiðshönnun í
+  viðskiptagreind (IÐN610M) og lýsir núverandi nálgun á upplýsingaverkfræði:
+  Ingimundardóttir, H. (2026). *Designing authentic industry-engaged assessment for
+  professional competence in business intelligence*. Proceedings of the 22nd
+  International CDIO Conference. CDIO Initiative, Liverpool, United Kingdom.
+- [CDIO-GitHub](https://github.com/tungufoss/CDIO-GitHub) fjallar um hvernig pull
+  requests geta gert samstarf sýnilegt í verkefnamiðuðum námskeiðum:
+  Ingimundardóttir, H. (2026). *Using pull requests to make collaboration visible in
+  CDIO project-based courses*. Proceedings of the 22nd International CDIO Conference.
+  CDIO Initiative, Liverpool, United Kingdom.

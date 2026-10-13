@@ -98,3 +98,213 @@ Lestu það í bútum:
 | `\d{2}` | tveir tölustafir fyrir ár |
 | `-` | bandstrik |
 | `\d{4}` | fjórir tölustafir |
+
+## Æfingar
+
+Skrifaðu mynstur fyrir hvert verkefni og prófaðu það á sýnidæmunum, t.d. í
+[regex101](https://regex101.com/). Reyndu áður en þú opnar lausnina. Hver lausn endar á
+stuttum kóða sem sannreynir mynstrið: dæmin sem eiga að passa skila `TRUE`, hin `FALSE`.
+
+### 1. Passaðu bara `hi.is`
+
+Mynstrið á að passa við `hi.is` en *ekki* við `hiXis`.
+
+::: {.callout-tip collapse="true" title="Lausn"}
+``` text
+hi\.is
+```
+
+Punkturinn þarf að vera `\.` svo hann þýði alvöru punkt en ekki „hvaða stafur sem er“.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: syntax-r-1
+daemi <- c("hi.is", "hiXis")
+setNames(grepl("hi\\.is", daemi, perl = TRUE), daemi)
+
+# Til samanburðar: mynstrið án bakskástriks
+setNames(grepl("hi.is", daemi, perl = TRUE), daemi)
+```
+
+## Python
+
+```{python}
+#| label: syntax-py-1
+import re
+
+mynstur = r"hi\.is"
+daemi = ["hi.is", "hiXis"]
+for s in daemi:
+    print(s, bool(re.search(mynstur, s)))
+
+# Til samanburðar: mynstrið án bakskástriks
+for s in daemi:
+    print(s, bool(re.search(r"hi.is", s)))
+```
+:::
+:::
+
+### 2. Símanúmer með eða án bandstriks
+
+Mynstrið á að passa við `555-1234` og `5551234`, en ekki við `55-1234` eða `5551-2345`.
+
+::: {.callout-tip collapse="true" title="Lausn"}
+``` text
+^\d{3}-?\d{4}$
+```
+
+`?` gerir bandstrikið valkvætt: núll eða einu sinni. Án `^` og `$` myndi mynstrið líka finna
+`551-2345` inni í `5551-2345`.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: syntax-r-2
+daemi <- c("555-1234", "5551234", "55-1234", "5551-2345")
+setNames(grepl("^\\d{3}-?\\d{4}$", daemi, perl = TRUE), daemi)
+
+# Til samanburðar: mynstrið án `^` og `$`
+setNames(grepl("\\d{3}-?\\d{4}", daemi, perl = TRUE), daemi)
+```
+
+## Python
+
+```{python}
+#| label: syntax-py-2
+import re
+
+mynstur = r"^\d{3}-?\d{4}$"
+daemi = ["555-1234", "5551234", "55-1234", "5551-2345"]
+for s in daemi:
+    print(s, bool(re.search(mynstur, s)))
+
+# Til samanburðar: mynstrið án `^` og `$`
+for s in daemi:
+    print(s, bool(re.search(r"\d{3}-?\d{4}", s)))
+```
+:::
+:::
+
+### 3. Gagnaskrár
+
+Mynstrið á að passa við skráarnöfn sem enda á `.csv` eða `.json`, til dæmis `gogn.csv` og
+`svar.json`, en ekki við `gogn.csv.bak`.
+
+::: {.callout-tip collapse="true" title="Lausn"}
+``` text
+\.(csv|json)$
+```
+
+`$` festir mynstrið við endann, þannig að `gogn.csv.bak` fellur út. Sviginn og `|` þýða
+„annaðhvort `csv` eða `json`“. Meira um sviga í [Hópar og notkun](groups.qmd).
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: syntax-r-3
+daemi <- c("gogn.csv", "svar.json", "gogn.csv.bak")
+setNames(grepl("\\.(csv|json)$", daemi, perl = TRUE), daemi)
+```
+
+## Python
+
+```{python}
+#| label: syntax-py-3
+import re
+
+mynstur = r"\.(csv|json)$"
+daemi = ["gogn.csv", "svar.json", "gogn.csv.bak"]
+for s in daemi:
+    print(s, bool(re.search(mynstur, s)))
+```
+:::
+:::
+
+### 4. Markdown-fyrirsagnir
+
+Mynstrið á að passa við línur sem byrja á einu til þremur `#` og svo bili, t.d. `# Titill`,
+`## Undirfyrirsögn` og `### Undirundirfyrirsögn`, en ekki við `#### Of djúpt` eða `#Enginbil`.
+
+::: {.callout-tip collapse="true" title="Lausn"}
+``` text
+^#{1,3}\s
+```
+
+`^` festir við byrjun línu, `#{1,3}` leyfir einn til þrjá `#`, og `\s` krefst bils á eftir.
+`{1,3}` er bil, ekki upptalning: `##` passar líka.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: syntax-r-4
+daemi <- c("# Titill", "## Undirfyrirsögn", "### Undirundirfyrirsögn", "#### Of djúpt", "#Enginbil")
+setNames(grepl("^#{1,3}\\s", daemi, perl = TRUE), daemi)
+
+# Til samanburðar: „einn eða þrír“ missir af `##`
+setNames(grepl("^(#|###)\\s", daemi, perl = TRUE), daemi)
+
+# Til samanburðar: ekkert efra mark hleypir `####` í gegn
+setNames(grepl("^#+\\s", daemi, perl = TRUE), daemi)
+```
+
+## Python
+
+```{python}
+#| label: syntax-py-4
+import re
+
+mynstur = r"^#{1,3}\s"
+daemi = ["# Titill", "## Undirfyrirsögn", "### Undirundirfyrirsögn", "#### Of djúpt", "#Enginbil"]
+for s in daemi:
+    print(s, bool(re.search(mynstur, s)))
+
+# Til samanburðar: „einn eða þrír“ missir af `##`
+for s in daemi:
+    print(s, bool(re.search(r"^(#|###)\s", s)))
+
+# Til samanburðar: ekkert efra mark hleypir `####` í gegn
+for s in daemi:
+    print(s, bool(re.search(r"^#+\s", s)))
+```
+:::
+:::
+
+### 5. Ártal frá 2000 til 2029
+
+Mynstrið á að passa við `2000`, `2026` og `2029`, en ekki við `1999`, `2030` eða `20260`.
+
+::: {.callout-tip collapse="true" title="Lausn"}
+``` text
+^20[0-2]\d$
+```
+
+Þriðji stafurinn er `0`, `1` eða `2` (`[0-2]`), sá fjórði hvaða tölustafur sem er (`\d`). `^` og
+`$` koma í veg fyrir að lengri tölur eins og `20260` passi.
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: syntax-r-5
+daemi <- c("2000", "2026", "2029", "1999", "2030", "20260")
+setNames(grepl("^20[0-2]\\d$", daemi, perl = TRUE), daemi)
+```
+
+## Python
+
+```{python}
+#| label: syntax-py-5
+import re
+
+mynstur = r"^20[0-2]\d$"
+daemi = ["2000", "2026", "2029", "1999", "2030", "20260"]
+for s in daemi:
+    print(s, bool(re.search(mynstur, s)))
+```
+:::
+:::

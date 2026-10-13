@@ -1,10 +1,12 @@
 ---
-title: "2026-08-17 Kynningarefni"
+title: "Glærur"
 description: >-
-  Quarto-glærur námskeiðsins sem opnast sem sérstakar HTML-kynningar.
+  Kynningarefni frá kennara og glærur gestafyrirlesara sem opnast sem sérstakar HTML-kynningar.
 ---
 
-Hér eru Quarto-glærur sem eru notaðar í fyrsta tíma. Glærurnar opnast sem sérstök HTML-kynning.
+## Frá kennara
+
+Kennari notar yfirleitt ekki glærur í kennslustundum, en hér birtast stöku kynningar og sýnidæmi þegar við á.
 
 ::: {.lotu-list}
 
@@ -18,18 +20,34 @@ Fyrsti tími og stutt yfirlit yfir námskeiðið, vinnuflæðið, GitHub, erindr
 
 :::
 
-## Tengt efni
+## Gestafyrirlestrar
 
-Eftirfarandi efni tengist námskeiðinu óbeint og sýnir hluta af þeirri kennsluhönnun
-sem IÐN302G byggir á.
+Hér eru aðeins tenglar á glærur sem gestafyrirlesarar hafa sjálfir gefið út
+opinberlega. Af virðingu við höfundarrétt er efni annarra gestafyrirlestra ekki
+afritað eða endurbirt á námskeiðsvefnum, en kann að vera birt nemendum á Canvas.
 
-- [CDIO-BI](https://github.com/tungufoss/CDIO-BI) tengist námskeiðshönnun í
-  viðskiptagreind (IÐN610M) og lýsir núverandi nálgun á upplýsingaverkfræði:
-  Ingimundardóttir, H. (2026). *Designing authentic industry-engaged assessment for
-  professional competence in business intelligence*. Proceedings of the 22nd
-  International CDIO Conference. CDIO Initiative, Liverpool, United Kingdom.
-- [CDIO-GitHub](https://github.com/tungufoss/CDIO-GitHub) fjallar um hvernig pull
-  requests geta gert samstarf sýnilegt í verkefnamiðuðum námskeiðum:
-  Ingimundardóttir, H. (2026). *Using pull requests to make collaboration visible in
-  CDIO project-based courses*. Proceedings of the 22nd International CDIO Conference.
-  CDIO Initiative, Liverpool, United Kingdom.
+::: {.lotu-list}
+
+::: {.lotu-card}
+### 2026-09-24 Gervigreind á vinnustað greiningarfólks
+
+Gestafyrirlestur Guðmundar Einarssonar, tölfræðings hjá TM undir hatti Landsbankans og stundakennara við Háskóla Íslands. Fyrirlesturinn fjallar um hvernig greiningarvinna er að breytast með gervigreind og stöðu hennar innan skipulagsheilda.
+
+[Opna glærurnar *AI in the Analytics Workplace*](https://gumeo.github.io/lectures/ai_analytics_workplace/)
+:::
+
+::: {.lotu-card}
+### 2026-10-12 Samhengi skiptir máli
+
+Gestafyrirlestur Vic Valenzuela, hugbúnaðarverkfræðings og sérfræðings í gervigreindarerindrekum. Fyrirlesturinn fjallar um hvernig fyrirsjáanlegt vinnuferli og skýrt samhengi gera okkur kleift að treysta því sem erindrekar smíða.
+
+[Opna glærurnar *Context Matters: Predictable process for unpredictable agents*](https://vic.valenzuela.is/presentations/context-matters/)
+
+Tengd verk fyrirlesarans:
+
+- [rondo](https://github.com/sandsower/rondo): breytir verkefnavinnu í aðskildar, sjálfvirkar útfærslukeyrslur svo teymi stýri vinnunni frekar en að vakta erindrekana.
+- [memento-vault](https://github.com/sandsower/memento-vault): varanleg þekkingarsöfnun fyrir erindreka, þar sem lotur eru flokkaðar í leitanlegar Zettelkasten-glósur.
+- [beislid](https://github.com/sandsower/beislid): ákveðin vinnuflæði (skills) fyrir erindreka, óháð verkfæri, með skýrum hliðum frekar en tilmælum.
+:::
+
+:::
