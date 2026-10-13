@@ -162,6 +162,61 @@ niðurstöður og `NULL`.
 Ef þið getið spáð fyrir um litla niðurstöðu með höndunum áður en þið keyrið SQL, eruð þið komin með
 rétta hugarlíkanið.
 
+## Auka myndbandsfyrirlestrar
+
+Hér að neðan eru fyrirlestraraðir á YouTube um sambærilegt efni og farið er yfir í fyrirlestrum 1–4
+(rökfræði, mengi og vensl). Listinn er birtur í handahófskenndri röð.
+
+```{=html}
+<details class="video-details">
+  <summary>Myndbandaröð 1</summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/A3Ffwsnad0k?list=PLl-gb0E4MII28GykmtuBXNUNoej-vY5Rz"
+      title="Myndbandaröð 1 um rökfræði, mengi og vensl"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption"><a href="https://www.youtube.com/watch?v=A3Ffwsnad0k&amp;list=PLl-gb0E4MII28GykmtuBXNUNoej-vY5Rz">Opna röðina á YouTube</a></p>
+</details>
+```
+
+```{=html}
+<details class="video-details">
+  <summary>Myndbandaröð 2</summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/rdXw7Ps9vxc?list=PLHXZ9OQGMqxersk8fUxiUMSIx0DBqsKZS"
+      title="Myndbandaröð 2 um rökfræði, mengi og vensl"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption"><a href="https://www.youtube.com/watch?v=rdXw7Ps9vxc&amp;list=PLHXZ9OQGMqxersk8fUxiUMSIx0DBqsKZS">Opna röðina á YouTube</a></p>
+</details>
+```
+
+```{=html}
+<details class="video-details">
+  <summary>Myndbandaröð 3</summary>
+  <div class="ratio ratio-16x9">
+    <iframe
+      src="https://www.youtube.com/embed/tyDKR4FG3Yw?list=PLDDGPdw7e6Ag1EIznZ-m-qXu4XX3A0cIz"
+      title="Myndbandaröð 3 um rökfræði, mengi og vensl"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="caption"><a href="https://www.youtube.com/watch?v=tyDKR4FG3Yw&amp;list=PLDDGPdw7e6Ag1EIznZ-m-qXu4XX3A0cIz">Opna röðina á YouTube</a></p>
+</details>
+```
+
+Raðirnar eru eingöngu hugsaðar sem stoðefni ef eitthvað er óskýrt í fyrirlestrunum. Athugið að við
+förum ekki yfir allt efnið í þeim. Kimberly Brehm virðist nota sömu bók og stuðst er við í
+námskeiðinu. Það eru líka til fleiri sambærilegar fyrirlestraraðir og efni á netinu, og ykkur er
+velkomið að nota það.
+
 [^stjornustrid-thyding]: Samkvæmt
     [íslensku Wikipediu um Stjörnustríð](https://is.wikipedia.org/wiki/Stj%C3%B6rnustr%C3%AD%C3%B0#%C3%8Dslenska_%C3%BE%C3%BD%C3%B0ingin)
     gerði Hersteinn Pálsson fyrstu íslensku þýðinguna á sögunni í bókinni *Stjörnustríð* árið 1978.
