@@ -24,6 +24,14 @@ Við notum lítið Stjörnustríðsdæmi. Þetta er ekki gagnagrunnur um Stjörn
 
 > Hvaða raðir og dálkar eiga að vera í niðurstöðunni?
 
+Fjórar hugmyndir bera þennan hluta uppi:
+
+- **Mengi:** tafla er mengi af línum, sjá [Mengi sem hópar](sets-as-questions.qmd).
+- **Vensl:** tafla skilgreinir vensl, sjá [Vensl sem töflur](relations-as-tables.qmd).
+- **Yrðingar:** við veljum úttakið með yrðingu, sjá [Yrðingar og sanntöflur](truth-tables.qmd).
+- **Reglulegar segðir:** yrðingar geta notað reglulegar segðir (e. *regular expressions*, REGEX),
+  sjá [Reglulegar segðir](../regex/index.qmd).
+
 Nöfnin í dæminu sækja innblástur í íslensku þýðinguna.[^stjornustrid-thyding]
 
 Í stað þess að setja allt í eina stóra töflu skiptum við gögnunum í nokkrar litlar töflur. Þá getum
