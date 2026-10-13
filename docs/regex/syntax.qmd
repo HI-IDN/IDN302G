@@ -98,3 +98,82 @@ Lestu það í bútum:
 | `\d{2}` | tveir tölustafir fyrir ár |
 | `-` | bandstrik |
 | `\d{4}` | fjórir tölustafir |
+
+## Æfingar
+
+Skrifaðu mynstur fyrir hvert verkefni og prófaðu það á sýnidæmunum, t.d. í
+[regex101](https://regex101.com/). Reyndu áður en þú opnar lausnina.
+
+**1. Passaðu bara `hi.is`**
+
+Mynstrið á að passa við `hi.is` en *ekki* við `hiXis`.
+
+<details>
+<summary>Lausn</summary>
+
+``` text
+hi\.is
+```
+
+Punkturinn þarf að vera `\.` svo hann þýði alvöru punkt en ekki „hvaða stafur sem er“.
+</details>
+
+**2. Símanúmer með eða án bandstriks**
+
+Mynstrið á að passa við `555-1234` og `5551234`, en ekki við `55-1234`.
+
+<details>
+<summary>Lausn</summary>
+
+``` text
+\d{3}-?\d{4}
+```
+
+`?` gerir bandstrikið valkvætt: núll eða einu sinni.
+</details>
+
+**3. Gagnaskrár**
+
+Mynstrið á að passa við skráarnöfn sem enda á `.csv` eða `.json`, til dæmis `gogn.csv` og
+`svar.json`, en ekki við `gogn.csv.bak`.
+
+<details>
+<summary>Lausn</summary>
+
+``` text
+\.(csv|json)$
+```
+
+`$` festir mynstrið við endann, þannig að `gogn.csv.bak` fellur út. Sviginn og `|` þýða „annaðhvort
+`csv` eða `json`“.
+</details>
+
+**4. Markdown-fyrirsagnir**
+
+Mynstrið á að passa við línur sem byrja á einu til þremur `#` og svo bili, t.d. `# Titill` og
+`### Undirtitill`, en ekki við `#### Of djúpt` eða `#Enginbil`.
+
+<details>
+<summary>Lausn</summary>
+
+``` text
+^#{1,3}\s
+```
+
+`^` festir við byrjun línu, `#{1,3}` leyfir einn til þrjá `#`, og `\s` krefst bils á eftir.
+</details>
+
+**5. Ártal frá 2000 til 2029**
+
+Mynstrið á að passa við `2000`, `2026` og `2029`, en ekki við `1999`, `2030` eða `20260`.
+
+<details>
+<summary>Lausn</summary>
+
+``` text
+^20[0-2]\d$
+```
+
+Þriðji stafurinn er `0`, `1` eða `2` (`[0-2]`), sá fjórði hvaða tölustafur sem er (`\d`). `^` og `$`
+koma í veg fyrir að lengri tölur eins og `20260` passi.
+</details>
