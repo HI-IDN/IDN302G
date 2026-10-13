@@ -49,6 +49,14 @@ Táknið $\subseteq$ má lesa sem „er hlutmengi af“. Línan segir því að 
 öllum mögulegum pörum úr `character` og `faction`. Í okkar dæmi er `member_of` safn þeirra para sem
 eru raunverulega skráð: fyrra stakið kemur úr hópi persóna og seinna stakið úr hópi liða.
 
+::: {.callout-note}
+## Vensl og föll
+
+Fall er sértilvik af venslum: vensl þar sem hvert stak í fyrra menginu tengist nákvæmlega einu
+staki í því seinna. `member_of` er ekki fall, því persóna 1 er bæði í liði 100 og liði 300. Ef hver
+persóna væri í nákvæmlega einu liði væri `member_of` fall frá `character` til `faction`.
+:::
+
 ## Dæmi: persóna tengist kvikmynd
 
 Taflan `appears_in` lýsir sambandi milli persóna og kvikmynda:
