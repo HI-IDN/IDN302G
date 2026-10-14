@@ -25,7 +25,7 @@ fjórðungum. Þrátt fyrir að vera mjög lýsandi fyrir sérfræðinga getur a
 
 ##### Hvað er kassarit?
 
-Kassarit—stundum kallað kassar og strokur (e. box and whisker plot)—er mynd sem sýnir ýmsar
+Kassarit, stundum kallað kassar og strokur (e. box and whisker plot), er mynd sem sýnir ýmsar
 samantektartölur í einni sýn. Kassarit sýnir:
 
 - **Lágmarksgildi**: Minnsta gildi í gagnasafni
@@ -397,8 +397,8 @@ data.*
 
 ### Einingarit - Unit Chart
 
-Einingarit (unit charts) eru myndræn framsetning þar sem einstakar einingar—s.s. geometrísk form,
-tákn eða myndir—eru notaðar til að tákna magn. Hver eining táknar ákveðið gildi, og magnið er táknað
+Einingarit (unit charts) eru myndræn framsetning þar sem einstakar einingar, s.s. geometrísk form,
+tákn eða myndir, eru notaðar til að tákna magn. Hver eining táknar ákveðið gildi, og magnið er táknað
 með fjölda eininga. Dæmi um einingarit eru ISOTYPE-grafík, rúðurit (vöfflurit) og myndrit.
 Einingarit eru oft notuð í fjölmiðlum, auglýsingum og upplýsingaritum.
 
