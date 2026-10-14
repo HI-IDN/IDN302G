@@ -1,0 +1,84 @@
+---
+title: "Föll og lyklar"
+description: >-
+  Föll sem sértilvik af venslum, eintæk, átæk og gagntæk föll, og hvernig aðallyklar og UNIQUE
+  tengjast þeim.
+---
+
+Þegar við segjum að `character_id` ákvarði nafn persónunnar erum við að segja að nafnið sé *fall* af auðkenninu. Aðallyklar, `UNIQUE`-skorður og tengitöflur eins og `member_of` verða skýrari þegar við vitum hvenær vensl eru föll og hvenær ekki.
+
+## Föll
+
+Látum $A$ og $B$ vera mengi sem eru ekki tóm. *Fall* (e. *function*) $f$ frá $A$ til $B$ úthlutar
+**nákvæmlega einu** staki í $B$ til hvers staks í $A$. Við ritum $f: A \to B$, og $f(a) = b$ ef $b$
+er stakið sem $f$ úthlutar $a$. Föll eru líka kölluð *vörpun* (e. *mapping*).
+
+- $A$ kallast *formengi* (e. *domain*) $f$.
+- $B$ kallast *bakmengi* (e. *codomain*) $f$.
+- Ef $f(a) = b$ er $b$ *mynd* $a$ og $a$ *frummynd* $b$.
+- *Myndmengi* $f$ (e. *range*) er mengi allra mynda, $f(A) = \{f(a) \mid a \in A\}$. Það er
+  hlutmengi af bakmenginu en þarf ekki að vera allt bakmengið.
+
+Tvö föll eru jöfn ef þau hafa sama formengi, sama bakmengi og varpa hverju staki í sama stak.
+
+Fall er sértilvik af venslum: fallið $f$ er sama og venslin $\{(a, f(a)) \mid a \in A\} \subseteq A
+\times B$, þar sem hvert $a$ kemur fyrir í nákvæmlega einu pari.
+
+::: {.callout-tip}
+## Tenging við SQL
+
+Dálkur í töflu með aðallykli er fall: hver lykill ákvarðar nákvæmlega eitt gildi. Í `character` er
+`nafn` fall af `character_id`, því hvert auðkenni hefur eitt nafn. `member_of` er hins vegar ekki
+fall frá persónum til liða, því persóna 1 er í tveimur liðum.
+:::
+
+### Eintæk, átæk og gagntæk föll
+
+| Tegund | Skilgreining | Með orðum |
+|---|---|---|
+| Eintækt (e. *one-to-one, injective*) | $f(a) = f(b) \Rightarrow a = b$ | engin tvö stök fá sömu mynd |
+| Átækt (e. *onto, surjective*) | fyrir hvert $b \in B$ er til $a \in A$ með $f(a) = b$ | allt bakmengið er notað |
+| Gagntækt (e. *bijective*) | bæði eintækt og átækt | hvert stak í $A$ á sitt eigið stak í $B$ og ekkert verður út undan |
+
+Dæmi:
+
+- $f: \mathbb{Z} \to \mathbb{Z}$ með $f(x) = x^2$ er hvorki eintækt né átækt. Það er ekki eintækt,
+  því $f(-1) = f(1) = 1$, og ekki átækt, því engin heiltala $x$ uppfyllir $x^2 = -1$.
+- Látum $A = \{a, b, c, d\}$, $B = \{1, 2, 3, 4\}$ og $f(a) = 4$, $f(b) = 2$, $f(c) = 1$,
+  $f(d) = 3$. Ekkert stak í $B$ er notað tvisvar og öll eru notuð, svo $f$ er gagntækt.
+
+Í SQL er `UNIQUE`-skorða á dálki krafa um að vörpunin frá röðum yfir í gildi dálksins sé eintæk.
+
+### Andhverf föll
+
+Ef $f: A \to B$ er gagntækt er *andhverfa* þess $f^{-1}: B \to A$ skilgreind með
+
+$$
+f^{-1}(b) = a \iff f(a) = b
+$$
+
+Andhverfa er aðeins til ef $f$ er gagntækt. Ef $f$ væri ekki eintækt vissum við ekki hvaða $a$ ætti
+að velja, og ef það væri ekki átækt hefðu sum $b$ enga frummynd.
+
+### Samskeytt föll
+
+Látum $g: A \to B$ og $f: B \to C$ vera föll. *Samskeyting* þeirra er fallið $f \circ g: A \to C$,
+skilgreint með
+
+$$
+(f \circ g)(a) = f(g(a))
+$$
+
+Fyrst er $g$ beitt og svo $f$ á útkomuna. Röðin skiptir máli: $f \circ g$ er almennt ekki það sama og
+$g \circ f$, og það er ekki einu sinni víst að $g \circ f$ sé skilgreint.
+
+## Æfingar
+
+1. Er fallið $f: \mathbb{R} \to \mathbb{R}$ með $f(x) = x$ átækt? Er það gagntækt?
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. Já. Fyrir hvert $y \in \mathbb{R}$ er $f(y) = y$, svo $y$ hefur frummynd. Fallið er líka
+   eintækt, því $f(a) = f(b)$ þýðir $a = b$, og er því gagntækt. Það er sín eigin andhverfa.
+:::

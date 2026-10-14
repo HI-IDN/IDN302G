@@ -1,0 +1,84 @@
+---
+title: "Rökleiðsla"
+description: >-
+  Gildar röksemdir og rökleiðslureglur: hvernig ályktun er dregin skref fyrir skref af forsendum.
+---
+
+Þegar við lesum fyrirspurn og segjum „þessi röð hlýtur að koma með“ erum við að álykta út frá skilyrðunum. Rökleiðslureglurnar gera þá hugsun nákvæma. Þessi síða er ítarefni og ekki nauðsynleg til að skrifa SQL.
+
+## Rökleiðslureglur
+
+*Röksemd* (e. *argument*) er röð yrðinga þar sem allar nema sú síðasta eru *forsendur* (e.
+*premises*) og sú síðasta *niðurstaða*. Röksemd er *gild* (e. *valid*) ef niðurstaðan hlýtur að vera
+sönn þegar allar forsendurnar eru sannar. Með forsendum $p_1, \ldots, p_n$ og niðurstöðu $q$ er
+röksemdin gild ef og aðeins ef $(p_1 \land \cdots \land p_n) \rightarrow q$ er sísanna.
+
+Það má alltaf athuga með sanntöflu, en hún stækkar hratt: tíu breytur gefa $2^{10} = 1024$ raðir. Í
+staðinn notum við *rökleiðslureglur* (e. *rules of inference*), litlar gildar röksemdir sem má
+raða saman skref fyrir skref.
+
+| Regla | Forsendur | Niðurstaða | Dæmi |
+|---|---|---|---|
+| Modus ponens | $p$, $\ p \rightarrow q$ | $q$ | Það snjóar. Ef það snjóar fer ég út að hlaupa. Því fer ég út að hlaupa. |
+| Modus tollens | $\neg q$, $\ p \rightarrow q$ | $\neg p$ | Ég fer ekki út að hlaupa. Því snjóar ekki. |
+| Keðjuregla (e. *hypothetical syllogism*) | $p \rightarrow q$, $\ q \rightarrow r$ | $p \rightarrow r$ | Ef það snjóar hleyp ég, og ef ég hleyp hef ég gaman. Því: ef það snjóar hef ég gaman. |
+| Útilokun (e. *disjunctive syllogism*) | $p \lor q$, $\ \neg p$ | $q$ | Ég hjóla eða hleyp. Ég hjóla ekki. Því hleyp ég. |
+| Viðbót (e. *addition*) | $p$ | $p \lor q$ | Ég hjóla. Því hjóla ég eða hleyp. |
+| Einföldun (e. *simplification*) | $p \land q$ | $p$ | Ég hjóla og hleyp. Því hjóla ég. |
+| Ogun (e. *conjunction*) | $p$, $\ q$ | $p \land q$ | Ég hjóla. Ég hleyp. Því hjóla ég og hleyp. |
+| Upplausn (e. *resolution*) | $p \lor q$, $\ \neg p \lor r$ | $q \lor r$ | Ég hjóla eða hleyp. Ég hjóla ekki eða hef gaman. Því hleyp ég eða hef gaman. |
+
+Fyrir virkja bætast við fjórar reglur:
+
+| Regla | Forsendur | Niðurstaða |
+|---|---|---|
+| Alsherjar-eingilding | $\forall x\, P(x)$ | $P(c)$ fyrir hvaða $c$ sem er |
+| Alsherjar-alhæfing | $P(c)$ fyrir handahófskennt $c$ | $\forall x\, P(x)$ |
+| Tilvistar-eingilding | $\exists x\, P(x)$ | $P(c)$ fyrir eitthvert $c$ |
+| Tilvistar-alhæfing | $P(c)$ fyrir eitthvert $c$ | $\exists x\, P(x)$ |
+
+Til dæmis: „Allir hundar eru klárir“ og „Nói er hundur“ gefa „Nói er klár“ (alsherjar-eingilding).
+„Jón fékk 10 í prófinu“ gefur „Einhver fékk 10 í prófinu“ (tilvistar-alhæfing). Alsherjar-alhæfing
+krefst þess að $c$ sé raunverulega handahófskennt: að einn hundur sé klár segir ekkert um alla hunda.
+
+### Dæmi: röksemdafærsla í skrefum
+
+Sýnum að forsendurnar „Það er ekki sól síðdegis og það er kaldara en í gær“, „Við förum í sund
+aðeins ef það er sól“, „Ef við förum ekki í sund förum við í bátsferð“ og „Ef við förum í bátsferð
+komum við heim fyrir sólsetur“ leiði til niðurstöðunnar „Við komum heim fyrir sólsetur“.
+
+Látum $p$: það er sól síðdegis, $q$: það er kaldara en í gær, $r$: við förum í sund, $s$: við förum í
+bátsferð og $t$: við komum heim fyrir sólsetur. Sanntafla þyrfti $2^5 = 32$ raðir, en með reglunum:
+
+| Skref | Yrðing | Rök |
+|---:|---|---|
+| 1 | $\neg p \land q$ | forsenda |
+| 2 | $\neg p$ | einföldun á 1 |
+| 3 | $r \rightarrow p$ | forsenda |
+| 4 | $\neg r$ | modus tollens á 2 og 3 |
+| 5 | $\neg r \rightarrow s$ | forsenda |
+| 6 | $s$ | modus ponens á 4 og 5 |
+| 7 | $s \rightarrow t$ | forsenda |
+| 8 | $t$ | modus ponens á 6 og 7 |
+
+## Æfingar
+
+1. Sýnið með rökleiðslureglum að forsendurnar $\exists x\, (C(x) \land \neg B(x))$ og $\forall x\,
+   (C(x) \rightarrow P(x))$ leiði til $\exists x\, (P(x) \land \neg B(x))$. Hér er $C(x)$: „$x$ er
+   í bekknum“, $B(x)$: „$x$ hefur lesið bókina“ og $P(x)$: „$x$ náði fyrsta prófinu“.
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. | Skref | Yrðing | Rök |
+   |---:|---|---|
+   | 1 | $\exists x\, (C(x) \land \neg B(x))$ | forsenda |
+   | 2 | $C(a) \land \neg B(a)$ | tilvistar-eingilding á 1 |
+   | 3 | $C(a)$ | einföldun á 2 |
+   | 4 | $\forall x\, (C(x) \rightarrow P(x))$ | forsenda |
+   | 5 | $C(a) \rightarrow P(a)$ | alsherjar-eingilding á 4 |
+   | 6 | $P(a)$ | modus ponens á 3 og 5 |
+   | 7 | $\neg B(a)$ | einföldun á 2 |
+   | 8 | $P(a) \land \neg B(a)$ | ogun á 6 og 7 |
+   | 9 | $\exists x\, (P(x) \land \neg B(x))$ | tilvistar-alhæfing á 8 |
+:::

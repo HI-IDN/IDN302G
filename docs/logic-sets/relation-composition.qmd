@@ -1,0 +1,120 @@
+---
+title: "Mengjamargfeldi og samskeyting"
+description: >-
+  Raðaðar n-undir, mengjamargfeldi og samskeyting vensla, og hvernig þau verða að CROSS JOIN og
+  JOIN í SQL.
+---
+
+Þegar gögnin eru dreifð á margar litlar töflur, eins og í [Vensl sem töflur](relations-as-tables.qmd), þurfum við að geta tengt þær saman aftur. `JOIN` gerir það, og á bak við það eru tvær einfaldar hugmyndir: mengjamargfeldi og samskeyting vensla.
+
+## Raðaðar n-undir og mengjamargfeldi
+
+### Raðaðar n-undir
+
+*Röðuð n-und* (e. *ordered n-tuple*) $(a_1, a_2, \ldots, a_n)$ er safn þar sem röðin skiptir máli:
+$a_1$ er fyrsta stakið, $a_2$ annað og svo framvegis. Tvær n-undir eru jafnar ef og aðeins ef öll
+samsvarandi stök eru jöfn:
+
+$$
+(a_1, \ldots, a_n) = (b_1, \ldots, b_n) \iff a_i = b_i \text{ fyrir } i = 1, \ldots, n
+$$
+
+Röðuð 2-und kallast *raðað par*. Takið eftir muninum: $\{1, 2\} = \{2, 1\}$, en $(1, 2) \neq (2, 1)$.
+
+Hver röð í töflu er n-und: `(1, 100)` í `member_of` er raðað par þar sem fyrra stakið er persóna og
+seinna stakið er lið.
+
+### Mengjamargfeldi
+
+*Mengjamargfeldi* (e. *Cartesian product*) mengjanna $A$ og $B$ er mengi allra raðaðra para þar sem
+fyrra stakið kemur úr $A$ og það seinna úr $B$:
+
+$$
+A \times B = \{(a, b) \mid a \in A \land b \in B\}
+$$
+
+Ef $A = \{1, 2\}$ og $B = \{a, b, c\}$ er
+
+$$
+A \times B = \{(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)\}
+$$
+
+og $|A \times B| = |A| \cdot |B| = 6$. Almennt er $A \times B \neq B \times A$, því pörin eru
+röðuð: $(1, a) \in A \times B$ en $(1, a) \notin B \times A$.
+
+Fyrir fleiri mengi er $A_1 \times A_2 \times \cdots \times A_n$ mengi allra raðaðra n-unda
+$(a_1, \ldots, a_n)$ þar sem $a_i \in A_i$. Við ritum $A^2$ fyrir $A \times A$ og almennt $A^n$.
+
+::: {.callout-tip}
+## Tenging við SQL
+
+`CROSS JOIN` skilar mengjamargfeldi tveggja taflna: hverri röð úr fyrri töflunni er parað við
+hverja röð úr þeirri seinni. Með 8 persónum og 6 liðum fást $8 \cdot 6 = 48$ raðir. Venjulegt `JOIN`
+er mengjamargfeldi sem búið er að sía með skilyrði.
+:::
+
+## Aðgerðir á venslum
+
+### Sammengi, sniðmengi og mismunur
+
+Vensl frá $A$ til $B$ eru mengi, svo mengjaaðgerðirnar gilda um þau. Ef $A = \{1, 2, 3\}$, $B = \{1,
+2, 3, 4\}$, $R_1 = \{(1,1), (2,2), (3,3)\}$ og $R_2 = \{(1,1), (1,2), (1,3), (1,4)\}$ þá er
+
+$$
+\begin{aligned}
+R_1 \cup R_2 &= \{(1,1), (1,2), (1,3), (1,4), (2,2), (3,3)\} \\
+R_1 \cap R_2 &= \{(1,1)\} \\
+R_1 - R_2 &= \{(2,2), (3,3)\}
+\end{aligned}
+$$
+
+Í SQL eru þetta `UNION`, `INTERSECT` og `EXCEPT` á tveimur töflum með sömu dálkum.
+
+### Samskeyting
+
+Látum $R$ vera vensl frá $A$ til $B$ og $S$ vensl frá $B$ til $C$. *Samskeyting* þeirra, $S \circ R$,
+eru venslin frá $A$ til $C$ sem innihalda $(a, c)$ ef til er $b \in B$ þannig að $(a, b) \in R$ og
+$(b, c) \in S$. Við förum sem sagt frá $a$ til $c$ í gegnum eitthvert $b$.
+
+::: {.callout-tip}
+## Tenging við SQL
+
+Samskeyting vensla er `JOIN`. `member_of` tengir persónur við lið og `appears_in` tengir persónur við
+myndir. Til að fá vensl milli liða og mynda („einhver úr liðinu birtist í myndinni“) skeytum við þeim
+saman í gegnum persónurnar:
+
+```sql
+SELECT DISTINCT m.faction_id, a.movie_id
+FROM member_of AS m
+JOIN appears_in AS a ON a.character_id = m.character_id;
+```
+
+`DISTINCT` er með af því að samskeyting er mengi: hvert par á aðeins að koma einu sinni.
+:::
+
+*Veldi* vensla á $A$ eru skilgreind með $R^1 = R$ og $R^{n+1} = R^n \circ R$. Parið $(a, b)$ er í
+$R^n$ ef og aðeins ef til er leið af lengd $n$ frá $a$ til $b$.
+
+## Æfingar
+
+1. Látum $A = \{1, 2\}$ og $B = \{a, b, c\}$. Finnið $B \times A$. Er $A \times B = B \times A$?
+2. Látum $A = \{0, 1\}$, $B = \{1, 2\}$ og $C = \{0, 1, 2\}$. Hve mörg stök eru í $A \times B \times
+   C$? Teljið upp þau sem byrja á $0$.
+3. Látum $R$ vera venslin frá $\{1, 2, 3\}$ til $\{1, 2, 3, 4\}$ með $R = \{(1,1), (1,4), (2,3),
+   (3,1), (3,4)\}$ og $S$ venslin frá $\{1, 2, 3, 4\}$ til $\{0, 1, 2\}$ með $S = \{(1,0), (2,0),
+   (3,1), (3,2), (4,1)\}$. Finnið $S \circ R$.
+4. Finnið fylkið fyrir $S \circ R$ (sjá [Með fylki](relation-properties.qmd#með-fylki)) ef
+   $M_R = \begin{bmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}$ og
+   $M_S = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 1 \end{bmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. $B \times A = \{(a,1), (a,2), (b,1), (b,2), (c,1), (c,2)\}$. Nei, til dæmis er $(1, a) \in A
+   \times B$ en $(1, a) \notin B \times A$.
+2. $2 \cdot 2 \cdot 3 = 12$ stök. Þau sem byrja á $0$ eru $(0,1,0)$, $(0,1,1)$, $(0,1,2)$,
+   $(0,2,0)$, $(0,2,1)$ og $(0,2,2)$.
+3. $S \circ R = \{(1,0), (1,1), (2,1), (2,2), (3,0), (3,1)\}$. Til dæmis fæst $(1,1)$ úr $(1,4) \in
+   R$ og $(4,1) \in S$.
+4. $M_{S \circ R} = \begin{bmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix}$.
+:::

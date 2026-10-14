@@ -105,8 +105,16 @@ book:
       chapters:
         - logic-sets/index.qmd
         - logic-sets/truth-tables.qmd
+        - logic-sets/logical-equivalences.qmd
+        - logic-sets/quantifiers.qmd
+        - logic-sets/inference.qmd
         - logic-sets/sets-as-questions.qmd
+        - logic-sets/set-notation.qmd
+        - logic-sets/set-operations.qmd
         - logic-sets/relations-as-tables.qmd
+        - logic-sets/relation-composition.qmd
+        - logic-sets/functions-and-keys.qmd
+        - logic-sets/relation-properties.qmd
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.qmd

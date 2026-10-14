@@ -1,0 +1,185 @@
+---
+title: "Að lýsa mengjum"
+description: >-
+  Ritháttur mengja, mengjasmíðaritháttur, hlutmengi, fjöldatala og veldismengi, og hvernig þau
+  samsvara WHERE, DISTINCT, BETWEEN og COUNT.
+---
+
+Fyrirspurn í SQL lýsir *hvaða* raðir eiga að koma út, ekki *hvernig* á að finna þær. Það er nákvæmlega það sem mengjarithátturinn gerir. Hér er hann tekinn saman, með tengingu við SQL fyrir hvert atriði. Þessi síða byggir á [Mengi sem hópar](sets-as-questions.qmd).
+
+## Mengi og stök
+
+Mengi er óraðað safn af hlutum. Hlutirnir kallast *stök* (e. *elements*), og mengið er sagt
+*innihalda* stökin sín.
+
+- $a \in A$ þýðir að $a$ er stak í $A$.
+- $a \notin A$ þýðir að $a$ er ekki stak í $A$.
+
+Tvennt skiptir ekki máli í mengi:
+
+- **Röð.** $\{1,2,3,4\} = \{4,3,2,1\}$.
+- **Endurtekning.** $\{1,2,3,4\} = \{1,1,2,3,4,4,4\}$.
+
+::: {.callout-tip}
+## Tenging við SQL
+
+Fyrra atriðið er ástæðan fyrir því að tafla lofar engri röð nema beðið sé um hana með `ORDER BY`.
+Seinna atriðið gildir hins vegar ekki alltaf í SQL: fyrirspurn getur skilað sömu röðinni oftar en
+einu sinni. Niðurstaða SQL-fyrirspurnar er því frekar *fjölmengi* (e. *multiset* eða *bag*) en
+mengi. Með `SELECT DISTINCT` fáum við mengi, því þá eru tvítekningar fjarlægðar.
+:::
+
+Stök mengis þurfa ekki að eiga neitt sameiginlegt, til dæmis $\{a, \text{Logi}, 7\}$, og mengi geta
+sjálf verið stök í öðrum mengjum: $\{\{1,2,3\}, a, \{b,c\}\}$ hefur þrjú stök.
+
+## Að lýsa mengjum
+
+### Upptalning
+
+Einfaldast er að telja stökin upp (e. *roster method*):
+$R = \{\text{Logi}, \text{Lilja}, \text{Hans Óli}, \text{Loðinn}\}$. Þegar mynstrið er augljóst má
+nota punkta: $\{1, 2, 3, \ldots, 99\}$.
+
+### Mengjasmíðaritháttur
+
+Í stað þess að telja upp stökin má lýsa eiginleikanum sem þau hafa (e. *set-builder notation*):
+
+$$
+\{x \mid x \text{ hefur eiginleikann } P\}
+$$
+
+Þetta er lesið „mengi allra $x$ þannig að $x$ hefur eiginleikann $P$“. Til dæmis er mengi allra
+jákvæðra oddatalna minni en 10:
+
+$$
+O = \{x \in \mathbb{Z}^+ \mid x \text{ er oddatala og } x < 10\} = \{1, 3, 5, 7, 9\}
+$$
+
+::: {.callout-tip}
+## Tenging við SQL
+
+Mengjasmíðarithátturinn er nánast það sama og `WHERE`:
+
+```sql
+SELECT nafn
+FROM character
+WHERE ...;   -- eiginleikinn P
+```
+
+Taflan segir úr hvaða mengi $x$ kemur og `WHERE` segir hvaða eiginleika $x$ þarf að hafa.
+:::
+
+### Þekkt mengi
+
+| Tákn | Mengi |
+|---|---|
+| $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$ | náttúrlegar tölur |
+| $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$ | heiltölur |
+| $\mathbb{Z}^+ = \{1, 2, 3, \ldots\}$ | jákvæðar heiltölur |
+| $\mathbb{Q} = \{p/q \mid p, q \in \mathbb{Z},\ q \neq 0\}$ | ræðar tölur |
+| $\mathbb{R}$ | rauntölur |
+| $\mathbb{R}^+$ | jákvæðar rauntölur |
+| $\mathbb{C}$ | tvinntölur |
+
+### Bil
+
+Fyrir rauntölur $a \le b$:
+
+| Bil | Mengi | Lýsing |
+|---|---|---|
+| $[a, b]$ | $\{x \mid a \le x \le b\}$ | lokað bil |
+| $(a, b)$ | $\{x \mid a < x < b\}$ | opið bil |
+| $[a, b)$ | $\{x \mid a \le x < b\}$ | hálfopið bil |
+| $(a, b]$ | $\{x \mid a < x \le b\}$ | hálfopið bil |
+
+Í SQL er `x BETWEEN a AND b` lokaða bilið $[a, b]$: báðir endapunktar eru með.
+
+## Allsherjarmengi, tómamengi og einstökungsmengi
+
+- **Allsherjarmengið** $U$ (e. *universal set*) inniheldur allt sem er til skoðunar. Í
+  Stjörnustríðsdæminu er það mengi allra persóna, $C$.
+- **Tómamengið** $\emptyset$ (e. *empty set*) hefur engin stök. Það kemur til dæmis upp þegar við
+  biðjum um stök með eiginleika sem ekkert stak hefur, eins og $R \cap G$ í
+  [Tóm niðurstaða](sets-as-questions.qmd#tóm-niðurstaða).
+- **Einstökungsmengi** (e. *singleton set*) hefur nákvæmlega eitt stak, til dæmis
+  $G = \{\text{Svarthöfði}\}$.
+
+Ekki rugla saman $\emptyset$ og $\{\emptyset\}$. Það fyrra er tómt, en það seinna er einstökungsmengi
+sem inniheldur tóma mengið.
+
+## Jöfn mengi og hlutmengi
+
+Tvö mengi eru *jöfn* ef og aðeins ef þau hafa nákvæmlega sömu stök:
+
+$$
+A = B \iff \forall x\, (x \in A \leftrightarrow x \in B)
+$$
+
+Mengið $A$ er *hlutmengi* (e. *subset*) af $B$, ritað $A \subseteq B$, ef öll stök í $A$ eru líka
+í $B$:
+
+$$
+A \subseteq B \iff \forall x\, (x \in A \rightarrow x \in B)
+$$
+
+Ef $A \subseteq B$ en $A \neq B$ er $A$ *eiginlegt hlutmengi* (e. *proper subset*) af $B$, ritað
+$A \subset B$. Þá er að minnsta kosti eitt stak í $B$ sem er ekki í $A$.
+
+Í Stjörnustríðsdæminu er $G = \{\text{Svarthöfði}\}$ og Svarthöfði er líka Væringi, svo
+$G \subset J$. Hins vegar er $R \not\subseteq J$, því Lilja er í $R$ en ekki í $J$.
+
+Góð leið til að sýna að $A = B$ er að sýna bæði $A \subseteq B$ og $B \subseteq A$.
+
+## Fjöldatala
+
+Ef mengið $S$ hefur nákvæmlega $n$ ólík stök, þar sem $n$ er náttúrleg tala, er $S$ *endanlegt* og
+$n$ er *fjöldatala* þess (e. *cardinality*), rituð $|S|$. Annars er mengið óendanlegt.
+
+- $|C| = 8$, því það eru átta persónur í dæminu.
+- $|\emptyset| = 0$.
+- $|\{1, 1, 2\}| = 2$, því endurtekning skiptir ekki máli.
+
+Í SQL svarar `COUNT(DISTINCT ...)` spurningunni um fjöldatölu.
+
+## Veldismengi
+
+*Veldismengi* (e. *power set*) mengisins $S$ er mengi allra hlutmengja af $S$, ritað
+$\mathcal{P}(S)$:
+
+$$
+\mathcal{P}(\{0,1,2\}) = \{\emptyset, \{0\}, \{1\}, \{2\}, \{0,1\}, \{0,2\}, \{1,2\}, \{0,1,2\}\}
+$$
+
+Hvert stak er annaðhvort með eða ekki í hverju hlutmengi, svo $|\mathcal{P}(S)| = 2^{|S|}$. Hér er
+$|\mathcal{P}(\{0,1,2\})| = 2^3 = 8$.
+
+
+## Æfingar
+
+1. Notið mengjasmíðarithátt til að lýsa mengjunum
+   a. $\{0, 3, 6, 9, 12\}$
+   b. $\{-4, -3, -2, -1, 0, 1, 2, 3, 4\}$
+2. Eru eftirfarandi mengi jöfn?
+   a. $\{\{1\}\}$ og $\{1, \{1\}\}$
+   b. $\emptyset$ og $\{\emptyset\}$
+3. Hver er fjöldatala mengjanna
+   a. $\{a, \{a\}, \{a, \{a\}\}\}$
+   b. $\emptyset$
+   c. $\{\emptyset, \{\emptyset\}\}$
+   d. mengi jákvæðra oddatalna minni en 10?
+4. Hvert er veldismengi tóma mengisins, $\mathcal{P}(\emptyset)$?
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. a. $\{3k \mid k \in \mathbb{Z},\ 0 \le k \le 4\}$
+   b. $\{x \in \mathbb{Z} \mid -4 \le x \le 4\}$, eða $\{x \in \mathbb{Z} \mid |x| \le 4\}$
+2. a. Nei. Seinna mengið inniheldur $1$ en það fyrra ekki. Fyrra mengið hefur eitt stak, $\{1\}$.
+   b. Nei. $\emptyset$ hefur engin stök, en $\{\emptyset\}$ hefur eitt stak.
+3. a. $3$: stökin eru $a$, $\{a\}$ og $\{a, \{a\}\}$.
+   b. $0$
+   c. $2$
+   d. $5$: mengið er $\{1, 3, 5, 7, 9\}$.
+4. $\mathcal{P}(\emptyset) = \{\emptyset\}$. Tóma mengið hefur eitt hlutmengi, sig sjálft, og
+   $2^0 = 1$.
+:::

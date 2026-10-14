@@ -1,0 +1,84 @@
+---
+title: "Mengjaaðgerðir og jafngildi"
+description: >-
+  Sammengi, sniðmengi, mismunur og fyllimengi, samsvörun þeirra við OR, AND, NOT, UNION, INTERSECT
+  og EXCEPT, og reglurnar sem gilda um þau.
+---
+
+Á síðunni [Mengi sem hópar](sets-as-questions.qmd) svöruðum við spurningum með því að sameina, skera og draga frá hópa. Í SQL eru sömu aðgerðir til, bæði innan skilyrða (`OR`, `AND`, `NOT`) og milli heilla fyrirspurna (`UNION`, `INTERSECT`, `EXCEPT`). Reglurnar hér segja hvenær tvær fyrirspurnir skila örugglega sömu niðurstöðu.
+
+## Mengjaaðgerðir
+
+| Aðgerð | Ritháttur | Skilgreining | Í SQL |
+|---|---|---|
+| Sammengi | $A \cup B$ | $\{x \mid x \in A \lor x \in B\}$ | `OR`, `UNION` |
+| Sniðmengi | $A \cap B$ | $\{x \mid x \in A \land x \in B\}$ | `AND`, `INTERSECT` |
+| Mismunur | $A - B$ | $\{x \mid x \in A \land x \notin B\}$ | `AND NOT`, `EXCEPT` |
+| Fyllimengi | $\overline{A}$ | $\{x \in U \mid x \notin A\} = U - A$ | `NOT` |
+
+Mismunurinn er stundum ritaður $A \setminus B$, og $A - B = A \cap \overline{B}$. Ef $A \cap B =
+\emptyset$ eru mengin sögð *sundurlæg* (e. *disjoint*). Í Stjörnustríðsdæminu eru $R$ og $G$
+sundurlæg.
+
+### Mengjajafngildi
+
+Eftirfarandi reglur gilda fyrir öll mengi $A$, $B$ og $C$ innan allsherjarmengis $U$. Þær eru
+hliðstæðar [rökfræðilegu jafngildunum](logical-equivalences.qmd#jafngildar-yrðingar), með $\cup$ í stað „eða“, $\cap$ í stað „og“ og fyllimengi í stað
+„ekki“.
+
+| Regla | Á ensku | Jafngildi |
+|---|---|---|
+| Hlutleysureglur | *Identity laws* | $A \cup \emptyset = A$, $\quad A \cap U = A$ |
+| Yfirráðareglur | *Domination laws* | $A \cup U = U$, $\quad A \cap \emptyset = \emptyset$ |
+| Sjálfvirknireglur | *Idempotent laws* | $A \cup A = A$, $\quad A \cap A = A$ |
+| Tvöfalt fyllimengi | *Complementation law* | $\overline{\overline{A}} = A$ |
+| Víxlreglur | *Commutative laws* | $A \cup B = B \cup A$, $\quad A \cap B = B \cap A$ |
+| Tengireglur | *Associative laws* | $A \cup (B \cup C) = (A \cup B) \cup C$, $\quad A \cap (B \cap C) = (A \cap B) \cap C$ |
+| Dreifireglur | *Distributive laws* | $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$, $\quad A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ |
+| Reglur De Morgans | *De Morgan's laws* | $\overline{A \cup B} = \overline{A} \cap \overline{B}$, $\quad \overline{A \cap B} = \overline{A} \cup \overline{B}$ |
+| Gleypireglur | *Absorption laws* | $A \cup (A \cap B) = A$, $\quad A \cap (A \cup B) = A$ |
+| Fyllimengjareglur | *Complement laws* | $A \cup \overline{A} = U$, $\quad A \cap \overline{A} = \emptyset$ |
+
+### Að sanna að tvö mengi séu jöfn
+
+Það eru nokkrar leiðir:
+
+1. **Sýna að hvort mengið sé hlutmengi hins:** $A \subseteq B$ og $B \subseteq A$.
+2. **Nota mengjasmíðarithátt og rökfræði:** skrifa báðar hliðar sem $\{x \mid \ldots\}$ og sýna að
+   skilyrðin séu rökfræðilega jafngild.
+3. **Nota íverutöflu** (e. *membership table*): eins og sanntafla, nema 1 merkir að stak sé í
+   menginu og 0 að það sé það ekki. Ef dálkarnir fyrir báðar hliðar eru eins eru mengin jöfn.
+
+Íverutafla fyrir aðra af reglum De Morgans, $\overline{A \cup B} = \overline{A} \cap \overline{B}$:
+
+| $A$ | $B$ | $A \cup B$ | $\overline{A \cup B}$ | $\overline{A}$ | $\overline{B}$ | $\overline{A} \cap \overline{B}$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 1 | 1 | 1 | 0 | 0 | 0 | 0 |
+| 1 | 0 | 1 | 0 | 0 | 1 | 0 |
+| 0 | 1 | 1 | 0 | 1 | 0 | 0 |
+| 0 | 0 | 0 | 1 | 1 | 1 | 1 |
+
+Dálkarnir fyrir $\overline{A \cup B}$ og $\overline{A} \cap \overline{B}$ eru eins, svo mengin eru
+jöfn. Í SQL þýðir þetta að `NOT (a OR b)` og `NOT a AND NOT b` velja sömu raðirnar.
+
+## Æfingar
+
+1. Finnið $\{a, b, c\} \cup \{1, 2, 3\}$, $\{a, b, c\} \cap \{1, 2, 3\}$ og $\{a, b, c\} \cap \{a,
+   2, 3\}$.
+2. Látum $U$ vera jákvæðar heiltölur minni en 10. Hvert er fyllimengi $\{x \in U \mid x > 7\}$?
+3. Látum $A = \{1, 2, 3\}$ og $B = \{3, 4, 5\}$. Finnið $A - B$ og $B - A$.
+4. Teiknið vennmynd fyrir a) $A \subset B$ og $B \subset C$, b) $A \subset B$ og $A \subset C$.
+5. Sýnið reglu De Morgans $\overline{A \cap B} = \overline{A} \cup \overline{B}$ með íverutöflu.
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. $\{a, b, c, 1, 2, 3\}$, $\emptyset$ (mengin eru sundurlæg) og $\{a\}$.
+2. $\{1, 2, 3, 4, 5, 6, 7\}$, það er $\{x \in U \mid x \le 7\}$.
+3. $A - B = \{1, 2\}$ og $B - A = \{4, 5\}$.
+4. a) Þrír hringir hver innan í öðrum: $A$ innst, svo $B$, svo $C$.
+   b) $A$ er innan í bæði $B$ og $C$, svo $A$ liggur í sniðmengi $B$ og $C$. Hringirnir $B$ og $C$
+   skarast, en hvorugur þarf að vera innan í hinum.
+5. Dálkarnir fyrir $\overline{A \cap B}$ og $\overline{A} \cup \overline{B}$ verða báðir
+   $0, 1, 1, 1$ (í sömu röð og í töflunni hér að ofan), svo mengin eru jöfn.
+:::

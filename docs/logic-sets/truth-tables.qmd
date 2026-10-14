@@ -17,6 +17,23 @@ tengir hann við Uppreisnarmenn. Yrðingin „Logi er uppreisnarmaður“ er þv
 hins vegar röð sem tengir hann við Keisaradæmið, en enga röð sem tengir hann við Uppreisnarmenn.
 Yrðingin „Svarthöfði er uppreisnarmaður“ er því ósönn í þessu litla gagnasafni.
 
+## Hvað er yrðing?
+
+*Yrðing* (e. *proposition*) er staðhæfing sem er annaðhvort sönn eða ósönn, en ekki bæði.
+
+| Setning | Yrðing? | Sanngildi |
+|---|---|---|
+| Reykjavík er höfuðborg Íslands. | já | satt |
+| Garðabær er höfuðborg Íslands. | já | ósatt |
+| $1 + 1 = 3$ | já | ósatt |
+| $x + 1 = 2$ | nei, $x$ er óþekkt | |
+| Lestu bókina! | nei, skipun | |
+| Hvað er klukkan? | nei, spurning | |
+
+Við táknum yrðingar með bókstöfum eins og $p$, $q$, $r$ og $s$, svokölluðum *yrðingabreytum*.
+Sanngildin eru táknuð með $T$ (satt) og $F$ (ósatt). Yrðing sem ekki er hægt að brjóta í einfaldari
+yrðingar kallast *kjarnyrðing* (e. *atomic proposition*).
+
 ## Frá setningu yfir í skilyrði
 
 Spurningin:
@@ -127,3 +144,7 @@ slíkt dæmi: hann hefur tengingu við Frumregluna og Andspyrnuna.
 Áður en þið skrifið SQL, prófið að segja skilyrðið með orðum: „ég vil persónur þar sem ...“. Ef
 setningin er skýr verður SQL yfirleitt miklu auðveldara.
 :::
+
+Viljið þið fara dýpra? [Jafngildar yrðingar](logical-equivalences.qmd) sýnir hvernig sama skilyrðið
+má skrifa á fleiri en einn hátt, og [Virkjar](quantifiers.qmd) tengir „til er“ og „fyrir öll“ við
+`EXISTS` og `NOT EXISTS`.

@@ -162,10 +162,47 @@ niðurstöður og `NULL`.
 Ef þið getið spáð fyrir um litla niðurstöðu með höndunum áður en þið keyrið SQL, eruð þið komin með
 rétta hugarlíkanið.
 
+::: {.callout-tip}
+## Fjórar hugmyndir sem tengja þetta við SQL
+
+- **Mengi:** tafla er mengi af línum.
+- **Vensl:** tafla skilgreinir vensl.
+- **Yrðingar:** við veljum úttakið með yrðingu, skilyrðinu í `WHERE`.
+- **Reglulegar segðir:** yrðingar geta notað [reglulegar segðir](../regex/index.qmd).
+:::
+
+## Af hverju SQL frekar en lykkjur?
+
+Markmiðið hér er ekki að kenna *strjála stærðfræði* (e. *discrete mathematics*) vegna hennar
+sjálfrar, heldur að sýna af hverju SQL er svona öflugt. Í venjulegri forritun segjum við tölvunni
+*hvernig* hún á að finna svarið: farðu í gegnum raðirnar, berðu saman, safnaðu niðurstöðum. Í SQL
+lýsum við bara *hvaða* niðurstöðu við viljum, og gagnagrunnurinn velur sjálfur bestu leiðina að
+henni.
+
+Það gengur upp af því að SQL hvílir á rökfræði, mengjum og venslum. Skilyrði eru yrðingar, töflur eru
+mengi og samtengingar eru vensl. Þess vegna getum við treyst því að tvær ólíkt skrifaðar fyrirspurnir
+skili sama svari, og þess vegna er betra að hugsa á þessu stigi en að skrifa lykkjurnar sjálf.
+
+## Hvernig er þessi hluti byggður upp?
+
+Fyrstu síðurnar nota Stjörnustríðsdæmið til að byggja upp innsæið:
+
+- [Yrðingar og sanntöflur](truth-tables.qmd)
+- [Mengi sem hópar](sets-as-questions.qmd)
+- [Vensl sem töflur](relations-as-tables.qmd)
+
+Hinar síðurnar fara dýpra í hvert efni og sýna tenginguna við SQL nánar. Þær enda á æfingum með
+lausnum, og það má sleppa þeim ef tíminn er knappur:
+
+- Rökfræði: [Jafngildar yrðingar](logical-equivalences.qmd),
+  [Virkjar: „fyrir öll“ og „til er“](quantifiers.qmd) og [Rökleiðsla](inference.qmd).
+- Mengi: [Að lýsa mengjum](set-notation.qmd) og [Mengjaaðgerðir og jafngildi](set-operations.qmd).
+- Vensl: [Mengjamargfeldi og samskeyting](relation-composition.qmd), [Föll og lyklar](functions-and-keys.qmd)
+  og [Eiginleikar vensla og lokanir](relation-properties.qmd).
+
 ## Auka myndbandsfyrirlestrar
 
-Hér að neðan eru fyrirlestraraðir á YouTube um sambærilegt efni og farið er yfir í fyrirlestrum 1–4
-(rökfræði, mengi og vensl). Listinn er birtur í handahófskenndri röð.
+Hér að neðan eru fyrirlestraraðir á YouTube um rökfræði, mengi og vensl.
 
 ```{=html}
 <details class="video-details">
@@ -211,11 +248,6 @@ Hér að neðan eru fyrirlestraraðir á YouTube um sambærilegt efni og farið 
   <p class="caption"><a href="https://www.youtube.com/watch?v=tyDKR4FG3Yw&amp;list=PLDDGPdw7e6Ag1EIznZ-m-qXu4XX3A0cIz">Opna röðina á YouTube</a></p>
 </details>
 ```
-
-Raðirnar eru eingöngu hugsaðar sem stoðefni ef eitthvað er óskýrt í fyrirlestrunum. Athugið að við
-förum ekki yfir allt efnið í þeim. Kimberly Brehm virðist nota sömu bók og stuðst er við í
-námskeiðinu. Það eru líka til fleiri sambærilegar fyrirlestraraðir og efni á netinu, og ykkur er
-velkomið að nota það.
 
 [^stjornustrid-thyding]: Samkvæmt
     [íslensku Wikipediu um Stjörnustríð](https://is.wikipedia.org/wiki/Stj%C3%B6rnustr%C3%AD%C3%B0#%C3%8Dslenska_%C3%BE%C3%BD%C3%B0ingin)

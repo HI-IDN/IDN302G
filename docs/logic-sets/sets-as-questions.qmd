@@ -212,3 +212,7 @@ Munurinn er þessi:
 Hvaða spurning úr Stjörnustríðsdæminu myndi skila tómu mengi? Hver er munurinn á því að persóna hafi
 enga röð í `member_of` og því að einhver dálkur í röð væri `NULL`?
 :::
+
+Viljið þið fara dýpra? [Að lýsa mengjum](set-notation.qmd) tengir mengjarithátt við `WHERE`,
+`DISTINCT` og `COUNT`, og [Mengjaaðgerðir og jafngildi](set-operations.qmd) tengir aðgerðirnar hér
+við `UNION`, `INTERSECT` og `EXCEPT`.

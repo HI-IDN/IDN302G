@@ -1,0 +1,115 @@
+---
+title: "Virkjar: „fyrir öll“ og „til er“"
+description: >-
+  Umsagnir, alsherjarvirki og tilvistarvirki, og hvernig þeir birtast í SQL sem WHERE, EXISTS og
+  NOT EXISTS.
+---
+
+Skilyrðið í `WHERE` er *umsögn*: það er metið fyrir hverja röð. Spurningar eins og „er til persóna sem …?“ og „gildir þetta um allar persónur?“ eru spurningar með *virkjum*. SQL svarar þeim með `EXISTS` og `NOT EXISTS`, án þess að við skrifum nokkra lykkju sjálf.
+
+## Umsagnir
+
+Setningin „$x$ er höfuðborg Íslands“ er ekki yrðing, því $x$ er óþekkt. Hún hefur tvo hluta:
+breytuna $x$ og *umsögnina* (e. *predicate*) „er höfuðborg Íslands“. Við ritum hana $P(x)$. Þegar $x$
+fær gildi verður $P(x)$ yrðing: $P(\text{Garðabær})$ er ósönn og $P(\text{Reykjavík})$ er sönn.
+
+### Alsherjarvirki og tilvistarvirki
+
+Í stað þess að gefa $x$ eitt gildi getum við spurt um öll gildi í *umræðumengi* (e. *domain of
+discourse*) $D$:
+
+| Ritháttur | Lesið | Satt þegar | Ósatt þegar |
+|---|---|---|---|
+| $\forall x\, P(x)$ | fyrir öll $x$ gildir $P(x)$ | $P(x)$ er satt fyrir öll $x$ | til er $x$ þar sem $P(x)$ er ósatt |
+| $\exists x\, P(x)$ | til er $x$ þannig að $P(x)$ | til er $x$ þar sem $P(x)$ er satt | $P(x)$ er ósatt fyrir öll $x$ |
+
+Eitt *gagndæmi* nægir til að sýna að $\forall x\, P(x)$ sé ósatt. Ef $Q(x)$ er „$x < 2$“ og $D$ eru
+rauntölur er $\forall x\, Q(x)$ ósatt, því $Q(3)$ er ósatt. Hins vegar er $\exists x\, Q(x)$ satt,
+því $Q(1)$ er satt.
+
+Sanngildið fer eftir umræðumenginu. Ef $D = \{\text{Garðabær}, \text{Reykjavík}\}$ og $P(x)$ er „$x$
+er höfuðborg Íslands“ er $\forall x\, P(x)$ ósatt en $\exists x\, P(x)$ satt.
+
+Sé $D = \{x_1, \ldots, x_n\}$ endanlegt eru virkjarnir bara langar ogun og eðun:
+
+$$
+\forall x\, P(x) \equiv P(x_1) \land \cdots \land P(x_n), \qquad
+\exists x\, P(x) \equiv P(x_1) \lor \cdots \lor P(x_n)
+$$
+
+Táknið $\exists!\, x\, P(x)$ þýðir að til sé *nákvæmlega eitt* $x$ með $P(x)$.
+
+### Neitun virkja
+
+Reglur De Morgans gilda líka um virkja:
+
+$$
+\neg \forall x\, P(x) \equiv \exists x\, \neg P(x), \qquad
+\neg \exists x\, P(x) \equiv \forall x\, \neg P(x)
+$$
+
+Neitun setningarinnar „Allir Íslendingar borða SS-pylsur“ er því ekki „Enginn Íslendingur borðar
+SS-pylsur“, heldur „Til er Íslendingur sem borðar ekki SS-pylsur“.
+
+### Að þýða setningar
+
+Tökum setninguna „Einhver nemandi í námskeiðinu hefur farið til Bandaríkjanna“. Látum $S(x)$ vera
+„$x$ er nemandi í námskeiðinu“ og $M(x)$ vera „$x$ hefur farið til Bandaríkjanna“, og látum
+umræðumengið vera allt fólk. Þá er þýðingin
+
+$$
+\exists x\, (S(x) \land M(x))
+$$
+
+Algeng villa er að skrifa $\exists x\, (S(x) \rightarrow M(x))$. Sú yrðing er sönn um leið og til er
+einhver sem er *ekki* nemandi, því leiðing með ósanna forsendu er sönn. Reglan er: $\exists$ fer með
+$\land$ og $\forall$ fer með $\rightarrow$. „Allir nemendur hafa farið til Bandaríkjanna“ er
+$\forall x\, (S(x) \rightarrow M(x))$.
+
+Ef umræðumengið er bara nemendur í námskeiðinu dugar $\exists x\, M(x)$.
+
+### Hreiðraðir virkjar
+
+Virkjar geta verið hver innan í öðrum. Gott er að hugsa um þá sem lykkjur: $\forall x\, \forall y$ er
+tvöföld lykkja sem athugar hvort skilyrðið sé satt fyrir öll pör, og $\forall x\, \exists y$ er
+lykkja sem leitar, fyrir hvert $x$, að einhverju $y$ sem virkar.
+
+- $\forall x\, \forall y\, (x + y = 0)$ fyrir rauntölur er ósatt: $x = y = 1$ er gagndæmi.
+- $\forall x\, \forall y\, ((x > 0) \land (y < 0) \rightarrow xy < 0)$ segir að margfeldi jákvæðrar og
+  neikvæðrar tölu sé neikvætt.
+- „Summa tveggja jákvæðra heiltalna er jákvæð“ verður $\forall x\, \forall y\, ((x > 0) \land (y > 0)
+  \rightarrow x + y > 0)$ yfir heiltölur.
+
+Röð virkja skiptir máli þegar þeir eru af ólíkri gerð. $\forall x\, \forall y\, P(x, y) \equiv \forall
+y\, \forall x\, P(x, y)$, en $\exists y\, \forall x\, P(x, y)$ og $\forall x\, \exists y\, P(x, y)$
+eru ekki jafngild. „Allir eiga sér uppáhaldsmynd“ ($\forall x\, \exists y$) er ekki það sama og „Til
+er mynd sem er uppáhaldsmynd allra“ ($\exists y\, \forall x$).
+
+::: {.callout-tip}
+## Tenging við SQL
+
+Umsögn er skilyrðið í `WHERE`: hún er metin fyrir hverja röð og ræður hvort röðin kemur með.
+$\exists$ samsvarar `EXISTS`. SQL hefur engan $\forall$, en hann má skrifa sem $\neg \exists x\,
+\neg P(x)$, það er `NOT EXISTS (... WHERE NOT ...)`.
+:::
+
+## Æfingar
+
+1. Látum umræðumengið vera $\{1, 2, 3, 4\}$. Skrifið án virkja, með $\neg$, $\land$ og $\lor$:
+   a) $\exists x\, P(x)$ b) $\forall x\, P(x)$ c) $\forall x\, ((x \neq 3) \rightarrow P(x)) \lor
+   \exists x\, \neg P(x)$
+2. Hver er neitun setningarinnar „Allar persónur birtast í að minnsta kosti einni mynd“? Skrifið
+   hana bæði á táknmáli og með orðum.
+3. Látum $C(x)$: „$x$ á tölvu“ og $F(x, y)$: „$x$ og $y$ eru vinir“, þar sem umræðumengið er nemendur
+   skólans. Hvað þýðir $\forall x\, (C(x) \lor \exists y\, (C(y) \land F(x, y)))$?
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. a) $P(1) \lor P(2) \lor P(3) \lor P(4)$
+   b) $P(1) \land P(2) \land P(3) \land P(4)$
+   c) $(P(1) \land P(2) \land P(4)) \lor (\neg P(1) \lor \neg P(2) \lor \neg P(3) \lor \neg P(4))$
+2. Með $A(x, m)$: „$x$ birtist í $m$“ er setningin $\forall x\, \exists m\, A(x, m)$. Neitunin er
+   $\exists x\, \forall m\, \neg A(x, m)$: „Til er persóna sem birtist ekki í neinni mynd.“
+3. „Sérhver nemandi skólans á tölvu eða á vin sem á tölvu.“
+:::

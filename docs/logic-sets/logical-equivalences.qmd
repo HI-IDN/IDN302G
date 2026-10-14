@@ -1,0 +1,190 @@
+---
+title: "Jafngildar yrðingar"
+description: >-
+  Fleiri rökvirkjar, röð aðgerða og jafngildar yrðingar: hvernig sama skilyrðið í WHERE má skrifa á
+  fleiri en einn hátt.
+---
+
+Í SQL skrifum við skilyrði, ekki lykkjur. Þegar skilyrðin verða flóknari hjálpar rökfræðin okkur að lesa þau rétt og að skrifa þau upp á nýtt á skýrari hátt, án þess að breyta því hvaða raðir koma út. Þessi síða byggir á [Yrðingum og sanntöflum](truth-tables.qmd).
+
+## Fleiri rökvirkjar
+
+`og`, `eða` og `ekki` eru ekki einu *rökvirkjarnir* (e. *logical operators*). *Samsett yrðing* er búin til úr einni eða fleiri yrðingum með þeim:
+
+| Virki | Tákn | Lesið | Satt þegar |
+|---|---|---|---|
+| Neitun | $\neg p$ | ekki $p$ | $p$ er ósatt |
+| Ogun | $p \land q$ | $p$ og $q$ | bæði eru sönn |
+| Eðun | $p \lor q$ | $p$ eða $q$ | að minnsta kosti annað er satt |
+| Misgilding | $p \oplus q$ | annaðhvort $p$ eða $q$ | nákvæmlega annað er satt |
+| Leiðing | $p \rightarrow q$ | ef $p$ þá $q$ | ekki þegar $p$ er satt og $q$ ósatt |
+| Tvíleiðing | $p \leftrightarrow q$ | $p$ ef og aðeins ef $q$ | bæði hafa sama sanngildi |
+
+Sanntöflurnar fyrir tvíundarvirkjana eru:
+
+| $p$ | $q$ | $p \land q$ | $p \lor q$ | $p \oplus q$ | $p \rightarrow q$ | $p \leftrightarrow q$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| T | T | T | T | F | T | T |
+| T | F | F | T | T | F | F |
+| F | T | F | T | T | T | F |
+| F | F | F | F | F | T | T |
+
+Munurinn á eðun og misgildingu sést í daglegu máli. „Nemendur þurfa að hafa tekið STÆ eða TÖL“ leyfir
+báða áfanga (eðun). „Þú færð popp eða kók með bíómiðanum“ þýðir yfirleitt annað en ekki bæði
+(misgilding).
+
+### Leiðing
+
+Í $p \rightarrow q$ kallast $p$ *forsenda* (e. *hypothesis*) og $q$ *niðurstaða* (e. *conclusion*).
+Leiðingin er aðeins ósönn þegar forsendan er sönn og niðurstaðan ósönn. Loforðið „ef ég verð kosinn
+lækka ég skatta“ er því ekki svikið ef viðkomandi nær ekki kjöri, sama hvað gerist með skattana.
+
+Út frá $p \rightarrow q$ má búa til þrjár skyldar leiðingar. Tökum $p$: „það rignir“ og $q$:
+„heimaliðið vinnur“:
+
+| Nafn | Form | Dæmi |
+|---|---|---|
+| Leiðing | $p \rightarrow q$ | Ef það rignir vinnur heimaliðið. |
+| Andhverfing (e. *converse*) | $q \rightarrow p$ | Ef heimaliðið vinnur þá rignir. |
+| Mótskilyrðing (e. *contrapositive*) | $\neg q \rightarrow \neg p$ | Ef heimaliðið vinnur ekki þá rignir ekki. |
+| Andhverfa (e. *inverse*) | $\neg p \rightarrow \neg q$ | Ef það rignir ekki vinnur heimaliðið ekki. |
+
+Leiðingin og mótskilyrðingin eru alltaf jafngildar. Andhverfingin og andhverfan eru það ekki.
+
+### Tvíleiðing
+
+$p \leftrightarrow q$ er satt þegar $p$ og $q$ hafa sama sanngildi: „Þú getur farið í flugið ef og
+aðeins ef þú kaupir miða.“ Daglegt mál er ónákvæmt hér. „Ef þú klárar matinn færðu köku“ er oft
+meint sem tvíleiðing, þótt orðin lýsi bara leiðingu.
+
+### Röð aðgerða
+
+Séu engir svigar eru virkjarnir reiknaðir í þessari röð:
+
+| Virki | Forgangur |
+|:-:|:-:|
+| $\neg$ | 1 |
+| $\land$ | 2 |
+| $\lor$ | 3 |
+| $\rightarrow$ | 4 |
+| $\leftrightarrow$ | 5 |
+
+Til dæmis er $\neg p \land q$ lesið sem $(\neg p) \land q$ og $p \lor q \land r$ sem $p \lor (q \land
+r)$. SQL fylgir sömu röð fyrir `NOT`, `AND` og `OR`, eins og fjallað er um í
+[Forgangi virkja](../sql-basics/basic_sql_queries.qmd#forgangur-virkja). Svigar gera skilyrðin
+skýrari, jafnvel þegar þeirra er ekki þörf.
+
+### Að búa til sanntöflu
+
+Sanntafla fyrir samsetta yrðingu með $n$ breytum hefur $2^n$ raðir, eina fyrir hverja samsetningu
+sanngilda. Hún hefur dálk fyrir hverja breytu, dálk fyrir hvern hluta yrðingarinnar og loks dálk
+fyrir alla yrðinguna. Fyrir $(p \lor q) \lor (p \land \neg q)$:
+
+| $p$ | $q$ | $\neg q$ | $p \lor q$ | $p \land \neg q$ | $(p \lor q) \lor (p \land \neg q)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| T | T | F | T | F | T |
+| T | F | T | T | T | T |
+| F | T | F | T | F | T |
+| F | F | T | F | F | F |
+
+Síðasti dálkurinn er eins og dálkurinn fyrir $p \lor q$, svo yrðingin einfaldast í $p \lor q$.
+
+### Bitar
+
+Tölvur geyma sanngildi sem bita: 1 fyrir satt og 0 fyrir ósatt. Virkjarnir $\lor$, $\land$ og
+$\oplus$ verða þá bitaaðgerðirnar `OR`, `AND` og `XOR`, og þeim má beita á tvíundartölur bita fyrir
+bita. Til dæmis er $0110 \land 1100 = 0100$.
+
+::: {.callout-note title="Prófið áður en þið haldið áfram"}
+Notið töflurnar úr innganginum og ákveðið hvort fullyrðingarnar séu sannar eða ósannar:
+
+1. Logi er í Uppreisnarmönnum.
+2. Jóda er í Uppreisnarmönnum.
+3. Logi er bæði uppreisnarmaður og Væringur.
+4. Svarthöfði er Væringur eða í Keisaradæminu.
+5. Finnur er bæði í Andspyrnunni og Frumreglunni.
+6. Lilja er í Frumreglunni.
+7. Boba Fett er hvorki í Uppreisnarmönnum né Keisaradæminu.
+:::
+
+## Jafngildar yrðingar
+
+Samsettar yrðingar flokkast eftir sanngildum sínum:
+
+- **Sísanna** (e. *tautology*): alltaf sönn, til dæmis $p \lor \neg p$.
+- **Síósanna**, eða mótsögn (e. *contradiction*): alltaf ósönn, til dæmis $p \land \neg p$.
+- **Hlutleysi** (e. *contingency*): hvorki sísanna né mótsögn.
+
+Yrðingarnar $p$ og $q$ eru *rökfræðilega jafngildar*, ritað $p \equiv q$, ef þær hafa sama sanngildi
+í öllum tilvikum, það er ef $p \leftrightarrow q$ er sísanna. Það má sýna með sanntöflu. Fyrsta regla
+De Morgans[^de-morgan]:
+
+| $p$ | $q$ | $p \land q$ | $\neg(p \land q)$ | $\neg p$ | $\neg q$ | $\neg p \lor \neg q$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| T | T | T | F | F | F | F |
+| T | F | F | T | F | T | T |
+| F | T | F | T | T | F | T |
+| F | F | F | T | T | T | T |
+
+Þegar breyturnar eru margar verður sanntaflan löng. Þá er betra að umrita yrðinguna skref fyrir skref
+með þekktum jafngildum:
+
+| Regla | Á ensku | Jafngildi |
+|---|---|---|
+| Hlutleysureglur | *Identity laws* | $p \land T \equiv p$, $\quad p \lor F \equiv p$ |
+| Yfirráðareglur | *Domination laws* | $p \lor T \equiv T$, $\quad p \land F \equiv F$ |
+| Sjálfvirknireglur | *Idempotent laws* | $p \lor p \equiv p$, $\quad p \land p \equiv p$ |
+| Tvöföld neitun | *Double negation law* | $\neg(\neg p) \equiv p$ |
+| Víxlreglur | *Commutative laws* | $p \lor q \equiv q \lor p$, $\quad p \land q \equiv q \land p$ |
+| Tengireglur | *Associative laws* | $(p \lor q) \lor r \equiv p \lor (q \lor r)$, $\quad (p \land q) \land r \equiv p \land (q \land r)$ |
+| Dreifireglur | *Distributive laws* | $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$, $\quad p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$ |
+| Reglur De Morgans | *De Morgan's laws* | $\neg(p \land q) \equiv \neg p \lor \neg q$, $\quad \neg(p \lor q) \equiv \neg p \land \neg q$ |
+| Gleypireglur | *Absorption laws* | $p \lor (p \land q) \equiv p$, $\quad p \land (p \lor q) \equiv p$ |
+| Neitunarreglur | *Negation laws* | $p \lor \neg p \equiv T$, $\quad p \land \neg p \equiv F$ |
+| Leiðing sem eðun | *Conditional as disjunction* | $p \rightarrow q \equiv \neg p \lor q$ |
+| Mótskilyrðing | *Contrapositive* | $p \rightarrow q \equiv \neg q \rightarrow \neg p$ |
+| Tvíleiðing | *Biconditional* | $p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p)$ |
+
+Sömu reglur gilda um mengi, sjá [Mengjajafngildi](set-operations.qmd#mengjajafngildi) á síðunni um mengi.
+
+::: {.callout-tip}
+## Tenging við SQL
+
+Reglur De Morgans eru gagnlegar þegar skilyrði í `WHERE` er umritað. Þessi tvö skilyrði velja sömu
+raðirnar (ef enginn dálkur er `NULL`):
+
+```sql
+WHERE NOT (faction = 'Uppreisnarmenn' OR faction = 'Keisaradæmið')
+WHERE faction <> 'Uppreisnarmenn' AND faction <> 'Keisaradæmið'
+```
+
+SQL hefur þó þriðja sanngildið, `UNKNOWN`, sem kemur upp þegar borið er saman við `NULL`. Þá gilda
+sanntöflurnar hér ekki óbreyttar, sjá [`NULL`](../sql-basics/null.qmd).
+:::
+
+## Æfingar
+
+1. Skrifið leiðinguna „Ef persóna er í Keisaradæminu þá er hún ekki í Uppreisnarmönnum“ á táknmáli,
+   og finnið andhverfingu hennar, mótskilyrðingu og andhverfu.
+2. Sýnið með sanntöflu að $p \rightarrow q \equiv \neg p \lor q$.
+3. Finnið yrðingu sem er jafngild $(p \lor q) \rightarrow \neg p$ en inniheldur enga leiðingu.
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. Með $g$: „er í Keisaradæminu“ og $u$: „er í Uppreisnarmönnum“ er leiðingin $g \rightarrow \neg u$.
+   Andhverfing: $\neg u \rightarrow g$. Mótskilyrðing: $u \rightarrow \neg g$. Andhverfa:
+   $\neg g \rightarrow u$. Leiðingin og mótskilyrðingin eru jafngildar.
+2. Dálkarnir fyrir $p \rightarrow q$ og $\neg p \lor q$ eru báðir T, F, T, T.
+3. $(p \lor q) \rightarrow \neg p \equiv \neg(p \lor q) \lor \neg p \equiv (\neg p \land \neg q) \lor
+   \neg p \equiv \neg p$. Fyrst er leiðingin skrifuð sem eðun, svo er De Morgan notaður og loks
+   gleypiregla.
+:::
+
+[^de-morgan]: Reglurnar eru kenndar við breska stærðfræðinginn
+    [Augustus De Morgan](https://en.wikipedia.org/wiki/Augustus_De_Morgan) (1806–1871), sem setti
+    þær fram á máli rökfræðinnar í *Formal Logic* (1847). Hér fylgjum við röðinni í kennslubókinni
+    Kenneth H. Rosen, *Discrete Mathematics and Its Applications*, kafla 1.3 (*Propositional
+    Equivalences*), þar sem $\neg(p \land q) \equiv \neg p \lor \neg q$ er talin fyrst. Sjá einnig
+    [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws) á Wikipediu. Hvor reglan
+    er kölluð „fyrsta“ er hefð, ekki skilgreining.
