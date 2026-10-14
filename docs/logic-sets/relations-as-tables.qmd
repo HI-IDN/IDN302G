@@ -49,6 +49,15 @@ Táknið $\subseteq$ má lesa sem „er hlutmengi af“. Línan segir því að 
 öllum mögulegum pörum úr `character` og `faction`. Í okkar dæmi er `member_of` safn þeirra para sem
 eru raunverulega skráð: fyrra stakið kemur úr hópi persóna og seinna stakið úr hópi liða.
 
+::: {.callout-note}
+## Vensl og föll
+
+Fall er sértilvik af venslum: vensl þar sem hvert stak í fyrra menginu tengist nákvæmlega einu
+staki í því seinna. `member_of` er ekki fall, því persóna 1 er bæði í liði 100 og liði 300. Ef hver
+persóna væri í nákvæmlega einu liði væri `member_of` fall frá `character` til `faction`. Sjá
+[Föll og lyklar](functions-and-keys.qmd).
+:::
+
 ## Dæmi: persóna tengist kvikmynd
 
 Taflan `appears_in` lýsir sambandi milli persóna og kvikmynda:
@@ -94,17 +103,38 @@ Sambandið milli taflnanna má teikna svona:
 
 ```{mermaid}
 %%| label: relations-mermaid-1
-flowchart LR
-  character["character<br/>character_id<br/>name"]
-  faction["faction<br/>faction_id<br/>faction"]
-  movie["movie<br/>movie_id<br/>title"]
-  member_of["member_of<br/>character_id<br/>faction_id"]
-  appears_in["appears_in<br/>character_id<br/>movie_id"]
+---
+config:
+  class:
+    hideEmptyMembersBox: true
+---
+classDiagram
+  direction LR
+  class character {
+    character_id
+    name
+  }
+  class faction {
+    faction_id
+    faction
+  }
+  class movie {
+    movie_id
+    title
+  }
+  class member_of {
+    character_id
+    faction_id
+  }
+  class appears_in {
+    character_id
+    movie_id
+  }
 
-  member_of -->|"character_id vísar í"| character
-  member_of -->|"faction_id vísar í"| faction
-  appears_in -->|"character_id vísar í"| character
-  appears_in -->|"movie_id vísar í"| movie
+  member_of --> character : character_id vísar í
+  member_of --> faction : faction_id vísar í
+  appears_in --> character : character_id vísar í
+  appears_in --> movie : movie_id vísar í
 ```
 
 Ein persóna getur tengst mörgum röðum í `member_of`, því sama persóna getur verið í fleiri en einu
@@ -167,3 +197,7 @@ Svarið með orðum áður en þið hugsið um SQL:
 5. Hvernig mynduð þið orða skilyrðið „persónur sem eru hvorki í Uppreisnarmönnum né Keisaradæminu“
    án þess að skrifa SQL?
 :::
+
+Viljið þið fara dýpra? [Mengjamargfeldi og samskeyting](relation-composition.qmd) sýnir hvað
+`JOIN` gerir í raun, [Föll og lyklar](functions-and-keys.qmd) tengir vensl við aðallykla og
+[Eiginleikar vensla og lokanir](relation-properties.qmd) fer í endurkvæmar fyrirspurnir.

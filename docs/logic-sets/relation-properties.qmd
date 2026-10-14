@@ -1,0 +1,185 @@
+---
+title: "Eiginleikar vensla og lokanir"
+description: >-
+  Sjálfhverf, samhverf, andsamhverf og gegnvirk vensl, framsetning með fylkjum og örvanetum, og
+  gegnvirk lokun sem endurkvæm fyrirspurn í SQL.
+---
+
+Sum vensl eru á einu mengi: „er yfirmaður“, „er vinur“ eða „er flug til“. Spurningar eins og „hverjir eru allir yfirmenn hennar, beint og óbeint?“ eru spurningar um *gegnvirka lokun*. SQL ræður við þær með endurkvæmri fyrirspurn, án þess að við skrifum lykkjuna sjálf. Þessi síða er ítarefni.
+
+## Vensl á einu mengi
+
+Vensl frá $A$ til $A$ sjálfs kallast *vensl á* $A$, og eru hlutmengi af $A \times A$. Dæmi: á $A =
+\{1, 2, 3, 4\}$ eru venslin „$a$ gengur upp í $b$“
+
+$$
+R = \{(1,1), (1,2), (1,3), (1,4), (2,2), (2,4), (3,3), (4,4)\}
+$$
+
+## Eiginleikar vensla
+
+Látum $R$ vera vensl á menginu $A$.
+
+| Eiginleiki | Skilgreining | Með orðum |
+|---|---|---|
+| Sjálfhverf (e. *reflexive*) | $\forall a\, ((a, a) \in R)$ | hvert stak er í venslum við sjálft sig |
+| Samhverf (e. *symmetric*) | $\forall a\, \forall b\, ((a, b) \in R \rightarrow (b, a) \in R)$ | ef $a$ tengist $b$ þá tengist $b$ líka $a$ |
+| Andsamhverf (e. *antisymmetric*) | $\forall a\, \forall b\, ((a, b) \in R \land (b, a) \in R \rightarrow a = b)$ | tvö ólík stök tengjast aldrei í báðar áttir |
+| Gegnvirk (e. *transitive*) | $\forall a\, \forall b\, \forall c\, ((a, b) \in R \land (b, c) \in R \rightarrow (a, c) \in R)$ | ef $a$ tengist $b$ og $b$ tengist $c$ þá tengist $a$ líka $c$ |
+
+Dæmi úr daglegu lífi:
+
+- „er jafngamall og“ er sjálfhverf, samhverf og gegnvirk.
+- „hefur lokið fleiri einingum en“ er gegnvirk: ef $x > y$ og $y > z$ þá $x > z$. Hún er hvorki
+  sjálfhverf né samhverf.
+- „gengur upp í“ á jákvæðum heiltölum er sjálfhverf, andsamhverf og gegnvirk.
+- „eru vinir“ er samhverf en yfirleitt ekki gegnvirk.
+
+Samhverfa og andsamhverfa eru ekki andstæður. Venslin $\{(1, 1), (2, 2)\}$ eru bæði samhverf og
+andsamhverf, og venslin $\{(1, 2), (2, 1), (1, 3)\}$ eru hvorugt.
+
+Vensl sem eru sjálfhverf, samhverf og gegnvirk kallast *jafngildisvensl* (e. *equivalence
+relation*). Þau skipta menginu í aðskilda flokka, til dæmis nemendum eftir fæðingarári.
+
+## Framsetning vensla
+
+### Með fylki
+
+Vensl frá $A = \{a_1, \ldots, a_m\}$ til $B = \{b_1, \ldots, b_n\}$ má setja fram með $m \times n$
+fylki $M_R = [m_{ij}]$ af núllum og ásum:
+
+$$
+m_{ij} =
+\begin{cases}
+1 & \text{ef } (a_i, b_j) \in R \\
+0 & \text{ef } (a_i, b_j) \notin R
+\end{cases}
+$$
+
+Dæmi: ef $A = \{1, 2, 3\}$, $B = \{1, 2\}$ og $R = \{(a, b) \mid a > b\}$ er $R = \{(2,1), (3,1),
+(3,2)\}$ og
+
+$$
+M_R = \begin{bmatrix} 0 & 0 \\ 1 & 0 \\ 1 & 1 \end{bmatrix}
+$$
+
+Eiginleikana má lesa beint úr fylki vensla á mengi:
+
+- **Sjálfhverf:** öll stök á hornalínunni eru 1.
+- **Samhverf:** fylkið er jafnt bylti sínu, $M_R = M_R^T$.
+- **Andsamhverf:** ef $m_{ij} = 1$ og $i \neq j$ þá er $m_{ji} = 0$.
+
+Sammengi og sniðmengi vensla verða að stak fyrir stak $\lor$ og $\land$ á fylkjunum. Samskeyting
+verður að *Boole-margfeldi*, $M_{S \circ R} = M_R \odot M_S$, sem reiknað er eins og venjulegt
+fylkjamargfeldi nema með $\land$ í stað margföldunar og $\lor$ í stað samlagningar.
+
+### Með örvaneti
+
+*Örvanet* (e. *directed graph*) hefur hnút fyrir hvert stak og ör, eða legg, frá $a$ til $b$ fyrir
+hvert par $(a, b) \in R$. Venslin $R = \{(1,1), (1,3), (2,1), (2,3), (2,4), (3,1), (3,2), (4,1)\}$ á
+$\{1, 2, 3, 4\}$ líta svona út:
+
+```{mermaid}
+%%| label: relations-mermaid-2
+%%| fig-cap: "Örvanet fyrir venslin R."
+flowchart LR
+  1((1)) --> 1
+  1 --> 3((3))
+  2((2)) --> 1
+  2 --> 3
+  2 --> 4((4))
+  3 --> 1
+  3 --> 2
+  4 --> 1
+```
+
+Í örvaneti eru eiginleikarnir:
+
+- **Sjálfhverf:** lykkja er við hvern hnút.
+- **Samhverf:** sérhverri ör frá $x$ til $y$ fylgir ör til baka frá $y$ til $x$.
+- **Andsamhverf:** aldrei eru örvar í báðar áttir milli tveggja ólíkra hnúta.
+- **Gegnvirk:** ef ör liggur frá $x$ til $y$ og frá $y$ til $z$ þá liggur líka ör beint frá $x$ til
+  $z$.
+
+## Lokanir vensla
+
+Ef vensl $R$ á $A$ hafa ekki einhvern eiginleika $P$ getum við spurt: hvaða pörum er minnst hægt að
+bæta við svo þau fái hann? *Lokun* (e. *closure*) $R$ með tilliti til $P$ eru minnstu venslin sem
+innihalda $R$ og hafa eiginleikann $P$.
+
+- **Sjálfhverf lokun:** $R \cup \Delta$, þar sem $\Delta = \{(a, a) \mid a \in A\}$ eru
+  hornalínuvenslin. Dæmi: $R = \{(1,1), (1,2), (2,1), (3,2)\}$ á $\{1, 2, 3\}$ er ekki sjálfhverf.
+  Sjálfhverfa lokunin bætir við $(2,2)$ og $(3,3)$.
+- **Samhverf lokun:** $R \cup R^{-1}$, þar sem $R^{-1} = \{(b, a) \mid (a, b) \in R\}$ eru
+  andhverfu venslin.
+- **Gegnvirk lokun:** flóknari, því nýju pörin geta skapað þörf fyrir enn fleiri pör.
+
+### Gegnvirk lokun
+
+Gegnvirka lokunin er *samhengisvenslin* $R^*$: parið $(a, b)$ er í $R^*$ ef til er leið af lengd að
+minnsta kosti einn frá $a$ til $b$ í örvanetinu. Fyrir mengi með $n$ stökum þarf aldrei lengri leið
+en $n$, svo
+
+$$
+R^* = R \cup R^2 \cup \cdots \cup R^n, \qquad M_{R^*} = M_R \lor M_R^{[2]} \lor \cdots \lor M_R^{[n]}
+$$
+
+þar sem $M_R^{[k]}$ er $k$-ta Boole-veldi fylkisins.
+
+Dæmi: látum $A = \{1, 2, 3, 4\}$ og $R = \{(1,2), (2,3), (3,4), (2,1)\}$. Úr örvanetinu sjáum við:
+
+- frá 1 komumst við til 2, 1, 3 og 4,
+- frá 2 komumst við til 1, 2, 3 og 4,
+- frá 3 komumst við til 4,
+- frá 4 komumst við hvergi.
+
+$$
+R^* = \{(1,1), (1,2), (1,3), (1,4), (2,1), (2,2), (2,3), (2,4), (3,4)\}
+$$
+
+Fyrir stór mengi eru bæði myndræna leiðin og veldi fylkja óhentug. Þá er notað kerfisbundnara reiknirit,
+*Warshall-reikniritið*.
+
+::: {.callout-tip}
+## Tenging við SQL
+
+Gegnvirk lokun svarar spurningum eins og „hverjir eru allir yfirmenn þessa starfsmanns, beint og
+óbeint?“ eða „hvaða borgir er hægt að komast til með tengiflugi?“. Í SQL er hún reiknuð með
+endurkvæmri fyrirspurn, `WITH RECURSIVE`, sem bætir við nýjum pörum þar til engin bætast við.
+:::
+
+
+## Æfingar
+
+1. Hver eru röðuðu pörin í venslunum $R = \{(a, b) \mid a \text{ gengur upp í } b\}$ á $\{1, 2, 3,
+   4, 6\}$?
+2. Hver af þessum venslum á $\{1, 2, 3, 4\}$ eru sjálfhverf?
+   a) $R_1 = \{(1,1), (1,2), (2,1), (2,2), (4,1), (4,4)\}$
+   b) $R_2 = \{(1,1), (2,2), (3,3), (4,4)\}$
+   c) $R_3 = \{(1,1), (1,3), (1,4), (2,2), (2,3), (2,4), (3,3), (4,1), (4,4)\}$
+3. Hver af þessum venslum á $\{1, 2, 3, 4\}$ eru samhverf?
+   a) $R_1 = \{(1,1), (1,2), (1,4), (2,1), (2,2), (3,3), (4,1), (4,4)\}$
+   b) $R_2 = \{(1,1), (1,2), (2,1)\}$
+   c) $R_3 = \{(3,4)\}$
+4. Af hverju eru venslin $\{(1,1), (1,2), (2,1), (2,2), (3,4), (4,1), (4,4)\}$ ekki andsamhverf?
+5. Eru venslin $\{(2,2), (2,3), (2,4), (3,2), (3,3), (3,4)\}$ gegnvirk?
+6. Vensl $R$ á þriggja staka mengi hafa fylkið
+   $\begin{bmatrix} 1 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 1 \end{bmatrix}$.
+   Eru þau sjálfhverf, samhverf og andsamhverf?
+7. Er `member_of` sjálfhverf, samhverf, andsamhverf eða gegnvirk? Hvers vegna er spurningin
+   skrýtin?
+
+::: {.callout-note collapse="true"}
+## Lausnir
+
+1. $(1,1), (1,2), (1,3), (1,4), (1,6), (2,2), (2,4), (2,6), (3,3), (3,6), (4,4), (6,6)$.
+2. $R_2$ og $R_3$. $R_1$ er ekki sjálfhverf, því $(3,3)$ vantar.
+3. $R_1$ og $R_2$. $R_3$ er ekki samhverf, því $(4,3)$ vantar.
+4. Bæði $(1,2)$ og $(2,1)$ eru í venslunum, en $1 \neq 2$.
+5. Já. Til dæmis gefa $(2,3)$ og $(3,2)$ parið $(2,2)$, $(3,2)$ og $(2,4)$ gefa $(3,4)$, og $(2,3)$
+   og $(3,4)$ gefa $(2,4)$. Öll þessi pör eru í venslunum, og sama gildir um hin tilvikin.
+6. Sjálfhverf, því hornalínan er öll 1. Samhverf, því fylkið er jafnt bylti sínu. Ekki andsamhverf,
+   því $m_{12} = m_{21} = 1$.
+7. `member_of` eru vensl frá persónum til liða, ekki vensl á einu mengi. Eiginleikarnir eru
+   skilgreindir fyrir vensl á mengi, svo þeir eiga ekki við.
+:::
