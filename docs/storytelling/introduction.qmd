@@ -109,4 +109,4 @@ hvaða hóp þið miðið á hverju sinni til að hámarka árangur frásagnarin
 
 > Eðlilegt framhald af _Upplýsingaverkfræði_ er _Viðskiptagreind_, sem er valáfangi í
 > Iðnaðarverkfræði og er kenndur á vorönn og nýtist vel til að dýpka skilning á hagnýtingu gagna
-> í víðskiptalegum tilgangi. 
+> í viðskiptalegum tilgangi. 
