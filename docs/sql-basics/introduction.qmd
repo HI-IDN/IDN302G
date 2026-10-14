@@ -354,109 +354,30 @@ Tvístæð vensl hafa tvo dálka.
 Þá væri til dæmis tvístæðu venslin: $\{$(Helga, Upplýsingaverkfræði), (Rögnvaldur, Tæknileg
 kerfi), (Tómas, Aðgerðagreining)$\}$ hægt að setja fram sem:
 
-| Kennari    | Námskeið            |
-|------------|---------------------|
-| Helga      | Upplýsingaverkfræði |
-| Rögnvaldur | Tæknileg kerfi      |
-| Tómas      | Aðgerðagreining     |
-
-### Röð raða er ekki tryggð
-
-Vensl eru mengi, og mengi hafa enga röð. Venslin hér að ofan eru sama mengið hvort sem parið
-(Helga, Upplýsingaverkfræði) er skrifað fyrst eða síðast. Sama gildir um töflur í
-venslagagnasafni: taflan geymir raðirnar, en hún lofar engu um í hvaða röð þær koma til baka.
-
-Taflan hér að ofan er til sem _SQLite_ gagnagrunnurinn
-[kennarar.db](https://github.com/HI-IDN/IDN302G/raw/main/data/kennarar.db). Í honum heitir hún
-`kennarar` og hefur dálkana `kennari` og `namskeid`. Við tengjumst honum úr R:
-
 ```{r}
 #| label: introduction-r-1
+#| include: false
 library(DBI)
 con <- dbConnect(RSQLite::SQLite(), "../../data/kennarar.db")
 ```
 
-Fyrirspurnin
-
 ```{sql}
---| label: introduction-sql-1
+--| label: introduction-sql-0
 --| connection: con
-SELECT kennari
+--| echo: false
+--| tab.cap: ""
+SELECT kennari AS Kennari, namskeid AS "Námskeið"
 FROM kennarar
-LIMIT 2;
+ORDER BY kennari;
 ```
 
-skilar *einhverjum* tveimur kennurum. Oft verða það fyrstu tvær raðirnar sem settar voru inn, en
-það er tilviljun í útfærslu kerfisins, ekki regla. Gagnagrunnurinn má skila röðunum í hvaða röð
-sem er, og röðin getur breyst þegar gögnum er bætt við eða eytt, eða þegar kerfið velur aðra leið
-að gögnunum.
+### Röð raða er ekki tryggð
 
-Viljum við ákveðnar raðir þurfum við að segja hvernig á að raða þeim:
-
-```{sql}
---| label: introduction-sql-2
---| connection: con
-SELECT kennari
-FROM kennarar
-ORDER BY kennari
-LIMIT 2;
-```
-
-Nú er niðurstaðan alltaf Helga og Rögnvaldur, af því að þau eru fyrst í stafrófsröð. Þetta er
-ástæðan fyrir því að öll dæmin efst á síðunni nota `ORDER BY` þegar fjöldi raða er takmarkaður,
-hvort sem það er gert með `LIMIT`, `TOP` eða `FETCH FIRST`. `ORDER BY` er útskýrt nánar í
-[grunnatriðum í SQL](basic_sql_queries.qmd).
-
-::: {.callout-important}
-## `LIMIT` án `ORDER BY`
-
-`LIMIT 10` án `ORDER BY` þýðir „gefðu mér einhverjar tíu raðir“, ekki „gefðu mér fyrstu tíu
-raðirnar“. Villan er lúmsk af því að fyrirspurnin virkar oft rétt á litlum æfingagögnum og
-bregst fyrst seinna, á stærri gögnum eða í öðru kerfi.
-:::
-
-#### Æfing
-
-Notaðu töfluna `kennarar` hér að ofan.
-
-1. Skrifaðu fyrirspurn sem skilar þeim kennara sem er **síðastur** í stafrófsröð.
-2. Skrifaðu fyrirspurn sem skilar námskeiðunum í stafrófsröð ásamt kennara hvers þeirra. Hver
-   kennir námskeiðið sem er fyrst í röðinni?
-3. Hvers vegna er `SELECT kennari FROM kennarar LIMIT 1;` ekki örugg leið til að finna þann
-   kennara sem er fyrstur í stafrófsröð?
-
-::: {.callout-tip collapse="true"}
-## Lausn
-
-1. Röðum í lækkandi röð og tökum eina röð:
-
-   ```{sql}
-   --| label: introduction-sql-3
-   --| connection: con
-   SELECT kennari
-   FROM kennarar
-   ORDER BY kennari DESC
-   LIMIT 1;
-   ```
-
-   Svarið er Tómas.
-
-2. Röðum eftir `namskeid`:
-
-   ```{sql}
-   --| label: introduction-sql-4
-   --| connection: con
-   SELECT namskeid, kennari
-   FROM kennarar
-   ORDER BY namskeid;
-   ```
-
-   Aðgerðagreining er fyrst, og Tómas kennir það.
-
-3. Án `ORDER BY` er engin röð skilgreind, svo `LIMIT 1` skilar einhverjum einum kennara. Hann
-   getur verið Helga í dag og einhver annar á morgun. Rétta fyrirspurnin bætir við
-   `ORDER BY kennari` á undan `LIMIT 1`.
-:::
+Vensl eru mengi raðaðra para. Hvert par er raðað, en mengið af pörum hefur enga röð. Venslin hér
+að ofan eru sama mengið hvort sem parið (Helga, Upplýsingaverkfræði) er skrifað fyrst eða síðast.
+Sama gildir um töflur í venslagagnasafni: taflan geymir raðirnar, en hún lofar engu um í hvaða röð
+þær koma til baka. Viljum við ákveðna röð þurfum við að biðja um hana með `ORDER BY`, sjá
+[Röð úttaks](basic_sql_queries.qmd#röð-úttaks---order-by).
 
 ```{r}
 #| label: introduction-r-2

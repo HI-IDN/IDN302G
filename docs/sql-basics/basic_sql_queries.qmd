@@ -39,11 +39,22 @@ FROM patient_list;
 Munurinn á þessum tveimur fyrirspurnum er að sú fyrri nær í öll gögnin úr töflunni `patient_list`, á
 meðan sú seinni nær aðeins í gögnin úr dálkinum `patient_name`.
 
-Útkoman úr fyrirspurninni getur birtist asnalega þegar gögnin eru sýnd í einföldu formi. Til dæmis:
+Útkoman úr fyrirspurninni getur birtist asnalega þegar gögnin eru sýnd í einföldu formi. Til dæmis
+líta fyrstu tvær línurnar úr `SELECT * FROM patient_list;` svona út:
 
+```{r}
+#| label: basic-sql-r-0
+#| include: false
+surgeries <- DBI::dbConnect(RSQLite::SQLite(), "../../data/surgeries.db")
+daemi <- DBI::dbGetQuery(surgeries, "SELECT * FROM patient_list LIMIT 2;")
+DBI::dbDisconnect(surgeries)
 ```
-Patient_1|101|10|M|40 
-Patient_2|102|50|M|50 
+
+```{r}
+#| label: basic-sql-list-mode
+#| echo: false
+#| comment: ""
+writeLines(do.call(paste, c(daemi, sep = "|")))
 ```
 
 Við getum látið _SQLite_ setja úttakið upp í dálka til að fá skýrari framsetningu með því að nota
@@ -65,11 +76,15 @@ eftirfarandi skipanir:
 
 Nú verður sama úttak auðlæsilegra:
 
-```
-Patient_Name  Patient_SSN  Patient_DaysOnWaitingList  Patient_Sex  Patient_Age
-------------  -----------  -------------------------  -----------  -----------
-Patient_1     101          10                         M            40
-Patient_2     102          50                         M            50
+```{r}
+#| label: basic-sql-column-mode
+#| echo: false
+#| comment: ""
+gildi <- lapply(daemi, as.character)
+breidd <- pmax(nchar(names(daemi)), vapply(gildi, function(x) max(nchar(x)), 0))
+lina <- function(x) trimws(paste(sprintf("%-*s", breidd, x), collapse = "  "), "right")
+writeLines(c(lina(names(daemi)), lina(strrep("-", breidd)),
+             vapply(seq_len(nrow(daemi)), function(i) lina(vapply(gildi, `[`, "", i)), "")))
 ```
 
 Þessar stillingar munu skipuleggja úttakið í dálka og sýna nöfn dálkanna, sem gerir gögnin
@@ -120,6 +135,108 @@ SELECT *
 FROM Patient_list
 ORDER BY Patient_Age DESC LIMIT 3
 OFFSET 2; 
+```
+
+### `LIMIT` án `ORDER BY`
+
+Dæmin hér nota litlu töfluna `kennarar` úr [innganginum](introduction.qmd#röð-raða-er-ekki-tryggð),
+sem er í [kennarar.db](https://github.com/HI-IDN/IDN302G/raw/main/data/kennarar.db).
+
+```{r}
+#| label: basic-sql-r-1
+#| include: false
+con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/kennarar.db")
+```
+
+Fyrirspurnin
+
+```{sql}
+--| label: basic-sql-sql-1
+--| connection: con
+--| tab.cap: ""
+SELECT kennari
+FROM kennarar
+LIMIT 2;
+```
+
+skilar *einhverjum* tveimur kennurum. Oft verða það fyrstu tvær raðirnar sem settar voru inn, en
+það er tilviljun í útfærslu kerfisins, ekki regla. Gagnagrunnurinn má skila röðunum í hvaða röð
+sem er, og röðin getur breyst þegar gögnum er bætt við eða eytt, eða þegar kerfið velur aðra leið
+að gögnunum.
+
+Viljum við ákveðnar raðir þurfum við að segja hvernig á að raða þeim:
+
+```{sql}
+--| label: basic-sql-sql-2
+--| connection: con
+--| tab.cap: ""
+SELECT kennari
+FROM kennarar
+ORDER BY kennari
+LIMIT 2;
+```
+
+Nú er niðurstaðan alltaf Helga og Rögnvaldur, af því að þau eru fyrst í stafrófsröð. Þetta er
+ástæðan fyrir því að öll dæmin í [innganginum](introduction.qmd) nota `ORDER BY` þegar fjöldi raða
+er takmarkaður, hvort sem það er gert með `LIMIT`, `TOP` eða `FETCH FIRST`.
+
+::: {.callout-important}
+## `LIMIT` án `ORDER BY`
+
+`LIMIT 10` án `ORDER BY` þýðir „gefðu mér einhverjar tíu raðir“, ekki „gefðu mér fyrstu tíu
+raðirnar“. Villan er lúmsk af því að fyrirspurnin virkar oft rétt á litlum æfingagögnum og
+bregst fyrst seinna, á stærri gögnum eða í öðru kerfi.
+:::
+
+#### Æfing
+
+Notaðu töfluna `kennarar` úr [innganginum](introduction.qmd#röð-raða-er-ekki-tryggð).
+
+1. Skrifaðu fyrirspurn sem skilar þeim kennara sem er **síðastur** í stafrófsröð.
+2. Skrifaðu fyrirspurn sem skilar námskeiðunum í stafrófsröð ásamt kennara hvers þeirra. Hver
+   kennir námskeiðið sem er fyrst í röðinni?
+3. Hvers vegna er `SELECT kennari FROM kennarar LIMIT 1;` ekki örugg leið til að finna þann
+   kennara sem er fyrstur í stafrófsröð?
+
+::: {.callout-tip collapse="true"}
+## Lausn
+
+1. Röðum í lækkandi röð og tökum eina röð:
+
+   ```{sql}
+   --| label: basic-sql-sql-3
+   --| connection: con
+   --| tab.cap: ""
+   SELECT kennari
+   FROM kennarar
+   ORDER BY kennari DESC
+   LIMIT 1;
+   ```
+
+   Svarið er Tómas.
+
+2. Röðum eftir `namskeid`:
+
+   ```{sql}
+   --| label: basic-sql-sql-4
+   --| connection: con
+   --| tab.cap: ""
+   SELECT namskeid, kennari
+   FROM kennarar
+   ORDER BY namskeid;
+   ```
+
+   Aðgerðagreining er fyrst, og Tómas kennir það.
+
+3. Án `ORDER BY` er engin röð skilgreind, svo `LIMIT 1` skilar einhverjum einum kennara. Hann
+   getur verið Helga í dag og einhver annar á morgun. Rétta fyrirspurnin bætir við
+   `ORDER BY kennari` á undan `LIMIT 1`.
+:::
+
+```{r}
+#| label: basic-sql-r-2
+#| include: false
+DBI::dbDisconnect(con)
 ```
 
 ## `WHERE` skilyrði
