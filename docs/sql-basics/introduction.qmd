@@ -319,9 +319,16 @@ skilvirkan hátt. Þau byggja á mengjum og venslum, eins og tvístæðum venslu
 
 ### Gallar
 
-- Flókin og dýr í uppsetningu.
-- Henta ekki fyrir lítið gagnamagn.
-- Gögn geymd á skipulögðu formi.
+- Skemað (töflur, dálkar og gagnatög) þarf að skilgreina fyrirfram, og breytingar á því síðar
+  geta verið þungar í vöfum.
+- Henta illa óskipulögðum eða síbreytilegum gögnum, eins og skynjaragögnum eða frjálsum texta.
+  Þar eru NoSQL-kerfi oft betri kostur (sjá *Aðrir möguleikar* hér að ofan).
+- Netþjónakerfi eins og _PostgreSQL_ krefjast uppsetningar og reksturs. Það á þó ekki við um öll
+  venslagagnasöfn: _SQLite_ er ein skrá sem þarf enga uppsetningu, og þess vegna hentar það vel
+  fyrir lítil verkefni og æfingar.
+
+Skipulagið er því tvíeggjað. Það er það sem gerir leit hraða og gögnin áreiðanleg, en líka það sem
+gerir líkanið ósveigjanlegt þegar gögnin passa ekki í fyrirfram skilgreindar töflur.
 
 ### Mengi og vensl
 
@@ -347,11 +354,36 @@ Tvístæð vensl hafa tvo dálka.
 Þá væri til dæmis tvístæðu venslin: $\{$(Helga, Upplýsingaverkfræði), (Rögnvaldur, Tæknileg
 kerfi), (Tómas, Aðgerðagreining)$\}$ hægt að setja fram sem:
 
-| Kennari    | Námskeið            |
-|------------|---------------------|
-| Helga      | Upplýsingaverkfræði |
-| Rögnvaldur | Tæknileg kerfi      |
-| Tómas      | Aðgerðagreining     |
+```{r}
+#| label: introduction-r-1
+#| include: false
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "../../data/kennarar.db")
+```
+
+```{sql}
+--| label: introduction-sql-0
+--| connection: con
+--| echo: false
+--| tab.cap: ""
+SELECT kennari AS Kennari, namskeid AS "Námskeið"
+FROM kennarar
+ORDER BY kennari;
+```
+
+### Röð raða er ekki tryggð
+
+Vensl eru mengi raðaðra para. Hvert par er raðað, en mengið af pörum hefur enga röð. Venslin hér
+að ofan eru sama mengið hvort sem parið (Helga, Upplýsingaverkfræði) er skrifað fyrst eða síðast.
+Sama gildir um töflur í venslagagnasafni: taflan geymir raðirnar, en hún lofar engu um í hvaða röð
+þær koma til baka. Viljum við ákveðna röð þurfum við að biðja um hana með `ORDER BY`, sjá
+[Röð úttaks](basic_sql_queries.qmd#röð-úttaks---order-by).
+
+```{r}
+#| label: introduction-r-2
+#| include: false
+dbDisconnect(con)
+```
 
 ### Kostir venslalíkansins
 
