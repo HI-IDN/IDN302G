@@ -126,6 +126,7 @@ jobs:
         with:
           args: >-
             --no-progress
+            --exclude-loopback
             ${{ github.event_name == 'schedule' && '--max-retries 2' || '--offline' }}
             "_site/**/*.html"
           fail: true

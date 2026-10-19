@@ -142,7 +142,7 @@ Quarto er ekki bundið við skýrslur. Sama grunnhugmynd — markdown + kóði �
 
 - **Stílsnið** — hægt er að stýra útliti með þemum og eigin CSS/SCSS. Stílsniðið á þessari
   vefsíðu byggir á [hönnunarstaðli Háskóla Íslands](https://honnun.hi.is/) og er geymt í
-  skránni [`styles/hi-book.scss`](https://github.com/HI-IDN/IDN302G/blob/main/styles/hi-book.scss),
+  skránni [`styles/hi-book.scss`](https://github.com/HI-IDN/IDN302G/blob/main/docs/styles/hi-book.scss),
   tengt inn í `_quarto.yml` undir `format: html: theme:`.
 - **Glærur** — Quarto býr til gagnvirkar glærukynningar (reveal.js) úr sömu `.qmd` skrám. Sjá
   [glærurnar hér í námsefninu](../slides/index.html) — þær eru líka gerðar í Quarto og hýstar á

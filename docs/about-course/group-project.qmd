@@ -35,7 +35,7 @@ Dæmi um gangaveitur, listinn er ekki tæmandi en ætti að koma ykkur áleiðis
 - [opendata.reykjavik.is](https://opendata.reykjavik.is/) — opið gagnasafn borgarinnar
 - [vedur.is](https://www.vedur.is/) — veður- og jarðskjálftagögn
 - [px.hagstofa.is](https://px.hagstofa.is/) — hagtölur Íslands
-- [ferdamalastofa.is](https://www.ferdamalastofa.is/is/tolur-og-utgafur/ferdatolur) —
+- [Mælaborð Ferðaþjónustunnar](https://www.maelabordferdathjonustunnar.is/) —
   ferðamannatölfræði
 
 ### Hlutverk í hóp
