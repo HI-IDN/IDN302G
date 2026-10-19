@@ -121,7 +121,7 @@ Loading required package: shiny
 Listening on http://127.0.0.1:5073
 ```
 
-Ef þið skoðið slóðina sem kemur upp, en hún sem vísar í [`localhost`](http://127.0.0.1) og svo
+Ef þið skoðið slóðina sem kemur upp, en hún sem vísar í [`localhost:5073`](http://localhost:5073) og svo
 port númer sem getur verið mismunandi milli keyrsla. Opnið hana í vafra, og þá myndið þá sjá
 einfalt mælaborð með gögn úr gagnagrunninum og lítur svona út:
 
