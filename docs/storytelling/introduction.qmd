@@ -39,6 +39,30 @@ Til að ná góðum árangri í myndrænni framsetningu er gott að fara í gegn
     - Hvað viljum við að markhópurinn viti eða geri?
     - Hvernig ætlum við að miðla þessu á áhrifaríkan hátt?
 
+```{mermaid}
+flowchart TD
+    subgraph R["1. Rannsóknargreining"]
+        A["Skoða gögn"] --> B["Leita að mynstrum"]
+        B --> C["Meta hvað niðurstöðurnar segja"]
+    end
+
+    C --> D["Velja meginniðurstöðu sem gögnin styðja"]
+
+    subgraph S["2. Skýrandi greining"]
+        E["Skilgreina markhóp"] --> F["Ákveða meginboðskap"]
+        F --> G["Velja viðeigandi graf og framsetningu"]
+    end
+
+    D --> E
+
+    style R fill:#f0f7ff,stroke:#315a87,color:#111111
+    style S fill:#f0f7ff,stroke:#315a87,color:#111111
+```
+
+*Í rannsóknargreiningu könnum við hvað gögnin segja.
+Í skýrandi greiningu gerum við niðurstöðurnar skiljanlegar
+fyrir ákveðinn markhóp.*
+
 ### Forðast of miklar upplýsingar
 
 Það er algengt að rannsakendur vilji miðla öllum upplýsingum sem þeir hafa unnið með til að sýna
