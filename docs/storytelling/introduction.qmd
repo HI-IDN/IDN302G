@@ -47,6 +47,59 @@ sjálfir að finna það sem skiptir máli. Til að ná betri árangri, ætti a�
 nauðsynlegt fyrir markhópinn. Með því að sleppa óþarfa upplýsingum og einblína á það sem skiptir
 máli, tryggjum við að áhorfendur einblíni á það sem við viljum að þeir viti.
 
+#### Sama gagnasafn, skýrari framsetning
+
+Eftirfarandi súlurit sýna sömu tilbúnu gögnin um fjölda þátttakenda á námskeiðum.
+Vinstra megin keppa ólíkir litir, þétt rúðunet og endurteknar merkingar um athyglina.
+Hægra megin er framsetningin einfölduð og eitt námskeið dregið fram með lit.
+
+```{r}
+#| label: introduction-r-1
+#| echo: false
+#| fig-width: 10
+#| fig-height: 5
+#| out-width: "100%"
+#| fig-cap: "Sömu dæmigögn fyrir og eftir einföldun. Allar súlur haldast inni og bæði rit nota sama kvarða frá núlli."
+#| fig-alt: "Tvö súlurit sýna þátttakendafjölda á námskeiðum A til D. Vinstra ritið notar fjóra liti og þétt rúðunet. Hægra ritið notar gráar súlur og bláa áherslu á námskeið D. Gildin og kvarðinn eru eins."
+
+local({
+  namskeid <- c("A", "B", "C", "D")
+  thatttakendur <- c(40, 55, 65, 80)
+  fyrri_stillingar <- par(no.readonly = TRUE)
+  on.exit(par(fyrri_stillingar))
+  par(mfrow = c(1, 2), mar = c(4, 4, 4, 1), las = 1)
+
+  stadir <- barplot(
+    thatttakendur, names.arg = namskeid,
+    col = c("#0072B2", "#E69F00", "#009E73", "#CC79A7"),
+    ylim = c(0, 100), main = "Fyrir: margar áherslur",
+    xlab = "Námskeið", ylab = "Fjöldi þátttakenda", axes = FALSE
+  )
+  abline(h = seq(0, 100, 5), col = "#BBBBBB", lty = 3)
+  axis(2, at = seq(0, 100, 10))
+  text(stadir, thatttakendur + 4, labels = thatttakendur)
+  legend("topleft", legend = namskeid,
+         fill = c("#0072B2", "#E69F00", "#009E73", "#CC79A7"),
+         horiz = TRUE, bty = "n", cex = 0.8)
+  box()
+
+  stadir <- barplot(
+    thatttakendur, names.arg = namskeid,
+    col = c(rep("#CCCCCC", 3), "#0072B2"), border = NA,
+    ylim = c(0, 100), main = "Eftir: ein skýr áhersla",
+    xlab = "Námskeið", ylab = "Fjöldi þátttakenda", axes = FALSE
+  )
+  axis(2, at = seq(0, 100, 20), col = NA, col.ticks = "#888888")
+  abline(h = 0, col = "#888888")
+  text(stadir, thatttakendur + 4, labels = thatttakendur)
+})
+```
+
+Í einfaldara ritinu hefur endurtekin litaskýring og þétt rúðunet verið fjarlægt.
+Gögnunum hefur ekki verið breytt eða neinum námskeiðum sleppt. Áhersluliturinn
+beinir athyglinni að námskeiði D, en samanburður við hin námskeiðin er enn sýnilegur.
+Einföldun á að auðvelda lestur án þess að fela upplýsingar sem skipta máli fyrir túlkunina.
+
 ### Skilgreina markhópinn
 
 Því nákvæmari sem skilgreining á markhópnum er, því auðveldara verður að miðla efninu á réttan hátt.
