@@ -156,6 +156,39 @@ https://einhver.thjonusta.is/gogn?limit=100&offset=200
 `Link`-hausinn í svarinu inniheldur þá oft slóð merkta `rel="next"`. Að fara í gegnum allar
 síður heitir *paging* og þarf lykkju — við gerum það í [kaflanum um að sækja gögn](fetching-data.qmd).
 
+### Síðuskipting í skrefum
+
+Flæðiritið sýnir síðuskiptingu þegar þjónustan gefur slóð á
+næstu síðu í svarinu, til dæmis í `Link`-hausnum.
+
+```{mermaid}
+%%| label: http-mermaid-1
+flowchart TD
+    A["Byrja með slóð fyrstu síðu"] --> B["Senda beiðni"]
+    B --> C{"Tókst beiðnin?"}
+    C -- Nei --> D["Meðhöndla villu eða bíða samkvæmt leiðbeiningum þjónustunnar"]
+    C -- Já --> E["Lesa og safna færslum síðunnar"]
+    E --> F{"Er slóð á næstu síðu til?"}
+    F -- Já --> G["Nota slóð næstu síðu"]
+    G --> B
+    F -- Nei --> H["Ljúka og vinna úr söfnuðum færslum"]
+
+    classDef skref fill:#f0f7ff,stroke:#315a87,color:#111111
+    classDef spurning fill:#fff4d6,stroke:#8a6500,color:#111111
+    class A,B,D,E,G,H skref
+    class C,F spurning
+```
+
+Eitt svar inniheldur ekki endilega allar færslurnar. Fylgið
+slóð næstu síðu þar til þjónustan gefur til kynna að engar
+fleiri síður séu til. Aðrar þjónustur nota síðunúmer eða
+bendla í stað slóða; skjöl þjónustunnar ráða því hvernig
+haldið er áfram.
+
+Setjið einnig hámark á fjölda beiðna svo villa í síðuskiptingu
+valdi ekki endalausri lykkju. Keyranleg dæmi eru í
+[kaflanum um að sækja gögn](fetching-data.qmd#allar-síður).
+
 ::: {.callout-tip}
 ## Prófaðu í vafranum fyrst
 
