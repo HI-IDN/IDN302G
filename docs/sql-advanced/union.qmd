@@ -35,3 +35,54 @@ munu vera samkvæmt fyrstu fyrirspurninni í sameiningunni.
 
 `UNION` er umtalsvert dýrari að keyra en `UNION ALL`, þar sem `UNION` þarf að athuga hvort línur 
 séu eins og hún fer yfir niðurstöðurnar.
+
+
+### Lítið sýnidæmi úr ímynduðum starfsmannagrunni
+```sql
+WITH starfsmenn_a(nafn, id) AS (
+      VALUES('Kjartan', '1'), 
+            ('Sigurður', '2'), 
+            ('Erla', '3')
+),
+starfsmenn_b(nafn, id) AS(
+    VALUES('Ragnar', '1'),
+          ('Sigurður', '2')
+)
+SELECT nafn, id FROM starfsmenn_a
+UNION
+SELECT nafn, id FROM starfsmenn_b
+
+-- þessi fyrirspurn gefur eftirfarandi töflu án tvítekningar: 
+
+| nafn     | id        |
+|--------  |-----------|
+| Kjartan  | 1         |
+| Sigurður | 2         |
+| Erla     | 3         |
+| Ragnar   | 1         |
+
+-- þessi fyrirspurn gefur eftirfarandi töflu með tvítekningu: 
+
+SELECT nafn, id FROM starfsmenn_a
+UNION ALL
+SELECT nafn, id FROM starfsmenn_b
+
+| nafn     | id        |
+|--------  |-----------|
+| Kjartan  | 1         |
+| Sigurður | 2         |
+| Erla     | 3         |
+| Ragnar   | 1         |
+| Sigurður | 2         |
+
+-- Athugið að UNION ber saman heilar línur, ekki einstaka dálka og lína er því aðeins fjarlægð ef allir dálkar hennar eru eins og í annari línu. 
+
+
+
+
+
+
+
+```
+
+
