@@ -33,7 +33,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.14"
 
       # Pakkarnir eru taldir upp í requirements.txt, sömu skrá og notuð er
       # staðbundið, svo byggingin keyri á sömu útgáfum og höfundur þróaði með.
