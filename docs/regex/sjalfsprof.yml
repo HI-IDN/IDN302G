@@ -1,0 +1,169 @@
+# Spurningar fyrir regex/sjalfsprof.qmd. Sniðið er lýst efst í filters/sjalfsprof.lua.
+# Settu regex alltaf í `bakkomma` og notaðu einfaldar gæsalappir ('...') svo
+# bakskástrik haldist óbreytt.
+
+spurningar:
+
+  - hluti: Grunnatriði
+    titill: Tölustafir í texta
+    spurning: 'Hvaða strengir innihalda samsvörun við `\d+`?'
+    valkostir: ['`123`', '`abc`', '`a12b`', '`4567`']
+    rett: [A, C, D]
+    utskyring: |
+      `\d` táknar tölustaf og `+` merkir eina eða fleiri endurtekningar. `abc` inniheldur
+      enga tölustafi, en hinir þrír gera það.
+
+      Regex getur fundið hluta strengs án þess að samsvara honum öllum, eins og `12` í `a12b`.
+
+  - hluti: Grunnatriði
+    titill: Upphaf og endir strengs
+    spurning: 'Hvaða strengur passar við `^\d{3}$`?'
+    valkostir: ['`123`', '`a123`', '`1234`', '`12`']
+    rett: [A]
+    utskyring: |
+      `^` táknar upphaf strengs og `$` enda hans. `\d{3}` merkir nákvæmlega þrjá tölustafi,
+      svo allur strengurinn verður að vera þrír tölustafir og ekkert annað.
+
+  - hluti: Grunnatriði
+    titill: Endurtekningar
+    spurning: 'Hvað merkir `+` á eftir regex-mynstri?'
+    valkostir:
+      - Núll eða fleiri endurtekningar
+      - Ein eða fleiri endurtekningar
+      - Nákvæmlega ein endurtekning
+      - Núll eða ein endurtekning
+    rett: [B]
+    utskyring: |
+      `+` merkir eina eða fleiri, `*` núll eða fleiri og `?` núll eða eina.
+      Til dæmis finnur `a+` strengina `a`, `aa` og `aaa`.
+
+  - hluti: Beiting regex
+    titill: Sérstakir stafir
+    spurning: 'Hvaða mynstur finnur bókstaflegan punkt?'
+    valkostir: ['`.`', '`\.`', '`\d`', '`*`']
+    rett: [B]
+    utskyring: |
+      Punkturinn `.` er sértákn sem samsvarar hvaða staf sem er. Til að finna punkt sem
+      venjulegt tákn þarf bakskástrik á undan honum: `\.`
+
+  - hluti: Beiting regex
+    titill: Bil og önnur hvítbil
+    spurning: 'Hvaða strengir innihalda samsvörun við `\s+`?'
+    valkostir: ['`a b` (venjulegt bil)', '`abc`', '`a\tb` (tab-tákn)', '`123`']
+    rett: [A, C]
+    utskyring: |
+      `\s` finnur hvítbil, svo sem bil, tab og línuskipti. A inniheldur bil og C tab-tákn;
+      B og D innihalda engin hvítbil.
+
+  - hluti: Beiting regex
+    titill: Samsetning bókstafa og tölustafa
+    spurning: 'Hvaða strengur passar við `^[A-Z]{2}\d{3}$`?'
+    valkostir: ['`AB123`', '`A123`', '`AB12`', '`ab123`']
+    rett: [A]
+    utskyring: |
+      `[A-Z]{2}` merkir nákvæmlega tvo hástafi frá A til Z og `\d{3}` þrjá tölustafi.
+      `ab123` passar ekki því `[A-Z]` nær ekki yfir lágstafi.
+
+  - hluti: Beiting regex
+    titill: Íslenskir stafir
+    spurning: 'Passar `^[A-Z]{2}\d{3}$` við strenginn `ÞÖ123`?'
+    valkostir:
+      - Já, Þ og Ö eru hástafir
+      - Nei, Þ og Ö eru ekki á bilinu A–Z
+      - 'Já, en aðeins með `perl = TRUE`'
+      - 'Nei, því `\d` finnur ekki tölustafi'
+    rett: [B]
+    utskyring: |
+      `[A-Z]` er bil í enska stafrófinu. Íslensku stafirnir Á, Ð, É, Í, Ó, Ú, Ý, Þ, Æ og Ö
+      eru ekki þar. Í íslenskum texta þarf að telja þá upp, t.d. `[A-ZÁÐÉÍÓÚÝÞÆÖ]`.
+
+  - hluti: Hópar og samsvaranir
+    titill: Hópar í reglulegum segðum
+    spurning: 'Hversu marga fangaða hópa inniheldur `(20\d{2})-(\d{2})-(\d{2})`?'
+    valkostir: [Einn, Tvo, Þrjá, Fjóra]
+    rett: [C]
+    utskyring: |
+      Hverjir venjulegir svigar skilgreina einn fangaðan hóp. Í dagsetningunni `2026-10-27`
+      yrðu hóparnir `2026`, `10` og `27`.
+
+  - hluti: Hópar og samsvaranir
+    titill: Lengsta mögulega samsvörun
+    spurning: 'Hver verður samsvörunin við `a.*b` í strengnum `a1b2b`?'
+    valkostir: ['`a1b`', '`a1b2b`', '`a`', '`2b`']
+    rett: [B]
+    utskyring: |
+      `.*` er gráðugt: það tekur eins marga stafi og það kemst upp með, svo samsvörunin nær
+      að síðasta `b`. Með `a.*?b` fengist styttri samsvörunin `a1b`.
+
+  - hluti: Hópar og samsvaranir
+    titill: Fyrsta samsvörun eða allar
+    spurning: 'Hvað skilar `re.search(r"\d+", "a1b22c333").group()` í Python?'
+    valkostir: ['`"1"`', '`"333"`', '`["1", "22", "333"]`', '`"122333"`']
+    rett: [A]
+    utskyring: |
+      `re.search()` skilar fyrstu samsvörun frá vinstri. `re.findall()` myndi skila öllum:
+      `["1", "22", "333"]`. Sama skipting er í R: `str_extract()` á móti `str_extract_all()`.
+
+  - hluti: Hópar og samsvaranir
+    titill: Símanúmer
+    spurning: 'Hvaða mynstur samþykkir bæði `5551234` og `555-1234`, en ekki aukastafi?'
+    valkostir: ['`^\d{7}$`', '`^\d{3}-\d{4}$`', '`^\d{3}-?\d{4}$`', '`\d+`']
+    rett: [C]
+    utskyring: |
+      `-?` gerir bandstrikið valfrjálst, og `^` og `$` tryggja að engir aukastafir séu fyrir
+      eða eftir mynstrið. `\d+` myndi líka samþykkja `12` og `555-1234` sem tvær samsvaranir.
+
+  - hluti: Regex í R, Python og gögnum
+    titill: '`perl = TRUE` í R'
+    spurning: 'Hvað skilar `regmatches(x, gregexpr("[\\w.]+", x))` í R þegar `x` er `"a1b22"` og `perl = TRUE` vantar?'
+    valkostir:
+      - '`"a1b22"`'
+      - Villuboðum um ógilt mynstur
+      - 'Tómu svari, `character(0)`, án villu eða viðvörunar'
+      - '`"a"` og `"b"`'
+    rett: [C]
+    utskyring: |
+      Sjálfgefna regex-vél R er POSIX. Inni í hornklofa skilur hún `\w` ekki sem bókstaf, svo
+      mynstrið finnur ekkert og R segir ekkert um það. Með `perl = TRUE` fæst `"a1b22"`.
+      Sjá kaflann [Hópar og notkun](groups.qmd).
+
+  - hluti: Regex í R, Python og gögnum
+    titill: Regex og merking
+    spurning: 'Strengurinn `999999-9999` passar við `^\d{6}-\d{4}$`. Hvað segir það okkur?'
+    valkostir:
+      - Að þetta sé gild kennitala
+      - Aðeins að strengurinn líti út eins og kennitala
+      - Að mynstrið sé rangt
+      - Að vartalan sé rétt
+    rett: [B]
+    utskyring: |
+      Regex athugar form, ekki merkingu. 99. dagur 99. mánaðar er ekki til og vartalan er
+      ekki reiknuð. Sjá [Grunnmynstur](syntax.qmd).
+
+  - hluti: Regex í R, Python og gögnum
+    titill: '`LIKE` í SQL'
+    spurning: 'Hvað af þessu er hægt með regex en ekki með `LIKE` í SQL?'
+    valkostir:
+      - Finna texta sem byrjar á ákveðnum stöfum
+      - Finna texta sem inniheldur ákveðið orð
+      - Krefjast nákvæmlega fjögurra tölustafa í röð
+      - Finna texta sem endar á ákveðnum stöfum
+    rett: [C]
+    utskyring: |
+      `LIKE` þekkir aðeins `%` (hvað sem er) og `_` (einn stafur). Byrjun, innihald og endi
+      nást með `'abc%'`, `'%abc%'` og `'%abc'`, en endurtekningar eins og `\d{4}`, valkostir
+      og hópar krefjast regex. Sjá [Regex í gagnavinnu](data-cleaning.qmd).
+
+  - hluti: Regex í R, Python og gögnum
+    titill: Hvenær ekki regex
+    spurning: 'Í hvaða tilviki er regex verra val en önnur verkfæri?'
+    valkostir:
+      - Að finna öll netföng í textaskrá
+      - Að lesa alla uppbyggingu HTML-síðu, með hreiðruðum merkjum
+      - Að athuga hvort símanúmer hafi rétt form
+      - Að hreinsa bil úr dálki
+    rett: [B]
+    utskyring: |
+      HTML er hreiðrað tré og regex ræður illa við merki inni í merkjum. Til þess eru
+      HTML-þáttarar, t.d. `rvest` í R eða BeautifulSoup í Python. Regex hentar vel til að ná
+      í afmarkaða bita, eins og í [mbl-æfingunni](mbl.qmd).

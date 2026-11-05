@@ -189,3 +189,4 @@ format:
 
 filters:
   - filters/description-lead.lua
+  - filters/sjalfsprof.lua
