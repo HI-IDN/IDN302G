@@ -1,6 +1,6 @@
 """Copy rendered slide assets into the book output directory.
 
-Run from the repository root after rendering ``docs/slides/intro.qmd``.
+Run from the repository root after rendering the standalone slides.
 This replaces shell-specific ``mkdir``/``rm``/``cp`` commands so ``make full``
 works on Windows as well as macOS/Linux.
 """
@@ -8,6 +8,8 @@ works on Windows as well as macOS/Linux.
 from __future__ import annotations
 
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -30,8 +32,14 @@ def replace_path(source: Path, target: Path) -> None:
 
 
 def main() -> int:
-    replace_path(DOCS / "slides" / "intro.html", SITE / "slides" / "intro.html")
-    replace_path(DOCS / "slides" / "intro_files", SITE / "slides" / "intro_files")
+    for name in ("intro", "capstone"):
+        source = DOCS / "slides" / f"{name}.qmd"
+        if not source.exists():
+            continue
+        if "--render" in sys.argv[1:]:
+            subprocess.run(["quarto", "render", f"slides/{name}.qmd"], cwd=DOCS, check=True)
+        replace_path(source.with_suffix(".html"), SITE / "slides" / f"{name}.html")
+        replace_path(source.with_name(f"{name}_files"), SITE / "slides" / f"{name}_files")
     replace_path(DOCS / "styles" / "watermark.css", SITE / "styles" / "watermark.css")
     return 0
 
