@@ -33,9 +33,15 @@ spurningar:
       - Jafnlöng bil á ásnum tákna mislöng tímabil
     rett: [D]
     utskyring: |
-      Heilt ár (frá „last year“ til „last week“) fær jafn mikið pláss á ásnum og ein vika. Þá
-      lítur hækkun yfir heilt ár út eins og brött breyting á stuttum tíma. Á tímaás þarf jafnt bil
-      að tákna jafnlangan tíma. Y-ásinn byrjar líka í 2,90, sem ýkir hækkunina enn frekar.
+      Á ásnum fær heilt ár (frá „last year“ til „last week“) jafn mikið pláss og ein vika. Þá lítur
+      hækkun yfir heilt ár út eins og brött breyting, og vikan virðist jafn mikilvæg og árið. Y-ásinn
+      byrjar líka í 2,90, sem ýkir hækkunina enn frekar.
+
+      Sömu þrjár tölur með réttu tímabili á ásnum og Y-ás frá 0: hækkunin dreifist yfir árið og
+      breytingin síðustu vikuna sést varla.
+
+      ![Sömu tölur um bensínverð með réttum tímaás](figures/finndu-villuna/rett-timaas.png)
+
       Sjá [Slæm myndræn framsetning](donts.qmd).
 
   - spurning: |

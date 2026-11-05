@@ -9,7 +9,7 @@ resources:
 skoðarðu graf og finnur hvað er villandi við það. Eftir svarið sérðu útskýringu og, þar sem við
 á, skýrari framsetningu á sömu gögnum.
 
-Myndirnar í fyrstu spurningunni eru búnar til með `figures/finndu-villuna/bua_til_grof.R`.
+Gröfin sem við teiknuðum sjálf (fyrsta spurningin og leiðrétta bensínverðsgrafið) eru búin til með `figures/finndu-villuna/bua_til_grof.R`.
 
 ::: {.sjalfsprof src="finndu-villuna.yml"}
 :::
