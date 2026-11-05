@@ -112,11 +112,11 @@ book:
         - logic-sets/sets-as-questions.qmd
         - logic-sets/set-notation.qmd
         - logic-sets/set-operations.qmd
-        - logic-sets/mengi-sql-aefingar.qmd
         - logic-sets/relations-as-tables.qmd
         - logic-sets/relation-composition.qmd
         - logic-sets/functions-and-keys.qmd
         - logic-sets/relation-properties.qmd
+        - logic-sets/sjalfsprof.qmd
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.qmd
@@ -141,6 +141,7 @@ book:
         - sql-advanced/functions.qmd
         - sql-advanced/cte.qmd
         - sql-advanced/postgis.qmd
+        - sql-advanced/sjalfsprof.qmd
     - part: "Myndræn framsetning"
       chapters:
         - storytelling/introduction.qmd
