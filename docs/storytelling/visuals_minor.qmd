@@ -253,13 +253,33 @@ samanburðinn auðveldan, og punktarit er góður valkostur við súlurit þegar
 
 #### Tengt
 
-![Tengt punktarit af tannvexti naggrísa eftir C-vítamíngjöf](figures/dotplot_connected.png)
+```{r}
+#| label: visuals-minor-r-bigmac
+#| include: false
+# Sömu gögn og grafið: data/bigmac.db, búið til með code/bigmac_sqlite.R
+bm_con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/bigmac.db")
+bm_dags <- DBI::dbGetQuery(bm_con,
+  "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2")$dags
+bm <- DBI::dbGetQuery(bm_con, "
+  SELECT n.land, f.verd_usd AS fyrr, n.verd_usd AS nu
+  FROM bigmac n JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
+  WHERE n.dags = ?", params = list(bm_dags[2], bm_dags[1]))
+DBI::dbDisconnect(bm_con)
+bm$breyting <- bm$nu - bm$fyrr
+bm_mest <- bm[which.max(abs(bm$breyting)), ]
+dollar <- function(x) paste0("$", formatC(x, format = "f", digits = 2, decimal.mark = ","))
+```
 
-Hér er gagnasafnið `ToothGrowth`, sem fylgir R: tannvöxtur naggrísa sem fengu C-vítamín í þremur
-skömmtum, annaðhvort í appelsínusafa eða hreint. Punktarnir sýna meðaltölin og línan milli þeirra
-dregur augað að muninum: appelsínusafinn skilar meiri vexti við litlu skammtana, en við stærsta
-skammtinn er enginn munur. Sama samanburð mætti sýna með tvöföldu súluriti, en þá ber augað saman
-lengdir súlnanna í stað þess að sjá muninn beint.
+![Tengt punktarit af verði á Big Mac í dollurum eftir löndum](figures/dotplot_connected.png)
+
+Hér er verð á Big Mac í dollurum í `r nrow(bm)` löndum, úr Big Mac-vísitölu The Economist. Punktur
+landsins er verðið `r bm_dags[1]` og línan byrjar í verðinu `r bm_dags[2]`. Löndunum er raðað eftir
+verði, svo bæði staðan og breytingin sjást í einu: löng lína þýðir mikla breytingu á hálfu ári.
+Mesta breytingin var í landinu `r bm_mest$land`, úr `r dollar(bm_mest$fyrr)` í
+`r dollar(bm_mest$nu)`.
+
+Gögnin eru sótt af GitHub með `code/bigmac_sqlite.R` og vistuð í SQLite-grunninn
+`data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr.
 
 :::
 

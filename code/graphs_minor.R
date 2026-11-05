@@ -43,23 +43,30 @@ p_dot_dreif <- ggplot(mtcars, aes(x = mpg)) +
        x = "Mílur á gallon (mpg)")
 ggsave(file.path(out, "dotplot_distribution.png"), p_dot_dreif, width = 6, height = 3, dpi = 200, bg = "white", type = "cairo")
 
-# Tengt punktarit: meðaltannvöxtur naggrísa (ToothGrowth) eftir skammti C-vítamíns,
-# gefið sem appelsínusafi eða hreint C-vítamín. Línan dregur augað að muninum.
-medal <- aggregate(len ~ supp + dose, data = ToothGrowth, FUN = mean)
-medal$gjof <- ifelse(medal$supp == "OJ", "Appelsínusafi", "Hreint C-vítamín")
-medal$skammtur <- factor(paste(format(medal$dose, decimal.mark = ","), "mg/dag"),
-                         levels = rev(paste(format(sort(unique(medal$dose)), decimal.mark = ","), "mg/dag")))
-bil <- merge(subset(medal, supp == "VC", c(skammtur, len)), subset(medal, supp == "OJ", c(skammtur, len)),
-             by = "skammtur", suffixes = c("_vc", "_oj"))
-p_dot_tengt <- ggplot(medal, aes(x = len, y = skammtur)) +
-  geom_segment(data = bil, aes(x = len_vc, xend = len_oj, y = skammtur, yend = skammtur),
-               colour = "grey75", linewidth = 3) +
-  geom_point(aes(colour = gjof), size = 5) +
-  scale_colour_manual(values = c("Appelsínusafi" = hi_orange, "Hreint C-vítamín" = hi_blue), name = NULL) +
-  labs(title = "Tengt punktarit: tannvöxtur eftir C-vítamíngjöf",
-       x = "Meðallengd tannfrumna", y = "Skammtur") +
-  theme(legend.position = "top")
-ggsave(file.path(out, "dotplot_connected.png"), p_dot_tengt, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
+# Tengt punktarit: verð á Big Mac í dollurum í tveimur síðustu mælingum, úr
+# data/bigmac.db (búið til með code/bigmac_sqlite.R). Punkturinn er nýjasta verðið
+# og línan byrjar í verðinu hálfu ári fyrr. Mestu breytingarnar eru appelsínugular.
+con <- DBI::dbConnect(RSQLite::SQLite(), "data/bigmac.db")
+dags <- DBI::dbGetQuery(con, "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2")$dags
+bm <- DBI::dbGetQuery(con, "
+  SELECT n.land, f.verd_usd AS fyrr, n.verd_usd AS nu
+  FROM bigmac n JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
+  WHERE n.dags = ?", params = list(dags[2], dags[1]))
+DBI::dbDisconnect(con)
+bm$breyting <- bm$nu - bm$fyrr
+bm$mest <- rank(-abs(bm$breyting)) <= 5
+bm$land <- reorder(bm$land, bm$nu)
+p_dot_tengt <- ggplot(bm, aes(y = land)) +
+  geom_segment(aes(x = fyrr, xend = nu, yend = land, colour = mest), linewidth = 0.8) +
+  geom_point(aes(x = nu, colour = mest), size = 1.8) +
+  scale_colour_manual(values = c(`FALSE` = hi_blue, `TRUE` = hi_orange), guide = "none") +
+  scale_x_continuous(labels = function(x) paste0("$", trimws(format(x, decimal.mark = ",")))) +
+  labs(title = "Verð á Big Mac í dollurum",
+       subtitle = paste0("Punktur: ", dags[1], ". Lína byrjar í verðinu ", dags[2],
+                         ". Fimm mestu breytingarnar eru appelsínugular."),
+       x = NULL, y = NULL, caption = "Heimild: The Economist, Big Mac-vísitalan") +
+  theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9))
+ggsave(file.path(out, "dotplot_connected.png"), p_dot_tengt, width = 7, height = 9, dpi = 200, bg = "white", type = "cairo")
 
 # Svæðarit: atvinnulausir í Bandaríkjunum yfir tíma
 p_area <- ggplot(economics, aes(x = date, y = unemploy / 1000)) +
