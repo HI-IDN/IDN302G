@@ -115,10 +115,10 @@ spurningar:
 
       ![Sömu kennitölur Strætó með árunum í tímaröð](figures/finndu-villuna/straeto-timarod.png)
 
-      Hér breytist aðeins röðin. Það má þó spyrja hvort línurit hentaði betur fyrir allar fjórar
-      kennitölurnar. Þær sýna allar þróun yfir tíma, og lína dregur augað að breytingunni milli ára
-      frekar en að stærð hvers árs. Súlur eiga betur við þegar bera á saman sjálfstæða flokka.
-      Hvort finnst þér skýrara?
+      Hér breytist aðeins röðin. Eðlilegra væri þó að hafa allar fjórar kennitölurnar sem línurit.
+      Þetta eru hlutföll, ekki fjöldi eða upphæðir: súla gefur til kynna magn sem safnast upp frá 0,
+      en veltufjárhlutfall upp á 0,7 er ekki „minna af einhverju“ heldur hlutfall milli tveggja
+      stærða. Lína sýnir þróun hlutfallsins milli ára, sem er það sem lesandinn þarf að sjá:
 
       ![Sömu kennitölur Strætó, allar sem línurit](figures/finndu-villuna/straeto-linurit.png)
 

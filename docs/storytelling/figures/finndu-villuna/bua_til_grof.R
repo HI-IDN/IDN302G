@@ -119,8 +119,8 @@ ggsave(
   rod, width = 8, height = 5.5, dpi = 160
 )
 
-# Graf 5: Sömu kennitölur, allar sem línurit. Þær sýna allar þróun yfir tíma,
-# og línurit leggur áherslu á breytinguna milli ára.
+# Graf 5: Sömu kennitölur, allar sem línurit. Þetta eru hlutföll en ekki magn,
+# svo lína sem sýnir þróun milli ára á betur við en súlur.
 linur <- ggplot(straeto, aes(x = ar, y = gildi)) +
   geom_line(colour = hi_blue, linewidth = 1) +
   geom_point(colour = hi_blue, size = 2) +
