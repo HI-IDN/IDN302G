@@ -28,32 +28,40 @@ og fæðingarár þeirra er hægt að sjá hér. Þetta gagnvirka graf gerir not
 músina yfir einstaka punkta til að sjá nafn sögupersónunnar, fæðingarár, aldur við andlát, og
 hvaða stríð þær létust í.
 
-![Gagnvirkt dreifirit um aldur við dauða sögupersóna GOT](figures/plotly_got.gif)
+Gögnin eru sótt úr `got`-skemanu í Postgres-grunninum, þeim sama og í
+[SQL framhaldi](../sql-advanced/introduction.qmd). Öll gagnavinnsla fer fram í SQL og R sér
+aðeins um myndina.
 
-kóðinn sem var notaður er:
-
-```R 
-## Hlaða inn pökkum
+```{r}
+#| label: interactive-r-1
+#| message: false
+#| warning: false
+library(DBI)
 library(ggplot2)
 library(plotly)
 
-## Gagnasett og ggplot dreifirit (bætum nafn við fyrir tooltip)
+con <- dbConnect(RPostgres::Postgres(),
+                 host = Sys.getenv("PGHOST", "localhost"),
+                 port = Sys.getenv("PGPORT", "5432"),
+                 dbname = Sys.getenv("PGDATABASE", "railway"),
+                 user = Sys.getenv("PGUSER"),
+                 password = Sys.getenv("PGPASSWORD"))
+
+# TODO: aldur reiknaður beint úr got-töflum (ekki úr lausn-skemanu)
+scatter_dat <- dbGetQuery(con, "
+  SELECT c.name, c.year_born, c.year_died - c.year_born AS age, w.name AS war
+  FROM got.characters c
+  LEFT JOIN got.wars w ON w.period @> c.year_died
+  WHERE c.year_died IS NOT NULL AND c.year_born IS NOT NULL")
+dbDisconnect(con)
+
 p <- ggplot(scatter_dat,
-            aes(x = year_born, y = age, color = war,
-                text = paste("name:", name))) +
+            aes(x = year_born, y = age, color = war, text = paste("name:", name))) +
   geom_point(alpha = .5) +
   theme_minimal() +
-  labs(
-    title = 'Age at Death and Birth Years of GOT Characters',
-    x = 'Year of Birth',
-    y = 'Age at Death',
-    color = 'War'
-  ) +
-  scale_fill_viridis_d() +
-  # As of 2023-10-26 the easiest and cleanest way to address Plotly's known issue of adding parentheses on dummy scales is setting the respective guide/legend to none.
-  guides(fill = "none")
+  labs(x = "Fæðingarár", y = "Aldur við dauða", color = "Stríð")
 
-ggplotly(p) %>%
+ggplotly(p) |>
   layout(legend = list(orientation = "h", x = 0.5, xanchor = "center", y = -0.2))
 ```
 
