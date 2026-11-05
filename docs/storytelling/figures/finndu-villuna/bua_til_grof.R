@@ -91,7 +91,9 @@ straeto <- data.frame(
             1.3, 0.9, 1.2, 0.8, 0.7,
             36, 34, 35, 25, 25,
             0, 56.3, 57.7, 77.8, 148.8),
-  prosenta = rep(c(TRUE, FALSE, TRUE, TRUE), each = 5)
+  prosenta = rep(c(TRUE, FALSE, TRUE, TRUE), each = 5),
+  # Sama gerð af grafi og í ársreikningnum, svo eina breytingin er röð áranna
+  sulur = rep(c(FALSE, TRUE, TRUE, FALSE), each = 5)
 )
 straeto$kennitala <- factor(straeto$kennitala, levels = unique(straeto$kennitala))
 straeto$merki <- ifelse(
@@ -101,8 +103,9 @@ straeto$merki <- ifelse(
 )
 
 rod <- ggplot(straeto, aes(x = ar, y = gildi)) +
-  geom_line(colour = hi_blue, linewidth = 1) +
-  geom_point(colour = hi_blue, size = 2) +
+  geom_col(data = subset(straeto, sulur), fill = hi_blue, width = 0.55) +
+  geom_line(data = subset(straeto, !sulur), colour = hi_blue, linewidth = 1) +
+  geom_point(data = subset(straeto, !sulur), colour = hi_blue, size = 2) +
   geom_text(aes(label = merki), vjust = -0.9, size = 3) +
   facet_wrap(~kennitala, scales = "free_y", ncol = 2) +
   scale_x_continuous(expand = expansion(add = 0.4)) +
