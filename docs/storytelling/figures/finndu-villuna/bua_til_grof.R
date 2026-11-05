@@ -80,4 +80,40 @@ ggsave(
   timaas, width = 6, height = 4, dpi = 160
 )
 
+# Graf 4: Kennitölur úr ársreikningi Strætó 2021 (straeto_arsreikningur2021.png),
+# nú með árunum í tímaröð frá vinstri til hægri. Tölurnar eru lesnar af upprunalegu gröfunum.
+straeto <- data.frame(
+  ar = rep(2017:2021, 4),
+  kennitala = rep(c("Eiginfjárhlutfall", "Veltufjárhlutfall",
+                    "Vægi fargjaldatekna í rekstrarkostnaði", "Langtímaskuldir / eigið fé"),
+                  each = 5),
+  gildi = c(64, 49, 47, 40, 26,
+            1.3, 0.9, 1.2, 0.8, 0.7,
+            36, 34, 35, 25, 25,
+            0, 56.3, 57.7, 77.8, 148.8),
+  prosenta = rep(c(TRUE, FALSE, TRUE, TRUE), each = 5)
+)
+straeto$kennitala <- factor(straeto$kennitala, levels = unique(straeto$kennitala))
+straeto$merki <- ifelse(
+  straeto$prosenta,
+  paste0(formatC(straeto$gildi, format = "fg", decimal.mark = ","), "%"),
+  formatC(straeto$gildi, format = "f", digits = 1, decimal.mark = ",")
+)
+
+rod <- ggplot(straeto, aes(x = ar, y = gildi)) +
+  geom_line(colour = hi_blue, linewidth = 1) +
+  geom_point(colour = hi_blue, size = 2) +
+  geom_text(aes(label = merki), vjust = -0.9, size = 3) +
+  facet_wrap(~kennitala, scales = "free_y", ncol = 2) +
+  scale_x_continuous(expand = expansion(add = 0.4)) +
+  scale_y_continuous(expand = expansion(mult = c(0.05, 0.25)), limits = c(0, NA),
+                     labels = function(x) format(x, decimal.mark = ",")) +
+  labs(title = "Strætó: kennitölur 2017–2021", x = NULL, y = NULL) +
+  theme_minimal()
+
+ggsave(
+  "docs/storytelling/figures/finndu-villuna/straeto-timarod.png",
+  rod, width = 8, height = 5.5, dpi = 160
+)
+
 cat("Gröfin hafa verið vistuð!\n")

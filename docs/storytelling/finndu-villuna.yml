@@ -110,4 +110,9 @@ spurningar:
     rett: [A]
     utskyring: |
       Lesandi býst við að tíminn líði frá vinstri til hægri. Þegar árin eru í öfugri röð er auðvelt
-      að lesa hækkun sem lækkun. Sjá [Slæm myndræn framsetning](donts.qmd).
+      að lesa hækkun sem lækkun. Í upprunalegu gröfunum virðist eiginfjárhlutfallið hækka, en það
+      lækkaði í raun á hverju ári. Sömu tölur með árunum í tímaröð:
+
+      ![Sömu kennitölur Strætó með árunum í tímaröð](figures/finndu-villuna/straeto-timarod.png)
+
+      Sjá [Slæm myndræn framsetning](donts.qmd).
