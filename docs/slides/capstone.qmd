@@ -31,6 +31,76 @@ format:
     include-in-header:
       text: |
         <link rel="icon" type="image/svg+xml" href="../img/hi/favicon.svg">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <style>
+        .reveal .slide-logo { right: 78px !important; }
+        .reveal .slide-number {
+          position: fixed !important;
+          top: auto !important;
+          bottom: 0 !important;
+          right: 10px !important;
+          height: var(--footer-height) !important;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          gap: 3px;
+          padding: 0 4px !important;
+          background: transparent !important;
+          color: var(--footer-text) !important;
+          font-family: inherit;
+          font-size: 14px !important;
+          z-index: 110 !important;
+        }
+        .reveal .slide-number a { color: inherit !important; }
+        .reveal a,
+        .reveal a:hover,
+        .reveal a:focus-visible {
+          color: var(--blue) !important;
+          text-decoration-color: var(--blue) !important;
+        }
+        .reveal .toc-map {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px 20px;
+          margin-top: 24px;
+        }
+        .reveal a.toc-stop {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          min-height: 88px;
+          padding: 12px 18px;
+          box-sizing: border-box;
+          border: 1px solid var(--panel);
+          background: var(--white);
+          color: var(--blue);
+          text-decoration: none;
+          text-align: left;
+          transition: background 120ms ease;
+        }
+        .reveal a.toc-stop:hover,
+        .reveal a.toc-stop:focus-visible {
+          background: var(--soft-blue-bg);
+          outline: 2px solid var(--blue);
+          outline-offset: 2px;
+        }
+        .reveal .toc-number {
+          display: grid;
+          place-items: center;
+          flex: 0 0 46px;
+          height: 46px;
+          background: var(--teal);
+          font-size: 23px;
+          font-weight: 900;
+        }
+        .reveal .toc-label { flex: 1; min-width: 0; }
+        .reveal .toc-label strong { display: block; font-size: 22px; line-height: 1.2; }
+        .reveal .toc-label > span { display: block; margin-top: 5px; font-size: 16px; line-height: 1.25; color: var(--ink); }
+        .reveal .toc-arrow { font-size: 25px; }
+        #gagnasagan .fa-card-icon .box-icon,
+        #kynning .fa-card-icon .box-icon { color: var(--white); }
+        #skyrslan > h3 { margin-top: 22px; }
+        </style>
     include-after-body:
       text: |
         <script>
@@ -74,26 +144,22 @@ format:
 
 ---
 
-## Hvað ætlum við að fara yfir? {#efnisyfirlit}
+## Leiðin í gegnum verkefnið {#efnisyfirlit}
 
-::: {.two-col .slide-links}
-::: {}
-1. [Notandinn og gagnasagan](#gagnasagan)
-2. [Hópurinn: vinna, skil og teymismat](#hopurinn)
-3. [Gagnaleiðin: vefþjónusta → SQL → framsetning](#gagnaleidin)
-4. [Skýrsla, HTML og PDF](#skyrslan)
-:::
-::: {}
-5. [Myndir og gagnvirkt mælaborð](#maelabord)
-6. [Kynning, rýni og fyrirspurnatími](#kynning)
-7. [Lokaskil og yfirferð](#lokaskil)
-8. [Allir matsliðir — til uppflettingar](#matslidir)
-:::
-:::
+Smellið á kafla til að hoppa beint þangað.
 
-::: {.callout}
-Ein heild: sömu gögn og niðurstöður í skýrslu, mælaborði og kynningu.
-:::
+```{=html}
+<div class="toc-map">
+<a class="toc-stop" href="#/gagnasagan"><span class="toc-number">01</span><span class="toc-label"><strong>Notandinn og gagnasagan</strong><span>Spurningin sem tengir allt saman</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/hopurinn"><span class="toc-number">02</span><span class="toc-label"><strong>Teymismat og stuðull</strong><span>Fink-aðferðin og áhrif á einkunnir</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/gagnaleidin"><span class="toc-number">03</span><span class="toc-label"><strong>Frá API í SQL VIEW</strong><span>Ein gagnaleið fyrir allar niðurstöður</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/skyrslan"><span class="toc-number">04</span><span class="toc-label"><strong>Skýrslan á vef og í PDF</strong><span>Ein QMD-heimild · 10 síður alls</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/maelabord"><span class="toc-number">05</span><span class="toc-label"><strong>Myndir og mælaborð</strong><span>Skýr framsetning og gagnleg gagnvirkni</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/kynning"><span class="toc-number">06</span><span class="toc-label"><strong>Kynning og samtal</strong><span>Lyfturæða, myndband, rýni og spurningar</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/lokaskil"><span class="toc-number">07</span><span class="toc-label"><strong>Lokaskil og yfirferð</strong><span>Hver skilar hverju og hvað þarf að prófa?</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/matslidir"><span class="toc-number">08</span><span class="toc-label"><strong>Matsliðir til uppflettingar</strong><span>Viðmiðin á einum stað</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+</div>
+```
 
 ---
 
@@ -102,49 +168,44 @@ Ein heild: sömu gögn og niðurstöður í skýrslu, mælaborði og kynningu.
 - **Fyrir hvern?** Hver þarf upplýsingarnar og hvað vill viðkomandi skilja eða ákveða?
 - **Hvaða spurning?** Hvað geta gögnin raunverulega svarað — og hvað liggur utan verkefnisins?
 
-::: {.card-grid}
-::: {.card}
-<h3>Skýrsla</h3>
-Útskýrir spurningu, aðferð, niðurstöður og þýðingu þeirra.
-:::
-::: {.card}
-<h3>Mælaborð</h3>
-Leyfir notandanum að kanna spurninguna sjálfur.
-:::
-::: {.card}
-<h3>Kynning</h3>
-Velur lykilniðurstöður og sýnir notagildið.
-:::
-:::
+```{=html}
+<div class="fa-card" style="--card-enum-cols: 3"><div class="fa-card-row">
+<div class="fa-card-item"><div class="fa-card-icon"><i class="fa-solid fa-file-lines box-icon" aria-hidden="true"></i></div><div class="fa-card-body"><h3>Skýrsla</h3><p>Útskýrir spurningu, aðferð, niðurstöður og þýðingu þeirra.</p></div></div>
+<div class="fa-card-item"><div class="fa-card-icon"><i class="fa-solid fa-chart-line box-icon" aria-hidden="true"></i></div><div class="fa-card-body"><h3>Mælaborð</h3><p>Leyfir notandanum að kanna spurninguna sjálfur.</p></div></div>
+<div class="fa-card-item"><div class="fa-card-icon"><i class="fa-solid fa-person-chalkboard box-icon" aria-hidden="true"></i></div><div class="fa-card-body"><h3>Kynning</h3><p>Velur lykilniðurstöður og sýnir notagildið.</p></div></div>
+</div></div>
+```
 
 Látið spurninguna stýra gagnavali, greiningu og framsetningu.
 
 ---
 
-## Hvernig virkar hópavinnan? {#hopurinn}
+## Teymismat og stuðull — í hnotskurn {#hopurinn}
+
+Hlutfallsaðferð **L. Dee Fink**: mat á framlagi til þemaverkefnisins yfir önnina leiðréttir hópeinkunnir lokaverkefnisins.
 
 ::: {.two-col}
 ::: {}
-<h3>Sameiginleg ábyrgð</h3>
+<h3>Þú gefur mat</h3>
 
-- Skiptið verkum og rýnið breytingar hvers annars með Pull Requests.
-- Skráið verkefni í Kanban og ákvarðanir í vinnudagbók.
-- Einn skilar fyrir hópinn í hópliðunum; allir þurfa að skilja verkefnið í heild.
-- Allir eiga virkan hlut í kynningunni og mæta í fyrirspurnatíma.
+- Skiptir **100 stigum milli hinna tveggja**: 50 á hvort ef framlagið var jafnt. Metur ekki sjálfa(n) þig.
+- Rökstyður með uppbyggilegri umsögn og áætlar hvað þau gefi þér. Aðeins kennari sér svörin.
+- **5% einstaklingsliðurinn** metur gæði og skil á matinu sem þú gefur.
 :::
 ::: {}
-<h3>Hver og einn</h3>
+<h3>Þú færð stuðul</h3>
 
-- Rýnir kynningar hinna hópanna og skilar eigin ígrundun.
-- Metur framlag liðsfélaga í teymismati; kennari sér svörin.
-- Gæði matsins sem þú gefur eru einstaklingsliður.
-- Mat liðsfélaga á þínu framlagi myndar stuðul á hópeinkunnir; einstaklingsliðir haldast óbreyttir.
+- Stigin frá báðum liðsfélögum eru lögð saman og deilt með **100**. Jafnt framlag → **1,00**.
+- Stuðullinn er takmarkaður við **0,80–1,05**; aldrei meira en full einkunn fyrir lið.
+- Gildir **aðeins á hópliði lokaverkefnisins**: skýrslu og heimasíðu, lokakynningu og fyrirspurnatíma. tRAT, tAPP og einstaklingsliðir breytast ekki.
 :::
 :::
 
-::: {.slide-links}
-[Hópskil, einstaklingsskil og útreikningur teymisstuðuls í Canvas](https://haskoliislands.instructure.com/courses/42669/pages/lokaverkefni-yfirlit)
+::: {.callout}
+Dæmi: 45 + 50 stig → stuðull 0,95. Hópeinkunn 8,0 verður þá 7,6 hjá þér.
 :::
+
+Kennari yfirfer matið og getur leiðrétt ósamræmi við GitHub. [Reglur og Fink-samantekt í Canvas](https://haskoliislands.instructure.com/courses/42669/pages/lokaverkefni-yfirlit).
 
 ---
 
@@ -194,26 +255,32 @@ Námskeiðsefnið leiðir ykkur áfram; það nægir ekki sem eina heimild verke
 
 ## Ein QMD-heimild → HTML og PDF {#skyrslan}
 
-::: {.two-col}
-::: {}
+```{=html}
+<div class="steps-row" role="img" aria-label="Vandamál, síðan samhengi, nálgun, niðurstöður og þýðing.">
+<div class="step-chip"><strong>Vandamál</strong></div>
+<div class="step-chip"><strong>Samhengi</strong></div>
+<div class="step-chip"><strong>Nálgun</strong></div>
+<div class="step-chip"><strong>Niðurstöður</strong></div>
+<div class="step-chip"><strong>Þýðing</strong></div>
+</div>
+```
+
 <h3>Sama frásögn</h3>
 
-- Vandamál → samhengi → nálgun → niðurstöður → þýðing.
+
 - Texti og myndir svara spurningunum; í lokin koma takmarkanir og næstu skref.
 - Sama QMD-heimild heldur HTML og PDF samræmdum.
-:::
-::: {}
-<h3>Heimasíðan leiðir lesandann áfram</h3>
+
+### Heimasíðan leiðir lesandann áfram
+
 
 - 250 orða ágrip og skýrir tenglar á PDF, mælaborð og GitHub.
 - Lyfturæða og kynning aðgengilegar á vefnum.
 - PDF er prentvænt og allt skjalið er innan 10 síðna.
 - Hreinsið ótengt æfingaefni úr birtri leiðsögn; varðveitið Git-söguna.
-:::
-:::
 
 ::: {.slide-links}
-[Hvernig bý ég til bæði HTML og PDF?](../reproducible-reports/quarto.html#html-og-pdf) · [Birting á GitHub Pages](../reproducible-reports/publishing.html)
+[Hvernig bý ég til bæði HTML og PDF?](../reproducible-reports/quarto.html#html-og-pdf)
 :::
 
 ---
@@ -233,12 +300,18 @@ Námskeiðsefnið leiðir ykkur áfram; það nægir ekki sem eina heimild verke
 | Viðaukar | 3 |
 :::
 ::: {}
-<h3>Viðaukinn geymir tæknilegu smáatriðin</h3>
+<h3>Viðauki: tæknilegt yfirlit · um 2,5 síður</h3>
 
-- API og öflun; regex, yrðingar og mengi.
-- ER-líkan, SQL, prófanir og endurkeyrsla.
-- Stutt samantekt úr vinnudagbók: samstarf, Kanban og ákvarðanir.
-- Heill kóði og vinnudagbók eru á GitHub; vísið í skrár og útgáfu.
+- API og öflun: um 0,5 síða.
+- Regex og yrðingar/mengi: um 0,5 síða.
+- ER-líkan og SQL: um 1 síða.
+- Prófanir og endurkeyrsla: um 0,5 síða.
+
+<h3>Samstarf · um 0,5 síða</h3>
+
+Samantekt úr vinnudagbók: hvernig þróuðust vinnubrögðin, hjálpaði Kanban og hvar má finna ákvarðanir og rök?
+
+Heill kóði og vinnudagbók eru á GitHub. Vísið í tilteknar skrár og útgáfu.
 
 **Tillaga, ekki föst kaflalengd.** Allt PDF-skjalið telur, líka heimildir, viðaukar og titilsíða ef hún er notuð.
 :::
@@ -275,20 +348,13 @@ Prófið bæði vefinn og PDF í prentstærð. Gagnvirkni kemur ekki í stað sk
 
 ## Kynningin sýnir verkefnið í notkun {#kynning}
 
-::: {.card-grid}
-::: {.card}
-<h3>Lyfturæða · 30 sek.</h3>
-Vandamálið, notandinn og hvers vegna þetta skiptir máli.
-:::
-::: {.card}
-<h3>Myndband · mest 7 mín.</h3>
-Lykilniðurstöður og notagildi. Tekur við þar sem lyfturæðunni sleppir.
-:::
-::: {.card}
-<h3>Mælaborð í notkun</h3>
-Leysið verkefni notandans; farið ekki aðeins yfir hnappana.
-:::
-:::
+```{=html}
+<div class="fa-card" style="--card-enum-cols: 3"><div class="fa-card-row">
+<div class="fa-card-item"><div class="fa-card-icon"><i class="fa-solid fa-microphone box-icon" aria-hidden="true"></i></div><div class="fa-card-body"><h3>Lyfturæða · 30 sek.</h3><p>Vandamálið, notandinn og hvers vegna þetta skiptir máli.</p></div></div>
+<div class="fa-card-item"><div class="fa-card-icon"><i class="fa-solid fa-video box-icon" aria-hidden="true"></i></div><div class="fa-card-body"><h3>Myndband · mest 7 mín.</h3><p>Lykilniðurstöður og notagildi. Tekur við þar sem lyfturæðunni sleppir.</p></div></div>
+<div class="fa-card-item"><div class="fa-card-icon"><i class="fa-solid fa-chart-line box-icon" aria-hidden="true"></i></div><div class="fa-card-body"><h3>Mælaborð í notkun</h3><p>Leysið verkefni notandans; farið ekki aðeins yfir hnappana.</p></div></div>
+</div></div>
+```
 
 - **Allir koma fram.** Tal heyrist vel og glærur og mælaborð eru læsileg.
 - Hýsið myndband utan Git, t.d. YouTube eða Teams/OneDrive; prófið aðgang annarra.
@@ -397,7 +463,7 @@ Viðmiðunarglærurnar sýna heiti og hámarksstig nemendakvarðanna. Fullar lý
 ```
 
 ::: {.slide-links}
-[Allur kvarðinn í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195596) · [Til baka í yfirlit](#matslidir)
+[Allur kvarðinn í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195596)
 :::
 
 ---
@@ -433,7 +499,7 @@ Viðmiðunarglærurnar sýna heiti og hámarksstig nemendakvarðanna. Fullar lý
 ```
 
 ::: {.slide-links}
-[Allur kvarðinn í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195596) · [Til baka í yfirlit](#matslidir)
+[Allur kvarðinn í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195596)
 :::
 
 ---
@@ -473,7 +539,7 @@ Viðmiðunarglærurnar sýna heiti og hámarksstig nemendakvarðanna. Fullar lý
 Stigin hér eru úr kynningarkvarðanum; vægi kynningarinnar í lokaverkefninu er í Canvas-yfirlitinu.
 
 ::: {.slide-links}
-[Kynningarkvarði í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195590) · [Til baka í yfirlit](#matslidir)
+[Kynningarkvarði í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195590)
 :::
 
 ---
@@ -504,5 +570,5 @@ Hópurinn sýnir í repo-inu hvar hlutirnir eru og rekur gögn og ákvarðanir a
 :::
 
 ::: {.slide-links}
-[Rýni í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/204662) · [Fyrirspurnatími í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/204671) · [Teymismat og vægi](https://haskoliislands.instructure.com/courses/42669/pages/lokaverkefni-yfirlit) · [Til baka](#matslidir)
+[Rýni í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/204662) · [Fyrirspurnatími í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/204671) · [Teymismat og vægi](https://haskoliislands.instructure.com/courses/42669/pages/lokaverkefni-yfirlit)
 :::
