@@ -174,7 +174,9 @@ format:
       - styles/hi-book.scss
     css: styles/book-watermark.css
     include-in-header: partials/header-includes.inc
-    include-after-body: partials/breadcrumb.inc
+    include-after-body:
+      - partials/breadcrumb.inc
+      - partials/sidebar.inc
     toc: true
     toc-depth: 4
     toc-title: "Á þessari síðu"
