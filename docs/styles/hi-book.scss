@@ -1053,40 +1053,31 @@ img { max-width: 100%; height: auto; }
 
 @media (min-width: 768px) {
   body.nav-sidebar.docked .hi-sidebar-toggle {
-    // Just below the navbar: in the sidebar's top-right corner while it is
-    // open (--hi-sidebar-right comes from sidebar.inc), top-left once hidden.
-    // Quarto sets the inline `top` on .headroom-target elements (navbar
-    // height, or 0 while it is hidden).
+    // Keep the edge tab halfway down the viewport in both sidebar states.
     position: fixed;
-    top: 0;
-    left: calc(var(--hi-sidebar-right, 3.5rem) - 3rem);
-    margin-top: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(var(--hi-sidebar-right, 1rem) - 0.5rem);
     z-index: 1030;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 1.5rem;
+    height: 2.75rem;
     padding: 0;
     border: 1px solid rgba($hi-ink, 0.14);
-    border-radius: 50%;
+    border-radius: 0 0.5rem 0.5rem 0;
     background: $hi-white;
     color: $hi-blue;
-    box-shadow: 0 1px 4px rgba($hi-ink, 0.12);
-    // `top` uses the navbar's own headroom timing so the two move together.
-    transition: top 200ms linear, background-color 120ms ease, color 120ms ease;
+    box-shadow: none;
+    transition: background-color 120ms ease, color 120ms ease;
 
     &:hover { background: $hi-blue; color: $hi-white; }
     &:focus-visible { outline: 2px solid $hi-teal; outline-offset: 2px; }
   }
 
-  // Room above the first part so the button never covers it.
-  body.nav-sidebar.docked #quarto-sidebar .sidebar-menu-container {
-    padding-top: 2.25rem;
-  }
-
   html.hi-sidebar-collapsed body.nav-sidebar.docked .hi-sidebar-toggle {
-    left: 1rem;
+    left: 0;
   }
 
   html.hi-sidebar-collapsed body.nav-sidebar.docked #quarto-sidebar {

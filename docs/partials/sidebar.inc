@@ -9,17 +9,14 @@
   if (!sidebar) return;
 
   // ── Collapsible sidebar ────────────────────────────────────────────────────
-  // Created right away (not on DOMContentLoaded) so Quarto's own offset pass
-  // sees it: as a .headroom-target it gets `top` set to sit just below the
-  // navbar and follows the navbar when it hides on scroll.
+  // The edge tab stays vertically centred, independent of the navbar.
   var btn = document.createElement('button');
   btn.type = 'button';
-  btn.className = 'hi-sidebar-toggle headroom-target';
+  btn.className = 'hi-sidebar-toggle';
   btn.setAttribute('aria-controls', 'quarto-sidebar');
-  btn.innerHTML = '<i class="bi bi-layout-sidebar-inset" aria-hidden="true"></i>';
   document.body.appendChild(btn);
 
-  // While open the button sits in the sidebar's top-right corner. The sidebar
+  // While open the button sits on the sidebar's right edge. The sidebar
   // width follows the viewport, so track its right edge and hand it to CSS.
   function placeButton() {
     btn.style.setProperty('--hi-sidebar-right', sidebar.getBoundingClientRect().right + 'px');
@@ -31,6 +28,7 @@
     var label = isCollapsed() ? 'Sýna hliðarslá' : 'Fela hliðarslá';
     btn.setAttribute('aria-label', label);
     btn.title = label;
+    btn.innerHTML = '<i class="bi bi-chevron-' + (isCollapsed() ? 'right' : 'left') + '" aria-hidden="true"></i>';
     btn.setAttribute('aria-expanded', String(!isCollapsed()));
   }
   function setCollapsed(collapsed) {
