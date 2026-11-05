@@ -1,0 +1,117 @@
+# Spurningar fyrir storytelling/finndu-villuna.qmd. Sniðinu er lýst efst í filters/sjalfsprof.lua.
+# Myndaslóðir eru miðað við storytelling/. Nýjar myndir þarf að telja upp undir
+# `resources` í .qmd-skránni, því Quarto finnur þær ekki sjálft inni í sjálfsprófinu.
+
+spurningar:
+
+  - hluti: Ásar
+    titill: Graf sem byrjar ekki á 0
+    spurning: |
+      Hvað er helst villandi við þetta graf?
+
+      ![Súlurit um ánægju viðskiptavina þar sem Y-ásinn byrjar í 80](figures/finndu-villuna/villandi-sulurit.png)
+    valkostir:
+      - Litirnir eru of skærir
+      - Y-ásinn byrjar ekki á 0 og ýkir muninn
+      - Það eru of fá gögn í grafinu
+      - Súlurnar ættu að vera láréttar
+    rett: [B]
+    utskyring: |
+      Y-ásinn byrjar við 80 í stað 0, svo 4 prósentustiga munur lítur út fyrir að vera margfaldur.
+      Súlurit sýnir gildi með lengd súlunnar, og þá verður ásinn að byrja á 0. Með réttum ás sést
+      að ánægjan hækkaði, en ekki jafn mikið og fyrra grafið gaf til kynna:
+
+      ![Sama súlurit með Y-ás sem byrjar á 0](figures/finndu-villuna/skyrt-sulurit.png)
+
+  - hluti: Ásar
+    titill: Tímaás
+    spurning: |
+      Hvað er villandi við lárétta ásinn í þessu grafi af bensínverði?
+
+      ![Graf Fox News af þróun bensínverðs](figures/fox_gascost.png)
+    valkostir:
+      - Grafið ætti að vera súlurit en ekki línurit
+      - Verðið er sýnt í dollurum en ekki krónum
+      - Það vantar titil á grafið
+      - Jafnlöng bil á ásnum tákna mislöng tímabil
+    rett: [D]
+    utskyring: |
+      Heilt ár (frá „last year“ til „last week“) fær jafn mikið pláss á ásnum og ein vika. Þá
+      lítur hækkun yfir heilt ár út eins og brött breyting á stuttum tíma. Á tímaás þarf jafnt bil
+      að tákna jafnlangan tíma. Y-ásinn byrjar líka í 2,90, sem ýkir hækkunina enn frekar.
+      Sjá [Slæm myndræn framsetning](donts.qmd).
+
+  - hluti: Ásar
+    titill: Tvöfaldur Y-ás
+    spurning: |
+      Grafið sýnir fjölda COVID-19 tilfella og hlutfall endursýkinga. Hvað getur verið villandi?
+
+      ![Graf með tveimur Y-ásum](figures/double_yaxis.png)
+    valkostir:
+      - Tveir ólíkir Y-ásar geta gert tengsl gagnanna villandi eða óskýr
+      - Það er aldrei leyfilegt að sýna prósentur á grafi
+      - Línurit má aldrei sýna með súluriti
+      - Það vantar þrívídd til að sýna gögnin rétt
+    rett: [A]
+    utskyring: |
+      Þegar tveir Y-ásar hafa ólíka kvarða ræður sá sem teiknar hvernig línurnar liggja hvor
+      gagnvart annarri. Með því að breyta kvörðunum má láta þær virðast fylgjast að, eða ekki.
+      Betra er að:
+
+      - sýna fjölda tilfella og hlutfall endursýkinga í tveimur aðskildum gröfum,
+      - nota sama X-ás svo auðvelt sé að bera tímabilin saman,
+      - merkja mælieiningar og kvarða greinilega.
+
+  - hluti: Gerð grafs
+    titill: Þrívítt súlurit
+    spurning: |
+      Hvað er helst athugavert við þetta þrívíða súlurit um íbúasamsetningu í Garðabæ?
+
+      ![Þrívítt súlurit um íbúasamsetningu í Garðabæ](figures/kgp_3D.png)
+    valkostir:
+      - Súlurnar eru of margar til að hægt sé að nota súlurit
+      - Öll súlurit verða að vera lárétt
+      - Þrívíddin skekkir samanburð á súlunum og gerir grafið óþarflega flókið
+      - Ekki má nota ólíka liti í súluritum
+    rett: [C]
+    utskyring: |
+      Þrívídd bætir engum upplýsingum við. Sjónarhorn og dýpt trufla mat á hæð súlnanna, svo
+      erfiðara er að bera þær saman. Tvívíð útgáfa af sömu gögnum:
+
+      ![Tvívíð útgáfa af súluritinu um íbúasamsetningu](figures/kgp_2D.png)
+
+  - hluti: Gerð grafs
+    titill: Skífurit eða súlurit?
+    spurning: |
+      Af hverju er súlurit oft skýrara en skífurit þegar bera þarf saman svipuð gildi?
+
+      ![Sömu gögn sem skífurit og súlurit](figures/piechart_vs_barchart.png)
+    valkostir:
+      - Skífurit geta aldrei sýnt réttar upplýsingar
+      - Súlurit sýna alltaf fleiri gögn en skífurit
+      - Skífurit má aðeins nota fyrir tvö gildi
+      - Auðveldara er að bera saman lengdir á sameiginlegum kvarða en horn eða flatarmál
+    rett: [D]
+    utskyring: |
+      Í súluriti byrja allar súlur á sama kvarða og augað ber saman lengdir. Í skífuriti þarf að
+      bera saman horn eða flatarmál, sem er erfiðara, sérstaklega þegar gildin eru svipuð.
+
+      - **Súlurit** hentar til að bera saman stærðir flokka.
+      - **Skífurit** getur hentað þegar fáir flokkar mynda hluta af heild.
+      - **Kleinuhringjarit** er enn erfiðara, því lesandinn þarf að meta lengd boga.
+
+  - hluti: Gerð grafs
+    titill: Röð á ás
+    spurning: |
+      Hvað er athugavert við gröfin úr ársreikningi Strætó 2021?
+
+      ![Gröf úr ársreikningi Strætó 2021](figures/straeto_arsreikningur2021.png)
+    valkostir:
+      - Árin á lárétta ásnum eru í öfugri röð
+      - Gröfin eru í of mörgum litum
+      - Það ætti að nota skífurit
+      - Gröfin sýna of mörg ár
+    rett: [A]
+    utskyring: |
+      Lesandi býst við að tíminn líði frá vinstri til hægri. Þegar árin eru í öfugri röð er auðvelt
+      að lesa hækkun sem lækkun. Sjá [Slæm myndræn framsetning](donts.qmd).
