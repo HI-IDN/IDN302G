@@ -338,6 +338,169 @@ pantað eða nemendur sem hafa ekki skilað.
 > **Athugið**: Mengjasamlíkingin á við um lyklana, ekki raðirnar sjálfar. Ef eitt `id` kemur
 > þrisvar fyrir í `B` birtist samsvarandi röð úr `A` þrisvar í niðurstöðunni.
 
+#### Dæmi: allar tengingarnar á tveimur litlum töflum
+
+```{r}
+#| label: joins-r-ab
+#| include: false
+con_ab <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+DBI::dbWriteTable(con_ab, "A", data.frame(id = 1:3, a = paste0("a", 1:3)))
+DBI::dbWriteTable(con_ab, "B", data.frame(id = 2:4, b = paste0("b", 2:4)))
+tA <- DBI::dbReadTable(con_ab, "A")
+tB <- DBI::dbReadTable(con_ab, "B")
+# Mengi lykla, ritað {1, 2, 3}
+mengi <- function(x) {
+  x <- sort(unique(stats::na.omit(x)))
+  if (length(x) == 0) r"(\emptyset)" else paste0(r"(\{)", paste(x, collapse = ", "), r"(\})")
+}
+lyklar <- function(d) c(d$a_id, d$b_id)
+radir <- function(n) paste(n, if (n %% 10 == 1 && n %% 100 != 11) "röð" else "raðir")
+```
+
+Tökum tvær litlar töflur. `A` hefur `r nrow(tA)` raðir og `B` hefur `r nrow(tB)`, og þær deila
+sumum `id`-gildum en ekki öllum: $K_A = `r mengi(tA$id)`$ og $K_B = `r mengi(tB$id)`$.
+
+```{r}
+#| label: joins-r-ab-toflur
+#| echo: false
+#| layout-ncol: 2
+knitr::kable(tA, caption = "A")
+knitr::kable(tB, caption = "B")
+```
+
+Hver tenging hér á eftir velur `id` og gildið úr báðum töflum. Þar sem engin samsvörun er kemur
+`NULL`, sem birtist sem `NA` af því að úttakið fer í gegnum _R_.
+
+**`INNER JOIN`**: aðeins lyklar í báðum töflum.
+
+```{sql}
+--| label: joins-sql-ab-inner
+--| connection: con_ab
+--| output.var: ab_inner
+SELECT A.id AS a_id, A.a, B.id AS b_id, B.b
+FROM A
+         INNER JOIN B ON A.id = B.id
+ORDER BY A.id;
+```
+
+```{r}
+#| label: joins-sql-ab-inner-tafla
+#| echo: false
+knitr::kable(ab_inner)
+```
+
+`r radir(nrow(ab_inner))`, með `id` í $K_A \cap K_B = `r mengi(ab_inner$a_id)`$.
+
+**`LEFT JOIN`**: allar raðir úr `A`, með `NULL` þar sem `B` á enga samsvörun.
+
+```{sql}
+--| label: joins-sql-ab-left
+--| connection: con_ab
+--| output.var: ab_left
+SELECT A.id AS a_id, A.a, B.id AS b_id, B.b
+FROM A
+         LEFT JOIN B ON A.id = B.id
+ORDER BY A.id;
+```
+
+```{r}
+#| label: joins-sql-ab-left-tafla
+#| echo: false
+knitr::kable(ab_left)
+```
+
+`r radir(nrow(ab_left))`, ein fyrir hvert `id` í $K_A = `r mengi(ab_left$a_id)`$. Raðir með `id` í
+$K_A \setminus K_B = `r mengi(ab_left$a_id[is.na(ab_left$b_id)])`$ fá `NULL` í dálkana úr `B`.
+
+**`RIGHT JOIN`**: allar raðir úr `B`, með `NULL` þar sem `A` á enga samsvörun.
+
+```{sql}
+--| label: joins-sql-ab-right
+--| connection: con_ab
+--| output.var: ab_right
+SELECT A.id AS a_id, A.a, B.id AS b_id, B.b
+FROM A
+         RIGHT JOIN B ON A.id = B.id
+ORDER BY B.id;
+```
+
+```{r}
+#| label: joins-sql-ab-right-tafla
+#| echo: false
+knitr::kable(ab_right)
+```
+
+`r radir(nrow(ab_right))`, ein fyrir hvert `id` í $K_B = `r mengi(ab_right$b_id)`$. Raðir með `id` í
+$K_B \setminus K_A = `r mengi(ab_right$b_id[is.na(ab_right$a_id)])`$ fá `NULL` í dálkana úr `A`.
+
+**`FULL JOIN`**: allar raðir úr báðum töflum.
+
+```{sql}
+--| label: joins-sql-ab-full
+--| connection: con_ab
+--| output.var: ab_full
+SELECT A.id AS a_id, A.a, B.id AS b_id, B.b
+FROM A
+         FULL JOIN B ON A.id = B.id
+ORDER BY COALESCE(A.id, B.id);
+```
+
+```{r}
+#| label: joins-sql-ab-full-tafla
+#| echo: false
+knitr::kable(ab_full)
+```
+
+`r radir(nrow(ab_full))`, ein fyrir hvert `id` í $K_A \cup K_B = `r mengi(lyklar(ab_full))`$.
+
+**Anti-join**: raðir í `A` sem eiga **enga** samsvörun í `B`.
+
+```{sql}
+--| label: joins-sql-ab-anti
+--| connection: con_ab
+--| output.var: ab_anti
+SELECT A.id AS a_id, A.a, B.id AS b_id, B.b
+FROM A
+         LEFT JOIN B ON A.id = B.id
+WHERE B.id IS NULL
+ORDER BY A.id;
+```
+
+```{r}
+#| label: joins-sql-ab-anti-tafla
+#| echo: false
+knitr::kable(ab_anti)
+```
+
+`r radir(nrow(ab_anti))`, með `id` í $K_A \setminus K_B = `r mengi(ab_anti$a_id)`$. Þetta er það sem
+`LEFT JOIN` er stundum ranglega sagt gefa.
+
+**`CROSS JOIN`**: allar samsetningar, óháð `id`.
+
+```{sql}
+--| label: joins-sql-ab-cross
+--| connection: con_ab
+--| output.var: ab_cross
+SELECT A.id AS a_id, A.a, B.id AS b_id, B.b
+FROM A
+         CROSS JOIN B
+ORDER BY A.id, B.id;
+```
+
+```{r}
+#| label: joins-sql-ab-cross-tafla
+#| echo: false
+knitr::kable(ab_cross)
+```
+
+`r radir(nrow(ab_cross))`, þ.e. $|A| \cdot |B| = `r nrow(tA)` \cdot `r nrow(tB)`$.
+
+```{r}
+#| label: joins-r-ab-loka
+#| include: false
+DBI::dbDisconnect(con_ab)
+```
+
 #### Dæmi: `LEFT JOIN` og anti-join hlið við hlið
 
 ```{r}
