@@ -43,20 +43,21 @@ p_dot_dreif <- ggplot(mtcars, aes(x = mpg)) +
        x = "Mílur á gallon (mpg)")
 ggsave(file.path(out, "dotplot_distribution.png"), p_dot_dreif, width = 6, height = 3, dpi = 200, bg = "white", type = "cairo")
 
-# Tengt punktarit: meðalsparneytni sjálfskiptra og beinskiptra bíla eftir strokkafjölda.
-# Línan milli punktanna dregur augað að muninum á skiptingunum.
-medal <- aggregate(mpg ~ cyl + am, data = mtcars, FUN = mean)
-medal$skipting <- ifelse(medal$am == 1, "Beinskiptur", "Sjálfskiptur")
-medal$cyl_f <- factor(paste(medal$cyl, "strokkar"), levels = paste(c(8, 6, 4), "strokkar"))
-bil <- merge(subset(medal, am == 0, c(cyl_f, mpg)), subset(medal, am == 1, c(cyl_f, mpg)),
-             by = "cyl_f", suffixes = c("_sjalf", "_bein"))
-p_dot_tengt <- ggplot(medal, aes(x = mpg, y = cyl_f)) +
-  geom_segment(data = bil, aes(x = mpg_sjalf, xend = mpg_bein, y = cyl_f, yend = cyl_f),
+# Tengt punktarit: meðaltannvöxtur naggrísa (ToothGrowth) eftir skammti C-vítamíns,
+# gefið sem appelsínusafi eða hreint C-vítamín. Línan dregur augað að muninum.
+medal <- aggregate(len ~ supp + dose, data = ToothGrowth, FUN = mean)
+medal$gjof <- ifelse(medal$supp == "OJ", "Appelsínusafi", "Hreint C-vítamín")
+medal$skammtur <- factor(paste(format(medal$dose, decimal.mark = ","), "mg/dag"),
+                         levels = rev(paste(format(sort(unique(medal$dose)), decimal.mark = ","), "mg/dag")))
+bil <- merge(subset(medal, supp == "VC", c(skammtur, len)), subset(medal, supp == "OJ", c(skammtur, len)),
+             by = "skammtur", suffixes = c("_vc", "_oj"))
+p_dot_tengt <- ggplot(medal, aes(x = len, y = skammtur)) +
+  geom_segment(data = bil, aes(x = len_vc, xend = len_oj, y = skammtur, yend = skammtur),
                colour = "grey75", linewidth = 3) +
-  geom_point(aes(colour = skipting), size = 5) +
-  scale_colour_manual(values = c(Beinskiptur = hi_blue, Sjálfskiptur = hi_orange), name = NULL) +
-  labs(title = "Tengt punktarit: meðalsparneytni eftir skiptingu",
-       x = "Mílur á gallon (mpg)", y = NULL) +
+  geom_point(aes(colour = gjof), size = 5) +
+  scale_colour_manual(values = c("Appelsínusafi" = hi_orange, "Hreint C-vítamín" = hi_blue), name = NULL) +
+  labs(title = "Tengt punktarit: tannvöxtur eftir C-vítamíngjöf",
+       x = "Meðallengd tannfrumna", y = "Skammtur") +
   theme(legend.position = "top")
 ggsave(file.path(out, "dotplot_connected.png"), p_dot_tengt, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
 

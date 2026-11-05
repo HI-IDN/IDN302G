@@ -253,11 +253,12 @@ samanburðinn auðveldan, og punktarit er góður valkostur við súlurit þegar
 
 #### Tengt
 
-![Tengt punktarit af meðalsparneytni sjálfskiptra og beinskiptra bíla](figures/dotplot_connected.png)
+![Tengt punktarit af tannvexti naggrísa eftir C-vítamíngjöf](figures/dotplot_connected.png)
 
-Hér er meðalsparneytni sjálfskiptra og beinskiptra bíla borin saman eftir fjölda strokka. Punktarnir
-sýna gildin og línan milli þeirra dregur augað að muninum: hann er mestur hjá 4 strokka bílum og
-nær enginn hjá 8 strokka. Sama samanburð mætti sýna með tvöföldu súluriti, en þá ber augað saman
+Hér er gagnasafnið `ToothGrowth`, sem fylgir R: tannvöxtur naggrísa sem fengu C-vítamín í þremur
+skömmtum, annaðhvort í appelsínusafa eða hreint. Punktarnir sýna meðaltölin og línan milli þeirra
+dregur augað að muninum: appelsínusafinn skilar meiri vexti við litlu skammtana, en við stærsta
+skammtinn er enginn munur. Sama samanburð mætti sýna með tvöföldu súluriti, en þá ber augað saman
 lengdir súlnanna í stað þess að sjá muninn beint.
 
 :::
