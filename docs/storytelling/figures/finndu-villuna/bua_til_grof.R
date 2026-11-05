@@ -1,6 +1,12 @@
 
 library(ggplot2)
 
+# Litur úr HÍ-pallettunni í styles/hi-book.scss ($hi-blue)
+hi_blue <- "#10099F"
+
+# Íslensk tugabrot: $3,17
+dollarar <- function(x) paste0("$", formatC(x, format = "f", digits = 2, decimal.mark = ","))
+
 # Sömu gögn notuð í báðum gröfum
 gogn <- data.frame(
   ar = factor(c("2024", "2025"), levels = c("2024", "2025")),
@@ -9,9 +15,10 @@ gogn <- data.frame(
 
 # Graf 1: Villandi Y-ás sem byrjar í 80
 villandi <- ggplot(gogn, aes(x = ar, y = anaegja)) +
-  geom_col(fill = "#C46B55", width = 0.55) +
+  geom_col(fill = hi_blue, width = 0.55) +
   geom_text(aes(label = paste0(anaegja, "%")), vjust = -0.5) +
   coord_cartesian(ylim = c(80, 90)) +
+  scale_y_continuous(labels = function(x) format(x, decimal.mark = ",")) +
   labs(
     title = "Ánægja viðskiptavina",
     x = "Ár",
@@ -26,7 +33,7 @@ ggsave(
 
 # Graf 2: Skýrari Y-ás sem byrjar í 0
 skyrt <- ggplot(gogn, aes(x = ar, y = anaegja)) +
-  geom_col(fill = "#4084A3", width = 0.55) +
+  geom_col(fill = hi_blue, width = 0.55) +
   geom_text(aes(label = paste0(anaegja, "%")), vjust = -0.5) +
   scale_y_continuous(limits = c(0, 100)) +
   labs(
@@ -52,15 +59,15 @@ bensin <- data.frame(
 )
 
 timaas <- ggplot(bensin, aes(x = dagar, y = verd)) +
-  geom_line(colour = "#4084A3", linewidth = 1) +
-  geom_point(colour = "#4084A3", size = 2.5) +
-  geom_text(aes(label = sprintf("$%.2f", verd), hjust = hjust, vjust = vjust), size = 3.5) +
+  geom_line(colour = hi_blue, linewidth = 1) +
+  geom_point(colour = hi_blue, size = 2.5) +
+  geom_text(aes(label = dollarar(verd), hjust = hjust, vjust = vjust), size = 3.5) +
   scale_x_continuous(
     breaks = c(-365, -273, -182, -91, 0),
     labels = c("Fyrir ári", "9 mán.", "6 mán.", "3 mán.", "Nú"),
     expand = expansion(mult = c(0.05, 0.1))
   ) +
-  scale_y_continuous(limits = c(0, 4), labels = function(x) sprintf("$%.2f", x)) +
+  scale_y_continuous(limits = c(0, 4), labels = dollarar) +
   labs(
     title = "Bensínverð, landsmeðaltal",
     x = NULL,
