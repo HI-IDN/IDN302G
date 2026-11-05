@@ -68,8 +68,8 @@ spurningar:
     titill: Íslenskir stafir
     spurning: 'Passar `^[A-Z]{2}\d{3}$` við strenginn `ÞÖ123`?'
     valkostir:
-      - Já, Þ og Ö eru hástafir
-      - Nei, Þ og Ö eru ekki á bilinu A–Z
+      - Já, `Þ` og `Ö` eru hástafir
+      - Nei, `Þ` og `Ö` eru ekki á bilinu `A-Z`
       - 'Já, en aðeins með `perl = TRUE`'
       - 'Nei, því `\d` finnur ekki tölustafi'
     rett: [B]
@@ -134,7 +134,7 @@ spurningar:
       - '`"a"` og `"b"`'
     rett: [C]
     utskyring: |
-      Sjálfgefna regex-vél R er POSIX. Inni í hornklofa skilur hún `\w` ekki sem bókstaf, svo
+      Sjálfgefna regex-vél R er POSIX (`perl = FALSE`). Inni í hornklofa skilur hún `\w` ekki sem bókstaf, svo
       mynstrið finnur ekkert og R segir ekkert um það. Með `perl = TRUE` fæst `"a1b22"`.
       Sjá kaflann [Hópar og notkun](groups.qmd).
 
@@ -176,5 +176,5 @@ spurningar:
     rett: [B]
     utskyring: |
       HTML er hreiðrað tré og regex ræður illa við merki inni í merkjum. Til þess eru
-      HTML-þáttarar, t.d. `rvest` í R eða BeautifulSoup í Python. Regex hentar vel til að ná
+      HTML-þáttarar, t.d. `rvest` í R eða `BeautifulSoup` í Python. Regex hentar vel til að ná
       í afmarkaða bita, eins og í [mbl-æfingunni](mbl.qmd).
