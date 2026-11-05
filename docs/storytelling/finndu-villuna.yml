@@ -115,4 +115,11 @@ spurningar:
 
       ![Sömu kennitölur Strætó með árunum í tímaröð](figures/finndu-villuna/straeto-timarod.png)
 
+      Hér breytist aðeins röðin. Það má þó spyrja hvort línurit hentaði betur fyrir allar fjórar
+      kennitölurnar. Þær sýna allar þróun yfir tíma, og lína dregur augað að breytingunni milli ára
+      frekar en að stærð hvers árs. Súlur eiga betur við þegar bera á saman sjálfstæða flokka.
+      Hvort finnst þér skýrara?
+
+      ![Sömu kennitölur Strætó, allar sem línurit](figures/finndu-villuna/straeto-linurit.png)
+
       Sjá [Slæm myndræn framsetning](donts.qmd).

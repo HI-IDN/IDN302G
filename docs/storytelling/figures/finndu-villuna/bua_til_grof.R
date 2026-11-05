@@ -119,4 +119,22 @@ ggsave(
   rod, width = 8, height = 5.5, dpi = 160
 )
 
+# Graf 5: Sömu kennitölur, allar sem línurit. Þær sýna allar þróun yfir tíma,
+# og línurit leggur áherslu á breytinguna milli ára.
+linur <- ggplot(straeto, aes(x = ar, y = gildi)) +
+  geom_line(colour = hi_blue, linewidth = 1) +
+  geom_point(colour = hi_blue, size = 2) +
+  geom_text(aes(label = merki), vjust = -0.9, size = 3) +
+  facet_wrap(~kennitala, scales = "free_y", ncol = 2) +
+  scale_x_continuous(expand = expansion(add = 0.4)) +
+  scale_y_continuous(expand = expansion(mult = c(0.05, 0.25)), limits = c(0, NA),
+                     labels = function(x) format(x, decimal.mark = ",")) +
+  labs(title = "Strætó: kennitölur 2017–2021", x = NULL, y = NULL) +
+  theme_minimal()
+
+ggsave(
+  "docs/storytelling/figures/finndu-villuna/straeto-linurit.png",
+  linur, width = 8, height = 5.5, dpi = 160
+)
+
 cat("Gröfin hafa verið vistuð!\n")
