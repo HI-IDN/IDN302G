@@ -4,9 +4,8 @@ title: "Sjálfspróf í reglulegum segðum"
 lang: is
 ---
 
-Velkomin(n) í sjálfspróf um reglulegar segðir (regex)!
-
-Prófið inniheldur **10 spurningar** á þremur erfiðleikastigum.
+Þetta er sjálfspróf úr köflunum um reglulegar segðir. Spurningarnar byrja á grunnmynstrum og
+enda á notkun regex í R, Python og gagnavinnu.
 
 - Veldu eitt eða fleiri svör eftir því sem við á.
 - Smelltu á **Athuga svar** til að fá endurgjöf.
@@ -306,6 +305,110 @@ const questions = [
       "\\d{4} finnur fjóra tölustafi.\n\n" +
       "^ og $ tryggja að engir aukastafir " +
       "séu fyrir eða eftir mynstrið."
+  },
+  {
+    level: "Hluti 3 – Hagnýt verkefni",
+    title: "Spurning 11 – Íslenskir stafir",
+    question: "Passar ^[A-Z]{2}\\d{3}$ við strenginn ÞÖ123?",
+    options: [
+      "Já, Þ og Ö eru hástafir",
+      "Nei, Þ og Ö eru ekki á bilinu A–Z",
+      "Já, en aðeins með perl = TRUE",
+      "Nei, því \\d finnur ekki tölustafi"
+    ],
+    correct: [1],
+    explanation:
+      "Rétt svar er B.\n\n" +
+      "[A-Z] er bil í stafrófi ensku: A, B, C, ..., Z. " +
+      "Íslensku stafirnir Á, Ð, É, Í, Ó, Ú, Ý, Þ, Æ og Ö eru ekki þar.\n\n" +
+      "Í íslenskum texta þarf að telja þá upp, t.d. [A-ZÁÐÉÍÓÚÝÞÆÖ]."
+  },
+  {
+    level: "Hluti 4 – Regex í R, Python og gögnum",
+    title: "Spurning 12 – perl = TRUE í R",
+    question:
+      "x er \"a1b22\". Hvað skilar " +
+      "regmatches(x, gregexpr(\"[\\\\w.]+\", x)) í R þegar perl = TRUE vantar?",
+    options: [
+      "\"a1b22\"",
+      "Villuboðum um ógilt mynstur",
+      "Tómu svari, character(0), án villu eða viðvörunar",
+      "\"a\" og \"b\""
+    ],
+    correct: [2],
+    explanation:
+      "Rétt svar er C.\n\n" +
+      "Sjálfgefna regex-vél R er POSIX. Inni í hornklofa skilur hún \\w ekki " +
+      "sem bókstaf, svo mynstrið finnur ekkert, og R segir ekkert um það. " +
+      "Með perl = TRUE fæst \"a1b22\".\n\n" +
+      "Lausnin er perl = TRUE, eða POSIX-klasar eins og [[:digit:]]. " +
+      "Sjá kaflann Hópar og notkun."
+  },
+  {
+    level: "Hluti 4 – Regex í R, Python og gögnum",
+    title: "Spurning 13 – Fyrsta samsvörun eða allar",
+    question:
+      "Hvað skilar re.search(r\"\\d+\", \"a1b22c333\").group() í Python?",
+    options: ["\"1\"", "\"333\"", "[\"1\", \"22\", \"333\"]", "\"122333\""],
+    correct: [0],
+    explanation:
+      "Rétt svar er A: \"1\".\n\n" +
+      "re.search() skilar fyrstu samsvörun frá vinstri. " +
+      "re.findall() myndi skila öllum: [\"1\", \"22\", \"333\"].\n\n" +
+      "Sama skipting er í R: str_extract() á móti str_extract_all()."
+  },
+  {
+    level: "Hluti 4 – Regex í R, Python og gögnum",
+    title: "Spurning 14 – Regex og merking",
+    question:
+      "Strengurinn 999999-9999 passar við ^\\d{6}-\\d{4}$. " +
+      "Hvað segir það okkur?",
+    options: [
+      "Að þetta sé gild kennitala",
+      "Aðeins að strengurinn líti út eins og kennitala",
+      "Að mynstrið sé rangt",
+      "Að vartalan sé rétt"
+    ],
+    correct: [1],
+    explanation:
+      "Rétt svar er B.\n\n" +
+      "Regex athugar form, ekki merkingu. 99. dagur 99. mánaðar er ekki til, " +
+      "og vartalan er ekki reiknuð.\n\n" +
+      "Til að sannreyna kennitölu þarf að athuga dagsetningu og vartölu sérstaklega."
+  },
+  {
+    level: "Hluti 4 – Regex í R, Python og gögnum",
+    title: "Spurning 15 – LIKE í SQL",
+    question: "Hvað af þessu er hægt með regex en ekki með LIKE í SQL?",
+    options: [
+      "Finna texta sem byrjar á ákveðnum stöfum",
+      "Finna texta sem inniheldur ákveðið orð",
+      "Krefjast nákvæmlega fjögurra tölustafa í röð",
+      "Finna texta sem endar á ákveðnum stöfum"
+    ],
+    correct: [2],
+    explanation:
+      "Rétt svar er C.\n\n" +
+      "LIKE þekkir aðeins % (hvað sem er) og _ (einn stafur). " +
+      "Byrjun, innihald og endi ná LIKE 'abc%', '%abc%' og '%abc'.\n\n" +
+      "Endurtekningar eins og \\d{4}, valkostir og hópar krefjast regex."
+  },
+  {
+    level: "Hluti 4 – Regex í R, Python og gögnum",
+    title: "Spurning 16 – Hvenær ekki regex",
+    question: "Í hvaða tilviki er regex verra val en önnur verkfæri?",
+    options: [
+      "Að finna öll netföng í textaskrá",
+      "Að lesa alla uppbyggingu HTML-síðu, með hreiðruðum merkjum",
+      "Að athuga hvort símanúmer hafi rétt form",
+      "Að hreinsa bil úr dálki"
+    ],
+    correct: [1],
+    explanation:
+      "Rétt svar er B.\n\n" +
+      "HTML er hreiðrað tré, og regex ræður illa við merki inni í merkjum. " +
+      "Til þess eru HTML-þáttarar (t.d. rvest í R eða BeautifulSoup í Python).\n\n" +
+      "Regex hentar vel til að ná í afmarkaða bita, eins og í mbl-æfingunni."
   }
 ];
 
