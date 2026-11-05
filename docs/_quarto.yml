@@ -129,7 +129,6 @@ book:
         - sql-basics/import_export_data.qmd
         - sql-basics/script_files.qmd
         - sql-basics/database_interaction.qmd
-        - sql-basics/sjalfsprof.qmd
         - sql-basics/exercises.qmd
         - sql-basics/additional_resources.qmd
     - part: "SQL framhald"
@@ -138,6 +137,7 @@ book:
         - sql-advanced/postgres.qmd
         - sql-advanced/union.qmd
         - sql-advanced/joins.qmd
+        - sql-advanced/sjalfsprof.qmd
         - sql-advanced/views.qmd
         - sql-advanced/functions.qmd
         - sql-advanced/cte.qmd
