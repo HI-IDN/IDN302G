@@ -38,6 +38,11 @@ local function to_html(value)
   end
   -- Textinn verður hrátt HTML, svo Quarto breytir ekki tenglum í .qmd-skrár; gerum það hér.
   local doc = pandoc.Pandoc(blocks):walk({
+    -- Mynd ein í málsgrein yrði að figure með alt-textann sem myndatexta, sem gæti
+    -- ljóstrað upp svarinu. Sýnum myndina eina.
+    Figure = function(f)
+      return f.content
+    end,
     Link = function(l)
       l.target = l.target:gsub("%.qmd(#?)", ".html%1")
       return l
