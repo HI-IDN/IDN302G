@@ -137,11 +137,11 @@ book:
         - sql-advanced/postgres.qmd
         - sql-advanced/union.qmd
         - sql-advanced/joins.qmd
+        - sql-advanced/sjalfsprof.qmd
         - sql-advanced/views.qmd
         - sql-advanced/functions.qmd
         - sql-advanced/cte.qmd
         - sql-advanced/postgis.qmd
-        - sql-advanced/sjalfsprof.qmd
     - part: "Myndræn framsetning"
       chapters:
         - storytelling/introduction.qmd
