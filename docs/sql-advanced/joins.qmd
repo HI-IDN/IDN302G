@@ -215,9 +215,10 @@ vinstri töflu.
   keyrð fyrir hverja röð í töflunni til vinstri.
 - `LATERAL` er oft einfaldara og _hraðara_ til að skila fleiri dálkum og röðum en hefðbundnar
   undirfyrirspurnir, sem aðeins skila einu gildi.
-- `INNER JOIN LATERAL ... ON TRUE` er notað til að tryggja að allar línur í vinstri töflu séu með,
-  jafnvel þótt engin samsvörun finnist í undirfyrirspurninni. Eins fyrir `LEFT JOIN LATERAL` og
-  `RIGHT JOIN LATERAL`.
+- `ON TRUE` er notað af því að skilyrðið er þegar inni í undirfyrirspurninni. Það hefur sömu
+  áhrif og venjulega: með `INNER JOIN LATERAL` dettur lína í vinstri töflu út ef
+  undirfyrirspurnin skilar engri röð fyrir hana, en með `LEFT JOIN LATERAL ... ON TRUE` er hún
+  alltaf með og dálkarnir úr undirfyrirspurninni verða `NULL`.
 - _Set-returning functions_, eins og `unnest()`, styðja `LATERAL` og eru sjálfkrafa tengd þegar
   þau eru notuð í `FROM`.
 - LATERAL býður upp á meiri sveigjanleika, þar sem það getur skilað fleiri dálkum og röðum úr
@@ -243,7 +244,7 @@ töflurnar saman. Því almenni rithátturinn fyrir innri tengingu er `INNER JOI
 
 Niðurstaðan verður:
 
-| book_name                      | poc_cnt | character_cnt |
+| book_name                      | pov_cnt | character_cnt |
 |--------------------------------|---------|---------------|
 | A Game of Thrones              | 9       | 443           |
 | A Clash of Kings               | 10      | 788           |
@@ -309,10 +310,222 @@ reikningum.
 
 ### Tenging við stakræna stærðfræði
 
-Segum við viljum tengja töflur `A` og `B` út frá dálkunum `A.id = B.id`. Þá er hægt að nota
-hugsa tenginguna sem stakræna stærðfræði á eftirfarandi hátt:
+Segum að við tengjum töflurnar `A` og `B` á dálkunum `A.id = B.id`. Látum $K_A$ vera mengi
+`id`-gilda í `A` og $K_B$ mengi `id`-gilda í `B`. Þá má lýsa tengingunum með mengjum á eftirfarandi
+hátt:
 
-- `A INNER JOIN B`: $A \cap B$
-- `A LEFT JOIN B`: $A \setminus B$
-- `A RIGHT JOIN B`: $B \setminus A$
-- `A CROSS JOIN B`: $A \times B$
+- `A INNER JOIN B`: aðeins raðir þar sem `id` er í $K_A \cap K_B$.
+- `A LEFT JOIN B`: **allar** raðir úr `A`. Raðir þar sem `id` er í $K_A \cap K_B$ fá gildin úr `B`,
+  en raðir þar sem `id` er í $K_A \setminus K_B$ fá `NULL` í dálkana úr `B`.
+- `A RIGHT JOIN B`: eins og `LEFT JOIN`, nema nú eru allar raðir úr `B` með.
+- `A FULL JOIN B`: allar raðir úr báðum töflum, þ.e. `id` í $K_A \cup K_B$.
+- `A CROSS JOIN B`: allar samsetningar, $A \times B$.
+
+Algengur misskilningur er að `A LEFT JOIN B` sé $A \setminus B$. Svo er ekki, því `LEFT JOIN`
+heldur líka þeim röðum sem passa við `B`. Til að fá $A \setminus B$, þ.e. raðir í `A` sem eiga
+**enga** samsvörun í `B`, bætum við skilyrði sem heldur aðeins eftir `NULL`-röðunum:
+
+```sql
+SELECT A.*
+FROM A
+         LEFT JOIN B ON A.id = B.id
+WHERE B.id IS NULL;
+```
+
+Þetta kallast _anti-join_ og er mjög algengt, til dæmis til að finna viðskiptavini sem hafa aldrei
+pantað eða nemendur sem hafa ekki skilað.
+
+> **Athugið**: Mengjasamlíkingin á við um lyklana, ekki raðirnar sjálfar. Ef eitt `id` kemur
+> þrisvar fyrir í `B` birtist samsvarandi röð úr `A` þrisvar í niðurstöðunni.
+
+#### Dæmi: allar tengingarnar
+
+```{r}
+#| label: joins-r-1
+#| include: false
+options(knitr.kable.NA = "NULL")  # birta NULL eins og SQLite, ekki NA
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+DBI::dbWriteTable(con, "nemendur", data.frame(
+  id   = 1:4,
+  nafn = c("Anna", "Bjarni", "Dagný", "Elías")
+))
+DBI::dbWriteTable(con, "skil", data.frame(
+  nemandi_id = c(1L, 1L, 3L, 5L),
+  verkefni   = c("Verkefni 1", "Verkefni 2", "Verkefni 1", "Verkefni 2")
+))
+nem  <- DBI::dbReadTable(con, "nemendur")
+skil <- DBI::dbReadTable(con, "skil")
+# Mengi lykla á LaTeX-formi, t.d. \{1, 2, 3\}
+mengi <- function(x) {
+  x <- sort(unique(stats::na.omit(x)))
+  if (length(x) == 0) r"(\emptyset)" else paste0(r"(\{)", paste(x, collapse = ", "), r"(\})")
+}
+radir <- function(n) paste(n, if (n %% 10 == 1 && n %% 100 != 11) "röð" else "raðir")
+og_listi <- function(x) if (length(x) < 2) x else
+  paste(paste(head(x, -1), collapse = ", "), "og", tail(x, 1))
+ekki_skilad <- nem$nafn[!nem$id %in% skil$nemandi_id]
+an_nemanda  <- setdiff(skil$nemandi_id, nem$id)
+flest       <- nem$nafn[nem$id == as.integer(names(which.max(table(skil$nemandi_id))))]
+n_flest     <- max(table(skil$nemandi_id))
+sinnum      <- function(n) c("einu sinni", "tvisvar", "þrisvar")[n]
+K_n <- mengi(nem$id); K_s <- mengi(skil$nemandi_id)
+```
+
+Tökum tvær litlar töflur: `nemendur` og `skil`, sem geymir hvaða verkefnum hver nemandi hefur
+skilað. Lyklarnir eru $K_n = `r K_n`$ í `nemendur` og $K_s = `r K_s`$ í `skil`.
+`r og_listi(ekki_skilad)` hafa ekki skilað neinu, `r flest` hefur skilað `r sinnum(n_flest)`, og
+í `skil` er skil frá nemanda `r og_listi(an_nemanda)` sem er ekki í `nemendur`.
+
+```{r}
+#| label: joins-r-toflur
+#| echo: false
+#| layout-ncol: 2
+knitr::kable(nem, caption = "`nemendur`")
+knitr::kable(skil, caption = "`skil`")
+```
+
+Allar fyrirspurnirnar velja sömu fjóra dálkana og eru eins nema tengingin. Þar sem engin
+samsvörun er kemur `NULL`.
+
+::: {.panel-tabset}
+
+## `INNER JOIN`
+
+```{sql}
+--| label: joins-sql-inner
+--| connection: con
+--| output.var: j_inner
+SELECT n.id, n.nafn, s.nemandi_id, s.verkefni
+FROM nemendur n
+         INNER JOIN skil s ON s.nemandi_id = n.id
+ORDER BY n.id, s.verkefni;
+```
+
+```{r}
+#| label: joins-r-inner
+#| echo: false
+knitr::kable(j_inner)
+```
+
+`r radir(nrow(j_inner))`: aðeins lyklar í báðum töflum, $K_n \cap K_s = `r mengi(j_inner$id)`$.
+`r flest` birtist `r sinnum(n_flest)`, einu sinni fyrir hver skil.
+
+## `LEFT JOIN`
+
+```{sql}
+--| label: joins-sql-left
+--| connection: con
+--| output.var: j_left
+SELECT n.id, n.nafn, s.nemandi_id, s.verkefni
+FROM nemendur n
+         LEFT JOIN skil s ON s.nemandi_id = n.id
+ORDER BY n.id, s.verkefni;
+```
+
+```{r}
+#| label: joins-r-left
+#| echo: false
+knitr::kable(j_left)
+```
+
+`r radir(nrow(j_left))`: allir nemendur, $K_n = `r mengi(j_left$id)`$. Þeir sem eru í
+$K_n \setminus K_s = `r mengi(j_left$id[is.na(j_left$nemandi_id)])`$ fá `NULL` í dálkana úr `skil`.
+`LEFT JOIN` er því **ekki** $K_n \setminus K_s$.
+
+## `RIGHT JOIN`
+
+```{sql}
+--| label: joins-sql-right
+--| connection: con
+--| output.var: j_right
+SELECT n.id, n.nafn, s.nemandi_id, s.verkefni
+FROM nemendur n
+         RIGHT JOIN skil s ON s.nemandi_id = n.id
+ORDER BY s.nemandi_id, s.verkefni;
+```
+
+```{r}
+#| label: joins-r-right
+#| echo: false
+knitr::kable(j_right)
+```
+
+`r radir(nrow(j_right))`: öll skil, $K_s = `r mengi(j_right$nemandi_id)`$. Skil með lykil í
+$K_s \setminus K_n = `r mengi(j_right$nemandi_id[is.na(j_right$id)])`$ fá `NULL` í dálkana úr
+`nemendur`.
+
+## `FULL JOIN`
+
+```{sql}
+--| label: joins-sql-full
+--| connection: con
+--| output.var: j_full
+SELECT n.id, n.nafn, s.nemandi_id, s.verkefni
+FROM nemendur n
+         FULL JOIN skil s ON s.nemandi_id = n.id
+ORDER BY COALESCE(n.id, s.nemandi_id), s.verkefni;
+```
+
+```{r}
+#| label: joins-r-full
+#| echo: false
+knitr::kable(j_full)
+```
+
+`r radir(nrow(j_full))`: allt úr báðum töflum, $K_n \cup K_s = `r mengi(c(j_full$id, j_full$nemandi_id))`$.
+
+## Anti-join
+
+```{sql}
+--| label: joins-sql-anti
+--| connection: con
+--| output.var: j_anti
+SELECT n.id, n.nafn, s.nemandi_id, s.verkefni
+FROM nemendur n
+         LEFT JOIN skil s ON s.nemandi_id = n.id
+WHERE s.nemandi_id IS NULL
+ORDER BY n.id;
+```
+
+```{r}
+#| label: joins-r-anti
+#| echo: false
+knitr::kable(j_anti)
+```
+
+`r radir(nrow(j_anti))`: nemendur sem hafa **ekki** skilað, $K_n \setminus K_s = `r mengi(j_anti$id)`$.
+Þetta er `LEFT JOIN` með `WHERE s.nemandi_id IS NULL`.
+
+## `CROSS JOIN`
+
+```{sql}
+--| label: joins-sql-cross
+--| connection: con
+--| output.var: j_cross
+SELECT n.id, n.nafn, s.nemandi_id, s.verkefni
+FROM nemendur n
+         CROSS JOIN skil s
+ORDER BY n.id, s.nemandi_id, s.verkefni;
+```
+
+```{r}
+#| label: joins-r-cross
+#| echo: false
+knitr::kable(j_cross)
+```
+
+`r radir(nrow(j_cross))`: allar samsetningar óháð lyklum, $|nemendur| \cdot |skil| =
+`r nrow(nem)` \cdot `r nrow(skil)`$.
+
+:::
+
+```{r}
+#| label: joins-r-2
+#| include: false
+DBI::dbDisconnect(con)
+```
+
+Anti-join má líka skrifa með undirfyrirspurn, `WHERE n.id NOT IN (SELECT nemandi_id FROM skil)`, eða
+með `NOT EXISTS`. Varist þó `NOT IN` ef dálkurinn í undirfyrirspurninni getur innihaldið `NULL`,
+því þá skilar fyrirspurnin engum röðum. Samanburður við `NULL` er aldrei sannur, svo
+`x NOT IN (1, NULL)` getur aldrei orðið satt (sjá nánar um [`NULL`](../sql-basics/null.qmd)).
