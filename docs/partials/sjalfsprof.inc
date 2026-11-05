@@ -36,6 +36,11 @@
   margin-bottom: 8px;
 }
 .sjalfsprof .sp-card h3 { margin-top: 8px; }
+.sjalfsprof img {
+  max-width: 100%; height: auto; display: block; margin: 12px auto; border-radius: 6px;
+  /* Gegnsæ gröf tækju annars lit endurgjafarinnar (rauðan eða grænan) */
+  background: var(--hi-white, #ffffff); padding: 8px;
+}
 .sjalfsprof .sp-option {
   display: flex;
   gap: 12px;

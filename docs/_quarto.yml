@@ -151,6 +151,7 @@ book:
         - storytelling/interactive.qmd
         - storytelling/dashboard.qmd
         - storytelling/donts.qmd
+        - storytelling/finndu-villuna.qmd
         - storytelling/data_narrative.qmd
         - storytelling/additional_resources.qmd
     - part: "Tæknimál"
