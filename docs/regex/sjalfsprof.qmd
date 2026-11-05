@@ -4,8 +4,6 @@ title: "Sjálfspróf í reglulegum segðum"
 lang: is
 ---
 
-# Prófaðu þekkingu þína
-
 Velkomin(n) í sjálfspróf um reglulegar segðir (regex)!
 
 Prófið inniheldur **10 spurningar** á þremur erfiðleikastigum.
