@@ -8,7 +8,7 @@ description: >-
 > *Athugið*: Hér koma sýnidæmi með SQL fyrirspurnum fyrir _SQLite_ gagnagrunn. Nánar til tekið
 > skráin [surgeries.db](https://github.com/HI-IDN/IDN302G/raw/main/data/surgeries.db) sem inniheldur töflur með upplýsingum um
 > sjúklinga. Lesið [notkun á _SQLite_ skipanaskel](database_interaction.qmd#notkun-á-skipanaskel)
-> til að sjá hvernig á að snögglega til að sjá hvernig á að tengjast gagnagrunni.
+> til að sjá hvernig á að tengjast gagnagrunninum.
 
 ## SQL forsaga
 
@@ -245,7 +245,8 @@ Við notum `WHERE` þegar við viljum að ákveðnir dálkar í töflu uppfylli 
 fyrir `WHERE` skipanir er:
 
 ```sql
-SELECT column1, column2, ...FROM table_name
+SELECT column1, column2, ...
+FROM table_name
 WHERE condition; 
 ```
 
@@ -275,10 +276,10 @@ WHERE Patient_Sex <> 'M';
 
 ### `AND`, `OR` og `NOT` skilyrði
 
-Með `WHERE` skilyrðum er hægt að nota einn eða fleiri mengjavirka eins og `AND`, `OR`, og `NOT` til
+Með `WHERE` skilyrðum er hægt að nota einn eða fleiri rökvirkja eins og `AND`, `OR`, og `NOT` til
 að sía gögn út frá fleiri en einu skilyrði:
 
-* `AND`er satt ef öll skilyrði eru uppfyllt.
+* `AND` er satt ef öll skilyrði eru uppfyllt.
 * `OR` er satt ef eitt eða fleiri skilyrði eru uppfyllt.
 * `NOT` birtir gögn þar sem skilyrðið er ekki satt (öfugt sanngildi).
 
@@ -311,10 +312,64 @@ WHERE Patient_Sex = 'F'
   AND Patient_DaysOnWaitingList / 7 > 4;
 ```
 
-Ef bæði tölurnar eru heiltölur (þ.e. af taginu `INT`), þá verður útkoman sjálfkrafa heiltala vegna
-sjálfgefinna reglna um ummyndun í SQL. Til að gera samanburðinn með fleytitölum (
-t.d. `FLOAT`, `DECIMAL` eða `REAL`) eða þarf önnur talan að vera fleytitala, til dæmis með því að
-deila með `7.0` í stað `7`.
+Hér þarf að fara varlega. Ef báðar tölurnar eru heiltölur (þ.e. af taginu `INTEGER`) verður
+útkoman úr deilingunni líka heiltala: aukastöfunum er einfaldlega hent. Berum saman
+heiltöludeilingu og deilingu með fleytitölu fyrir konu sem hefur beðið í nokkra daga:
+
+```{r}
+#| label: basic-sql-r-3
+#| include: false
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+```
+
+```{sql}
+--| label: basic-sql-sql-5
+--| connection: con
+--| output.var: deiling
+SELECT 34                     AS dagar,
+       34 / 7                 AS heiltala,
+       34 / 7.0               AS fleytitala,
+       CAST(34 AS REAL) / 7   AS med_cast,
+       34 / 7 > 4             AS skilyrdi_heiltala,
+       34 / 7.0 > 4           AS skilyrdi_fleytitala;
+```
+
+```{r}
+#| label: basic-sql-r-deiling
+#| echo: false
+knitr::kable(deiling, digits = 3)
+sanngildi <- function(x) if (x == 1) "satt" else "ósatt"
+```
+
+> **Athugið**: Hér gáfum við hverjum útreiknuðum dálki „nafn“ með `AS`, t.d. `34 / 7 AS heiltala`.
+
+Konan hefur beðið í `r deiling$dagar` daga, eða
+`r format(round(deiling$fleytitala, 1), decimal.mark = ",")` vikur, en heiltöludeilingin gefur
+`r deiling$heiltala` og þá er skilyrðið `r sanngildi(deiling$skilyrdi_heiltala)`. Hún dettur út úr
+niðurstöðunni án þess að nokkur villa komi fram. Með fleytitölu er sama skilyrðið
+`r sanngildi(deiling$skilyrdi_fleytitala)`.
+
+_SQLite_ sýnir sanngildi sem `1` (satt) og `0` (ósatt). Sama skilyrðið gefur því ólíka niðurstöðu
+eftir því hvort deilt er með `7` eða `7.0`.
+
+Til að fá réttan samanburð þarf önnur talan að vera fleytitala (t.d. `REAL`, `FLOAT` eða
+`DECIMAL`). Það eru þrjár algengar leiðir:
+
+- **Deila með fleytitölu**: `Patient_DaysOnWaitingList / 7.0 > 4`.
+- **Breyta taginu með `CAST`**: `CAST(Patient_DaysOnWaitingList AS REAL) / 7 > 4`. Þetta er
+  leiðin þegar báðar tölurnar eru dálkar og ekki er hægt að bæta `.0` aftan við.
+- **Sleppa deilingunni**: `Patient_DaysOnWaitingList > 4 * 7`. Margföldun með heiltölum tapar
+  engum upplýsingum, svo þetta er oft einfaldasta og öruggasta leiðin.
+
+```{r}
+#| label: basic-sql-r-4
+#| include: false
+DBI::dbDisconnect(con)
+```
+
+> **Athugið**: Þetta á ekki bara við um _SQLite_. _PostgreSQL_ og _SQL Server_ heiltöludeila
+> líka, en _MySQL_ skilar fleytitölu úr `/` og notar `DIV` fyrir heiltöludeilingu. Prófið því
+> alltaf útreikninga á litlu dæmi áður en þið treystið niðurstöðunni.
 
 ### Forgangur virkja
 
@@ -326,8 +381,6 @@ niðurstöðunnar 19. Notum sviga til að fá rétta útkomu ef þörf krefur:
 SELECT 4 + 5 * 3   AS column1, -- Result is 19 
        (4 + 5) * 3 AS column2; -- Result is 27 
 ```
-
-> **Athugið**, hér gáfum við útreiknaða dálkinum okkar ,,nafn'' með `AS`.
 
 ## Reglulegar segðir með `LIKE`
 
@@ -534,4 +587,4 @@ skipunina:
 DROP TABLE operators;
 ```
 
-> **Athugið**: Þessi aðgerð er er óafturkræft og taflan verður alveg fjarlægð úr gagnagrunninum.
+> **Athugið**: Þessi aðgerð er óafturkræf og taflan verður alveg fjarlægð úr gagnagrunninum.
