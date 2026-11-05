@@ -313,9 +313,8 @@ WHERE Patient_Sex = 'F'
 ```
 
 Hér þarf að fara varlega. Ef báðar tölurnar eru heiltölur (þ.e. af taginu `INTEGER`) verður
-útkoman úr deilingunni líka heiltala: aukastöfunum er einfaldlega hent. Kona sem hefur beðið í 34
-daga hefur beðið í tæpar fimm vikur, en `34 / 7` gefur `4`, og þá er `34 / 7 > 4` ósatt. Hún
-dettur út úr niðurstöðunni án þess að nokkur villa komi fram.
+útkoman úr deilingunni líka heiltala: aukastöfunum er einfaldlega hent. Berum saman
+heiltöludeilingu og deilingu með fleytitölu fyrir konu sem hefur beðið í nokkra daga:
 
 ```{r}
 #| label: basic-sql-r-3
@@ -323,18 +322,30 @@ dettur út úr niðurstöðunni án þess að nokkur villa komi fram.
 con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
 ```
 
-Berum saman heiltöludeilingu og deilingu með fleytitölu:
-
 ```{sql}
 --| label: basic-sql-sql-5
 --| connection: con
---| tab.cap: ""
-SELECT 34 / 7                 AS heiltala,
+--| output.var: deiling
+SELECT 34                     AS dagar,
+       34 / 7                 AS heiltala,
        34 / 7.0               AS fleytitala,
        CAST(34 AS REAL) / 7   AS med_cast,
        34 / 7 > 4             AS skilyrdi_heiltala,
        34 / 7.0 > 4           AS skilyrdi_fleytitala;
 ```
+
+```{r}
+#| label: basic-sql-r-deiling
+#| echo: false
+knitr::kable(deiling, digits = 3)
+sanngildi <- function(x) if (x == 1) "satt" else "ósatt"
+```
+
+Konan hefur beðið í `r deiling$dagar` daga, eða
+`r format(round(deiling$fleytitala, 1), decimal.mark = ",")` vikur, en heiltöludeilingin gefur
+`r deiling$heiltala` og þá er skilyrðið `r sanngildi(deiling$skilyrdi_heiltala)`. Hún dettur út úr
+niðurstöðunni án þess að nokkur villa komi fram. Með fleytitölu er sama skilyrðið
+`r sanngildi(deiling$skilyrdi_fleytitala)`.
 
 _SQLite_ sýnir sanngildi sem `1` (satt) og `0` (ósatt). Sama skilyrðið gefur því ólíka niðurstöðu
 eftir því hvort deilt er með `7` eða `7.0`.
