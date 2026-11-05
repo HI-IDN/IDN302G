@@ -116,6 +116,7 @@ book:
         - logic-sets/relation-composition.qmd
         - logic-sets/functions-and-keys.qmd
         - logic-sets/relation-properties.qmd
+        - logic-sets/sjalfsprof.qmd
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.qmd
@@ -136,6 +137,7 @@ book:
         - sql-advanced/postgres.qmd
         - sql-advanced/union.qmd
         - sql-advanced/joins.qmd
+        - sql-advanced/sjalfsprof.qmd
         - sql-advanced/views.qmd
         - sql-advanced/functions.qmd
         - sql-advanced/cte.qmd

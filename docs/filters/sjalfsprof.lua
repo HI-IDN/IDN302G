@@ -43,7 +43,7 @@ local function to_html(value)
       return l
     end,
   })
-  return (pandoc.write(doc, "html"):gsub("%s+$", ""))
+  return (pandoc.write(doc, "html", { html_math_method = "mathjax" }):gsub("%s+$", ""))
 end
 
 local function read_questions(src)
