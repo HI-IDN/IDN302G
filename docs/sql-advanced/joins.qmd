@@ -352,13 +352,22 @@ DBI::dbWriteTable(con, "skil", data.frame(
   nemandi_id = c(1L, 1L, 3L),
   verkefni   = c("Verkefni 1", "Verkefni 2", "Verkefni 1")
 ))
+nem  <- DBI::dbReadTable(con, "nemendur")
+skil <- DBI::dbReadTable(con, "skil")
+ekki_skilad <- nem$nafn[!nem$id %in% skil$nemandi_id]
+flest <- names(which.max(table(nem$nafn[match(skil$nemandi_id, nem$id)])))
+n_flest <- max(table(skil$nemandi_id))
+fjoldi_ord <- function(n) c("einu", "tveimur", "þremur", "fjórum", "fimm", "sex")[n]
+sinnum <- function(n) c("einu sinni", "tvisvar", "þrisvar")[n]
+og_listi <- function(x) if (length(x) < 2) x else
+  paste(paste(head(x, -1), collapse = ", "), "og", tail(x, 1))
 ```
 
-Tökum litlar töflur: `nemendur` með fjórum nemendum og `skil` sem geymir hvaða verkefnum hver
-nemandi hefur skilað. Bjarni og Elías hafa ekki skilað neinu.
+Tökum litlar töflur: `nemendur` með `r fjoldi_ord(nrow(nem))` nemendum og `skil` sem geymir hvaða
+verkefnum hver nemandi hefur skilað. `r og_listi(ekki_skilad)` hafa ekki skilað neinu.
 
-`LEFT JOIN` skilar öllum nemendum. Þeir sem hafa ekki skilað fá `NULL` í `verkefni`, og Anna
-birtist tvisvar af því að hún hefur skilað tveimur verkefnum:
+`LEFT JOIN` skilar öllum nemendum. Þeir sem hafa ekki skilað fá `NULL` í `verkefni`, og `r flest`
+birtist `r sinnum(n_flest)` af því að hún hefur skilað `r fjoldi_ord(n_flest)` verkefnum:
 
 ```{sql}
 --| label: joins-sql-1
