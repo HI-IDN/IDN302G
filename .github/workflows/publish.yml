@@ -27,6 +27,9 @@ jobs:
         shell: bash
     env:
       R_LIBS_USER: ${{ github.workspace }}/.ci-r-library
+      # Gámurinn keyrir sem root en /github/home er í eigu runner, svo pip
+      # myndi slökkva á skyndiminninu og setup-python (cache: pip) falla.
+      PIP_CACHE_DIR: /root/.cache/pip
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
 
     steps:
