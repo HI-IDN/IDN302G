@@ -1,12 +1,11 @@
 # Spurningar fyrir storytelling/finndu-villuna.qmd. Sniðinu er lýst efst í filters/sjalfsprof.lua.
-# Engir titlar á spurningum: þeir myndu ljóstra upp villunni.
+# Engir titlar né hlutar á spurningum: þeir myndu ljóstra upp villunni.
 # Myndaslóðir eru miðað við storytelling/. Nýjar myndir þarf að telja upp undir
 # `resources` í .qmd-skránni, því Quarto finnur þær ekki sjálft inni í sjálfsprófinu.
 
 spurningar:
 
-  - hluti: Ásar
-    spurning: |
+  - spurning: |
       Hvað er helst villandi við þetta graf?
 
       ![Súlurit um ánægju viðskiptavina 2024 og 2025](figures/finndu-villuna/villandi-sulurit.png)
@@ -23,8 +22,7 @@ spurningar:
 
       ![Sama súlurit með Y-ás sem byrjar á 0](figures/finndu-villuna/skyrt-sulurit.png)
 
-  - hluti: Ásar
-    spurning: |
+  - spurning: |
       Hvað er villandi við lárétta ásinn í þessu grafi af bensínverði?
 
       ![Graf Fox News af þróun bensínverðs](figures/fox_gascost.png)
@@ -40,8 +38,7 @@ spurningar:
       að tákna jafnlangan tíma. Y-ásinn byrjar líka í 2,90, sem ýkir hækkunina enn frekar.
       Sjá [Slæm myndræn framsetning](donts.qmd).
 
-  - hluti: Ásar
-    spurning: |
+  - spurning: |
       Grafið sýnir fjölda COVID-19 tilfella og hlutfall endursýkinga. Hvað getur verið villandi?
 
       ![Graf með tveimur Y-ásum](figures/double_yaxis.png)
@@ -60,8 +57,7 @@ spurningar:
       - nota sama X-ás svo auðvelt sé að bera tímabilin saman,
       - merkja mælieiningar og kvarða greinilega.
 
-  - hluti: Gerð grafs
-    spurning: |
+  - spurning: |
       Hvað er helst athugavert við þetta þrívíða súlurit um íbúasamsetningu í Garðabæ?
 
       ![Þrívítt súlurit um íbúasamsetningu í Garðabæ](figures/kgp_3D.png)
@@ -77,8 +73,7 @@ spurningar:
 
       ![Tvívíð útgáfa af súluritinu um íbúasamsetningu](figures/kgp_2D.png)
 
-  - hluti: Gerð grafs
-    spurning: |
+  - spurning: |
       Af hverju er súlurit oft skýrara en skífurit þegar bera þarf saman svipuð gildi?
 
       ![Sömu gögn sem skífurit og súlurit](figures/piechart_vs_barchart.png)
@@ -96,8 +91,7 @@ spurningar:
       - **Skífurit** getur hentað þegar fáir flokkar mynda hluta af heild.
       - **Kleinuhringjarit** er enn erfiðara, því lesandinn þarf að meta lengd boga.
 
-  - hluti: Gerð grafs
-    spurning: |
+  - spurning: |
       Hvað er athugavert við gröfin úr ársreikningi Strætó 2021?
 
       ![Gröf úr ársreikningi Strætó 2021](figures/straeto_arsreikningur2021.png)
