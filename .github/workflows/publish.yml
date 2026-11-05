@@ -90,10 +90,11 @@ jobs:
       # readr    <- eval: false skriftudæmi í api/fetching-data.qmd, talið upp hér
       #             svo nemendur geti keyrt sömu uppskriftir án þess að leita.
       # DBI, RSQLite <- {sql}-bútar á data/kennarar.db í sql-basics/introduction.qmd
+      # ggplot2, waterfalls <- fossarit (dplyr og plotly líka) í storytelling/visuals_major.qmd
       - name: Install R packages
         if: steps.r-cache.outputs.cache-hit != 'true'
         run: |
-          Rscript -e 'packages <- c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr", "DBI", "RSQLite"); install.packages(packages, repos="https://packagemanager.posit.co/cran/__linux__/noble/latest"); stopifnot(all(vapply(packages, requireNamespace, logical(1), quietly=TRUE)))'
+          Rscript -e 'packages <- c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr", "DBI", "RSQLite", "ggplot2", "waterfalls"); install.packages(packages, repos="https://packagemanager.posit.co/cran/__linux__/noble/latest"); stopifnot(all(vapply(packages, requireNamespace, logical(1), quietly=TRUE)))'
 
       # Vista strax eftir uppsetningu, jafnvel þótt seinna render falli.
       - name: Save R packages
