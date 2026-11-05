@@ -1,0 +1,508 @@
+---
+pagetitle: "Upplýsingaverkfræði"
+title: "Lokaverkefni — frá gögnum að heildstæðu verkefni"
+description: >-
+  Samþætting þemaverkefnisins: skýrsla, heimasíða, mælaborð og lokakynning.
+lang: is
+format:
+  revealjs:
+    theme:
+      - white
+      - ../styles/hi.scss
+    css: ../styles/watermark.css
+    logo: ../img/hi/hi_named_logo-is.svg
+    footer: "IÐN302G · Upplýsingaverkfræði · Haust 2026"
+    title-slide: false
+    title-slide-attributes:
+      data-visibility: hidden
+    hash: true
+    controls: true
+    controls-layout: edges
+    controls-back-arrows: visible
+    slide-number: true
+    progress: true
+    chalkboard: false
+    preview-links: auto
+    width: 1280
+    height: 720
+    margin: 0.04
+    transition: none
+    background-transition: none
+    include-in-header:
+      text: |
+        <link rel="icon" type="image/svg+xml" href="../img/hi/favicon.svg">
+    include-after-body:
+      text: |
+        <script>
+        (function () {
+          const BASE = "Upplýsingaverkfræði";
+          function currentName() {
+            if (!window.Reveal || !Reveal.getCurrentSlide) return "";
+            const slide = Reveal.getCurrentSlide();
+            if (!slide) return "";
+            const heading = slide.querySelector("h1, h2, h3");
+            return heading ? heading.textContent.trim() : "";
+          }
+          function updateTitle() {
+            const name = currentName();
+            document.title = name ? BASE + " – " + name : BASE;
+          }
+          let tries = 0;
+          const MAX_TRIES = 50;
+          function init() {
+            if (window.Reveal && Reveal.on) {
+              Reveal.on("ready", updateTitle);
+              Reveal.on("slidechanged", updateTitle);
+              updateTitle();
+            } else if (tries++ < MAX_TRIES) {
+              setTimeout(init, 200);
+            }
+          }
+          init();
+        })();
+        </script>
+---
+
+## {.title-slide .center}
+
+<div class="title-content subtitle-below">
+<span class="subtitle-highlight">Frá gögnum<br>að heildstæðu verkefni</span>
+<span class="title-theme">Lokaverkefni · IÐN302G</span>
+</div>
+
+<div class="title-meta">Skýrsla · heimasíða · mælaborð · kynning<br>Haust 2026</div>
+
+---
+
+## Hvað ætlum við að fara yfir? {#efnisyfirlit}
+
+::: {.two-col .slide-links}
+::: {}
+1. [Notandinn og gagnasagan](#gagnasagan)
+2. [Hópurinn: vinna, skil og teymismat](#hopurinn)
+3. [Gagnaleiðin: vefþjónusta → SQL → framsetning](#gagnaleidin)
+4. [Skýrsla, HTML og PDF](#skyrslan)
+:::
+::: {}
+5. [Myndir og gagnvirkt mælaborð](#maelabord)
+6. [Kynning, rýni og fyrirspurnatími](#kynning)
+7. [Lokaskil og yfirferð](#lokaskil)
+8. [Allir matsliðir — til uppflettingar](#matslidir)
+:::
+:::
+
+::: {.callout}
+Ein heild: sömu gögn og niðurstöður í skýrslu, mælaborði og kynningu.
+:::
+
+---
+
+## Notandinn og gagnasagan {#gagnasagan}
+
+- **Fyrir hvern?** Hver þarf upplýsingarnar og hvað vill viðkomandi skilja eða ákveða?
+- **Hvaða spurning?** Hvað geta gögnin raunverulega svarað — og hvað liggur utan verkefnisins?
+
+::: {.card-grid}
+::: {.card}
+<h3>Skýrsla</h3>
+Útskýrir spurningu, aðferð, niðurstöður og þýðingu þeirra.
+:::
+::: {.card}
+<h3>Mælaborð</h3>
+Leyfir notandanum að kanna spurninguna sjálfur.
+:::
+::: {.card}
+<h3>Kynning</h3>
+Velur lykilniðurstöður og sýnir notagildið.
+:::
+:::
+
+Látið spurninguna stýra gagnavali, greiningu og framsetningu.
+
+---
+
+## Hvernig virkar hópavinnan? {#hopurinn}
+
+::: {.two-col}
+::: {}
+<h3>Sameiginleg ábyrgð</h3>
+
+- Skiptið verkum og rýnið breytingar hvers annars með Pull Requests.
+- Skráið verkefni í Kanban og ákvarðanir í vinnudagbók.
+- Einn skilar fyrir hópinn í hópliðunum; allir þurfa að skilja verkefnið í heild.
+- Allir eiga virkan hlut í kynningunni og mæta í fyrirspurnatíma.
+:::
+::: {}
+<h3>Hver og einn</h3>
+
+- Rýnir kynningar hinna hópanna og skilar eigin ígrundun.
+- Metur framlag liðsfélaga í teymismati; kennari sér svörin.
+- Gæði matsins sem þú gefur eru einstaklingsliður.
+- Mat liðsfélaga á þínu framlagi myndar stuðul á hópeinkunnir; einstaklingsliðir haldast óbreyttir.
+:::
+:::
+
+::: {.slide-links}
+[Hópskil, einstaklingsskil og útreikningur teymisstuðuls í Canvas](https://haskoliislands.instructure.com/courses/42669/pages/lokaverkefni-yfirlit)
+:::
+
+---
+
+## Ein gagnaleið — sameiginleg SQL VIEW {#gagnaleidin}
+
+<div class="steps-row capstone-flow" role="img" aria-label="Vefþjónusta, síðan öflun og forvinnsla í R eða Python, síðan SQL og VIEW, loks framsetning úr sömu niðurstöðum.">
+<div class="step-chip"><strong>Vefþjónusta</strong><span>Endapunktur og færibreytur</span></div>
+<div class="step-chip"><strong>R / Python</strong><span>Sækja, hreinsa, staðla og hlaða inn</span></div>
+<div class="step-chip"><strong>SQL</strong><span>Töflur, tengingar, greining og VIEW</span></div>
+<div class="step-chip"><strong>Framsetning</strong><span>Skýrsla, mælaborð og kynning</span></div>
+</div>
+
+- **Forvinnsla í R/Python:** regex, gagnatög, einingar og vöntun.
+- **Greining í SQL:** skilyrði, JOIN, hópun og afleiddar stærðir.
+- **Eitt VIEW:** endurnýtið niðurstöðuna í skýrslu, mælaborði og kynningarmyndum.
+
+::: {.callout}
+Þegar gögn breytast á endurkeyrsla að uppfæra texta, töflur og myndir. Engar harðkóðaðar niðurstöðutölur.
+:::
+
+---
+
+## Af hverju má treysta niðurstöðunum? {#rekjanleiki}
+
+::: {.two-col}
+::: {}
+<h3>Rekjanleg aðferð</h3>
+
+- API, endapunktur og færibreytur leiða að gögnunum.
+- ER-líkan samsvarar töflum, lyklum og tengslum.
+- Prófanir bera SQL-niðurstöður saman við vænt gildi og jaðartilvik.
+- Forsendur og vöntun eru útskýrð.
+:::
+::: {}
+<h3>Heimildir og endurkeyrsla</h3>
+
+- Vísið í frumheimildir, gagnaveitur og hugbúnaðarpakka.
+- Notið APA 7 í tilvísunum og heimildaskrá.
+- README lýsir heildarkeyrslu án falinna handvirkra skrefa.
+- Lesandi getur rakið mynd í VIEW og upprunaleg gögn.
+:::
+:::
+
+Námskeiðsefnið leiðir ykkur áfram; það nægir ekki sem eina heimild verkefnisins.
+
+---
+
+## Ein QMD-heimild → HTML og PDF {#skyrslan}
+
+::: {.two-col}
+::: {}
+<h3>Sama frásögn</h3>
+
+- Vandamál → samhengi → nálgun → niðurstöður → þýðing.
+- Texti og myndir svara spurningunum; í lokin koma takmarkanir og næstu skref.
+- Sama QMD-heimild heldur HTML og PDF samræmdum.
+:::
+::: {}
+<h3>Heimasíðan leiðir lesandann áfram</h3>
+
+- 250 orða ágrip og skýrir tenglar á PDF, mælaborð og GitHub.
+- Lyfturæða og kynning aðgengilegar á vefnum.
+- PDF er prentvænt og allt skjalið er innan 10 síðna.
+- Hreinsið ótengt æfingaefni úr birtri leiðsögn; varðveitið Git-söguna.
+:::
+:::
+
+::: {.slide-links}
+[Hvernig bý ég til bæði HTML og PDF?](../reproducible-reports/quarto.html#html-og-pdf) · [Birting á GitHub Pages](../reproducible-reports/publishing.html)
+:::
+
+---
+
+## Hvernig má nýta 10 síður? {#sidur}
+
+::: {.two-col}
+::: {}
+| Hluti | Síður |
+|:--|--:|
+| Ágrip · 250 orð | 0,5 |
+| Inngangur | 0,5 |
+| Gögn og aðferðir | 1 |
+| Niðurstöður og gagnafrásögn | 3 |
+| Umræða og niðurstaða | 1 |
+| Heimildaskrá | 1 |
+| Viðaukar | 3 |
+:::
+::: {}
+<h3>Viðaukinn geymir tæknilegu smáatriðin</h3>
+
+- API og öflun; regex, yrðingar og mengi.
+- ER-líkan, SQL, prófanir og endurkeyrsla.
+- Stutt samantekt úr vinnudagbók: samstarf, Kanban og ákvarðanir.
+- Heill kóði og vinnudagbók eru á GitHub; vísið í skrár og útgáfu.
+
+**Tillaga, ekki föst kaflalengd.** Allt PDF-skjalið telur, líka heimildir, viðaukar og titilsíða ef hún er notuð.
+:::
+:::
+
+---
+
+## Myndir og mælaborð sem hjálpa notandanum {#maelabord}
+
+::: {.two-col}
+::: {}
+<h3>Veljið mynd út frá spurningunni</h3>
+
+- Graf, tafla eða kort þarf að skýra niðurstöðu.
+- Litir hafa merkingu og eru notaðir samræmt.
+- Ásar, einingar og myndatextar eru læsileg.
+- Textinn segir hvað lesandinn á að taka eftir.
+:::
+::: {}
+<h3>Viðmót og gagnvirkni eru sitt hvort</h3>
+
+- Notandinn veit hvar hann byrjar og hvað tölurnar merkja.
+- Sía, val, þysjun eða sveimur hjálpar honum að kanna spurningu.
+- Sýnið hvað hann lærir þegar hann breytir valinu.
+- Mælaborð og myndir byggja á sömu SQL VIEW.
+:::
+:::
+
+::: {.callout}
+Prófið bæði vefinn og PDF í prentstærð. Gagnvirkni kemur ekki í stað skýrrar framsetningar.
+:::
+
+---
+
+## Kynningin sýnir verkefnið í notkun {#kynning}
+
+::: {.card-grid}
+::: {.card}
+<h3>Lyfturæða · 30 sek.</h3>
+Vandamálið, notandinn og hvers vegna þetta skiptir máli.
+:::
+::: {.card}
+<h3>Myndband · mest 7 mín.</h3>
+Lykilniðurstöður og notagildi. Tekur við þar sem lyfturæðunni sleppir.
+:::
+::: {.card}
+<h3>Mælaborð í notkun</h3>
+Leysið verkefni notandans; farið ekki aðeins yfir hnappana.
+:::
+:::
+
+- **Allir koma fram.** Tal heyrist vel og glærur og mælaborð eru læsileg.
+- Hýsið myndband utan Git, t.d. YouTube eða Teams/OneDrive; prófið aðgang annarra.
+- Einn skilar myndbandsslóð. Á kynningardegi mæta allir með tölvu og svara spurningum úr sal.
+
+---
+
+## Rýni og fyrirspurnatími {#ryni}
+
+::: {.two-col}
+::: {}
+<h3>Rýnið og nýtið rýnina</h3>
+
+- Hver og einn rýnir alla hina hópana eftir kynningu og spurningar.
+- Gefið nákvæma, kurteisa og uppbyggilega umsögn sem vísar í það sem sást.
+- Skilið eigin stuttri ígrundun: hvað úr rýninni sem hópurinn fékk gagnaðist mest og hvað myndirðu gera öðruvísi?
+:::
+::: {}
+<h3>Fyrirspurnatími með kennara</h3>
+
+- Hópurinn mætir í einrúmi; ekkert þarf að skila.
+- Allir geta útskýrt alla hluta verkefnisins.
+- Finnið raunveruleg dæmi í repo: gögn, kóða, SQL, prófanir og Pull Requests.
+- Útskýrið forsendur og þróun samstarfsins.
+:::
+:::
+
+---
+
+## Hver skilar hverju? {#lokaskil}
+
+| Liður í Canvas | Hver? | Hvað? |
+|:--|:--|:--|
+| Skýrsla og heimasíða | Hópur | Slóð á heimasíðu með PDF og mælaborði. |
+| Lokakynning | Hópur | Slóð á myndband; allir mæta á kynningardegi. |
+| Rýni á kynningum | Hver og einn | Matskvarði og umsögn fyrir hina hópana. |
+| Lokakynning: rýni | Hver og einn | Stutt ígrundun um móttekna rýni. |
+| Teymismat | Hver og einn | Mat á framlagi liðsfélaga og rökstuðningur. |
+| Fyrirspurnatími | Hópur | Mæting og samtal; engin skil. |
+
+::: {.slide-links}
+[Dagsetningar, skilafrestir, vægi og teymisstuðull — yfirlit í Canvas](https://haskoliislands.instructure.com/courses/42669/pages/lokaverkefni-yfirlit)
+:::
+
+---
+
+## Prófið heildina — farið svo yfir matsliðina {#matslidir}
+
+- Getur nýr lesandi ratað frá ágripi í PDF, mælaborð og kynningu?
+- Eru niðurstöður samræmdar og rekjanlegar í gögn og SQL VIEW?
+- Endurbyggist allt úr kóða, án handskrifaðra niðurstaðna?
+- Er PDF læsilegt og innan 10 síðna?
+
+::: {.two-col .slide-links}
+::: {}
+<h3>Skýrsla og heimasíða</h3>
+
+[Matsliðir: gögn, SQL og niðurstöður](#mat-skyrsla-1)  
+[Matsliðir: frágangur og vinnuferli](#mat-skyrsla-2)
+:::
+::: {}
+<h3>Kynning og einstaklingsliðir</h3>
+
+[Matsliðir kynningar](#mat-kynning)  
+[Matsliðir rýni og fyrirspurnatíma](#mat-ryni)
+:::
+:::
+
+Viðmiðunarglærurnar sýna heiti og hámarksstig nemendakvarðanna. Fullar lýsingar og stigþrep eru í Canvas.
+
+---
+
+## Matsliðir: Gögn, SQL og niðurstöður {#mat-skyrsla-1 .rubric-slide}
+
+```{=html}
+<div class="two-col rubric-grid">
+<div>
+<div class="rubric-group"><h3>1. Ágrip og inngangur</h3><ul>
+<li><span>Ágrip</span><strong>1</strong></li>
+<li><span>Gagnafrásögn</span><strong>2</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>2. Gögn og aðferðir</h3><ul>
+<li><span>Rekjanleg vefþjónusta</span><strong>2</strong></li>
+<li><span>Forsendur um gögnin</span><strong>2</strong></li>
+<li><span>Yrðingar og mengi</span><strong>1</strong></li>
+<li><span>Reglulegar segðir</span><strong>3</strong></li>
+</ul></div>
+</div>
+<div>
+<div class="rubric-group"><h3>3. Gagnagrunnur og úrvinnsla</h3><ul>
+<li><span>ER-líkan</span><strong>2</strong></li>
+<li><span>Skema og heilleiki</span><strong>2</strong></li>
+<li><span>Greining í SQL</span><strong>4</strong></li>
+<li><span>Prófanir á SQL</span><strong>2</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>4. Niðurstöður og mælaborð</h3><ul>
+<li><span>Reiknaðar niðurstöður</span><strong>2</strong></li>
+<li><span>Sameiginleg SQL VIEW í framsetningu</span><strong>5</strong></li>
+<li><span>Val á töflum og gröfum</span><strong>5</strong></li>
+<li><span>Litanotkun</span><strong>1</strong></li>
+<li><span>Skýrt og auðskilið mælaborð</span><strong>2</strong></li>
+<li><span>Gagnvirkni</span><strong>3</strong></li>
+</ul></div>
+</div>
+</div>
+```
+
+::: {.slide-links}
+[Allur kvarðinn í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195596) · [Til baka í yfirlit](#matslidir)
+:::
+
+---
+
+## Matsliðir: Frágangur og vinnuferli {#mat-skyrsla-2 .rubric-slide}
+
+```{=html}
+<div class="two-col rubric-grid">
+<div>
+<div class="rubric-group"><h3>5. Umræða og áframhald</h3><ul>
+<li><span>Takmarkanir og næstu skref</span><strong>1</strong></li>
+<li><span>Útvíkkun verkefnisins</span><strong>1</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>6. Heimildir</h3><ul>
+<li><span>Heimildir og APA-frágangur</span><strong>3</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>7. Viðauki: vinnuferli</h3><ul>
+<li><span>Samantekt samstarfs í vinnudagbók</span><strong>1</strong></li>
+<li><span>AGENTS.md</span><strong>1</strong></li>
+</ul></div>
+</div>
+<div>
+<div class="rubric-group"><h3>8. Lokaskoðun og endurbygging</h3><ul>
+<li><span>Sameiginleg QMD-heimild</span><strong>2</strong></li>
+<li><span>Sjálfvirk endurbygging</span><strong>3</strong></li>
+<li><span>Uppfærð GitHub Pages-síða</span><strong>1</strong></li>
+<li><span>Fókus á þemaverkefnið</span><strong>1</strong></li>
+<li><span>Lengd skýrslu</span><strong>1</strong></li>
+<li><span>Prentvæn framsetning</span><strong>1</strong></li>
+</ul></div>
+</div>
+</div>
+```
+
+::: {.slide-links}
+[Allur kvarðinn í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195596) · [Til baka í yfirlit](#matslidir)
+:::
+
+---
+
+## Matsliðir kynningar {#mat-kynning .rubric-slide}
+
+```{=html}
+<div class="two-col rubric-grid">
+<div>
+<div class="rubric-group"><h3>1. Umgjörð</h3><ul>
+<li><span>Innan 7 mínútna</span><strong>5</strong></li>
+<li><span>Allir í hópnum koma fram</span><strong>5</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>2. Notandinn</h3><ul>
+<li><span>Notandi og notagildi</span><strong>20</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>3. Myndir, niðurstöður og gögn</h3><ul>
+<li><span>Myndirnar útskýrðar</span><strong>15</strong></li>
+<li><span>Niðurstöður</span><strong>5</strong></li>
+<li><span>Gögn</span><strong>5</strong></li>
+</ul></div>
+</div><div>
+<div class="rubric-group"><h3>4. Mælaborð</h3><ul>
+<li><span>Mælaborðið sýnt í notkun</span><strong>15</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>5. Miðlun</h3><ul>
+<li><span>Skýr og vel unnin kynning</span><strong>10</strong></li>
+<li><span>Viðbrögð við spurningum</span><strong>10</strong></li>
+</ul></div>
+<div class="rubric-group"><h3>6. Frumleiki</h3><ul>
+<li><span>Frumleiki</span><strong>10</strong></li>
+</ul></div>
+</div>
+</div>
+```
+
+Stigin hér eru úr kynningarkvarðanum; vægi kynningarinnar í lokaverkefninu er í Canvas-yfirlitinu.
+
+::: {.slide-links}
+[Kynningarkvarði í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/195590) · [Til baka í yfirlit](#matslidir)
+:::
+
+---
+
+## Matsliðir rýni og fyrirspurnatíma {#mat-ryni .rubric-slide}
+
+::: {.two-col}
+::: {}
+<h3>Lokakynning: rýni</h3>
+
+**Rýni á hina hópana · 4 stig**  
+Allir hinir hóparnir eru rýndir. Umsagnirnar eru nákvæmar, uppbyggilegar og kurteisar og vísa í það sem sást í kynningunni.
+
+**Rýnin lesin og nýtt · 1 stig**  
+Skilað á réttum tíma. Textinn vísar í eitthvað úr rýninni, segir hvað gagnaðist mest og hvað nemandinn myndi gera öðruvísi næst.
+
+:::
+::: {}
+<h3>Fyrirspurnatími</h3>
+
+**Allir skilja allt verkefnið · 6 stig**  
+Allir í hópnum svara spurningum um alla hluta verkefnisins af öryggi, ekki aðeins um þann hluta sem þau unnu sjálf.
+
+**Hvar er hvað og hvaðan það kemur · 4 stig**  
+Hópurinn sýnir í repo-inu hvar hlutirnir eru og rekur gögn og ákvarðanir að uppruna sínum, til dæmis í kóða, fyrirspurnum og Pull Requests.
+
+:::
+:::
+
+::: {.slide-links}
+[Rýni í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/204662) · [Fyrirspurnatími í Canvas](https://haskoliislands.instructure.com/courses/42669/assignments/204671) · [Teymismat og vægi](https://haskoliislands.instructure.com/courses/42669/pages/lokaverkefni-yfirlit) · [Til baka](#matslidir)
+:::
