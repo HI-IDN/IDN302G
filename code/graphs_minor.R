@@ -10,12 +10,17 @@ Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
 out <- "docs/storytelling/figures"
 theme_set(theme_minimal(base_size = 12))
-lit <- "#4C72B0"
+# Litir úr HÍ-pallettunni í docs/styles/hi-book.scss
+hi_blue   <- "#10099F"
+hi_orange <- "#FFA05F"
+hi_teal   <- "#2DD2C0"
+hi_red    <- "#FC8484"
+lit <- hi_blue
 
 # Kassarit: sparneytni bíla eftir fjölda strokka
 mtcars$cyl_f <- factor(mtcars$cyl)
 p_box <- ggplot(mtcars, aes(x = cyl_f, y = mpg)) +
-  geom_boxplot(fill = lit, alpha = 0.6, outlier.colour = "#C44E52", outlier.size = 2.5) +
+  geom_boxplot(fill = lit, alpha = 0.6, outlier.colour = hi_red, outlier.size = 2.5) +
   labs(title = "Kassarit: sparneytni eftir fjölda strokka",
        x = "Fjöldi strokka", y = "Mílur á gallon (mpg)")
 ggsave(file.path(out, "boxplot_example.png"), p_box, width = 6, height = 4, dpi = 120, bg = "white", type = "cairo")
@@ -46,7 +51,7 @@ net <- expand.grid(x = 1:10, y = 10:1)
 net$flokkur <- flokkar
 p_waffle <- ggplot(net, aes(x, y, fill = flokkur)) +
   geom_tile(colour = "white", linewidth = 1) +
-  scale_fill_manual(values = c("#4C72B0", "#DD8452", "#55A868"), name = NULL) +
+  scale_fill_manual(values = c(hi_blue, hi_orange, hi_teal), name = NULL) +
   coord_equal() +
   theme_void(base_size = 12) +
   labs(title = "Rúðurit: hlutfall bíla eftir fjölda strokka",
