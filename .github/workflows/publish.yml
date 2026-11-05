@@ -35,6 +35,8 @@ jobs:
         run: |
           apt-get update
           apt-get install -y --no-install-recommends sudo ca-certificates curl wget jq git zstd lsb-release libcurl4-openssl-dev libssl-dev
+          # Python frá setup-python vísar á /opt/hostedtoolcache, sem er /__t í gámnum.
+          mkdir -p /opt && ln -sfn /__t /opt/hostedtoolcache
 
       - name: Check out repository
         uses: actions/checkout@v4
