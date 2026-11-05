@@ -42,20 +42,23 @@ p_area <- ggplot(economics, aes(x = date, y = unemploy / 1000)) +
        x = NULL, y = "Milljónir manna")
 ggsave(file.path(out, "areagraph_example.png"), p_area, width = 6, height = 4, dpi = 120, bg = "white", type = "cairo")
 
-# Rúðurit (vöfflurit): 10x10 net, 32 bílar flokkaðir eftir strokkafjölda,
-# hver rúða er um 1% af heildinni
-hlutf <- round(prop.table(table(mtcars$cyl)) * 100)
-hlutf[length(hlutf)] <- 100 - sum(hlutf[-length(hlutf)])
-flokkar <- rep(paste(names(hlutf), "strokkar"), times = hlutf)
-net <- expand.grid(x = 1:10, y = 10:1)
-net$flokkur <- flokkar
+# Rúðurit (vöfflurit): ein rúða fyrir hvern bíl í mtcars, flokkað eftir strokkafjölda.
+# Netið er 8 dálkar á breidd svo allar rúður passa (32 bílar = 8 x 4).
+breidd <- 8
+flokkar <- paste(sort(mtcars$cyl), "strokkar")
+net <- data.frame(
+  x = (seq_along(flokkar) - 1) %% breidd + 1,
+  y = -((seq_along(flokkar) - 1) %/% breidd),
+  flokkur = flokkar
+)
 p_waffle <- ggplot(net, aes(x, y, fill = flokkur)) +
   geom_tile(colour = "white", linewidth = 1) +
   scale_fill_manual(values = c(hi_blue, hi_orange, hi_teal), name = NULL) +
   coord_equal() +
   theme_void(base_size = 12) +
-  labs(title = "Rúðurit: hlutfall bíla eftir fjölda strokka",
-       subtitle = "Hver rúða er um 1% af bílunum")
+  labs(title = "Rúðurit: bílar eftir fjölda strokka",
+       subtitle = "Hver rúða er einn bíll") +
+  theme(plot.margin = margin(10, 20, 10, 20))
 ggsave(file.path(out, "waffle_example.png"), p_waffle, width = 6, height = 4, dpi = 120, bg = "white", type = "cairo")
 
 # Kúlurit: þyngd, sparneytni og afl (stærð kúlu)

@@ -237,7 +237,7 @@ punktariti, en helstu gerðirnar eru:
 
 ![Cleveland punktarit af sparneytnustu bílunum](figures/dotplot_example.png)
 
-Þetta er Cleveland punktarit sem sýnir 12 sparneytnustu bílana. Hver punktur er eitt gildi og
+Þetta er Cleveland punktarit sem sýnir sparneytnustu bílana. Hver punktur er eitt gildi og
 bílarnir eru raðaðir eftir því, sem gerir samanburðinn auðveldan. Punktarit er góður valkostur við
 súlurit þegar flokkarnir eru margir.
 
@@ -366,14 +366,25 @@ Nánar um [Spider Chart](https://www.storytellingwithdata.com/blog/2021/8/31/wha
 ### Rúðurit - Square Area Chart
 
 Rúðurit (square area chart) eða jafnvel kallað vöfflurit (waffle chart), er myndræn framsetning þar
-sem gögn eru sett fram sem reglulegt 10x10 net, eða möskvi, með 100 stökum einingum.
+sem gögn eru sett fram sem reglulegt net, eða möskvi, af stökum einingum. Algengt er 10x10 net þar
+sem hver eining er 1% af heildinni.
 Hver eining er lituð í samræmi við gögnin sem á að sýna. Þetta rit er oft notað til að sýna hlutföll
 innan heildar, þar sem hver eining táknar ákveðið hlutfall.
 
 ![Rúðurit af hlutfalli bíla eftir fjölda strokka](figures/waffle_example.png)
 
-Hér er hlutfall bíla eftir fjölda strokka sýnt í 10x10 neti. Hver rúða er um 1% af heildinni, svo
-auðvelt er að telja og bera saman hlutföllin, til dæmis að bílar með 4 strokka eru um þriðjungur.
+```{r}
+#| label: visuals-minor-r-1
+#| include: false
+# Sömu gögn og í code/graphs_minor.R (mtcars fylgir R)
+n_bilar <- nrow(mtcars)
+n_4 <- sum(mtcars$cyl == 4)
+```
+
+Hér er hver bíll ein rúða, `r n_bilar` alls, litaðar eftir fjölda strokka. Það er auðvelt að telja
+og bera saman hlutföllin, til dæmis að `r n_4` af `r n_bilar` bílum, eða
+`r round(100 * n_4 / n_bilar)`%, eru með 4 strokka. Með ekki fleiri einingum er heiðarlegra að hafa
+eina rúðu fyrir hvern bíl en að teygja þá yfir 100 rúður.
 
 
 ##### Kostir
