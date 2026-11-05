@@ -1,0 +1,15 @@
+---
+title: "Sjálfspróf: finndu villuna í grafinu"
+lang: is
+resources:
+  - figures/finndu-villuna/*.png
+---
+
+Þetta er sjálfspróf úr kaflanum [Slæm myndræn framsetning](donts.qmd). Í hverri spurningu
+skoðarðu graf og finnur hvað er villandi við það. Eftir svarið sérðu útskýringu og, þar sem við
+á, skýrari framsetningu á sömu gögnum.
+
+<!-- Gröfin sem við teiknum sjálf eru búin til með figures/finndu-villuna/bua_til_grof.R -->
+
+::: {.sjalfsprof src="finndu-villuna.yml"}
+:::
