@@ -133,7 +133,7 @@
           `Hluti ${parts.indexOf(q.part) + 1} – ` + q.part));
       }
       card.appendChild(el("h3", "", `Spurning ${current + 1}` + (q.title ? " – " + q.title : "")));
-      card.appendChild(el("p", "", q.question));
+      card.appendChild(el("div", "sp-question", q.question));
 
       const single = q.correct.length === 1;
       const inputs = q.options.map((opt, i) => {

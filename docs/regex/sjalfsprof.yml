@@ -97,7 +97,12 @@ spurningar:
 
   - hluti: Hópar og samsvaranir
     titill: Fyrsta samsvörun eða allar
-    spurning: 'Hvað skilar `re.search(r"\d+", "a1b22c333").group()` í Python?'
+    spurning: |
+      Hvað skilar þessi kóði í Python?
+
+      ```python
+      re.search(r"\d+", "a1b22c333").group()
+      ```
     valkostir: ['`"1"`', '`"333"`', '`["1", "22", "333"]`', '`"122333"`']
     rett: [A]
     utskyring: |
@@ -115,7 +120,13 @@ spurningar:
 
   - hluti: Regex í R, Python og gögnum
     titill: '`perl = TRUE` í R'
-    spurning: 'Hvað skilar `regmatches(x, gregexpr("[\\w.]+", x))` í R þegar `x` er `"a1b22"` og `perl = TRUE` vantar?'
+    spurning: |
+      Hvað skilar þessi kóði í R?
+
+      ```r
+      x <- "a1b22"
+      regmatches(x, gregexpr("[\\w.]+", x))
+      ```
     valkostir:
       - '`"a1b22"`'
       - Villuboðum um ógilt mynstur
