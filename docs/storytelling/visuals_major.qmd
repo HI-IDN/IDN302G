@@ -325,7 +325,7 @@ Nánar um muninn
 á [Histogram og Bar Chart](https://www.storytellingwithdata.com/blog/2021/1/28/histograms-and-bar-charts)
 á *Storytelling with data.*
 
-#### Fossarit - Waterfall Chart
+### Fossarit - Waterfall Chart
 
 Fossarit (waterfall chart) er sérstök tegund af stöplariti sem sýnir hvernig nettóbreytingar í
 einhverju gildi koma til á milli tveggja punkta. Í stað þess að sýna bara upphafsgildi í einum
@@ -335,8 +335,21 @@ sýnir þá hvern fyrir sig. Þannig gefur fossarit betri yfirsýn yfir samsetni
 Fossarit fær nafn sitt af löguninni sinni. Fyrsti stöpullinn byrjar oftast við núll og táknar
 upphafsgildi. Síðan eru fleiri stöplar, sem virðast „fljóta“ í rýminu, sem leiða að lokastöplinum,
 sem sýnir lokagildi og byrjar einnig við núll. Þessi rit geta sýnt flókna mynd af breytingum sem
-geta verið falin í uppsafnaðri tölu, og eru algeng í fjármálaiðnaði og mannauðsstjórnun, þar sem þau
-eru notuð til að sýna t.d. heildarjöfnuð eða breytingar á fjölda starfsmanna.
+geta verið falin í uppsafnaðri tölu: þau sýna ekki bara hvar við byrjuðum og enduðum heldur hvað
+olli breytingunni.
+
+::: {.callout-tip}
+## Hvar eru fossarit oftast notuð?
+
+- **Fjármál:** frá tekjum niður í hagnað (tekjur, kostnaðarliðir, skattar), eða hreyfing á
+  sjóðstöðu yfir tímabil.
+- **Mannauður:** fjöldi starfsmanna í upphafi og lok árs, með ráðningum, uppsögnum, starfslokum
+  og flutningum á milli.
+- **Sala og rekstur:** hvers vegna sala breyttist milli ára, t.d. verðbreytingar, nýir viðskiptavinir
+  og tapaðir viðskiptavinir.
+- **Opinber fjármál:** hvernig fjárlög ársins verða til út frá fjárlögum fyrra árs, lið fyrir lið.
+- **Verkefnastjórnun:** frá upphaflegri áætlun að raunkostnaði eða raunverulegum tíma.
+:::
 
 Nánar um [Waterfall Chart](http://www.storytellingwithdata.com/blog/2020/11/16/what-is-a-waterfall)
 á *Storytelling with data.*
@@ -348,57 +361,81 @@ núll). Miðstöplarnir eru settir á mismunandi grunnlínur byggt á hlaupandi 
 eins konar stigastefnu milli byrjunar- og lokapunkta. Þetta getur verið krefjandi fyrir áhorfendur
 að túlka, en litir og tengilínur á milli stöpla geta gert það skýrara.
 
+::: {.callout-note}
+## Stöplarit eða fossarit?
+
+Stöplarit sýnir heildargildi hverrar breytu á meðan fossarit brýtur niður breytingar á milli
+upphafs- og lokagildis, sem gefur nákvæmari mynd af því hvernig breytingar eiga sér stað.
+:::
+
 ##### Dæmi um fossarit
 
-Hér er fossarit sem sýnir hvernig fjöldi starfsmanna á tilbúnum vinnustað breytist yfir eitt ár.
+Tökum tilbúinn vinnustað þar sem starfsmönnum fjölgaði yfir árið. Nettóbreytingin ein og sér segir
+okkur ekki hvort fáir hafi komið og farið eða hvort mikil hreyfing hafi verið á fólki. Fossaritið
+brýtur breytinguna niður í þá þætti sem mynda hana. Gögnin eru upphafsgildið og fjórar breytingar:
 
 ```{r}
-#| label: visuals-major-r-1
+#| label: visuals-major-fossar-gogn
 #| message: false
-#| warning: false
-#| code-fold: true
-#| code-summary: "Sýna kóðann"
-#| fig-cap: "Fossarit yfir breytingar á fjölda starfsmanna á einu ári (tilbúin gögn)"
-#| fig-alt: "Fossarit með sex stöplum. Grár upphafsstöpull, grænir stöplar fyrir fjölgun, appelsínugulir fyrir fækkun og grár lokastöpull."
+library(dplyr)
 library(ggplot2)
 
 fossar <- data.frame(
-  thattur  = c("Upphaf árs", "Ráðningar", "Uppsagnir", "Starfslok",
-               "Flutt frá öðru sviði", "Lok árs"),
-  breyting = c(120, 35, -18, -7, 6, NA)
+  thattur  = c("Upphaf árs", "Ráðningar", "Uppsagnir", "Starfslok", "Flutt frá öðru sviði"),
+  breyting = c(120, 35, -18, -7, 6)
 )
+lok <- sum(fossar$breyting)
+```
 
-n <- nrow(fossar)
-heild <- c(TRUE, rep(FALSE, n - 2), TRUE)
+Árið byrjar með `r fossar$breyting[1]` starfsmönnum og endar með `r lok`, sem er fjölgun um
+`r lok - fossar$breyting[1]`. Á bak við þá tölu er þó mun meiri hreyfing:
+`r fossar$breyting[2] + fossar$breyting[5]` bættust við, `r fossar$breyting[2]` með ráðningu og
+`r fossar$breyting[5]` fluttir frá öðru sviði, en `r -(fossar$breyting[3] + fossar$breyting[4])`
+hættu, `r -fossar$breyting[3]` vegna uppsagna og `r -fossar$breyting[4]` vegna starfsloka.
 
-# Hlaupandi samtala gefur efri brún hvers stöpuls; lokastöpullinn er summan
-fossar$enda   <- cumsum(c(fossar$breyting[-n], 0))
-fossar$breyting[n] <- fossar$enda[n]
-fossar$byrjun <- ifelse(heild, 0, fossar$enda - fossar$breyting)
-fossar$tegund <- ifelse(heild, "heild", ifelse(fossar$breyting > 0, "aukning", "faekkun"))
-fossar$x      <- seq_len(n)
-fossar$merki  <- ifelse(heild, fossar$breyting, sprintf("%+d", as.integer(fossar$breyting)))
+Sama fossaritið má teikna á þrjá vegu. Myndirnar eru nánast eins, en kóðinn er mislangur og
+leyfir misjafnlega mikla stjórn:
 
-ggplot(fossar) +
+::: {.panel-tabset}
+## ggplot2 frá grunni
+
+Hér teiknum við hvern stöpul sjálf. Það er lengsta leiðin, en hún sýnir hvernig fossarit er byggt
+upp og gefur fulla stjórn á útlitinu.
+
+```{r}
+#| label: visuals-major-fossar-ggplot
+#| code-fold: true
+#| code-summary: "Sýna kóðann"
+#| fig-cap: "Fossarit teiknað frá grunni með ggplot2 (tilbúin gögn)"
+#| fig-alt: "Fossarit með sex stöplum. Grár upphafsstöpull, grænir stöplar fyrir fjölgun, appelsínugulir fyrir fækkun og grár lokastöpull."
+fossar_gg <- fossar |>
+  bind_rows(data.frame(thattur = "Lok árs", breyting = NA)) |>
+  mutate(
+    x        = row_number(),
+    heild    = x %in% c(1, n()),
+    # Hlaupandi samtala gefur efri brún hvers stöpuls; lokastöpullinn er summan
+    enda     = cumsum(coalesce(breyting, 0)),
+    breyting = coalesce(breyting, enda),
+    byrjun   = if_else(heild, 0, enda - breyting),
+    tegund   = case_when(heild ~ "heild", breyting > 0 ~ "aukning", .default = "faekkun"),
+    merki    = if_else(heild, as.character(breyting), sprintf("%+d", as.integer(breyting)))
+  )
+
+ggplot(fossar_gg) +
   geom_rect(aes(xmin = x - 0.4, xmax = x + 0.4, ymin = byrjun, ymax = enda, fill = tegund)) +
-  geom_segment(data = fossar[-n, ],
+  geom_segment(data = filter(fossar_gg, x < max(x)),
                aes(x = x + 0.4, xend = x + 0.6, y = enda, yend = enda),
                colour = "grey60", linetype = "dashed") +
   geom_text(aes(x = x, y = pmax(byrjun, enda), label = merki), vjust = -0.5, size = 3.5) +
-  scale_x_continuous(breaks = fossar$x, labels = fossar$thattur) +
+  scale_x_continuous(breaks = fossar_gg$x, labels = fossar_gg$thattur) +
   scale_fill_manual(values = c(heild = "grey55", aukning = "#2a9d8f", faekkun = "#e76f51"),
                     guide = "none") +
-  labs(title = paste("Starfsmönnum fjölgaði um", fossar$enda[n] - fossar$enda[1], "á árinu"),
+  labs(title = paste("Starfsmönnum fjölgaði um", lok - fossar$breyting[1], "á árinu"),
        subtitle = "Ráðningar vega þyngst en uppsagnir og starfslok draga úr fjölguninni",
        x = NULL, y = "Fjöldi starfsmanna") +
   theme_minimal() +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank())
 ```
-
-Árið byrjar með `r fossar$enda[1]` starfsmönnum og endar með `r fossar$enda[n]`. Nettóbreytingin
-ein og sér segir okkur ekki hvort fáir hafi komið og farið eða hvort mikil hreyfing hafi verið á
-fólki. Fossaritið svarar því: `r fossar$breyting[2]` voru ráðnir en
-`r -(fossar$breyting[3] + fossar$breyting[4])` hættu, annaðhvort vegna uppsagna eða starfsloka.
 
 Takið eftir þremur atriðum í kóðanum:
 
@@ -410,14 +447,71 @@ Takið eftir þremur atriðum í kóðanum:
 - **Tengilínur.** Brotnu línurnar á milli stöplanna sýna hvar næsti stöpull tekur við og gera
   „stigann“ auðveldari að fylgja.
 
-##### Notkun á fossarit
+## waterfalls
 
-Fossarit er oft notað í fjármálum til að sýna innstreymi og útstreymi fjármuna, eða í mannauðsmálum
-til að sýna ráðningar og uppsagnir. Þetta rit er sérstaklega gott til að sýna samsetningu breytinga
-á milli upphafs- og lokagildis, þar sem það sýnir ekki bara heildartölur heldur hvað stuðlar að þeim
-breytingum.
+Pakkinn [`waterfalls`](https://cran.r-project.org/package=waterfalls) sér um hlaupandi samtölu,
+tengilínur og lokastöpul. Fallið `waterfall()` tekur gögnin beint og skilar ggplot2-mynd, svo við
+getum bætt við titlum og þema eins og venjulega.
 
-##### Stöplarit vs fossarit
+```{r}
+#| label: visuals-major-fossar-waterfalls
+#| code-fold: true
+#| code-summary: "Sýna kóðann"
+#| fig-cap: "Fossarit teiknað með waterfalls-pakkanum (tilbúin gögn)"
+#| fig-alt: "Fossarit með sex stöplum. Grár upphafsstöpull, grænir stöplar fyrir fjölgun, appelsínugulir fyrir fækkun og grár lokastöpull."
+library(waterfalls)
 
-Stöplarit sýnir heildargildi hverrar breytu á meðan fossarit brýtur niður breytingar á milli
-upphafs- og lokagildis, sem gefur nákvæmari mynd af því hvernig breytingar eiga sér stað.
+waterfall(fossar,
+          calc_total = TRUE, total_axis_text = "Lok árs",
+          fill_by_sign = FALSE,
+          fill_colours = c("grey55", "#2a9d8f", "#e76f51", "#e76f51", "#2a9d8f"),
+          total_rect_color = "grey55", total_rect_border_color = NA,
+          rect_border = NA, scale_y_to_waterfall = FALSE) +
+  labs(title = paste("Starfsmönnum fjölgaði um", lok - fossar$breyting[1], "á árinu"),
+       subtitle = "Ráðningar vega þyngst en uppsagnir og starfslok draga úr fjölguninni",
+       x = NULL, y = "Fjöldi starfsmanna") +
+  theme_minimal() +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor = element_blank())
+```
+
+Kóðinn er mun styttri, en við verðum að gefa litina í réttri röð, einn fyrir hvern stöpul.
+
+## plotly
+
+`plotly` hefur sérstaka myndgerð, `type = "waterfall"`. Í stað þess að reikna grunnlínur segjum við
+fyrir hvern stöpul hvort hann sé upphafsgildi (`absolute`), breyting (`relative`) eða samtala
+(`total`). Myndin er gagnvirk: færið músina yfir stöpul til að sjá gildið.
+
+```{r}
+#| label: visuals-major-fossar-plotly
+#| message: false
+#| code-fold: true
+#| code-summary: "Sýna kóðann"
+#| fig-cap: "Gagnvirkt fossarit teiknað með plotly (tilbúin gögn)"
+library(plotly)
+
+thaettir <- c(fossar$thattur, "Lok árs")
+
+plot_ly(
+  type    = "waterfall",
+  x       = thaettir,
+  y       = c(fossar$breyting, 0),
+  measure = c("absolute", rep("relative", nrow(fossar) - 1), "total"),
+  text    = c(fossar$breyting[1], sprintf("%+d", as.integer(fossar$breyting[-1])), lok),
+  textposition = "outside",
+  increasing = list(marker = list(color = "#2a9d8f")),
+  decreasing = list(marker = list(color = "#e76f51")),
+  totals     = list(marker = list(color = "grey")),
+  connector  = list(line = list(color = "grey", dash = "dash"))
+) |>
+  layout(
+    title = paste("Starfsmönnum fjölgaði um", lok - fossar$breyting[1], "á árinu"),
+    xaxis = list(title = "", categoryorder = "array", categoryarray = thaettir),
+    yaxis = list(title = "Fjöldi starfsmanna"),
+    showlegend = FALSE
+  )
+```
+
+Hér þarf hvorki að reikna grunnlínur né gefa hverjum stöpli lit, því `plotly` litar eftir því hvort
+stöpull er aukning, fækkun eða samtala. Útlitið fylgir hins vegar þema `plotly` en ekki ggplot2.
+:::
