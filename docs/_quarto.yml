@@ -100,6 +100,7 @@ book:
         - regex/data-cleaning.qmd
         - regex/agents.qmd
         - regex/good-practices.qmd
+        - regex/sjalfsprof.qmd
         - regex/mbl.qmd
     - part: "Rökfræði og mengi"
       chapters:
@@ -115,6 +116,7 @@ book:
         - logic-sets/relation-composition.qmd
         - logic-sets/functions-and-keys.qmd
         - logic-sets/relation-properties.qmd
+        - logic-sets/sjalfsprof.qmd
     - part: "SQL grunnatriði"
       chapters:
         - sql-basics/introduction.qmd
@@ -135,6 +137,7 @@ book:
         - sql-advanced/postgres.qmd
         - sql-advanced/union.qmd
         - sql-advanced/joins.qmd
+        - sql-advanced/sjalfsprof.qmd
         - sql-advanced/views.qmd
         - sql-advanced/functions.qmd
         - sql-advanced/cte.qmd
@@ -188,3 +191,4 @@ format:
 
 filters:
   - filters/description-lead.lua
+  - filters/sjalfsprof.lua
