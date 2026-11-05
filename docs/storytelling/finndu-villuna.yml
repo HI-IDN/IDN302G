@@ -23,19 +23,20 @@ spurningar:
       ![Sama súlurit með Y-ás sem byrjar á 0](figures/finndu-villuna/skyrt-sulurit.png)
 
   - spurning: |
-      Hvað er villandi við lárétta ásinn í þessu grafi af bensínverði?
+      Hvað er villandi við þetta graf af bensínverði?
 
       ![Graf Fox News af þróun bensínverðs](figures/fox_gascost.png)
     valkostir:
       - Grafið ætti að vera súlurit en ekki línurit
-      - Verðið er sýnt í dollurum en ekki krónum
-      - Það vantar titil á grafið
-      - Jafnlöng bil á ásnum tákna mislöng tímabil
-    rett: [D]
+      - Jafnlöng bil á lárétta ásnum tákna mislöng tímabil
+      - Lóðrétti ásinn byrjar ekki á 0
+      - Heimildina vantar
+    rett: [B, C]
     utskyring: |
-      Á ásnum fær heilt ár (frá „last year“ til „last week“) jafn mikið pláss og ein vika. Þá lítur
-      hækkun yfir heilt ár út eins og brött breyting, og vikan virðist jafn mikilvæg og árið. Y-ásinn
-      byrjar líka í 2,90, sem ýkir hækkunina enn frekar.
+      Tvennt er villandi. Á lárétta ásnum fær heilt ár (frá „last year“ til „last week“) jafn mikið
+      pláss og ein vika, svo hækkun yfir heilt ár lítur út eins og brött breyting og vikan virðist
+      jafn mikilvæg og árið. Lóðrétti ásinn byrjar auk þess í 2,90, sem ýkir hækkunina enn frekar.
+      Grafið má vel vera línurit, því það sýnir þróun yfir tíma, og heimildin (AAA) er neðst.
 
       Sömu þrjár tölur með réttu tímabili á ásnum og Y-ás frá 0: hækkunin dreifist yfir árið og
       breytingin síðustu vikuna sést varla.
@@ -64,7 +65,7 @@ spurningar:
       - merkja mælieiningar og kvarða greinilega.
 
   - spurning: |
-      Hvað er helst athugavert við þetta þrívíða súlurit um íbúasamsetningu í Garðabæ?
+      Hvað er helst athugavert við þetta súlurit um íbúasamsetningu í Garðabæ?
 
       ![Þrívítt súlurit um íbúasamsetningu í Garðabæ](figures/kgp_3D.png)
     valkostir:
