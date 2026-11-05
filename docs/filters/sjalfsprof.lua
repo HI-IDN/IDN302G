@@ -20,7 +20,7 @@
 -- `\d` sem lausan `d`. Númer spurninga, "Hluti 1", "Rétt svar er A" og fjöldi
 -- spurninga eru reiknuð; þau á ekki að skrifa í YAML-skrána.
 --
--- Útlit og virkni eru í partials/sjalfsprof.html, sem er aðeins sett inn á síður
+-- Útlit og virkni eru í partials/sjalfsprof.inc, sem er aðeins sett inn á síður
 -- sem nota sjálfspróf.
 
 local function to_html(value)
@@ -111,7 +111,7 @@ function Div(el)
   data = data:gsub("</", "<\\/")
 
   if not included then
-    quarto.doc.include_file("after-body", "../partials/sjalfsprof.html")
+    quarto.doc.include_file("after-body", "../partials/sjalfsprof.inc")
     included = true
   end
 
