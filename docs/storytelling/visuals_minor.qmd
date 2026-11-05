@@ -190,6 +190,7 @@ mesta sem lesandinn ræður við í einu.
 
 Nánar um [Bubble Chart](https://www.storytellingwithdata.com/blog/2021/5/11/what-is-a-bubble-chart)
 á *Storytelling with data.*
+
 ---
 
 ### Bullet graf
@@ -217,6 +218,7 @@ hnitmiðaða og þétta framsetningu.
 
 Nánar um [Bullet Graph](https://www.storytellingwithdata.com/blog/what-is-a-bullet-graph) á
 *Storytelling with data.*
+
 ---
 
 ### Punktarit - Dot Plot
@@ -259,6 +261,7 @@ súlurit þegar flokkarnir eru margir.
 
 Nánar um [Dot Plot](http://www.storytellingwithdata.com/blog/2020/12/9/what-is-a-dot-plot) á
 *Storytelling with data.*
+
 ---
 
 ### Flæðirit - Flowchart
@@ -291,6 +294,7 @@ innan fyrirtækja.
 
 Nánar um [Flowchart](https://www.storytellingwithdata.com/blog/what-is-a-flowchart) á *Storytelling
 with data.*
+
 ---
 
 ### Sankey-rit - Sankey Diagram
@@ -327,6 +331,7 @@ við ráðningar eða auðlindadreifingu innan fyrirtækis.
 
 Nánar um [Sankey Diagram](https://www.storytellingwithdata.com/blog/what-is-a-sankey-diagram) á
 *Storytelling with data.*
+
 ---
 
 ### Köngulórit - Spider Chart
@@ -355,6 +360,7 @@ notuð til að bera saman frammistöðu á mörgum sviðum á sama tíma, t.d. t
 
 Nánar um [Spider Chart](https://www.storytellingwithdata.com/blog/2021/8/31/what-is-a-spider-chart)
 á *Storytelling with data.*
+
 ---
 
 ### Rúðurit - Square Area Chart
@@ -395,6 +401,7 @@ bæði áhrifamikið og nákvæmt.
 
 Nánar um [Square Area Chart](https://www.storytellingwithdata.com/blog/what-is-a-square-area-chart)
 á *Storytelling with data.*
+
 ---
 
 ### Trémynd - Treemap
@@ -428,6 +435,7 @@ ruglingslegar fyrir áhorfendur sem eru ekki vanir þessari gerð grafa.
 
 Nánar um [Treemap](https://www.storytellingwithdata.com/blog/what-is-a-treemap) á *Storytelling with
 data.*
+
 ---
 
 ### Einingarit - Unit Chart
