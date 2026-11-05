@@ -1,4 +1,4 @@
-# Spurningar fyrir sql-advanced/sjalfsprof.qmd. Sniðinu er lýst efst í filters/sjalfsprof.lua.
+# Spurningar fyrir sql-basics/sjalfsprof.qmd. Sniðinu er lýst efst í filters/sjalfsprof.lua.
 # Töflurnar staerdfraedi = {1, 2, 3, 4} og tolvunarfraedi = {3, 4, 5, 6} eru kynntar í inngangi.
 
 spurningar:
@@ -95,7 +95,7 @@ spurningar:
       `LEFT JOIN` heldur öllum röðum úr vinstri töflunni, hvort sem þær eiga samsvörun eða
       ekki. Nemendur 1 og 2 fá `NULL` í `t.nemandi_id`. `INNER JOIN` myndi skila 2 röðum og
       `CROSS JOIN` 16. `LEFT JOIN` er því **ekki** $A - B$.
-      Sjá [Samsettar töflur](joins.qmd).
+      Sjá [Samsettar töflur](../sql-advanced/joins.qmd).
 
   - hluti: Samsettar töflur
     titill: Anti-join

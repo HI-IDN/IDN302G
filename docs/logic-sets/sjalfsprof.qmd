@@ -13,7 +13,7 @@ samskeyting, eiginleikar vensla og föll.
 
 Veldu svar og smelltu á **Athuga svar**; þá birtist rétt svar og útskýring. Í lokin sérðu
 hversu mörgum spurningum þú svaraðir rétt. Sama dæmi í SQL er í
-[sjálfsprófinu í SQL framhaldi](../sql-advanced/sjalfsprof.qmd).
+[sjálfsprófinu í SQL grunnatriðum](../sql-basics/sjalfsprof.qmd).
 
 ::: {.sjalfsprof src="sjalfsprof.yml"}
 :::

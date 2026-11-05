@@ -1,5 +1,5 @@
 ---
-title: "Sjálfspróf í SQL framhaldi"
+title: "Sjálfspróf í SQL grunnatriðum"
 lang: is
 ---
 
