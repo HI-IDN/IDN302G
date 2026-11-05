@@ -106,6 +106,10 @@
     if (html !== undefined) e.innerHTML = html;
     return e;
   };
+  // Stærðfræði ($A \cap B$) er sett inn eftir að MathJax hefur keyrt, svo við biðjum um hana aftur
+  const typeset = node => {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([node]);
+  };
 
   function init(root, n) {
     const questions = JSON.parse(root.querySelector(".sjalfsprof-data").textContent);
@@ -183,10 +187,12 @@
             + join(right) + "."),
           el("div", "", q.explanation)
         );
+        typeset(feedback);
         button.textContent = current === questions.length - 1 ? "Sjá niðurstöðu" : "Næsta spurning";
       });
 
       content.replaceChildren(card);
+      typeset(card);
     }
 
     function results() {

@@ -1,0 +1,106 @@
+# Spurningar fyrir logic-sets/mengi-sql-aefingar.qmd. Sniðinu er lýst efst í
+# filters/sjalfsprof.lua. Mengjaritháttur fylgir Mengjaaðgerðum ($A - B$ fyrir mismun).
+
+spurningar:
+
+  - hluti: Mengjaaðgerðir
+    titill: Sniðmengi
+    spurning: 'Hvert er sniðmengið $A \cap B$?'
+    valkostir: ['$\{1, 2, 3, 4, 5, 6\}$', '$\{3, 4\}$', '$\{1, 2\}$', '$\{5, 6\}$']
+    rett: [B]
+    utskyring: |
+      Sniðmengi inniheldur aðeins þau stök sem eru í báðum mengjunum. 3 og 4 eru bæði í $A$
+      og $B$. Í SQL samsvarar `INTERSECT` þessari aðgerð.
+
+  - hluti: Mengjaaðgerðir
+    titill: Sammengi
+    spurning: 'Hvert er sammengið $A \cup B$?'
+    valkostir: ['$\{3, 4\}$', '$\{1, 2, 5, 6\}$', '$\{1, 2, 3, 4, 5, 6\}$', '$\{1, 2, 3, 4, 3, 4, 5, 6\}$']
+    rett: [C]
+    utskyring: |
+      Sammengi inniheldur öll stök sem eru í $A$, $B$ eða báðum, og hvert stak kemur aðeins
+      einu sinni fyrir. Í SQL sameinar `UNION` niðurstöður og fjarlægir tvíteknar raðir.
+
+  - hluti: Mengjaaðgerðir
+    titill: Mismunur
+    spurning: 'Hver er mismunurinn $A - B$?'
+    valkostir: ['$\{1, 2\}$', '$\{3, 4\}$', '$\{5, 6\}$', '$\{1, 2, 5, 6\}$']
+    rett: [A]
+    utskyring: |
+      $A - B$ inniheldur þau stök sem eru í $A$ en ekki í $B$: 1 og 2. Í SQL gerir `EXCEPT`
+      það sama. Mismunur er stundum ritaður $A \setminus B$.
+
+  - hluti: Mengjaaðgerðir í SQL
+    titill: '`UNION`'
+    spurning: |
+      Hver er niðurstaða þessarar fyrirspurnar?
+
+      ```sql
+      SELECT nemandi_id FROM staerdfraedi
+      UNION
+      SELECT nemandi_id FROM tolvunarfraedi;
+      ```
+    valkostir: ['$\{1, 2, 3, 4\}$', '$\{3, 4\}$', '$\{1, 2, 3, 4, 5, 6\}$', '$\{5, 6\}$']
+    rett: [C]
+    utskyring: |
+      `UNION` sameinar niðurstöður beggja fyrirspurna og fjarlægir tvíteknar raðir, sem er
+      sammengið $A \cup B$. Röð raðanna er ekki tryggð nema `ORDER BY` sé notað.
+
+  - hluti: Mengjaaðgerðir í SQL
+    titill: '`INTERSECT`'
+    spurning: |
+      Hvaða nemandanúmer skilar þessi fyrirspurn?
+
+      ```sql
+      SELECT nemandi_id FROM staerdfraedi
+      INTERSECT
+      SELECT nemandi_id FROM tolvunarfraedi;
+      ```
+    valkostir: ['$\{1, 2\}$', '$\{3, 4\}$', '$\{5, 6\}$', '$\{1, 2, 3, 4, 5, 6\}$']
+    rett: [B]
+    utskyring: |
+      `INTERSECT` skilar aðeins röðum sem eru í báðum fyrirspurnum, sem er sniðmengið
+      $A \cap B$. Nemendur 3 og 4 eru í báðum námskeiðum.
+
+  - hluti: Mengjaaðgerðir í SQL
+    titill: '`EXCEPT`'
+    spurning: |
+      Hvaða nemandanúmer skilar þessi fyrirspurn?
+
+      ```sql
+      SELECT nemandi_id FROM staerdfraedi
+      EXCEPT
+      SELECT nemandi_id FROM tolvunarfraedi;
+      ```
+    valkostir: ['$\{3, 4\}$', '$\{5, 6\}$', '$\{1, 2\}$', '$\{1, 2, 3, 4, 5, 6\}$']
+    rett: [C]
+    utskyring: |
+      `EXCEPT` skilar röðum úr fyrri fyrirspurninni sem eru ekki í þeirri síðari, sem er
+      mismunurinn $A - B$. Nemendur 1 og 2 eru í stærðfræði en ekki tölvunarfræði.
+
+  - hluti: Hagnýt beiting
+    titill: '`UNION` og `UNION ALL`'
+    spurning: 'Hver er helsti munurinn á `UNION` og `UNION ALL`?'
+    valkostir:
+      - '`UNION ALL` fjarlægir tvíteknar raðir'
+      - '`UNION` fjarlægir tvíteknar raðir, en `UNION ALL` gerir það ekki'
+      - '`UNION` virkar aðeins með tveimur töflum'
+      - Enginn munur er á aðgerðunum
+    rett: [B]
+    utskyring: |
+      `UNION ALL` heldur öllum röðum, líka þeim sem koma oftar en einu sinni fyrir. Þess vegna
+      samsvarar `UNION` betur sammengi í mengjafræði, því mengi hefur engin tvítekin stök.
+
+  - hluti: Hagnýt beiting
+    titill: Veldu rétta fyrirspurn
+    spurning: 'Við viljum finna nemendur sem eru í tölvunarfræði en ekki í stærðfræði. Hvaða fyrirspurn er rétt?'
+    valkostir:
+      - '`SELECT nemandi_id FROM staerdfraedi UNION SELECT nemandi_id FROM tolvunarfraedi;`'
+      - '`SELECT nemandi_id FROM staerdfraedi EXCEPT SELECT nemandi_id FROM tolvunarfraedi;`'
+      - '`SELECT nemandi_id FROM tolvunarfraedi EXCEPT SELECT nemandi_id FROM staerdfraedi;`'
+      - '`SELECT nemandi_id FROM staerdfraedi INTERSECT SELECT nemandi_id FROM tolvunarfraedi;`'
+    rett: [C]
+    utskyring: |
+      Við viljum $B - A$, svo tölvunarfræði á að vera í fyrri `SELECT`-fyrirspurninni og
+      stærðfræði í þeirri síðari. Röðin skiptir máli fyrir `EXCEPT`, eins og fyrir mismun.
+      Fyrirspurnin skilar $\{5, 6\}$.
