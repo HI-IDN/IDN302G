@@ -343,6 +343,7 @@ pantað eða nemendur sem hafa ekki skilað.
 ```{r}
 #| label: joins-r-1
 #| include: false
+options(knitr.kable.NA = "NULL")  # birta NULL eins og SQLite, ekki NA
 con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
 DBI::dbWriteTable(con, "nemendur", data.frame(
   id   = 1:4,
@@ -384,7 +385,7 @@ knitr::kable(skil, caption = "`skil`")
 ```
 
 Allar fyrirspurnirnar velja sömu fjóra dálkana og eru eins nema tengingin. Þar sem engin
-samsvörun er kemur `NULL`, sem birtist sem `NA` af því að úttakið fer í gegnum _R_.
+samsvörun er kemur `NULL`.
 
 ::: {.panel-tabset}
 
