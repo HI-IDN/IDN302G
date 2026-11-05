@@ -27,13 +27,19 @@ enda á notkun regex í R, Python og gagnavinnu.
 
 <style>
 #regex-quiz {
+  /* Litapalletta HÍ úr styles/hi-book.scss; appelsínugulur er aðallitur prófsins */
+  --quiz-accent: var(--hi-orange, #FFA05F);
+  --quiz-accent-dark: color-mix(in srgb, var(--quiz-accent) 65%, var(--hi-ink, #262626));
+  --quiz-accent-soft: color-mix(in srgb, var(--quiz-accent) 15%, transparent);
+  --quiz-correct: var(--hi-teal, #2DD2C0);
+  --quiz-incorrect: var(--hi-red, #FC8484);
   max-width: 800px;
   margin: 30px auto;
 }
 
 .quiz-progress-track {
   height: 9px;
-  background: #dfe5ec;
+  background: var(--hi-panel, #EEEEEE);
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 24px;
@@ -42,7 +48,7 @@ enda á notkun regex í R, Python og gagnavinnu.
 #quiz-progress-fill {
   height: 100%;
   width: 0%;
-  background: #397fc2;
+  background: var(--quiz-accent);
   transition: width 0.3s;
 }
 
@@ -76,12 +82,12 @@ enda á notkun regex í R, Python og gagnavinnu.
 }
 
 .quiz-option:has(input:checked) {
-  border-color: #397fc2;
-  background: rgba(57, 127, 194, 0.1);
+  border-color: var(--quiz-accent);
+  background: var(--quiz-accent-soft);
 }
 
 .quiz-option input {
-  accent-color: #397fc2;
+  accent-color: var(--quiz-accent);
 }
 
 .quiz-option:has(input:disabled) {
@@ -89,8 +95,8 @@ enda á notkun regex í R, Python og gagnavinnu.
 }
 
 .quiz-btn {
-  background: #2463a4;
-  color: white;
+  background: var(--quiz-accent);
+  color: var(--hi-ink, #262626);
   border: none;
   padding: 12px 22px;
   border-radius: 9px;
@@ -100,7 +106,8 @@ enda á notkun regex í R, Python og gagnavinnu.
 }
 
 .quiz-btn:hover {
-  background: #174978;
+  background: var(--quiz-accent-dark);
+  color: var(--hi-white, #ffffff);
 }
 
 .quiz-btn:disabled {
@@ -117,13 +124,13 @@ enda á notkun regex í R, Python og gagnavinnu.
 }
 
 .quiz-feedback.correct {
-  background: rgba(38, 148, 89, 0.1);
-  border: 1px solid #269459;
+  background: color-mix(in srgb, var(--quiz-correct) 15%, transparent);
+  border: 1px solid var(--quiz-correct);
 }
 
 .quiz-feedback.incorrect {
-  background: rgba(203, 72, 56, 0.1);
-  border: 1px solid #cb4838;
+  background: color-mix(in srgb, var(--quiz-incorrect) 15%, transparent);
+  border: 1px solid var(--quiz-incorrect);
 }
 
 .quiz-feedback h4 {
@@ -141,7 +148,7 @@ enda á notkun regex í R, Python og gagnavinnu.
 .quiz-score {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #397fc2;
+  color: var(--quiz-accent-dark);
 }
 </style>
 
