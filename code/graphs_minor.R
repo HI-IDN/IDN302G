@@ -34,6 +34,32 @@ p_dot <- ggplot(bilar, aes(x = mpg, y = reorder(bill, mpg))) +
        x = "Mílur á gallon (mpg)", y = NULL)
 ggsave(file.path(out, "dotplot_example.png"), p_dot, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
 
+# Hefðbundið punktarit: dreifing sparneytni, einn punktur fyrir hvern bíl
+p_dot_dreif <- ggplot(mtcars, aes(x = mpg)) +
+  geom_dotplot(binwidth = 1, method = "histodot", fill = lit, colour = lit) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(title = "Hefðbundið punktarit: dreifing sparneytni",
+       subtitle = "Hver punktur er einn bíll",
+       x = "Mílur á gallon (mpg)")
+ggsave(file.path(out, "dotplot_distribution.png"), p_dot_dreif, width = 6, height = 3, dpi = 200, bg = "white", type = "cairo")
+
+# Tengt punktarit: meðalsparneytni sjálfskiptra og beinskiptra bíla eftir strokkafjölda.
+# Línan milli punktanna dregur augað að muninum á skiptingunum.
+medal <- aggregate(mpg ~ cyl + am, data = mtcars, FUN = mean)
+medal$skipting <- ifelse(medal$am == 1, "Beinskiptur", "Sjálfskiptur")
+medal$cyl_f <- factor(paste(medal$cyl, "strokkar"), levels = paste(c(8, 6, 4), "strokkar"))
+bil <- merge(subset(medal, am == 0, c(cyl_f, mpg)), subset(medal, am == 1, c(cyl_f, mpg)),
+             by = "cyl_f", suffixes = c("_sjalf", "_bein"))
+p_dot_tengt <- ggplot(medal, aes(x = mpg, y = cyl_f)) +
+  geom_segment(data = bil, aes(x = mpg_sjalf, xend = mpg_bein, y = cyl_f, yend = cyl_f),
+               colour = "grey75", linewidth = 3) +
+  geom_point(aes(colour = skipting), size = 5) +
+  scale_colour_manual(values = c(Beinskiptur = hi_blue, Sjálfskiptur = hi_orange), name = NULL) +
+  labs(title = "Tengt punktarit: meðalsparneytni eftir skiptingu",
+       x = "Mílur á gallon (mpg)", y = NULL) +
+  theme(legend.position = "top")
+ggsave(file.path(out, "dotplot_connected.png"), p_dot_tengt, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
+
 # Svæðarit: atvinnulausir í Bandaríkjunum yfir tíma
 p_area <- ggplot(economics, aes(x = date, y = unemploy / 1000)) +
   geom_area(fill = lit, alpha = 0.6) +

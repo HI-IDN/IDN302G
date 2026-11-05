@@ -235,11 +235,32 @@ punktariti, en helstu gerðirnar eru:
    milli
    punkta leggur áherslu á muninn eða breytingu.
 
+::: {.panel-tabset}
+
+#### Hefðbundið
+
+![Hefðbundið punktarit af dreifingu sparneytni bíla](figures/dotplot_distribution.png)
+
+Hér er einn punktur fyrir hvern bíl í `mtcars`, `r nrow(mtcars)` alls, staflað eftir sparneytni.
+Lögun dreifingarinnar sést strax, og líka gildi sem standa ein og sér.
+
+#### Cleveland
+
 ![Cleveland punktarit af sparneytnustu bílunum](figures/dotplot_example.png)
 
-Þetta er Cleveland punktarit sem sýnir sparneytnustu bílana. Hver punktur er eitt gildi og
-bílarnir eru raðaðir eftir því, sem gerir samanburðinn auðveldan. Punktarit er góður valkostur við
-súlurit þegar flokkarnir eru margir.
+Hér eru sparneytnustu bílarnir raðaðir eftir sparneytni, einn punktur á bíl. Röðunin gerir
+samanburðinn auðveldan, og punktarit er góður valkostur við súlurit þegar flokkarnir eru margir.
+
+#### Tengt
+
+![Tengt punktarit af meðalsparneytni sjálfskiptra og beinskiptra bíla](figures/dotplot_connected.png)
+
+Hér er meðalsparneytni sjálfskiptra og beinskiptra bíla borin saman eftir fjölda strokka. Punktarnir
+sýna gildin og línan milli þeirra dregur augað að muninum: hann er mestur hjá 4 strokka bílum og
+nær enginn hjá 8 strokka. Sama samanburð mætti sýna með tvöföldu súluriti, en þá ber augað saman
+lengdir súlnanna í stað þess að sjá muninn beint.
+
+:::
 
 
 ##### Kostir:
