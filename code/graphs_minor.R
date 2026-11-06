@@ -85,9 +85,11 @@ p_dot_tengt <- ggplot(medal, aes(x = mpg, y = cyl_f)) +
   theme(legend.position = "top")
 vista(p_dot_tengt, "dotplot_connected.png")
 
-# Stærra dæmi: verð á Big Mac í dollurum í tveimur síðustu mælingum, úr data/bigmac.db
-# (sótt með code/bigmac_sqlite.R). Línan byrjar í fyrra verðinu og punkturinn er nýja
-# verðið. Appelsínugult þar sem verðið hækkaði.
+# Stærra dæmi: verð á Big Mac í tveimur síðustu mælingum, úr data/bigmac.db (sótt með
+# code/bigmac_sqlite.R). Línan byrjar í fyrra verðinu og punkturinn er nýja verðið.
+# Appelsínugult þar sem verðið hækkaði. Bæði verðin eru umreiknuð í krónur á sama
+# gengi, því nýjasta. Annars myndi breyting á gengi krónunnar blandast inn í
+# breytinguna á verðinu.
 manudir <- c("janúar", "febrúar", "mars", "apríl", "maí", "júní", "júlí", "ágúst",
              "september", "október", "nóvember", "desember")
 manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 4))
@@ -99,7 +101,11 @@ bm <- DBI::dbGetQuery(con, "
        JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
        LEFT JOIN land l ON l.iso = n.iso
   WHERE n.dags = ?", params = list(dags[2], dags[1]))
+gengi <- DBI::dbGetQuery(con, "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?",
+                         params = list(dags[1]))
 DBI::dbDisconnect(con)
+bm$fyrr <- bm$fyrr * gengi$isk_per_usd
+bm$nu <- bm$nu * gengi$isk_per_usd
 bm$haekkun <- bm$nu > bm$fyrr
 bm$land <- reorder(bm$land, bm$nu)
 # Orðið „hækkað“ er appelsínugult í titlinum, svo ekki þarf sérstaka litaskýringu.
@@ -117,14 +123,19 @@ p_bigmac <- ggplot(bm, aes(y = land)) +
   geom_segment(aes(x = fyrr, xend = nu, yend = land, colour = haekkun), linewidth = 1.3) +
   geom_point(aes(x = nu, colour = haekkun), size = 2.6) +
   scale_colour_manual(values = c(`FALSE` = hi_blue, `TRUE` = hi_orange), guide = "none") +
-  scale_x_continuous(labels = function(x) paste0("$", trimws(format(x, decimal.mark = ",")))) +
+  scale_x_continuous(labels = function(x) paste(format(x, big.mark = ".", decimal.mark = ",",
+                                                        trim = TRUE), "kr.")) +
   labs(title = titill_svartur,
        subtitle = paste0("Punkturinn er verðið í ", manudur(dags[1]),
                          ", línan byrjar í verðinu í ", manudur(dags[2]), "."),
-       x = "Verð í dollurum", y = NULL,
-       caption = paste0("Heimild: The Economist, Big Mac-vísitalan. Sótt af ",
-                        "raw.githubusercontent.com/TheEconomist/big-mac-data/",
-                        "master/output-data/big-mac-raw-index.csv")) +
+       x = "Verð í krónum", y = NULL,
+       caption = paste0(
+         "Heimildir: Big Mac-verð frá The Economist, sótt af raw.githubusercontent.com/",
+         "TheEconomist/big-mac-data/master/output-data/big-mac-raw-index.csv.\n",
+         "Umreiknað í krónur á opinberu viðmiðunargengi Seðlabanka Íslands ",
+         format(as.Date(gengi$gengisdagur), "%d.%m.%Y"), " (",
+         format(gengi$isk_per_usd, decimal.mark = ","), " kr. fyrir Bandaríkjadal), ",
+         "sótt úr vefþjónustu bankans, sedlabanki.is/xmltimeseries.")) +
   theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9),
         plot.caption = element_text(size = 7, hjust = 0), plot.caption.position = "plot",
         plot.title.position = "plot", plot.title = element_text(size = 12.5))

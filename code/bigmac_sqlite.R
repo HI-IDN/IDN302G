@@ -2,7 +2,8 @@
 # lítinn SQLite-grunn, data/bigmac.db. Keyrt úr rót geymslunnar:
 #   Rscript code/bigmac_sqlite.R
 #
-# Heimild: https://github.com/TheEconomist/big-mac-data
+# Heimildir: https://github.com/TheEconomist/big-mac-data (Big Mac-verð) og
+# opinbert viðmiðunargengi Seðlabanka Íslands (gengi Bandaríkjadals).
 # Grunnurinn er vistaður í geymslunni svo bókin byggist án nettengingar. Keyrðu
 # skriftuna aftur til að fá nýjustu tölurnar.
 
@@ -40,6 +41,26 @@ lond <- data.frame(iso = c(
   "Rúmenía", "Rússland", "Sádi-Arabía", "Singapúr", "Svíþjóð", "Taíland", "Tyrkland", "Taívan",
   "Úkraína", "Úrúgvæ", "Bandaríkin", "Venesúela", "Víetnam", "Suður-Afríka"))
 DBI::dbWriteTable(con, "land", lond, overwrite = TRUE)
+
+# Gengi Bandaríkjadals í krónum: opinbert viðmiðunargengi Seðlabanka Íslands (skráð
+# miðgengi, tímaröð 4055), sótt úr XML-vefþjónustu bankans. Fyrir hverja dagsetningu
+# í bigmac er notað síðasta skráða gengi á eða fyrir þann dag (1. janúar er frídagur).
+gengi_slod <- paste0("https://sedlabanki.is/xmltimeseries/Default.aspx?DagsFra=",
+                     as.Date(min(bigmac$dags)) - 10, "&DagsTil=", max(bigmac$dags),
+                     "&TimeSeriesID=4055&Type=xml")
+xml <- paste(readLines(gengi_slod, warn = FALSE, encoding = "UTF-8"), collapse = "")
+faerslur <- regmatches(xml, gregexpr("<Entry>.*?</Entry>", xml, perl = TRUE))[[1]]
+skrad <- data.frame(
+  dagur = as.Date(sub(".*<Date>([0-9/]+) .*", "\\1", faerslur), format = "%m/%d/%Y"),
+  isk = as.numeric(sub(".*<Value>([0-9.]+)</Value>.*", "\\1", faerslur))
+)
+dags_bm <- sort(unique(bigmac$dags))
+gengi <- do.call(rbind, lapply(dags_bm, function(d) {
+  fyrir <- skrad[skrad$dagur <= as.Date(d), ]
+  sidast <- fyrir[which.max(fyrir$dagur), ]
+  data.frame(dags = d, gengisdagur = format(sidast$dagur), isk_per_usd = sidast$isk)
+}))
+DBI::dbWriteTable(con, "gengi", gengi, overwrite = TRUE)
 DBI::dbDisconnect(con)
 
 cat("Vistaði", nrow(bigmac), "raðir frá", min(bigmac$dags), "til", max(bigmac$dags), "í", skra, "\n")

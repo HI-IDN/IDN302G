@@ -348,27 +348,40 @@ bm <- DBI::dbGetQuery(bm_con, "
        JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
        LEFT JOIN land l ON l.iso = n.iso
   WHERE n.dags = ?", params = list(bm_dags[2], bm_dags[1]))
+bm_gengi <- DBI::dbGetQuery(bm_con,
+  "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?", params = list(bm_dags[1]))
 DBI::dbDisconnect(bm_con)
+# Bæði verðin á sama gengi, því nýjasta, eins og í grafinu
+bm$fyrr <- bm$fyrr * bm_gengi$isk_per_usd
+bm$nu <- bm$nu * bm_gengi$isk_per_usd
 bm$breyting <- bm$nu - bm$fyrr
 bm_mest <- bm[which.max(bm$breyting), ]
 manudir <- c("janúar", "febrúar", "mars", "apríl", "maí", "júní", "júlí", "ágúst",
              "september", "október", "nóvember", "desember")
 manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 4))
-dollar <- function(x) paste0("$", formatC(x, format = "f", digits = 2, decimal.mark = ","))
+kronur <- function(x) paste(formatC(round(x), format = "d", big.mark = "."), "kr.")
+gengisdagur <- format(as.Date(bm_gengi$gengisdagur), "%d.%m.%Y")
+gengi_txt <- formatC(bm_gengi$isk_per_usd, format = "f", digits = 2, decimal.mark = ",")
 ```
 
-![Tengt punktarit af verði á Big Mac í dollurum eftir löndum](figures/dotplot_bigmac.png)
+![Tengt punktarit af verði á Big Mac í krónum eftir löndum](figures/dotplot_bigmac.png)
 
-Hér er tengt punktarit notað á raunveruleg gögn: verð á Big Mac í dollurum í `r nrow(bm)` löndum,
-úr Big Mac-vísitölu The Economist. Línan byrjar í verðinu í `r manudur(bm_dags[2])` og punkturinn er
+Hér er tengt punktarit notað á raunveruleg gögn: verð á Big Mac í `r nrow(bm)` löndum, úr Big
+Mac-vísitölu The Economist, umreiknað í krónur. Línan byrjar í verðinu í `r manudur(bm_dags[2])` og punkturinn er
 verðið í `r manudur(bm_dags[1])`, svo lengd línunnar er breytingin og stefna hennar segir hvort verðið
 hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, í `r sum(bm$breyting > 0)` af
-`r nrow(bm)` löndum. Mest hækkaði verðið í landinu `r bm_mest$land`, úr `r dollar(bm_mest$fyrr)` í
-`r dollar(bm_mest$nu)`. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
+`r nrow(bm)` löndum. Mest hækkaði verðið í landinu `r bm_mest$land`, þar sem það fór úr
+`r kronur(bm_mest$fyrr)` í `r kronur(bm_mest$nu)` á hálfu ári. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
 skýringu.
 
-Gögnin eru sótt af GitHub með `code/bigmac_sqlite.R` og vistuð í SQLite-grunninn
-`data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr. Íslensku landaheitin eru í
+The Economist gefur verðin upp í Bandaríkjadölum. Þau eru umreiknuð í krónur á opinberu
+viðmiðunargengi Seðlabanka Íslands `r gengisdagur`, `r gengi_txt` kr. fyrir dalinn. Bæði verðin,
+það eldra og það nýrra, eru umreiknuð á sama gengi. Ef eldra verðið væri umreiknað á gengi þess
+tíma myndi breyting á gengi krónunnar blandast inn í breytinguna á verðinu, og þá væri ekki ljóst
+hvort Big Mac hefði hækkað eða krónan veikst.
+
+Gögnin eru sótt með `code/bigmac_sqlite.R`: verðin af GitHub og gengið úr vefþjónustu Seðlabankans.
+Þau eru vistuð í SQLite-grunninn `data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr. Íslensku landaheitin eru í
 sér töflu, `land`, sem er tengd við verðin með `LEFT JOIN` á landskóða.
 
 :::
