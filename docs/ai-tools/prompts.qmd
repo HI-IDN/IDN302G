@@ -25,64 +25,60 @@ samhengisrík fyrirmælin (*prompts*) eru. Almennt hjálpar að hafa eftirfarand
 
 ::: {.callout-tip}
 Í stuttu máli: gott prompt er eins og gott issue — skýrt markmið, nægt samhengi og afmarkað
-umfang. Ef þú gætir sjálf/ur ekki leyst verkið út frá lýsingunni, þá getur erindrekinn það
+umfang. Ef þú gætir ekki leyst verkið út frá lýsingunni einni saman, þá getur erindrekinn það
 líklega ekki heldur.
 :::
 
-## Sýnidæmi: bæta README með aðstoð erindreka
+## Dæmi: keyrsluleiðbeiningar í README
 
-Segjum að hópur sé með lítið Python-verkefni. Skráin `scripts/clean_data.py` les
+Segjum að þú sért í hópi með lítið Python-verkefni. Skriftan `scripts/clean_data.py` les
 `data/raw.csv` og skrifar `data/clean.csv`, en í README vantar leiðbeiningar um keyrslu.
-Markmiðið er að næsti hópmeðlimur geti keyrt verkefnið án þess að þurfa að spyrja höfundinn.
-Þetta er tilbúið dæmi; skráarnöfnin vísa ekki í skrár í kennslubókinni.
+Markmiðið er að næsti hópmeðlimur geti keyrt verkefnið án þess að spyrja. (Þetta er tilbúið dæmi;
+skrárnar eru ekki til í þessari bók.)
 
 ### Óljós fyrirmæli
 
 > Bættu README fyrir verkefnið mitt.
 
-Hér vantar að segja hvað eigi að bæta og fyrir hvern. Erindrekinn gæti endurskrifað alla
-skrána eða giskað á keyrsluskipanir og pakka sem verkefnið notar ekki.
+Hér vantar bæði samhengi og markmið. Erindrekinn veit ekki hvað á að bæta eða fyrir hvern, og gæti
+endurskrifað alla skrána eða giskað á pakka og skipanir sem verkefnið notar ekki.
 
 ### Skýrari fyrirmæli
 
 > Við erum að vinna í litlu Python-verkefni fyrir námskeið. Lestu `README.md`,
 > `scripts/clean_data.py` og `requirements.txt`. Bættu aðeins við kaflanum „Keyrsla“
-> í README á íslensku fyrir hópmeðlim sem hefur ekki keyrt verkefnið áður.
+> í README, á íslensku, fyrir hópmeðlim sem hefur ekki keyrt verkefnið áður.
 >
-> Útskýrðu hvernig setja á upp pakkana úr `requirements.txt` og keyra scriptuna frá
-> rót verkefnisins. Tilgreindu hvaða inntaksskrá þarf að vera til og hvar úttakið vistast.
-> Byggðu leiðbeiningarnar á skránum sem þú lest. Ef upplýsingar vantar skaltu spyrja
-> áður en þú bætir þeim við.
+> Útskýrðu hvernig á að setja upp pakkana úr `requirements.txt` og keyra skriftuna frá
+> rót verkefnisins, hvaða inntaksskrá þarf að vera til og hvar úttakið vistast. Byggðu
+> leiðbeiningarnar á skránum sem þú lest, og spyrðu ef upplýsingar vantar.
 >
-> Ekki breyta kóðanum eða öðrum skrám. Sýndu breytinguna og útskýrðu stuttlega hvað
-> þú bættir við. Verkefninu er lokið þegar hægt er að fylgja leiðbeiningunum frá rót
-> verkefnisins og fá úttak á þeim stað sem README tilgreinir.
+> Ekki breyta kóðanum eða öðrum skrám. Sýndu breytinguna og útskýrðu stuttlega hvað þú bættir
+> við. Verkinu er lokið þegar hægt er að fylgja leiðbeiningunum frá rót verkefnisins og fá
+> úttakið á þeim stað sem README tilgreinir.
 
-Seinni fyrirmælin gefa **samhengi**, afmarka **markmiðið**, benda á **heimildir** og setja
-**skorður**. Þau skilgreina líka hvernig nemandinn getur sannreynt niðurstöðuna.
-Skýr fyrirmæli tryggja þó ekki að tillagan sé rétt; enn þarf að yfirfara hana.
+Seinni fyrirmælin fylgja ráðunum hér að ofan: þau **gefa samhengi** (verkefnið og skrárnar sem
+á að lesa), eru **skýr um markmiðið** (einn kafli fyrir tiltekinn lesanda), **setja skorður** (ekki
+breyta öðrum skrám) og segja **hvernig þú veist að verkið sé búið**. Þau **biðja líka um
+útskýringu**. Skýr fyrirmæli tryggja samt ekki að tillagan sé rétt; þú þarft enn að lesa hana yfir.
 
-### Frá tillögu að yfirfarinni breytingu
+### Að yfirfara tillöguna
 
-Vinnið á sérstöku [branch](../github/good_practices/git_branches.qmd) áður en erindrekinn
-breytir skrám. Þegar tillagan er tilbúin:
+Vinndu á sérstöku [branch](../github/good_practices/git_branches.qmd) áður en erindrekinn breytir
+skrám. Þegar tillagan er tilbúin:
 
-1. Skoðið `git status` og `git diff`. Staðfestið að aðeins fyrirhuguð breyting á README
-   hafi verið gerð og lesið textann sjálf.
-2. Berið leiðbeiningarnar saman við kóðann. Eru skráarslóðir, pakkar og keyrsluskipanir rétt?
-3. Fylgið leiðbeiningunum og athugið hvort úttaksskráin verði til á tilgreindum stað.
-   Keyrið dæmið á æfingagögnum svo þið skrifið ekki yfir mikilvæg gögn.
-4. Ef eitthvað stenst ekki, gefið afmarkaða leiðréttingu og yfirfarið nýju tillöguna aftur.
-   Til dæmis: „README segir að úttakið vistist í rótinni, en kóðinn skrifar
-   `data/clean.csv`. Leiðréttu þá slóð í README.“
-5. Þegar breytingin hefur verið sannreynd, gerið commit og opnið
-   [pull request](../github/good_practices/pull_requests.qmd). Lýsið breytingunni,
-   hvernig hún var prófuð og skráið AI-aðstoðina samkvæmt leiðbeiningum um
-   [erindreka-dagbók](agent-log.qmd).
+1. Skoðaðu `git status` og `git diff`. Aðeins README á að hafa breyst; lestu textann vandlega.
+2. Berðu leiðbeiningarnar saman við kóðann. Eru skráarslóðir, pakkar og skipanir réttar?
+3. Fylgdu leiðbeiningunum, helst á æfingagögnum, og athugaðu hvort úttakið verði til þar sem
+   README segir.
+4. Ef eitthvað stenst ekki skaltu **ítra** með afmarkaðri leiðréttingu, til dæmis: „README segir
+   að úttakið vistist í rótinni, en kóðinn skrifar `data/clean.csv`. Leiðréttu slóðina í README.“
+5. Þegar breytingin er sannreynd, gerðu commit og opnaðu
+   [pull request](../github/good_practices/pull_requests.qmd). Lýstu breytingunni og hvernig hún
+   var prófuð, og skráðu notkun erindrekans í [erindreka-dagbókina](agent-log.qmd).
 
-### Lítil æfing
+### Æfing
 
-Veljið eina leiðbeiningu sem vantar í README í eigin verkefni. Skrifið fyrirmæli sem
-tilgreina hvaða skrár erindrekinn á að skoða, hverju má breyta og hvernig þið ætlið að
-sannreyna niðurstöðuna. Getur annar hópmeðlimur sagt til um hvort verkefninu sé lokið
-út frá fyrirmælunum einum saman?
+Veldu eina leiðbeiningu sem vantar í README í þínu verkefni. Skrifaðu fyrirmæli sem segja hvaða
+skrár erindrekinn á að lesa, hverju hann má breyta og hvernig þú ætlar að sannreyna niðurstöðuna.
+Gæti annar hópmeðlimur sagt til um hvort verkinu sé lokið út frá fyrirmælunum einum saman?
