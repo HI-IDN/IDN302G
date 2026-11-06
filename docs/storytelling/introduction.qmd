@@ -39,26 +39,35 @@ Til að ná góðum árangri í myndrænni framsetningu er gott að fara í gegn
     - Hvað viljum við að markhópurinn viti eða geri?
     - Hvernig ætlum við að miðla þessu á áhrifaríkan hátt?
 
-```{mermaid}
-flowchart TD
-    subgraph R["1. Rannsóknargreining"]
-        A["Skoða gögn"] --> B["Leita að mynstrum"]
-        B --> C["Meta hvað niðurstöðurnar segja"]
-    end
-
-    C --> D["Velja meginniðurstöðu sem gögnin styðja"]
-
-    subgraph S["2. Skýrandi greining"]
-        E["Skilgreina markhóp"] --> F["Ákveða meginboðskap"]
-        F --> G["Velja viðeigandi graf og framsetningu"]
-    end
-
-    D --> E
-
-    style R fill:#f0f7ff,stroke:#315a87,color:#111111
-    style S fill:#f0f7ff,stroke:#315a87,color:#111111
+```{=html}
+<style>
+.analysis-arrow-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 4px; margin: 1.4rem 0; counter-reset: analysis-step; }
+.analysis-arrow-flow .analysis-arrow { position: relative; counter-increment: analysis-step; }
+.analysis-arrow-flow .analysis-arrow::before { content: counter(analysis-step); position: absolute; top: .35rem; left: 1.05rem; font-size: .65rem; line-height: 1; font-weight: 500; opacity: .8; }
+.analysis-arrow-flow .analysis-arrow:first-child::before { left: .5rem; }
+.analysis-arrow-flow .analysis-arrow strong { display: block; font-size: inherit; line-height: 1.2; }
+.analysis-arrow-flow .analysis-arrow small { display: block; margin-top: .45rem; font-size: .75rem; font-weight: 400; line-height: 1.3; }
+.analysis-arrow-flow .analysis-arrow { flex: 1 1 calc(25% - 4px); min-width: 0; display: flex; align-items: center; justify-content: center; padding: 1rem 1rem 1rem 1.15rem; text-align: center; font-size: .85rem; font-weight: 650; line-height: 1.3; background: #10099F; color: white; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 12px 50%); }
+.analysis-arrow-flow .analysis-arrow:first-child { padding-left: .6rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); }
+.analysis-arrow-flow .analysis-arrow.bridge { background: #FAC55B; color: #262626; }
+.analysis-arrow-flow .analysis-arrow.explanatory { background: #2DD2C0; color: #10099F; }
+.analysis-arrow-flow .analysis-arrow:last-child { padding-right: .6rem; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 12px 50%); }
+@media (max-width: 760px) {
+  .analysis-arrow-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .analysis-arrow-flow .bridge { grid-column: 1 / -1; }
+}
+</style>
+<div class="analysis-arrow-flow" role="list" aria-label="Þrjú skref rannsóknargreiningar, val á meginniðurstöðu, þrjú skref skýrandi greiningar og útgáfa.">
+  <div class="analysis-arrow" role="listitem"><span><strong>Skoða gögn</strong><small>Kanna innihald og gæði.</small></span></div>
+  <div class="analysis-arrow" role="listitem"><span><strong>Leita að mynstrum</strong><small>Finna tengsl og frávik.</small></span></div>
+  <div class="analysis-arrow" role="listitem"><span><strong>Meta niður&shy;stöður</strong><small>Túlka hvað gögnin segja.</small></span></div>
+  <div class="analysis-arrow bridge" role="listitem"><span><strong>Velja megin&shy;niðurstöðu</strong><small>Byggja á því sem gögnin styðja.</small></span></div>
+  <div class="analysis-arrow explanatory" role="listitem"><span><strong>Skilgreina markhóp</strong><small>Fyrir hvern er frásögnin?</small></span></div>
+  <div class="analysis-arrow explanatory" role="listitem"><span><strong>Ákveða megin&shy;boðskap</strong><small>Hvað á að sitja eftir?</small></span></div>
+  <div class="analysis-arrow explanatory" role="listitem"><span><strong>Velja fram&shy;setningu</strong><small>Mismunandi gröf og töflur.</small></span></div>
+  <div class="analysis-arrow explanatory" role="listitem"><span><strong>Útgáfa</strong><small>Skýrsla, mælaborð, kynning o.þ.h.</small></span></div>
+</div>
 ```
-
 *Í rannsóknargreiningu könnum við hvað gögnin segja.
 Í skýrandi greiningu gerum við niðurstöðurnar skiljanlegar
 fyrir ákveðinn markhóp.*
