@@ -387,7 +387,8 @@ Big Mac, `r island$vara`: `r kronur(island$verd_isk)` í vefverslun Metro `r for
 Það er `r format(round(island$verd_isk / max(bm$nu), 1), decimal.mark = ",")` sinnum verð dýrasta
 Big Mac í gögnunum, í landinu `r as.character(bm$land[which.max(bm$nu)])`. Samanburðurinn er þó
 grófur, því verðið er frá öðrum tíma en hin.
-Engin vefþjónusta er til fyrir verðið, svo það er skráð í höndunum í skriftunni.
+Vefverslunin sækir verðin úr vefþjónustu sem krefst innskráningar, svo verðið er skráð í höndunum
+í skriftunni.
 
 Gögnin eru sótt með `code/bigmac_sqlite.R`: verðin af GitHub og gengið úr vefþjónustu Seðlabankans.
 Þau eru vistuð í SQLite-grunninn `data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr. Íslensku landaheitin eru í
