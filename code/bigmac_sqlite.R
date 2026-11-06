@@ -63,13 +63,15 @@ gengi <- do.call(rbind, lapply(dags_bm, function(d) {
 DBI::dbWriteTable(con, "gengi", gengi, overwrite = TRUE)
 
 # Ísland til samanburðar: McDonald's er ekki á Íslandi, en Heimsborgari á Metro er
-# íslenska ígildi Big Mac. Engin vefþjónusta er til fyrir verðið, svo það er skráð
-# hér í höndunum af Wolt og þarf að uppfæra handvirkt.
+# íslenska ígildi Big Mac. Verðið er skráð hér í höndunum úr vefverslun Metro
+# (Smáratorgi) og þarf að uppfæra handvirkt. Vefverslunin sækir matseðilinn úr
+# vefþjónustu, en hún krefst innskráningar og er ekki opin.
 island <- data.frame(
   vara = "Heimsborgari á Metro",
   verd_isk = 1919,
-  heimild = paste0("https://wolt.com/is/isl/reykjavik/restaurant/metro-smaratorgi/",
-                   "heimsburger-itemid-5a9702c3c397e08d8bc3277d"),
+  heimild = paste0("https://metro.yonoton.shop/6bd32855-8ebc-4844-90eb-569f2ed513d1/feature/",
+                   "f74b2427-53a3-404b-97db-f94b9e1dd88d",
+                   "?selectedOutletId=c77ea7e1-31d5-400d-bc3f-383dfb8ddc90"),
   sott = "2026-11-06"
 )
 DBI::dbWriteTable(con, "island", island, overwrite = TRUE)
