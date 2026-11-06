@@ -75,6 +75,7 @@ book:
         - ai-tools/responsible-use.qmd
         - ai-tools/prompts.qmd
         - ai-tools/agents-md.qmd
+        - ai-tools/skills.qmd
         - ai-tools/agent-log.qmd
         - ai-tools/reviewing-agents.qmd
     - part: "Endurtækar skýrslur"
