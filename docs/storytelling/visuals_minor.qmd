@@ -38,6 +38,61 @@ Kassinn sjálfur sýnir fjórðungana, þar sem línan í miðjum kassanum tákn
 (whiskers) sýna hámarks- og lágmarksgildi, en ef það eru útlagar (e. outliers), eru þeir sýndir sem
 sérstakir punktar fyrir utan strokurnar.
 
+##### Afbrigði af kassariti
+
+- **Breytibreitt kassarit - variable width boxplot**: Kassar sýna stærð hópanna.
+- **Kassarit með skörðum - notched boxplot**: Sýna öryggisbil í kringum miðgildi.
+- **Fiðlurit - violin plot**: Sameina kassarit og dreifilínurit til að sýna dreifingu nákvæmlega.
+
+Hér eru sömu gögn sýnd með venjulegu kassariti og þremur afbrigðum þess: sparneytni bíla (mílur á
+gallon) eftir fjölda strokka, úr gagnasafninu `mtcars` sem fylgir R.
+
+```{r}
+#| label: visuals-minor-r-kassi
+#| include: false
+n_cyl <- table(mtcars$cyl)
+```
+
+::: {.panel-tabset}
+
+#### Kassarit
+
+![Kassarit af sparneytni bíla eftir fjölda strokka](figures/boxplot_example.png)
+
+Línan í miðjum kassanum er miðgildið og kassinn nær frá neðri til efri fjórðungs. Strokurnar sýna
+dreifinguna fyrir utan kassann og punktarnir eru útlagar. Bílar með fleiri strokka eyða almennt
+meira, og dreifingin er breiðust hjá 4 strokka bílunum.
+
+#### Breytibreitt
+
+![Breytibreitt kassarit af sparneytni bíla eftir fjölda strokka](figures/boxplot_varwidth.png)
+
+Í breytibreiðu kassariti (e. *variable width boxplot*) fylgir breidd kassans fjölda mælinga í
+hópnum. Hér eru `r n_cyl[["4"]]` bílar með 4 strokka, `r n_cyl[["6"]]` með 6 og `r n_cyl[["8"]]`
+með 8, svo kassinn fyrir 6 strokka er mjóstur. Þá sést strax að sá hópur byggir á fæstum bílum og
+að minna mark er á honum takandi.
+
+#### Með skörðum
+
+![Kassarit með skörðum af sparneytni bíla eftir fjölda strokka](figures/boxplot_notched.png)
+
+Í kassariti með skörðum (e. *notched boxplot*) er skarð um miðgildið sem sýnir um það bil 95%
+öryggisbil fyrir það. Ef skörð tveggja hópa skarast ekki er það vísbending um að miðgildin séu
+ólík. Þegar hóparnir eru litlir verður skarðið breiðara en kassinn sjálfur, eins og sést hér á
+hornunum sem standa út fyrir kassana.
+
+#### Fiðlurit
+
+![Fiðlurit af sparneytni bíla eftir fjölda strokka](figures/boxplot_violin.png)
+
+Fiðlurit (e. *violin plot*) sýnir lögun dreifingarinnar: því breiðari sem fiðlan er, því fleiri
+mælingar eru á því bili. Hér er mjótt kassarit inni í fiðlunni svo miðgildi og fjórðungar sjást
+líka. Fiðlurit sýnir það sem kassaritið felur, til dæmis hvort dreifingin hefur einn eða fleiri
+toppa.
+
+:::
+
+
 ##### Hvenær á að nota kassarit?
 
 Kassarit eru gagnleg þegar þú vilt bera saman dreifingu margra gagnasafna hlið við hlið, t.d.
@@ -47,13 +102,8 @@ dreifing er breið eða þétt.
 ##### Hvenær á að sleppa kassaritum?
 
 Ef markhópurinn er ekki vel þjálfaður í tölfræði getur verið betra að nota einfaldari gröf. Kassarit
-sýna ekki dreifingu eins vel og dreifirit eða stuðlarit, sem getur falið mikilvægar upplýsingar.
+sýna ekki dreifingu eins vel og [dreifirit](visuals_major.qmd#dreifirit---scatter-plot) eða [stuðlarit](visuals_major.qmd#stuðlarit---histogram), sem getur falið mikilvægar upplýsingar.
 
-##### Afbrigði af kassariti
-
-- **Breytibreið kassarit - variable width boxplot**: Kassar sýna stærð hópanna.
-- **Kassarit með skörðum - notched boxplot**: Sýna öryggisbil í kringum miðgildi.
-- **Fiðlurit - violin plot**: Sameina kassarit og dreifilínurit til að sýna dreifingu nákvæmlega.
 
 Nánar um [Box Plot](https://www.storytellingwithdata.com/blog/what-is-a-boxplot) á *Storytelling
 with data.*
@@ -113,6 +163,13 @@ Svæðarit eða flatarmyndrit (Area Graph) er sérstök gerð af línuriti þar 
 litað til að gefa til kynna magn eða heildarupphæð gagna yfir tíma. Þó að þetta virðist vera einföld
 sjónræn breyting, þá hefur hún mikil áhrif á hvernig við skynjum gögnin.
 
+![Svæðarit af fjölda atvinnulausra í Bandaríkjunum](figures/areagraph_example.png)
+
+Hér er fjöldi atvinnulausra í Bandaríkjunum sýndur yfir tíma. Svæðið undir línunni er litað og
+dregur því fram heildarmagnið, til dæmis hversu mikið atvinnuleysi jókst eftir 2008. Skalinn byrjar
+á núlli, sem er mikilvægt þegar svæðarit eru notuð.
+
+
 ##### Kostir
 
 - Svæðarit geta verið árangursrík til að sýna hækkun og lækkun á ýmsum gagnaröðum yfir tíma.
@@ -144,7 +201,7 @@ Nánar um [Area Graph](https://www.storytellingwithdata.com/blog/2020/4/9/what-i
 
 ### Kúlurit - Bubble Chart
 
-Kúlurit er útvíkkun á dreifiriti (scatterplot) þar sem sýndar eru þrjár eða fleiri tölulegar
+Kúlurit er útvíkkun á [dreifiriti](visuals_major.qmd#dreifirit---scatter-plot) (scatterplot) þar sem sýndar eru þrjár eða fleiri tölulegar
 breytur. Hver kúlan í ritinu táknar eitt gagnapunkt, þar sem gildin fyrir hvern gagnapunkt eru
 táknuð með:
 
@@ -153,6 +210,37 @@ táknuð með:
 3) Stærð kúlu
 
 Í sumum tilvikum getur litur kúlunnar eða hreyfing í hreyfimynd táknað fleiri víddir.
+
+Fliparnir hér fyrir neðan byggja upp sama kúlurit í þremur skrefum, með gögnum úr `mtcars`.
+
+::: {.panel-tabset}
+
+#### Stærð
+
+![Kúlurit af þyngd, sparneytni og afli bíla](figures/bubblechart_example.png)
+
+Hér sýnir kúlurit þrjár breytur um bíla: þyngd (x-ás), sparneytni (y-ás) og hestöfl (stærð kúlu).
+Þyngri bílar eyða meiru og hafa oftast fleiri hestöfl.
+
+#### Stærð og litur
+
+![Kúlurit af þyngd, sparneytni og afli bíla, litað eftir fjölda strokka](figures/bubblechart_colour.png)
+
+Hér bætist fjöldi strokka við sem litur, svo grafið sýnir fjórar breytur. Þá sést að bílarnir
+skiptast í þrjá nokkuð aðskilda hópa: léttir og sparneytnir 4 strokka bílar, 6 strokka bílar í
+miðjunni og þungir, aflmiklir 8 strokka bílar. Hver ný breyta gerir grafið þó erfiðara aflestrar,
+og fjórar breytur eru nokkurn veginn það mesta sem lesandinn ræður við í einu.
+
+#### Merkingar
+
+![Kúlurit með lit þar sem jaðarbílarnir eru merktir með nafni](figures/bubblechart_labels.png)
+
+Í stað þess að bæta við fimmtu breytunni má nota merkingar til að segja söguna. Hér eru aðeins
+jaðarbílarnir nefndir: sá sparneytnasti, sá aflmesti og sá þyngsti. Merkingarnar beina athyglinni
+þangað sem hún á að fara án þess að gera grafið flóknara.
+
+:::
+
 
 ##### Kostir
 
@@ -164,10 +252,12 @@ táknuð með:
 
 - Flókið að túlka þegar margar víddir eru sýndar samtímis, sem getur ruglað áhorfendur.
 - Erfitt að sjá smávægilegan mun á kúlunum, sérstaklega þegar breyturnar eru nálægt hver annarri.
-- Ekki hentugt þegar aðeins tvær breytur eru til skoðunar; dreifirit væri betra val í þeim tilvikum.
+- Ekki hentugt þegar aðeins tvær breytur eru til skoðunar; [dreifirit](visuals_major.qmd#dreifirit---scatter-plot)
+  væri betra val í þeim tilvikum.
 
 Nánar um [Bubble Chart](https://www.storytellingwithdata.com/blog/2021/5/11/what-is-a-bubble-chart)
 á *Storytelling with data.*
+
 ---
 
 ### Bullet graf
@@ -195,6 +285,7 @@ hnitmiðaða og þétta framsetningu.
 
 Nánar um [Bullet Graph](https://www.storytellingwithdata.com/blog/what-is-a-bullet-graph) á
 *Storytelling with data.*
+
 ---
 
 ### Punktarit - Dot Plot
@@ -210,6 +301,102 @@ punktariti, en helstu gerðirnar eru:
 3. **Tengt punktarit:** Notað til að bera saman tvær (eða fleiri) raðir af gögnum þar sem tenging
    milli
    punkta leggur áherslu á muninn eða breytingu.
+
+::: {.panel-tabset}
+
+#### Hefðbundið
+
+![Hefðbundið punktarit af dreifingu sparneytni bíla](figures/dotplot_distribution.png)
+
+Hér er einn punktur fyrir hvern bíl í `mtcars`, `r nrow(mtcars)` alls, staflað eftir sparneytni.
+Lögun dreifingarinnar sést strax, og líka gildi sem standa ein og sér.
+
+Hefðbundið punktarit líkist [stuðlariti](visuals_major.qmd#stuðlarit---histogram) (e. *histogram*), sem sýnir dreifingu með súlum. Munurinn er
+að hér er hver punktur ein mæling, svo punktarnir þurfa ekki að liggja með jöfnu millibili eftir
+ásnum. Þess vegna hentar hefðbundið punktarit best fyrir lítil gagnasöfn. Þegar mælingarnar eru
+margar verður erfitt að greina punktana að, og þá hentar betur graf sem tekur saman mælingarnar,
+eins og stuðlarit eða kassarit.
+
+#### Cleveland
+
+![Cleveland punktarit af sparneytnustu bílunum](figures/dotplot_example.png)
+
+Hér eru sparneytnustu bílarnir raðaðir eftir sparneytni, einn punktur á bíl. Röðunin gerir
+samanburðinn auðveldan, og punktarit er góður valkostur við súlurit þegar flokkarnir eru margir.
+
+#### Tengt
+
+![Tengt punktarit af meðalsparneytni sjálfskiptra og beinskiptra bíla](figures/dotplot_connected.png)
+
+Hér er meðalsparneytni sjálfskiptra og beinskiptra bíla borin saman eftir fjölda strokka. Punktarnir
+sýna gildin og línan milli þeirra dregur augað að muninum: hann er mestur hjá 4 strokka bílum og
+nær enginn hjá 8 strokka. Sama samanburð mætti sýna með tvöföldu súluriti, en þá ber augað saman
+lengdir súlnanna í stað þess að sjá muninn beint.
+
+#### Stærra dæmi: Big Mac
+
+```{r}
+#| label: visuals-minor-r-bigmac
+#| include: false
+# Sömu gögn og grafið: data/bigmac.db, búið til með code/bigmac_sqlite.R
+bm_con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/bigmac.db")
+# Tvær síðustu mælingar (janúar og júlí), eins og í grafinu
+bm_dags <- unlist(DBI::dbGetQuery(bm_con, "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2"), use.names = FALSE)
+bm <- DBI::dbGetQuery(bm_con, "
+  SELECT COALESCE(l.nafn, n.land) AS land, COALESCE(l.stadur, 'í ' || n.land) AS stadur,
+         f.verd_usd AS fyrr, n.verd_usd AS nu
+  FROM bigmac n
+       JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
+       LEFT JOIN land l ON l.iso = n.iso
+  WHERE n.dags = ?", params = list(bm_dags[2], bm_dags[1]))
+bm_gengi <- function(d) DBI::dbGetQuery(bm_con,
+  "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?", params = list(d))
+gengi_nu <- bm_gengi(bm_dags[1])
+island <- DBI::dbReadTable(bm_con, "island")
+DBI::dbDisconnect(bm_con)
+# Bæði verðin á sama gengi, því nýjasta, eins og í grafinu
+bm$fyrr <- bm$fyrr * gengi_nu$isk_per_usd
+bm$nu <- bm$nu * gengi_nu$isk_per_usd
+bm$breyting <- bm$nu - bm$fyrr
+bm_mest <- bm[which.max(bm$breyting), ]
+manudir <- c("janúar", "febrúar", "mars", "apríl", "maí", "júní", "júlí", "ágúst",
+             "september", "október", "nóvember", "desember")
+manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 4))
+kronur <- function(x) paste(formatC(round(x), format = "d", big.mark = "."), "kr.")
+dagur_txt <- function(g) format(as.Date(g$gengisdagur), "%d.%m.%Y")
+gengi_txt <- function(g) formatC(g$isk_per_usd, format = "f", digits = 2, decimal.mark = ",")
+```
+
+![Tengt punktarit af verði á Big Mac í krónum eftir löndum](figures/dotplot_bigmac.png)
+
+Hér er tengt punktarit notað á raunveruleg gögn: verð á Big Mac í `r nrow(bm)` löndum, úr Big
+Mac-vísitölu The Economist, umreiknað í krónur. Línan byrjar í verðinu í `r manudur(bm_dags[2])` og punkturinn er
+verðið í `r manudur(bm_dags[1])`, svo lengd línunnar er breytingin og stefna hennar segir hvort verðið
+hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, í `r sum(bm$breyting > 0)` af
+`r nrow(bm)` löndum. `r bm_mest$land` hefur hækkað mest, verðið fór úr
+`r kronur(bm_mest$fyrr)` í `r kronur(bm_mest$nu)` á hálfu ári. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
+skýringu.
+
+The Economist gefur verðin upp í Bandaríkjadölum. Þau eru umreiknuð í krónur á opinberu
+viðmiðunargengi Seðlabanka Íslands `r dagur_txt(gengi_nu)`, `r gengi_txt(gengi_nu)` kr. fyrir dalinn.
+Bæði verðin, það eldra og það nýrra, eru umreiknuð á sama gengi. Ef eldra verðið væri umreiknað á
+gengi þess tíma myndi sveifla í gengi krónunnar blandast inn í breytinguna á verðinu, og þá væri
+ekki ljóst hvort Big Mac hefði hækkað eða krónan veikst.
+
+McDonald's er ekki á Íslandi, svo til samanburðar sýnir brotna línan verð á íslenska ígildi
+Big Mac, `r island$vara`: `r kronur(island$verd_isk)` í vefverslun Metro `r format(as.Date(island$sott), "%d.%m.%Y")`.
+Það er `r format(round(island$verd_isk / max(bm$nu), 1), decimal.mark = ",")` sinnum verð dýrasta
+Big Mac í gögnunum, sem er `r as.character(bm$land[which.max(bm$nu)])`. Samanburðurinn er þó
+grófur, því verðið er frá öðrum tíma en hin.
+Vefverslunin sækir verðin úr vefþjónustu sem krefst innskráningar, svo verðið er skráð í höndunum
+í skriftunni.
+
+Gögnin eru sótt með `code/bigmac_sqlite.R`: verðin af GitHub og gengið úr vefþjónustu Seðlabankans.
+Þau eru vistuð í SQLite-grunninn `data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr. Íslensku landaheitin eru í
+sér töflu, `land`, sem er tengd við verðin með `LEFT JOIN` á landskóða.
+
+:::
+
 
 ##### Kostir:
 
@@ -230,6 +417,7 @@ punktariti, en helstu gerðirnar eru:
 
 Nánar um [Dot Plot](http://www.storytellingwithdata.com/blog/2020/12/9/what-is-a-dot-plot) á
 *Storytelling with data.*
+
 ---
 
 ### Flæðirit - Flowchart
@@ -262,6 +450,7 @@ innan fyrirtækja.
 
 Nánar um [Flowchart](https://www.storytellingwithdata.com/blog/what-is-a-flowchart) á *Storytelling
 with data.*
+
 ---
 
 ### Sankey-rit - Sankey Diagram
@@ -298,6 +487,7 @@ við ráðningar eða auðlindadreifingu innan fyrirtækis.
 
 Nánar um [Sankey Diagram](https://www.storytellingwithdata.com/blog/what-is-a-sankey-diagram) á
 *Storytelling with data.*
+
 ---
 
 ### Köngulórit - Spider Chart
@@ -326,14 +516,33 @@ notuð til að bera saman frammistöðu á mörgum sviðum á sama tíma, t.d. t
 
 Nánar um [Spider Chart](https://www.storytellingwithdata.com/blog/2021/8/31/what-is-a-spider-chart)
 á *Storytelling with data.*
+
 ---
 
 ### Rúðurit - Square Area Chart
 
-Rúðurit (square area chart) eða jafnvel kallað vöfflurit (waffle chart), er myndræn framsetning þar
-sem gögn eru sett fram sem reglulegt 10x10 net, eða möskvi, með 100 stökum einingum.
+Rúðurit (e. *square area chart*), einnig kallað vöfflurit (e. *waffle chart*), er ferningur sem
+oftast er skipt í 10x10 net af 100 rúðum. Rúðurnar eru litaðar eftir gögnunum, svo hver rúða er 1%
+af heildinni. Nafnið vöfflurit kemur af því að netið minnir á vöfflu. Stundum er talað um
+einingarit (e. *unit chart*), en það orð á betur við breiðari flokk grafa sem nota tákn í stað
+ferninga til að tákna gildin.
 Hver eining er lituð í samræmi við gögnin sem á að sýna. Þetta rit er oft notað til að sýna hlutföll
 innan heildar, þar sem hver eining táknar ákveðið hlutfall.
+
+![Rúðurit af hlutfalli bíla eftir fjölda strokka](figures/waffle_example.png)
+
+```{r}
+#| label: visuals-minor-r-1
+#| include: false
+# Sömu gögn og í code/graphs_minor.R (mtcars fylgir R)
+hlutf_4 <- round(100 * mean(mtcars$cyl == 4))
+```
+
+Hér er hlutfall bíla í `mtcars` eftir fjölda strokka sýnt í 10x10 neti. Hver rúða er 1% af
+bílunum, svo auðvelt er að telja og bera saman hlutföllin, til dæmis að `r hlutf_4`% bílanna eru með
+4 strokka. Rúðurit gefur góða mynd af hlut hvers flokks í heildinni, en erfiðara er að bera flokkana
+saman þegar þeir dreifast yfir margar raðir, því þá þarf lesandinn að telja rúður.
+
 
 ##### Kostir
 
@@ -360,6 +569,7 @@ bæði áhrifamikið og nákvæmt.
 
 Nánar um [Square Area Chart](https://www.storytellingwithdata.com/blog/what-is-a-square-area-chart)
 á *Storytelling with data.*
+
 ---
 
 ### Trémynd - Treemap
@@ -393,6 +603,7 @@ ruglingslegar fyrir áhorfendur sem eru ekki vanir þessari gerð grafa.
 
 Nánar um [Treemap](https://www.storytellingwithdata.com/blog/what-is-a-treemap) á *Storytelling with
 data.*
+
 ---
 
 ### Einingarit - Unit Chart
