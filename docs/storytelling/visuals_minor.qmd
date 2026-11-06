@@ -340,8 +340,9 @@ lengdir súlnanna í stað þess að sjá muninn beint.
 #| include: false
 # Sömu gögn og grafið: data/bigmac.db, búið til með code/bigmac_sqlite.R
 bm_con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/bigmac.db")
-bm_dags <- DBI::dbGetQuery(bm_con,
-  "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2")$dags
+# Nýjasta mælingin og sú sem er nákvæmlega ári fyrr, eins og í grafinu
+bm_dags <- unlist(DBI::dbGetQuery(bm_con, "SELECT n.dags, f.dags FROM (SELECT MAX(dags) AS dags FROM bigmac) n
+   JOIN (SELECT DISTINCT dags FROM bigmac) f ON f.dags = date(n.dags, '-1 year')"), use.names = FALSE)
 bm <- DBI::dbGetQuery(bm_con, "
   SELECT COALESCE(l.nafn, n.land) AS land, f.verd_usd AS fyrr, n.verd_usd AS nu
   FROM bigmac n
@@ -373,7 +374,7 @@ Mac-vísitölu The Economist, umreiknað í krónur. Línan byrjar í verðinu �
 verðið í `r manudur(bm_dags[1])`, svo lengd línunnar er breytingin og stefna hennar segir hvort verðið
 hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, í `r sum(bm$breyting > 0)` af
 `r nrow(bm)` löndum. Mest hækkaði verðið í landinu `r bm_mest$land`, þar sem það fór úr
-`r kronur(bm_mest$fyrr)` í `r kronur(bm_mest$nu)` á hálfu ári. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
+`r kronur(bm_mest$fyrr)` í `r kronur(bm_mest$nu)` á einu ári. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
 skýringu.
 
 The Economist gefur verðin upp í Bandaríkjadölum. Þau eru umreiknuð í krónur á opinberu

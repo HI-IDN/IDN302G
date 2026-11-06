@@ -93,7 +93,9 @@ manudir <- c("janúar", "febrúar", "mars", "apríl", "maí", "júní", "júlí"
              "september", "október", "nóvember", "desember")
 manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 4))
 con <- DBI::dbConnect(RSQLite::SQLite(), "data/bigmac.db")
-dags <- DBI::dbGetQuery(con, "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2")$dags
+# Nýjasta mælingin og sú sem er nákvæmlega ári fyrr (Big Mac er mælt í janúar og júlí)
+dags <- unlist(DBI::dbGetQuery(con, "SELECT n.dags, f.dags FROM (SELECT MAX(dags) AS dags FROM bigmac) n
+   JOIN (SELECT DISTINCT dags FROM bigmac) f ON f.dags = date(n.dags, '-1 year')"), use.names = FALSE)
 bm <- DBI::dbGetQuery(con, "
   SELECT COALESCE(l.nafn, n.land) AS land, f.verd_usd AS fyrr, n.verd_usd AS nu
   FROM bigmac n
@@ -115,10 +117,7 @@ bm$land <- reorder(bm$land, bm$nu)
 # er ósýnilegt (phantom) og einu sinni appelsínugulur þar sem aðeins orðið sést.
 titill_fyrir <- "Hvar hefur Big Mac "
 # Stutt tímabil í titli; nákvæmar dagsetningar eru í undirtitli
-fyrri_hluti <- substr(dags[2], 1, 4) == substr(dags[1], 1, 4) &&
-  substr(dags[2], 6, 7) == "01" && substr(dags[1], 6, 7) == "07"
-titill_eftir <- if (fyrri_hluti) paste0(" á fyrri hluta árs ", substr(dags[1], 1, 4), "?") else
-  paste0(" frá ", manudur(dags[2]), " til ", manudur(dags[1]), "?")
+titill_eftir <- " síðasta árið?"
 titill_svartur <- bquote(.(titill_fyrir) * phantom("hækkað") * .(titill_eftir))
 titill_appels  <- bquote(phantom(.(titill_fyrir)) * "hækkað" * phantom(.(titill_eftir)))
 # Ísland: lóðrétt viðmiðunarlína fyrir Heimsborgara á Metro (engin McDonald's á Íslandi)
