@@ -87,8 +87,8 @@ vista(p_dot_tengt, "dotplot_connected.png")
 
 # Stærra dæmi: verð á Big Mac í tveimur síðustu mælingum, úr data/bigmac.db (sótt með
 # code/bigmac_sqlite.R). Línan byrjar í fyrra verðinu og punkturinn er nýja verðið.
-# Appelsínugult þar sem verðið hækkaði. Hvort verð er umreiknað í krónur á gengi síns
-# dags, svo breytingin er það sem verðið breyttist í krónum (gengisbreyting meðtalin).
+# Appelsínugult þar sem verðið hækkaði. Bæði verðin eru umreiknuð í krónur á sama
+# gengi, því nýjasta, svo sveiflur í gengi krónunnar blandist ekki inn í breytinguna.
 manudir <- c("janúar", "febrúar", "mars", "apríl", "maí", "júní", "júlí", "ágúst",
              "september", "október", "nóvember", "desember")
 manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 4))
@@ -102,11 +102,9 @@ bm <- DBI::dbGetQuery(con, "
   WHERE n.dags = ?", params = list(dags[2], dags[1]))
 gengi_nu <- DBI::dbGetQuery(con, "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?",
                             params = list(dags[1]))
-gengi_fyrr <- DBI::dbGetQuery(con, "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?",
-                              params = list(dags[2]))
 island <- DBI::dbReadTable(con, "island")
 DBI::dbDisconnect(con)
-bm$fyrr <- bm$fyrr * gengi_fyrr$isk_per_usd
+bm$fyrr <- bm$fyrr * gengi_nu$isk_per_usd
 bm$nu <- bm$nu * gengi_nu$isk_per_usd
 gengi_texti <- function(g) paste0(format(as.Date(g$gengisdagur), "%d.%m.%Y"), " (",
                                   format(g$isk_per_usd, decimal.mark = ","), " kr.)")
@@ -141,8 +139,8 @@ p_bigmac <- ggplot(bm, aes(y = land)) +
        caption = paste0(
          "Heimildir: Big Mac-verð frá The Economist, sótt af raw.githubusercontent.com/",
          "TheEconomist/big-mac-data/master/output-data/big-mac-raw-index.csv.\n",
-         "Umreiknað í krónur á opinberu viðmiðunargengi Seðlabanka Íslands fyrir Bandaríkjadal: ",
-         gengi_texti(gengi_fyrr), " og ", gengi_texti(gengi_nu), ".\n",
+         "Bæði verðin umreiknuð í krónur á opinberu viðmiðunargengi Seðlabanka Íslands ",
+         "fyrir Bandaríkjadal ", gengi_texti(gengi_nu), ".\n",
          "Gengið er sótt úr vefþjónustu bankans, sedlabanki.is/xmltimeseries. ",
          island$vara, ": verð á Wolt ", format(as.Date(island$sott), "%d.%m.%Y"), ".")) +
   theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9),

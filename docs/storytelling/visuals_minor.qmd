@@ -351,11 +351,10 @@ bm <- DBI::dbGetQuery(bm_con, "
 bm_gengi <- function(d) DBI::dbGetQuery(bm_con,
   "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?", params = list(d))
 gengi_nu <- bm_gengi(bm_dags[1])
-gengi_fyrr <- bm_gengi(bm_dags[2])
 island <- DBI::dbReadTable(bm_con, "island")
 DBI::dbDisconnect(bm_con)
-# Hvort verð á gengi síns dags, eins og í grafinu
-bm$fyrr <- bm$fyrr * gengi_fyrr$isk_per_usd
+# Bæði verðin á sama gengi, því nýjasta, eins og í grafinu
+bm$fyrr <- bm$fyrr * gengi_nu$isk_per_usd
 bm$nu <- bm$nu * gengi_nu$isk_per_usd
 bm$breyting <- bm$nu - bm$fyrr
 bm_mest <- bm[which.max(bm$breyting), ]
@@ -365,7 +364,6 @@ manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 
 kronur <- function(x) paste(formatC(round(x), format = "d", big.mark = "."), "kr.")
 dagur_txt <- function(g) format(as.Date(g$gengisdagur), "%d.%m.%Y")
 gengi_txt <- function(g) formatC(g$isk_per_usd, format = "f", digits = 2, decimal.mark = ",")
-gengi_breyting <- round(100 * (gengi_nu$isk_per_usd / gengi_fyrr$isk_per_usd - 1), 1)
 ```
 
 ![Tengt punktarit af verði á Big Mac í krónum eftir löndum](figures/dotplot_bigmac.png)
@@ -378,11 +376,11 @@ hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, 
 `r kronur(bm_mest$fyrr)` í `r kronur(bm_mest$nu)` á hálfu ári. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
 skýringu.
 
-The Economist gefur verðin upp í Bandaríkjadölum. Hvort verð er umreiknað í krónur á opinberu
-viðmiðunargengi Seðlabanka Íslands þess dags: `r gengi_txt(gengi_fyrr)` kr. fyrir dalinn
-`r dagur_txt(gengi_fyrr)` og `r gengi_txt(gengi_nu)` kr. `r dagur_txt(gengi_nu)`. Breytingin í
-krónum er því það sem Big Mac breyttist í verði fyrir þann sem greiðir með krónum, og hún felur
-líka í sér breytingu á gengi krónunnar, `r format(gengi_breyting, decimal.mark = ",")`% á tímabilinu.
+The Economist gefur verðin upp í Bandaríkjadölum. Þau eru umreiknuð í krónur á opinberu
+viðmiðunargengi Seðlabanka Íslands `r dagur_txt(gengi_nu)`, `r gengi_txt(gengi_nu)` kr. fyrir dalinn.
+Bæði verðin, það eldra og það nýrra, eru umreiknuð á sama gengi. Ef eldra verðið væri umreiknað á
+gengi þess tíma myndi sveifla í gengi krónunnar blandast inn í breytinguna á verðinu, og þá væri
+ekki ljóst hvort Big Mac hefði hækkað eða krónan veikst.
 
 McDonald's er ekki á Íslandi, svo til samanburðar sýnir brotna línan verð á íslenska ígildi
 Big Mac, `r island$vara`: `r kronur(island$verd_isk)` á Wolt `r format(as.Date(island$sott), "%d.%m.%Y")`.
