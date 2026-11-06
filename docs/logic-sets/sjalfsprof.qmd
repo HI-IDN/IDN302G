@@ -1,0 +1,19 @@
+---
+title: "Sjálfspróf: mengi og vensl"
+lang: is
+---
+
+Þetta er sjálfspróf úr köflunum um mengi og vensl: mengjaaðgerðir, mengjamargfeldi og
+samskeyting, eiginleikar vensla og föll.
+
+Í flestum spurningunum er unnið með tvö mengi af nemendanúmerum:
+
+- $A = \{1, 2, 3, 4\}$, nemendur í stærðfræði.
+- $B = \{3, 4, 5, 6\}$, nemendur í tölvunarfræði.
+
+Veldu svar og smelltu á **Athuga svar**; þá birtist rétt svar og útskýring. Í lokin sérðu
+hversu mörgum spurningum þú svaraðir rétt. Sama dæmi í SQL er í
+[sjálfsprófinu í SQL framhaldi](../sql-advanced/sjalfsprof.qmd).
+
+::: {.sjalfsprof src="sjalfsprof.yml"}
+:::

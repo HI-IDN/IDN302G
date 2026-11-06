@@ -1,0 +1,110 @@
+# Spurningar fyrir logic-sets/sjalfsprof.qmd. Sniðinu er lýst efst í filters/sjalfsprof.lua.
+# Ritháttur fylgir köflunum: $A - B$ fyrir mismun, $S \circ R$ fyrir samskeytingu.
+# A = {1, 2, 3, 4} og B = {3, 4, 5, 6} eru kynnt í inngangi síðunnar.
+
+spurningar:
+
+  - hluti: Mengjaaðgerðir
+    titill: Sniðmengi
+    spurning: 'Hvert er sniðmengið $A \cap B$?'
+    valkostir: ['$\{1, 2, 3, 4, 5, 6\}$', '$\{3, 4\}$', '$\{1, 2\}$', '$\{5, 6\}$']
+    rett: [B]
+    utskyring: |
+      Sniðmengi inniheldur aðeins þau stök sem eru í báðum mengjunum. 3 og 4 eru bæði í $A$
+      og $B$. Í SQL samsvarar `INTERSECT` þessari aðgerð.
+
+  - hluti: Mengjaaðgerðir
+    titill: Sammengi
+    spurning: 'Hvert er sammengið $A \cup B$?'
+    valkostir: ['$\{3, 4\}$', '$\{1, 2, 5, 6\}$', '$\{1, 2, 3, 4, 5, 6\}$', '$\{1, 2, 3, 4, 3, 4, 5, 6\}$']
+    rett: [C]
+    utskyring: |
+      Sammengi inniheldur öll stök sem eru í $A$, $B$ eða báðum, og hvert stak kemur aðeins
+      einu sinni fyrir, því mengi hefur engin tvítekin stök.
+
+  - hluti: Mengjaaðgerðir
+    titill: Mismunur
+    spurning: 'Hver er mismunurinn $A - B$?'
+    valkostir: ['$\{1, 2\}$', '$\{3, 4\}$', '$\{5, 6\}$', '$\{1, 2, 5, 6\}$']
+    rett: [A]
+    utskyring: |
+      $A - B$ inniheldur þau stök sem eru í $A$ en ekki í $B$: 1 og 2. Mismunur er stundum
+      ritaður $A \setminus B$. Athugaðu að $B - A = \{5, 6\}$, svo röðin skiptir máli.
+
+  - hluti: Mengjamargfeldi og samskeyting
+    titill: Stærð mengjamargfeldis
+    spurning: 'Hversu mörg stök eru í $A \times B$?'
+    valkostir: ['$2$', '$6$', '$8$', '$16$']
+    rett: [D]
+    utskyring: |
+      $|A \times B| = |A| \cdot |B| = 4 \cdot 4 = 16$. Þetta er líka fjöldi raða sem
+      `CROSS JOIN` milli tveggja taflna með fjórar raðir hvor skilar.
+      Sjá [Mengjamargfeldi og samskeyting](relation-composition.qmd).
+
+  - hluti: Mengjamargfeldi og samskeyting
+    titill: Röðuð pör
+    spurning: 'Hvaða pör eru í $A \times B$?'
+    valkostir: ['$(5, 1)$', '$(1, 5)$', '$(3, 3)$', '$(6, 6)$']
+    rett: [B, C]
+    utskyring: |
+      $(a, b) \in A \times B$ ef $a \in A$ og $b \in B$. $(1, 5)$ og $(3, 3)$ uppfylla það,
+      en $5 \notin A$ og $6 \notin A$. Pörin eru röðuð, svo $(1, 5) \in A \times B$ segir
+      ekkert um $(5, 1)$.
+
+  - hluti: Mengjamargfeldi og samskeyting
+    titill: Samskeyting vensla
+    spurning: |
+      $R = \{(1, 3), (2, 5)\}$ eru vensl frá $A$ til $B$ og
+      $S = \{(3, x), (5, y), (6, x)\}$ vensl frá $B$ til $C = \{x, y\}$. Hvað er $S \circ R$?
+    valkostir:
+      - '$\{(1, x), (2, y)\}$'
+      - '$\{(1, 3), (2, 5)\}$'
+      - '$\{(3, x), (5, y)\}$'
+      - '$\{(1, x), (2, y), (6, x)\}$'
+    rett: [A]
+    utskyring: |
+      $(a, c) \in S \circ R$ ef til er $b$ með $(a, b) \in R$ og $(b, c) \in S$. Frá 1 förum
+      við í gegnum 3 til $x$ og frá 2 í gegnum 5 til $y$. $(6, x)$ kemst ekki með því ekkert par
+      í $R$ endar í 6. Í SQL er samskeyting `JOIN` á sameiginlega dálkinum.
+
+  - hluti: Eiginleikar vensla og föll
+    titill: Eiginleikar vensla
+    spurning: |
+      Hvaða eiginleika hafa venslin
+      $R = \{(1, 1), (2, 2), (3, 3), (1, 2), (2, 1)\}$ á $\{1, 2, 3\}$?
+    valkostir: [Sjálfhverf, Samhverf, Andsamhverf, Gegnvirk]
+    rett: [A, B, D]
+    utskyring: |
+      Öll stökin eru í venslum við sjálf sig, svo $R$ er sjálfhverf. $(1, 2)$ og $(2, 1)$ eru
+      bæði með, svo $R$ er samhverf en ekki andsamhverf. Hver keðja $(a, b), (b, c)$ gefur
+      par sem er þegar í $R$, t.d. $(1, 2), (2, 1)$ gefur $(1, 1)$, svo $R$ er gegnvirk.
+      Sjálfhverf, samhverf og gegnvirk vensl kallast jafngildisvensl.
+      Sjá [Eiginleikar vensla og lokanir](relation-properties.qmd).
+
+  - hluti: Eiginleikar vensla og föll
+    titill: Föll
+    spurning: 'Venslin $\{(1, a), (2, a), (3, b)\}$ eru frá $\{1, 2, 3\}$ til $\{a, b, c\}$. Hvað er satt?'
+    valkostir:
+      - Þau eru eintækt fall
+      - Þau eru fall, en hvorki eintækt né átækt
+      - Þau eru ekki fall
+      - Þau eru gagntækt fall
+    rett: [B]
+    utskyring: |
+      Hvert stak í $\{1, 2, 3\}$ fær nákvæmlega eitt gildi, svo venslin eru fall. Það er ekki
+      eintækt því 1 og 2 fá bæði $a$, og ekki átækt því ekkert fer í $c$.
+      Sjá [Föll og lyklar](functions-and-keys.qmd).
+
+  - hluti: Eiginleikar vensla og föll
+    titill: Aðallyklar
+    spurning: '`nemandi_id` er aðallykill í töflunni `nemendur(nemandi_id, nafn)`. Hvað segir það um venslin frá `nemandi_id` til `nafn`?'
+    valkostir:
+      - Þau eru fall, því hvert `nemandi_id` ákvarðar nákvæmlega eitt nafn
+      - Þau eru eintækt fall, því tveir nemendur geta ekki heitið það sama
+      - Þau eru ekki fall, því nafn getur komið oftar en einu sinni fyrir
+      - Þau eru samhverf vensl
+    rett: [A]
+    utskyring: |
+      Aðallykill tryggir að hvert `nemandi_id` komi aðeins einu sinni fyrir, svo hvert
+      auðkenni ákvarðar eitt nafn. Fallið þarf ekki að vera eintækt: tveir nemendur mega heita
+      það sama. Til að banna það þyrfti `UNIQUE` á `nafn`.
