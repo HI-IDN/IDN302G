@@ -36,6 +36,38 @@ illa skjalaður eða byggður á forsendum sem passa ekki við gögnin.
 Ef svarið er „ég veit það ekki“ er það ekki endilega vandamál. Það er merki um að það þurfi að
 spyrja betur, prófa betur eða biðja um skýrari útfærslu.
 
+
+## Frá tillögu erindreka að rýndri breytingu
+
+Flæðiritið sýnir hvar manneskjan þarf að sannreyna tillöguna. Að erindreki
+segi að verkefnið sé leyst er ekki sjálfstæð staðfesting á því að lausnin virki.
+
+```{mermaid}
+flowchart TD
+    A["Afmarkið verkefnið og skráið fyrirmælin"] --> B["Vinnið á eigin grein með erindreka"]
+    B --> C["Lesið breytingarnar og keyrið viðeigandi prófanir"]
+    C --> D{"Leysir tillagan verkefnið og skiljið þið hana?"}
+    D -- Nei --> E["Skráið vandann og lagið eða biðjið um skýringu"]
+    E --> C
+    D -- Já --> F["Opnið PR með lýsingu, prófunum og skráðri AI-notkun"]
+    F --> G["Hópfélagar rýna breytinguna"]
+    G --> H{"Þarf að laga eitthvað?"}
+    H -- Já --> E
+    H -- Nei --> I["Sameinið eftir samþykki og samkvæmt reglum geymslunnar"]
+```
+
+Breyting eftir rýni fer aftur í prófun og yfirferð. Ef ný commit gera fyrra
+samþykki úrelt þarf nýtt samþykki áður en sameinað er. Sjá
+[reglur um sameiningu í `main`](../github/good_practices/pull_requests.qmd#reglur-fyrir-sameiningu-í-main).
+
+::: {.callout-tip}
+## Hvað á að skrá ef prófun tókst ekki?
+
+Skráið skipunina sem var keyrð, villuna sem kom upp og hvað er enn ósannreynt.
+Greinið á milli prófunar sem þið keyrðuð sjálf og fullyrðingar erindrekans um
+að prófun hafi tekist. Ekki merkja ókeyrða prófun sem staðfesta.
+:::
+
 ## Æfing: látið erindreka leysa lítið verkefni
 
 Hópurinn vinnur saman í þriggja manna teymi. Hver nemandi fær sitt eigið dummy-verkefni í anda
@@ -290,3 +322,4 @@ Skila skal:
    eða rýna kóða frá erindreka
 
 Meginatriðið er að þið sýnið vinnuferlið, ekki bara lokaniðurstöðuna.
+
