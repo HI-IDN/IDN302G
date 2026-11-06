@@ -103,8 +103,8 @@ bm$land <- reorder(bm$land, bm$nu)
 # Orðið „hækkað“ er appelsínugult í titlinum, svo ekki þarf sérstaka litaskýringu.
 # Titillinn er teiknaður tvisvar ofan í sjálfan sig: einu sinni svartur þar sem orðið
 # er ósýnilegt (phantom) og einu sinni appelsínugulur þar sem aðeins orðið sést.
-titill_fyrir <- "Hvar hefur verð á Big Mac í dollurum "
-titill_eftir <- paste0(" frá ", manudur(dags[2]), " til ", manudur(dags[1]), "?")
+titill_fyrir <- "Hvar hefur verð á Big Mac "
+titill_eftir <- paste0(" (í dollurum) frá ", manudur(dags[2]), " til ", manudur(dags[1]), "?")
 titill_svartur <- bquote(.(titill_fyrir) * phantom("hækkað") * .(titill_eftir))
 titill_appels  <- bquote(phantom(.(titill_fyrir)) * "hækkað" * phantom(.(titill_eftir)))
 p_bigmac <- ggplot(bm, aes(y = land)) +
