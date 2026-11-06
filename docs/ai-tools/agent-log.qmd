@@ -41,6 +41,20 @@ Sá sem submit-ar breytinguna ber ábyrgð á `AGENT_LOG.md`. Rýnandi eða Copi
 
 Rýnandi getur hins vegar bent á ef PR-lýsing, commit eða skrár sýna að erindreki var notaður en `AGENT_LOG.md` vantar eða er óskýrt.
 
+## Issue sem skjölun {#issue-sem-skjölun}
+
+Dagbókin er ekki eina skjölunin. Gott er líka að láta erindrekann vinna alltaf á sérstöku branch
+og skrá hvert verk í issue á GitHub, til dæmis með [skill](skills.qmd) eða reglu í
+[`AGENTS.md`](agents-md.qmd). Kosturinn er tvíþættur:
+
+- **Rekjanleiki.** Issue-ið segir hvað var gert og af hverju, og Pull Request vísar í það. Sá sem
+  les söguna seinna sér samhengið án þess að spyrja.
+- **Yfirferð.** Yfirlesari getur borið breytinguna saman við það sem issue-ið segir að hafi átt
+  að gera.
+
+Issue-ið kemur ekki í stað dagbókarinnar. Dagbókin segir hvar erindreki hafði áhrif og hvað
+teymið yfirfór; issue-ið lýsir verkinu sjálfu.
+
 ## Falið sniðmát
 
 Í teymisrepo er gott að hafa:
