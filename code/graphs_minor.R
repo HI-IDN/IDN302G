@@ -124,7 +124,7 @@ titill_eftir <- if (fyrri_hluti) paste0(" á fyrri hluta árs ", substr(dags[1],
 titill_svartur <- bquote(.(titill_fyrir) * phantom("hækkað") * .(titill_eftir))
 titill_appels  <- bquote(phantom(.(titill_fyrir)) * "hækkað" * phantom(.(titill_eftir)))
 # Ísland: lóðrétt viðmiðunarlína fyrir Heimsborgara á Metro (engin McDonald's á Íslandi)
-island_merki <- paste0(island$vara, ":\n", format(island$verd_isk, big.mark = "."), " kr.")
+island_merki <- paste0(island$vara, "\n(ígildi Big Mac): ", format(island$verd_isk, big.mark = "."), " kr.")
 p_bigmac <- ggplot(bm, aes(y = land)) +
   geom_vline(xintercept = island$verd_isk, colour = "grey40", linetype = "dashed") +
   geom_segment(aes(x = fyrr, xend = nu, yend = land, colour = haekkun), linewidth = 1.3) +

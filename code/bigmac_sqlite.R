@@ -62,8 +62,8 @@ gengi <- do.call(rbind, lapply(dags_bm, function(d) {
 }))
 DBI::dbWriteTable(con, "gengi", gengi, overwrite = TRUE)
 
-# Ísland til samanburðar: McDonald's er ekki á Íslandi, en Metro selur sambærilegan
-# hamborgara, Heimsborgara. Engin vefþjónusta er til fyrir verðið, svo það er skráð
+# Ísland til samanburðar: McDonald's er ekki á Íslandi, en Heimsborgari á Metro er
+# íslenska ígildi Big Mac. Engin vefþjónusta er til fyrir verðið, svo það er skráð
 # hér í höndunum af Wolt og þarf að uppfæra handvirkt.
 island <- data.frame(
   vara = "Heimsborgari á Metro",

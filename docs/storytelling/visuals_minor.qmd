@@ -384,8 +384,8 @@ viðmiðunargengi Seðlabanka Íslands þess dags: `r gengi_txt(gengi_fyrr)` kr.
 krónum er því það sem Big Mac breyttist í verði fyrir þann sem greiðir með krónum, og hún felur
 líka í sér breytingu á gengi krónunnar, `r format(gengi_breyting, decimal.mark = ",")`% á tímabilinu.
 
-McDonald's er ekki á Íslandi, svo til samanburðar sýnir brotna línan verð á sambærilegum
-hamborgara, `r island$vara`: `r kronur(island$verd_isk)` á Wolt `r format(as.Date(island$sott), "%d.%m.%Y")`.
+McDonald's er ekki á Íslandi, svo til samanburðar sýnir brotna línan verð á íslenska ígildi
+Big Mac, `r island$vara`: `r kronur(island$verd_isk)` á Wolt `r format(as.Date(island$sott), "%d.%m.%Y")`.
 Það er `r format(round(island$verd_isk / max(bm$nu), 1), decimal.mark = ",")` sinnum verð dýrasta
 Big Mac í gögnunum, í landinu `r as.character(bm$land[which.max(bm$nu)])`. Samanburðurinn er þó
 grófur: verðið er frá öðrum tíma en hin, og verð á Wolt getur verið hærra en á staðnum sjálfum.
