@@ -91,6 +91,21 @@ regmatches(txt, gregexpr("[[:alnum:]._]+@[[:alnum:].-]+", txt))
 ```
 
 Sömu föll taka `perl = TRUE`: `grepl()`, `sub()`, `gsub()`, `regexpr()`.
+
+Fyrri leiðin hefur þó einn galla: með `perl = TRUE` passar `\w` aðeins við enska stafi. Netföng
+eru alltaf á ASCII-stöfum, svo þau sleppa, en nafnið við hliðina á netfanginu gerir það ekki.
+Settu `(*UCP)` fremst í mynstrið til að laga það:
+
+```{r}
+#| label: groups-r-ucp
+lina <- "Þórður Ágústsson <thordur@hi.is>"
+mynstur <- "(\\w+) (\\w+) <([\\w.]+@[\\w.-]+)>"
+
+regmatches(lina, regexec(mynstur, lina, perl = TRUE))
+regmatches(lina, regexec(paste0("(*UCP)", mynstur), lina, perl = TRUE))
+```
+
+Sjá nánar [Íslenskir stafir og `\w`](syntax.qmd#islenskir-stafir).
 :::
 
 ## Python
