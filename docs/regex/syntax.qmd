@@ -5,6 +5,15 @@ description: >-
   kennitöludæmi.
 ---
 
+```{r}
+#| label: syntax-r-utf8
+#| include: false
+# Í Windows-forskoðun getur C.UTF-8 fallið aftur í ASCII-stafasett.
+if (.Platform$OS.type == "windows" && !isTRUE(l10n_info()[["UTF-8"]])) {
+  invisible(Sys.setlocale("LC_CTYPE", "English_United States.utf8"))
+}
+```
+
 ## Byrjaðu á einföldu mynstri
 
 Venjulegir stafir passa við sjálfa sig:
@@ -114,7 +123,7 @@ allra tungumála, en ekki öll verkfæri breyttu merkingu `\w`:
 Hvers vegna nota R-dæmin hér þá `perl = TRUE`? R hefur tvær regex-vélar. Sú sjálfgefna fylgir
 POSIX-staðlinum og ræður ekki við `\d` eða `\w` innan hornklofa: mynstrið `[\d-]+` finnur strengi
 eins og `888-8888` eða `888888-8888` með PCRE, en POSIX-vélin les það sem stafina `\`, `d` og `-`.
-PCRE-vélin er líka yfirleitt hraðari. Verðið er að muna eftir `(*UCP)` þegar textinn er á íslensku:
+PCRE-vélin er líka yfirleitt hraðari. Aftur á móti þarf að muna eftir `(*UCP)` þegar textinn er á íslensku:
 
 ::: {.panel-tabset}
 ## R
