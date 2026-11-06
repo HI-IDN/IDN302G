@@ -64,7 +64,7 @@ breyta öðrum skrám) og segja **hvernig þú veist að verkið sé búið**. �
 
 ### Að yfirfara tillöguna
 
-Vinndu á sérstöku [branch](../github/good_practices/git_branches.qmd) áður en erindrekinn breytir
+Búðu til sérstakt [branch](../github/good_practices/git_branches.qmd) áður en erindrekinn breytir
 skrám. Þegar tillagan er tilbúin:
 
 1. Skoðaðu `git status` og `git diff`. Aðeins README á að hafa breyst; lestu textann vandlega.
