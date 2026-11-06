@@ -117,7 +117,7 @@ bm$land <- reorder(bm$land, bm$nu)
 # er ósýnilegt (phantom) og einu sinni appelsínugulur þar sem aðeins orðið sést.
 titill_fyrir <- "Hvar hefur Big Mac "
 # Stutt tímabil í titli; nákvæmar dagsetningar eru í undirtitli
-titill_eftir <- " síðasta árið?"
+titill_eftir <- " síðastliðið ár?"
 titill_svartur <- bquote(.(titill_fyrir) * phantom("hækkað") * .(titill_eftir))
 titill_appels  <- bquote(phantom(.(titill_fyrir)) * "hækkað" * phantom(.(titill_eftir)))
 # Ísland: lóðrétt viðmiðunarlína fyrir Heimsborgara á Metro (engin McDonald's á Íslandi)
