@@ -61,6 +61,18 @@ gengi <- do.call(rbind, lapply(dags_bm, function(d) {
   data.frame(dags = d, gengisdagur = format(sidast$dagur), isk_per_usd = sidast$isk)
 }))
 DBI::dbWriteTable(con, "gengi", gengi, overwrite = TRUE)
+
+# Ísland til samanburðar: McDonald's er ekki á Íslandi, en Metro selur sambærilegan
+# hamborgara, Heimsborgara. Engin vefþjónusta er til fyrir verðið, svo það er skráð
+# hér í höndunum af Wolt og þarf að uppfæra handvirkt.
+island <- data.frame(
+  vara = "Heimsborgari á Metro",
+  verd_isk = 1919,
+  heimild = paste0("https://wolt.com/is/isl/reykjavik/restaurant/metro-smaratorgi/",
+                   "heimsburger-itemid-5a9702c3c397e08d8bc3277d"),
+  sott = "2026-11-06"
+)
+DBI::dbWriteTable(con, "island", island, overwrite = TRUE)
 DBI::dbDisconnect(con)
 
 cat("Vistaði", nrow(bigmac), "raðir frá", min(bigmac$dags), "til", max(bigmac$dags), "í", skra, "\n")

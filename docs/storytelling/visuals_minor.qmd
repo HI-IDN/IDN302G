@@ -352,6 +352,7 @@ bm_gengi <- function(d) DBI::dbGetQuery(bm_con,
   "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?", params = list(d))
 gengi_nu <- bm_gengi(bm_dags[1])
 gengi_fyrr <- bm_gengi(bm_dags[2])
+island <- DBI::dbReadTable(bm_con, "island")
 DBI::dbDisconnect(bm_con)
 # Hvort verð á gengi síns dags, eins og í grafinu
 bm$fyrr <- bm$fyrr * gengi_fyrr$isk_per_usd
@@ -382,6 +383,13 @@ viðmiðunargengi Seðlabanka Íslands þess dags: `r gengi_txt(gengi_fyrr)` kr.
 `r dagur_txt(gengi_fyrr)` og `r gengi_txt(gengi_nu)` kr. `r dagur_txt(gengi_nu)`. Breytingin í
 krónum er því það sem Big Mac breyttist í verði fyrir þann sem greiðir með krónum, og hún felur
 líka í sér breytingu á gengi krónunnar, `r format(gengi_breyting, decimal.mark = ",")`% á tímabilinu.
+
+McDonald's er ekki á Íslandi, svo til samanburðar sýnir brotna línan verð á sambærilegum
+hamborgara, `r island$vara`: `r kronur(island$verd_isk)` á Wolt `r format(as.Date(island$sott), "%d.%m.%Y")`.
+Það er `r format(round(island$verd_isk / max(bm$nu), 1), decimal.mark = ",")` sinnum verð dýrasta
+Big Mac í gögnunum, í landinu `r as.character(bm$land[which.max(bm$nu)])`. Samanburðurinn er þó
+grófur: verðið er frá öðrum tíma en hin, og verð á Wolt getur verið hærra en á staðnum sjálfum.
+Engin vefþjónusta er til fyrir verðið, svo það er skráð í höndunum í skriftunni.
 
 Gögnin eru sótt með `code/bigmac_sqlite.R`: verðin af GitHub og gengið úr vefþjónustu Seðlabankans.
 Þau eru vistuð í SQLite-grunninn `data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr. Íslensku landaheitin eru í

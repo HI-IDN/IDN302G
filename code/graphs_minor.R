@@ -104,6 +104,7 @@ gengi_nu <- DBI::dbGetQuery(con, "SELECT gengisdagur, isk_per_usd FROM gengi WHE
                             params = list(dags[1]))
 gengi_fyrr <- DBI::dbGetQuery(con, "SELECT gengisdagur, isk_per_usd FROM gengi WHERE dags = ?",
                               params = list(dags[2]))
+island <- DBI::dbReadTable(con, "island")
 DBI::dbDisconnect(con)
 bm$fyrr <- bm$fyrr * gengi_fyrr$isk_per_usd
 bm$nu <- bm$nu * gengi_nu$isk_per_usd
@@ -122,9 +123,14 @@ titill_eftir <- if (fyrri_hluti) paste0(" á fyrri hluta árs ", substr(dags[1],
   paste0(" frá ", manudur(dags[2]), " til ", manudur(dags[1]), "?")
 titill_svartur <- bquote(.(titill_fyrir) * phantom("hækkað") * .(titill_eftir))
 titill_appels  <- bquote(phantom(.(titill_fyrir)) * "hækkað" * phantom(.(titill_eftir)))
+# Ísland: lóðrétt viðmiðunarlína fyrir Heimsborgara á Metro (engin McDonald's á Íslandi)
+island_merki <- paste0(island$vara, ":\n", format(island$verd_isk, big.mark = "."), " kr.")
 p_bigmac <- ggplot(bm, aes(y = land)) +
+  geom_vline(xintercept = island$verd_isk, colour = "grey40", linetype = "dashed") +
   geom_segment(aes(x = fyrr, xend = nu, yend = land, colour = haekkun), linewidth = 1.3) +
   geom_point(aes(x = nu, colour = haekkun), size = 2.6) +
+  annotate("text", x = island$verd_isk, y = levels(bm$land)[3], label = island_merki,
+           hjust = 1.05, size = 3.2, colour = "grey25", lineheight = 0.9) +
   scale_colour_manual(values = c(`FALSE` = hi_blue, `TRUE` = hi_orange), guide = "none") +
   scale_x_continuous(labels = function(x) paste(format(x, big.mark = ".", decimal.mark = ",",
                                                         trim = TRUE), "kr.")) +
@@ -137,7 +143,8 @@ p_bigmac <- ggplot(bm, aes(y = land)) +
          "TheEconomist/big-mac-data/master/output-data/big-mac-raw-index.csv.\n",
          "Umreiknað í krónur á opinberu viðmiðunargengi Seðlabanka Íslands fyrir Bandaríkjadal: ",
          gengi_texti(gengi_fyrr), " og ", gengi_texti(gengi_nu), ".\n",
-         "Gengið er sótt úr vefþjónustu bankans, sedlabanki.is/xmltimeseries.")) +
+         "Gengið er sótt úr vefþjónustu bankans, sedlabanki.is/xmltimeseries. ",
+         island$vara, ": verð á Wolt ", format(as.Date(island$sott), "%d.%m.%Y"), ".")) +
   theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9),
         plot.caption = element_text(size = 7, hjust = 0), plot.caption.position = "plot",
         plot.title.position = "plot", plot.title = element_text(size = 12.5))
