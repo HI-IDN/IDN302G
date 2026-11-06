@@ -49,20 +49,8 @@ Lýsingin skiptir mestu máli. Erindrekinn notar hana til að ákveða hvort ski
 að segja *hvenær* á að nota það, ekki bara *hvað* það gerir.
 
 Í Claude Code eru skills í möppunni `.claude/skills/` í verkefninu.[^skills-claude]
-`SKILL.md`-sniðið er opinn staðall sem fleiri tól styðja.[^skills-standard]
-
-## Dæmi: branch og issue sem skjölun
-
-Skill-ið hér að ofan lætur erindrekann vinna alltaf á sérstöku branch og skrá hvert verk í issue
-á GitHub. Kosturinn er tvíþættur:
-
-- **Rekjanleiki.** Issue-ið segir hvað var gert og af hverju, og Pull Request vísar í það. Sá sem
-  les söguna seinna sér samhengið án þess að spyrja.
-- **Yfirferð.** Yfirlesari getur borið breytinguna saman við það sem issue-ið segir að hafi átt
-  að gera.
-
-Þetta kemur ekki í stað [erindreka-dagbókarinnar](agent-log.qmd). Dagbókin segir hvar erindreki
-hafði áhrif og hvað teymið yfirfór; issue-ið lýsir verkinu sjálfu.
+`SKILL.md`-sniðið er opinn staðall sem fleiri tól styðja.[^skills-standard] Hvernig skill eins og
+þetta tengist erindreka-dagbókinni er lýst í [Erindreka-dagbók](agent-log.qmd#issue-sem-skjölun).
 
 ## Hvað á heima í skill?
 
