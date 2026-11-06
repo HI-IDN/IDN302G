@@ -373,7 +373,7 @@ Hér er tengt punktarit notað á raunveruleg gögn: verð á Big Mac í `r nrow
 Mac-vísitölu The Economist, umreiknað í krónur. Línan byrjar í verðinu í `r manudur(bm_dags[2])` og punkturinn er
 verðið í `r manudur(bm_dags[1])`, svo lengd línunnar er breytingin og stefna hennar segir hvort verðið
 hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, í `r sum(bm$breyting > 0)` af
-`r nrow(bm)` löndum. Mest hækkaði verðið í landinu `r bm_mest$land`, þar sem það fór úr
+`r nrow(bm)` löndum. Verðið hækkaði mest í landi sem er `r bm_mest$land`, þar sem það fór úr
 `r kronur(bm_mest$fyrr)` í `r kronur(bm_mest$nu)` á einu ári. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
 skýringu.
 
@@ -386,7 +386,7 @@ ekki ljóst hvort Big Mac hefði hækkað eða krónan veikst.
 McDonald's er ekki á Íslandi, svo til samanburðar sýnir brotna línan verð á íslenska ígildi
 Big Mac, `r island$vara`: `r kronur(island$verd_isk)` í vefverslun Metro `r format(as.Date(island$sott), "%d.%m.%Y")`.
 Það er `r format(round(island$verd_isk / max(bm$nu), 1), decimal.mark = ",")` sinnum verð dýrasta
-Big Mac í gögnunum, í landinu `r as.character(bm$land[which.max(bm$nu)])`. Samanburðurinn er þó
+Big Mac í gögnunum, sem er `r as.character(bm$land[which.max(bm$nu)])`. Samanburðurinn er þó
 grófur, því verðið er frá öðrum tíma en hin.
 Vefverslunin sækir verðin úr vefþjónustu sem krefst innskráningar, svo verðið er skráð í höndunum
 í skriftunni.
