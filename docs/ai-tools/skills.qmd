@@ -65,4 +65,6 @@ Setjið frekar í `AGENTS.md` reglur sem gilda í öllum verkum, eins og að bre
 leyndarmálum eða stórum gögnum.
 
 [^skills-claude]: Anthropic, [Extend Claude with skills](https://code.claude.com/docs/en/skills).
-[^skills-standard]: [Agent Skills](https://agentskills.io/).
+[^skills-standard]: Agent Skills, [Agent Skills: opinn staðall fyrir skills](https://agentskills.io/). Agent Skills er
+    verkefni á vegum LF Projects, LLC (Linux Foundation); sjá [lfprojects.org](https://lfprojects.org/) um
+    notkunarskilmála.
