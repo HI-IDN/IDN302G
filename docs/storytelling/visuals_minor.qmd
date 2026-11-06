@@ -38,6 +38,12 @@ Kassinn sjálfur sýnir fjórðungana, þar sem línan í miðjum kassanum tákn
 (whiskers) sýna hámarks- og lágmarksgildi, en ef það eru útlagar (e. outliers), eru þeir sýndir sem
 sérstakir punktar fyrir utan strokurnar.
 
+##### Afbrigði af kassariti
+
+- **Breytibreitt kassarit - variable width boxplot**: Kassar sýna stærð hópanna.
+- **Kassarit með skörðum - notched boxplot**: Sýna öryggisbil í kringum miðgildi.
+- **Fiðlurit - violin plot**: Sameina kassarit og dreifilínurit til að sýna dreifingu nákvæmlega.
+
 Hér eru sömu gögn sýnd með venjulegu kassariti og þremur afbrigðum þess: sparneytni bíla (mílur á
 gallon) eftir fjölda strokka, úr gagnasafninu `mtcars` sem fylgir R.
 
@@ -98,13 +104,6 @@ dreifing er breið eða þétt.
 Ef markhópurinn er ekki vel þjálfaður í tölfræði getur verið betra að nota einfaldari gröf. Kassarit
 sýna ekki dreifingu eins vel og dreifirit eða stuðlarit, sem getur falið mikilvægar upplýsingar.
 
-##### Afbrigði af kassariti
-
-- **Breytibreitt kassarit - variable width boxplot**: Kassar sýna stærð hópanna.
-- **Kassarit með skörðum - notched boxplot**: Sýna öryggisbil í kringum miðgildi.
-- **Fiðlurit - violin plot**: Sameina kassarit og dreifilínurit til að sýna dreifingu nákvæmlega.
-
-Dæmi um hvert afbrigði eru í flipunum hér að ofan.
 
 Nánar um [Box Plot](https://www.storytellingwithdata.com/blog/what-is-a-boxplot) á *Storytelling
 with data.*
