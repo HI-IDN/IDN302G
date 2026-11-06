@@ -39,7 +39,18 @@ lond <- data.frame(iso = c(
   "Líbanon", "Srí Lanka", "Moldóva", "Mexíkó", "Malasía", "Níkaragva", "Noregur", "Nýja-Sjáland",
   "Óman", "Pakistan", "Perú", "Filippseyjar", "Pólland", "Katar",
   "Rúmenía", "Rússland", "Sádi-Arabía", "Singapúr", "Svíþjóð", "Taíland", "Tyrkland", "Taívan",
-  "Úkraína", "Úrúgvæ", "Bandaríkin", "Venesúela", "Víetnam", "Suður-Afríka"))
+  "Úkraína", "Úrúgvæ", "Bandaríkin", "Venesúela", "Víetnam", "Suður-Afríka"),
+  # Staður: forsetning og þágufall, svo texti geti sagt „í Kólumbíu“
+  stadur = c(
+  "í Sameinuðu arabísku furstadæmunum", "í Argentínu", "í Ástralíu", "í Aserbaídsjan", "í Barein",
+  "í Brasilíu", "í Kanada", "í Sviss", "í Síle", "í Kína", "í Kólumbíu", "í Kosta Ríka",
+  "í Tékklandi", "í Danmörku", "í Egyptalandi", "á evrusvæðinu", "í Bretlandi", "í Gvatemala",
+  "í Hong Kong", "í Hondúras", "í Ungverjalandi", "í Indónesíu", "á Indlandi", "í Ísrael",
+  "í Jórdaníu", "í Japan", "í Suður-Kóreu", "í Kúveit", "í Líbanon", "á Srí Lanka", "í Moldóvu",
+  "í Mexíkó", "í Malasíu", "í Níkaragva", "í Noregi", "á Nýja-Sjálandi", "í Óman", "í Pakistan",
+  "í Perú", "á Filippseyjum", "í Póllandi", "í Katar", "í Rúmeníu", "í Rússlandi",
+  "í Sádi-Arabíu", "í Singapúr", "í Svíþjóð", "í Taílandi", "í Tyrklandi", "í Taívan",
+  "í Úkraínu", "í Úrúgvæ", "í Bandaríkjunum", "í Venesúela", "í Víetnam", "í Suður-Afríku"))
 DBI::dbWriteTable(con, "land", lond, overwrite = TRUE)
 
 # Gengi Bandaríkjadals í krónum: opinbert viðmiðunargengi Seðlabanka Íslands (skráð
