@@ -145,6 +145,16 @@ $presentation-slide-text-align:   left;
   &:hover { color: var(--red); }
 }
 
+.reveal .slide-links a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+
+  &:visited { color: var(--blue); }
+  &:hover { color: var(--primary-hover); }
+  &:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+}
+
 .reveal .slides section.slide.level2 > h2:empty { display: none; }
 
 .reveal .slides section.slide {
@@ -1378,4 +1388,24 @@ em.emph {
   &::before { content: "PROMPT · "; color: var(--blue); font-weight: 900; text-transform: uppercase; }
   // When data-ai="Gemini" → "GEMINI PROMPT · " (uppercase via text-transform)
   &[data-ai]::before { content: attr(data-ai) " PROMPT · "; }
+}
+
+// Capstone: readable pipeline and compact student-facing rubric references.
+.capstone-flow {
+  margin: 32px 0 24px;
+  .step-chip { min-height: 120px; }
+  .step-chip:last-child { color: var(--ink); }
+}
+.reveal .rubric-slide {
+  .rubric-grid { gap: 36px; margin-top: 12px; }
+  .rubric-group { margin-bottom: 16px; }
+  .rubric-group h3 { font-size: 21px; margin-bottom: 7px; color: var(--blue); }
+  .rubric-group ul { list-style: none; margin: 0; padding: 0; }
+  .rubric-group li {
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: 19px; line-height: 1.25; margin-bottom: 5px;
+    border-bottom: 1px solid var(--panel); padding-bottom: 4px;
+  }
+  .rubric-group li strong { color: var(--blue); white-space: nowrap; }
+  > p, .slide-links p { font-size: 18px; }
 }
