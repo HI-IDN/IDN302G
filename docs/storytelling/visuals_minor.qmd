@@ -362,7 +362,8 @@ Hér er tengt punktarit notað á raunveruleg gögn: verð á Big Mac í dolluru
 verðið í `r manudur(bm_dags[1])`, svo lengd línunnar er breytingin og stefna hennar segir hvort verðið
 hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, í `r sum(bm$breyting > 0)` af
 `r nrow(bm)` löndum. Mest hækkaði verðið í landinu `r bm_mest$land`, úr `r dollar(bm_mest$fyrr)` í
-`r dollar(bm_mest$nu)`. Litaskýringin efst sýnir hvað litirnir þýða, og blátt er þar sem verðið lækkaði.
+`r dollar(bm_mest$nu)`. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
+skýringu.
 
 Gögnin eru sótt af GitHub með `code/bigmac_sqlite.R` og vistuð í SQLite-grunninn
 `data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr.

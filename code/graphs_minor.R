@@ -98,17 +98,21 @@ bm <- DBI::dbGetQuery(con, "
   FROM bigmac n JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
   WHERE n.dags = ?", params = list(dags[2], dags[1]))
 DBI::dbDisconnect(con)
-bm$stefna <- factor(ifelse(bm$nu > bm$fyrr, "Hækkaði", ifelse(bm$nu < bm$fyrr, "Lækkaði", "Óbreytt")),
-                    levels = c("Hækkaði", "Lækkaði", "Óbreytt"))
+bm$haekkun <- bm$nu > bm$fyrr
 bm$land <- reorder(bm$land, bm$nu)
-p_bigmac <- ggplot(bm, aes(y = land, colour = stefna)) +
-  geom_segment(aes(x = fyrr, xend = nu, yend = land), linewidth = 1.3) +
-  geom_point(aes(x = nu), size = 2.6) +
-  scale_colour_manual(values = c("Hækkaði" = hi_orange, "Lækkaði" = hi_blue, "Óbreytt" = "grey60"),
-                      name = NULL) +
+# Orðið „hækkað“ er appelsínugult í titlinum, svo ekki þarf sérstaka litaskýringu.
+# Titillinn er teiknaður tvisvar ofan í sjálfan sig: einu sinni svartur þar sem orðið
+# er ósýnilegt (phantom) og einu sinni appelsínugulur þar sem aðeins orðið sést.
+titill_fyrir <- "Hvar hefur verð á Big Mac "
+titill_eftir <- paste0(" frá ", manudur(dags[2]), " til ", manudur(dags[1]), "?")
+titill_svartur <- bquote(.(titill_fyrir) * phantom("hækkað") * .(titill_eftir))
+titill_appels  <- bquote(phantom(.(titill_fyrir)) * "hækkað" * phantom(.(titill_eftir)))
+p_bigmac <- ggplot(bm, aes(y = land)) +
+  geom_segment(aes(x = fyrr, xend = nu, yend = land, colour = haekkun), linewidth = 1.3) +
+  geom_point(aes(x = nu, colour = haekkun), size = 2.6) +
+  scale_colour_manual(values = c(`FALSE` = hi_blue, `TRUE` = hi_orange), guide = "none") +
   scale_x_continuous(labels = function(x) paste0("$", trimws(format(x, decimal.mark = ",")))) +
-  labs(title = paste0("Hvar hefur verð á Big Mac hækkað frá ", manudur(dags[2]),
-                      " til ", manudur(dags[1]), "?"),
+  labs(title = titill_svartur,
        subtitle = paste0("Punkturinn er verðið í ", manudur(dags[1]),
                          ", línan byrjar í verðinu í ", manudur(dags[2]), "."),
        x = "Verð í dollurum", y = NULL,
@@ -117,9 +121,16 @@ p_bigmac <- ggplot(bm, aes(y = land, colour = stefna)) +
                         "master/output-data/big-mac-raw-index.csv")) +
   theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9),
         plot.caption = element_text(size = 7, hjust = 0), plot.caption.position = "plot",
-        plot.title.position = "plot", plot.title = element_text(size = 12.5),
-        legend.position = "top", legend.justification = "left")
-ggsave(file.path(out, "dotplot_bigmac.png"), p_bigmac, width = 7.5, height = 9, dpi = 200, bg = "white", type = "cairo")
+        plot.title.position = "plot", plot.title = element_text(size = 12.5))
+g_bigmac <- ggplotGrob(p_bigmac)
+nr <- which(g_bigmac$layout$name == "title")
+svartur <- g_bigmac$grobs[[nr]]
+appels <- svartur
+appels$name <- paste0(svartur$name, "-appels")  # grobTree hendir grobum með sama nafni
+appels$children[[1]]$label <- titill_appels
+appels$children[[1]]$gp$col <- hi_orange
+g_bigmac$grobs[[nr]] <- grid::grobTree(svartur, appels)
+ggsave(file.path(out, "dotplot_bigmac.png"), g_bigmac, width = 7.5, height = 9, dpi = 200, bg = "white", type = "cairo")
 
 # Svæðarit: atvinnulausir í Bandaríkjunum yfir tíma
 p_area <- ggplot(economics, aes(x = date, y = unemploy / 1000)) +
