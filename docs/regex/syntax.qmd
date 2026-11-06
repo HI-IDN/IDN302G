@@ -101,14 +101,16 @@ Lestu það í bútum:
 
 ## Íslenskir stafir og `\w` {#islenskir-stafir}
 
-R hefur tvær regex-vélar, sjálfgefna vélin er POSIX-vélin, hin vélin er PCRE-vélin sem er aðeins
-notuð þegar `perl = TRUE` er til staðar. Mynstrið `[\d-]+` er gott til að bera kennsl á einhvern
-streng með tölum og bandstrikum eins og `888-8888` eða `888888-8888`, en það virkar aðeins ef
-`perl = TRUE`, því sjálfgefna POSIX-vélin les það sem stafina `\`, `d` og `-`. PCRE-vélin er
-líka yfirleitt hraðari. Þess vegna nota R-dæmin hér `perl = TRUE`.
+R hefur tvær regex-vélar. Sú sjálfgefna fylgir POSIX-staðlinum, en PCRE-vélin er notuð þegar
+`perl = TRUE` er gefið. Munurinn sést innan hornklofa: mynstrið `[\d-]+` finnur strengi eins og
+`888-8888` eða `888888-8888` með PCRE, en POSIX-vélin les það sem stafina `\`, `d` og `-`.
+PCRE-vélin er líka yfirleitt hraðari, og þess vegna nota R-dæmin hér `perl = TRUE`.
 
 Gallinn er að þá passar `\w` aðeins við enska stafi. Settu `(*UCP)` fremst í mynstrið til að fá
-íslenska stafi með:
+íslenska stafi með. Í Python passar `\w` við íslenska stafi án nokkurra stillinga.
+
+::: {.panel-tabset}
+## R
 
 ```{r}
 #| label: syntax-r-is-1
@@ -117,7 +119,16 @@ regmatches(setning, gregexpr("\\w+", setning, perl = TRUE))
 regmatches(setning, gregexpr("(*UCP)\\w+", setning, perl = TRUE))
 ```
 
-Í Python passar `\w` við íslenska stafi án nokkurra stillinga.
+## Python
+
+```{python}
+#| label: syntax-py-is-1
+import re
+
+setning = "Hún sá Þór við ána"
+print(re.findall(r"\w+", setning))
+```
+:::
 
 ## Æfingar
 
