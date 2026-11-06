@@ -17,6 +17,14 @@ hátt.
 Það fjarlægir sjálfkrafa afrit, þannig að hver lína birtist aðeins einu sinni, jafnvel þó hún komi
 fyrir í báðum fyrirspurnunum.
 
+Hugsið þetta sem **mengjasameiningu**: niðurstaðan inniheldur engar endurteknar
+línur. Þetta líkist því að skeyta tveimur töflum saman og fjarlægja síðan afrit
+með `unique()` í R eða `drop_duplicates()` í Python-pakkanum pandas.
+Til dæmis samsvarar `UNION` á vörulistum hugmyndinni að baki
+`unique(c("Kaffi", "Te", "Kaffi", "Kakó"))` í R eða
+`set(["Kaffi", "Te", "Kaffi", "Kakó"])` í Python: hver vara kemur aðeins einu sinni fyrir.
+Fyrir töflur er samanburðurinn á **allri völdu línunni**, ekki bara einum dálki.
+
 ### `UNION ALL`
 
 `UNION ALL` virkar á sama hátt og `UNION`, nema að það **fjarlægir ekki afrit**. Þetta þýðir að
@@ -33,5 +41,216 @@ dálka og að gagnatýpurnar í samsvarandi dálkum séu samhæfar. Hér er _ekk
 þurfa að heita það sama, heldur að þeir þurfi að hafa sömu gagnatýpu. Heitið sem mun birtast 
 munu vera samkvæmt fyrstu fyrirspurninni í sameiningunni.
 
-`UNION` er umtalsvert dýrari að keyra en `UNION ALL`, þar sem `UNION` þarf að athuga hvort línur 
-séu eins og hún fer yfir niðurstöðurnar.
+### Hvers vegna getur `UNION ALL` verið hraðara?
+
+`UNION` þarf að tryggja að engar línur séu endurteknar. Það getur krafist
+aukavinnu og minnis, til dæmis til að halda utan um línur sem hafa þegar komið
+fyrir. `UNION ALL` sleppir þessari afritahreinsun. Í stærri gagnasöfnum getur
+munurinn verið tilfinnanlegur; tímamæling á örfáum línum í dæmunum hér að neðan
+myndi hins vegar segja lítið um afköst.
+
+Þótt allar línur reynist ólíkar getur `UNION` samt þurft að vinna þessa
+aukavinnu. Ekki er þó alltaf um sérstaka yfirferð í lokin að ræða:
+útfærslan fer eftir gagnagrunninum og keyrsluáætluninni.
+[SQLite sýnir dæmi um slíka áætlun](https://www.sqlite.org/eqp.html#compound_queries).
+
+Ef þið vitið að niðurstöðurnar skarast ekki má nota `UNION ALL` og sleppa
+óþarfri afritahreinsun. **Aðallykill í hvorri töflu tryggir það ekki einn og sér:**
+sama lykilgildi getur verið í báðum töflum. Ef lykillinn er valinn með og
+lyklasviðin skarast ekki, til dæmis sölunúmerin 101–102 og 201–202 í dæminu
+hér að neðan, eru línurnar ólíkar. Ef aðeins vara og verð eru valin geta þær
+aftur á móti orðið eins.
+
+```{r}
+#| label: union-r-1
+#| include: false
+if (.Platform$OS.type == "windows") {
+  invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
+}
+con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/union.db", flags = RSQLite::SQLITE_RO)
+```
+
+## Sýnidæmi: starfsmenn í tveimur listum {#starfsmenn}
+
+Byrjum á einföldum samanburði. Tveir starfsmannalistar innihalda báðir sömu línuna
+fyrir Sigurð. Hvort á hún að birtast einu sinni eða tvisvar í sameinuðum lista?
+
+Fliparnir nota sömu tilbúnu gögnin. Hver fyrirspurn inniheldur sína eigin
+`WITH`-skilgreiningu og má því keyra sjálfstætt í SQLite eða PostgreSQL.
+
+::: {.panel-tabset}
+### `UNION`: einstakar línur
+
+```{sql}
+--| label: union-sql-employees-distinct
+--| connection: con
+--| tab.cap: ""
+WITH starfsmenn_a(nafn, id) AS (
+    VALUES ('Kjartan', '1'),
+           ('Sigurður', '2'),
+           ('Erla', '3')
+),
+starfsmenn_b(nafn, id) AS (
+    VALUES ('Ragnar', '1'),
+           ('Sigurður', '2')
+)
+SELECT nafn AS "Nafn", id AS "Auðkenni" FROM starfsmenn_a
+UNION
+SELECT nafn, id FROM starfsmenn_b
+ORDER BY "Nafn", "Auðkenni";
+```
+
+Línan með Sigurði birtist einu sinni. Kjartan og Ragnar halda hins vegar báðir
+sinni línu þótt auðkennið sé það sama: **`UNION` ber saman alla valda dálka**,
+ekki auðkennisdálkinn einan.
+
+### `UNION ALL`: allar línur
+
+```{sql}
+--| label: union-sql-employees-all
+--| connection: con
+--| tab.cap: ""
+WITH starfsmenn_a(nafn, id) AS (
+    VALUES ('Kjartan', '1'),
+           ('Sigurður', '2'),
+           ('Erla', '3')
+),
+starfsmenn_b(nafn, id) AS (
+    VALUES ('Ragnar', '1'),
+           ('Sigurður', '2')
+)
+SELECT nafn AS "Nafn", id AS "Auðkenni" FROM starfsmenn_a
+UNION ALL
+SELECT nafn, id FROM starfsmenn_b
+ORDER BY "Nafn", "Auðkenni";
+```
+
+Línan með Sigurði birtist nú tvisvar, því `UNION ALL` heldur öllum færslum úr
+báðum listunum. `ORDER BY` raðar allri niðurstöðunni í hvorum flipa.
+:::
+
+Næsta dæmi sýnir hvers vegna þetta val getur breytt útreiknaðri heildarsölu.
+
+## Sýnidæmi: sala í tveimur verslunum {#sala}
+
+Tvær verslanir skrá sölur í sitt hvora töfluna. Kaffi hefur selst á sama verði í
+báðum verslunum, en um er að ræða tvær aðskildar sölur. Hvort eigum við að nota
+`UNION` eða `UNION ALL` þegar við sameinum gögnin? Það fer eftir spurningunni.
+
+Gögnin eru tilbúin. Dæmið keyrir í SQLite án tengingar við námskeiðsgrunninn;
+SQL-skipanirnar hér virka einnig í PostgreSQL. Upphæðir eru í krónum.
+
+### Gögnin sem við byrjum með
+
+Töflurnar eru tilbúnar í litlum SQLite-grunni, `data/union.db`. [Uppsetningarskriftan](https://github.com/HI-IDN/IDN302G/blob/main/code/union_sqlite.R) býr hann til; keyrið `Rscript code/union_sqlite.R` úr rót geymslunnar ef þið viljið endurgera hann.
+
+::: {.columns}
+::: {.column width="50%"}
+**Miðbær — `sala_midbaer`**
+
+```{sql}
+--| label: union-sql-input-midbaer
+--| connection: con
+--| echo: false
+--| tab.cap: ""
+SELECT solunr AS "Sölunúmer", vara AS "Vara", upphaed AS "Upphæð"
+FROM sala_midbaer ORDER BY solunr;
+```
+:::
+::: {.column width="50%"}
+**Kringlan — `sala_kringlan`**
+
+```{sql}
+--| label: union-sql-input-kringlan
+--| connection: con
+--| echo: false
+--| tab.cap: ""
+SELECT solunr AS "Sölunúmer", vara AS "Vara", upphaed AS "Upphæð"
+FROM sala_kringlan ORDER BY solunr;
+```
+:::
+:::
+
+### `UNION`: hvaða vörur hafa selst?
+
+Við viljum fá lista yfir ólíkar vörur sem hafa selst í annarri hvorri versluninni.
+Þá veljum við aðeins `vara` og notum `UNION`:
+
+```{sql}
+--| label: union-sql-products
+--| connection: con
+--| tab.cap: ""
+SELECT vara AS "Vara" FROM sala_midbaer
+UNION
+SELECT vara FROM sala_kringlan
+ORDER BY "Vara";
+```
+
+Kaffi birtist aðeins einu sinni. Það er rétt fyrir vörulista, þótt kaffið hafi selst oftar.
+
+### `UNION ALL`: hverjar eru allar sölurnar?
+
+Nú viljum við halda öllum sölufærslum. Báðar kaffisölurnar eiga að vera með:
+
+```{sql}
+--| label: union-sql-sales
+--| connection: con
+--| tab.cap: ""
+SELECT solunr AS "Sölunúmer", vara AS "Vara", upphaed AS "Upphæð"
+FROM sala_midbaer
+UNION ALL
+SELECT solunr, vara, upphaed FROM sala_kringlan
+ORDER BY "Sölunúmer";
+```
+
+`UNION ALL` heldur öllum línum án þess að athuga hvort þær séu eins. Í þessu
+tilbúna dæmi eru sölunúmerin ólík milli verslana. Ef báðar nota sömu númeraröð
+þarf líka að taka verslunina með til að auðkenna hverja sölu.
+
+::: {.callout-warning}
+## Gildra: `UNION` getur fellt út raunverulega sölu
+
+`UNION` ber saman **alla valda dálka**. Ef við sleppum sölunúmerinu og veljum
+aðeins `vara` og `upphaed`, líta kaffisölurnar eins út. Með `UNION` verður önnur
+þeirra felld út og heildarsalan vanmetin:
+
+```{sql}
+--| label: union-sql-total-wrong
+--| connection: con
+--| tab.cap: ""
+SELECT SUM(upphaed) AS "Heildarsala (kr.)"
+FROM (
+    SELECT vara, upphaed FROM sala_midbaer
+    UNION
+    SELECT vara, upphaed FROM sala_kringlan
+) AS sala;
+```
+
+Með `UNION ALL` haldast báðar kaffisölurnar og við fáum rétta heild:
+
+```{sql}
+--| label: union-sql-total-correct
+--| connection: con
+--| tab.cap: ""
+SELECT SUM(upphaed) AS "Heildarsala (kr.)"
+FROM (
+    SELECT vara, upphaed FROM sala_midbaer
+    UNION ALL
+    SELECT vara, upphaed FROM sala_kringlan
+) AS sala;
+```
+
+Ef sölunúmerið væri líka valið væru kaffisölurnar ólíkar línur og `UNION` héldi
+báðum. Valið á dálkum skiptir því máli, ekki bara valið á sameiningaraðgerð.
+:::
+
+Notið `UNION` þegar markmiðið er að fá einstakar línur, til dæmis vörulista.
+Notið `UNION ALL` þegar hver færsla á að haldast, til dæmis við útreikning á heildarsölu.
+`ORDER BY` í lok sameinaðrar fyrirspurnar raðar allri niðurstöðunni;
+án þess er röð lína ekki tryggð.
+
+```{r}
+#| label: union-r-2
+#| include: false
+DBI::dbDisconnect(con)
+```
