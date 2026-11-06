@@ -77,6 +77,19 @@ skrám. Þegar tillagan er tilbúin:
    [pull request](../github/good_practices/pull_requests.qmd). Lýstu breytingunni og hvernig hún
    var prófuð, og skráðu notkun erindrekans í [erindreka-dagbókina](agent-log.qmd).
 
+::: {.callout-tip}
+## Láttu erindrekann muna vinnubrögðin
+
+Í stað þess að endurtaka þetta í hverjum fyrirmælum geturðu skrifað fastar reglur fyrir
+erindrekann, til dæmis í [`AGENTS.md`](agents-md.qmd) eða sem *skill*. Dæmi um reglur:
+
+- Vinna alltaf á sérstöku branch, aldrei beint á `main`.
+- Opna eða uppfæra issue á GitHub fyrir hvert verk, með samantekt á því hvað var gert og af hverju.
+
+Þá skráir erindrekinn vinnuna jafnóðum, og issue-ið verður skjölun sem teymið og yfirlesari geta
+flett upp seinna.
+:::
+
 ### Æfing
 
 Veldu eina leiðbeiningu sem vantar í README í þínu verkefni. Skrifaðu fyrirmæli sem segja hvaða
