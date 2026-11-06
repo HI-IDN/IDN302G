@@ -1,6 +1,6 @@
 # Sýnimyndir fyrir docs/storytelling/visuals_minor.qmd (kassarit, punktarit,
 # svæðarit, rúðurit og kúlurit). Notar aðeins gögn sem fylgja R, svo skriftan
-# keyrir án gagnagrunns. Keyrt úr rót geymslunnar:
+# keyrir án nettengingar (Big Mac-dæmið les data/bigmac.db). Keyrt úr rót geymslunnar:
 #   Rscript code/graphs_minor.R
 
 library(ggplot2)
@@ -17,13 +17,38 @@ hi_teal   <- "#2DD2C0"
 hi_red    <- "#FC8484"
 lit <- hi_blue
 
-# Kassarit: sparneytni bíla eftir fjölda strokka
+# Kassarit og afbrigði: sparneytni bíla eftir fjölda strokka, sömu gögn í öllum fjórum
 mtcars$cyl_f <- factor(mtcars$cyl)
+kassi <- function(titill) {
+  labs(title = titill, x = "Fjöldi strokka", y = "Mílur á gallon (mpg)")
+}
+vista <- function(p, nafn) {
+  ggsave(file.path(out, nafn), p, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
+}
+
 p_box <- ggplot(mtcars, aes(x = cyl_f, y = mpg)) +
   geom_boxplot(fill = lit, alpha = 0.6, outlier.colour = hi_red, outlier.size = 2.5) +
-  labs(title = "Kassarit: sparneytni eftir fjölda strokka",
-       x = "Fjöldi strokka", y = "Mílur á gallon (mpg)")
-ggsave(file.path(out, "boxplot_example.png"), p_box, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
+  kassi("Kassarit")
+vista(p_box, "boxplot_example.png")
+
+# Breytibreitt: breidd kassans fylgir kvaðratrót af fjölda í hópnum
+p_box_breidd <- ggplot(mtcars, aes(x = cyl_f, y = mpg)) +
+  geom_boxplot(varwidth = TRUE, fill = lit, alpha = 0.6, outlier.colour = hi_red, outlier.size = 2.5) +
+  kassi("Breytibreitt kassarit: breiddin sýnir fjölda bíla")
+vista(p_box_breidd, "boxplot_varwidth.png")
+
+# Með skörðum: skarðið er um það bil 95% öryggisbil fyrir miðgildið
+p_box_skard <- ggplot(mtcars, aes(x = cyl_f, y = mpg)) +
+  geom_boxplot(notch = TRUE, fill = lit, alpha = 0.6, outlier.colour = hi_red, outlier.size = 2.5) +
+  kassi("Kassarit með skörðum: öryggisbil um miðgildið")
+vista(p_box_skard, "boxplot_notched.png")
+
+# Fiðlurit: þéttleiki dreifingarinnar, með mjóu kassariti inni í
+p_fidla <- ggplot(mtcars, aes(x = cyl_f, y = mpg)) +
+  geom_violin(fill = lit, alpha = 0.35, colour = lit) +
+  geom_boxplot(width = 0.12, fill = "white", outlier.colour = hi_red, outlier.size = 2) +
+  kassi("Fiðlurit: lögun dreifingarinnar")
+vista(p_fidla, "boxplot_violin.png")
 
 # Punktarit (Cleveland): bílar raðaðir eftir sparneytni
 bilar <- mtcars |> tibble::rownames_to_column("bill") |> slice_max(mpg, n = 12)
@@ -43,9 +68,29 @@ p_dot_dreif <- ggplot(mtcars, aes(x = mpg)) +
        x = "Mílur á gallon (mpg)")
 ggsave(file.path(out, "dotplot_distribution.png"), p_dot_dreif, width = 6, height = 3, dpi = 200, bg = "white", type = "cairo")
 
-# Tengt punktarit: verð á Big Mac í dollurum í tveimur síðustu mælingum, úr
-# data/bigmac.db (búið til með code/bigmac_sqlite.R). Punkturinn er nýjasta verðið
-# og línan byrjar í verðinu hálfu ári fyrr. Mestu breytingarnar eru appelsínugular.
+# Tengt punktarit: meðalsparneytni sjálfskiptra og beinskiptra bíla eftir strokkafjölda.
+# Línan milli punktanna dregur augað að muninum á skiptingunum.
+medal <- aggregate(mpg ~ cyl + am, data = mtcars, FUN = mean)
+medal$skipting <- ifelse(medal$am == 1, "Beinskiptur", "Sjálfskiptur")
+medal$cyl_f <- factor(paste(medal$cyl, "strokkar"), levels = paste(c(8, 6, 4), "strokkar"))
+bil <- merge(subset(medal, am == 0, c(cyl_f, mpg)), subset(medal, am == 1, c(cyl_f, mpg)),
+             by = "cyl_f", suffixes = c("_sjalf", "_bein"))
+p_dot_tengt <- ggplot(medal, aes(x = mpg, y = cyl_f)) +
+  geom_segment(data = bil, aes(x = mpg_sjalf, xend = mpg_bein, y = cyl_f, yend = cyl_f),
+               colour = "grey75", linewidth = 3) +
+  geom_point(aes(colour = skipting), size = 5) +
+  scale_colour_manual(values = c(Beinskiptur = hi_blue, Sjálfskiptur = hi_orange), name = NULL) +
+  labs(title = "Tengt punktarit: meðalsparneytni eftir skiptingu",
+       x = "Mílur á gallon (mpg)", y = NULL) +
+  theme(legend.position = "top")
+vista(p_dot_tengt, "dotplot_connected.png")
+
+# Stærra dæmi: verð á Big Mac í dollurum í tveimur síðustu mælingum, úr data/bigmac.db
+# (sótt með code/bigmac_sqlite.R). Línan byrjar í fyrra verðinu og punkturinn er nýja
+# verðið. Appelsínugult þar sem verðið hækkaði.
+manudir <- c("janúar", "febrúar", "mars", "apríl", "maí", "júní", "júlí", "ágúst",
+             "september", "október", "nóvember", "desember")
+manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 4))
 con <- DBI::dbConnect(RSQLite::SQLite(), "data/bigmac.db")
 dags <- DBI::dbGetQuery(con, "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2")$dags
 bm <- DBI::dbGetQuery(con, "
@@ -53,20 +98,25 @@ bm <- DBI::dbGetQuery(con, "
   FROM bigmac n JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
   WHERE n.dags = ?", params = list(dags[2], dags[1]))
 DBI::dbDisconnect(con)
-bm$breyting <- bm$nu - bm$fyrr
-bm$mest <- rank(-abs(bm$breyting)) <= 5
+bm$haekkun <- bm$nu > bm$fyrr
 bm$land <- reorder(bm$land, bm$nu)
-p_dot_tengt <- ggplot(bm, aes(y = land)) +
-  geom_segment(aes(x = fyrr, xend = nu, yend = land, colour = mest), linewidth = 0.8) +
-  geom_point(aes(x = nu, colour = mest), size = 1.8) +
+p_bigmac <- ggplot(bm, aes(y = land)) +
+  geom_segment(aes(x = fyrr, xend = nu, yend = land, colour = haekkun), linewidth = 1.3) +
+  geom_point(aes(x = nu, colour = haekkun), size = 2.6) +
   scale_colour_manual(values = c(`FALSE` = hi_blue, `TRUE` = hi_orange), guide = "none") +
   scale_x_continuous(labels = function(x) paste0("$", trimws(format(x, decimal.mark = ",")))) +
-  labs(title = "Verð á Big Mac í dollurum",
-       subtitle = paste0("Punktur: ", dags[1], ". Lína byrjar í verðinu ", dags[2],
-                         ". Fimm mestu breytingarnar eru appelsínugular."),
-       x = NULL, y = NULL, caption = "Heimild: The Economist, Big Mac-vísitalan") +
-  theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9))
-ggsave(file.path(out, "dotplot_connected.png"), p_dot_tengt, width = 7, height = 9, dpi = 200, bg = "white", type = "cairo")
+  labs(title = paste0("Hvar hefur verð á Big Mac í dollurum hækkað (appelsínugult)\n",
+                      "frá ", manudur(dags[2]), " til ", manudur(dags[1]), "?"),
+       subtitle = paste0("Punkturinn er verðið í ", manudur(dags[1]),
+                         ", línan byrjar í verðinu í ", manudur(dags[2]), "."),
+       x = "Verð í dollurum", y = NULL,
+       caption = paste0("Heimild: The Economist, Big Mac-vísitalan. Sótt af ",
+                        "raw.githubusercontent.com/TheEconomist/big-mac-data/",
+                        "master/output-data/big-mac-raw-index.csv")) +
+  theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9),
+        plot.caption = element_text(size = 7, hjust = 0), plot.caption.position = "plot",
+        plot.title.position = "plot")
+ggsave(file.path(out, "dotplot_bigmac.png"), p_bigmac, width = 7, height = 9, dpi = 200, bg = "white", type = "cairo")
 
 # Svæðarit: atvinnulausir í Bandaríkjunum yfir tíma
 p_area <- ggplot(economics, aes(x = date, y = unemploy / 1000)) +
@@ -76,24 +126,22 @@ p_area <- ggplot(economics, aes(x = date, y = unemploy / 1000)) +
        x = NULL, y = "Milljónir manna")
 ggsave(file.path(out, "areagraph_example.png"), p_area, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
 
-# Rúðurit (vöfflurit): ein rúða fyrir hvern bíl í mtcars, flokkað eftir strokkafjölda.
-# Netið er 8 dálkar á breidd svo allar rúður passa (32 bílar = 8 x 4).
-breidd <- 8
-flokkar <- paste(sort(mtcars$cyl), "strokkar")
-net <- data.frame(
-  x = (seq_along(flokkar) - 1) %% breidd + 1,
-  y = -((seq_along(flokkar) - 1) %/% breidd),
-  flokkur = flokkar
-)
+# Rúðurit (vöfflurit): 10x10 net þar sem hver rúða er 1% af bílunum, eftir strokkafjölda.
+# Prósentur eru námundaðar svo þær leggist saman í 100.
+hlutf <- round(prop.table(table(mtcars$cyl)) * 100)
+hlutf[length(hlutf)] <- 100 - sum(hlutf[-length(hlutf)])
+merki <- paste0(names(hlutf), " strokkar: ", hlutf, "%")
+net <- expand.grid(x = 1:10, y = 10:1)
+net$flokkur <- factor(rep(merki, times = hlutf), levels = merki)
 p_waffle <- ggplot(net, aes(x, y, fill = flokkur)) +
   geom_tile(colour = "white", linewidth = 1) +
   scale_fill_manual(values = c(hi_blue, hi_orange, hi_teal), name = NULL) +
   coord_equal() +
   theme_void(base_size = 12) +
   labs(title = "Rúðurit: bílar eftir fjölda strokka",
-       subtitle = "Hver rúða er einn bíll") +
+       subtitle = "Hver rúða er 1% af bílunum") +
   theme(plot.margin = margin(10, 20, 10, 20))
-ggsave(file.path(out, "waffle_example.png"), p_waffle, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
+vista(p_waffle, "waffle_example.png")
 
 # Kúlurit: þyngd, sparneytni og afl (stærð kúlu)
 p_bubble <- ggplot(mtcars, aes(x = wt, y = mpg, size = hp)) +
