@@ -35,3 +35,176 @@ munu vera samkvæmt fyrstu fyrirspurninni í sameiningunni.
 
 `UNION` er umtalsvert dýrari að keyra en `UNION ALL`, þar sem `UNION` þarf að athuga hvort línur 
 séu eins og hún fer yfir niðurstöðurnar.
+
+## Sýnidæmi: sala í tveimur verslunum
+
+Tvær verslanir skrá sölur í sitt hvora töfluna. Kaffi hefur selst á sama verði í
+báðum verslunum, en um er að ræða tvær aðskildar sölur. Hvort eigum við að nota
+`UNION` eða `UNION ALL` þegar við sameinum gögnin? Það fer eftir spurningunni.
+
+Gögnin eru tilbúin. Dæmið keyrir í SQLite án tengingar við námskeiðsgrunninn;
+SQL-skipanirnar hér virka einnig í PostgreSQL. Upphæðir eru í krónum.
+
+### Gögnin sem við byrjum með
+
+Keyrið uppsetninguna einu sinni í tómum æfingagrunni ef þið viljið prófa dæmið sjálf.
+
+```{r}
+#| label: union-r-1
+#| include: false
+if (.Platform$OS.type == "windows") {
+  invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
+}
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+```
+
+```{sql}
+--| label: union-sql-setup
+--| connection: con
+--| output: false
+CREATE TABLE sala_midbaer (
+    solunr INTEGER PRIMARY KEY,
+    vara TEXT,
+    upphaed INTEGER
+);
+```
+
+```{sql}
+--| label: union-sql-insert-midbaer
+--| connection: con
+--| output: false
+INSERT INTO sala_midbaer VALUES
+    (101, 'Kaffi', 600),
+    (102, 'Te', 450);
+```
+
+```{sql}
+--| label: union-sql-create-kringlan
+--| connection: con
+--| output: false
+CREATE TABLE sala_kringlan (
+    solunr INTEGER PRIMARY KEY,
+    vara TEXT,
+    upphaed INTEGER
+);
+```
+
+```{sql}
+--| label: union-sql-insert-kringlan
+--| connection: con
+--| output: false
+INSERT INTO sala_kringlan VALUES
+    (201, 'Kaffi', 600),
+    (202, 'Kakó', 700);
+```
+
+::: {.columns}
+::: {.column width="50%"}
+**Miðbær — `sala_midbaer`**
+
+```{sql}
+--| label: union-sql-input-midbaer
+--| connection: con
+--| echo: false
+--| tab.cap: ""
+SELECT solunr AS "Sölunúmer", vara AS "Vara", upphaed AS "Upphæð"
+FROM sala_midbaer ORDER BY solunr;
+```
+:::
+::: {.column width="50%"}
+**Kringlan — `sala_kringlan`**
+
+```{sql}
+--| label: union-sql-input-kringlan
+--| connection: con
+--| echo: false
+--| tab.cap: ""
+SELECT solunr AS "Sölunúmer", vara AS "Vara", upphaed AS "Upphæð"
+FROM sala_kringlan ORDER BY solunr;
+```
+:::
+:::
+
+### `UNION`: hvaða vörur hafa selst?
+
+Við viljum fá lista yfir ólíkar vörur sem hafa selst í annarri hvorri versluninni.
+Þá veljum við aðeins `vara` og notum `UNION`:
+
+```{sql}
+--| label: union-sql-products
+--| connection: con
+--| tab.cap: ""
+SELECT vara AS "Vara" FROM sala_midbaer
+UNION
+SELECT vara FROM sala_kringlan
+ORDER BY "Vara";
+```
+
+Kaffi birtist aðeins einu sinni. Það er rétt fyrir vörulista, þótt kaffið hafi selst oftar.
+
+### `UNION ALL`: hverjar eru allar sölurnar?
+
+Nú viljum við halda öllum sölufærslum. Báðar kaffisölurnar eiga að vera með:
+
+```{sql}
+--| label: union-sql-sales
+--| connection: con
+--| tab.cap: ""
+SELECT solunr AS "Sölunúmer", vara AS "Vara", upphaed AS "Upphæð"
+FROM sala_midbaer
+UNION ALL
+SELECT solunr, vara, upphaed FROM sala_kringlan
+ORDER BY "Sölunúmer";
+```
+
+`UNION ALL` heldur öllum línum án þess að athuga hvort þær séu eins. Í þessu
+tilbúna dæmi eru sölunúmerin ólík milli verslana. Ef báðar nota sömu númeraröð
+þarf líka að taka verslunina með til að auðkenna hverja sölu.
+
+::: {.callout-warning}
+## Gildra: `UNION` getur fellt út raunverulega sölu
+
+`UNION` ber saman **alla valda dálka**. Ef við sleppum sölunúmerinu og veljum
+aðeins `vara` og `upphaed`, líta kaffisölurnar eins út. Með `UNION` verður önnur
+þeirra felld út og heildarsalan vanmetin:
+
+```{sql}
+--| label: union-sql-total-wrong
+--| connection: con
+--| tab.cap: ""
+SELECT SUM(upphaed) AS "Heildarsala (kr.)"
+FROM (
+    SELECT vara, upphaed FROM sala_midbaer
+    UNION
+    SELECT vara, upphaed FROM sala_kringlan
+) AS sala;
+```
+
+Með `UNION ALL` haldast báðar kaffisölurnar og við fáum rétta heild:
+
+```{sql}
+--| label: union-sql-total-correct
+--| connection: con
+--| tab.cap: ""
+SELECT SUM(upphaed) AS "Heildarsala (kr.)"
+FROM (
+    SELECT vara, upphaed FROM sala_midbaer
+    UNION ALL
+    SELECT vara, upphaed FROM sala_kringlan
+) AS sala;
+```
+
+Ef sölunúmerið væri líka valið væru kaffisölurnar ólíkar línur og `UNION` héldi
+báðum. Valið á dálkum skiptir því máli, ekki bara valið á sameiningaraðgerð.
+:::
+
+Notið `UNION` þegar markmiðið er að fá einstakar línur, til dæmis vörulista.
+Notið `UNION ALL` þegar hver færsla á að haldast, til dæmis við útreikning á heildarsölu.
+`ORDER BY` í lok sameinaðrar fyrirspurnar raðar allri niðurstöðunni;
+án þess er röð lína ekki tryggð.
+
+```{r}
+#| label: union-r-2
+#| include: false
+DBI::dbDisconnect(con)
+```
