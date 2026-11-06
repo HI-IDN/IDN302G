@@ -1,0 +1,15 @@
+---
+title: "Sjálfspróf í reglulegum segðum"
+lang: is
+---
+
+Þetta er sjálfspróf úr köflunum um reglulegar segðir. Spurningarnar byrja á grunnmynstrum og
+enda á notkun regex í R, Python og gagnavinnu.
+
+- Veldu eitt eða fleiri svör eftir því sem við á.
+- Smelltu á **Athuga svar** til að fá endurgjöf.
+- Þú færð alltaf rétt svar og útskýringu.
+- Í lokin sérðu hversu mörgum spurningum þú svaraðir rétt.
+
+::: {.sjalfsprof src="sjalfsprof.yml"}
+:::

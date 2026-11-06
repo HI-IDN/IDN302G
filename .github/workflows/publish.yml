@@ -14,16 +14,33 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-${{ github.event.pull_request.number || 'production' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   # Byggir bókina einu sinni og deilir úttakinu (_site) með hinum verkunum.
   build:
     runs-on: ubuntu-latest
+    container: posit/r-base:4.6-noble
+    defaults:
+      run:
+        shell: bash
+    env:
+      R_LIBS_USER: ${{ github.workspace }}/.ci-r-library
+      # Gámurinn keyrir sem root en /github/home er í eigu runner, svo pip
+      # myndi slökkva á skyndiminninu og setup-python (cache: pip) falla.
+      PIP_CACHE_DIR: /root/.cache/pip
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
 
     steps:
+      # R er þegar uppsett; aðeins verkfæri fyrir Actions og pakkana vantar.
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends sudo ca-certificates curl wget jq git zstd lsb-release libcurl4-openssl-dev libssl-dev
+          # Python frá setup-python vísar á /opt/hostedtoolcache, sem er /__t í gámnum.
+          mkdir -p /opt && ln -sfn /__t /opt/hostedtoolcache
+
       - name: Check out repository
         uses: actions/checkout@v4
 
@@ -33,7 +50,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       # Pakkarnir eru taldir upp í requirements.txt, sömu skrá og notuð er
       # staðbundið, svo byggingin keyri á sömu útgáfum og höfundur þróaði með.
@@ -43,19 +62,18 @@ jobs:
           python -m pip install -r requirements.txt
           echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
 
-      # RSPM skilar forþýddum tvíundargögnum fyrir flesta pakka, en sé CRAN með
-      # nýrri útgáfu velur install.packages hana og þýðir frá frumkóða. Þá
-      # þarf hausaskrár kerfisbókasafnanna. curl féll einmitt þannig: CRAN var
-      # með 8.0.0, RSPM eldri, og þýðingin stöðvaðist á curl/curl.h.
-      - name: Install system libraries
-        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev
+      - name: Inspect preinstalled R
+        id: r
+        run: |
+          Rscript -e 'cat("version=", as.character(getRversion()), "\n", sep="", file=Sys.getenv("GITHUB_OUTPUT"), append=TRUE)'
+          mkdir -p "$R_LIBS_USER"
 
-      # Nokkrir kaflar keyra raunverulegan R-kóða við þýðingu, svo R þarf að vera
-      # til staðar. Pökkum sótt sem forþýdd tvíundargögn gegnum RSPM (fljótt).
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
+      - name: Restore R packages
+        id: r-cache
+        uses: actions/cache/restore@v4
         with:
-          use-public-rspm: true
+          path: ${{ env.R_LIBS_USER }}
+          key: r-noble-${{ runner.arch }}-${{ steps.r.outputs.version }}-${{ hashFiles('.github/workflows/publish.yml') }}
 
       # knitr    <- Quarto notar hann til að keyra alla {r}-búta. Hann fylgir
       #             plotly sem ósjálfstæði, en er talinn upp berum orðum svo
@@ -72,8 +90,19 @@ jobs:
       # readr    <- eval: false skriftudæmi í api/fetching-data.qmd, talið upp hér
       #             svo nemendur geti keyrt sömu uppskriftir án þess að leita.
       # DBI, RSQLite <- {sql}-bútar á data/kennarar.db í sql-basics/introduction.qmd
+      # ggplot2, waterfalls <- fossarit (dplyr og plotly líka) í storytelling/visuals_major.qmd
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr", "DBI", "RSQLite"))'
+        if: steps.r-cache.outputs.cache-hit != 'true'
+        run: |
+          Rscript -e 'packages <- c("knitr", "reticulate", "plotly", "httr2", "httpuv", "curl", "jsonlite", "dplyr", "readr", "DBI", "RSQLite", "ggplot2", "waterfalls"); install.packages(packages, repos="https://packagemanager.posit.co/cran/__linux__/noble/latest"); stopifnot(all(vapply(packages, requireNamespace, logical(1), quietly=TRUE)))'
+
+      # Vista strax eftir uppsetningu, jafnvel þótt seinna render falli.
+      - name: Save R packages
+        if: steps.r-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ steps.r-cache.outputs.cache-primary-key }}
 
       # Bútarnir lesa GITHUB_TOKEN úr umhverfinu. Án hans keyra GitHub-beiðnirnar
       # óauðkenndar og lenda á 60/klst markinu; með honum eru mörkin 5.000/klst.
@@ -84,13 +113,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           quarto render
-          quarto render slides/intro.qmd
-          mkdir -p ../_site/slides
-          mkdir -p ../_site/styles
-          rm -f ../_site/slides/intro.html
-          rm -rf ../_site/slides/intro_files
-          cp -r slides/intro.html slides/intro_files ../_site/slides/
-          cp styles/watermark.css ../_site/styles/watermark.css
+          python ../scripts/copy_slide_outputs.py --render
 
       # Deilt með link-check verkinu (og hverju sem er sem þarf úttakið).
       - name: Upload site artifact

@@ -25,6 +25,73 @@ samhengisrík fyrirmælin (*prompts*) eru. Almennt hjálpar að hafa eftirfarand
 
 ::: {.callout-tip}
 Í stuttu máli: gott prompt er eins og gott issue — skýrt markmið, nægt samhengi og afmarkað
-umfang. Ef þú gætir sjálf/ur ekki leyst verkið út frá lýsingunni, þá getur erindrekinn það
+umfang. Ef þú gætir ekki leyst verkið út frá lýsingunni einni saman, þá getur erindrekinn það
 líklega ekki heldur.
 :::
+
+## Dæmi: keyrsluleiðbeiningar í README
+
+Segjum að þú sért í hópi með lítið Python-verkefni. Skriftan `scripts/clean_data.py` les
+`data/raw.csv` og skrifar `data/clean.csv`, en í README vantar leiðbeiningar um keyrslu.
+Markmiðið er að næsti hópmeðlimur geti keyrt verkefnið án þess að spyrja. (Þetta er tilbúið dæmi;
+skrárnar eru ekki til í þessari bók.)
+
+### Óljós fyrirmæli
+
+> Bættu README fyrir verkefnið mitt.
+
+Hér vantar bæði samhengi og markmið. Erindrekinn veit ekki hvað á að bæta eða fyrir hvern, og gæti
+endurskrifað alla skrána eða giskað á pakka og skipanir sem verkefnið notar ekki.
+
+### Skýrari fyrirmæli
+
+> Við erum að vinna í litlu Python-verkefni fyrir námskeið. Lestu `README.md`,
+> `scripts/clean_data.py` og `requirements.txt`. Bættu aðeins við kaflanum „Keyrsla“
+> í README, á íslensku, fyrir hópmeðlim sem hefur ekki keyrt verkefnið áður.
+>
+> Útskýrðu hvernig á að setja upp pakkana úr `requirements.txt` og keyra skriftuna frá
+> rót verkefnisins, hvaða inntaksskrá þarf að vera til og hvar úttakið vistast. Byggðu
+> leiðbeiningarnar á skránum sem þú lest, og spyrðu ef upplýsingar vantar.
+>
+> Ekki breyta kóðanum eða öðrum skrám. Sýndu breytinguna og útskýrðu stuttlega hvað þú bættir
+> við. Verkinu er lokið þegar hægt er að fylgja leiðbeiningunum frá rót verkefnisins og fá
+> úttakið á þeim stað sem README tilgreinir.
+
+Seinni fyrirmælin fylgja ráðunum hér að ofan: þau **gefa samhengi** (verkefnið og skrárnar sem
+á að lesa), eru **skýr um markmiðið** (einn kafli fyrir tiltekinn lesanda), **setja skorður** (ekki
+breyta öðrum skrám) og segja **hvernig þú veist að verkið sé búið**. Þau **biðja líka um
+útskýringu**. Skýr fyrirmæli tryggja samt ekki að tillagan sé rétt; þú þarft enn að lesa hana yfir.
+
+### Að yfirfara tillöguna
+
+Búðu til sérstakt [branch](../github/good_practices/git_branches.qmd) áður en erindrekinn breytir
+skrám. Þegar tillagan er tilbúin:
+
+1. Skoðaðu `git status` og `git diff`. Aðeins README á að hafa breyst; lestu textann vandlega.
+2. Berðu leiðbeiningarnar saman við kóðann. Eru skráarslóðir, pakkar og skipanir réttar?
+3. Fylgdu leiðbeiningunum, helst á æfingagögnum, og athugaðu hvort úttakið verði til þar sem
+   README segir.
+4. Ef eitthvað stenst ekki skaltu **ítra** með afmarkaðri leiðréttingu, til dæmis: „README segir
+   að úttakið vistist í rótinni, en kóðinn skrifar `data/clean.csv`. Leiðréttu slóðina í README.“
+5. Þegar breytingin er sannreynd, gerðu commit og opnaðu
+   [pull request](../github/good_practices/pull_requests.qmd). Lýstu breytingunni og hvernig hún
+   var prófuð, og skráðu notkun erindrekans í [erindreka-dagbókina](agent-log.qmd).
+
+::: {.callout-tip}
+## Láttu erindrekann muna vinnubrögðin
+
+Í stað þess að endurtaka þetta í hverjum fyrirmælum geturðu skrifað fastar reglur fyrir
+erindrekann, til dæmis í [`AGENTS.md`](agents-md.qmd) eða sem *skill*. Dæmi um reglur:
+
+- Vinna alltaf á sérstöku branch, aldrei beint á `main`.
+- Opna eða uppfæra issue á GitHub fyrir hvert verk, með samantekt á því hvað var gert og af hverju.
+
+Þá skráir erindrekinn vinnuna jafnóðum, og issue-ið verður skjölun sem teymið og yfirlesari geta
+flett upp seinna.
+:::
+
+### Æfing
+
+Veldu eina leiðbeiningu sem vantar í README í þínu verkefni. Skrifaðu fyrirmæli sem segja hvaða
+skrár erindrekinn á að lesa, hverju hann má breyta og hvernig þú ætlar að sannreyna niðurstöðuna.
+Gæti annar hópmeðlimur sagt til um hvort verkinu sé lokið út frá fyrirmælunum einum saman?
