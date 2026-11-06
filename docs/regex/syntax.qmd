@@ -5,6 +5,15 @@ description: >-
   kennitöludæmi.
 ---
 
+```{r}
+#| label: syntax-r-utf8
+#| include: false
+# Í Windows-forskoðun getur C.UTF-8 fallið aftur í ASCII-stafasett.
+if (.Platform$OS.type == "windows" && !isTRUE(l10n_info()[["UTF-8"]])) {
+  invisible(Sys.setlocale("LC_CTYPE", "English_United States.utf8"))
+}
+```
+
 ## Byrjaðu á einföldu mynstri
 
 Venjulegir stafir passa við sjálfa sig:
@@ -21,7 +30,7 @@ Krafturinn kemur þegar við bætum við táknum sem þýða meira en einn staf.
 |---|---|---|
 | `.` | hvaða einn stafur sem er | `h.s` passar við `hús` og `has` |
 | `\d` | tölustafur | `\d\d\d` passar við `101` |
-| `\w` | orðastafur | bókstafur, tala eða `_` |
+| `\w` | orðastafur | bókstafur, tala eða `_` (en sjá [íslenska stafi](#islenskir-stafir)) |
 | `\s` | bil, tab eða línuskil | `\s+` passar við eitt eða fleiri bil |
 | `[abc]` | einn stafur úr mengi | `[abc]` passar við `a`, `b` eða `c` |
 | `[0-9]` | einn stafur á bili | sama og `\d` |
@@ -98,6 +107,52 @@ Lestu það í bútum:
 | `\d{2}` | tveir tölustafir fyrir ár |
 | `-` | bandstrik |
 | `\d{4}` | fjórir tölustafir |
+
+## Íslenskir stafir og `\w` {#islenskir-stafir}
+
+Reglulegar segðir urðu til þegar tölvur þekktu aðeins ASCII-stafina, þ.e. ensku stafina, tölustafi
+og nokkur tákn. Þá var `\w` skilgreint sem `[A-Za-z0-9_]`. Seinna kom Unicode, sem nær yfir stafi
+allra tungumála, en ekki öll verkfæri breyttu merkingu `\w`:
+
+- **PCRE**, vélin sem R notar með `perl = TRUE`, heldur gömlu merkingunni nema beðið sé um annað.
+  `(*UCP)` fremst í mynstrinu stendur fyrir *Unicode Character Properties* og segir vélinni að nota
+  Unicode-skilgreininguna á því hvað er bókstafur. Það sama gildir um `\d`, `\s` og `\b`.
+- **Python** og **stringr** í R (`str_detect()`, `str_extract()` o.fl.) nota Unicode frá byrjun.
+- Önnur verkfæri, t.d. JavaScript og sum gagnagrunnskerfi, hegða sér á mismunandi vegu.
+
+Hvers vegna nota R-dæmin hér þá `perl = TRUE`? R hefur tvær regex-vélar. Sú sjálfgefna fylgir
+POSIX-staðlinum og ræður ekki við `\d` eða `\w` innan hornklofa: mynstrið `[\d-]+` finnur strengi
+eins og `888-8888` eða `888888-8888` með PCRE, en POSIX-vélin les það sem stafina `\`, `d` og `-`.
+PCRE-vélin er líka yfirleitt hraðari. Aftur á móti þarf að muna eftir `(*UCP)` þegar textinn er á íslensku:
+
+::: {.panel-tabset}
+## R
+
+```{r}
+#| label: syntax-r-is-1
+setning <- "Hún sá Þór við ána"
+regmatches(setning, gregexpr("\\w+", setning, perl = TRUE))
+regmatches(setning, gregexpr("(*UCP)\\w+", setning, perl = TRUE))
+```
+
+## Python
+
+```{python}
+#| label: syntax-py-is-1
+import re
+
+setning = "Hún sá Þór við ána"
+print(re.findall(r"\w+", setning))
+```
+:::
+
+::: {.callout-tip}
+## Þumalputtaregla
+
+Ef mynstur virkar á „Jon“ en ekki á „Jón“, eða orð klofna í miðjunni, er ástæðan nær alltaf þessi.
+Prófaðu því mynstrið á orðum með `á`, `ð`, `þ` eða `ö` áður en þú treystir því, eða skrifaðu
+stafamengið sjálf(ur), t.d. `[A-Za-zÁÉÍÓÚÝÞÆÖÐáéíóúýþæöð]`.
+:::
 
 ## Æfingar
 

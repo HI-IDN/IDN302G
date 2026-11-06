@@ -1,0 +1,70 @@
+---
+title: "Skills fyrir erindreka (`SKILL.md`)"
+description: >-
+  Hvað skill er, hvernig það er frábrugðið AGENTS.md og hvernig skrifa á skill sem
+  erindreki notar þegar það á við.
+---
+
+Skill er mappa með leiðbeiningum fyrir afmarkað verk, til dæmis „búa til branch og issue“
+eða „undirbúa Pull Request“. Í möppunni er skráin `SKILL.md`, og þar má líka hafa sniðmát eða
+skriftur sem verkið þarf.
+
+Munurinn á skill og [`AGENTS.md`](agents-md.qmd) er hvenær erindrekinn les það:
+
+- **`AGENTS.md`** er lesið í hvert sinn sem erindrekinn byrjar að vinna í verkefninu. Þar eiga
+  heima reglur sem gilda alltaf.
+- **Skill** er aðeins sótt þegar það á við. Erindrekinn sér stutta lýsingu á öllum skills og
+  les leiðbeiningarnar sjálfar aðeins þegar verkið passar við lýsinguna.
+
+Þess vegna má skill vera ítarlegra en `AGENTS.md`: það truflar ekki önnur verk.
+
+## Hvernig er skill byggt upp?
+
+Skill er mappa sem heitir eftir verkinu, með skránni `SKILL.md`:
+
+```text
+.claude/skills/
+└── branch-og-issue/
+    └── SKILL.md
+```
+
+`SKILL.md` byrjar á stuttum haus með nafni og lýsingu, og síðan koma leiðbeiningarnar:
+
+```markdown
+---
+name: branch-og-issue
+description: Use when starting any change in this repository. Creates a branch
+  and a GitHub issue that summarises what is being done and why.
+---
+
+1. Create a new branch from `main` named after the task. Never work on `main`.
+2. Open a GitHub issue for the task, or find the existing one. In the issue,
+   write what you are going to change and why.
+3. When the work is done, update the issue with a short summary of what changed,
+   which files were touched and how it was tested.
+4. Reference the issue in the commit message and the Pull Request.
+```
+
+Lýsingin skiptir mestu máli. Erindrekinn notar hana til að ákveða hvort skill eigi við, svo hún á
+að segja *hvenær* á að nota það, ekki bara *hvað* það gerir.
+
+Í Claude Code eru skills í möppunni `.claude/skills/` í verkefninu.[^skills-claude]
+`SKILL.md`-sniðið er opinn staðall sem fleiri tól styðja.[^skills-standard] Hvernig skill eins og
+þetta tengist erindreka-dagbókinni er lýst í [Erindreka-dagbók](agent-log.qmd#issue-sem-skjölun).
+
+## Hvað á heima í skill?
+
+Gott skill:
+
+- lýsir einu afmörkuðu verki,
+- hefur lýsingu sem segir hvenær á að nota það,
+- gefur skref sem hægt er að fylgja og sannreyna,
+- segir hvenær á að stoppa og spyrja notandann.
+
+Setjið frekar í `AGENTS.md` reglur sem gilda í öllum verkum, eins og að breyta aldrei
+leyndarmálum eða stórum gögnum.
+
+[^skills-claude]: Anthropic, [Extend Claude with skills](https://code.claude.com/docs/en/skills).
+[^skills-standard]: Agent Skills, [Agent Skills: opinn staðall fyrir skills](https://agentskills.io/). Agent Skills er
+    verkefni á vegum LF Projects, LLC (Linux Foundation); sjá [lfprojects.org](https://lfprojects.org/) um
+    notkunarskilmála.

@@ -39,15 +39,15 @@ Sama graf, án óþarfa þrívíddar:
 
 ![Garðabær íbúasamsetning eftir hverfum - án óþarfa þrívíddar](figures/kgp_2D.png)
 
-**Kostir:**
-
-- Getur verið notað í stærðfræði greiningu, en þetta á ekki við um gagnamiðlun.
-
 **Gallar:**
 
 - Ruglingsleg framsetning fyrir flesta notendur.
 - Óþarfa sjónræn truflun.
 - Flokkar geta litið út fyrir að vera stærri eða minni en þeir eru í raun.
+
+Þrívídd á aðeins rétt á sér þegar þriðja víddin ber sjálf gögn, til dæmis yfirborð $z = f(x, y)$
+eða landslag, og þá helst í gagnvirku grafi sem lesandinn getur snúið. Í súluriti ber dýptin engin
+gögn, aðeins skraut.
 
 ---
 
