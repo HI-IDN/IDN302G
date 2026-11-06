@@ -87,6 +87,14 @@ Vinstra megin keppa ólíkir litir, þétt rúðunet og endurteknar merkingar um
 Hægra megin er framsetningin einfölduð og eitt námskeið dregið fram með lit.
 
 ```{r}
+#| label: introduction-r-locale
+#| include: false
+if (.Platform$OS.type == "windows") {
+  invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
+}
+```
+
+```{r}
 #| label: introduction-r-1
 #| echo: false
 #| fig-width: 10
