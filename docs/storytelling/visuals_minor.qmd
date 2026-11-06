@@ -373,7 +373,7 @@ Hér er tengt punktarit notað á raunveruleg gögn: verð á Big Mac í `r nrow
 Mac-vísitölu The Economist, umreiknað í krónur. Línan byrjar í verðinu í `r manudur(bm_dags[2])` og punkturinn er
 verðið í `r manudur(bm_dags[1])`, svo lengd línunnar er breytingin og stefna hennar segir hvort verðið
 hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, í `r sum(bm$breyting > 0)` af
-`r nrow(bm)` löndum. Mest hækkaði verðið `r bm_mest$stadur`, þar sem það fór úr
+`r nrow(bm)` löndum. `r bm_mest$land` hefur hækkað mest, verðið fór úr
 `r kronur(bm_mest$fyrr)` í `r kronur(bm_mest$nu)` á hálfu ári. Titillinn segir lesandanum hvað liturinn þýðir, svo ekki þarf sérstaka
 skýringu.
 
