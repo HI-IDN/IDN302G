@@ -1,0 +1,111 @@
+# Spurningar fyrir sql-advanced/sjalfsprof.qmd. Sniðinu er lýst efst í filters/sjalfsprof.lua.
+# Töflurnar staerdfraedi = {1, 2, 3, 4} og tolvunarfraedi = {3, 4, 5, 6} eru kynntar í inngangi.
+
+spurningar:
+
+  - hluti: Sameining niðurstaðna
+    titill: '`UNION`'
+    spurning: |
+      Hver er niðurstaða þessarar fyrirspurnar?
+
+      ```sql
+      SELECT nemandi_id FROM staerdfraedi
+      UNION
+      SELECT nemandi_id FROM tolvunarfraedi;
+      ```
+    valkostir: ['$\{1, 2, 3, 4\}$', '$\{3, 4\}$', '$\{1, 2, 3, 4, 5, 6\}$', '$\{5, 6\}$']
+    rett: [C]
+    utskyring: |
+      `UNION` sameinar niðurstöður beggja fyrirspurna og fjarlægir tvíteknar raðir, sem er
+      sammengið $A \cup B$. Röð raðanna er ekki tryggð nema `ORDER BY` sé notað.
+
+  - hluti: Sameining niðurstaðna
+    titill: '`INTERSECT`'
+    spurning: |
+      Hvaða nemandanúmer skilar þessi fyrirspurn?
+
+      ```sql
+      SELECT nemandi_id FROM staerdfraedi
+      INTERSECT
+      SELECT nemandi_id FROM tolvunarfraedi;
+      ```
+    valkostir: ['$\{1, 2\}$', '$\{3, 4\}$', '$\{5, 6\}$', '$\{1, 2, 3, 4, 5, 6\}$']
+    rett: [B]
+    utskyring: |
+      `INTERSECT` skilar aðeins röðum sem eru í báðum fyrirspurnum, sem er sniðmengið
+      $A \cap B$. Nemendur 3 og 4 eru í báðum námskeiðum.
+
+  - hluti: Sameining niðurstaðna
+    titill: '`EXCEPT`'
+    spurning: |
+      Hvaða nemandanúmer skilar þessi fyrirspurn?
+
+      ```sql
+      SELECT nemandi_id FROM staerdfraedi
+      EXCEPT
+      SELECT nemandi_id FROM tolvunarfraedi;
+      ```
+    valkostir: ['$\{3, 4\}$', '$\{5, 6\}$', '$\{1, 2\}$', '$\{1, 2, 3, 4, 5, 6\}$']
+    rett: [C]
+    utskyring: |
+      `EXCEPT` skilar röðum úr fyrri fyrirspurninni sem eru ekki í þeirri síðari, sem er
+      mismunurinn $A - B$. Nemendur 1 og 2 eru í stærðfræði en ekki tölvunarfræði.
+
+  - hluti: Sameining niðurstaðna
+    titill: '`UNION` og `UNION ALL`'
+    spurning: 'Hver er helsti munurinn á `UNION` og `UNION ALL`?'
+    valkostir:
+      - '`UNION ALL` fjarlægir tvíteknar raðir'
+      - '`UNION` fjarlægir tvíteknar raðir, en `UNION ALL` gerir það ekki'
+      - '`UNION` virkar aðeins með tveimur töflum'
+      - Enginn munur er á aðgerðunum
+    rett: [B]
+    utskyring: |
+      `UNION ALL` heldur öllum röðum, líka þeim sem koma oftar en einu sinni fyrir. Hér myndi
+      `UNION ALL` skila átta röðum, þar sem 3 og 4 koma tvisvar. `UNION` samsvarar því betur
+      sammengi, því mengi hefur engin tvítekin stök.
+
+  - hluti: Sameining niðurstaðna
+    titill: Veldu rétta fyrirspurn
+    spurning: 'Við viljum finna nemendur sem eru í tölvunarfræði en ekki í stærðfræði. Hvaða fyrirspurn er rétt?'
+    valkostir:
+      - '`SELECT nemandi_id FROM staerdfraedi UNION SELECT nemandi_id FROM tolvunarfraedi;`'
+      - '`SELECT nemandi_id FROM staerdfraedi EXCEPT SELECT nemandi_id FROM tolvunarfraedi;`'
+      - '`SELECT nemandi_id FROM tolvunarfraedi EXCEPT SELECT nemandi_id FROM staerdfraedi;`'
+      - '`SELECT nemandi_id FROM staerdfraedi INTERSECT SELECT nemandi_id FROM tolvunarfraedi;`'
+    rett: [C]
+    utskyring: |
+      Við viljum $B - A$, svo tölvunarfræði á að vera í fyrri `SELECT`-fyrirspurninni og
+      stærðfræði í þeirri síðari. Röðin skiptir máli fyrir `EXCEPT`, eins og fyrir mismun.
+      Fyrirspurnin skilar $\{5, 6\}$.
+
+  - hluti: Samsettar töflur
+    titill: '`LEFT JOIN`'
+    spurning: |
+      Hversu margar raðir skilar þessi fyrirspurn?
+
+      ```sql
+      SELECT s.nemandi_id, t.nemandi_id
+      FROM staerdfraedi s
+               LEFT JOIN tolvunarfraedi t ON t.nemandi_id = s.nemandi_id;
+      ```
+    valkostir: ['2', '4', '6', '16']
+    rett: [B]
+    utskyring: |
+      `LEFT JOIN` heldur öllum röðum úr vinstri töflunni, hvort sem þær eiga samsvörun eða
+      ekki. Nemendur 1 og 2 fá `NULL` í `t.nemandi_id`. `INNER JOIN` myndi skila 2 röðum og
+      `CROSS JOIN` 16. `LEFT JOIN` er því **ekki** $A - B$.
+      Sjá [Samsettar töflur](joins.qmd).
+
+  - hluti: Samsettar töflur
+    titill: Anti-join
+    spurning: 'Hvaða fyrirspurn skilar sama og `EXCEPT`-fyrirspurnin hér að ofan, þ.e. $A - B$?'
+    valkostir:
+      - '`SELECT s.nemandi_id FROM staerdfraedi s INNER JOIN tolvunarfraedi t ON t.nemandi_id = s.nemandi_id;`'
+      - '`SELECT s.nemandi_id FROM staerdfraedi s LEFT JOIN tolvunarfraedi t ON t.nemandi_id = s.nemandi_id;`'
+      - '`SELECT s.nemandi_id FROM staerdfraedi s LEFT JOIN tolvunarfraedi t ON t.nemandi_id = s.nemandi_id WHERE t.nemandi_id IS NULL;`'
+      - '`SELECT s.nemandi_id FROM staerdfraedi s CROSS JOIN tolvunarfraedi t;`'
+    rett: [C]
+    utskyring: |
+      Þetta kallast _anti-join_: `LEFT JOIN` og síðan aðeins þær raðir sem fengu `NULL` úr
+      hægri töflunni. Það skilar $\{1, 2\}$, eins og `EXCEPT`.

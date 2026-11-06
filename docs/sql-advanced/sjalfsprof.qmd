@@ -1,0 +1,19 @@
+---
+title: "Sjálfspróf í SQL framhaldi"
+lang: is
+---
+
+Þetta er sjálfspróf um sameiningu niðurstaðna (`UNION`, `INTERSECT` og `EXCEPT`) og samsettar
+töflur. Það tengir SQL við mengjaaðgerðirnar úr
+[sjálfsprófinu um mengi og vensl](../logic-sets/sjalfsprof.qmd).
+
+Í spurningunum eru tvær töflur með einum dálki, `nemandi_id`:
+
+- `staerdfraedi` með nemendunum $A = \{1, 2, 3, 4\}$.
+- `tolvunarfraedi` með nemendunum $B = \{3, 4, 5, 6\}$.
+
+Veldu svar og smelltu á **Athuga svar**; þá birtist rétt svar og útskýring. Í lokin sérðu
+hversu mörgum spurningum þú svaraðir rétt.
+
+::: {.sjalfsprof src="sjalfsprof.yml"}
+:::
