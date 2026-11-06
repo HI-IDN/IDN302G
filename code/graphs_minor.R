@@ -142,7 +142,7 @@ p_bigmac <- ggplot(bm, aes(y = land)) +
          "Bæði verðin umreiknuð í krónur á opinberu viðmiðunargengi Seðlabanka Íslands ",
          "fyrir Bandaríkjadal ", gengi_texti(gengi_nu), ".\n",
          "Gengið er sótt úr vefþjónustu bankans, sedlabanki.is/xmltimeseries. ",
-         island$vara, ": verð í vefverslun Metro ", format(as.Date(island$sott), "%d.%m.%Y"), ".")) +
+         island$vara, ": verð í ", manudur(island$sott), ", úr vefverslun Metro.")) +
   theme(axis.text.y = element_text(size = 7), plot.subtitle = element_text(size = 9),
         plot.caption = element_text(size = 7, hjust = 0), plot.caption.position = "plot",
         plot.title.position = "plot", plot.title = element_text(size = 12.5))
