@@ -22,6 +22,24 @@ skra <- "data/bigmac.db"
 con <- DBI::dbConnect(RSQLite::SQLite(), skra)
 DBI::dbWriteTable(con, "bigmac", bigmac, overwrite = TRUE)
 DBI::dbExecute(con, "CREATE INDEX IF NOT EXISTS bigmac_dags ON bigmac (dags)")
+
+# Íslensk landaheiti, tengd við bigmac á iso-kóða. Land sem vantar hér heldur enska
+# heitinu (COALESCE í fyrirspurnunum), svo nýtt land í gögnunum brýtur ekkert.
+lond <- data.frame(iso = c(
+  "ARE", "ARG", "AUS", "AZE", "BHR", "BRA", "CAN", "CHE", "CHL", "CHN", "COL", "CRI", "CZE", "DNK",
+  "EGY", "EUZ", "GBR", "GTM", "HKG", "HND", "HUN", "IDN", "IND", "ISR", "JOR", "JPN", "KOR", "KWT",
+  "LBN", "LKA", "MDA", "MEX", "MYS", "NIC", "NOR", "NZL", "OMN", "PAK", "PER", "PHL", "POL", "QAT",
+  "ROU", "RUS", "SAU", "SGP", "SWE", "THA", "TUR", "TWN", "UKR", "URY", "USA", "VEN", "VNM", "ZAF"),
+  nafn = c(
+  "Sameinuðu arabísku furstadæmin", "Argentína", "Ástralía", "Aserbaídsjan", "Barein", "Brasilía",
+  "Kanada", "Sviss", "Síle", "Kína", "Kólumbía", "Kosta Ríka", "Tékkland", "Danmörk",
+  "Egyptaland", "Evrusvæðið", "Bretland", "Gvatemala", "Hong Kong", "Hondúras", "Ungverjaland",
+  "Indónesía", "Indland", "Ísrael", "Jórdanía", "Japan", "Suður-Kórea", "Kúveit",
+  "Líbanon", "Srí Lanka", "Moldóva", "Mexíkó", "Malasía", "Níkaragva", "Noregur", "Nýja-Sjáland",
+  "Óman", "Pakistan", "Perú", "Filippseyjar", "Pólland", "Katar",
+  "Rúmenía", "Rússland", "Sádi-Arabía", "Singapúr", "Svíþjóð", "Taíland", "Tyrkland", "Taívan",
+  "Úkraína", "Úrúgvæ", "Bandaríkin", "Venesúela", "Víetnam", "Suður-Afríka"))
+DBI::dbWriteTable(con, "land", lond, overwrite = TRUE)
 DBI::dbDisconnect(con)
 
 cat("Vistaði", nrow(bigmac), "raðir frá", min(bigmac$dags), "til", max(bigmac$dags), "í", skra, "\n")

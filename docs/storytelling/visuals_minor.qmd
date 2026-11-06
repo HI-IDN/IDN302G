@@ -343,8 +343,10 @@ bm_con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/bigmac.db")
 bm_dags <- DBI::dbGetQuery(bm_con,
   "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2")$dags
 bm <- DBI::dbGetQuery(bm_con, "
-  SELECT n.land, f.verd_usd AS fyrr, n.verd_usd AS nu
-  FROM bigmac n JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
+  SELECT COALESCE(l.nafn, n.land) AS land, f.verd_usd AS fyrr, n.verd_usd AS nu
+  FROM bigmac n
+       JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
+       LEFT JOIN land l ON l.iso = n.iso
   WHERE n.dags = ?", params = list(bm_dags[2], bm_dags[1]))
 DBI::dbDisconnect(bm_con)
 bm$breyting <- bm$nu - bm$fyrr
@@ -366,7 +368,8 @@ hækkaði eða lækkaði. Appelsínugult er notað þar sem verðið hækkaði, 
 skýringu.
 
 Gögnin eru sótt af GitHub með `code/bigmac_sqlite.R` og vistuð í SQLite-grunninn
-`data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr.
+`data/bigmac.db`, sem grafið og tölurnar hér að ofan eru lesin úr. Íslensku landaheitin eru í
+sér töflu, `land`, sem er tengd við verðin með `LEFT JOIN` á landskóða.
 
 :::
 

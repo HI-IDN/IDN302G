@@ -94,8 +94,10 @@ manudur <- function(d) paste(manudir[as.integer(substr(d, 6, 7))], substr(d, 1, 
 con <- DBI::dbConnect(RSQLite::SQLite(), "data/bigmac.db")
 dags <- DBI::dbGetQuery(con, "SELECT DISTINCT dags FROM bigmac ORDER BY dags DESC LIMIT 2")$dags
 bm <- DBI::dbGetQuery(con, "
-  SELECT n.land, f.verd_usd AS fyrr, n.verd_usd AS nu
-  FROM bigmac n JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
+  SELECT COALESCE(l.nafn, n.land) AS land, f.verd_usd AS fyrr, n.verd_usd AS nu
+  FROM bigmac n
+       JOIN bigmac f ON f.iso = n.iso AND f.dags = ?
+       LEFT JOIN land l ON l.iso = n.iso
   WHERE n.dags = ?", params = list(dags[2], dags[1]))
 DBI::dbDisconnect(con)
 bm$haekkun <- bm$nu > bm$fyrr
