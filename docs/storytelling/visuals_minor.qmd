@@ -102,7 +102,7 @@ dreifing er breið eða þétt.
 ##### Hvenær á að sleppa kassaritum?
 
 Ef markhópurinn er ekki vel þjálfaður í tölfræði getur verið betra að nota einfaldari gröf. Kassarit
-sýna ekki dreifingu eins vel og dreifirit eða stuðlarit, sem getur falið mikilvægar upplýsingar.
+sýna ekki dreifingu eins vel og [dreifirit](visuals_major.qmd#dreifirit---scatter-plot) eða [stuðlarit](visuals_major.qmd#stuðlarit---histogram), sem getur falið mikilvægar upplýsingar.
 
 
 Nánar um [Box Plot](https://www.storytellingwithdata.com/blog/what-is-a-boxplot) á *Storytelling
@@ -201,7 +201,7 @@ Nánar um [Area Graph](https://www.storytellingwithdata.com/blog/2020/4/9/what-i
 
 ### Kúlurit - Bubble Chart
 
-Kúlurit er útvíkkun á dreifiriti (scatterplot) þar sem sýndar eru þrjár eða fleiri tölulegar
+Kúlurit er útvíkkun á [dreifiriti](visuals_major.qmd#dreifirit---scatter-plot) (scatterplot) þar sem sýndar eru þrjár eða fleiri tölulegar
 breytur. Hver kúlan í ritinu táknar eitt gagnapunkt, þar sem gildin fyrir hvern gagnapunkt eru
 táknuð með:
 
@@ -211,11 +211,35 @@ táknuð með:
 
 Í sumum tilvikum getur litur kúlunnar eða hreyfing í hreyfimynd táknað fleiri víddir.
 
+Fliparnir hér fyrir neðan byggja upp sama kúlurit í þremur skrefum, með gögnum úr `mtcars`.
+
+::: {.panel-tabset}
+
+#### Stærð
+
 ![Kúlurit af þyngd, sparneytni og afli bíla](figures/bubblechart_example.png)
 
 Hér sýnir kúlurit þrjár breytur um bíla: þyngd (x-ás), sparneytni (y-ás) og hestöfl (stærð kúlu).
-Þyngri bílar eyða meiru og hafa oftast fleiri hestöfl. Þrjár breytur eru þó nokkurn veginn það
-mesta sem lesandinn ræður við í einu.
+Þyngri bílar eyða meiru og hafa oftast fleiri hestöfl.
+
+#### Stærð og litur
+
+![Kúlurit af þyngd, sparneytni og afli bíla, litað eftir fjölda strokka](figures/bubblechart_colour.png)
+
+Hér bætist fjöldi strokka við sem litur, svo grafið sýnir fjórar breytur. Þá sést að bílarnir
+skiptast í þrjá nokkuð aðskilda hópa: léttir og sparneytnir 4 strokka bílar, 6 strokka bílar í
+miðjunni og þungir, aflmiklir 8 strokka bílar. Hver ný breyta gerir grafið þó erfiðara aflestrar,
+og fjórar breytur eru nokkurn veginn það mesta sem lesandinn ræður við í einu.
+
+#### Merkingar
+
+![Kúlurit með lit þar sem jaðarbílarnir eru merktir með nafni](figures/bubblechart_labels.png)
+
+Í stað þess að bæta við fimmtu breytunni má nota merkingar til að segja söguna. Hér eru aðeins
+jaðarbílarnir nefndir: sá sparneytnasti, sá aflmesti og sá þyngsti. Merkingarnar beina athyglinni
+þangað sem hún á að fara án þess að gera grafið flóknara.
+
+:::
 
 
 ##### Kostir
@@ -228,7 +252,8 @@ mesta sem lesandinn ræður við í einu.
 
 - Flókið að túlka þegar margar víddir eru sýndar samtímis, sem getur ruglað áhorfendur.
 - Erfitt að sjá smávægilegan mun á kúlunum, sérstaklega þegar breyturnar eru nálægt hver annarri.
-- Ekki hentugt þegar aðeins tvær breytur eru til skoðunar; dreifirit væri betra val í þeim tilvikum.
+- Ekki hentugt þegar aðeins tvær breytur eru til skoðunar; [dreifirit](visuals_major.qmd#dreifirit---scatter-plot)
+  væri betra val í þeim tilvikum.
 
 Nánar um [Bubble Chart](https://www.storytellingwithdata.com/blog/2021/5/11/what-is-a-bubble-chart)
 á *Storytelling with data.*
@@ -286,7 +311,7 @@ punktariti, en helstu gerðirnar eru:
 Hér er einn punktur fyrir hvern bíl í `mtcars`, `r nrow(mtcars)` alls, staflað eftir sparneytni.
 Lögun dreifingarinnar sést strax, og líka gildi sem standa ein og sér.
 
-Hefðbundið punktarit líkist stuðlariti (e. *histogram*), sem sýnir dreifingu með súlum. Munurinn er
+Hefðbundið punktarit líkist [stuðlariti](visuals_major.qmd#stuðlarit---histogram) (e. *histogram*), sem sýnir dreifingu með súlum. Munurinn er
 að hér er hver punktur ein mæling, svo punktarnir þurfa ekki að liggja með jöfnu millibili eftir
 ásnum. Þess vegna hentar hefðbundið punktarit best fyrir lítil gagnasöfn. Þegar mælingarnar eru
 margar verður erfitt að greina punktana að, og þá hentar betur graf sem tekur saman mælingarnar,

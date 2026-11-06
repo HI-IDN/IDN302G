@@ -143,10 +143,32 @@ p_waffle <- ggplot(net, aes(x, y, fill = flokkur)) +
   theme(plot.margin = margin(10, 20, 10, 20))
 vista(p_waffle, "waffle_example.png")
 
-# Kúlurit: þyngd, sparneytni og afl (stærð kúlu)
-p_bubble <- ggplot(mtcars, aes(x = wt, y = mpg, size = hp)) +
-  geom_point(colour = lit, alpha = 0.55) +
-  scale_size_area(max_size = 12, name = "Hestöfl") +
-  labs(title = "Kúlurit: þyngd, sparneytni og afl",
-       x = "Þyngd (1000 pund)", y = "Mílur á gallon (mpg)")
-ggsave(file.path(out, "bubblechart_example.png"), p_bubble, width = 6, height = 4, dpi = 200, bg = "white", type = "cairo")
+# Kúlurit í þremur skrefum: þyngd (x), sparneytni (y) og hestöfl (stærð kúlu),
+# svo fjöldi strokka sem litur, og loks merkingar á nokkra bíla sem segja söguna.
+kula <- function(p, titill) {
+  p + scale_size_area(max_size = 12, name = "Hestöfl") +
+    labs(title = titill, x = "Þyngd (1000 pund)", y = "Mílur á gallon (mpg)")
+}
+p_bubble <- kula(ggplot(mtcars, aes(x = wt, y = mpg, size = hp)) +
+                   geom_point(colour = lit, alpha = 0.55),
+                 "Kúlurit: þyngd, sparneytni og afl")
+vista(p_bubble, "bubblechart_example.png")
+
+strokkar_lit <- scale_colour_manual(values = c(`4` = hi_teal, `6` = hi_orange, `8` = hi_blue),
+                                    name = "Strokkar")
+p_bubble_lit <- kula(ggplot(mtcars, aes(x = wt, y = mpg, size = hp, colour = cyl_f)) +
+                       geom_point(alpha = 0.7) + strokkar_lit,
+                     "Kúlurit með lit: fjöldi strokka sem fjórða breyta")
+vista(p_bubble_lit, "bubblechart_colour.png")
+
+# Merkjum aðeins jaðarbílana: sparneytnasta, aflmesta og þyngsta
+bilar_allir <- tibble::rownames_to_column(mtcars, "bill")
+merktir <- bilar_allir[unique(c(which.max(bilar_allir$mpg), which.max(bilar_allir$hp),
+                                which.max(bilar_allir$wt))), ]
+p_bubble_merki <- kula(ggplot(bilar_allir, aes(x = wt, y = mpg, size = hp, colour = cyl_f)) +
+                         geom_point(alpha = 0.7) + strokkar_lit +
+                         ggrepel::geom_text_repel(data = merktir, aes(label = bill), size = 3.5,
+                                                  colour = "grey20", show.legend = FALSE,
+                                                  box.padding = 0.8, min.segment.length = 0),
+                       "Kúlurit með merkingum: jaðarbílarnir nefndir")
+vista(p_bubble_merki, "bubblechart_labels.png")
