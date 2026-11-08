@@ -11,19 +11,33 @@ Kennari notar yfirleitt ekki glærur í kennslustundum, en hér birtast stöku k
 ::: {.lotu-list}
 
 ::: {.lotu-card}
-### Lokaverkefni: frá gögnum að heildstæðu verkefni
-
-Hvernig skýrsla, heimasíða, mælaborð og kynning byggja á sömu gögnum og SQL VIEW. Yfirlit yfir frásögn, 10 síðna skýrslu, endurtakanleika og lokaskil.
-
-[Opna glærur um lokaverkefnið](capstone.html)
-:::
-
-::: {.lotu-card}
 ### 2026-08-17 Kynningarefni
 
 Fyrsti tími og stutt yfirlit yfir námskeiðið, vinnuflæðið, GitHub, erindreka og capstone-verkefnið.
 
 [Opna intro-glærur](intro.html)
+:::
+
+:::
+
+## Capstone kynningar nemenda
+
+Friends haustið 2026: lyfturæður og lokakynningar teymanna.
+
+::: {.lotu-list}
+
+::: {.lotu-card}
+### 2026-11-16 Friends teymin
+
+Lyfturæður allra teyma í tímaröð, ein glæra á hvert þemaverkefni.
+
+[Opna glærur með lyfturæðunum](friends-capstone.html)
+:::
+
+::: {.lotu-card}
+### Lokakynningar Friends-teymanna
+
+*Placeholder.* Lokakynningar teymanna (myndbönd og glærur) verða tengdar hér eftir kynningardaginn.
 :::
 
 :::
