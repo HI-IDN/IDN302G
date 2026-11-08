@@ -1,0 +1,278 @@
+---
+pagetitle: "Friends capstone"
+title: "Lokaverkefni — frá gögnum að heildstæðu verkefni"
+description: >-
+  Lokakynning mánudaginn 16. nóvember: lyfturæður allra teyma.
+lang: is
+format:
+  revealjs:
+    theme:
+      - white
+      - ../styles/hi.scss
+    css: ../styles/watermark.css
+    logo: ../img/hi/hi_named_logo-is.svg
+    footer: "IÐN302G · Upplýsingaverkfræði · Haust 2026"
+    title-slide: false
+    title-slide-attributes:
+      data-visibility: hidden
+    hash: true
+    controls: true
+    controls-layout: edges
+    controls-back-arrows: visible
+    slide-number: true
+    progress: true
+    chalkboard: false
+    preview-links: auto
+    width: 1280
+    height: 720
+    margin: 0.04
+    transition: none
+    background-transition: none
+    include-in-header:
+      text: |
+        <link rel="icon" type="image/svg+xml" href="../img/hi/favicon.svg">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <style>
+        .reveal .slide-logo { right: 78px !important; }
+        .reveal .slide-number {
+          position: fixed !important;
+          top: auto !important;
+          bottom: 0 !important;
+          right: 10px !important;
+          height: var(--footer-height) !important;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          gap: 3px;
+          padding: 0 4px !important;
+          background: transparent !important;
+          color: var(--footer-text) !important;
+          font-family: inherit;
+          font-size: 14px !important;
+          z-index: 110 !important;
+        }
+        .reveal .slide-number a { color: inherit !important; }
+        .reveal a,
+        .reveal a:hover,
+        .reveal a:focus-visible {
+          color: var(--blue) !important;
+          text-decoration-color: var(--blue) !important;
+        }
+        .reveal .toc-map {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px 20px;
+          margin-top: 24px;
+        }
+        .reveal a.toc-stop {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          min-height: 88px;
+          padding: 12px 18px;
+          box-sizing: border-box;
+          border: 1px solid var(--panel);
+          background: var(--white);
+          color: var(--blue);
+          text-decoration: none;
+          text-align: left;
+          transition: background 120ms ease;
+        }
+        .reveal a.toc-stop:hover,
+        .reveal a.toc-stop:focus-visible {
+          background: var(--soft-blue-bg);
+          outline: 2px solid var(--blue);
+          outline-offset: 2px;
+        }
+        .reveal .toc-number {
+          display: grid;
+          place-items: center;
+          flex: 0 0 46px;
+          height: 46px;
+          background: var(--teal);
+          font-size: 23px;
+          font-weight: 900;
+        }
+        .reveal .toc-label { flex: 1; min-width: 0; }
+        .reveal .toc-label strong { display: block; font-size: 22px; line-height: 1.2; }
+        .reveal .toc-label > span { display: block; margin-top: 5px; font-size: 16px; line-height: 1.25; color: var(--ink); }
+        .reveal .toc-arrow { font-size: 25px; }
+        #gagnasagan .fa-card-icon .box-icon,
+        #kynning .fa-card-icon .box-icon { color: var(--white); }
+        #skyrslan > h3 { margin-top: 22px; }
+        .reveal .vid { display:flex; justify-content:center; margin-top:8px; }
+        .reveal .vid iframe { width:304px; height:540px; border:0; }
+        .reveal .when { color: var(--blue); font-weight:700; margin:0; }
+        </style>
+    include-after-body:
+      text: |
+        <script>
+        (function () {
+          const BASE = "Upplýsingaverkfræði";
+          function currentName() {
+            if (!window.Reveal || !Reveal.getCurrentSlide) return "";
+            const slide = Reveal.getCurrentSlide();
+            if (!slide) return "";
+            const heading = slide.querySelector("h1, h2, h3");
+            return heading ? heading.textContent.trim() : "";
+          }
+          function updateTitle() {
+            const name = currentName();
+            document.title = name ? BASE + " – " + name : BASE;
+          }
+          let tries = 0;
+          const MAX_TRIES = 50;
+          function init() {
+            if (window.Reveal && Reveal.on) {
+              Reveal.on("ready", updateTitle);
+              Reveal.on("slidechanged", updateTitle);
+              updateTitle();
+            } else if (tries++ < MAX_TRIES) {
+              setTimeout(init, 200);
+            }
+          }
+          init();
+        })();
+        </script>
+---
+
+## {.title-slide .center}
+
+<div class="title-content subtitle-below">
+<span class="subtitle-highlight">Friends<br>capstone</span>
+<span class="title-theme">Lokakynning · IÐN302G</span>
+</div>
+
+<div class="title-meta">Lokakynning teyma · 16. nóvember 2026</div>
+
+---
+
+## Dagskráin {#efnisyfirlit}
+
+Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
+
+```{=html}
+<div class="toc-map">
+<a class="toc-stop" href="#/chandler"><span class="toc-number">01</span><span class="toc-label"><strong>Chandler · Strætó og rigningin</strong><span>Kl. 10:10</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/joey"><span class="toc-number">02</span><span class="toc-label"><strong>Joey · Túristasprengjan</strong><span>Kl. 10:30</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/monica"><span class="toc-number">03</span><span class="toc-label"><strong>Monica · Húsnæðisbrjálæðið</strong><span>Kl. 10:50</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/phoebe"><span class="toc-number">04</span><span class="toc-label"><strong>Phoebe · Skjálftavaktin</strong><span>Kl. 11:25 · hlé 11:10 á undan</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+<a class="toc-stop" href="#/rachel"><span class="toc-number">05</span><span class="toc-label"><strong>Rachel · Græna gímaldið</strong><span>Kl. 11:45</span></span><span class="toc-arrow" aria-hidden="true">↗</span></a>
+</div>
+```
+
+---
+
+## Chandler · Strætó og rigningin {#chandler}
+
+::: {.two-col}
+::: {}
+```{=html}
+<div class="vid"><iframe src="https://www.youtube.com/embed/T5LQohn9Lk4" title="Lyfturæða: Chandler, Strætó" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+```
+:::
+::: {}
+<h3>Ágrip</h3>
+
+::: {.callout}
+*Ágrip verkefnisins (um 250 orð) kemur hér.*
+:::
+
+<h3>Kynning</h3>
+
+*Hlekkur á lokakynninguna kemur síðar.*
+:::
+:::
+
+---
+
+## Joey · Túristasprengjan {#joey}
+
+::: {.two-col}
+::: {}
+```{=html}
+<div class="vid"><iframe src="https://www.youtube.com/embed/zqMkk3jLC2I" title="Lyfturæða: Joey, Túristasprengjan" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+```
+:::
+::: {}
+<h3>Ágrip</h3>
+
+::: {.callout}
+*Ágrip verkefnisins (um 250 orð) kemur hér.*
+:::
+
+<h3>Kynning</h3>
+
+*Hlekkur á lokakynninguna kemur síðar.*
+:::
+:::
+
+---
+
+## Monica · Húsnæðisbrjálæðið {#monica}
+
+::: {.two-col}
+::: {}
+```{=html}
+<div class="vid"><iframe src="https://drive.google.com/file/d/1gcR21jYay1bkZHSQhOj2iN3-ieYpwZX2/preview" title="Lyfturæða: Monica, Húsnæðisbrjálæðið" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+```
+:::
+::: {}
+<h3>Ágrip</h3>
+
+::: {.callout}
+*Ágrip verkefnisins (um 250 orð) kemur hér.*
+:::
+
+<h3>Kynning</h3>
+
+*Hlekkur á lokakynninguna kemur síðar.*
+:::
+:::
+
+---
+
+## Phoebe · Skjálftavaktin {#phoebe}
+
+::: {.two-col}
+::: {}
+```{=html}
+<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/GsVWdn8WbeE" title="Lyfturæða: Phoebe, Skjálftavaktin" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+```
+:::
+::: {}
+<h3>Ágrip</h3>
+
+::: {.callout}
+*Ágrip verkefnisins (um 250 orð) kemur hér.*
+:::
+
+<h3>Kynning</h3>
+
+*Hlekkur á lokakynninguna kemur síðar.*
+:::
+:::
+
+---
+
+## Rachel · Græna gímaldið {#rachel}
+
+::: {.two-col}
+::: {}
+```{=html}
+<div class="vid"><iframe src="https://www.youtube.com/embed/QTPiZxZ-cX8" title="Lyfturæða: Rachel, Borgarslúður" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+```
+:::
+::: {}
+<h3>Ágrip</h3>
+
+::: {.callout}
+*Ágrip verkefnisins (um 250 orð) kemur hér.*
+:::
+
+<h3>Kynning</h3>
+
+*Hlekkur á lokakynninguna kemur síðar.*
+:::
+:::
+
