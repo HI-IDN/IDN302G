@@ -29,15 +29,9 @@ Friends haustið 2026: lyfturæður og lokakynningar teymanna.
 ::: {.lotu-card}
 ### 2026-11-16 Friends teymin
 
-Lyfturæður allra teyma í tímaröð, ein glæra á hvert þemaverkefni.
+Lyfturæður og lokakynningar allra teyma í tímaröð, ein glæra á hvert þemaverkefni.
 
-[Opna glærur með lyfturæðunum](friends-capstone.html)
-:::
-
-::: {.lotu-card}
-### Lokakynningar Friends-teymanna
-
-*Placeholder.* Lokakynningar teymanna (myndbönd og glærur) verða tengdar hér eftir kynningardaginn.
+[Opna glærur með lyfturæðum og kynningum](friends-capstone.html)
 :::
 
 :::
