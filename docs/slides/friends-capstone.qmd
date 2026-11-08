@@ -100,7 +100,7 @@ format:
         #gagnasagan .fa-card-icon .box-icon,
         #kynning .fa-card-icon .box-icon { color: var(--white); }
         #skyrslan > h3 { margin-top: 22px; }
-        .reveal .fc-logo { position:absolute; right:130px; top:150px; width:330px; height:341px; }
+        .reveal .fc-logo { position:absolute; left:520px; top:130px; width:420px; height:434px; }
         .reveal .fc-logo svg { width:100%; height:100%; display:block; }
         .reveal .fc-mini { position:absolute; right:70px; top:34px; width:92px; }
         .reveal .fc-mini svg { width:100%; display:block; }
