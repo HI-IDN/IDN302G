@@ -1,6 +1,6 @@
 ---
 pagetitle: "Friends capstone"
-title: "Lokaverkefni — frá gögnum að heildstæðu verkefni"
+title: "Friends capstone"
 description: >-
   Lokakynning mánudaginn 16. nóvember: lyfturæður allra teyma.
 lang: is
@@ -100,6 +100,8 @@ format:
         #gagnasagan .fa-card-icon .box-icon,
         #kynning .fa-card-icon .box-icon { color: var(--white); }
         #skyrslan > h3 { margin-top: 22px; }
+        .reveal .fc-logo { position:absolute; right:130px; top:150px; width:340px; height:340px; }
+        .reveal .fc-logo svg { width:100%; height:100%; display:block; }
         .reveal .vid { display:flex; justify-content:center; margin-top:8px; }
         .reveal .vid iframe { width:304px; height:540px; border:0; }
         .reveal .when { color: var(--blue); font-weight:700; margin:0; }
@@ -143,7 +145,11 @@ format:
 <span class="title-theme">Lokakynning · IÐN302G</span>
 </div>
 
-<div class="title-meta">16. nóvember 2026</div>
+<div class="title-meta">16&#46; nóvember 2026</div>
+
+```{=html}
+<div class="fc-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Friends capstone: fimm þemaverkefni í kringum gagnamiðju"> <circle cx="200" cy="200" r="190" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="4" /> <path d="M200,200 L200,30 A170,170 0 0,1 361.64,144.69 L293.41,170.15 A100,100 0 0,0 200,130 Z" fill="#10099F" /> <path d="M200,200 L361.64,144.69 A170,170 0 0,1 255.41,351.93 L239.52,284.34 A100,100 0 0,0 293.41,170.15 Z" fill="#FAC55B" /> <path d="M200,200 L255.41,351.93 A170,170 0 0,1 72.36,316.32 L112.56,252.88 A100,100 0 0,0 239.52,284.34 Z" fill="#FFA05F" /> <path d="M200,200 L72.36,316.32 A170,170 0 0,1 38.36,144.69 L106.59,169.85 A100,100 0 0,0 112.56,252.88 Z" fill="#FC8484" /> <path d="M200,200 L38.36,144.69 A170,170 0 0,1 200,30 L200,130 A100,100 0 0,0 106.59,169.85 Z" fill="#2DD2C0" /> <circle cx="200" cy="200" r="75" fill="#F8F8F8" stroke="#E5E5E5" stroke-width="2" /> <g transform="translate(170, 70) scale(0.65)"> <path fill="#FFFFFF" d="M15,10 h30 a5,5 0 0,1 5,5 v25 a5,5 0 0,1 -5,5 h-3 a3,3 0 0,0 -6,0 h-12 a3,3 0 0,0 -6,0 h-3 a5,5 0 0,1 -5,-5 v-25 a5,5 0 0,1 5,-5 z" /> <rect x="18" y="14" width="24" height="12" rx="2" fill="#10099F" /> <rect x="19" y="30" width="8" height="8" rx="1" fill="#10099F" /> <rect x="33" y="30" width="8" height="8" rx="1" fill="#10099F" /> <circle cx="18" cy="46" r="3" fill="#10099F" /> <circle cx="42" cy="46" r="3" fill="#10099F" /> <path fill="#FFFFFF" d="M20,2 q2,4 0,6 c-1.5,2 -2.5,0 -2.5,-3 c0,-3 2.5,-3 2.5,-3 z" /> <path fill="#FFFFFF" d="M30,0 q2,4 0,6 c-1.5,2 -2.5,0 -2.5,-3 c0,-3 2.5,-3 2.5,-3 z" /> <path fill="#FFFFFF" d="M40,2 q2,4 0,6 c-1.5,2 -2.5,0 -2.5,-3 c0,-3 2.5,-3 2.5,-3 z" /> </g> <g transform="translate(262, 105) scale(0.65)"> <path d="M22,6 v-4 a2,2 0 0,1 2,-2 h12 a2,2 0 0,1 2,2 v4" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" /> <rect x="12" y="10" width="32" height="38" rx="4" fill="#FFFFFF" /> <rect x="24" y="14" width="8" height="5" rx="1" fill="#FAC55B" /> <line x1="12" y1="26" x2="44" y2="26" stroke="#FAC55B" stroke-width="3" /> <circle cx="18" cy="51" r="3" fill="#FFFFFF" /> <circle cx="38" cy="51" r="3" fill="#FFFFFF" /> </g> <g transform="translate(245, 215) scale(0.65)"> <polygon points="25,2 2,22 10,22 10,42 40,42 40,22 48,22" fill="#FFFFFF" /> <path d="M20,42 v-12 h10 v12 z" fill="#FFA05F" /> </g> <g transform="translate(160, 245) scale(0.65)"> <polyline points="0,25 15,25 22,8 30,42 38,15 45,30 52,25 75,25" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /> </g> <g transform="translate(95, 175) scale(0.65)"> <path fill="#FFFFFF" d="M30,4 A22,22 0 0,0 8,26 C8,35 18,44 18,44 L20,38 A22,22 0 0,0 30,48 C42,48 52,38 52,26 C52,14 42,4 30,4 Z" /> <line x1="18" y1="20" x2="42" y2="20" stroke="#2DD2C0" stroke-width="4" stroke-linecap="round" /> <line x1="18" y1="30" x2="34" y2="30" stroke="#2DD2C0" stroke-width="4" stroke-linecap="round" /> </g> <g transform="translate(168, 168) scale(0.8)"> <line x1="15" y1="25" x2="35" y2="15" stroke="#262626" stroke-width="3" stroke-linecap="round" /> <line x1="35" y1="15" x2="25" y2="40" stroke="#262626" stroke-width="3" stroke-linecap="round" /> <circle cx="15" cy="25" r="5" fill="#262626" /> <circle cx="35" cy="15" r="5" fill="#262626" /> <circle cx="25" cy="40" r="5" fill="#262626" /> <rect x="35" y="30" width="6" height="15" rx="1" fill="#262626" /> <rect x="45" y="22" width="6" height="23" rx="1" fill="#262626" /> </g> </svg></div>
+```
 
 ---
 
