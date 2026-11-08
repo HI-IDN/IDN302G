@@ -19,6 +19,22 @@ Hvernig skýrsla, heimasíða, mælaborð og kynning byggja á sömu gögnum og 
 :::
 
 ::: {.lotu-card}
+### 2026-08-17 Kynningarefni
+
+Fyrsti tími og stutt yfirlit yfir námskeiðið, vinnuflæðið, GitHub, erindreka og capstone-verkefnið.
+
+[Opna intro-glærur](intro.html)
+:::
+
+:::
+
+## Lokakynningar 2026
+
+Lokakynningar teymanna á þemaverkefnum haustið 2026.
+
+::: {.lotu-list}
+
+::: {.lotu-card}
 ### Friends capstone: lokakynning 16. nóvember
 
 Lyfturæður allra teyma í tímaröð, ein glæra á hvert þemaverkefni.
@@ -27,11 +43,9 @@ Lyfturæður allra teyma í tímaröð, ein glæra á hvert þemaverkefni.
 :::
 
 ::: {.lotu-card}
-### 2026-08-17 Kynningarefni
+### Kynningar teyma 2026
 
-Fyrsti tími og stutt yfirlit yfir námskeiðið, vinnuflæðið, GitHub, erindreka og capstone-verkefnið.
-
-[Opna intro-glærur](intro.html)
+*Placeholder.* Kynningar teymanna (myndbönd og glærur) verða tengdar hér eftir lokakynninguna.
 :::
 
 :::
