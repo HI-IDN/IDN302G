@@ -18,18 +18,23 @@ munur var undirbúinn í [Rökfræði og mengi](../logic-sets/sets-as-questions.
 Dæmi um hvernig við getum sett inn `NULL` gildi:
 
 ```sql
-INSERT INTO operators (opID, opName, opSSN)
+INSERT INTO operators (opID, opName, OpSSN)
 VALUES (4, 'Jósef', '1010101010');
 ```
 
 hér verður `NULL` gildi fyrir `opAge` og `opYearInit`.
 
-### Dæmigögn: Ísfólkið
+### Breytingar á sýnilegum `NULL` gildum í _SQLite_
 
-Dæmin hér fyrir neðan keyra á töflunni `family` í
-[isfolkid.db](https://github.com/HI-IDN/IDN302G/raw/main/data/isfolkid.db). Þar vantar gildi víða:
-fæðingarár (`birth`) sumra persóna er óþekkt, kyn (`gender`) er ekki alltaf skráð og margar
-persónur eiga enga skráða móður (`mom`) eða föður (`dad`).
+_SQLite_ sýnir tóman streng fyrir `NULL` gildi en við getum breytt þessari hegðun með:
+
+```bash
+.nullvalue NULL 
+```
+
+Við getum valið hvaða gildi sem er, t.d. 'NA' eða '-'.
+
+## Samanburður með `NULL`
 
 ```{r}
 #| label: null-r-1
@@ -37,43 +42,27 @@ persónur eiga enga skráða móður (`mom`) eða föður (`dad`).
 con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/isfolkid.db")
 ```
 
-### Breytingar á sýnilegum `NULL` gildum í _SQLite_
-
-_SQLite_ skelin (`sqlite3`) sýnir tóman streng fyrir `NULL` gildi en við getum breytt þessari
-hegðun með punktaskipun:
-
-```
-.nullvalue NULL
-```
-
-Við getum valið hvaða gildi sem er, t.d. 'NA' eða '-'.
-
-## Reikningur og samanburður með `NULL`
-
-Ef annað gildið í reikningi er `NULL` verður niðurstaðan `NULL`. Sama gildir um samanburð: hvort
-óþekkt gildi sé jafnt einhverju er líka óþekkt. Það á jafnvel við um `NULL = NULL`, því tvö
-óþekkt gildi eru ekki endilega þau sömu. Til að spyrja hvort gildi vanti notum við `IS NULL`, sem
-skilar alltaf sönnu eða ósönnu:
+Samanburður á `NULL` við annað gildi getur valdið vandræðum þar sem niðurstaðan er óþekkt. Það á
+jafnvel við um `NULL = NULL`, því tvö óþekkt gildi eru ekki endilega þau sömu. Til að spyrja hvort
+gildi vanti notum við `IS NULL`, sem skilar alltaf sönnu eða ósönnu:
 
 ```{sql}
 --| label: null-sql-1
 --| connection: con
 --| tab.cap: ""
-SELECT NULL + 3      AS summa,
-       NULL = NULL   AS jafnt,
-       NULL <> 1     AS ojafnt,
-       NULL IS NULL  AS er_null;
+SELECT NULL = NULL  AS jafnt,
+       NULL <> 1    AS ojafnt,
+       NULL IS NULL AS er_null;
 ```
 
-_SQLite_ táknar satt með `1` og ósatt með `0`. `NULL + 3` skilar `NULL` en ekki `3`: við vitum ekki
-hvað á að leggja við.
+_SQLite_ táknar satt með `1` og ósatt með `0`; tómur reitur er `NULL`. Sama gildir um reikning:
+`NULL + 3` skilar `NULL`, ekki `3`.
 
 ## Rökaðgerðir með `NULL`
 
-SQL notar þrígilda rökfræði: satt, ósatt og óþekkt (`NULL`). Rökaðgerðir skila ekki alltaf `NULL`
-þótt annað skilyrðið sé óþekkt. Ef niðurstaðan ræðst af hinu skilyrðinu einu fæst ákveðið svar:
-`Ósatt AND Óþekkt` er ósatt hvað sem óþekkta gildið er, og `Satt OR Óþekkt` er satt. Annars er
-niðurstaðan óþekkt:
+Rökaðgerðir skila ekki alltaf `NULL` þótt annað skilyrðið sé óþekkt. Ef niðurstaðan ræðst af hinu
+skilyrðinu einu fæst ákveðið svar: `Ósatt AND Óþekkt` er ósatt hvað sem óþekkta gildið er, og
+`Satt OR Óþekkt` er satt. Annars er niðurstaðan óþekkt:
 
 | Skilyrði 1 | Rökvirki | Skilyrði 2 | Niðurstaða |
 |------------|----------|-------------|-------------|
@@ -83,121 +72,43 @@ niðurstaðan óþekkt:
 | Ósatt      | OR       | Óþekkt     | Óþekkt     |
 |            | NOT      | Óþekkt     | Óþekkt     |
 
-Sama tafla, keyrð í _SQLite_ (`1` er satt, `0` ósatt):
-
-```{sql}
---| label: null-sql-2
---| connection: con
---| tab.cap: ""
-SELECT 1 AND NULL AS satt_og_othekkt,
-       0 AND NULL AS osatt_og_othekkt,
-       1 OR NULL  AS satt_eda_othekkt,
-       0 OR NULL  AS osatt_eda_othekkt,
-       NOT NULL   AS ekki_othekkt;
-```
-
 ### `NULL` í `SELECT` skipunum
 
 Þegar við notum `SELECT` ásamt `WHERE` skilyrði, þá er þeim línum skilað í úttak þar sem
-skilyrðið er **satt**. Línur þar sem skilyrðið er ósatt *eða óþekkt* detta út.
+skilyrðið er satt.
 
-Þetta hefur óvænta afleiðingu. Skilyrði og neitun þess skipta töflunni ekki alltaf í tvo hluta
-sem saman ná yfir allar línurnar:
-
-```{sql}
---| label: null-sql-3
---| connection: con
---| tab.cap: ""
-SELECT COUNT(*)                                          AS allar,
-       (SELECT COUNT(*) FROM family WHERE birth > 1600)       AS eftir_1600,
-       (SELECT COUNT(*) FROM family WHERE NOT (birth > 1600)) AS ekki_eftir_1600
-FROM family;
+```sql
+SELECT *
+FROM Patient_list
+WHERE Patient_Age > 10;
 ```
 
-Persónur með óþekkt fæðingarár lenda í hvorugum hópnum, því `birth > 1600` er óþekkt fyrir þær og
-neitun á óþekktu er líka óþekkt.
+gefur til dæmis ekki línum sem hafa `NULL` gildi í `Patient_Age`.
 
 Til að finna `NULL` gildi þá þarf að nota `IS NULL`:
 
-```{sql}
---| label: null-sql-4
---| connection: con
---| tab.cap: ""
-SELECT COUNT(*) AS faedingarar_othekkt
-FROM family
-WHERE birth IS NULL;
+```sql
+SELECT *
+FROM Patient_list
+WHERE Patient_Age IS NULL;
 ```
 
 Sambærilega, til að útiloka línur með `NULL` gildi, notum við `IS NOT NULL`:
 
-```{sql}
---| label: null-sql-5
---| connection: con
---| tab.cap: ""
-SELECT COUNT(*) AS faedingarar_thekkt
-FROM family
-WHERE birth IS NOT NULL;
+```sql
+SELECT *
+FROM Patient_list
+WHERE Patient_Age IS NOT NULL;
 ```
-
-Nú ganga tölurnar upp: þessar tvær fyrirspurnir saman ná yfir allar línur töflunnar.
-
-## `NULL` í samsöfnun
-
-Samsöfnunarföll eins og `COUNT(dálkur)`, `SUM()`, `AVG()`, `MIN()` og `MAX()` **sleppa** `NULL`
-gildum. Aðeins `COUNT(*)` telur allar línur, hvort sem gildi vantar eða ekki:
-
-```{sql}
---| label: null-sql-6
---| connection: con
---| tab.cap: ""
-SELECT COUNT(*)                         AS personur,
-       COUNT(birth)                     AS med_faedingarar,
-       COUNT(death)                     AS med_danarar,
-       ROUND(AVG(death - birth), 1)     AS medalaldur
-FROM family;
-```
-
-`AVG(death - birth)` er því meðalaldur þeirra persóna þar sem **bæði** fæðingar- og dánarár eru
-þekkt, ekki allra persóna. Það er yfirleitt það sem við viljum, en það þarf að koma fram þegar
-niðurstaðan er túlkuð.
-
-Í `GROUP BY` lenda öll `NULL` gildi í sama hópi:
-
-```{sql}
---| label: null-sql-7
---| connection: con
---| tab.cap: ""
-SELECT gender, COUNT(*) AS fjoldi
-FROM family
-GROUP BY gender
-ORDER BY gender;
-```
-
-## Gildi í stað `NULL`: `COALESCE()`
-
-Fallið `COALESCE()` skilar fyrsta viðfanginu sem er ekki `NULL`. Það hentar til að setja
-sjálfgefið gildi í úttak. _SQLite_ hefur líka `IFNULL()` sem gerir það sama með tveimur viðföngum.
-
-```{sql}
---| label: null-sql-8
---| connection: con
---| tab.cap: ""
-SELECT COALESCE(gender, 'óþekkt') AS kyn, COUNT(*) AS fjoldi
-FROM family
-GROUP BY kyn
-ORDER BY kyn;
-```
-
-Athugið að `COALESCE()` breytir aðeins úttakinu, ekki gögnunum. Það er gagnlegt til birtingar, en
-ef `NULL` er skipt út fyrir t.d. `0` áður en meðaltal er reiknað breytist niðurstaðan.
 
 ## Gildra: `NOT IN` og `NULL`
 
 [Undirfyrirspurnir](subquery.qmd) með `NOT IN` hegða sér óvænt ef undirfyrirspurnin skilar `NULL`.
-Spyrjum: hvaða konur í töflunni eru ekki skráðar móðir neinnar persónu?
+Tökum töfluna `family` í [isfolkid.db](https://github.com/HI-IDN/IDN302G/raw/main/data/isfolkid.db)
+og spyrjum: hvaða konur eru ekki skráðar móðir neinnar persónu?
 
 ```{sql}
---| label: null-sql-9
+--| label: null-sql-2
 --| connection: con
 --| tab.cap: ""
 SELECT COUNT(*) AS ekki_maedur
@@ -213,7 +124,7 @@ síðasti liðurinn er alltaf óþekktur. Skilyrðið getur því aldrei orðið
 Lausnin er að sía `NULL` úr undirfyrirspurninni:
 
 ```{sql}
---| label: null-sql-10
+--| label: null-sql-3
 --| connection: con
 --| tab.cap: ""
 SELECT COUNT(*) AS ekki_maedur
@@ -222,25 +133,18 @@ WHERE gender = 'F'
   AND id NOT IN (SELECT mom FROM family WHERE mom IS NOT NULL);
 ```
 
-Önnur leið er `NOT EXISTS`, sem lendir ekki í þessari gildru:
-
-```{sql}
---| label: null-sql-11
---| connection: con
---| tab.cap: ""
-SELECT COUNT(*) AS ekki_maedur
-FROM family AS kona
-WHERE kona.gender = 'F'
-  AND NOT EXISTS (SELECT 1 FROM family AS barn WHERE barn.mom = kona.id);
-```
-
 ::: {.callout-important}
 ## `NOT IN` með undirfyrirspurn
 
 Ef undirfyrirspurnin getur skilað `NULL` skilar `NOT IN` tómri niðurstöðu, án nokkurrar villu.
-Bættu við `WHERE dálkur IS NOT NULL` í undirfyrirspurnina eða notaðu `NOT EXISTS`. `IN` (án `NOT`)
-lendir ekki í þessu, því þar nægir að eitt gildi passi.
+Bættu við `WHERE dálkur IS NOT NULL` í undirfyrirspurnina, eða notaðu `NOT EXISTS`.
 :::
+
+```{r}
+#| label: null-r-2
+#| include: false
+DBI::dbDisconnect(con)
+```
 
 ### Töfluskilgreiningar og `NULL`
 
@@ -256,50 +160,3 @@ CREATE TABLE tbl
 ```
 
 Fyrstu tveir dálkarnir leyfa ekki `NULL`, en sá þriðji leyfir það.
-
-#### Æfing
-
-Notaðu töfluna `family` í
-[isfolkid.db](https://github.com/HI-IDN/IDN302G/raw/main/data/isfolkid.db).
-
-1. Hve margar persónur hafa hvorki skráða móður né föður?
-2. Hvers vegna gefur `SELECT COUNT(*) FROM family WHERE gender <> 'F';` ekki fjölda allra
-   persóna sem eru ekki skráðar konur?
-3. Hvaða karlar eru ekki skráðir faðir neinnar persónu? Teldu þá og passaðu að `NULL` í `dad`
-   eyðileggi ekki niðurstöðuna.
-
-::: {.callout-tip collapse="true"}
-## Lausn
-
-1. Bæði skilyrðin þurfa `IS NULL`. `mom = NULL` væri aldrei satt:
-
-   ```{sql}
-   --| label: null-sql-12
-   --| connection: con
-   --| tab.cap: ""
-   SELECT COUNT(*) AS an_foreldra
-   FROM family
-   WHERE mom IS NULL AND dad IS NULL;
-   ```
-
-2. Persónur með óþekkt kyn detta út, því `NULL <> 'F'` er óþekkt en ekki satt. Til að telja þær
-   með þarf `WHERE gender <> 'F' OR gender IS NULL`.
-
-3. Með `NOT EXISTS`, eða `NOT IN` þar sem `NULL` er síað úr undirfyrirspurninni:
-
-   ```{sql}
-   --| label: null-sql-13
-   --| connection: con
-   --| tab.cap: ""
-   SELECT COUNT(*) AS ekki_fedur
-   FROM family
-   WHERE gender = 'M'
-     AND id NOT IN (SELECT dad FROM family WHERE dad IS NOT NULL);
-   ```
-:::
-
-```{r}
-#| label: null-r-2
-#| include: false
-DBI::dbDisconnect(con)
-```
