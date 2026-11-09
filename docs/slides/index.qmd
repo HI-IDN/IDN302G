@@ -18,6 +18,14 @@ Fyrsti tími og stutt yfirlit yfir námskeiðið, vinnuflæðið, GitHub, erindr
 [Opna intro-glærur](intro.html)
 :::
 
+::: {.lotu-card}
+### 2026-11-09 Lokaverkefni: frá gögnum að heildstæðu verkefni
+
+Hvernig skýrsla, heimasíða, mælaborð og kynning byggja á sömu gögnum og SQL VIEW. Yfirlit yfir frásögn, 10 síðna skýrslu, endurtakanleika og lokaskil.
+
+[Opna glærur um lokaverkefnið](capstone.html)
+:::
+
 :::
 
 ## Capstone kynningar nemenda
