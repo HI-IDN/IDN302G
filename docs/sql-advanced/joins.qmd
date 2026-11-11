@@ -5,13 +5,11 @@ description: >-
   útskýringar á innri, vinstri, hægri, náttúrulegri, krosstengingu og hliðstæðri tengingu.
 ---
 
-## Tenging töflna í SQL
-
 Í SQL er algengt að vinna með gögn úr fleiri en einni töflu í einu. Til að sameina upplýsingar úr
 mörgum töflum notum við **tengingar** (e. joins). Hér eru nokkrar af algengustu tegundum tenginga og
 hvernig þær virka:
 
-### Innri tenging - `INNER JOIN`
+## Innri tenging - `INNER JOIN`
 
 `INNER JOIN` skilar aðeins þeim línum þar sem samsvörun er á milli tveggja eða fleiri taflna. Ef
 gögn eru til í báðum töflunum eru þau sýnd, annars ekki.
@@ -59,7 +57,7 @@ karakter (persóna sem segir söguna). Fyrirspurnin sameinar gögn úr þremur t
 | A Storm of Swords    | Jon Snow       
 | A Dance with Dragons | Jon Snow       
 
-### Vinstri tenging - `LEFT JOIN`
+## Vinstri tenging - `LEFT JOIN`
 
 `LEFT JOIN` einnig kallað `LEFT OUTER JOIN`, skilar öllum línum úr vinstri töflunni (töflunni sem
 er tilgreind fyrst), jafnvel þótt engin samsvörun sé í hægri töflunni. Ef engin samsvörun finnst
@@ -105,20 +103,41 @@ Niðurstaðan verður:
 | Criston Cole    |                 |                |
 
 
-### Gildra: skilyrði í `ON` eða `WHERE` með `LEFT JOIN`
+## Gildra: skilyrði í `ON` eða `WHERE` með `LEFT JOIN`
 
 Við viljum sýna **alla viðskiptavini**, ásamt greiddum pöntunum ef þær eru til.
-Anna á bæði greidda og opna pöntun, Bjarni á aðeins opna pöntun og Dora á enga.
+Anna á bæði greidda og opna pöntun, Bjarni á aðeins opna pöntun og Dóra á enga.
 Gögnin eru tilbúin og hver fyrirspurn skilgreinir þau sjálf með `WITH`.
 Dæmin keyra í SQLite í minni og sömu SQL-fyrirspurnir virka í PostgreSQL.
+
+::: {.callout-tip}
+## Byrjið á lykiltengingunni — veljið síðan hvar sían á heima
+
+Oft tengjum við erlendan lykil við aðallykil í `ON`, til dæmis
+`p.vidskiptavinur_id = v.id`. Önnur skilyrði geta líka átt heima þar:
+
+- **`ON`** ræður hvaða línur mega tengjast. Hér tengjum við aðeins greiddar
+  pantanir, en höldum öllum viðskiptavinum.
+- **`WHERE`** síar niðurstöðuna eftir tengingu. Hér myndi greiðsluskilyrðið
+  útiloka viðskiptavini án greiddrar pöntunar.
+
+Veljið því staðsetningu skilyrðisins út frá því hvaða niðurstöðu þið viljið.
+`CHECK` á stöðudálkinum getur takmarkað leyfð gildi, en tryggir ekki að
+viðskiptavinur eigi greidda pöntun.
+:::
 
 ```{r}
 #| label: joins-r-filter-connection
 #| include: false
+if (.Platform$OS.type == "windows") {
+  invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
+}
+join_filter_na <- getOption("knitr.kable.NA")
+options(knitr.kable.NA = "NULL")
 join_filter_con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
 ```
 
-#### Skilyrði í `ON`: allir viðskiptavinir haldast
+### Skilyrði í `ON`: allir viðskiptavinir haldast
 
 Skilyrðið í `ON` ræður hvaða pantanir mega tengjast. Ef engin greidd pöntun
 finnst heldur `LEFT JOIN` samt viðskiptavininum og setur `NULL` í pöntunardálkinn.
@@ -128,7 +147,7 @@ finnst heldur `LEFT JOIN` samt viðskiptavininum og setur `NULL` í pöntunardá
 --| connection: join_filter_con
 --| tab.cap: ""
 WITH vidskiptavinir(id, nafn) AS (
-    VALUES (1, 'Anna'), (2, 'Bjarni'), (3, 'Dora')
+    VALUES (1, 'Anna'), (2, 'Bjarni'), (3, 'Dóra')
 ),
 pantanir(id, vidskiptavinur_id, stada) AS (
     VALUES (101, 1, 'greidd'), (102, 1, 'opin'), (103, 2, 'opin')
@@ -140,10 +159,10 @@ LEFT JOIN pantanir AS p
 ORDER BY v.id, p.id;
 ```
 
-Anna tengist greiddu pöntuninni. Bjarni og Dora haldast líka í niðurstöðunni,
-en án pöntunarnúmers. Tóm gildi í töflunni tákna hér `NULL`.
+Anna tengist greiddu pöntuninni. Bjarni og Dóra haldast líka í niðurstöðunni,
+en án pöntunarnúmers.
 
-#### Skilyrði í `WHERE`: línur án greiddrar pöntunar detta út
+### Skilyrði í `WHERE`: línur án greiddrar pöntunar detta út
 
 Færum nú sama skilyrði í `WHERE`:
 
@@ -152,7 +171,7 @@ Færum nú sama skilyrði í `WHERE`:
 --| connection: join_filter_con
 --| tab.cap: ""
 WITH vidskiptavinir(id, nafn) AS (
-    VALUES (1, 'Anna'), (2, 'Bjarni'), (3, 'Dora')
+    VALUES (1, 'Anna'), (2, 'Bjarni'), (3, 'Dóra')
 ),
 pantanir(id, vidskiptavinur_id, stada) AS (
     VALUES (101, 1, 'greidd'), (102, 1, 'opin'), (103, 2, 'opin')
@@ -165,14 +184,14 @@ ORDER BY v.id, p.id;
 ```
 
 Nú heldur fyrirspurnin aðeins Önnu. Opna pöntun Bjarna stenst ekki skilyrðið.
-Dora fær `NULL` úr tengingunni og samanburðurinn `NULL = 'greidd'` er óþekktur.
+Dóra fær `NULL` úr tengingunni og samanburðurinn `NULL = 'greidd'` er óþekktur.
 `WHERE` heldur aðeins línum þar sem skilyrðið er satt.
 Þetta tiltekna skilyrði gerir því tenginguna jafngilda `INNER JOIN` með sama skilyrði.
 
 ::: {.callout-warning}
 ## Nægir að bæta við `OR p.id IS NULL`?
 
-Nei. Það myndi halda Doru, en Bjarni hyrfi samt: opna pöntunin hans tengist
+Nei. Það myndi halda Dóru, en Bjarni hyrfi samt: opna pöntunin hans tengist
 áður en `WHERE` síar hana út, svo engin `NULL`-lína verður til fyrir hann.
 Til að halda öllum viðskiptavinum með aðeins greiddum pöntunum á
 greiðsluskilyrðið heima í `ON`.
@@ -185,9 +204,10 @@ greiðsluskilyrðið heima í `ON`.
 #| label: joins-r-filter-disconnect
 #| include: false
 DBI::dbDisconnect(join_filter_con)
+options(knitr.kable.NA = join_filter_na)
 ```
 
-### Hægri tenging - `RIGHT JOIN`
+## Hægri tenging - `RIGHT JOIN`
 
 `RIGHT JOIN` einnig kallað `RIGHT OUTER JOIN`, virkar eins og `LEFT JOIN`, nema nú eru allar
 línur úr hægri töflunni sýndar, jafnvel þótt engin samsvörun sé í vinstri töflunni. Ef engin
@@ -232,7 +252,7 @@ Niðurstaðan verður:
 > vinstri til hægri, og því er eðlilegra að nota `LEFT JOIN` í stað `RIGHT JOIN` og víxla
 > frekar töflunum. Það eru þó til tilvik þegar `RIGHT JOIN` er skynsamlegt.
 
-### Náttúruleg tenging - `NATURAL JOIN`
+## Náttúruleg tenging - `NATURAL JOIN`
 
 `NATURAL JOIN` sameinar tvær töflur á sjálfgefnum dálkum með sama nafni, og þarf því ekki að
 tilgreina á hvaða dálkum tengingin er byggð. Þetta getur sparað tíma, en getur líka verið óskýrt ef
@@ -256,7 +276,7 @@ Ef við hefðum skilgreint töfluna `books` með `book_id` og `book_name` í sta
 > það er óskýrt hvaða dálkar eru notuð í tengingunni. Ef svo óheppilega vill til að ólíkar
 > töflur deili saman nafni þá getur það valdið óvæntum niðurstöðum.
 
-### Krosstenging - `CROSS JOIN`
+## Krosstenging - `CROSS JOIN`
 
 `CROSS JOIN` skilar kartesísku margfeldi af línunum í töflunum, sem þýðir að hver lína úr einni
 töflu er tengd við allar línur í hinni töflunni.
@@ -286,7 +306,7 @@ milli bóka og staðsetningartegunda.
 > Það er líka hægt að nota `INNER JOIN` með `ON 1=1` til að fá sama útkomu og `CROSS JOIN`.
 > `SELECT * FROM A INNER JOIN B ON 1=1;` sem gerir þetta að misvísandi fyrirspurn.
 
-### Hliðstæð tenging - `LATERAL JOIN`
+## Hliðstæð tenging - `LATERAL JOIN`
 
 `LATERAL JOIN` gerir kleift að tengja töflur með fyrirspurn sem fer yfir hverja línu úr vinstri
 töflu. Þetta er gagnlegt þegar útreikningar í hægri töflu þurfa að nota gögn úr hverri línu í
@@ -391,7 +411,7 @@ reikningum.
 > Einnig, til að geta leitað af `King's Landing` þá notum við tvöfalt `''` til að tákna eitt 
 > úrfellingarmerki. Þetta er kallað _escaping_, svipað og þegar við notum `\` í reglulegum segðum.
 
-### Tenging við stakræna stærðfræði
+## Tenging við stakræna stærðfræði
 
 Segum að við tengjum töflurnar `A` og `B` á dálkunum `A.id = B.id`. Látum $K_A$ vera mengi
 `id`-gilda í `A` og $K_B$ mengi `id`-gilda í `B`. Þá má lýsa tengingunum með mengjum á eftirfarandi
@@ -421,7 +441,7 @@ pantað eða nemendur sem hafa ekki skilað.
 > **Athugið**: Mengjasamlíkingin á við um lyklana, ekki raðirnar sjálfar. Ef eitt `id` kemur
 > þrisvar fyrir í `B` birtist samsvarandi röð úr `A` þrisvar í niðurstöðunni.
 
-#### Dæmi: allar tengingarnar
+### Dæmi: allar tengingarnar
 
 ```{r}
 #| label: joins-r-1
