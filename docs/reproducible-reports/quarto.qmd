@@ -136,6 +136,59 @@ nóg. Það er fyrst þegar úttakið þarf að **endurreiknast** út frá vali 
 verður nauðsynlegur.
 :::
 
+## Sama QMD-skjal sem HTML og PDF {#html-og-pdf}
+
+Hingað til höfum við yfirleitt notað HTML. Til að fá líka prentvæna PDF-skýrslu þarf
+**ekki að halda við tveimur heimildaskrám**: sama `.qmd` skráin getur gefið bæði snið.
+
+**1. Veldu bæði snið í YAML-hausnum.** Í skýrsluskránni þinni, t.d. `skyrsla.qmd`,
+kemur þetta efst. Haltu öðrum upplýsingum sem þú ert þegar með, svo sem höfundi:
+
+``` yaml
+---
+title: "Skýrslan mín"
+lang: is
+format:
+  html: default
+  pdf: default
+---
+```
+
+Inndrátturinn skiptir máli: `html` og `pdf` eru bæði undir `format`.
+
+**2. Settu upp PDF-verkfærin einu sinni.** PDF-sniðið notar LaTeX. Ef þú ert ekki
+þegar með LaTeX-uppsetningu, svo sem TeX Live eða TinyTeX, keyrirðu í Terminal:
+
+``` bash
+quarto install tinytex
+```
+
+**3. Þýddu bæði snið.** Opnaðu Terminal í möppunni með skýrslunni og keyrðu:
+
+``` bash
+quarto render skyrsla.qmd --to all
+```
+
+Þá verða til `skyrsla.html` og `skyrsla.pdf`. Til að endurbyggja aðeins annað sniðið:
+
+``` bash
+quarto render skyrsla.qmd --to html
+quarto render skyrsla.qmd --to pdf
+```
+
+Skoðaðu bæði úttökin: síðuskipting, breiðar töflur og myndastærðir geta þurft
+lagfæringu í PDF þótt HTML líti vel út. Gagnvirk Plotly-gröf og Leaflet-kort virka
+í HTML, en þurfa statíska mynd eða annað úttak sem PDF styður. HTML-kóði einn og
+sér verður heldur ekki sjálfkrafa að efni í PDF.
+
+**4. Birtu bæði úttökin.** HTML-síðan getur sýnt tengil á PDF þegar bæði snið eru
+skilgreind. Ef þú birtir tilbúið úttak á GitHub Pages þarf PDF-skráin að fylgja með
+í birtingarmöppunni; ef Actions þýðir skýrsluna þarf sú keyrsla líka LaTeX og að
+þýða bæði sniðin. Sjá [birtingu með GitHub Pages](publishing.qmd).
+
+Nánar: [mörg úttakssnið úr sama skjali](https://quarto.org/docs/output-formats/html-multi-format.html)
+og [PDF með LaTeX](https://quarto.org/docs/output-formats/pdf-basics.html).
+
 ## Meira en skýrslur
 
 Quarto er ekki bundið við skýrslur. Sama grunnhugmynd — markdown + kóði — nýtist í fleira:

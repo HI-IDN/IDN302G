@@ -71,6 +71,19 @@ the document.
 Cells that load packages should carry `#| message: false` and `#| warning: false`; startup
 chatter from `library()` is noise in teaching material.
 
+**Self-tests (sjálfspróf).** An interactive multiple-choice quiz is a YAML file of questions
+next to the page, plus an empty div:
+
+```markdown
+::: {.sjalfsprof src="sjalfsprof.yml"}
+:::
+```
+
+The format is documented at the top of `filters/sjalfsprof.lua`; `regex/sjalfsprof.yml` is the
+worked example. Look and behaviour live in `partials/sjalfsprof.inc` (HÍ palette, orange
+accent) and are added only to pages that use a quiz. Question numbers, "Hluti n", "Rétt svar er
+A" and the question count are computed, so never write them in the YAML.
+
 ## Building and publishing
 
 Publishing is automated: **GitHub Actions** renders the book and deploys it to GitHub Pages.

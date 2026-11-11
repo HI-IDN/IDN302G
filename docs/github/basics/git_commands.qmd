@@ -116,26 +116,16 @@ Commit vistar breytingarnar í *staðbundinni* Git geymslu, þ.e. á tölvunni �
 
 ## Sameina breytingar og leysa árekstra
 
-Þegar breytingar eru sameinaðar getur verið að árekstrar (merge conflicts) komi upp ef aðrir hafa
-breytt sömu skránum eða ef breytingar rekast á.
-
-### Hvað gerist við merge conflict?
-
-Git getur ekki ákveðið sjálfkrafa hvaða breytingar á að halda og biður þig að leysa
-áreksturinn. Skrár sem hafa árekstra verða merktar í Git sem óleystar (`unmerged`).
-
-### Hvernig á að leysa merge conflict?
-
-Opnaðu skrárnar sem Git hefur merkt sem í árekstri og leitaðu að merkjum eins og
-`<<<<<<< HEAD` og `>>>>>>>`. Þau sýna hvaða línur rekast á.
-
-Veldu hvaða breytingar eiga að fara í lokaútgáfuna og fjarlægðu árekstramerkin. Þegar
-breytingarnar hafa verið leystar þarf að bæta skránum aftur við og skrá lausnina:
+`git merge` sameinar breytingar úr annarri grein inn í greinina sem þú ert á:
 
 ```sh
-git add uppfærðar-skrár
-git commit -m "Leysti merge conflict"
+git checkout main
+git merge nafn-greinar
 ```
+
+Ef Git getur ekki sameinað breytingarnar sjálfkrafa þarf að leysa árekstur áður en
+sameiningunni er lokið. Sjá [leiðbeiningar um merge conflict í bilanaleit](../good_practices/troubleshooting.qmd#merge-conflict),
+með skrefum, sýnidæmi og æfingu.
 
 ## Vinna með submodules
 

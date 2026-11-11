@@ -18,6 +18,38 @@ Fyrsti tími og stutt yfirlit yfir námskeiðið, vinnuflæðið, GitHub, erindr
 [Opna intro-glærur](intro.html)
 :::
 
+::: {.lotu-card}
+### 2026-11-09 Lokaverkefni: frá gögnum að heildstæðu verkefni
+
+Hvernig skýrsla, heimasíða, mælaborð og kynning byggja á sömu gögnum og SQL VIEW. Yfirlit yfir frásögn, 10 síðna skýrslu, endurtakanleika og lokaskil.
+
+[Opna glærur um lokaverkefnið](capstone.html)
+:::
+
+:::
+
+## Capstone kynningar nemenda
+
+Friends haustið 2026: kynningar, lyfturæður og ágrip teymanna.
+
+::: {.lotu-list}
+
+::: {.lotu-card}
+### 2026-11-16 Friends teymin
+
+Kynningar, lyfturæður og ágrip Friends-teymanna í dagskrárröð, ein glæra á hvert þemaverkefni.
+
+[Opna kynningar Friends-teymanna](friends-capstone.html)
+
+Verkefnissíður og skýrslur:
+
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Chandler](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-Chandler/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Joey](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-joey/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Monica](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-monica/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Phoebe](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-phoebe/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Rachel](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-rachel/)
+:::
+
 :::
 
 ## Gestafyrirlestrar
