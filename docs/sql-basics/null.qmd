@@ -36,18 +36,33 @@ Við getum valið hvaða gildi sem er, t.d. 'NA' eða '-'.
 
 ## Samanburður með `NULL`
 
-Samanburður á `NULL` við annað gildi getur valdið vandræðum þar sem niðurstaðan er óþekkt. Til
-dæmis:
-
-```sql
-SELECT NULL + 3;
+```{r}
+#| label: null-r-1
+#| include: false
+con <- DBI::dbConnect(RSQLite::SQLite(), "../../data/isfolkid.db")
 ```
 
-skilar `NULL` en ekki `0`.
+Samanburður á `NULL` við annað gildi getur valdið vandræðum þar sem niðurstaðan er óþekkt. Það á
+jafnvel við um `NULL = NULL`, því tvö óþekkt gildi eru ekki endilega þau sömu. Til að spyrja hvort
+gildi vanti notum við `IS NULL`, sem skilar alltaf sönnu eða ósönnu:
+
+```{sql}
+--| label: null-sql-1
+--| connection: con
+--| tab.cap: ""
+SELECT NULL = NULL  AS jafnt,
+       NULL <> 1    AS ojafnt,
+       NULL IS NULL AS er_null;
+```
+
+_SQLite_ táknar satt með `1` og ósatt með `0`; tómur reitur er `NULL`. Sama gildir um reikning:
+`NULL + 3` skilar `NULL`, ekki `3`.
 
 ## Rökaðgerðir með `NULL`
 
-Rökaðgerðir eins og `AND`, `OR` og `NOT` skila `NULL` ef einhver þeirra er `NULL`. Til dæmis:
+Rökaðgerðir skila ekki alltaf `NULL` þótt annað skilyrðið sé óþekkt. Ef niðurstaðan ræðst af hinu
+skilyrðinu einu fæst ákveðið svar: `Ósatt AND Óþekkt` er ósatt hvað sem óþekkta gildið er, og
+`Satt OR Óþekkt` er satt. Annars er niðurstaðan óþekkt:
 
 | Skilyrði 1 | Rökvirki | Skilyrði 2 | Niðurstaða |
 |------------|----------|-------------|-------------|
@@ -84,6 +99,51 @@ Sambærilega, til að útiloka línur með `NULL` gildi, notum við `IS NOT NULL
 SELECT *
 FROM Patient_list
 WHERE Patient_Age IS NOT NULL;
+```
+
+## Gildra: `NOT IN` og `NULL`
+
+[Undirfyrirspurnir](subquery.qmd) með `NOT IN` hegða sér óvænt ef undirfyrirspurnin skilar `NULL`.
+Tökum töfluna `family` í [isfolkid.db](https://github.com/HI-IDN/IDN302G/raw/main/data/isfolkid.db)
+og spyrjum: hvaða konur eru ekki skráðar móðir neinnar persónu?
+
+```{sql}
+--| label: null-sql-2
+--| connection: con
+--| tab.cap: ""
+SELECT COUNT(*) AS ekki_maedur
+FROM family
+WHERE gender = 'F'
+  AND id NOT IN (SELECT mom FROM family);
+```
+
+Svarið er núll, sem getur ekki staðist. Ástæðan er að dálkurinn `mom` er `NULL` hjá persónum sem
+eiga enga skráða móður. `x NOT IN (a, b, NULL)` jafngildir `x <> a AND x <> b AND x <> NULL`, og
+síðasti liðurinn er alltaf óþekktur. Skilyrðið getur því aldrei orðið satt.
+
+Lausnin er að sía `NULL` úr undirfyrirspurninni:
+
+```{sql}
+--| label: null-sql-3
+--| connection: con
+--| tab.cap: ""
+SELECT COUNT(*) AS ekki_maedur
+FROM family
+WHERE gender = 'F'
+  AND id NOT IN (SELECT mom FROM family WHERE mom IS NOT NULL);
+```
+
+::: {.callout-important}
+## `NOT IN` með undirfyrirspurn
+
+Ef niðurstaða undirfyrirspurnarinnar inniheldur `NULL` skilar `NOT IN` tómri niðurstöðu, án nokkurrar villu.
+Bættu við `WHERE dálkur IS NOT NULL` í undirfyrirspurnina, eða notaðu `NOT EXISTS`.
+:::
+
+```{r}
+#| label: null-r-2
+#| include: false
+DBI::dbDisconnect(con)
 ```
 
 ### Töfluskilgreiningar og `NULL`
