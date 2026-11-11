@@ -32,7 +32,7 @@ def replace_path(source: Path, target: Path) -> None:
 
 
 def main() -> int:
-    for name in ("intro", "capstone"):
+    for name in ("intro", "capstone", "friends-capstone"):
         source = DOCS / "slides" / f"{name}.qmd"
         if not source.exists():
             continue
