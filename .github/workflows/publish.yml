@@ -44,8 +44,12 @@ jobs:
           echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
 
       # Hausaskrár fyrir R-pakka sem nota curl og OpenSSL.
+      # Ubuntu-speglar runnerins féllu á DNS; notum annan Ubuntu-spegil.
       - name: Install system libraries
-        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev
+        run: |
+          printf '%s\n' 'https://mirrors.edge.kernel.org/ubuntu/' | sudo tee /etc/apt/apt-mirrors.txt
+          sudo apt-get -o APT::Update::Error-Mode=any update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
