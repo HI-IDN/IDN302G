@@ -39,27 +39,71 @@ spyrja betur, prófa betur eða biðja um skýrari útfærslu.
 
 ## Frá tillögu erindreka að rýndri breytingu
 
-Flæðiritið sýnir hvar manneskjan þarf að sannreyna tillöguna. Að erindreki
+Yfirlitið sýnir hver gerir hvað og hvenær. Að erindreki
 segi að verkefnið sé leyst er ekki sjálfstæð staðfesting á því að lausnin virki.
 
-```{mermaid}
-flowchart TD
-    A["Afmarkið verkefnið og skráið fyrirmælin"] --> B["Vinnið á eigin grein með erindreka"]
-    B --> C["Lesið breytingarnar og keyrið viðeigandi prófanir"]
-    C --> D{"Leysir tillagan verkefnið og skiljið þið hana?"}
-    D -- Nei --> E["Skráið vandann og lagið eða biðjið um skýringu"]
-    E --> C
-    D -- Já --> F["Opnið PR með lýsingu, prófunum og skráðri AI-notkun"]
-    F --> G["Hópfélagar rýna breytinguna"]
-    G --> H{"Þarf að laga eitthvað?"}
-    H -- Já --> E
-    H -- Nei --> I["Sameinið eftir samþykki og samkvæmt reglum geymslunnar"]
-```
+Byrjið á eigin grein með skýrum fyrirmælum til erindrekans. Afmarkið verkefnið
+og skráið hvað lausnin á að gera, til dæmis í **issue**. Þið getið stofnað **draft PR**
+meðan vinnan er í gangi til að halda utan um breytingarnar og eigin yfirferð.
+Farið sjálf yfir breytingarnar, prófið lausnina og skráið AI-notkunina. Þegar þið
+skiljið lausnina og hafið sannreynt hana opnið þið PR til rýni eða merkið draft PR
+sem **Ready for review** og óskið eftir formlegri rýni hópfélaga.
 
 Breyting eftir rýni fer aftur í prófun og yfirferð. Ef ný commit gera fyrra
 samþykki úrelt þarf nýtt samþykki áður en sameinað er. Sjá
 [reglur um sameiningu í `main`](../github/good_practices/pull_requests.qmd#reglur-fyrir-sameiningu-í-main).
 
+::: {style="max-width: 680px; margin-inline: auto; text-align: center;"}
+
+```{mermaid}
+%%| label: agent-review-flow
+%%| fig-cap: "Röð vinnunnar: lagfæringar fara aftur í eigin yfirferð og síðan í rýni teymisins."
+%%| fig-align: center
+%%| out-width: 680px
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Jost, sans-serif", "fontSize": "16px", "lineColor": "#10099F"}, "flowchart": {"curve": "linear", "nodeSpacing": 12, "rankSpacing": 18, "padding": 8}}}%%
+flowchart LR
+    A["Grein / draft PR<br/>Skýr fyrirmæli"] --> B["Eigin yfirferð<br/>Lesa og prófa"]
+    B -- Tilbúið --> C["Ready for review<br/>Rýni teymis"]
+    B -- Lagfæringar --> A
+    C -- Athugasemdir --> A
+    C -- Samþykkt --> D["Sameining"]
+    classDef endar fill:#10099F,stroke:#10099F,color:#FFFFFF
+    classDef eigin fill:#2DD2C0,stroke:#10099F,color:#10099F
+    classDef ryni fill:#FAC55B,stroke:#10099F,color:#262626
+    class A,D endar
+    class B eigin
+    class C ryni
+```
+
+:::
+
+```{=html}
+<style>
+.pr-review-lanes { max-width: 680px; margin: 1.5rem auto; }
+.pr-review-lanes table { width: 100%; table-layout: fixed; font-size: .9rem; line-height: 1.4; }
+.pr-review-lanes th, .pr-review-lanes td { padding: .65rem; vertical-align: top; text-align: left; }
+.pr-review-lanes thead th { background: #10099F; color: white; width: 33.33%; }
+.pr-review-lanes .draft th { background: #2DD2C0; color: #10099F; }
+.pr-review-lanes .review th { background: #FAC55B; color: #262626; }
+.pr-review-lanes .waiting { color: #666; }
+.pr-review-lanes figcaption { text-align: center; font-size: .85rem; color: #555; }
+</style>
+<figure class="pr-review-lanes" aria-labelledby="pr-review-caption">
+<table aria-label="Ábyrgð þín, erindrekans og teymisfélaga í tveimur þrepum">
+<thead><tr><th scope="col">Þú</th><th scope="col">Erindreki</th><th scope="col">Teymisfélagar</th></tr></thead>
+<tbody>
+<tr class="draft"><th colspan="3">1. Eigin grein / draft PR · þú ferð yfir fyrst</th></tr>
+<tr><td><strong>Afmarkar verkefnið.</strong><br/>Skráir skýr fyrirmæli, t.d. í issue. Vinnur á eigin grein; getur opnað draft PR.</td><td>Leggur til lausn út frá fyrirmælum þínum.</td><td rowspan="2" class="waiting">Engin formleg rýni enn.</td></tr>
+<tr><td><strong>Les og prófar.</strong><br/>Biður um lagfæringar þar til þú skilur lausnina og hún virkar. Skráir AI-notkun.</td><td>Útskýrir og lagfærir eftir þínum athugasemdum.</td></tr>
+<tr class="review"><th colspan="3">2. Ready for review · nú rýnir teymið</th></tr>
+<tr><td><strong>Óskar eftir rýni.</strong><br/>Opnar PR til rýni eða merkir draft PR Ready for review.</td><td></td><td><strong>Rýna breytingarnar.</strong><br/>Senda athugasemdir.</td></tr>
+<tr><td><strong>Lagar og prófar aftur.</strong><br/>Svarar athugasemdum rýnenda.</td><td>Aðstoðar við lagfæringar eftir þörfum.</td><td><strong>Yfirfara lagfæringar og samþykkja.</strong></td></tr>
+<tr><td><strong>Sameinar eftir samþykki</strong> samkvæmt reglum geymslunnar.</td><td></td><td></td></tr>
+</tbody>
+</table>
+<figcaption id="pr-review-caption">Vinna á eigin grein og eigin yfirferð koma á undan formlegri rýni teymisfélaga.</figcaption>
+</figure>
+```
 ::: {.callout-tip}
 ## Hvað á að skrá ef prófun tókst ekki?
 
@@ -133,6 +177,11 @@ git checkout -b agent/nafn-verkefnis
 
 Síðan notar nemandinn erindreka til að vinna lausnina. Það má nota hvaða tól sem er, en lausnin
 þarf að enda sem breyting í GitHub pull request.
+
+Skráið skýr fyrirmæli, til dæmis í **issue**, og vinnið á eigin grein. Þið getið
+opnað **draft PR** til að halda utan um vinnuna. Lesið breytingarnar, keyrið
+viðeigandi prófanir og skráið AI-notkunina áður en þið opnið PR til rýni eða
+merkið draft PR sem **Ready for review** og óskið eftir rýni hópfélaga.
 
 ### Tvær ólíkar skrár: `AGENTS.md` og `AGENT_LOG.md`
 
