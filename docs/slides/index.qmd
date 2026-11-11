@@ -22,22 +22,24 @@ Fyrsti tími og stutt yfirlit yfir námskeiðið, vinnuflæðið, GitHub, erindr
 
 ## Capstone kynningar nemenda
 
-Friends haustið 2026: lyfturæður og lokakynningar teymanna.
+Friends haustið 2026: kynningar, lyfturæður og ágrip teymanna.
 
 ::: {.lotu-list}
 
 ::: {.lotu-card}
 ### 2026-11-16 Friends teymin
 
-Lyfturæður allra teyma í tímaröð, ein glæra á hvert þemaverkefni.
+Kynningar, lyfturæður og ágrip Friends-teymanna í dagskrárröð, ein glæra á hvert þemaverkefni.
 
-[Opna glærur með lyfturæðunum](friends-capstone.html)
-:::
+[Opna kynningar Friends-teymanna](friends-capstone.html)
 
-::: {.lotu-card}
-### Lokakynningar Friends-teymanna
+Verkefnissíður og skýrslur:
 
-*Placeholder.* Lokakynningar teymanna (myndbönd og glærur) verða tengdar hér eftir kynningardaginn.
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Chandler](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-Chandler/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Joey](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-joey/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Monica](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-monica/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Phoebe](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-phoebe/) ·
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Rachel](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-rachel/)
 :::
 
 :::
