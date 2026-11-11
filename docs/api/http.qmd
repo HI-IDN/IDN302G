@@ -161,24 +161,6 @@ síður heitir *paging* og þarf lykkju — við gerum það í [kaflanum um að
 Flæðiritið sýnir síðuskiptingu þegar þjónustan gefur slóð á
 næstu síðu í svarinu, til dæmis í `Link`-hausnum.
 
-```{mermaid}
-%%| label: http-mermaid-1
-flowchart TD
-    A["Byrja með slóð fyrstu síðu"] --> B["Senda beiðni"]
-    B --> C{"Tókst beiðnin?"}
-    C -- Nei --> D["Meðhöndla villu eða bíða samkvæmt leiðbeiningum þjónustunnar"]
-    C -- Já --> E["Lesa og safna færslum síðunnar"]
-    E --> F{"Er slóð á næstu síðu til?"}
-    F -- Já --> G["Nota slóð næstu síðu"]
-    G --> B
-    F -- Nei --> H["Ljúka og vinna úr söfnuðum færslum"]
-
-    classDef skref fill:#f0f7ff,stroke:#315a87,color:#111111
-    classDef spurning fill:#fff4d6,stroke:#8a6500,color:#111111
-    class A,B,D,E,G,H skref
-    class C,F spurning
-```
-
 Eitt svar inniheldur ekki endilega allar færslurnar. Fylgið
 slóð næstu síðu þar til þjónustan gefur til kynna að engar
 fleiri síður séu til. Aðrar þjónustur nota síðunúmer eða
@@ -188,6 +170,36 @@ haldið er áfram.
 Setjið einnig hámark á fjölda beiðna svo villa í síðuskiptingu
 valdi ekki endalausri lykkju. Keyranleg dæmi eru í
 [kaflanum um að sækja gögn](fetching-data.qmd#allar-síður).
+
+::: {style="max-width: 520px; margin-inline: auto; text-align: center;"}
+
+```{mermaid}
+%%| label: fig-http-pagination
+%%| fig-cap: "Síðuskipting: sækja síður þar til engin næsta síða er eftir."
+%%| fig-align: center
+%%| out-width: 520px
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Jost, sans-serif", "fontSize": "16px", "lineColor": "#10099F", "edgeLabelBackground": "#FFFFFF"}, "flowchart": {"curve": "linear", "nodeSpacing": 20, "rankSpacing": 20, "padding": 10}}}%%
+flowchart TD
+    A["Slóð fyrstu síðu"] --> B["Senda beiðni"]
+    B --> C{"Tókst beiðnin?"}
+    C -- Nei --> D["Meðhöndla villu"]
+    C -- Já --> E["Safna færslum síðunnar"]
+    E --> F{"Næsta síða?"}
+    F -- Nei --> H["Ljúka og vinna<br/>úr söfnuðum færslum"]
+    F -- Já --> G["Nota næstu slóð"]
+    G --> B
+
+    classDef endar fill:#10099F,stroke:#10099F,color:#FFFFFF
+    classDef skref fill:#D5F6F2,stroke:#10099F,color:#10099F
+    classDef spurning fill:#FAC55B,stroke:#10099F,color:#262626
+    classDef villa fill:#FC8484,stroke:#10099F,color:#262626
+    class A,H endar
+    class B,E,G skref
+    class C,F spurning
+    class D villa
+```
+
+:::
 
 ::: {.callout-tip}
 ## Prófaðu í vafranum fyrst
