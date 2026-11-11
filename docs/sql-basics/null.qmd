@@ -136,7 +136,7 @@ WHERE gender = 'F'
 ::: {.callout-important}
 ## `NOT IN` með undirfyrirspurn
 
-Ef undirfyrirspurnin getur skilað `NULL` skilar `NOT IN` tómri niðurstöðu, án nokkurrar villu.
+Ef niðurstaða undirfyrirspurnarinnar inniheldur `NULL` skilar `NOT IN` tómri niðurstöðu, án nokkurrar villu.
 Bættu við `WHERE dálkur IS NOT NULL` í undirfyrirspurnina, eða notaðu `NOT EXISTS`.
 :::
 
