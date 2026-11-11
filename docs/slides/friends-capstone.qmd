@@ -2,7 +2,7 @@
 pagetitle: "Friends capstone"
 title: "Friends capstone"
 description: >-
-  Lokakynning mánudaginn 16. nóvember: lyfturæður allra teyma.
+  Lokakynning mánudaginn 16. nóvember: kynningar, lyfturæður, ágrip og verkefnissíður teymanna.
 lang: is
 format:
   revealjs:
@@ -199,6 +199,8 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 <h3>Kynning</h3>
 
 *Hlekkur á lokakynninguna kemur síðar.*
+
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Chandler](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-Chandler/)
 :::
 :::
 
@@ -226,6 +228,8 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 <h3>Kynning</h3>
 
 *Hlekkur á lokakynninguna kemur síðar.*
+
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Joey](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-joey/)
 :::
 :::
 
@@ -253,6 +257,8 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 <h3>Kynning</h3>
 
 *Hlekkur á lokakynninguna kemur síðar.*
+
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Monica](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-monica/)
 :::
 :::
 
@@ -280,6 +286,8 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 <h3>Kynning</h3>
 
 *Hlekkur á lokakynninguna kemur síðar.*
+
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Phoebe](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-phoebe/)
 :::
 :::
 
@@ -307,6 +315,8 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 <h3>Kynning</h3>
 
 *Hlekkur á lokakynninguna kemur síðar.*
+
+[<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Rachel](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-rachel/)
 :::
 :::
 

@@ -157,13 +157,122 @@ stærri og erfiðari verða árekstrarnir þegar loks er sameinað.
 
 ### Merge conflict
 
-Þegar Git getur ekki sameinað sjálfkrafa færðu merkin `<<<<<<<`, `=======` og `>>>>>>>` í
-skrárnar. Sjá [Sameina breytingar og leysa árekstra](../basics/git_commands.qmd) fyrir skref.
-Ef þú vilt hætta við sameininguna og byrja upp á nýtt:
+#### Hvað gerist við merge conflict?
+
+Git getur ekki ákveðið sjálfkrafa hvaða breytingar á að halda og biður þig að leysa
+áreksturinn. Skrár sem hafa árekstra verða merktar í Git sem óleystar (`unmerged`).
+
+#### Hvernig á að leysa merge conflict?
+
+Opnaðu skrárnar sem Git hefur merkt sem í árekstri og leitaðu að merkjunum `<<<<<<<`,
+`=======` og `>>>>>>>`. Þau sýna hvaða línur rekast á.
+
+Veldu hvaða breytingar eiga að fara í lokaútgáfuna og fjarlægðu árekstramerkin. Þegar
+breytingarnar hafa verið leystar þarf að bæta skránum aftur við og skrá lausnina:
 
 ```sh
-git merge --abort
+git add uppfærðar-skrár
+git commit -m "Leysti merge conflict"
 ```
+
+#### Dæmi: tveir breyta sömu línu
+
+Segjum að `README.md` í hópverkefni innihaldi línuna `Fundur á mánudögum kl. 10.` Einn
+hópmeðlimur færir fundinn á þriðjudaga kl. 14 í greininni `breyta-fundartima`. Á meðan breytir
+annar tímanum í kl. 13 á `main`.
+
+Í þessu staðbundna æfingadæmi er breytt beint á `main` til einföldunar. Í sameiginlegu
+hópverkefni gæti sú breyting þegar hafa verið sameinuð inn á `main` með öðru Pull Request.
+
+Þegar reynt er að sameina greinarnar:
+
+```sh
+git checkout main
+git merge breyta-fundartima
+```
+
+svarar Git:
+
+```text
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+og `git status` merkir skrána `both modified`. Í `README.md` stendur nú:
+
+```text
+# Hópverkefni
+
+<<<<<<< HEAD
+Fundur á mánudögum kl. 13.
+=======
+Fundur á þriðjudögum kl. 14.
+>>>>>>> breyta-fundartima
+```
+
+Merkin skipta skránni í tvo hluta:
+
+- Á milli `<<<<<<< HEAD` og `=======` er útgáfan á greininni sem þú ert á (hér `main`).
+- Á milli `=======` og `>>>>>>> breyta-fundartima` er útgáfan úr greininni sem þú ert að sameina.
+
+Git veit ekki hvor útgáfan er rétt, svo þú ákveður það. Þú getur haldið annarri, hinni eða skrifað
+nýja línu sem sameinar báðar. Segjum að hópurinn ákveði þriðjudaga kl. 13. Þá verður skráin:
+
+```text
+# Hópverkefni
+
+Fundur á þriðjudögum kl. 13.
+```
+
+Öll þrjú merkin eru horfin. Að lokum er lausnin skráð:
+
+```sh
+git add README.md
+git commit -m "Leysa árekstur um fundartíma"
+```
+
+::: {.callout-warning}
+Athugaðu alltaf að ekkert `<<<<<<<`, `=======` eða `>>>>>>>` sé eftir í skránni áður en þú gerir
+commit. Git stoppar þig ekki. Merkin fara þá inn í söguna og geta brotið kóða eða skýrslu.
+:::
+
+#### Æfing: búðu til árekstur sjálf/ur
+
+Best er að prófa árekstur í æfingageymslu áður en hann kemur upp í alvöru verkefni.
+
+1. Búðu til tóma geymslu og fyrsta commit:
+
+    ```sh
+    git init -b main arekstur
+    cd arekstur
+    ```
+
+    Búðu til `README.md` í ritli með línunni `Fundur á mánudögum kl. 10.` og skráðu hana:
+
+    ```sh
+    git add README.md
+    git commit -m "Bæta við README"
+    ```
+
+2. Búðu til nýja grein, breyttu línunni í `Fundur á þriðjudögum kl. 14.` og skráðu breytinguna:
+
+    ```sh
+    git checkout -b breyta-fundartima
+    git commit -am "Færa fund á þriðjudag"
+    ```
+
+3. Farðu aftur á `main`, breyttu **sömu línu** í `Fundur á mánudögum kl. 13.` og skráðu:
+
+    ```sh
+    git checkout main
+    git commit -am "Færa fund til kl. 13"
+    ```
+
+4. Sameinaðu greinarnar með `git merge breyta-fundartima`, leystu áreksturinn eins og í dæminu
+   hér að ofan og skoðaðu söguna með `git log --oneline --graph`.
+
+Ef þú vilt hætta við í miðjum árekstri skilar `git merge --abort` öllu í fyrra horf.
 
 ## Gott að muna
 
