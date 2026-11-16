@@ -107,6 +107,8 @@ format:
         .reveal .fc-logo svg { width:100%; height:100%; display:block; }
         .reveal .vid { display:flex; justify-content:center; margin-top:8px; }
         .reveal .vid iframe { width:304px; height:540px; border:0; }
+        .reveal .agrip .callout { max-height: 400px; overflow-y: auto; margin: 6px 0 14px; padding: 12px 16px; }
+        .reveal .agrip .callout p { font-size: 14px !important; line-height: 1.38 !important; font-weight: 500; margin: 0 0 0.5em; }
         .reveal .when { color: var(--blue); font-weight:700; margin:0; }
         </style>
     include-after-body:
@@ -192,13 +194,13 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 ::: {}
 <h3>Ágrip</h3>
 
-::: {.callout}
-*Ágrip verkefnisins (um 250 orð) kemur hér.*
+::: {.callout .agrip}
+Þegar rignir spyrja farþegar Strætó sig hvort vagninn verði seinn. Við vildum vita hvort úrkoma tengist seinkunum í raun, því farþegar og skipuleggjendur þurfa að geta reitt sig á áætlunina. Spurningin er hvort ferðir séu oftar seinar í úrkomu en utan hennar, en vagn telst seinn þegar hann er meira en 5 mínútum á eftir áætlun. Við bárum rauntímaspár Strætó saman við áætlun og tengdum hverja ferð við úrkomu Veðurstofunnar, 16383 athuganir á 4 dögum á tímabilinu 24.–29. september 2026. Í úrkomu voru 25,2 % athugana seinar en 21,5 % utan hennar (+3,7 prósentustig). Sá munur gæti þó stafað af tíma dags, því rigning og annatími fara oft saman. Þegar ferðir eru bornar saman innan sömu klukkustundar er munurinn +0,7 prósentustig (95 % bil -1,4 til +3,0); bilið nær yfir 0, svo gögnin sýna ekki skýran mun. Bilið náði yfir 0 í öllum fjórum öðrum greiningum með ólíkum forsendum. Sýnið er stutt og með hléum, svo tengsl úrkomu og seinkunar verða hvorki staðfest né hafnað og ekki má lesa orsök úr þeim. Fyrir farþega og skipuleggjendur þýðir það að ekki er hægt að treysta á að úrkoma ein og sér skýri seinkanir. Ef úrkoma skýrir seinkanir gæti Strætó brugðist við með rýmri áætlun eða viðvörun til farþega þegar rigningu er spáð; ef ekki, er betra að leita annarra orsaka, svo sem umferðar og annatíma. Til að svara betur þarf lengra og samfellt sýni sem nær yfir fleiri rigningardaga og árstíðir, og nákvæmari veðurmælingar nálægt hverri stoppistöð og upplýsingar um umferð.
 :::
 
 <h3>Kynning</h3>
 
-*Hlekkur á lokakynninguna kemur síðar.*
+[<i class="fa-brands fa-youtube" aria-hidden="true"></i> Lokakynningin á YouTube](https://www.youtube.com/watch?v=5goo2bFENS4)
 
 [<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Chandler](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-Chandler/)
 :::
@@ -221,13 +223,19 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 ::: {}
 <h3>Ágrip</h3>
 
-::: {.callout}
-*Ágrip verkefnisins (um 250 orð) kemur hér.*
+::: {.callout .agrip}
+Ferðamönnum á Íslandi fjölgaði hratt eftir 2010. Fyrir ferðamenn sem skipuleggja ferð til Íslands skiptir máli hvenær ársins og hvar á landinu mest er um að vera. Við skoðum því hvort árstíðasveiflan hafi minnkað á uppgangsárunum eða hvort fjölgun ferðamanna hafi fyrst og fremst aukið umferðina yfir sumartímann. Niðurstöðurnar geta einnig nýst ferðaþjónustufyrirtækjum, þar sem rekstur yfir þrjá sumarmánuði krefst annars skipulags en rekstur allt árið.
+
+Við sóttum gistinætur erlendra gesta á skráðum gististöðum, eftir mánuðum og landshlutum, úr vefþjónustu Hagstofu Íslands, meðalhita í Reykjavík frá Veðurstofu Íslands og brottfarir um Keflavíkurflugvöll frá Ferðamálastofu. Gögnin eru vistuð í SQLite-gagnagrunni þar sem SQL reiknar hlut sumarmánaðanna (júní–ágúst) af heildarfjölda gistinátta hvers árs á tímabilinu 2010–2025 og ber gistinætur saman við meðalhita.
+
+Hlutur sumarsins lækkaði úr 63% árið 2010 í 40% árið 2019 og hefur verið á bilinu 40–44% eftir faraldurinn. Á sama tíma fjölgaði árlegum gistinóttum úr 2,1 milljón í 8,6 milljónir. Hlutur sumarsins lækkaði á öllum sjö svæðunum, en á Vestfjörðum, Austurlandi, Norðurlandi og Vesturlandi fellur enn meira en helmingur gistinátta á sumarmánuðina. Hlutfallið er lægst á höfuðborgarsvæðinu, eða 32%. Enginn hlýr mánuður fellur utan háannar, en 33 kaldir mánuðir eru innan háannar, flestir í maí, september og október.
+
+Árstíðasveiflan jafnaðist því að mestu út fyrir árið 2019. Það skýrist af fjölgun gistinátta utan sumarmánaðanna, en síðan hefur hlutfallið haldist nokkuð stöðugt. Fyrir ferðamenn þýðir þetta að sumarið er ekki lengur eini tíminn sem kemur til greina, þótt enn sé mest um að vera á sumum svæðum yfir sumartímann.
 :::
 
 <h3>Kynning</h3>
 
-*Hlekkur á lokakynninguna kemur síðar.*
+[<i class="fa-brands fa-youtube" aria-hidden="true"></i> Lokakynningin á YouTube](https://youtu.be/r8qzlqIQ3lM)
 
 [<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Joey](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-joey/)
 :::
@@ -250,13 +258,19 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 ::: {}
 <h3>Ágrip</h3>
 
-::: {.callout}
-*Ágrip verkefnisins (um 250 orð) kemur hér.*
+::: {.callout .agrip}
+Í þessari skýrslu var staða ungs fólks á húsnæðismarkaði rannsökuð með það að markmiði að kanna hvort aðgengi þess að húsnæði hafi versnað á undanförnum árum. Skoðað var hvernig húsnæðisverð tengist búsetu í foreldrahúsum, hvernig kaupgeta ungs fólks hefur þróast og hvort leiga sé viðráðanleg fyrir þau sem ekki komast inn á eignamarkaðinn.
+
+Rannsóknin byggir á gögnum Hagstofu Íslands og Húsnæðis- og mannvirkjastofnunar fyrir tímabilið 2004–2025. Gögnin voru vistuð í SQLite-gagnagrunni og unnin með SQL, en R var notað til myndrænnar framsetningar.
+
+Niðurstöðurnar sýna að hlutfall 18–24 ára í foreldrahúsum jókst úr 56,5% í 62,2% á árunum 2004–2021, en ekki komu fram skýr tengsl milli árlegra hækkana húsnæðisverðs umfram laun og breytinga á búsetu. Kaupgeta ungs fólks hefur hins vegar versnað. Meðalverð íbúðar, mælt í árlegum ráðstöfunartekjum, hækkaði úr 7,5 í 10,0 ár hjá 25–29 ára og úr 11,0 í 13,2 ár hjá 20–24 ára á tímabilinu 2008–2025. Jafnframt lengdist sá tími sem tekur að safna fyrir útborgun. Leiguverð hefur aftur á móti fylgt tekjum betur en kaupverð, þótt leigubyrðin sé áfram veruleg.
+
+Meginniðurstaðan er því sú að fjárhagslegt aðgengi ungs fólks að fasteignamarkaðinum hefur versnað, þótt sú þróun endurspeglist ekki með jafn skýrum hætti í búsetu þess. Aðrir þættir, svo sem framboð húsnæðis, lánskjör og búsetuhættir, kunna einnig að hafa áhrif sem rannsóknin nær ekki að skýra.
 :::
 
 <h3>Kynning</h3>
 
-*Hlekkur á lokakynninguna kemur síðar.*
+[<i class="fa-brands fa-google-drive" aria-hidden="true"></i> Lokakynningin á Google Drive](https://drive.google.com/file/d/1BTddEhVTzlwQXHrBE7AakJWvx1BBJJnw/view)
 
 [<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Monica](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-monica/)
 :::
@@ -279,13 +293,21 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 ::: {}
 <h3>Ágrip</h3>
 
-::: {.callout}
-*Ágrip verkefnisins (um 250 orð) kemur hér.*
+::: {.callout .agrip}
+Haustið 2023 urðu miklar jarðhræringar við Svartsengi og Grindavík. Skjálftavaktin spyr: Hversu oft lækkar landhæð við SENG á skjálftadögum samanborið við daga án skjálfta í úrtakinu? Verkefnið er ætlað áhugasömum almenningi sem vill skilja hvað opnar mælingar segja um samspil skjálfta og landbreytinga og geta rakið niðurstöðurnar í gögn.
+
+Við notum yfirfarna jarðskjálfta af stærð 3–7 á 0–50 km dýpi á afmörkuðu svæði á Reykjanesi úr vefþjónustu Veðurstofu Íslands fyrir nóvember og desember 2023 og daglegar GNSS-mælingar stöðvarinnar SENG frá Nevada Geodetic Laboratory. Python sækir og sannreynir gögnin, staðlar tímastimpla og auðkenni með reglulegum segðum og flytur þau í SQLite. SQL tengir samliggjandi almanaksdaga, reiknar breytingu landhæðar og ber saman hlutfall daga með lækkun í hópunum tveimur. Dagur með vantað eða ónothæft mælingapar fer ekki í nefnara samanburðarins.
+
+Landhæð lækkaði á 6 af 18 samanburðarhæfum skjálftadögum (33,3%) og 3 af 41 dögum án skjálfta í úrtakinu (7,3%).
+
+Niðurstaðan lýsir þessu afmarkaða úrtaki. Lækkun merkir mælda breytingu undir núlli og er ekki sjálfkrafa marktæk miðað við óvissu. Mæling á landhæð er heldur ekki mæling á kvikumagni. Tímabilið var valið utan um þekkta atburði og gögnin sýna ekki að skjálftar valdi landsigi eða öfugt. Lesandinn getur kannað dagana og óvissuna í mælaborði og endurbyggt sömu niðurstöður í skýrslu og myndum úr sameiginlegum SQL-sýnum.
+
+Næsta skref er að lengja tímabilið, bæta við stöðvum og prófa næmni fyrir stærðarmörkum og óvissu. Þannig má kanna hvort samanburðurinn haldist utan þessarar hrinu áður en sterkari ályktanir eru dregnar um tengsl skjálftavirkni og landbreytinga.
 :::
 
 <h3>Kynning</h3>
 
-*Hlekkur á lokakynninguna kemur síðar.*
+[<i class="fa-brands fa-youtube" aria-hidden="true"></i> Lokakynningin á YouTube](https://www.youtube.com/watch?v=XeFnfMETQMY)
 
 [<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Phoebe](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-phoebe/)
 :::
@@ -308,13 +330,13 @@ Kl. 10:00–12:20. Smellið á teymi til að hoppa beint á lyfturæðuna.
 ::: {}
 <h3>Ágrip</h3>
 
-::: {.callout}
-*Ágrip verkefnisins (um 250 orð) kemur hér.*
+::: {.callout .agrip}
+Við skoðum hvernig umfjöllun um Álfabakka 2A þróaðist í fundargerðum Reykjavíkurborgar og hvaða afgreiðslur voru skráðar. Við tengjum fundardaga, dagskrárliði og málsnúmer til að rekja umfjöllunina frá fyrirspurnum um skipulag til erinda um bygginguna og notkun hennar. Tímalínan sýnir hvenær erindin komu fyrir og tenglar í fundargerðir gera lesanda kleift að lesa afgreiðslurnar í samhengi.
 :::
 
 <h3>Kynning</h3>
 
-*Hlekkur á lokakynninguna kemur síðar.*
+[<i class="fa-brands fa-youtube" aria-hidden="true"></i> Lokakynningin á YouTube](https://www.youtube.com/watch?v=S0IfVZ7VZN0)
 
 [<i class="fa-brands fa-github" aria-hidden="true"></i> Skýrsla og verkefnissíða Rachel](https://upplysingaverkfraedi.github.io/idn302g-2026-team-friends-rachel/)
 :::
