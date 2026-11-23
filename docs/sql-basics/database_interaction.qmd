@@ -145,7 +145,7 @@ dbDisconnect(con)
   gögn í R.
 - Gagnlegt fyrir þá sem vinna með stór gagnasöfn í _PostgreSQL_ og þurfa að framkvæma
   tölfræðigreiningu í R.
-- [Skjölun fyrir RPostgreSQL](https://cran.r-project.org/web/packages/RPostgreSQL/vignettes/RPostgreSQL.pdf)
+- [Skjölun fyrir RPostgreSQL](https://cran.r-project.org/web/packages/RPostgreSQL/RPostgreSQL.pdf)
   veitir ítarlegar upplýsingar um uppsetningu og notkun.
 
 **Dæmi um notkun:**
