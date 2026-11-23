@@ -43,13 +43,25 @@ jobs:
           python -m pip install -r requirements.txt
           echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
 
-      # Hausaskrár fyrir R-pakka sem nota curl og OpenSSL.
-      # Ubuntu-speglar runnerins féllu á DNS; notum annan Ubuntu-spegil.
+      # Hausaskrár fyrir R-pakka sem nota curl og OpenSSL. Þær fylgja yfirleitt
+      # runner-myndinni, og þá er apt ekki snert. Annars er sótt með sjálfgefnum
+      # speglum og reynt aftur, því Ubuntu-speglar (og staðgenglar þeirra) detta
+      # stundum út í nokkrar mínútur. Ein bilun í apt-get update er ekki látin
+      # fella bygginguna; aðeins ef pakkarnir fást ekki eftir allar tilraunir.
       - name: Install system libraries
         run: |
-          printf '%s\n' 'https://mirrors.edge.kernel.org/ubuntu/' | sudo tee /etc/apt/apt-mirrors.txt
-          sudo apt-get -o APT::Update::Error-Mode=any update
-          sudo apt-get install -y libcurl4-openssl-dev libssl-dev
+          pkgs="libcurl4-openssl-dev libssl-dev"
+          if dpkg -s $pkgs >/dev/null 2>&1; then
+            echo "Þegar uppsett: $pkgs"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            sudo apt-get update || true
+            if sudo apt-get install -y $pkgs; then exit 0; fi
+            echo "Tilraun $attempt mistókst; reyni aftur eftir 30 s"
+            sleep 30
+          done
+          exit 1
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
@@ -107,6 +119,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Aðeins stillingaskrá lychee þarf úr geymslunni.
+      - name: Check out link-check config
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: lychee.toml
+          sparse-checkout-cone-mode: false
+
       - name: Download site artifact
         uses: actions/download-artifact@v4
         with:
@@ -120,6 +139,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
+            --config lychee.toml
             --no-progress
             --exclude-loopback
             ${{ github.event_name == 'schedule' && '--max-retries 2' || '--offline' }}
