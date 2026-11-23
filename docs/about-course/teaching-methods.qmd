@@ -34,7 +34,7 @@ hvað gekk vel og hvað mætti bæta — birt á GitHub Pages.
 Frekara lesefni:
 
 - Michaelsen, L. K., Knight, A. B. & Fink, L. D. (2004). *Team-Based Learning: A Transformative Use of Small Groups*. Stylus.
-- Parmelee, D. et al. (2012). Team-based learning: a practical guide. *Medical Teacher*, 34(5). [doi:10.3109/0142159X.2012.643278](https://doi.org/10.3109/0142159X.2012.643278)
+- Parmelee, D. et al. (2012). Team-based learning: a practical guide. *Medical Teacher*, 34(5). [doi:10.3109/0142159X.2012.651179](https://doi.org/10.3109/0142159X.2012.651179)
 :::
 
 ::: {.callout-note appearance="minimal" collapse="true"}

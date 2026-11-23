@@ -1,0 +1,17 @@
+# Stillingar fyrir lychee (hlekkjaathugun í .github/workflows/publish.yml).
+#
+# Vikulega keyrslan athugar ytri hlekki. Mörg stór vefsvæði hafna sjálfvirkum
+# beiðnum frá GitHub Actions þótt síðan sé til, t.d. Power BI, Tableau, O'Reilly,
+# MySQL og SAGE (403). Það segir ekkert um hvort hlekkurinn sé lifandi, svo 403
+# og 429 (of margar beiðnir) teljast í lagi. Raunverulega dauðir hlekkir (404,
+# 410, DNS-villur o.s.frv.) fella enn keyrsluna.
+accept = ["100..=103", "200..=299", "403", "429"]
+
+exclude = [
+  # Canvas: krefst innskráningar og svarar 400 án hennar.
+  '^https://haskoliislands\.instructure\.com/',
+  # db-engines sendir ekki fulla skírteinakeðju, svo TLS-staðfesting fellur.
+  '^https://db-engines\.com/',
+  # Gagnagátt borgarinnar svarar ekki tengingum frá GitHub Actions.
+  '^https://opendata\.reykjavik\.is/',
+]
